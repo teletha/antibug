@@ -23,6 +23,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
+import org.junit.runners.ParentRunner;
 import org.junit.runners.model.Statement;
 
 /**
@@ -73,6 +74,9 @@ public abstract class ReusableRule implements TestRule {
     /** The parent directory of testcase class. */
     protected final Path testcaseDirectory = testcaseRoot.resolve(testcase.getPackage().getName().replace('.', '/'));
 
+    /** The flag whether the testcase is executed by testsuites or not. */
+    protected final boolean isSuite;
+
     /** The sub rules. */
     private List<Field> rules = new ArrayList();
 
@@ -92,6 +96,9 @@ public abstract class ReusableRule implements TestRule {
      * Subclass only can instantiate.
      */
     protected ReusableRule() {
+        System.out.println(ParentRunner.isFirst);
+        this.isSuite = !ParentRunner.isFirst;
+
         for (Field field : getClass().getFields()) {
             if (field.isAnnotationPresent(Rule.class) && Modifier.isPublic(field.getModifiers())) {
                 if (TestRule.class.isAssignableFrom(field.getType())) {

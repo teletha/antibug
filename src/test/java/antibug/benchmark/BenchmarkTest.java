@@ -31,6 +31,7 @@ public class BenchmarkTest {
                 return null;
             }
         });
+        throw new AssertionError();
     }
 
     @Test

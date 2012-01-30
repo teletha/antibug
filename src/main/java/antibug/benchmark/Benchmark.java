@@ -9,6 +9,8 @@
  */
 package antibug.benchmark;
 
+import java.lang.reflect.Method;
+
 import antibug.ReusableRule;
 
 /**
@@ -25,6 +27,15 @@ public class Benchmark extends ReusableRule {
      */
     public void measure(Code measuredCode) {
 
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected boolean skip(Method method) {
+        System.out.println(isSuite);
+        return isSuite;
     }
 
     /**

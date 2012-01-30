@@ -37,8 +37,6 @@ import org.junit.runners.model.RunnerScheduler;
 import org.junit.runners.model.Statement;
 import org.junit.runners.model.TestClass;
 
-import antibug.ImpliciteRule;
-
 /**
  * Provides most of the functionality specific to a Runner that implements a "parent node" in the
  * test tree, with children defined by objects of some data type {@code T}. (For
@@ -48,7 +46,9 @@ import antibug.ImpliciteRule;
  * {@code @BeforeClass} and {@code @AfterClass} methods, handle annotated {@link ClassRule}s, create
  * a composite {@link Description}, and run children sequentially.
  */
-public abstract class ParentRunner<T> extends Runner implements Filterable, Sortable {
+public abstract class ParentRunner<T> extends Runner implements Filterable, Sortable, TestRule {
+
+    public static boolean isFirst = true;
 
     private final TestClass fTestClass;
 
@@ -192,6 +192,7 @@ public abstract class ParentRunner<T> extends Runner implements Filterable, Sort
      */
     private Statement withClassRules(Statement statement) {
         List<TestRule> classRules = classRules();
+        classRules.add(this);
         return classRules.isEmpty() ? statement : new RunRules(statement, classRules, getDescription());
     }
 
@@ -200,16 +201,7 @@ public abstract class ParentRunner<T> extends Runner implements Filterable, Sort
      *         tested class.
      */
     protected List<TestRule> classRules() {
-        List<TestRule> rules = fTestClass.getAnnotatedFieldValues(null, ClassRule.class, TestRule.class);
-
-        Iterator<ImpliciteRule> iterator = ServiceLoader.load(ImpliciteRule.class).iterator();
-
-        while (iterator.hasNext()) {
-            rules.add(0, iterator.next());
-        }
-        System.out.println(rules);
-
-        return rules;
+        return fTestClass.getAnnotatedFieldValues(null, ClassRule.class, TestRule.class);
     }
 
     /**
@@ -259,8 +251,11 @@ public abstract class ParentRunner<T> extends Runner implements Filterable, Sort
      * Runs a {@link Statement} that represents a leaf (aka atomic) test.
      */
     protected final void runLeaf(Statement statement, Description description, RunNotifier notifier) {
+        statement = new RunRules(statement, ServiceLoader.load(TestRule.class), description);
+
         EachTestNotifier eachNotifier = new EachTestNotifier(notifier, description);
         eachNotifier.fireTestStarted();
+
         try {
             statement.evaluate();
         } catch (AssumptionViolatedException e) {
@@ -294,6 +289,7 @@ public abstract class ParentRunner<T> extends Runner implements Filterable, Sort
     @Override
     public void run(final RunNotifier notifier) {
         EachTestNotifier testNotifier = new EachTestNotifier(notifier, getDescription());
+
         try {
             Statement statement = classBlock(notifier);
             statement.evaluate();
@@ -372,5 +368,23 @@ public abstract class ParentRunner<T> extends Runner implements Filterable, Sort
      */
     public void setScheduler(RunnerScheduler scheduler) {
         this.fScheduler = scheduler;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Statement apply(final Statement statement, Description description) {
+        return new Statement() {
+
+            @Override
+            public void evaluate() throws Throwable {
+                try {
+                    statement.evaluate();
+                } finally {
+                    isFirst = false;
+                }
+            }
+        };
     }
 }

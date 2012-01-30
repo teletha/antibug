@@ -13,10 +13,10 @@ import java.lang.reflect.Method;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
+import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
-import antibug.ImpliciteRule;
 import antibug.bytecode.Agent;
 
 /**
@@ -35,7 +35,7 @@ import antibug.bytecode.Agent;
  * 
  * @version 2012/01/19 11:50:38
  */
-public class PowerAssert implements ImpliciteRule {
+public class PowerAssert implements TestRule {
 
     /** The recode for the translated classes. */
     private static final Set<String> translated = new CopyOnWriteArraySet();
