@@ -11,10 +11,38 @@ package antibug.benchmark;
 
 import antibug.ReusableRule;
 
-
 /**
  * @version 2011/02/08 22:48:23
  */
 public class Benchmark extends ReusableRule {
 
+    /**
+     * <p>
+     * Measure an execution speed of the specified code fragment.
+     * </p>
+     * 
+     * @param measuredCode A code to be measured.
+     */
+    public void measure(Code measuredCode) {
+
+    }
+
+    /**
+     * <p>
+     * </p>
+     * 
+     * @version 2012/01/30 10:56:30
+     */
+    public static interface Code {
+
+        /**
+         * <p>
+         * Write micro benchmark code.
+         * </p>
+         * 
+         * @return
+         * @throws Throwable
+         */
+        Object call() throws Throwable;
+    }
 }
