@@ -8,22 +8,22 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.ServiceLoader;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.rules.TestRule;
 
-import antibug.powerassert.PowerAssert;
+import antibug.ImpliciteRule;
 
 /**
  * Wraps a class to be run, providing method validation and annotation searching
  */
-@Ignore
 public class TestClass {
 
     private final Class<?> fClass;
@@ -145,7 +145,11 @@ public class TestClass {
         }
 
         if (annotationClass == Rule.class && valueClass == TestRule.class) {
-            results.add(0, (T) new PowerAssert());
+            Iterator<ImpliciteRule> iterator = ServiceLoader.load(ImpliciteRule.class).iterator();
+
+            while (iterator.hasNext()) {
+                results.add(0, (T) iterator.next());
+            }
         }
         return results;
     }

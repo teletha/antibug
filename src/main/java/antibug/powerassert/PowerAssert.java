@@ -9,13 +9,14 @@
  */
 package antibug.powerassert;
 
+import java.lang.reflect.Method;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
+import antibug.ImpliciteRule;
 import antibug.bytecode.Agent;
 
 /**
@@ -34,7 +35,7 @@ import antibug.bytecode.Agent;
  * 
  * @version 2012/01/19 11:50:38
  */
-public class PowerAssert implements TestRule {
+public class PowerAssert implements ImpliciteRule {
 
     /** The recode for the translated classes. */
     private static final Set<String> translated = new CopyOnWriteArraySet();
@@ -42,8 +43,11 @@ public class PowerAssert implements TestRule {
     /** The actual translator. */
     private static final Agent agent = new Agent(PowerAssertTranslator.class);
 
-    /** The self tester. */
-    private final PowerAssertTester tester;
+    /** The self tester. (use Object type to cut the reference to PowerAssertTester) */
+    private final Object tester;
+
+    /** The validate method of tester. (use Method type to cut the reference to PowerAssertTester) */
+    private final Method validate;
 
     /**
      * Assertion Utility.
@@ -53,10 +57,22 @@ public class PowerAssert implements TestRule {
     }
 
     /**
-     * Test for {@link PowerAssert}.
+     * Test for {@link PowerAssert}. Parameter must implements {@link PowerAssertTester}.
      */
-    PowerAssert(PowerAssertTester tester) {
+    PowerAssert(Object tester) {
         this.tester = tester;
+
+        if (tester == null) {
+            this.validate = null;
+        } else {
+            try {
+                this.validate = tester.getClass().getDeclaredMethod("validate", PowerAssertContext.class);
+            } catch (Exception e) {
+                // If this exception will be thrown, it is bug of this program. So we must rethrow
+                // the wrapped error in here.
+                throw new Error(e);
+            }
+        }
     }
 
     /**
@@ -75,7 +91,7 @@ public class PowerAssert implements TestRule {
                     statement.evaluate();
                 } catch (PowerAssertionError error) {
                     if (tester != null) {
-                        tester.validate(error.context); // for self test
+                        validate.invoke(tester, error.context); // for self test
                     } else {
                         throw error; // rethrow for unit test
                     }
