@@ -96,7 +96,6 @@ public abstract class ReusableRule implements TestRule {
      * Subclass only can instantiate.
      */
     protected ReusableRule() {
-        System.out.println(ParentRunner.isFirst);
         this.isSuite = !ParentRunner.isFirst;
 
         for (Field field : getClass().getFields()) {

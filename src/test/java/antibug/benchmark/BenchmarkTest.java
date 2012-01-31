@@ -9,6 +9,12 @@
  */
 package antibug.benchmark;
 
+import java.io.File;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.PathMatcher;
+import java.nio.file.Paths;
+
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -22,26 +28,19 @@ public class BenchmarkTest {
     @Rule
     public static final Benchmark benchmark = new Benchmark();
 
-    @Test
-    public void parseInt() throws Exception {
-        benchmark.measure(new Code() {
-
-            @Override
-            public Object call() throws Throwable {
-                return null;
-            }
-        });
-        throw new AssertionError();
-    }
+    private Path path = Paths.get(new File("").getAbsolutePath());
 
     @Test
-    public void parseIn2t() throws Exception {
+    public void system() throws Exception {
         benchmark.measure(new Code() {
 
+            private PathMatcher wildcard = FileSystems.getDefault().getPathMatcher("glob:*.java");
+
             @Override
-            public Object call() throws Throwable {
-                return null;
+            public Object measure() throws Throwable {
+                return wildcard.matches(path);
             }
         });
     }
+
 }
