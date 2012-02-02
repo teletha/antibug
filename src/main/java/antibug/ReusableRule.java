@@ -26,6 +26,8 @@ import org.junit.runner.Description;
 import org.junit.runners.ParentRunner;
 import org.junit.runners.model.Statement;
 
+import antibug.powerassert.PowerAssertionError;
+
 /**
  * <p>
  * {@link ReusableRule} is replacement of the old-school super testcase class for JUnit. User can
@@ -287,7 +289,7 @@ public abstract class ReusableRule implements TestRule {
      * @param throwable A current caught error.
      */
     protected final void catchError(Throwable throwable) {
-        if (error == null) {
+        if (error == null || throwable instanceof PowerAssertionError) {
             error = throwable;
         } else if (error != throwable) {
             error.addSuppressed(throwable);
