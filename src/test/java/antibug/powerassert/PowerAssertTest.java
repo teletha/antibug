@@ -68,6 +68,16 @@ public class PowerAssertTest {
     }
 
     @Test
+    public void nullParameter() throws Exception {
+        test.willCapture("nullMethod(null)", false);
+        assert nullMethod(null);
+    }
+
+    private boolean nullMethod(Object param) {
+        return false;
+    }
+
+    @Test
     public void classLiteral() throws Exception {
         Class value = int.class;
 

@@ -17,7 +17,7 @@ import org.junit.Test;
 public class PowerAssertUserTest {
 
     /** The tester. */
-    private int intField = 11;
+    private static final String intField = "aaaaa";
 
     /** The tester. */
     private static int intFieldStatic = 11;
@@ -33,7 +33,7 @@ public class PowerAssertUserTest {
     public void fieldIntStaticAcces1s() throws Exception {
         String value = "aaaa";
 
-        assert new int[] {1, 2} == null;
+        assert sss(intField).length() == 1;
     }
 
     @Test
@@ -41,6 +41,10 @@ public class PowerAssertUserTest {
         String value = "test";
 
         External.assertInExternal(value);
+    }
+
+    public static String sss(String value) {
+        return value;
     }
 
     /**

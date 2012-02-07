@@ -334,6 +334,7 @@ class PowerAssertTranslator extends Translator {
             case FCONST_2:
             case DCONST_0:
             case DCONST_1:
+            case ACONST_NULL:
                 journal.constant(insn(opcode));
                 break;
 
