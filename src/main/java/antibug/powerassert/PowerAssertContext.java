@@ -14,20 +14,17 @@ import static org.objectweb.asm.Type.*;
 import java.lang.reflect.Array;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import kiss.I;
 
 import org.objectweb.asm.Type;
 
 /**
  * @version 2012/01/24 20:49:58
  */
-public class PowerAssertContext implements Journal, PowerAssertRenderer {
+public class PowerAssertContext implements Journal {
 
     /** The local variable name mapping. */
     private static final Map<Integer, List<String[]>> locals = new ConcurrentHashMap();
@@ -350,63 +347,6 @@ public class PowerAssertContext implements Journal, PowerAssertRenderer {
     }
 
     /**
-     * @see testament.powerassert.PowerAssertRenderer#render(java.lang.Object)
-     */
-    @Override
-    public String render(Object value) {
-        if (value instanceof CharSequence) {
-            return "\"" + value + "\"";
-        }
-
-        if (value instanceof Enum) {
-            Enum enumration = (Enum) value;
-            return enumration.getDeclaringClass().getSimpleName() + '.' + enumration.name();
-        }
-
-        if (value instanceof Character) {
-            return "'" + value + "'";
-        }
-
-        Class clazz = value.getClass();
-
-        if (clazz == Class.class) {
-            return ((Class) value).getSimpleName() + ".class";
-        }
-
-        if (clazz.isArray()) {
-            switch (clazz.getComponentType().getSimpleName()) {
-            case "int":
-                return Arrays.toString((int[]) value);
-
-            case "long":
-                return Arrays.toString((long[]) value);
-
-            case "float":
-                return Arrays.toString((float[]) value);
-
-            case "double":
-                return Arrays.toString((double[]) value);
-
-            case "char":
-                return Arrays.toString((char[]) value);
-
-            case "boolean":
-                return Arrays.toString((boolean[]) value);
-
-            case "short":
-                return Arrays.toString((short[]) value);
-
-            case "byte":
-                return Arrays.toString((byte[]) value);
-
-            default:
-                return Arrays.toString((Object[]) value);
-            }
-        }
-        return value.toString();
-    }
-
-    /**
      * <p>
      * Render the specified operand for human.
      * </p>
@@ -430,11 +370,7 @@ public class PowerAssertContext implements Journal, PowerAssertRenderer {
         if (value == null) {
             builder.append("│　　").append("null").append("\n");
         } else {
-            PowerAssertRenderer renderer = I.find(PowerAssertRenderer.class, value.getClass());
-
-            if (renderer == null) {
-                renderer = this;
-            }
+            PowerAssertRenderer renderer = PowerAssertRenderer.find(value);
 
             for (String line : renderer.render(value).split("\r\n|\r|\n")) {
                 builder.append("│　　").append(line).append("\n");
