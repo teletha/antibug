@@ -26,7 +26,7 @@ public class PowerAssertUserTest {
     public void fieldIntStaticAccess() throws Exception {
         int[] array = {0, 1, 2};
 
-        assert array[1] == 10 : "test";
+        assert intFieldStatic == 10 : "test";
     }
 
     @Test
