@@ -370,9 +370,7 @@ public class PowerAssertContext implements Journal {
         if (value == null) {
             builder.append("│　　").append("null").append("\n");
         } else {
-            PowerAssertRenderer renderer = PowerAssertRenderer.find(value);
-
-            for (String line : renderer.render(value).split("\r\n|\r|\n")) {
+            for (String line : PowerAssertRenderer.format(value).split("\r\n|\r|\n")) {
                 builder.append("│　　").append(line).append("\n");
             }
         }

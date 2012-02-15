@@ -69,21 +69,21 @@ public abstract class PowerAssertRenderer<T> {
 
     /**
      * <p>
-     * Search the special renderer for the specified object.
+     * Format the target object.
      * </p>
      * 
-     * @param object A object to render.
-     * @return A renderer.
+     * @param object A object to format.
+     * @return A formatted message.
      */
-    static final PowerAssertRenderer find(Object object) {
+    public static final String format(Object object) {
         for (Class type : ClassUtil.getTypes(object.getClass())) {
             Class<? extends PowerAssertRenderer> renderer = renderers.get(type);
 
             if (renderer != null) {
-                return I.make(renderer);
+                return I.make(renderer).render(object);
             }
         }
-        return I.make(ObjectRnederer.class);
+        return I.make(ObjectRnederer.class).render(object);
     }
 
     /**
