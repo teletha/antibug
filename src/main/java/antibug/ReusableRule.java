@@ -16,6 +16,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import kiss.I;
 import kiss.model.ClassUtil;
 
 import org.junit.Ignore;
@@ -98,20 +99,24 @@ public abstract class ReusableRule implements TestRule {
      * Subclass only can instantiate.
      */
     protected ReusableRule() {
-        this.isSuite = !ParentRunner.isFirst;
+        try {
+            this.isSuite = !ParentRunner.isFirst;
 
-        for (Field field : getClass().getFields()) {
-            if (field.isAnnotationPresent(Rule.class) && Modifier.isPublic(field.getModifiers())) {
-                if (TestRule.class.isAssignableFrom(field.getType())) {
-                    rules.add(field);
+            for (Field field : getClass().getFields()) {
+                if (field.isAnnotationPresent(Rule.class) && Modifier.isPublic(field.getModifiers())) {
+                    if (TestRule.class.isAssignableFrom(field.getType())) {
+                        rules.add(field);
+                    }
                 }
             }
-        }
 
-        for (Method method : testcase.getMethods()) {
-            if (method.isAnnotationPresent(Test.class) && !method.isAnnotationPresent(Ignore.class)) {
-                tests++;
+            for (Method method : testcase.getMethods()) {
+                if (method.isAnnotationPresent(Test.class) && !method.isAnnotationPresent(Ignore.class)) {
+                    tests++;
+                }
             }
+        } catch (SecurityException e) {
+            throw I.quiet(e);
         }
     }
 
@@ -121,17 +126,19 @@ public abstract class ReusableRule implements TestRule {
      */
     @Override
     public final Statement apply(final Statement base, final Description description) {
+
         // reset previous error
         error = null;
 
         return new Statement() {
 
             /**
-             * @see org.junit.runners.model.Statement#evaluate()
+             * {@inheritDoc}
              */
             public void evaluate() throws Throwable {
                 try {
-                    Method method = description.getTestClass().getMethod(description.getMethodName());
+                    Method method = description.isSuite() ? null : description.getTestClass()
+                            .getMethod(description.getMethodName());
 
                     // call before class
                     if (executed++ == 0) {
@@ -142,10 +149,10 @@ public abstract class ReusableRule implements TestRule {
                         beforeClass();
                     }
 
-                    if (!skip(method)) {
+                    if (description.isSuite() || !skip(method)) {
                         try {
                             // invoke before
-                            before(method);
+                            if (description.isTest()) before(method);
 
                             // make chain of method rules
                             Statement statement = base;
@@ -160,7 +167,7 @@ public abstract class ReusableRule implements TestRule {
                             catchError(e);
                         } finally {
                             // invoke after
-                            after(method);
+                            if (description.isTest()) after(method);
                         }
                     }
                 } catch (Throwable e) {
