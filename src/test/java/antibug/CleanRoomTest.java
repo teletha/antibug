@@ -11,20 +11,23 @@ package antibug;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-
-import org.junit.Rule;
-import org.junit.Test;
+import java.security.AccessControlException;
 
 import kiss.I;
 import kiss.model.ClassUtil;
+
+import org.junit.Rule;
+import org.junit.Test;
 
 /**
  * @version 2011/03/08 18:35:36
  */
 public class CleanRoomTest {
 
+    private static final Path base = I.locateTemporary();
+
     @Rule
-    public static final CleanRoom room = new CleanRoom();
+    public static final CleanRoom room = new CleanRoom(base);
 
     @Test
     public void locateFile() {
@@ -96,5 +99,10 @@ public class CleanRoomTest {
         assert Files.exists(file);
         assert Files.deleteIfExists(file);
         assert Files.notExists(file);
+    }
+
+    @Test(expected = AccessControlException.class)
+    public void cantWriteInOriginalDirectory() throws Exception {
+        Files.write(base.resolve("file"), "test".getBytes());
     }
 }
