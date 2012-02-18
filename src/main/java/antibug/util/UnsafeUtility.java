@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug;
+package antibug.util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;

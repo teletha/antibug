@@ -7,9 +7,11 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug;
+package antibug.util;
 
 import org.junit.Test;
+
+import antibug.util.UnsafeUtility;
 
 /**
  * @version 2010/02/12 19:59:11

@@ -10,11 +10,8 @@
 package antibug;
 
 import static antibug.AntiBug.*;
-import static antibug.UnsafeUtility.*;
+import static antibug.util.UnsafeUtility.*;
 import static java.nio.file.StandardCopyOption.*;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-import static org.junit.Assume.*;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
@@ -36,6 +33,8 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import kiss.I;
+
+import org.junit.internal.AssumptionViolatedException;
 
 /**
  * <p>
@@ -121,8 +120,8 @@ public class CleanRoom extends Sandbox {
      * 
      * @param charset Your exepcted charcter encoding.
      */
-    public void assume(Charset charset) {
-        assumeThat(Charset.defaultCharset(), is(charset));
+    public void assume(String charset) {
+        assume(Charset.forName(charset));
     }
 
     /**
@@ -132,8 +131,10 @@ public class CleanRoom extends Sandbox {
      * 
      * @param charset Your exepcted charcter encoding.
      */
-    public void assume(String charset) {
-        assumeThat(Charset.defaultCharset(), is(Charset.forName(charset)));
+    public void assume(Charset charset) {
+        if (Charset.defaultCharset() != charset) {
+            throw new AssumptionViolatedException("Charset must be " + charset + ".");
+        }
     }
 
     /**
@@ -250,8 +251,8 @@ public class CleanRoom extends Sandbox {
         }
 
         // validate file state
-        assertEquals(Files.exists(virtual), isPresent);
-        assertEquals(Files.isRegularFile(virtual), isFile);
+        assert Files.exists(virtual) == isPresent;
+        assert Files.isRegularFile(virtual) == isFile;
 
         // API definition
         return virtual;

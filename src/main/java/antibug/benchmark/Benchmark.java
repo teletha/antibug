@@ -10,7 +10,6 @@
 package antibug.benchmark;
 
 import static java.math.BigInteger.*;
-import static org.junit.Assert.*;
 
 import java.lang.reflect.Method;
 import java.math.BigInteger;
@@ -58,11 +57,11 @@ public class Benchmark extends ReusableRule {
         this.trials = trials;
 
         if (trials < 10) {
-            fail("There is too few trial number of times. (minimus is 10)");
+            throw new AssertionError("There is too few trial number of times. (minimus is 10)");
         }
 
         if (60 < trials) {
-            fail("There is too many trial number of times. (maximum is 60)");
+            throw new AssertionError("There is too many trial number of times. (maximum is 60)");
         }
     }
 
