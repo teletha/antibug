@@ -38,7 +38,7 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
 import antibug.ReusableRule;
-import antibug.UnsafeUtility;
+import antibug.util.UnsafeUtility;
 
 /**
  * <p>

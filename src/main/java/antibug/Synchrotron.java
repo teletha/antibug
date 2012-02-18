@@ -9,8 +9,6 @@
  */
 package antibug;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -79,21 +77,21 @@ public class Synchrotron {
     public Synchrotron exists(boolean one, boolean other) {
         if (one) {
             if (Files.notExists(this.one)) {
-                fail("'" + this.one + "' must exist.");
+                throw new AssertionError("'" + this.one + "' must exist.");
             }
         } else {
             if (Files.exists(this.one)) {
-                fail("'" + this.one + "' must not exist.");
+                throw new AssertionError("'" + this.one + "' must not exist.");
             }
         }
 
         if (other) {
             if (Files.notExists(this.other)) {
-                fail("'" + this.other + "' must exist.");
+                throw new AssertionError("'" + this.other + "' must exist.");
             }
         } else {
             if (Files.exists(this.other)) {
-                fail("'" + this.other + "' must not exist.");
+                throw new AssertionError("'" + this.other + "' must not exist.");
             }
         }
 
@@ -141,20 +139,20 @@ public class Synchrotron {
         try {
             if (!exist) {
                 if (!Files.notExists(one)) {
-                    fail("'" + one + "' must not exist.");
+                    throw new AssertionError("'" + one + "' must not exist.");
                 }
 
                 if (!Files.notExists(other)) {
-                    fail("'" + other + "' must not exist.");
+                    throw new AssertionError("'" + other + "' must not exist.");
                 }
                 return; // end
             } else {
                 if (!Files.exists(one)) {
-                    fail("'" + one + "' must exist.");
+                    throw new AssertionError("'" + one + "' must exist.");
                 }
 
                 if (!Files.exists(other)) {
-                    fail("'" + other + "' must exist.");
+                    throw new AssertionError("'" + other + "' must exist.");
                 }
             }
 
@@ -163,11 +161,11 @@ public class Synchrotron {
 
             if (file) {
                 if (!oneAttributes.isRegularFile()) {
-                    fail("'" + one + "' must be file.");
+                    throw new AssertionError("'" + one + "' must be file.");
                 }
             } else {
                 if (!oneAttributes.isDirectory()) {
-                    fail("'" + one + "' must be directory.");
+                    throw new AssertionError("'" + one + "' must be directory.");
                 }
             }
 
@@ -176,7 +174,8 @@ public class Synchrotron {
             // FileTime otherTime = otherAttributes.creationTime();
             //
             // if (!oneTime.equals(otherTime)) {
-            // fail("CreationTime: '" + one + "' is " + oneTime + ", but '" + other + "' is " +
+            // throw new AssertionError("CreationTime: '" + one + "' is " + oneTime + ", but '" +
+            // other + "' is " +
             // otherTime + ".");
             // }
             //
@@ -184,7 +183,8 @@ public class Synchrotron {
             // otherTime = otherAttributes.lastAccessTime();
             //
             // if (!oneTime.equals(otherTime)) {
-            // fail("LastAccessTime: '" + one + "' is " + oneTime + ", but '" + other + "' is " +
+            // throw new AssertionError("LastAccessTime: '" + one + "' is " + oneTime + ", but '" +
+            // other + "' is " +
             // otherTime + ".");
             // }
 
@@ -192,28 +192,28 @@ public class Synchrotron {
             FileTime otherTime = otherAttributes.lastModifiedTime();
 
             if (!oneTime.equals(otherTime)) {
-                fail("LastModifiedTime: '" + one + "' is " + oneTime + ", but '" + other + "' is " + otherTime + ".");
+                throw new AssertionError("LastModifiedTime: '" + one + "' is " + oneTime + ", but '" + other + "' is " + otherTime + ".");
             }
 
             // Directory
             if (oneAttributes.isDirectory()) {
                 if (!otherAttributes.isDirectory()) {
-                    fail("'" + one + "' is directory, but '" + other + "' is not directory.");
+                    throw new AssertionError("'" + one + "' is directory, but '" + other + "' is not directory.");
                 }
             } else {
                 if (otherAttributes.isDirectory()) {
-                    fail("'" + one + "' is not directory, but '" + other + "' is directory.");
+                    throw new AssertionError("'" + one + "' is not directory, but '" + other + "' is directory.");
                 }
             }
 
             // File
             if (oneAttributes.isRegularFile()) {
                 if (!otherAttributes.isRegularFile()) {
-                    fail("'" + one + "' is file, but '" + other + "' is not file.");
+                    throw new AssertionError("'" + one + "' is file, but '" + other + "' is not file.");
                 }
 
                 if (oneAttributes.size() != otherAttributes.size()) {
-                    fail("FileSize: '" + one + "' is " + oneAttributes.size() + ", but '" + other + "' is " + otherAttributes.size() + ".");
+                    throw new AssertionError("FileSize: '" + one + "' is " + oneAttributes.size() + ", but '" + other + "' is " + otherAttributes.size() + ".");
                 }
 
                 CRC32 oneHash = new CRC32();
@@ -223,33 +223,33 @@ public class Synchrotron {
                 otherHash.update(Files.readAllBytes(other));
 
                 if (oneHash.getValue() != otherHash.getValue()) {
-                    fail("'" + one + "' is different from '" + other + "'.");
+                    throw new AssertionError("'" + one + "' is different from '" + other + "'.");
                 }
             } else {
                 if (otherAttributes.isRegularFile()) {
-                    fail("'" + one + "' is not file, but '" + other + "' is file.");
+                    throw new AssertionError("'" + one + "' is not file, but '" + other + "' is file.");
                 }
             }
 
             // SymbolicLink
             if (oneAttributes.isSymbolicLink()) {
                 if (!otherAttributes.isSymbolicLink()) {
-                    fail("'" + one + "' is symbolic link, but '" + other + "' is not symbolic link.");
+                    throw new AssertionError("'" + one + "' is symbolic link, but '" + other + "' is not symbolic link.");
                 }
             } else {
                 if (otherAttributes.isSymbolicLink()) {
-                    fail("'" + one + "' is not symbolic link, but '" + other + "' is symbolic link.");
+                    throw new AssertionError("'" + one + "' is not symbolic link, but '" + other + "' is symbolic link.");
                 }
             }
 
             // Unknown
             if (oneAttributes.isOther()) {
                 if (!otherAttributes.isOther()) {
-                    fail("'" + one + "' is unknown, but '" + other + "' is not unknown.");
+                    throw new AssertionError("'" + one + "' is unknown, but '" + other + "' is not unknown.");
                 }
             } else {
                 if (otherAttributes.isOther()) {
-                    fail("'" + one + "' is not unknown, but '" + other + "' is unknown.");
+                    throw new AssertionError("'" + one + "' is not unknown, but '" + other + "' is unknown.");
                 }
             }
         } catch (IOException e) {
@@ -262,7 +262,7 @@ public class Synchrotron {
         }
 
         if (!same) {
-            fail("'" + one + "' is equal to '" + other + "'.");
+            throw new AssertionError("'" + one + "' is equal to '" + other + "'.");
         }
     }
 }
