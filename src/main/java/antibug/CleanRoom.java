@@ -9,7 +9,7 @@
  */
 package antibug;
 
-import static antibug.Ezunit.*;
+import static antibug.AntiBug.*;
 import static antibug.UnsafeUtility.*;
 import static java.nio.file.StandardCopyOption.*;
 import static org.hamcrest.CoreMatchers.*;
