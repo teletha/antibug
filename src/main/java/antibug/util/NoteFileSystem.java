@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.file;
+package antibug.util;
 
 import java.io.IOException;
 import java.nio.file.FileStore;
@@ -17,6 +17,7 @@ import java.nio.file.PathMatcher;
 import java.nio.file.WatchService;
 import java.nio.file.attribute.UserPrincipalLookupService;
 import java.nio.file.spi.FileSystemProvider;
+import java.util.Collections;
 import java.util.Set;
 
 import kiss.I;
@@ -27,14 +28,14 @@ import kiss.Singleton;
  * @version 2012/02/17 15:47:27
  */
 @Manageable(lifestyle = Singleton.class)
-class MemoFS extends FileSystem {
+class NoteFileSystem extends FileSystem {
 
     /**
      * {@inheritDoc}
      */
     @Override
     public FileSystemProvider provider() {
-        return I.make(MemoFSProvider.class);
+        return I.make(NoteFileSystemProvider.class);
     }
 
     /**
@@ -42,9 +43,7 @@ class MemoFS extends FileSystem {
      */
     @Override
     public void close() throws IOException {
-        // If this exception will be thrown, it is bug of this program. So we must rethrow the
-        // wrapped error in here.
-        throw new Error();
+        // do nothing
     }
 
     /**
@@ -52,9 +51,7 @@ class MemoFS extends FileSystem {
      */
     @Override
     public boolean isOpen() {
-        // If this exception will be thrown, it is bug of this program. So we must rethrow the
-        // wrapped error in here.
-        throw new Error();
+        return true;
     }
 
     /**
@@ -62,9 +59,7 @@ class MemoFS extends FileSystem {
      */
     @Override
     public boolean isReadOnly() {
-        // If this exception will be thrown, it is bug of this program. So we must rethrow the
-        // wrapped error in here.
-        throw new Error();
+        return false;
     }
 
     /**
@@ -82,9 +77,7 @@ class MemoFS extends FileSystem {
      */
     @Override
     public Iterable<Path> getRootDirectories() {
-        // If this exception will be thrown, it is bug of this program. So we must rethrow the
-        // wrapped error in here.
-        throw new Error();
+        return Collections.EMPTY_LIST;
     }
 
     /**
@@ -92,9 +85,7 @@ class MemoFS extends FileSystem {
      */
     @Override
     public Iterable<FileStore> getFileStores() {
-        // If this exception will be thrown, it is bug of this program. So we must rethrow the
-        // wrapped error in here.
-        throw new Error();
+        return Collections.EMPTY_LIST;
     }
 
     /**
@@ -102,7 +93,9 @@ class MemoFS extends FileSystem {
      */
     @Override
     public Set<String> supportedFileAttributeViews() {
-        return null;
+        // If this exception will be thrown, it is bug of this program. So we must rethrow the
+        // wrapped error in here.
+        throw new Error();
     }
 
     /**
