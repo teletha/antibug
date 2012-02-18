@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.file;
+package antibug.util;
 
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
@@ -15,15 +15,15 @@ import java.nio.file.attribute.FileTime;
 /**
  * @version 2012/02/17 15:54:09
  */
-class MemoAttributes implements BasicFileAttributes {
+class NoteAttributes implements BasicFileAttributes {
 
     /** The actual memo. */
-    private final Memo memo;
+    private final Note memo;
 
     /**
      * @param memo
      */
-    MemoAttributes(Memo memo) {
+    NoteAttributes(Note memo) {
         this.memo = memo;
     }
 
@@ -32,9 +32,7 @@ class MemoAttributes implements BasicFileAttributes {
      */
     @Override
     public FileTime lastModifiedTime() {
-        // If this exception will be thrown, it is bug of this program. So we must rethrow the
-        // wrapped error in here.
-        throw new Error();
+        return FileTime.fromMillis(0);
     }
 
     /**
@@ -42,9 +40,7 @@ class MemoAttributes implements BasicFileAttributes {
      */
     @Override
     public FileTime lastAccessTime() {
-        // If this exception will be thrown, it is bug of this program. So we must rethrow the
-        // wrapped error in here.
-        throw new Error();
+        return FileTime.fromMillis(0);
     }
 
     /**
@@ -52,9 +48,7 @@ class MemoAttributes implements BasicFileAttributes {
      */
     @Override
     public FileTime creationTime() {
-        // If this exception will be thrown, it is bug of this program. So we must rethrow the
-        // wrapped error in here.
-        throw new Error();
+        return FileTime.fromMillis(0);
     }
 
     /**
@@ -62,9 +56,7 @@ class MemoAttributes implements BasicFileAttributes {
      */
     @Override
     public boolean isRegularFile() {
-        // If this exception will be thrown, it is bug of this program. So we must rethrow the
-        // wrapped error in here.
-        throw new Error();
+        return true;
     }
 
     /**
@@ -72,9 +64,7 @@ class MemoAttributes implements BasicFileAttributes {
      */
     @Override
     public boolean isDirectory() {
-        // If this exception will be thrown, it is bug of this program. So we must rethrow the
-        // wrapped error in here.
-        throw new Error();
+        return false;
     }
 
     /**
@@ -82,9 +72,7 @@ class MemoAttributes implements BasicFileAttributes {
      */
     @Override
     public boolean isSymbolicLink() {
-        // If this exception will be thrown, it is bug of this program. So we must rethrow the
-        // wrapped error in here.
-        throw new Error();
+        return false;
     }
 
     /**
@@ -92,9 +80,7 @@ class MemoAttributes implements BasicFileAttributes {
      */
     @Override
     public boolean isOther() {
-        // If this exception will be thrown, it is bug of this program. So we must rethrow the
-        // wrapped error in here.
-        throw new Error();
+        return false;
     }
 
     /**

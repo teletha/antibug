@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.file;
+package antibug.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -39,7 +39,7 @@ import kiss.Singleton;
  * @version 2012/02/17 15:51:48
  */
 @Manageable(lifestyle = Singleton.class)
-class MemoFSProvider extends FileSystemProvider {
+class NoteFileSystemProvider extends FileSystemProvider {
 
     /**
      * {@inheritDoc}
@@ -86,7 +86,7 @@ class MemoFSProvider extends FileSystemProvider {
      */
     @Override
     public InputStream newInputStream(Path path, OpenOption... options) throws IOException {
-        return new ByteArrayInputStream(((Memo) path).contents.toString().getBytes());
+        return new ByteArrayInputStream(((Note) path).contents.toString().getBytes());
     }
 
     /**
@@ -103,7 +103,7 @@ class MemoFSProvider extends FileSystemProvider {
             public void close() throws IOException {
                 super.close();
 
-                ((Memo) path).contents = new StringBuilder(new String(toByteArray()));
+                ((Note) path).contents = new StringBuilder(new String(toByteArray()));
             }
         };
     }
@@ -225,7 +225,7 @@ class MemoFSProvider extends FileSystemProvider {
     @Override
     public <A extends BasicFileAttributes> A readAttributes(Path path, Class<A> type, LinkOption... options)
             throws IOException {
-        return (A) new MemoAttributes((Memo) path);
+        return (A) new NoteAttributes((Note) path);
     }
 
     /**

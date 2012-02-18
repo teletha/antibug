@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.file;
+package antibug.util;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,28 +26,28 @@ import java.util.Iterator;
 import kiss.I;
 
 /**
+ * <p>
+ * Note is a memory based temporary file.
+ * </p>
+ * 
  * @version 2012/02/17 15:42:15
  */
-public class Memo implements CharSequence, Path {
+public class Note implements CharSequence, Path {
 
     /** The actual contents. */
-    StringBuilder contents;
-
-    /**
-     * 
-     */
-    public Memo() {
-        this(null);
-    }
+    StringBuilder contents = new StringBuilder();
 
     /**
      * @param contents
      */
-    public Memo(String contents) {
-        if (contents == null) {
-            contents = "";
+    public Note(String... contents) {
+        if (contents != null) {
+            for (String content : contents) {
+                if (content != null) {
+                    this.contents.append(content);
+                }
+            }
         }
-        this.contents = new StringBuilder(contents);
     }
 
     /**
@@ -113,7 +113,7 @@ public class Memo implements CharSequence, Path {
      */
     @Override
     public FileSystem getFileSystem() {
-        return I.make(MemoFS.class);
+        return I.make(NoteFileSystem.class);
     }
 
     /**
