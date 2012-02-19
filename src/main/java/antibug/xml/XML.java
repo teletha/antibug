@@ -33,7 +33,7 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import kiss.I;
-import kiss.xml.XMLWriter;
+import kiss.XMLWriter;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Comment;
