@@ -22,7 +22,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.objectweb.asm.Type;
 
 /**
- * @version 2012/01/24 20:49:58
+ * 
+ * @author Teletha
+ *
  */
 public class PowerAssertContext implements Journal {
 
