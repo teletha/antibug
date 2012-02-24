@@ -22,8 +22,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+
+import kiss.I;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
@@ -31,12 +35,21 @@ import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
-import kiss.I;
-
 /**
  * @version 2011/03/22 8:51:40
  */
 public class PrivateModule extends ReusableRule {
+
+    private static final ThreadLocal<List<PrivateModule>> modules = new InheritableThreadLocal() {
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        protected Object initialValue() {
+            return new ArrayList();
+        }
+    };
 
     /** The actual private module. */
     public final Path path = I.locateTemporary();
@@ -87,6 +100,8 @@ public class PrivateModule extends ReusableRule {
                 return fqcn.startsWith(testcase.getName().replace('.', '/').concat("$"));
             }
         };
+
+        modules.get().add(this);
     }
 
     /**
@@ -125,6 +140,8 @@ public class PrivateModule extends ReusableRule {
                 return fqcn.startsWith(originalPackage);
             }
         };
+
+        modules.get().add(this);
     }
 
     /**
@@ -205,6 +222,14 @@ public class PrivateModule extends ReusableRule {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void afterClass() {
+        modules.get().clear();
+    }
+
+    /**
      * <p>
      * Copy class file with type conversion.
      * </p>
@@ -273,6 +298,29 @@ public class PrivateModule extends ReusableRule {
         }
 
         return names;
+    }
+
+    /**
+     * <p>
+     * Utility method to search class for the specified fully qualified class name.
+     * </p>
+     * 
+     * @param fqcn
+     * @return
+     */
+    public static final Class forName(String fqcn) {
+        try {
+            return Class.forName(fqcn);
+        } catch (ClassNotFoundException e) {
+            for (PrivateModule module : modules.get()) {
+                try {
+                    return module.loader.loadClass(fqcn);
+                } catch (ClassNotFoundException none) {
+                    // try next module
+                }
+            }
+        }
+        throw I.quiet(new ClassNotFoundException(fqcn));
     }
 
     /**

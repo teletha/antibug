@@ -48,6 +48,12 @@ import org.junit.runners.model.TestClass;
  */
 public abstract class ParentRunner<T> extends Runner implements Filterable, Sortable, TestRule {
 
+    static {
+        // activate assertion
+        ClassLoader.getSystemClassLoader().setDefaultAssertionStatus(true);
+        Thread.currentThread().getContextClassLoader().setDefaultAssertionStatus(true);
+    }
+
     public static boolean isFirst = true;
 
     private final TestClass fTestClass;
