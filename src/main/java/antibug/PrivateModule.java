@@ -222,14 +222,6 @@ public class PrivateModule extends ReusableRule {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void afterClass() {
-        modules.get().clear();
-    }
-
-    /**
      * <p>
      * Copy class file with type conversion.
      * </p>
