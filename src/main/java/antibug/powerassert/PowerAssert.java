@@ -17,6 +17,7 @@ import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
+import antibug.PrivateModule;
 import antibug.bytecode.Agent;
 
 /**
@@ -100,7 +101,7 @@ public class PowerAssert implements TestRule {
                     if (description.getAnnotation(PowerAssertOff.class) == null && !description.getTestClass()
                             .isAnnotationPresent(PowerAssertOff.class)) {
                         // find the class whihc rises assertion error
-                        Class clazz = Class.forName(error.getStackTrace()[0].getClassName());
+                        Class clazz = PrivateModule.forName(error.getStackTrace()[0].getClassName());
 
                         // translate assertion code only once
                         if (translated.add(clazz.getName())) {
