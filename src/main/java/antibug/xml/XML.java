@@ -9,7 +9,6 @@
  */
 package antibug.xml;
 
-import static kiss.I.*;
 import static org.w3c.dom.Node.*;
 
 import java.io.IOException;
@@ -28,7 +27,6 @@ import java.util.Map;
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.SAXParserFactory;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
@@ -48,10 +46,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 import org.xml.sax.XMLFilter;
-import org.xml.sax.XMLReader;
-import org.xml.sax.ext.LexicalHandler;
 
 import antibug.powerassert.PowerAssertRenderer;
 
@@ -69,21 +64,8 @@ public class XML {
     /** The xpath evaluator. */
     private static final XPath xpath;
 
-    /** The sax parser factory for reuse. */
-    private static final SAXParserFactory sax = SAXParserFactory.newInstance();
-
     static {
         try {
-            // configure sax parser
-            sax.setNamespaceAware(true);
-            sax.setXIncludeAware(true);
-            sax.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
-            // sax.setFeature("http://xml.org/sax/features/string-interning", true);
-            // sax.setFeature("http://xml.org/sax/features/external-general-entities", false);
-            // sax.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-            // sax.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
-            // sax.setFeature("http://xml.org/sax/features/xmlns-uris", true);
-
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             factory.setNamespaceAware(true);
 
@@ -145,7 +127,7 @@ public class XML {
             pipe.addAll(Arrays.asList(filters));
             pipe.add(builder);
 
-            parse(source, pipe.toArray(new XMLFilter[pipe.size()]));
+            I.parse(source, pipe.toArray(new XMLFilter[pipe.size()]));
 
             return xml(builder.m_doc);
         } catch (Exception e) {
@@ -181,66 +163,6 @@ public class XML {
 
         // API definition
         return new XML(builder.m_doc);
-    }
-
-    /**
-     * <p>
-     * Parse the specified xml {@link InputSource} using the specified sequence of {@link XMLFilter}
-     * . The application can use this method to instruct the XML reader to begin parsing an XML
-     * document from any valid input source (a character stream, a byte stream, or a URI).
-     * </p>
-     * <p>
-     * Sinobu use the {@link XMLReader} which has the following features.
-     * </p>
-     * <ul>
-     * <li>Support XML namespaces.</li>
-     * <li>Support <a href="http://www.w3.org/TR/xinclude/">XML Inclusions (XInclude) Version
-     * 1.0</a>.</li>
-     * <li><em>Not</em> support any validations (DTD or XML Schema).</li>
-     * <li><em>Not</em> support external DTD completely (parser doesn't even access DTD, using
-     * "http://apache.org/xml/features/nonvalidating/load-external-dtd" feature).</li>
-     * </ul>
-     * 
-     * @param source A xml source.
-     * @param filters A list of filters to parse a sax event. This may be <code>null</code>.
-     * @throws NullPointerException If the specified source is <code>null</code>. If one of the
-     *             specified filter is <code>null</code>.
-     * @throws SAXException Any SAX exception, possibly wrapping another exception.
-     * @throws IOException An IO exception from the parser, possibly from a byte stream or character
-     *             stream supplied by the application.
-     */
-    private static void parse(InputSource source, XMLFilter... filters) {
-        try {
-            // create new xml reader
-            XMLReader reader = sax.newSAXParser().getXMLReader();
-
-            // chain filters if needed
-            for (int i = 0; i < filters.length; i++) {
-                // find the root filter of the current multilayer filter
-                XMLFilter filter = filters[i];
-
-                while (filter.getParent() instanceof XMLFilter) {
-                    filter = (XMLFilter) filter.getParent();
-                }
-
-                // the root filter makes previous filter as parent xml reader
-                filter.setParent(reader);
-
-                if (filter instanceof LexicalHandler) {
-                    reader.setProperty("http://xml.org/sax/properties/lexical-handler", filter);
-                }
-
-                // current filter is a xml reader in next step
-                reader = filters[i];
-            }
-
-            // start parsing
-            reader.parse(source);
-        } catch (Exception e) {
-            // We must throw the checked exception quietly and pass the original exception instead
-            // of wrapped exception.
-            throw quiet(e);
-        }
     }
 
     /** The actual xml document. */
