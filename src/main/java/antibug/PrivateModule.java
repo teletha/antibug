@@ -83,12 +83,36 @@ public class PrivateModule extends ReusableRule {
      * Create private module with package name which is related to test class name.
      * </p>
      */
+    public PrivateModule(Class root) {
+        this(root, false, false);
+    }
+
+    /**
+     * <p>
+     * Create private module with package name which is related to test class name.
+     * </p>
+     */
     public PrivateModule(boolean renamePackage, boolean createJar) {
+        this((Class) null, renamePackage, createJar);
+    }
+
+    /**
+     * <p>
+     * Create private module with package name which is related to test class name.
+     * </p>
+     */
+    public PrivateModule(Class root, boolean renamePackage, boolean createJar) {
         this.createJar = createJar;
 
+        if (root == null) {
+            root = testcase;
+        }
+
+        final String prefix = root.getName().replace('.', '/').concat("$");
+
         // compute packaging structure
-        originalPackage = testcase.getPackage().getName().replace('.', '/');
-        overriddenPackage = renamePackage ? testcase.getSimpleName().toLowerCase() : originalPackage;
+        originalPackage = root.getPackage().getName().replace('.', '/');
+        overriddenPackage = renamePackage ? root.getSimpleName().toLowerCase() : originalPackage;
 
         strategy = new PrivateClassStrategy() {
 
@@ -97,7 +121,7 @@ public class PrivateModule extends ReusableRule {
              */
             @Override
             protected boolean accept(String fqcn) {
-                return fqcn.startsWith(testcase.getName().replace('.', '/').concat("$"));
+                return fqcn.startsWith(prefix);
             }
         };
 
