@@ -27,6 +27,9 @@ class Operand {
     /** The actual value. */
     final Object value;
 
+    /** The type inference. */
+    final Type inference;
+
     /**
      * @param name
      * @param value
@@ -34,6 +37,18 @@ class Operand {
     Operand(String name, Object value) {
         this.name = name;
         this.value = value;
+        this.inference = null;
+    }
+
+    /**
+     * @param name
+     * @param value
+     * @param inference
+     */
+    Operand(String name, Object value, Type inference) {
+        this.name = name;
+        this.value = value;
+        this.inference = inference;
     }
 
     /**
@@ -55,7 +70,7 @@ class Operand {
      * @return
      */
     Type getType() {
-        return value == null ? Unknown : Type.getType(value.getClass());
+        return value == null ? inference == null ? Unknown : inference : Type.getType(value.getClass());
     }
 
     /**

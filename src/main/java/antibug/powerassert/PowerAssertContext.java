@@ -22,9 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.objectweb.asm.Type;
 
 /**
- * 
  * @author Teletha
- *
  */
 public class PowerAssertContext implements Journal {
 
@@ -238,7 +236,7 @@ public class PowerAssertContext implements Journal {
             break;
 
         default:
-            operand = new Operand(local[0], variable);
+            operand = new Operand(local[0], variable, Type.getType(local[1]));
             break;
         }
 
@@ -360,6 +358,10 @@ public class PowerAssertContext implements Journal {
         builder.append("│").append(operand);
 
         Object value = operand.value;
+
+        if (value == null && operand.inference != null) {
+            builder.append("　　　　#").append(operand.inference.getClassName());
+        }
 
         if (value != null && !isPrimitive(operand.getType())) {
             builder.append("　　　　#")
@@ -518,7 +520,7 @@ public class PowerAssertContext implements Journal {
          * @param value An actual value.
          */
         private Variable(String name, Type type, Object value) {
-            super(name, value);
+            super(name, value, type);
 
             this.type = type;
         }
@@ -704,7 +706,7 @@ public class PowerAssertContext implements Journal {
          * @param value A method result.
          */
         private Invocation(Operand invoker, String name, String description, Object value) {
-            super(name, value);
+            super(name, value, Type.getReturnType(description));
 
             Type type = Type.getType(description);
 
