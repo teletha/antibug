@@ -16,7 +16,7 @@ import java.util.Random;
 /**
  * @version 2012/03/17 22:50:10
  */
-public final class WindowsVirtualMachine extends InputStream {
+public final class SimpleWindowsVirtualMachine extends InputStream {
 
     /** The enqueue code stub (copied into each target VM). */
     private static final byte[] stub;
@@ -39,7 +39,7 @@ public final class WindowsVirtualMachine extends InputStream {
     /**
      * @param pid
      */
-    public WindowsVirtualMachine(int pid, String path) throws Exception {
+    public SimpleWindowsVirtualMachine(int pid, String path) throws Exception {
         // create a pipe using a random name
         String name = "\\\\.\\pipe\\agent" + new Random().nextInt();
 
