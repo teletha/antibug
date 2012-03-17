@@ -37,8 +37,7 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
-import antibug.ReusableRule;
-import antibug.util.UnsafeUtility;
+import sun.tools.attach.WindowsVirtualMachine;
 
 /**
  * <p>
@@ -47,26 +46,7 @@ import antibug.util.UnsafeUtility;
  * 
  * @version 2012/01/10 19:09:14
  */
-public class Agent extends ReusableRule {
-
-    /** The entry point for Attach API. */
-    private static Method attach;
-
-    /** The entry point for Attach API. */
-    private static Method loadAgent;
-
-    // load Attach API
-    static {
-        // search attach method
-        try {
-            Class clazz = UnsafeUtility.getTool("com.sun.tools.attach.VirtualMachine");
-
-            attach = clazz.getMethod("attach", String.class);
-            loadAgent = clazz.getMethod("loadAgent", String.class);
-        } catch (Exception e) {
-            throw I.quiet(e);
-        }
-    }
+public class Agent {
 
     /** The redefined classes. */
     private static final Set<String> redefines = new HashSet();
@@ -125,13 +105,13 @@ public class Agent extends ReusableRule {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void afterClass() {
-        tool.removeTransformer(agent);
-    }
+    // /**
+    // * {@inheritDoc}
+    // */
+    // @Override
+    // protected void afterClass() {
+    // tool.removeTransformer(agent);
+    // }
 
     /**
      * <p>
@@ -155,7 +135,10 @@ public class Agent extends ReusableRule {
 
             // Load agent dynamically.
             String name = ManagementFactory.getRuntimeMXBean().getName();
-            loadAgent.invoke(attach.invoke(null, name.substring(0, name.indexOf('@'))), jar.toString());
+            new WindowsVirtualMachine(Integer.parseInt(name.substring(0, name.indexOf('@'))), jar.toString());
+
+            // VirtualMachine.attach(name.substring(0,
+            // name.indexOf('@'))).loadAgentLibrary("instrument", jar.toString());
         } catch (Exception e) {
             throw I.quiet(e);
         }
