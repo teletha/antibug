@@ -37,7 +37,7 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
-import sun.tools.attach.WindowsVirtualMachine;
+import com.sun.tools.attach.VirtualMachine;
 
 /**
  * <p>
@@ -135,10 +135,9 @@ public class Agent {
 
             // Load agent dynamically.
             String name = ManagementFactory.getRuntimeMXBean().getName();
-            new WindowsVirtualMachine(Integer.parseInt(name.substring(0, name.indexOf('@'))), jar.toString());
-
-            // VirtualMachine.attach(name.substring(0,
-            // name.indexOf('@'))).loadAgentLibrary("instrument", jar.toString());
+            VirtualMachine.attach(name.substring(0, name.indexOf('@'))).loadAgent(jar.toString());
+            // new WindowsVirtualMachine(Integer.parseInt(name.substring(0, name.indexOf('@'))),
+            // jar.toString());
         } catch (Exception e) {
             throw I.quiet(e);
         }
