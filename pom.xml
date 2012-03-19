@@ -43,6 +43,10 @@
           <archive>
             <addMavenDescriptor>false</addMavenDescriptor>
             <manifestEntries>
+              <Premain-Class>antibug.bytecode.Agent</Premain-Class>
+              <Can-Redefine-Classes>true</Can-Redefine-Classes>
+              <Can-Retransform-Classes>true</Can-Retransform-Classes>
+              <Can-Set-Native-Method-Prefix>true</Can-Set-Native-Method-Prefix>
               <Built-By>NPC</Built-By>
             </manifestEntries>
           </archive>
