@@ -37,7 +37,7 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
-import com.sun.tools.attach.VirtualMachine;
+import antibug.util.UnsafeUtility;
 
 /**
  * <p>
@@ -47,6 +47,25 @@ import com.sun.tools.attach.VirtualMachine;
  * @version 2012/01/10 19:09:14
  */
 public class Agent {
+
+    /** The entry point for Attach API. */
+    private static Method attach;
+
+    /** The entry point for Attach API. */
+    private static Method loadAgent;
+
+    // load Attach API
+    static {
+        // search attach method
+        try {
+            Class clazz = UnsafeUtility.getTool("com.sun.tools.attach.VirtualMachine");
+
+            attach = clazz.getMethod("attach", String.class);
+            loadAgent = clazz.getMethod("loadAgent", String.class);
+        } catch (Exception e) {
+            throw I.quiet(e);
+        }
+    }
 
     /** The redefined classes. */
     private static final Set<String> redefines = new HashSet();
@@ -135,12 +154,18 @@ public class Agent {
 
             // Load agent dynamically.
             String name = ManagementFactory.getRuntimeMXBean().getName();
-            VirtualMachine.attach(name.substring(0, name.indexOf('@'))).loadAgent(jar.toString());
-            // new WindowsVirtualMachine(Integer.parseInt(name.substring(0, name.indexOf('@'))),
-            // jar.toString());
+            loadAgent.invoke(attach.invoke(null, name.substring(0, name.indexOf('@'))), jar.toString());
         } catch (Exception e) {
             throw I.quiet(e);
         }
+    }
+
+    /**
+     * Agent entry point.
+     */
+    @SuppressWarnings("unused")
+    private static void premain(String args, Instrumentation instrumentation) throws Exception {
+        tool = instrumentation;
     }
 
     /**
