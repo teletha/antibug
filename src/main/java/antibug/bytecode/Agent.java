@@ -60,8 +60,10 @@ public class Agent {
         try {
             Class clazz = UnsafeUtility.getTool("com.sun.tools.attach.VirtualMachine");
 
-            attach = clazz.getMethod("attach", String.class);
-            loadAgent = clazz.getMethod("loadAgent", String.class);
+            if (clazz != null) {
+                attach = clazz.getMethod("attach", String.class);
+                loadAgent = clazz.getMethod("loadAgent", String.class);
+            }
         } catch (Exception e) {
             throw I.quiet(e);
         }
