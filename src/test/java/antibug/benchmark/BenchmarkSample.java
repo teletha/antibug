@@ -23,7 +23,7 @@ import antibug.benchmark.Benchmark.Code;
 /**
  * @version 2012/01/30 10:48:09
  */
-public class BenchmarkTest {
+public class BenchmarkSample {
 
     @Rule
     public static final Benchmark benchmark = new Benchmark();
