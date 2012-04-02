@@ -13,19 +13,15 @@ import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
 
-import org.junit.Ignore;
-import org.junit.Rule;
 import org.junit.Test;
 
 /**
  * @version 2012/01/10 19:26:11
  */
-@Ignore
 public class AgentTest {
 
     private static boolean called = false;
 
-    @Rule
     public static final Agent agent = new Agent(new Transformer());
 
     @Test
