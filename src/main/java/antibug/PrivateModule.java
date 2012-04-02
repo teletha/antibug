@@ -177,6 +177,7 @@ public class PrivateModule extends ReusableRule {
      * </p>
      */
     public void load() {
+        initialize();
         loader = I.load(path);
     }
 
@@ -238,7 +239,7 @@ public class PrivateModule extends ReusableRule {
      * 
      * @throws Exception
      */
-    private synchronized void initialize() throws Exception {
+    private synchronized void initialize() {
         if (!initialized) {
             initialized = true;
 
@@ -246,20 +247,24 @@ public class PrivateModule extends ReusableRule {
             if (!createJar) {
                 copy(testcaseRoot.resolve(originalPackage), path.resolve(overriddenPackage));
             } else {
-                // create temporary
-                Path temporary = I.locateTemporary();
+                try {
+                    // create temporary
+                    Path temporary = I.locateTemporary();
 
-                // copy class files with conversion
-                copy(testcaseRoot.resolve(originalPackage), temporary.resolve(overriddenPackage));
+                    // copy class files with conversion
+                    copy(testcaseRoot.resolve(originalPackage), temporary.resolve(overriddenPackage));
 
-                // create jar packer
-                Archiver archiver = new Archiver(temporary, path);
+                    // create jar packer
+                    Archiver archiver = new Archiver(temporary, path);
 
-                // scan all class files and pack it
-                I.walk(temporary, archiver);
+                    // scan all class files and pack it
+                    I.walk(temporary, archiver);
 
-                // close stream properly
-                archiver.output.close();
+                    // close stream properly
+                    archiver.output.close();
+                } catch (IOException e) {
+                    throw I.quiet(e);
+                }
             }
         }
     }
