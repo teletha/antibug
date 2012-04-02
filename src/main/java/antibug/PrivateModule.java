@@ -69,6 +69,9 @@ public class PrivateModule extends ReusableRule {
     /** The class loader of private module. */
     private ClassLoader loader;
 
+    /** The initialization flag. */
+    private boolean initialized = false;
+
     /**
      * <p>
      * Create private module with package name which is related to test class name.
@@ -208,25 +211,7 @@ public class PrivateModule extends ReusableRule {
      */
     @Override
     protected void beforeClass() throws Exception {
-        // copy class file with type conversion
-        if (!createJar) {
-            copy(testcaseRoot.resolve(originalPackage), path.resolve(overriddenPackage));
-        } else {
-            // create temporary
-            Path temporary = I.locateTemporary();
-
-            // copy class files with conversion
-            copy(testcaseRoot.resolve(originalPackage), temporary.resolve(overriddenPackage));
-
-            // create jar packer
-            Archiver archiver = new Archiver(temporary, path);
-
-            // scan all class files and pack it
-            I.walk(temporary, archiver);
-
-            // close stream properly
-            archiver.output.close();
-        }
+        initialize();
     }
 
     /**
@@ -234,6 +219,7 @@ public class PrivateModule extends ReusableRule {
      */
     @Override
     protected void before(Method method) throws Exception {
+        initialize();
         load();
     }
 
@@ -243,6 +229,39 @@ public class PrivateModule extends ReusableRule {
     @Override
     protected void after(Method method) {
         unload();
+    }
+
+    /**
+     * <p>
+     * Ensure lazy initialization.
+     * </p>
+     * 
+     * @throws Exception
+     */
+    private synchronized void initialize() throws Exception {
+        if (!initialized) {
+            initialized = true;
+
+            // copy class file with type conversion
+            if (!createJar) {
+                copy(testcaseRoot.resolve(originalPackage), path.resolve(overriddenPackage));
+            } else {
+                // create temporary
+                Path temporary = I.locateTemporary();
+
+                // copy class files with conversion
+                copy(testcaseRoot.resolve(originalPackage), temporary.resolve(overriddenPackage));
+
+                // create jar packer
+                Archiver archiver = new Archiver(temporary, path);
+
+                // scan all class files and pack it
+                I.walk(temporary, archiver);
+
+                // close stream properly
+                archiver.output.close();
+            }
+        }
     }
 
     /**
