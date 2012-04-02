@@ -151,6 +151,10 @@ public class PrivateModule extends ReusableRule {
         // normalize
         relativePath = relativePath.replace(File.separatorChar, '/');
 
+        if (relativePath.length() != 0 && relativePath.charAt(relativePath.length() - 1) != '/') {
+            relativePath = relativePath + "/";
+        }
+
         // compute packaging structure
         int index = relativePath.lastIndexOf('/');
         originalPackage = testcase.getPackage().getName().replace('.', '/') + "/" + relativePath;

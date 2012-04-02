@@ -14,8 +14,10 @@ import java.nio.file.Files;
 import org.junit.Rule;
 import org.junit.Test;
 
+import antibug.relative.module.RelativeModule;
+
 /**
- * @version 2011/03/22 8:53:11
+ * @version 2012/04/02 14:52:35
  */
 public class PrivateModuleTest {
 
@@ -24,6 +26,12 @@ public class PrivateModuleTest {
 
     @Rule
     public static final PrivateModule moduleJar = new PrivateModule(true, true);
+
+    @Rule
+    public static final PrivateModule renameRelative1 = new PrivateModule("relative/module", true, false);
+
+    @Rule
+    public static final PrivateModule renameRelative2 = new PrivateModule("relative/module/", true, false);
 
     @Test
     public void path() throws Exception {
@@ -37,6 +45,15 @@ public class PrivateModuleTest {
         assert moduleJar.convert(Clazz.class) != null;
         assert Clazz.class != module.convert(Clazz.class);
         assert Clazz.class != moduleJar.convert(Clazz.class);
+    }
+
+    @Test
+    public void relativePackage() throws Exception {
+        Class converted = renameRelative1.convert(RelativeModule.class);
+        assert converted.getName().equals(RelativeModule.class.getSimpleName());
+
+        converted = renameRelative2.convert(RelativeModule.class);
+        assert converted.getName().equals(RelativeModule.class.getSimpleName());
     }
 
     /**
