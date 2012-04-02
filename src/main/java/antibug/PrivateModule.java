@@ -52,7 +52,7 @@ public class PrivateModule extends ReusableRule {
     };
 
     /** The actual private module. */
-    public final Path path = I.locateTemporary();
+    public final Path path;
 
     /** The original package name. */
     private final String originalPackage;
@@ -105,6 +105,7 @@ public class PrivateModule extends ReusableRule {
      * </p>
      */
     public PrivateModule(Class root, boolean renamePackage, boolean createJar) {
+        this.path = I.locateTemporary();
         this.createJar = createJar;
 
         if (root == null) {
@@ -146,6 +147,16 @@ public class PrivateModule extends ReusableRule {
      * </p>
      */
     public PrivateModule(String relativePath, boolean renamePackage, boolean createJar) {
+        this(I.locateTemporary(), relativePath, renamePackage, createJar);
+    }
+
+    /**
+     * <p>
+     * Create private module with package name which is related to test class name.
+     * </p>
+     */
+    public PrivateModule(Path dest, String relativePath, boolean renamePackage, boolean createJar) {
+        this.path = dest;
         this.createJar = createJar;
 
         // normalize
