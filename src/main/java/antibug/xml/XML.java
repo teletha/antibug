@@ -11,8 +11,10 @@ package antibug.xml;
 
 import static org.w3c.dom.Node.*;
 
+import java.io.Flushable;
 import java.io.IOException;
 import java.io.StringReader;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayDeque;
@@ -27,13 +29,13 @@ import java.util.Map;
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.SAXParserFactory;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import kiss.I;
-import kiss.XMLWriter;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Comment;
@@ -46,12 +48,16 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 import org.xml.sax.XMLFilter;
+import org.xml.sax.XMLReader;
+import org.xml.sax.ext.LexicalHandler;
 
 import antibug.powerassert.PowerAssertRenderer;
 
-import com.sun.org.apache.xalan.internal.xsltc.trax.DOM2SAX;
 import com.sun.org.apache.xerces.internal.util.DOMUtil;
+import com.sun.org.apache.xml.internal.serialize.OutputFormat;
+import com.sun.org.apache.xml.internal.serialize.XML11Serializer;
 
 /**
  * @version 2012/02/16 1:01:12
@@ -64,6 +70,12 @@ public class XML {
     /** The xpath evaluator. */
     private static final XPath xpath;
 
+    /** The pretty serializer. */
+    private static final OutputFormat format;
+
+    /** The sax parser factory for reuse. */
+    private static final SAXParserFactory sax = SAXParserFactory.newInstance();
+
     static {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -71,6 +83,15 @@ public class XML {
 
             dom = factory.newDocumentBuilder();
             xpath = XPathFactory.newInstance().newXPath();
+
+            sax.setNamespaceAware(true);
+            sax.setXIncludeAware(true);
+            sax.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+
+            format = new OutputFormat();
+            format.setIndent(2);
+            format.setLineWidth(0);
+            format.setOmitXMLDeclaration(true);
 
             PowerAssertRenderer.register(ElementRenderer.class);
             PowerAssertRenderer.register(AttributeRenderer.class);
@@ -127,7 +148,7 @@ public class XML {
             pipe.addAll(Arrays.asList(filters));
             pipe.add(builder);
 
-            I.parse(source, pipe.toArray(new XMLFilter[pipe.size()]));
+            parse(source, pipe.toArray(new XMLFilter[pipe.size()]));
 
             return xml(builder.m_doc);
         } catch (Exception e) {
@@ -163,6 +184,66 @@ public class XML {
 
         // API definition
         return new XML(builder.m_doc);
+    }
+
+    /**
+     * <p>
+     * Parse the specified xml {@link InputSource} using the specified sequence of {@link XMLFilter}
+     * . The application can use this method to instruct the XML reader to begin parsing an XML
+     * document from any valid input source (a character stream, a byte stream, or a URI).
+     * </p>
+     * <p>
+     * Sinobu use the {@link XMLReader} which has the following features.
+     * </p>
+     * <ul>
+     * <li>Support XML namespaces.</li>
+     * <li>Support <a href="http://www.w3.org/TR/xinclude/">XML Inclusions (XInclude) Version
+     * 1.0</a>.</li>
+     * <li><em>Not</em> support any validations (DTD or XML Schema).</li>
+     * <li><em>Not</em> support external DTD completely (parser doesn't even access DTD, using
+     * "http://apache.org/xml/features/nonvalidating/load-external-dtd" feature).</li>
+     * </ul>
+     * 
+     * @param source A xml source.
+     * @param filters A list of filters to parse a sax event. This may be <code>null</code>.
+     * @throws NullPointerException If the specified source is <code>null</code>. If one of the
+     *             specified filter is <code>null</code>.
+     * @throws SAXException Any SAX exception, possibly wrapping another exception.
+     * @throws IOException An IO exception from the parser, possibly from a byte stream or character
+     *             stream supplied by the application.
+     */
+    private static void parse(InputSource source, XMLFilter... filters) {
+        try {
+            // create new xml reader
+            XMLReader reader = sax.newSAXParser().getXMLReader();
+
+            // chain filters if needed
+            for (int i = 0; i < filters.length; i++) {
+                // find the root filter of the current multilayer filter
+                XMLFilter filter = filters[i];
+
+                while (filter.getParent() instanceof XMLFilter) {
+                    filter = (XMLFilter) filter.getParent();
+                }
+
+                // the root filter makes previous filter as parent xml reader
+                filter.setParent(reader);
+
+                if (filter instanceof LexicalHandler) {
+                    reader.setProperty("http://xml.org/sax/properties/lexical-handler", filter);
+                }
+
+                // current filter is a xml reader in next step
+                reader = filters[i];
+            }
+
+            // start parsing
+            reader.parse(source);
+        } catch (Exception e) {
+            // We must throw the checked exception quietly and pass the original exception instead
+            // of wrapped exception.
+            throw I.quiet(e);
+        }
     }
 
     /** The actual xml document. */
@@ -573,9 +654,7 @@ public class XML {
             StringBuilder builder = new StringBuilder();
 
             if (detail == null) {
-                DOM2SAX streamer = new DOM2SAX(doc);
-                streamer.setContentHandler(new XMLFormatter(builder));
-                streamer.parse();
+                serialize(builder, doc);
             } else {
                 // Create xpath to indicate the error node of the document copy.
                 String path = makeXPath(detail);
@@ -595,11 +674,19 @@ public class XML {
                 // Insert error message node.
                 insertErrorMessage(detail);
 
-                DOM2SAX streamer = new DOM2SAX(copy);
-                streamer.setContentHandler(new XMLFormatter(builder));
-                streamer.parse();
+                serialize(builder, copy);
             }
             return builder.toString();
+        } catch (Exception e) {
+            throw I.quiet(e);
+        }
+    }
+
+    private void serialize(Appendable output, Document doc) {
+        try {
+            XML11Serializer serializer = new XML11Serializer(output instanceof Writer ? (Writer) output
+                    : new AppendableWriter(output), format);
+            serializer.serialize(doc);
         } catch (Exception e) {
             throw I.quiet(e);
         }
@@ -803,31 +890,43 @@ public class XML {
     }
 
     /**
-     * @version 2012/02/15 14:15:10
+     * @version 2012/11/09 17:06:10
      */
-    private static final class XMLFormatter extends XMLWriter {
+    private static final class AppendableWriter extends Writer {
+
+        private Appendable appendable;
 
         /**
-         * @param out
+         * @param appendable
          */
-        public XMLFormatter(Appendable out) {
-            super(out);
+        private AppendableWriter(Appendable appendable) {
+            this.appendable = appendable;
         }
 
         /**
          * {@inheritDoc}
          */
         @Override
-        public void startDocument() {
-            // ignore
+        public void write(char[] cbuf, int off, int len) throws IOException {
+            appendable.append(String.valueOf(cbuf, off, len));
         }
 
         /**
          * {@inheritDoc}
          */
         @Override
-        protected boolean asBlock(char[] ch, int start, int length) {
-            return length == 1 && ch[start] == ':';
+        public void flush() throws IOException {
+            if (appendable instanceof Flushable) {
+                ((Flushable) appendable).flush();
+            }
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void close() throws IOException {
+            I.quiet(appendable);
         }
     }
 
@@ -853,6 +952,7 @@ public class XML {
         /**
          * @see javax.xml.namespace.NamespaceContext#getNamespaceURI(java.lang.String)
          */
+        @Override
         public String getNamespaceURI(String prefix) {
             return mapping.get(prefix);
         }
@@ -860,6 +960,7 @@ public class XML {
         /**
          * @see javax.xml.namespace.NamespaceContext#getPrefix(java.lang.String)
          */
+        @Override
         public String getPrefix(String namespaceURI) {
             return null;
         }
@@ -867,6 +968,7 @@ public class XML {
         /**
          * @see javax.xml.namespace.NamespaceContext#getPrefixes(java.lang.String)
          */
+        @Override
         public Iterator getPrefixes(String namespaceURI) {
             return null;
         }
