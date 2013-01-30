@@ -492,7 +492,7 @@ class PowerAssertTranslator extends Translator {
     public void visitLocalVariable(String name, String desc, String signature, Label start, Label end, int index) {
         super.visitLocalVariable(name, desc, signature, start, end, index);
 
-        PowerAssertContext.registerLocalVariable(hashCode(), name, desc);
+        PowerAssertContext.registerLocalVariable(hashCode(), name, desc, index);
     }
 
 }

@@ -146,6 +146,16 @@ public class DoubleTest {
         return false;
     }
 
+    @Test
+    public void parameters() throws Exception {
+        tester.willCapture("test(0.123456, 1.0)", false);
+        assert test(0.123456d, 1.0d);
+    }
+
+    private boolean test(double first, double second) {
+        return false;
+    }
+
     /** The tester. */
     private double doubleField = 32.1011d;
 
