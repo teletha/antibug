@@ -47,7 +47,7 @@ public class PowerAssertContext implements Journal {
      * @param name
      * @param description
      */
-    public static void registerLocalVariable(int methodId, String name, String description) {
+    public static void registerLocalVariable(int methodId, String name, String description, int index) {
         List<String[]> local = locals.get(methodId);
 
         if (local == null) {
@@ -55,7 +55,12 @@ public class PowerAssertContext implements Journal {
 
             locals.put(methodId, local);
         }
-        local.add(new String[] {name, description});
+
+        // ensure size
+        for (int i = local.size(); i < index + 1; i++) {
+            local.add(null);
+        }
+        local.set(index, new String[] {name, description});
     }
 
     /**
