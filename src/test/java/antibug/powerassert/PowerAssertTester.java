@@ -56,13 +56,13 @@ public class PowerAssertTester extends ReusableRule {
 
         for (Operand expected : expecteds) {
             if (!context.operands.contains(expected)) {
-                throw new AssertionError("Can't capture the below operand.\r\nCode  : " + expected.toString() + "\r\nValue : " + expected.value + "\r\n");
+                throw new AssertionError("Can't capture the below operand.\r\nExpect  : " + expected.toString() + "\r\nValue : " + expected.value + "\r\n");
             }
         }
 
         for (String operator : operators) {
             if (code.indexOf(operator) == -1) {
-                throw new AssertionError("Can't capture the below code.\r\nCode  : " + operator + "\r\n");
+                throw new AssertionError("Can't capture the below code.\r\nExpect  : " + operator + "\r\nCode : " + code);
             }
         }
     }

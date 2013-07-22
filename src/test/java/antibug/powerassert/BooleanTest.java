@@ -29,6 +29,15 @@ public class BooleanTest {
     }
 
     @Test
+    public void not() throws Exception {
+        boolean value = true;
+
+        tester.willUse("!");
+        tester.willCapture("value", value);
+        assert !value;
+    }
+
+    @Test
     public void array() throws Exception {
         boolean[] array = {false, false, false};
 

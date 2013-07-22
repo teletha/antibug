@@ -29,6 +29,15 @@ public class ObjectTest {
     }
 
     @Test
+    public void not() throws Exception {
+        Object value = null;
+
+        tester.willUse("!=");
+        tester.willCapture("value", value);
+        assert null != value;
+    }
+
+    @Test
     public void array() throws Exception {
         Object[] array = {"0", "1", "2"};
 
