@@ -26,6 +26,9 @@ import org.objectweb.asm.Type;
  */
 public class PowerAssertContext implements Journal {
 
+    /** The zero object. */
+    private static final Integer Zero = Integer.valueOf(0);
+
     /** The local variable name mapping. */
     private static final Map<Integer, List<String[]>> locals = new ConcurrentHashMap();
 
@@ -544,7 +547,7 @@ public class PowerAssertContext implements Journal {
      * Represents Condition expression.
      * </p>
      * 
-     * @version 2012/01/20 17:43:57
+     * @version 2013/07/22 10:06:00
      */
     private class Condition extends Operand {
 
@@ -573,13 +576,20 @@ public class PowerAssertContext implements Journal {
             // Integer value represents various types (int, char and boolean).
             // We have to check the opposite term' type to infer its actual type.
             if (left.value instanceof Integer && right.value instanceof Boolean) {
-                return right.toString();
+                if (left.value == Zero && name.equals("==")) {
+                    return "!" + right.toString();
+                } else {
+                    return right.toString();
+                }
             }
 
             if (right.value instanceof Integer && left.value instanceof Boolean) {
-                return left.toString();
+                if (right.value == Zero && name.equals("==")) {
+                    return "!" + left.toString();
+                } else {
+                    return left.toString();
+                }
             }
-
             return infer(left, right) + " " + name + " " + infer(right, left);
         }
     }

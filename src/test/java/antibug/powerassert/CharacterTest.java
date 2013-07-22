@@ -31,6 +31,16 @@ public class CharacterTest {
     }
 
     @Test
+    public void not() throws Exception {
+        char value = 'b';
+
+        tester.willUse("'b'");
+        tester.willUse("!=");
+        tester.willCapture("value", value);
+        assert 'b' != value;
+    }
+
+    @Test
     public void array() throws Exception {
         char[] array = {0, 1, 2};
 

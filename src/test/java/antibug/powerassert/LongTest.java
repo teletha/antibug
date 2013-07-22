@@ -75,6 +75,16 @@ public class LongTest {
     }
 
     @Test
+    public void not() throws Exception {
+        long value = 10;
+
+        tester.willUse("10");
+        tester.willUse("!=");
+        tester.willCapture("value", value);
+        assert 10 != value;
+    }
+
+    @Test
     public void negative() throws Exception {
         long value = 10;
 

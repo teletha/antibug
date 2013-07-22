@@ -75,6 +75,16 @@ public class FloatTest {
     }
 
     @Test
+    public void not() throws Exception {
+        float value = 0.3f;
+
+        tester.willUse("0.3");
+        tester.willUse("!=");
+        tester.willCapture("value", value);
+        assert 0.3f != value;
+    }
+
+    @Test
     public void negative() throws Exception {
         float value = 0.3f;
 

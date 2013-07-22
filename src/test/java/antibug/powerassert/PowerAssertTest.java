@@ -111,6 +111,15 @@ public class PowerAssertTest {
     }
 
     @Test
+    public void methodCallWithNot() throws Exception {
+        String value = "test";
+
+        test.willCapture("value", value);
+        test.willUse("!value.equals(\"test\")");
+        assert !value.equals("test");
+    }
+
+    @Test
     public void privateMethodCall() throws Exception {
         assert privateMethod();
     }
