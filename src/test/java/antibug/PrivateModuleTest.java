@@ -17,7 +17,7 @@ import org.junit.Test;
 import antibug.relative.module.RelativeModule;
 
 /**
- * @version 2012/04/02 14:52:35
+ * @version 2013/07/27 10:06:26
  */
 public class PrivateModuleTest {
 
@@ -45,6 +45,14 @@ public class PrivateModuleTest {
         assert moduleJar.convert(Clazz.class) != null;
         assert Clazz.class != module.convert(Clazz.class);
         assert Clazz.class != moduleJar.convert(Clazz.class);
+    }
+
+    @Test
+    public void convertArray() throws Exception {
+        assert module.convert(Clazz[].class) != null;
+        assert moduleJar.convert(Clazz[].class) != null;
+        assert Clazz[].class != module.convert(Clazz[].class);
+        assert Clazz[].class != moduleJar.convert(Clazz[].class);
     }
 
     @Test
