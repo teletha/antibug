@@ -36,7 +36,7 @@ import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
 /**
- * @version 2011/03/22 8:51:40
+ * @version 2013/07/27 10:06:15
  */
 public class PrivateModule extends ReusableRule {
 
@@ -215,8 +215,8 @@ public class PrivateModule extends ReusableRule {
      */
     public Class convert(Class clazz) {
         try {
-            return loader.loadClass(clazz.getName()
-                    .replace(originalPackage.replace('/', '.'), overriddenPackage.replace('/', '.')));
+            return Class.forName(clazz.getName()
+                    .replace(originalPackage.replace('/', '.'), overriddenPackage.replace('/', '.')), false, loader);
         } catch (ClassNotFoundException e) {
             throw I.quiet(e);
         }
