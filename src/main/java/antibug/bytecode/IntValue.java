@@ -34,7 +34,7 @@ public class IntValue extends Bytecode<IntValue> {
     }
 
     /**
-     * @see testament.bytecode.Bytecode#write(org.objectweb.asm.MethodVisitor, boolean)
+     * {@inheritDoc}
      */
     @Override
     public void write(MethodVisitor visitor, boolean isNonPrimitive) {

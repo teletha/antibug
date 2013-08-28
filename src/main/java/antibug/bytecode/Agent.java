@@ -21,7 +21,9 @@ import java.lang.reflect.Proxy;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.ProtectionDomain;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.jar.Attributes;
 import java.util.jar.JarOutputStream;
@@ -71,6 +73,9 @@ public class Agent {
 
     /** The redefined classes. */
     private static final Set<String> redefines = new HashSet();
+
+    /** The redefined classes. */
+    private static final Map<Class, byte[]> codes = new HashMap();
 
     /** The Instrumentation tool. */
     private volatile static Instrumentation tool;
@@ -126,13 +131,18 @@ public class Agent {
         }
     }
 
-    // /**
-    // * {@inheritDoc}
-    // */
-    // @Override
-    // protected void afterClass() {
-    // tool.removeTransformer(agent);
-    // }
+    /**
+     * <p>
+     * Search the transformed code of the specified class. If the target class is not transformed,
+     * returns <code>null</code>.
+     * </p>
+     * 
+     * @param target
+     * @return
+     */
+    public static byte[] getTransformedCode(Class target) {
+        return codes.get(target);
+    }
 
     /**
      * <p>
@@ -207,8 +217,11 @@ public class Agent {
             ClassTranslator visitor = new ClassTranslator(writer, name);
             ClassReader reader = new ClassReader(bytes);
             reader.accept(visitor, ClassReader.EXPAND_FRAMES);
+            byte[] transformed = writer.toByteArray();
 
-            return writer.toByteArray();
+            codes.put(clazz, transformed);
+
+            return transformed;
         }
 
         /**

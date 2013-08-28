@@ -22,7 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.objectweb.asm.Type;
 
 /**
- * @author Teletha
+ * @version 2013/08/28 16:48:33
  */
 public class PowerAssertContext implements Journal {
 
@@ -93,7 +93,7 @@ public class PowerAssertContext implements Journal {
     }
 
     /**
-     * @see testament.powerassert.Journal#arrayStore()
+     * {@inheritDoc}
      */
     @Override
     public void arrayStore() {
@@ -177,7 +177,7 @@ public class PowerAssertContext implements Journal {
     }
 
     /**
-     * @see testament.powerassert.PowerAssert.Increment#increment(int, int)
+     * {@inheritDoc}
      */
     @Override
     public void increment(int methodId, int index, int increment) {
@@ -285,7 +285,7 @@ public class PowerAssertContext implements Journal {
     }
 
     /**
-     * @see testament.powerassert.Journal#operator(java.lang.String)
+     * {@inheritDoc}
      */
     @Override
     public void operator(String operator) {
@@ -307,7 +307,7 @@ public class PowerAssertContext implements Journal {
     }
 
     /**
-     * @see java.lang.Object#toString()
+     * {@inheritDoc}
      */
     @Override
     public String toString() {

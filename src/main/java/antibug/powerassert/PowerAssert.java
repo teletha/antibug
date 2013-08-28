@@ -100,12 +100,13 @@ public class PowerAssert implements TestRule {
                     // should we print this error message in detal?
                     if (description.getAnnotation(PowerAssertOff.class) == null && !description.getTestClass()
                             .isAnnotationPresent(PowerAssertOff.class)) {
-                        // find the class whihc rises assertion error
+                        // find the class which rises assertion error
                         Class clazz = PrivateModule.forName(error.getStackTrace()[0].getClassName());
-
+                        System.out.println("Class " + clazz + " rises assertion error");
                         // translate assertion code only once
                         if (translated.add(clazz.getName())) {
                             agent.transform(clazz);
+                            System.out.println("Enhance " + clazz + " and evaluate again.");
 
                             evaluate(); // retry testcase
                             return;
