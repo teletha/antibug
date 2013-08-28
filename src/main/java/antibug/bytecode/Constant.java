@@ -29,7 +29,7 @@ public class Constant extends Bytecode<Constant> {
     }
 
     /**
-     * @see testament.bytecode.Bytecode#write(org.objectweb.asm.MethodVisitor, boolean)
+     * {@inheritDoc}
      */
     @Override
     public void write(MethodVisitor visitor, boolean requireNonPrimitive) {

@@ -42,7 +42,7 @@ public class MethodCall extends Bytecode<MethodCall> {
     }
 
     /**
-     * @see testament.bytecode.Bytecode#write(org.objectweb.asm.MethodVisitor, boolean)
+     * {@inheritDoc}
      */
     @Override
     public void write(MethodVisitor visitor, boolean isNonPrimitive) {

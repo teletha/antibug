@@ -117,34 +117,40 @@ class Operand {
             if (!type.isArray()) {
                 return false;
             } else {
-                switch (type.getComponentType().getSimpleName()) {
-                case "int":
+                type = type.getComponentType();
+
+                if (type == int.class) {
                     return Arrays.equals((int[]) value, (int[]) other.value);
-
-                case "long":
-                    return Arrays.equals((long[]) value, (long[]) other.value);
-
-                case "float":
-                    return Arrays.equals((float[]) value, (float[]) other.value);
-
-                case "double":
-                    return Arrays.equals((double[]) value, (double[]) other.value);
-
-                case "char":
-                    return Arrays.equals((char[]) value, (char[]) other.value);
-
-                case "boolean":
-                    return Arrays.equals((boolean[]) value, (boolean[]) other.value);
-
-                case "short":
-                    return Arrays.equals((short[]) value, (short[]) other.value);
-
-                case "byte":
-                    return Arrays.equals((byte[]) value, (byte[]) other.value);
-
-                default:
-                    return Arrays.deepEquals((Object[]) value, (Object[]) other.value);
                 }
+
+                if (type == long.class) {
+                    return Arrays.equals((long[]) value, (long[]) other.value);
+                }
+
+                if (type == float.class) {
+                    return Arrays.equals((float[]) value, (float[]) other.value);
+                }
+
+                if (type == double.class) {
+                    return Arrays.equals((double[]) value, (double[]) other.value);
+                }
+
+                if (type == char.class) {
+                    return Arrays.equals((char[]) value, (char[]) other.value);
+                }
+
+                if (type == boolean.class) {
+                    return Arrays.equals((boolean[]) value, (boolean[]) other.value);
+                }
+
+                if (type == short.class) {
+                    return Arrays.equals((short[]) value, (short[]) other.value);
+                }
+
+                if (type == byte.class) {
+                    return Arrays.equals((byte[]) value, (byte[]) other.value);
+                }
+                return Arrays.deepEquals((Object[]) value, (Object[]) other.value);
             }
         }
         return true;
