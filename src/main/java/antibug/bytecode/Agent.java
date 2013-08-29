@@ -35,6 +35,7 @@ import kiss.model.ClassUtil;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
@@ -213,8 +214,12 @@ public class Agent {
                 return bytes;
             }
 
+            // collect local variables
+            LocalVariableManager manager = new LocalVariableManager();
+            new ClassReader(bytes).accept(manager, ClassReader.SKIP_FRAMES);
+
             ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
-            ClassTranslator visitor = new ClassTranslator(writer, name);
+            ClassTranslator visitor = new ClassTranslator(writer, name, manager);
             ClassReader reader = new ClassReader(bytes);
             reader.accept(visitor, ClassReader.EXPAND_FRAMES);
             byte[] transformed = writer.toByteArray();
@@ -232,28 +237,95 @@ public class Agent {
             /** The internal class name. */
             private final String className;
 
+            /** The variable manager. */
+            private final LocalVariableManager manager;
+
             /**
              * @param arg0
              */
-            private ClassTranslator(ClassWriter writer, String className) {
+            private ClassTranslator(ClassWriter writer, String className, LocalVariableManager manager) {
                 super(Opcodes.ASM4, writer);
 
                 this.className = className;
+                this.manager = manager;
             }
 
             /**
-             * @see org.objectweb.asm.ClassVisitor#visitMethod(int, java.lang.String,
-             *      java.lang.String, java.lang.String, java.lang.String[])
+             * {@inheritDoc}
              */
             @Override
             public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
                 MethodVisitor visitor = super.visitMethod(access, name, desc, signature, exceptions);
                 LocalVariableSorter sorter = new LocalVariableSorter(access, desc, visitor);
                 Translator translator = I.make(TranslatorTransformer.this.translator);
-                translator.set(sorter, className, name, Type.getMethodType(desc));
+                translator.set(sorter, className, name, Type.getMethodType(desc), manager);
 
                 return translator;
             }
+        }
+    }
+
+    /**
+     * @version 2013/08/29 21:19:16
+     */
+    private static class LocalVariableManager extends ClassVisitor {
+
+        /** The collector manager. */
+        private Map<String, Variables> collectors = new HashMap();
+
+        /**
+         * @param api
+         * @param cv
+         */
+        private LocalVariableManager(int api, ClassVisitor cv) {
+            super(api, cv);
+        }
+
+        /**
+         * @param api
+         */
+        private LocalVariableManager() {
+            super(Opcodes.ASM4);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
+            Variables collector = new Variables();
+
+            collectors.put(name + desc, collector);
+
+            return collector;
+        }
+    }
+
+    /**
+     * @version 2013/08/29 21:20:30
+     */
+    private static class Variables extends MethodVisitor {
+
+        /** The variable map. */
+        private Map<Integer, String> names = new HashMap();
+
+        /** The variable map. */
+        private Map<Integer, Type> types = new HashMap();
+
+        /**
+         * @param api
+         */
+        private Variables() {
+            super(Opcodes.ASM4);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void visitLocalVariable(String name, String desc, String signature, Label start, Label end, int index) {
+            names.put(index, name);
+            types.put(index, Type.getType(desc));
         }
     }
 
@@ -271,6 +343,9 @@ public class Agent {
         /** The internal method type. */
         protected Type methodType;
 
+        /** The local variable manager. */
+        private Variables variables;
+
         /**
          * 
          */
@@ -283,11 +358,36 @@ public class Agent {
          * Lazy set up.
          * </p>
          */
-        final void set(LocalVariableSorter visitor, String className, String methodName, Type methodDescriptor) {
+        final void set(LocalVariableSorter visitor, String className, String methodName, Type methodDescriptor, LocalVariableManager manager) {
             mv = visitor;
             this.className = className;
             this.methodName = methodName;
             this.methodType = methodDescriptor;
+            this.variables = manager.collectors.get(methodName + methodDescriptor.getDescriptor());
+        }
+
+        /**
+         * <p>
+         * Get local variable name.
+         * </p>
+         * 
+         * @param position
+         * @return
+         */
+        protected final String getLocalName(int position) {
+            return variables.names.get(position);
+        }
+
+        /**
+         * <p>
+         * Get local variable type.
+         * </p>
+         * 
+         * @param position
+         * @return
+         */
+        protected final Type getLocalType(int position) {
+            return variables.types.get(position);
         }
 
         /**
@@ -333,6 +433,41 @@ public class Agent {
                 mv.visitInsn(ACONST_NULL);
             } else if (object instanceof String) {
                 mv.visitLdcInsn(object);
+            } else if (object instanceof Boolean) {
+                mv.visitInsn(object == Boolean.TRUE ? ICONST_1 : ICONST_0);
+            } else if (object instanceof Integer) {
+                Integer integer = (Integer) object;
+
+                switch (integer.intValue()) {
+                case 0:
+                    mv.visitInsn(ICONST_0);
+                    break;
+
+                case 1:
+                    mv.visitInsn(ICONST_1);
+                    break;
+
+                case 2:
+                    mv.visitInsn(ICONST_2);
+                    break;
+
+                case 3:
+                    mv.visitInsn(ICONST_3);
+                    break;
+
+                case 4:
+                    mv.visitInsn(ICONST_4);
+                    break;
+                case 5:
+                    mv.visitInsn(ICONST_5);
+                    break;
+                case -1:
+                    mv.visitInsn(ICONST_M1);
+                    break;
+
+                default:
+                    mv.visitLdcInsn((Integer) object);
+                }
             } else if (object instanceof LocalVariable) {
                 ((LocalVariable) object).load();
             } else if (Proxy.isProxyClass(object.getClass())) {

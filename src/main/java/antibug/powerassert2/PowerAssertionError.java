@@ -30,7 +30,7 @@ public class PowerAssertionError extends AssertionError {
     public PowerAssertionError() {
         super("");
 
-        this.context = PowerAssertContext.get();
+        this.context = PowerAssertContext.current;
     }
 
     /**
@@ -41,7 +41,7 @@ public class PowerAssertionError extends AssertionError {
     public PowerAssertionError(boolean detailMessage, PowerAssertContext context) {
         super(detailMessage);
 
-        this.context = PowerAssertContext.get();
+        this.context = PowerAssertContext.current;
     }
 
     /**
@@ -52,7 +52,7 @@ public class PowerAssertionError extends AssertionError {
     public PowerAssertionError(char detailMessage) {
         super(detailMessage);
 
-        this.context = PowerAssertContext.get();
+        this.context = PowerAssertContext.current;
     }
 
     /**
@@ -63,7 +63,7 @@ public class PowerAssertionError extends AssertionError {
     public PowerAssertionError(double detailMessage) {
         super(detailMessage);
 
-        this.context = PowerAssertContext.get();
+        this.context = PowerAssertContext.current;
     }
 
     /**
@@ -74,7 +74,7 @@ public class PowerAssertionError extends AssertionError {
     public PowerAssertionError(float detailMessage) {
         super(detailMessage);
 
-        this.context = PowerAssertContext.get();
+        this.context = PowerAssertContext.current;
     }
 
     /**
@@ -85,7 +85,7 @@ public class PowerAssertionError extends AssertionError {
     public PowerAssertionError(int detailMessage) {
         super(detailMessage);
 
-        this.context = PowerAssertContext.get();
+        this.context = PowerAssertContext.current;
     }
 
     /**
@@ -96,7 +96,7 @@ public class PowerAssertionError extends AssertionError {
     public PowerAssertionError(long detailMessage) {
         super(detailMessage);
 
-        this.context = PowerAssertContext.get();
+        this.context = PowerAssertContext.current;
     }
 
     /**
@@ -107,7 +107,7 @@ public class PowerAssertionError extends AssertionError {
     public PowerAssertionError(Object detailMessage) {
         super(detailMessage);
 
-        this.context = PowerAssertContext.get();
+        this.context = PowerAssertContext.current;
     }
 
     /**

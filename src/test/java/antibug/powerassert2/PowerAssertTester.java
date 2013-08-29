@@ -48,6 +48,7 @@ public class PowerAssertTester extends ReusableRule {
      * @param context
      */
     void validate(PowerAssertContext context) {
+        System.out.println(context);
         // if (context.stack.size() != 1) {
         // throw new AssertionError("Stack size is not 1. \n" + context.stack);
         // }

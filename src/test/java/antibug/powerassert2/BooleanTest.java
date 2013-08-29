@@ -40,7 +40,23 @@ public class BooleanTest {
     @Test
     public void constant12() throws Exception {
         boolean value = false;
-        assert initialize().log(value, 1141123, 1);
+        assert log(value, true, "value");
+    }
+
+    @Test
+    public void constant2() throws Exception {
+        boolean value = false;
+        boolean value2 = true;
+
+        assert value == value2;
+    }
+
+    @Test
+    public void constant2A() throws Exception {
+        boolean value = false;
+        boolean value2 = true;
+
+        assert log(log(value, true, "value") == log(value2, false, "value2"), false, "==");
     }
 
     @Test

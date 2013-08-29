@@ -9,9 +9,17 @@
  */
 package antibug.powerassert2;
 
+import static antibug.bytecode.Bytecode.*;
 import static org.objectweb.asm.Opcodes.*;
 
+import java.lang.reflect.Array;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.objectweb.asm.Label;
+import org.objectweb.asm.Type;
 
 import antibug.bytecode.Agent.Translator;
 
@@ -19,6 +27,13 @@ import antibug.bytecode.Agent.Translator;
  * @version 2012/01/14 22:48:47
  */
 class PowerAssertTranslator extends Translator {
+
+    /** The zero object. */
+    private static final Integer Zero = Integer.valueOf(0);
+
+    private static final String ErrorName = Type.getInternalName(PowerAssertionError.class);
+
+    private static final String ContextName = Type.getInternalName(PowerAssertContext.class);
 
     /** The state. */
     private boolean startAssertion = false;
@@ -31,6 +46,39 @@ class PowerAssertTranslator extends Translator {
 
     /** The state. */
     private boolean compare = false;
+
+    /** The state. */
+    private boolean initialize = true;
+
+    /** The operand stack frame. */
+    private ArrayDeque<String> stack = new ArrayDeque();
+
+    /** The using operand list. */
+    private ArrayList<Operand> operands = new ArrayList();
+
+    /**
+     * <p>
+     * Helper method to remove last stack.
+     * </p>
+     * 
+     * @return
+     */
+    private String last() {
+        return stack.pollLast();
+    }
+
+    /**
+     * <p>
+     * Load initialization flag.
+     * </p>
+     * 
+     * @return
+     */
+    private void loadInitFlag() {
+        load(initialize);
+
+        initialize = false;
+    }
 
     /**
      * <p>
@@ -58,6 +106,7 @@ class PowerAssertTranslator extends Translator {
         if (!startAssertion && opcode == GETSTATIC && name.equals("$assertionsDisabled")) {
             startAssertion = true;
             skipNextJump = true;
+            initialize = true;
             return;
         }
 
@@ -96,7 +145,23 @@ class PowerAssertTranslator extends Translator {
 
             case IF_ICMPEQ:
             case IF_ACMPEQ:
-                // journal.condition("==");
+                // record code
+                stack.add(last() + " == " + last());
+
+                // record value
+                load(1);
+                Label result = new Label();
+                mv.visitJumpInsn(GOTO, result);
+                mv.visitLabel(label);
+                mv.visitFrame(F_APPEND, 2, new Object[] {INTEGER, INTEGER}, 0, null);
+                load(0);
+                mv.visitLabel(result);
+                mv.visitFrame(F_SAME1, 0, null, 1, new Object[] {INTEGER});
+                load(0);
+                load("==");
+                Type type = Type.BOOLEAN_TYPE;
+
+                super.visitMethodInsn(INVOKESTATIC, ContextName, "log", "(" + type.getDescriptor() + "ZLjava/lang/String;)" + type.getDescriptor());
                 break;
 
             case IFNE:
@@ -160,13 +225,13 @@ class PowerAssertTranslator extends Translator {
      */
     @Override
     public void visitTypeInsn(int opcode, String type) {
-        // if (processAssertion && opcode == NEW && type.equals("java/lang/AssertionError")) {
-        // processAssertion = false;
-        //
-        // // replace AssertionError with PowerAssertionError
-        // super.visitTypeInsn(opcode, Type.getType(PowerAssertionError.class).getInternalName());
-        // return;
-        // }
+        if (processAssertion && opcode == NEW && type.equals("java/lang/AssertionError")) {
+            processAssertion = false;
+
+            // replace AssertionError with PowerAssertionError
+            super.visitTypeInsn(opcode, ErrorName);
+            return;
+        }
 
         super.visitTypeInsn(opcode, type);
 
@@ -192,24 +257,14 @@ class PowerAssertTranslator extends Translator {
     public void visitMethodInsn(int opcode, String owner, String name, String desc) {
         // replace invocation of AssertionError constructor.
         if (startAssertion && opcode == INVOKESPECIAL && owner.equals("java/lang/AssertionError")) {
-            // load(journal); // load context
-
-            // // append parameter for context
-            // StringBuilder builder = new StringBuilder(desc);
-            // builder.insert(builder.length() - 2, "L");
-            // builder.insert(builder.length() - 2,
-            // Type.getType(PowerAssertContext.class).getInternalName());
-            // builder.insert(builder.length() - 2, ";");
-            //
-            // // instantiate PowerAssertError
-            // super.visitMethodInsn(opcode,
-            // Type.getType(PowerAssertionError.class).getInternalName(), name, builder.toString());
+            // instantiate PowerAssertError
+            super.visitMethodInsn(opcode, ErrorName, name, desc);
 
             // reset state
             startAssertion = false;
             skipNextJump = false;
             processAssertion = false;
-            // return;
+            return;
         }
 
         super.visitMethodInsn(opcode, owner, name, desc);
@@ -475,21 +530,211 @@ class PowerAssertTranslator extends Translator {
         super.visitVarInsn(opcode, index);
 
         if (processAssertion) {
-            load(hashCode());
-            load(index);
+            String name = getLocalName(index);
 
-            // journal.local(hashCode(), index, local(opcode, index));
+            // record code
+            stack.add(name);
+
+            // record value
+            loadInitFlag();
+            load(name);
+
+            Type type = opcode == ALOAD ? OBJECT_TYPE : getLocalType(index);
+
+            super.visitMethodInsn(INVOKESTATIC, ContextName, "log", "(" + type.getDescriptor() + "ZLjava/lang/String;)" + type.getDescriptor());
+
+            if (opcode == ALOAD) {
+                super.visitTypeInsn(CHECKCAST, getLocalType(index).getInternalName());
+            }
         }
     }
 
     /**
-     * {@inheritDoc}
+     * @param operand
+     * @param hint
+     * @return
      */
-    @Override
-    public void visitLocalVariable(String name, String desc, String signature, Label start, Label end, int index) {
-        super.visitLocalVariable(name, desc, signature, start, end, index);
-
-        PowerAssertContext.registerLocalVariable(hashCode(), name, desc, index);
+    private static Operand infer(Operand operand, Operand hint) {
+        return infer(operand, hint.getType());
     }
 
+    /**
+     * @param operand
+     * @param hint
+     * @return
+     */
+    private static Operand infer(Operand operand, Type hint) {
+        // Integer value represents various types (int, char and boolean).
+        // We have to check the opposite term' type to infer its actual type.
+        if (operand instanceof Constant && operand.value instanceof Integer) {
+            Integer value = (Integer) operand.value;
+
+            if (hint == Type.CHAR_TYPE) {
+                return new Constant((char) value.intValue());
+            } else if (hint == Type.BOOLEAN_TYPE) {
+                return new Constant(value.intValue() == 1);
+            }
+        }
+        return operand;
+    }
+
+    /**
+     * <p>
+     * Represents constant value.
+     * </p>
+     * 
+     * @version 2012/01/22 15:15:01
+     */
+    private static class Constant extends Operand {
+
+        /**
+         * @param value An actual value.
+         */
+        private Constant(Object value) {
+            super(String.valueOf(value), value);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        boolean isVariableHolder() {
+            return false;
+        }
+
+        /**
+         * @see testament.powerassert.Operand#toString()
+         */
+        @Override
+        public String toString() {
+            if (value == null) {
+                return "null";
+            }
+
+            if (value instanceof String) {
+                return "\"" + value + "\"";
+            }
+
+            if (value instanceof Character) {
+                return "'" + value + "'";
+            }
+
+            if (value instanceof Class) {
+                return ((Class) value).getSimpleName() + ".class";
+            }
+
+            return super.toString();
+        }
+    }
+
+    /**
+     * <p>
+     * Represents variable value.
+     * </p>
+     * 
+     * @version 2012/01/22 14:15:51
+     */
+    private static class Variable extends Operand {
+
+        /** The variable type for inference. */
+        private final Type type;
+
+        /**
+         * @param name A variable name.
+         * @param type A variable type.
+         * @param value An actual value.
+         */
+        private Variable(String name, Type type, Object value) {
+            super(name, value, type);
+
+            this.type = type;
+        }
+
+        /**
+         * @see testament.powerassert.Operand#getType()
+         */
+        @Override
+        Type getType() {
+            return type;
+        }
+    }
+
+    /**
+     * <p>
+     * Represents Array initialization expression.
+     * </p>
+     * 
+     * @version 2012/01/19 16:18:02
+     */
+    private class NewArray extends Operand {
+
+        /** The array type. */
+        private final Type type;
+
+        /** The array size. */
+        private final int size;
+
+        /** The actual array elements. */
+        private final List<Operand> elements = new ArrayList();
+
+        /**
+         * @param type An array type.
+         * @param value An actual array value.
+         */
+        private NewArray(String type, Object value) {
+            super(type, value);
+
+            this.type = Type.getType(value.getClass().getComponentType());
+
+            // Boolean array is initialized with false values, other type arrays are initialized
+            // with null values. Array store operation will be invoked array length times but false
+            // value will not be invoked. So we should fill with false values to normalize setup.
+            this.size = Array.getLength(value);
+
+            for (int i = 0; i < size; i++) {
+                elements.add(new Constant(false));
+            }
+        }
+
+        /**
+         * <p>
+         * Add element value.
+         * </p>
+         * 
+         * @param operand
+         */
+        private void add(int index, Operand operand) {
+            elements.set(index, infer(operand, type));
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        boolean isVariableHolder() {
+            return false;
+        }
+
+        /**
+         * @see testament.powerassert.Operand#toString()
+         */
+        @Override
+        public String toString() {
+            StringBuilder builder = new StringBuilder("new ");
+            builder.append(name).append("[] {");
+
+            Iterator<Operand> iterator = elements.iterator();
+
+            if (iterator.hasNext()) {
+                builder.append(iterator.next());
+
+                while (iterator.hasNext()) {
+                    builder.append(", ").append(iterator.next());
+                }
+            }
+
+            builder.append('}');
+            return builder.toString();
+        }
+    }
 }
