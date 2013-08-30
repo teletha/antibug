@@ -19,6 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.objectweb.asm.Label;
+import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
 import antibug.bytecode.Agent.Translator;
@@ -145,23 +146,20 @@ class PowerAssertTranslator extends Translator {
 
             case IF_ICMPEQ:
             case IF_ACMPEQ:
-                // record code
-                stack.add(last() + " == " + last());
-
                 // record value
-                load(1);
-                Label result = new Label();
-                mv.visitJumpInsn(GOTO, result);
-                mv.visitLabel(label);
-                mv.visitFrame(F_APPEND, 2, new Object[] {INTEGER, INTEGER}, 0, null);
-                load(0);
-                mv.visitLabel(result);
-                mv.visitFrame(F_SAME1, 0, null, 1, new Object[] {INTEGER});
-                load(0);
-                load("==");
-                Type type = Type.BOOLEAN_TYPE;
 
-                super.visitMethodInsn(INVOKESTATIC, ContextName, "log", "(" + type.getDescriptor() + "ZLjava/lang/String;)" + type.getDescriptor());
+                mv.visitInsn(ICONST_1);
+                Label l5 = new Label();
+                mv.visitJumpInsn(GOTO, l5);
+                mv.visitLabel(label);
+                mv.visitFrame(Opcodes.F_APPEND, 2, new Object[] {Opcodes.INTEGER, Opcodes.INTEGER}, 0, null);
+                mv.visitInsn(ICONST_0);
+                mv.visitLabel(l5);
+                mv.visitFrame(Opcodes.F_SAME1, 0, null, 1, new Object[] {Opcodes.INTEGER});
+                mv.visitInsn(ICONST_0);
+                mv.visitLdcInsn("==");
+                mv.visitMethodInsn(INVOKESTATIC, "antibug/powerassert2/PowerAssertContext", "log", "(ZZLjava/lang/String;)Z");
+
                 break;
 
             case IFNE:
@@ -174,7 +172,9 @@ class PowerAssertTranslator extends Translator {
 
             case IF_ICMPNE:
             case IF_ACMPNE:
-                // journal.condition("!=");
+                // record code
+                stack.add(last() + " == " + last());
+
                 break;
 
             case IF_ICMPLT:
