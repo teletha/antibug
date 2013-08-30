@@ -12,7 +12,6 @@ package antibug.powerassert2;
 /**
  * @version 2013/08/29 8:12:07
  */
-@SuppressWarnings("serial")
 public class PowerAssertContext {
 
     /** The current context. */
