@@ -147,7 +147,7 @@ class PowerAssertTranslator extends Translator {
             case IF_ICMPEQ:
             case IF_ACMPEQ:
                 // record value
-
+                System.out.println("change");
                 mv.visitInsn(ICONST_1);
                 Label l5 = new Label();
                 mv.visitJumpInsn(GOTO, l5);
@@ -155,7 +155,7 @@ class PowerAssertTranslator extends Translator {
                 mv.visitFrame(Opcodes.F_APPEND, 2, new Object[] {Opcodes.INTEGER, Opcodes.INTEGER}, 0, null);
                 mv.visitInsn(ICONST_0);
                 mv.visitLabel(l5);
-                mv.visitFrame(Opcodes.F_SAME1, 0, null, 1, new Object[] {Opcodes.INTEGER});
+                // mv.visitFrame(Opcodes.F_SAME1, 0, null, 1, new Object[] {Opcodes.INTEGER});
                 mv.visitInsn(ICONST_0);
                 mv.visitLdcInsn("==");
                 mv.visitMethodInsn(INVOKESTATIC, "antibug/powerassert2/PowerAssertContext", "log", "(ZZLjava/lang/String;)Z");
