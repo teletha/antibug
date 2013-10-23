@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
+import java.nio.ByteBuffer;
 import java.nio.channels.SeekableByteChannel;
 import java.nio.file.AccessMode;
 import java.nio.file.CopyOption;
@@ -114,9 +115,57 @@ class NoteFileSystemProvider extends FileSystemProvider {
     @Override
     public SeekableByteChannel newByteChannel(Path path, Set<? extends OpenOption> options, FileAttribute<?>... attrs)
             throws IOException {
-        // If this exception will be thrown, it is bug of this program. So we must rethrow the
-        // wrapped error in here.
-        throw new Error();
+        final Note note = (Note) path;
+
+        return new SeekableByteChannel() {
+
+            private boolean flag = false;
+
+            @Override
+            public boolean isOpen() {
+                return true;
+            }
+
+            @Override
+            public void close() throws IOException {
+            }
+
+            @Override
+            public int write(ByteBuffer src) throws IOException {
+                return 0;
+            }
+
+            @Override
+            public SeekableByteChannel truncate(long size) throws IOException {
+                return this;
+            }
+
+            @Override
+            public long size() throws IOException {
+                return note.length();
+            }
+
+            @Override
+            public int read(ByteBuffer dest) throws IOException {
+                if (flag) {
+                    return -1;
+                } else {
+                    flag = true;
+                    dest.put(note.toString().getBytes());
+                    return note.length();
+                }
+            }
+
+            @Override
+            public SeekableByteChannel position(long newPosition) throws IOException {
+                return this;
+            }
+
+            @Override
+            public long position() throws IOException {
+                return note.length();
+            }
+        };
     }
 
     /**

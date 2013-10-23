@@ -15,7 +15,6 @@ import java.net.URLClassLoader;
 import java.nio.file.Path;
 
 import kiss.I;
-import sun.reflect.Reflection;
 import sun.reflect.ReflectionFactory;
 
 /**
@@ -131,15 +130,5 @@ public class UnsafeUtility {
             // wrapped error in here.
             throw new Error(e);
         }
-    }
-
-    /**
-     * Helper method to compute caller class.
-     * 
-     * @param depth
-     * @return A caller object.
-     */
-    public static Class getCaller(int depth) {
-        return Reflection.getCallerClass(depth + 2);
     }
 }
