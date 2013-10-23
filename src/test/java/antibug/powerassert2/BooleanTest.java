@@ -11,12 +11,14 @@ package antibug.powerassert2;
 
 import static antibug.powerassert2.PowerAssertContext.*;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
 /**
  * @version 2012/01/18 13:15:48
  */
+@Ignore
 public class BooleanTest {
 
     @Rule
