@@ -81,20 +81,21 @@ public class Async extends ScheduledThreadPoolExecutor {
      * </p>
      */
     public static void awaitTasks() {
+        AtomicInteger counter = singleton.tasks;
         long start = System.currentTimeMillis();
 
         try {
-            while (0 < singleton.tasks.get()) {
+            while (0 < counter.get()) {
                 wait(2);
 
                 long end = System.currentTimeMillis();
 
                 if (start + 200 < end) {
-                    throw new Error("Task can't exceed 200ms. Remaining tasks are " + singleton.tasks + ".");
+                    throw new Error("Task can't exceed 200ms. Remaining tasks are " + counter + ".");
                 }
             }
         } finally {
-            singleton.tasks.set(0);
+            counter.set(0);
         }
     }
 
