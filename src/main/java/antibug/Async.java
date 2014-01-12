@@ -9,9 +9,16 @@
  */
 package antibug;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.concurrent.Callable;
+import java.util.concurrent.Delayed;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
 import java.util.concurrent.RunnableScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import kiss.I;
@@ -28,6 +35,12 @@ public class Async extends ScheduledThreadPoolExecutor {
     /** The singleton. */
     private static final Async singleton = new Async();
 
+    /** The non-executed tasks. */
+    private final Deque<Runnable> nonexecuted = new ArrayDeque();
+
+    /** The flag for task manager. */
+    private volatile boolean waitingTasks;
+
     /** A number of running taks. */
     private volatile AtomicInteger tasks = new AtomicInteger();
 
@@ -36,6 +49,18 @@ public class Async extends ScheduledThreadPoolExecutor {
      */
     private Async() {
         super(2);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void beforeExecute(Thread thread, Runnable runnable) {
+        if (waitingTasks) {
+            // through
+        } else {
+            nonexecuted.add(runnable);
+        }
     }
 
     /**
@@ -51,8 +76,7 @@ public class Async extends ScheduledThreadPoolExecutor {
      */
     @Override
     protected <V> RunnableScheduledFuture<V> decorateTask(Runnable runnable, RunnableScheduledFuture<V> task) {
-        tasks.incrementAndGet();
-        return task;
+        return decorateTask(Executors.callable(runnable, null), task);
     }
 
     /**
@@ -61,7 +85,7 @@ public class Async extends ScheduledThreadPoolExecutor {
     @Override
     protected <V> RunnableScheduledFuture<V> decorateTask(Callable<V> callable, RunnableScheduledFuture<V> task) {
         tasks.incrementAndGet();
-        return task;
+        return new AwaitableTask(task);
     }
 
     /**
@@ -81,10 +105,17 @@ public class Async extends ScheduledThreadPoolExecutor {
      * </p>
      */
     public static void awaitTasks() {
+        Async async = Async.singleton;
         AtomicInteger counter = singleton.tasks;
-        long start = System.currentTimeMillis();
+        async.waitingTasks = true;
 
         try {
+            while (!async.nonexecuted.isEmpty()) {
+                async.nonexecuted.pollFirst().run();
+            }
+
+            long start = System.currentTimeMillis();
+
             while (0 < counter.get()) {
                 wait(2);
 
@@ -95,6 +126,8 @@ public class Async extends ScheduledThreadPoolExecutor {
                 }
             }
         } finally {
+            async.waitingTasks = false;
+            async.nonexecuted.clear();
             counter.set(0);
         }
     }
@@ -118,5 +151,88 @@ public class Async extends ScheduledThreadPoolExecutor {
         } catch (InterruptedException e) {
             throw I.quiet(e);
         }
+    }
+
+    /**
+     * @version 2014/01/12 18:10:39
+     */
+    private class AwaitableTask implements RunnableScheduledFuture {
+
+        /** The actual task. */
+        private final RunnableScheduledFuture delegator;
+
+        /**
+         * @param delegator
+         */
+        private AwaitableTask(RunnableScheduledFuture delegator) {
+            this.delegator = delegator;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public long getDelay(TimeUnit unit) {
+            return delegator.getDelay(unit);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public void run() {
+            if (waitingTasks) {
+                delegator.run();
+            }
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public boolean isPeriodic() {
+            return delegator.isPeriodic();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public boolean cancel(boolean mayInterruptIfRunning) {
+            return delegator.cancel(mayInterruptIfRunning);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public int compareTo(Delayed o) {
+            return delegator.compareTo(o);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public boolean isCancelled() {
+            return delegator.isCancelled();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public boolean isDone() {
+            return delegator.isDone();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public Object get() throws InterruptedException, ExecutionException {
+            return delegator.get();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public Object get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException,
+                TimeoutException {
+            return delegator.get(timeout, unit);
+        }
+
     }
 }
