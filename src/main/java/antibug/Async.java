@@ -19,6 +19,7 @@ import java.util.concurrent.RunnableScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import kiss.I;
@@ -39,7 +40,7 @@ public class Async extends ScheduledThreadPoolExecutor {
     private final Deque<Runnable> nonexecuted = new ArrayDeque();
 
     /** The flag for task manager. */
-    private volatile boolean waitingTasks;
+    private volatile AtomicBoolean waitingTasks = new AtomicBoolean();
 
     /** A number of running taks. */
     private volatile AtomicInteger tasks = new AtomicInteger();
@@ -49,26 +50,6 @@ public class Async extends ScheduledThreadPoolExecutor {
      */
     private Async() {
         super(2);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void beforeExecute(Thread thread, Runnable runnable) {
-        if (waitingTasks) {
-            // through
-        } else {
-            nonexecuted.add(runnable);
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void afterExecute(Runnable runnable, Throwable error) {
-        tasks.decrementAndGet();
     }
 
     /**
@@ -107,17 +88,17 @@ public class Async extends ScheduledThreadPoolExecutor {
     public static void awaitTasks() {
         Async async = Async.singleton;
         AtomicInteger counter = singleton.tasks;
-        async.waitingTasks = true;
+        async.waitingTasks.set(true);
 
         try {
+            long start = System.currentTimeMillis();
+
             while (!async.nonexecuted.isEmpty()) {
                 async.nonexecuted.pollFirst().run();
             }
 
-            long start = System.currentTimeMillis();
-
             while (0 < counter.get()) {
-                wait(2);
+                wait(10);
 
                 long end = System.currentTimeMillis();
 
@@ -126,7 +107,7 @@ public class Async extends ScheduledThreadPoolExecutor {
                 }
             }
         } finally {
-            async.waitingTasks = false;
+            async.waitingTasks.set(false);
             async.nonexecuted.clear();
             counter.set(0);
         }
@@ -179,8 +160,11 @@ public class Async extends ScheduledThreadPoolExecutor {
          * {@inheritDoc}
          */
         public void run() {
-            if (waitingTasks) {
+            if (waitingTasks.get()) {
+                tasks.decrementAndGet();
                 delegator.run();
+            } else {
+                nonexecuted.add(this);
             }
         }
 
@@ -233,6 +217,5 @@ public class Async extends ScheduledThreadPoolExecutor {
                 TimeoutException {
             return delegator.get(timeout, unit);
         }
-
     }
 }
