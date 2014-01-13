@@ -27,13 +27,12 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import jdk.internal.org.objectweb.asm.ClassReader;
+import jdk.internal.org.objectweb.asm.ClassVisitor;
+import jdk.internal.org.objectweb.asm.ClassWriter;
+import jdk.internal.org.objectweb.asm.MethodVisitor;
+import jdk.internal.org.objectweb.asm.Opcodes;
 import kiss.I;
-
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
 
 /**
  * @version 2013/07/27 10:06:15
@@ -410,7 +409,7 @@ public class PrivateModule extends ReusableRule {
     }
 
     /**
-     * @version 2010/02/04 0:28:33
+     * @version 2014/01/13 12:56:02
      */
     private final class MethodConverter extends MethodVisitor {
 
@@ -422,17 +421,15 @@ public class PrivateModule extends ReusableRule {
         }
 
         /**
-         * @see org.objectweb.asm.MethodAdapter#visitMethodInsn(int, java.lang.String,
-         *      java.lang.String, java.lang.String)
+         * {@inheritDoc}
          */
         @Override
-        public void visitMethodInsn(int opcode, String owner, String name, String desc) {
-            super.visitMethodInsn(opcode, convert(owner), convert(name), convert(desc));
+        public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean access) {
+            super.visitMethodInsn(opcode, convert(owner), convert(name), convert(desc), access);
         }
 
         /**
-         * @see org.objectweb.asm.MethodAdapter#visitFieldInsn(int, java.lang.String,
-         *      java.lang.String, java.lang.String)
+         * {@inheritDoc}
          */
         @Override
         public void visitFieldInsn(int opcode, String owner, String name, String desc) {
