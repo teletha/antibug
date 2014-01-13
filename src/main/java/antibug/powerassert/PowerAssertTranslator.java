@@ -9,11 +9,9 @@
  */
 package antibug.powerassert;
 
-import static org.objectweb.asm.Opcodes.*;
-
-import org.objectweb.asm.Label;
-import org.objectweb.asm.Type;
-
+import static jdk.internal.org.objectweb.asm.Opcodes.*;
+import jdk.internal.org.objectweb.asm.Label;
+import jdk.internal.org.objectweb.asm.Type;
 import antibug.bytecode.Agent.Translator;
 import antibug.bytecode.Bytecode;
 import antibug.bytecode.LocalVariable;
@@ -197,7 +195,7 @@ class PowerAssertTranslator extends Translator {
      * {@inheritDoc}
      */
     @Override
-    public void visitMethodInsn(int opcode, String owner, String name, String desc) {
+    public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean access) {
         // replace invocation of AssertionError constructor.
         if (startAssertion && opcode == INVOKESPECIAL && owner.equals("java/lang/AssertionError")) {
             load(journal); // load context
@@ -209,7 +207,7 @@ class PowerAssertTranslator extends Translator {
             builder.insert(builder.length() - 2, ";");
 
             // instantiate PowerAssertError
-            super.visitMethodInsn(opcode, Type.getType(PowerAssertionError.class).getInternalName(), name, builder.toString());
+            super.visitMethodInsn(opcode, Type.getType(PowerAssertionError.class).getInternalName(), name, builder.toString(), access);
 
             // reset state
             startAssertion = false;
@@ -218,7 +216,7 @@ class PowerAssertTranslator extends Translator {
             return;
         }
 
-        super.visitMethodInsn(opcode, owner, name, desc);
+        super.visitMethodInsn(opcode, owner, name, desc, access);
 
         if (processAssertion) {
             Type type = Type.getType(desc);

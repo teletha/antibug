@@ -9,10 +9,9 @@
  */
 package antibug.bytecode;
 
-import static org.objectweb.asm.Opcodes.*;
-
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Type;
+import static jdk.internal.org.objectweb.asm.Opcodes.*;
+import jdk.internal.org.objectweb.asm.MethodVisitor;
+import jdk.internal.org.objectweb.asm.Type;
 
 /**
  * @version 2012/01/18 8:42:38
@@ -34,7 +33,7 @@ public abstract class Bytecode<T extends Bytecode<T>> {
         Type wrapper = getWrapperType(type);
 
         if (wrapper != type) {
-            visitor.visitMethodInsn(INVOKESTATIC, wrapper.getInternalName(), "valueOf", Type.getMethodDescriptor(wrapper, type));
+            visitor.visitMethodInsn(INVOKESTATIC, wrapper.getInternalName(), "valueOf", Type.getMethodDescriptor(wrapper, type), false);
         }
     }
 

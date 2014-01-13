@@ -10,7 +10,7 @@
 package antibug.powerassert2;
 
 import static antibug.bytecode.Bytecode.*;
-import static org.objectweb.asm.Opcodes.*;
+import static jdk.internal.org.objectweb.asm.Opcodes.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayDeque;
@@ -18,10 +18,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.objectweb.asm.Label;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
-
+import jdk.internal.org.objectweb.asm.Label;
+import jdk.internal.org.objectweb.asm.Opcodes;
+import jdk.internal.org.objectweb.asm.Type;
 import antibug.bytecode.Agent.Translator;
 
 /**
@@ -158,7 +157,7 @@ class PowerAssertTranslator extends Translator {
                 // mv.visitFrame(Opcodes.F_SAME1, 0, null, 1, new Object[] {Opcodes.INTEGER});
                 mv.visitInsn(ICONST_0);
                 mv.visitLdcInsn("==");
-                mv.visitMethodInsn(INVOKESTATIC, "antibug/powerassert2/PowerAssertContext", "log", "(ZZLjava/lang/String;)Z");
+                mv.visitMethodInsn(INVOKESTATIC, "antibug/powerassert2/PowerAssertContext", "log", "(ZZLjava/lang/String;)Z", false);
 
                 break;
 
@@ -254,11 +253,11 @@ class PowerAssertTranslator extends Translator {
      * {@inheritDoc}
      */
     @Override
-    public void visitMethodInsn(int opcode, String owner, String name, String desc) {
+    public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean access) {
         // replace invocation of AssertionError constructor.
         if (startAssertion && opcode == INVOKESPECIAL && owner.equals("java/lang/AssertionError")) {
             // instantiate PowerAssertError
-            super.visitMethodInsn(opcode, ErrorName, name, desc);
+            super.visitMethodInsn(opcode, ErrorName, name, desc, access);
 
             // reset state
             startAssertion = false;
@@ -267,7 +266,7 @@ class PowerAssertTranslator extends Translator {
             return;
         }
 
-        super.visitMethodInsn(opcode, owner, name, desc);
+        super.visitMethodInsn(opcode, owner, name, desc, access);
 
         if (processAssertion) {
             // Type type = Type.getType(desc);
@@ -541,7 +540,7 @@ class PowerAssertTranslator extends Translator {
 
             Type type = opcode == ALOAD ? OBJECT_TYPE : getLocalType(index);
 
-            super.visitMethodInsn(INVOKESTATIC, ContextName, "log", "(" + type.getDescriptor() + "ZLjava/lang/String;)" + type.getDescriptor());
+            super.visitMethodInsn(INVOKESTATIC, ContextName, "log", "(" + type.getDescriptor() + "ZLjava/lang/String;)" + type.getDescriptor(), false);
 
             if (opcode == ALOAD) {
                 super.visitTypeInsn(CHECKCAST, getLocalType(index).getInternalName());

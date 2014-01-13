@@ -9,10 +9,9 @@
  */
 package antibug.bytecode;
 
-import static org.objectweb.asm.Opcodes.*;
-import static org.objectweb.asm.Type.*;
-
-import org.objectweb.asm.MethodVisitor;
+import static jdk.internal.org.objectweb.asm.Opcodes.*;
+import static jdk.internal.org.objectweb.asm.Type.*;
+import jdk.internal.org.objectweb.asm.MethodVisitor;
 
 /**
  * @version 2012/01/18 8:37:28

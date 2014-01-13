@@ -9,7 +9,7 @@
  */
 package antibug.bytecode;
 
-import org.objectweb.asm.MethodVisitor;
+import jdk.internal.org.objectweb.asm.MethodVisitor;
 
 /**
  * @version 2012/01/18 9:29:55
@@ -46,6 +46,6 @@ public class MethodCall extends Bytecode<MethodCall> {
      */
     @Override
     public void write(MethodVisitor visitor, boolean isNonPrimitive) {
-        visitor.visitMethodInsn(opcode, owner, name, desc);
+        visitor.visitMethodInsn(opcode, owner, name, desc, false);
     }
 }

@@ -9,6 +9,7 @@
  */
 package antibug;
 
+import java.awt.AWTPermission;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.lang.management.ManagementFactory;
@@ -31,7 +32,7 @@ import kiss.I;
  * and settings are restorable for each test.
  * </p>
  * 
- * @version 2011/02/16 13:24:42
+ * @version 2014/01/13 13:04:09
  */
 public class Sandbox extends ReusableRule {
 
@@ -310,7 +311,7 @@ public class Sandbox extends ReusableRule {
     }
 
     /**
-     * @version 2010/02/09 10:26:03
+     * @version 2014/01/13 13:04:01
      */
     protected static class Security extends SecurityManager {
 
@@ -445,7 +446,7 @@ public class Sandbox extends ReusableRule {
          */
         @Override
         public void checkAwtEventQueueAccess() {
-            if (runtimeManager != null) runtimeManager.checkAwtEventQueueAccess();
+            if (runtimeManager != null) runtimeManager.checkPermission(new AWTPermission("accessEventQueue"));
         }
 
         /**
@@ -525,7 +526,7 @@ public class Sandbox extends ReusableRule {
          */
         @Override
         public void checkMemberAccess(Class<?> clazz, int which) {
-            if (runtimeManager != null) runtimeManager.checkMemberAccess(clazz, which);
+            if (runtimeManager != null) runtimeManager.checkPermission(new RuntimePermission("accessDeclaredMembers"));
         }
 
         /**
@@ -650,7 +651,7 @@ public class Sandbox extends ReusableRule {
          */
         @Override
         public void checkSystemClipboardAccess() {
-            if (runtimeManager != null) runtimeManager.checkSystemClipboardAccess();
+            if (runtimeManager != null) runtimeManager.checkPermission(new AWTPermission("accessClipboard"));
         }
 
         /**
@@ -659,10 +660,11 @@ public class Sandbox extends ReusableRule {
         @Override
         public boolean checkTopLevelWindow(Object window) {
             if (runtimeManager != null) {
-                return runtimeManager.checkTopLevelWindow(window);
+                runtimeManager.checkPermission(new AWTPermission("showWindowWithoutWarningBanner"));
             } else {
-                return super.checkTopLevelWindow(window);
+                super.checkPermission(new AWTPermission("showWindowWithoutWarningBanner"));
             }
+            return false;
         }
 
         /**
