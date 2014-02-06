@@ -111,11 +111,11 @@ public class ObjectTest {
 
     @Test
     public void parameterWithVarArg() throws Exception {
-        tester.willCapture("var()", false);
-        assert var();
+        tester.willCapture("var2()", false);
+        assert var2();
     }
 
-    private boolean var(String... vars) {
+    private boolean var2(String... vars) {
         return false;
     }
 
