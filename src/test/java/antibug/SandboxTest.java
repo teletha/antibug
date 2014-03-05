@@ -18,10 +18,10 @@ import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.security.AccessControlException;
 
+import kiss.I;
+
 import org.junit.Rule;
 import org.junit.Test;
-
-import kiss.I;
 
 /**
  * @version 2010/02/09 11:23:23

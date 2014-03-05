@@ -9,13 +9,20 @@
  */
 package antibug;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -114,6 +121,14 @@ public class ChronoCross extends ThreadPoolExecutor {
         }
     }
 
+    public static ExecutorService field(ExecutorService service) {
+        if (service instanceof ChronoCross || service instanceof Wrapper) {
+            return service;
+        } else {
+            return new Wrapper(service);
+        }
+    }
+
     /**
      * Creates a thread pool that creates new threads as needed, but will reuse previously
      * constructed threads when they are available. These pools will typically improve the
@@ -142,5 +157,169 @@ public class ChronoCross extends ThreadPoolExecutor {
      */
     public static ExecutorService newCachedThreadPool(ThreadFactory threadFactory) {
         return new ChronoCross(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>(), threadFactory);
+    }
+
+    /**
+     * @version 2014/03/05 18:20:52
+     */
+    private static class Wrapper implements ExecutorService {
+
+        /** The actual service. */
+        private ExecutorService service;
+
+        /**
+         * @param service
+         */
+        private Wrapper(ExecutorService service) {
+            this.service = service;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public void execute(Runnable command) {
+            service.execute(wrap(command));
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public void shutdown() {
+            service.shutdown();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public List<Runnable> shutdownNow() {
+            return service.shutdownNow();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public boolean isShutdown() {
+            return service.isShutdown();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public boolean isTerminated() {
+            return service.isTerminated();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
+            return service.awaitTermination(timeout, unit);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public <T> Future<T> submit(Callable<T> task) {
+            return service.submit(wrap(task));
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public <T> Future<T> submit(Runnable task, T result) {
+            return service.submit(wrap(task), result);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public Future<?> submit(Runnable task) {
+            return service.submit(wrap(task));
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks) throws InterruptedException {
+            return service.invokeAll(wrap(tasks));
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
+                throws InterruptedException {
+            return service.invokeAll(wrap(tasks), timeout, unit);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public <T> T invokeAny(Collection<? extends Callable<T>> tasks) throws InterruptedException, ExecutionException {
+            return service.invokeAny(wrap(tasks));
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public <T> T invokeAny(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
+                throws InterruptedException, ExecutionException, TimeoutException {
+            return service.invokeAny(wrap(tasks), timeout, unit);
+        }
+
+        /**
+         * <p>
+         * Wrap task.
+         * </p>
+         * 
+         * @param task
+         * @return
+         */
+        private Runnable wrap(Runnable task) {
+            return () -> {
+                tasks.incrementAndGet();
+                try {
+                    task.run();
+                } finally {
+                    tasks.decrementAndGet();
+                }
+            };
+        }
+
+        /**
+         * <p>
+         * Wrap task.
+         * </p>
+         * 
+         * @param task
+         * @return
+         */
+        private <T> Callable<T> wrap(Callable<T> task) {
+            return () -> {
+                tasks.incrementAndGet();
+                try {
+                    return task.call();
+                } finally {
+                    tasks.decrementAndGet();
+                }
+            };
+        }
+
+        /**
+         * <p>
+         * Wrap task.
+         * </p>
+         * 
+         * @param task
+         * @return
+         */
+        private <T> List<Callable<T>> wrap(Collection<? extends Callable<T>> tasks) {
+            ArrayList<Callable<T>> list = new ArrayList();
+
+            for (Callable<T> callable : tasks) {
+                list.add(wrap(callable));
+            }
+            return list;
+        }
     }
 }
