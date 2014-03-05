@@ -148,7 +148,9 @@ public class XML {
             pipe.addAll(Arrays.asList(filters));
             pipe.add(builder);
 
-            parse(source, pipe.toArray(new XMLFilter[pipe.size()]));
+            filters = pipe.toArray(new XMLFilter[pipe.size()]);
+
+            parse(source, filters);
 
             return xml(builder.m_doc);
         } catch (Exception e) {

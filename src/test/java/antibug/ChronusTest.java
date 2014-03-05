@@ -11,8 +11,10 @@ package antibug;
 
 import static java.util.concurrent.TimeUnit.*;
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
@@ -31,7 +33,7 @@ public class ChronusTest {
     public static final Chronus chronus = new Chronus(ChronusTest.class);
 
     /** The test result. */
-    private boolean done = false;
+    private static boolean done = false;
 
     @Before
     public void reset() {
@@ -73,9 +75,14 @@ public class ChronusTest {
         });
     }
 
-    private void aa() {
-        System.out.println(service);
-        service.submit(createDelayedTask());
+    @Test
+    public void cancel() throws Exception {
+        executeWithCancel(() -> {
+            ExecutorService service = Executors.newCachedThreadPool(runnable -> {
+                return new Thread(runnable);
+            });
+            return service.submit(createDelayedTask());
+        });
     }
 
     /**
@@ -85,7 +92,7 @@ public class ChronusTest {
      * 
      * @return
      */
-    private final Runnable createTask() {
+    private static final Runnable createTask() {
         return () -> {
             done = true;
         };
@@ -98,10 +105,10 @@ public class ChronusTest {
      * 
      * @return
      */
-    private final Runnable createDelayedTask() {
+    private static final Runnable createDelayedTask() {
         return () -> {
             try {
-                Thread.sleep(10);
+                Thread.sleep(100);
                 done = true;
             } catch (Exception e) {
                 throw I.quiet(e);
@@ -123,4 +130,23 @@ public class ChronusTest {
         assert done == true;
     }
 
+    /**
+     * <p>
+     * Helper method to test.
+     * </p>
+     * 
+     * @param task
+     * @throws Exception
+     */
+    private final void executeWithCancel(Callable<Future> task) throws Exception {
+        Future result = task.call();
+        assert done == false;
+        assert result.isCancelled() == false;
+
+        result.cancel(true);
+        chronus.await();
+
+        assert done == false;
+        assert result.isCancelled() == true;
+    }
 }

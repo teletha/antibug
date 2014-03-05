@@ -101,7 +101,11 @@ public class Sandbox extends ReusableRule {
      * @param permissions
      */
     protected Sandbox(Class<? extends SecurityManager> manager, int permissions) {
-        this.security = new Security(manager == null ? platform : I.make(manager), permissions);
+        if (manager == null) {
+            this.security = new Security(platform, permissions);
+        } else {
+            this.security = new Security(I.make(manager), permissions);
+        }
     }
 
     /**
