@@ -125,7 +125,7 @@ public abstract class ReusableRule implements TestRule {
      *      org.junit.runner.Description)
      */
     @Override
-    public final Statement apply(final Statement base, final Description description) {
+    public final Statement apply(Statement base, Description description) {
 
         // reset previous error
         error = null;
