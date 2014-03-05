@@ -15,6 +15,7 @@ import java.lang.instrument.ClassFileTransformer;
 import java.security.ProtectionDomain;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
 
 import jdk.internal.org.objectweb.asm.ClassReader;
 import jdk.internal.org.objectweb.asm.ClassVisitor;
@@ -173,6 +174,7 @@ public class Chronus implements TestRule {
             @Override
             public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean type) {
                 if (owner.equals(Executors)) {
+                    System.out.println(owner + "  " + name);
                     switch (name) {
                     case "newCachedThreadPool":
                         owner = ChronoExecutor.getInternalName();
@@ -203,6 +205,43 @@ public class Chronus implements TestRule {
                     owner = ChronoExecutor.getInternalName();
                 }
                 mv.visitTypeInsn(opcode, owner);
+            }
+
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public void visitFieldInsn(int opcode, String owner, String name, String desc) {
+                super.visitFieldInsn(opcode, owner, name, desc);
+
+                if (opcode == GETSTATIC) {
+                    if (isAssignable(ExecutorService.class, desc)) {
+                        mv.visitMethodInsn(INVOKESTATIC, ChronoExecutor.getInternalName(), "field", "(Ljava/util/concurrent/ExecutorService;)Ljava/util/concurrent/ExecutorService;", false);
+                    }
+                }
+            }
+
+            /**
+             * <p>
+             * Chech type.
+             * </p>
+             * 
+             * @param type
+             * @param desc
+             * @return
+             */
+            private boolean isAssignable(Class type, String desc) {
+                if (desc.charAt(0) != 'L') {
+                    return false;
+                }
+
+                try {
+                    Class<?> clazz = Class.forName(desc.substring(1, desc.length() - 1).replace('/', '.'));
+
+                    return type.isAssignableFrom(clazz);
+                } catch (ClassNotFoundException e) {
+                    return false;
+                }
             }
         }
     }

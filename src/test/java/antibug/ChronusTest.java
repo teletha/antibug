@@ -19,7 +19,7 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import kiss.I;
 
 import org.junit.Before;
-import org.junit.Rule;
+import org.junit.ClassRule;
 import org.junit.Test;
 
 /**
@@ -27,7 +27,7 @@ import org.junit.Test;
  */
 public class ChronusTest {
 
-    @Rule
+    @ClassRule
     public static final Chronus chronus = new Chronus(ChronusTest.class);
 
     /** The test result. */
@@ -47,6 +47,14 @@ public class ChronusTest {
     }
 
     @Test
+    public void newCachedThreadPool() throws Exception {
+        execute(() -> {
+            ExecutorService service = Executors.newCachedThreadPool();
+            service.submit(createDelayedTask());
+        });
+    }
+
+    @Test
     public void newCachedThreadPoolThreadFactory() throws Exception {
         execute(() -> {
             ExecutorService service = Executors.newCachedThreadPool(runnable -> {
@@ -54,6 +62,20 @@ public class ChronusTest {
             });
             service.submit(createDelayedTask());
         });
+    }
+
+    private static ExecutorService service = Executors.newCachedThreadPool();
+
+    @Test
+    public void staticField() throws Exception {
+        execute(() -> {
+            service.submit(createDelayedTask());
+        });
+    }
+
+    private void aa() {
+        System.out.println(service);
+        service.submit(createDelayedTask());
     }
 
     /**
@@ -100,4 +122,5 @@ public class ChronusTest {
         chronus.await();
         assert done == true;
     }
+
 }
