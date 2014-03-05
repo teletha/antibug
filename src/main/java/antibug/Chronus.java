@@ -48,7 +48,7 @@ public class Chronus implements TestRule {
     private static final Type ChronoScheduler = Type.getType(ChronoTrigger.class);
 
     /** reuse. */
-    private static final Type ChronoExecutor = Type.getType(ChronoCross.class);
+    private static final Type Wrapper = Type.getType(Awaitable.class);
 
     /** The internal name. */
     private final Set<String> fqcn = new HashSet();
@@ -91,7 +91,7 @@ public class Chronus implements TestRule {
      */
     public void await() {
         ChronoTrigger.await();
-        ChronoCross.await();
+        Awaitable.await();
     }
 
     /**
@@ -128,10 +128,15 @@ public class Chronus implements TestRule {
             if (!fqcn.contains(name)) {
                 return bytes;
             } else {
-                ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
-                new ClassReader(bytes).accept(new ClassTranslator(writer), ClassReader.SKIP_FRAMES);
+                try {
+                    ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
+                    new ClassReader(bytes).accept(new ClassTranslator(writer), ClassReader.SKIP_DEBUG);
 
-                return writer.toByteArray();
+                    return writer.toByteArray();
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                    throw I.quiet(e);
+                }
             }
         }
 
@@ -174,10 +179,9 @@ public class Chronus implements TestRule {
             @Override
             public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean type) {
                 if (owner.equals(Executors)) {
-                    System.out.println(owner + "  " + name);
                     switch (name) {
                     case "newCachedThreadPool":
-                        owner = ChronoExecutor.getInternalName();
+                        owner = Wrapper.getInternalName();
                         break;
                     }
                 }
@@ -187,7 +191,7 @@ public class Chronus implements TestRule {
                 }
 
                 if (owner.equals(Executor)) {
-                    owner = ChronoExecutor.getInternalName();
+                    owner = Wrapper.getInternalName();
                 }
                 mv.visitMethodInsn(opcode, owner, name, desc, type);
             }
@@ -202,7 +206,7 @@ public class Chronus implements TestRule {
                 }
 
                 if (owner.equals(Executor)) {
-                    owner = ChronoExecutor.getInternalName();
+                    owner = Wrapper.getInternalName();
                 }
                 mv.visitTypeInsn(opcode, owner);
             }
@@ -216,7 +220,7 @@ public class Chronus implements TestRule {
 
                 if (opcode == GETSTATIC) {
                     if (isAssignable(ExecutorService.class, desc)) {
-                        mv.visitMethodInsn(INVOKESTATIC, ChronoExecutor.getInternalName(), "field", "(Ljava/util/concurrent/ExecutorService;)Ljava/util/concurrent/ExecutorService;", false);
+                        mv.visitMethodInsn(INVOKESTATIC, Wrapper.getInternalName(), "wrap", "(Ljava/util/concurrent/ExecutorService;)Ljava/util/concurrent/ExecutorService;", false);
                     }
                 }
             }

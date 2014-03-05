@@ -13,7 +13,6 @@ import static jdk.internal.org.objectweb.asm.Opcodes.*;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
-import java.lang.instrument.UnmodifiableClassException;
 import java.lang.management.ManagementFactory;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -125,7 +124,7 @@ public class Agent {
         try {
             redefines.add(target.getName().replace('.', '/'));
             tool.retransformClasses(target);
-        } catch (UnmodifiableClassException e) {
+        } catch (Exception e) {
             throw I.quiet(e);
         }
     }
