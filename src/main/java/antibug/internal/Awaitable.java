@@ -117,6 +117,7 @@ public class Awaitable {
         private Task(Callable task) {
             this.callable = task;
 
+            // System.out.println("add task " + this);
             remaining.add(this);
         }
 
@@ -140,7 +141,9 @@ public class Awaitable {
             try {
                 return callable.call();
             } finally {
-                remaining.remove(this);
+                if (remaining.remove(this)) {
+                    // System.out.println("remove task " + this);
+                }
             }
         }
 
@@ -168,7 +171,9 @@ public class Awaitable {
             boolean cancel = future.cancel(mayInterruptIfRunning);
 
             if (cancel) {
-                remaining.remove(this);
+                if (remaining.remove(this)) {
+                    // System.out.println("cancel task " + this);
+                }
             }
             return cancel;
         }
