@@ -76,6 +76,14 @@ public class ChronusTest {
         });
     }
 
+    @Test
+    public void newWorkStealingPool() throws Exception {
+        execute(() -> {
+            ExecutorService service = Executors.newWorkStealingPool();
+            service.submit(createDelayedTask());
+        });
+    }
+
     private static ExecutorService staticService = ExternalService.service();
 
     @Test
@@ -127,7 +135,7 @@ public class ChronusTest {
     private static final Runnable createDelayedTask() {
         return () -> {
             try {
-                Thread.sleep(100);
+                Thread.sleep(10);
                 done = true;
             } catch (Exception e) {
                 throw I.quiet(e);
