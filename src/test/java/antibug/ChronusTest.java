@@ -25,12 +25,22 @@ import org.junit.ClassRule;
 import org.junit.Test;
 
 /**
- * @version 2014/03/05 9:21:24
+ * @version 2014/03/06 12:12:22
  */
 public class ChronusTest {
 
     @ClassRule
     public static final Chronus chronus = new Chronus(ChronusTest.class);
+
+    /**
+     * @version 2014/03/06 11:54:38
+     */
+    private static class ExternalService {
+
+        private static ExecutorService service() {
+            return Executors.newCachedThreadPool();
+        }
+    }
 
     /** The test result. */
     private static boolean done = false;
@@ -66,10 +76,19 @@ public class ChronusTest {
         });
     }
 
-    private static ExecutorService service = Executors.newCachedThreadPool();
+    private static ExecutorService staticService = ExternalService.service();
 
     @Test
     public void staticField() throws Exception {
+        execute(() -> {
+            staticService.submit(createDelayedTask());
+        });
+    }
+
+    private ExecutorService service = ExternalService.service();
+
+    @Test
+    public void field() throws Exception {
         execute(() -> {
             service.submit(createDelayedTask());
         });

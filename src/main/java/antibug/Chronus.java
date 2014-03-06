@@ -16,6 +16,7 @@ import java.security.ProtectionDomain;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import jdk.internal.org.objectweb.asm.ClassReader;
 import jdk.internal.org.objectweb.asm.ClassVisitor;
@@ -23,35 +24,22 @@ import jdk.internal.org.objectweb.asm.ClassWriter;
 import jdk.internal.org.objectweb.asm.MethodVisitor;
 import jdk.internal.org.objectweb.asm.Type;
 import kiss.I;
-
-import org.junit.rules.TestRule;
-import org.junit.runner.Description;
-import org.junit.runners.model.Statement;
-
 import antibug.bytecode.Agent;
+import antibug.internal.Awaitable;
 
 /**
- * @version 2014/03/05 14:25:42
+ * @version 2014/03/06 12:14:04
  */
-public class Chronus implements TestRule {
+public class Chronus extends ReusableRule {
 
-    /** reuse */
-    private static final String Scheduler = "java/util/concurrent/ScheduledThreadPoolExecutor";
+    /** The re-usable type. */
+    private static final Type Executor = Type.getType(Executors.class);
 
-    /** reuse */
-    private static final String Executor = "java/util/concurrent/ThreadPoolExecutor";
-
-    /** reuse */
-    private static final String Executors = "java/util/concurrent/Executors";
-
-    /** reuse. */
-    private static final Type ChronoScheduler = Type.getType(ChronoTrigger.class);
-
-    /** reuse. */
-    private static final Type Wrapper = Type.getType(Awaitable.class);
+    /** The re-usable type. */
+    private static final Type Tool = Type.getType(Awaitable.class);
 
     /** The internal name. */
-    private final Set<String> fqcn = new HashSet();
+    private final Set<String> names = new HashSet();
 
     /** The bytecode enhancer. */
     private final Agent agent = new Agent(new Transformer());
@@ -65,23 +53,9 @@ public class Chronus implements TestRule {
      */
     public Chronus(Class... classes) {
         for (Class clazz : classes) {
-            fqcn.add(clazz.getName().replace('.', '/'));
+            names.add(clazz.getName().replace('.', '/'));
             agent.transform(clazz);
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Statement apply(Statement base, Description description) {
-        return new Statement() {
-
-            @Override
-            public void evaluate() throws Throwable {
-                base.evaluate();
-            }
-        };
     }
 
     /**
@@ -90,7 +64,6 @@ public class Chronus implements TestRule {
      * </p>
      */
     public void await() {
-        ChronoTrigger.await();
         Awaitable.await();
     }
 
@@ -125,7 +98,7 @@ public class Chronus implements TestRule {
          */
         @Override
         public byte[] transform(ClassLoader loader, String name, Class<?> clazz, ProtectionDomain domain, byte[] bytes) {
-            if (!fqcn.contains(name)) {
+            if (!names.contains(name)) {
                 return bytes;
             } else {
                 try {
@@ -162,7 +135,7 @@ public class Chronus implements TestRule {
         }
 
         /**
-         * @version 2014/03/05 9:55:37
+         * @version 2014/03/06 11:52:18
          */
         private class MethodTranslator extends MethodVisitor {
 
@@ -178,37 +151,33 @@ public class Chronus implements TestRule {
              */
             @Override
             public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean type) {
-                if (owner.equals(Executors)) {
-                    switch (name) {
-                    case "newCachedThreadPool":
-                        owner = Wrapper.getInternalName();
-                        break;
+                mv.visitMethodInsn(opcode, owner, name, desc, type);
+
+                if (opcode == INVOKESPECIAL && name.equals("<init>")) {
+                    // For constructor
+                    // new ExecutorService() -> Awaitable.wrap(new ExecutorService())
+                    if (isAssignable(ExecutorService.class, owner)) {
+                        wrap();
+                        return;
                     }
                 }
 
-                if (owner.equals(Scheduler)) {
-                    owner = ChronoScheduler.getInternalName();
+                if (opcode == INVOKESTATIC && owner.equals(Executor.getInternalName())) {
+                    // For Executors utility methods
+                    // Executors.method() -> Awaitable.wrap(Executors.method())
+                    switch (name) {
+                    case "newCachedThreadPool":
+                    case "newSingleThreadPool":
+                    case "newFixedThreadPool":
+                    case "newWorkStealingPool":
+                    case "newSingleThreadScheduledExecutor":
+                    case "newScheduledThreadPool":
+                    case "unconfigurableExecutorService":
+                        wrap();
+                        return;
+                    }
                 }
 
-                if (owner.equals(Executor)) {
-                    owner = Wrapper.getInternalName();
-                }
-                mv.visitMethodInsn(opcode, owner, name, desc, type);
-            }
-
-            /**
-             * {@inheritDoc}
-             */
-            @Override
-            public void visitTypeInsn(int opcode, String owner) {
-                if (owner.equals(Scheduler)) {
-                    owner = ChronoScheduler.getInternalName();
-                }
-
-                if (owner.equals(Executor)) {
-                    owner = Wrapper.getInternalName();
-                }
-                mv.visitTypeInsn(opcode, owner);
             }
 
             /**
@@ -218,11 +187,25 @@ public class Chronus implements TestRule {
             public void visitFieldInsn(int opcode, String owner, String name, String desc) {
                 super.visitFieldInsn(opcode, owner, name, desc);
 
-                if (opcode == GETSTATIC) {
+                switch (opcode) {
+                case GETSTATIC:
+                case GETFIELD:
+                    // For field access
+                    // service.submit() -> Awaitable.wrap(service).submit()
                     if (isAssignable(ExecutorService.class, desc)) {
-                        mv.visitMethodInsn(INVOKESTATIC, Wrapper.getInternalName(), "wrap", "(Ljava/util/concurrent/ExecutorService;)Ljava/util/concurrent/ExecutorService;", false);
+                        wrap();
                     }
+                    break;
                 }
+            }
+
+            /**
+             * <p>
+             * Call wrapper code.
+             * </p>
+             */
+            private void wrap() {
+                mv.visitMethodInsn(INVOKESTATIC, Tool.getInternalName(), "wrap", "(Ljava/util/concurrent/ExecutorService;)Ljava/util/concurrent/ExecutorService;", false);
             }
 
             /**
@@ -235,12 +218,12 @@ public class Chronus implements TestRule {
              * @return
              */
             private boolean isAssignable(Class type, String desc) {
-                if (desc.charAt(0) != 'L') {
-                    return false;
+                if (desc.charAt(0) == 'L') {
+                    desc = desc.substring(1, desc.length() - 1);
                 }
 
                 try {
-                    Class<?> clazz = Class.forName(desc.substring(1, desc.length() - 1).replace('/', '.'));
+                    Class<?> clazz = Class.forName(desc.replace('/', '.'));
 
                     return type.isAssignableFrom(clazz);
                 } catch (ClassNotFoundException e) {

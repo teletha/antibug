@@ -7,19 +7,20 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug;
+package antibug.internal;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Callable;
+import java.util.concurrent.Delayed;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -27,6 +28,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import kiss.I;
 
 /**
+ * <p>
+ * This is internal API.
+ * </p>
+ * 
  * @version 2014/03/05 22:06:45
  */
 public class Awaitable {
@@ -49,7 +54,11 @@ public class Awaitable {
             long start = System.currentTimeMillis();
 
             while (!remaining.isEmpty()) {
-                Async.wait(10);
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    throw I.quiet(e);
+                }
 
                 long end = System.currentTimeMillis();
 
@@ -65,82 +74,25 @@ public class Awaitable {
 
     /**
      * <p>
-     * Wrap task.
-     * </p>
-     * 
-     * @param task
-     * @return
-     */
-    protected final Runnable wrap(Runnable task) {
-        return new Task(task);
-    }
-
-    /**
-     * <p>
-     * Wrap task.
-     * </p>
-     * 
-     * @param task
-     * @return
-     */
-    protected final <T> Callable<T> wrap(Callable<T> task) {
-        return new Task(task);
-    }
-
-    /**
-     * <p>
-     * Wrap task.
-     * </p>
-     * 
-     * @param task
-     * @return
-     */
-    protected final <T> List<Callable<T>> wrap(Collection<? extends Callable<T>> tasks) {
-        ArrayList<Callable<T>> list = new ArrayList();
-
-        for (Callable<T> callable : tasks) {
-            list.add(wrap(callable));
-        }
-        return list;
-    }
-
-    /**
-     * <p>
      * <em>This is internal API.</em>
      * </p>
      */
-    public static ExecutorService wrap(ExecutorService service) {
+    public static <T extends ExecutorService> T wrap(T service) {
         if (service == null) {
             return null;
-        } else if (service instanceof AwaitableExecutorService) {
+        } else if (service instanceof Executor) {
             return service;
+        } else if (service instanceof ScheduledExecutorService) {
+            return (T) new ScheduledExecutor((ScheduledExecutorService) service);
         } else {
-            return new AwaitableExecutorService(service);
+            return (T) new Executor(service);
         }
-    }
-
-    /**
-     * <p>
-     * <em>This is internal API.</em>
-     * </p>
-     */
-    public static ExecutorService newCachedThreadPool() {
-        return new AwaitableExecutorService(Executors.newCachedThreadPool());
-    }
-
-    /**
-     * <p>
-     * <em>This is internal API.</em>
-     * </p>
-     */
-    public static ExecutorService newCachedThreadPool(ThreadFactory threadFactory) {
-        return new AwaitableExecutorService(Executors.newCachedThreadPool(threadFactory));
     }
 
     /**
      * @version 2014/03/05 23:43:32
      */
-    private class Task implements Callable, Runnable, Future {
+    private static class Task implements Callable, Runnable, Future, ScheduledFuture {
 
         /** The actual task. */
         private final Callable callable;
@@ -165,7 +117,6 @@ public class Awaitable {
         private Task(Callable task) {
             this.callable = task;
 
-            System.out.println("add task " + this);
             remaining.add(this);
         }
 
@@ -189,7 +140,6 @@ public class Awaitable {
             try {
                 return callable.call();
             } finally {
-                System.out.println("done task " + this);
                 remaining.remove(this);
             }
         }
@@ -216,11 +166,9 @@ public class Awaitable {
         @Override
         public boolean cancel(boolean mayInterruptIfRunning) {
             boolean cancel = future.cancel(mayInterruptIfRunning);
-            System.out.println("try cancel " + cancel);
+
             if (cancel) {
-                if (remaining.remove(this)) {
-                    System.out.println("cancel task " + this + "   remaining " + remaining.size());
-                }
+                remaining.remove(this);
             }
             return cancel;
         }
@@ -257,12 +205,36 @@ public class Awaitable {
                 TimeoutException {
             return future.get(timeout, unit);
         }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public long getDelay(TimeUnit unit) {
+            if (future instanceof ScheduledFuture) {
+                return ((ScheduledFuture) future).getDelay(unit);
+            } else {
+                return 0;
+            }
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public int compareTo(Delayed o) {
+            if (future instanceof ScheduledFuture) {
+                return ((ScheduledFuture) future).compareTo(o);
+            } else {
+                return 0;
+            }
+        }
     }
 
     /**
      * @version 2014/03/05 22:34:27
      */
-    private static class AwaitableExecutorService extends Awaitable implements ExecutorService {
+    private static class Executor extends Awaitable implements ExecutorService {
 
         /** The actual service. */
         private ExecutorService service;
@@ -270,20 +242,22 @@ public class Awaitable {
         /**
          * @param service
          */
-        private AwaitableExecutorService(ExecutorService service) {
+        private Executor(ExecutorService service) {
             this.service = service;
         }
 
         /**
          * {@inheritDoc}
          */
+        @Override
         public void execute(Runnable command) {
-            service.execute(wrap(command));
+            service.execute(new Task(command));
         }
 
         /**
          * {@inheritDoc}
          */
+        @Override
         public void shutdown() {
             service.shutdown();
         }
@@ -291,6 +265,7 @@ public class Awaitable {
         /**
          * {@inheritDoc}
          */
+        @Override
         public List<Runnable> shutdownNow() {
             return service.shutdownNow();
         }
@@ -298,6 +273,7 @@ public class Awaitable {
         /**
          * {@inheritDoc}
          */
+        @Override
         public boolean isShutdown() {
             return service.isShutdown();
         }
@@ -305,6 +281,7 @@ public class Awaitable {
         /**
          * {@inheritDoc}
          */
+        @Override
         public boolean isTerminated() {
             return service.isTerminated();
         }
@@ -312,6 +289,7 @@ public class Awaitable {
         /**
          * {@inheritDoc}
          */
+        @Override
         public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
             return service.awaitTermination(timeout, unit);
         }
@@ -319,6 +297,7 @@ public class Awaitable {
         /**
          * {@inheritDoc}
          */
+        @Override
         public <T> Future<T> submit(Callable<T> command) {
             Task task = new Task(command);
 
@@ -328,6 +307,7 @@ public class Awaitable {
         /**
          * {@inheritDoc}
          */
+        @Override
         public <T> Future<T> submit(Runnable command, T result) {
             Task task = new Task(command, result);
 
@@ -337,6 +317,7 @@ public class Awaitable {
         /**
          * {@inheritDoc}
          */
+        @Override
         public Future<?> submit(Runnable command) {
             Task task = new Task(command);
 
@@ -346,6 +327,7 @@ public class Awaitable {
         /**
          * {@inheritDoc}
          */
+        @Override
         public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks) throws InterruptedException {
             throw new UnsupportedOperationException();
         }
@@ -353,6 +335,7 @@ public class Awaitable {
         /**
          * {@inheritDoc}
          */
+        @Override
         public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
                 throws InterruptedException {
             throw new UnsupportedOperationException();
@@ -361,6 +344,7 @@ public class Awaitable {
         /**
          * {@inheritDoc}
          */
+        @Override
         public <T> T invokeAny(Collection<? extends Callable<T>> tasks) throws InterruptedException, ExecutionException {
             throw new UnsupportedOperationException();
         }
@@ -368,9 +352,64 @@ public class Awaitable {
         /**
          * {@inheritDoc}
          */
+        @Override
         public <T> T invokeAny(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
                 throws InterruptedException, ExecutionException, TimeoutException {
             throw new UnsupportedOperationException();
+        }
+    }
+
+    /**
+     * @version 2014/03/06 10:12:19
+     */
+    private static class ScheduledExecutor extends Executor implements ScheduledExecutorService {
+
+        /** The actual service. */
+        private final ScheduledExecutorService service;
+
+        /**
+         * @param service
+         */
+        private ScheduledExecutor(ScheduledExecutorService service) {
+            super(service);
+
+            this.service = service;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public ScheduledFuture<?> schedule(Runnable command, long delay, TimeUnit unit) {
+            Task task = new Task(command);
+
+            return task.connect(service.schedule((Runnable) task, delay, unit));
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public <V> ScheduledFuture<V> schedule(Callable<V> callable, long delay, TimeUnit unit) {
+            Task task = new Task(callable);
+
+            return task.connect(service.schedule((Callable) task, delay, unit));
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public ScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit) {
+            return service.scheduleAtFixedRate(command, initialDelay, period, unit);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public ScheduledFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit) {
+            return service.scheduleWithFixedDelay(command, initialDelay, delay, unit);
         }
     }
 }
