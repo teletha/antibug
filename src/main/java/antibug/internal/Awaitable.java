@@ -62,8 +62,8 @@ public class Awaitable {
 
                 long end = System.currentTimeMillis();
 
-                if (start + 200 < end) {
-                    throw new Error("Task can't exceed 200ms. Remaining tasks are " + remaining + ".");
+                if (start + 1000 < end) {
+                    throw new Error("Task can't exceed 1000ms. Remaining tasks are " + remaining + ".");
                 }
             }
         } finally {
