@@ -90,6 +90,8 @@ public class PowerAssert implements TestRule {
             public void evaluate() throws Throwable {
                 try {
                     statement.evaluate();
+                } catch (PowerAssertOffError error) {
+                    throw error.getCause();
                 } catch (PowerAssertionError error) {
                     if (tester != null) {
                         validate.invoke(tester, error.context); // for self test
