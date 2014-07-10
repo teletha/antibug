@@ -12,15 +12,10 @@ package antibug.powerassert;
 import org.junit.Rule;
 import org.junit.Test;
 
-import antibug.CleanRoom;
-
 /**
  * @version 2012/02/02 13:17:55
  */
 public class WithAnothoerRuleTest {
-
-    @Rule
-    public static final CleanRoom ROOM = new CleanRoom();
 
     @Rule
     public static final PowerAssertTester tester = new PowerAssertTester();

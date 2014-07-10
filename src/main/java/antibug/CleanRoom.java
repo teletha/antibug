@@ -24,6 +24,7 @@ import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
@@ -70,7 +71,7 @@ public class CleanRoom extends Sandbox {
      * Create a clean room for the current directory.
      */
     public CleanRoom() {
-        this((Path) null);
+        this.host = null;
     }
 
     /**
@@ -273,7 +274,7 @@ public class CleanRoom extends Sandbox {
     }
 
     /**
-     * @see testament.ReusableRule#before(java.lang.reflect.Method)
+     * {@inheritDoc}
      */
     @Override
     protected void before(Method method) throws Exception {
@@ -296,7 +297,7 @@ public class CleanRoom extends Sandbox {
     }
 
     /**
-     * @see testament.Sandbox#after(java.lang.reflect.Method)
+     * {@inheritDoc}
      */
     @Override
     protected void after(Method method) {
@@ -311,7 +312,7 @@ public class CleanRoom extends Sandbox {
     }
 
     /**
-     * @see testament.ReusableRule#afterClass()
+     * {@inheritDoc}
      */
     @Override
     protected void afterClass() {
@@ -321,7 +322,7 @@ public class CleanRoom extends Sandbox {
         // Delete root directory of clean room.
         try {
             Files.delete(clean);
-        } catch (DirectoryNotEmptyException e) {
+        } catch (DirectoryNotEmptyException | NoSuchFileException e) {
             // CleanRoom is used by other testcase, So we can't delete.
         } catch (IOException e) {
             catchError(e);
@@ -343,11 +344,13 @@ public class CleanRoom extends Sandbox {
     private void copyDirectory(Path input, Path output) throws IOException {
         Files.createDirectories(output);
 
-        for (Path path : Files.newDirectoryStream(input, monitor)) {
-            if (Files.isDirectory(path)) {
-                copyDirectory(path, output.resolve(path.getFileName()));
-            } else {
-                copyFile(path, output.resolve(path.getFileName()));
+        if (input != null) {
+            for (Path path : Files.newDirectoryStream(input, monitor)) {
+                if (Files.isDirectory(path)) {
+                    copyDirectory(path, output.resolve(path.getFileName()));
+                } else {
+                    copyFile(path, output.resolve(path.getFileName()));
+                }
             }
         }
     }
@@ -387,8 +390,7 @@ public class CleanRoom extends Sandbox {
     private static final class Sweeper extends SimpleFileVisitor<Path> {
 
         /**
-         * @see java.nio.file.SimpleFileVisitor#visitFile(java.lang.Object,
-         *      java.nio.file.attribute.BasicFileAttributes)
+         * {@inheritDoc}
          */
         @Override
         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
@@ -397,8 +399,7 @@ public class CleanRoom extends Sandbox {
         }
 
         /**
-         * @see java.nio.file.SimpleFileVisitor#postVisitDirectory(java.lang.Object,
-         *      java.io.IOException)
+         * {@inheritDoc}
          */
         @Override
         public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
@@ -426,7 +427,7 @@ public class CleanRoom extends Sandbox {
         }
 
         /**
-         * @see testament.Sandbox.Security#checkDelete(java.lang.String)
+         * {@inheritDoc}
          */
         @Override
         public void checkDelete(String file) {
@@ -436,7 +437,7 @@ public class CleanRoom extends Sandbox {
         }
 
         /**
-         * @see testament.Sandbox.Security#checkWrite(java.io.FileDescriptor)
+         * {@inheritDoc}
          */
         @Override
         public void checkWrite(FileDescriptor fd) {
@@ -446,7 +447,7 @@ public class CleanRoom extends Sandbox {
         }
 
         /**
-         * @see testament.Sandbox.Security#checkWrite(java.lang.String)
+         * {@inheritDoc}
          */
         @Override
         public void checkWrite(String file) {
@@ -456,7 +457,7 @@ public class CleanRoom extends Sandbox {
         }
 
         /**
-         * @see java.nio.file.DirectoryStream.Filter#accept(java.lang.Object)
+         * {@inheritDoc}
          */
         @Override
         public boolean accept(Path path) throws IOException {
