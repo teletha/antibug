@@ -28,9 +28,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
 
 import kiss.I;
 
@@ -41,7 +44,7 @@ import org.junit.internal.AssumptionViolatedException;
  * The environmental rule for test that depends on file system.
  * </p>
  * 
- * @version 2011/04/06 22:47:29
+ * @version 2014/07/11 0:17:55
  */
 public class CleanRoom extends Sandbox {
 
@@ -135,6 +138,17 @@ public class CleanRoom extends Sandbox {
         if (Charset.defaultCharset() != charset) {
             throw new AssumptionViolatedException("Charset must be " + charset + ".");
         }
+    }
+
+    /**
+     * <p>
+     * Build file tree by {@link FileSystemDSL}.
+     * </p>
+     * 
+     * @param context DSL context.
+     */
+    public void with(Consumer<FileSystemDSL> context) {
+        context.accept(new FileSystemDSL(root));
     }
 
     /**
@@ -444,10 +458,87 @@ public class CleanRoom extends Sandbox {
         /**
          * @see java.nio.file.DirectoryStream.Filter#accept(java.lang.Object)
          */
+        @Override
         public boolean accept(Path path) throws IOException {
             String name = path.getFileName().toString();
 
             return !name.equals("package-info.html") && !name.endsWith(".class");
+        }
+    }
+
+    /**
+     * @version 2014/07/11 0:01:36
+     */
+    public static class FileSystemDSL {
+
+        /** The directory stack. */
+        private final Deque<Path> directories = new ArrayDeque();
+
+        /**
+         * Hide.
+         */
+        private FileSystemDSL(Path root) {
+            directories.add(root);
+        }
+
+        /**
+         * <p>
+         * Locate a present resource file which is assured that the spcified file exists.
+         * </p>
+         * 
+         * @param name A file name.
+         * @return A located present file.
+         */
+        public final Path file(String name) {
+            Path file = directories.peekLast().resolve(name);
+
+            try {
+                if (Files.notExists(file)) {
+                    Files.createFile(file);
+                }
+            } catch (IOException e) {
+                throw I.quiet(e);
+            }
+            return file;
+        }
+
+        /**
+         * <p>
+         * Locate a present resource empty directory which is assured that the specified directory
+         * exists.
+         * </p>
+         * 
+         * @param name A directory name.
+         * @return A located present directory.
+         */
+        public final Path dir(String name) {
+            return dir(name, () -> {
+            });
+        }
+
+        /**
+         * <p>
+         * Locate a present resource directory which is assured that the specified directory exists.
+         * </p>
+         * 
+         * @param name A directory name.
+         * @return A located present directory.
+         */
+        public final Path dir(String name, Runnable child) {
+            Path dir = directories.peekLast().resolve(name);
+            directories.add(dir);
+
+            try {
+                if (Files.notExists(dir)) {
+                    Files.createDirectory(dir);
+                }
+                child.run();
+            } catch (IOException e) {
+                throw I.quiet(e);
+            } finally {
+                directories.pollLast();
+            }
+            return dir;
         }
     }
 }

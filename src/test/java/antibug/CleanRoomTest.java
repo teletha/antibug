@@ -20,7 +20,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 /**
- * @version 2011/03/08 18:35:36
+ * @version 2014/07/10 19:19:18
  */
 public class CleanRoomTest {
 
@@ -104,5 +104,48 @@ public class CleanRoomTest {
     @Test(expected = AccessControlException.class)
     public void cantWriteInOriginalDirectory() throws Exception {
         Files.write(base.resolve("file"), "test".getBytes());
+    }
+
+    @Test
+    public void createFile() throws Exception {
+        Path file = room.locateAbsent("create");
+        assert Files.exists(file) == false;
+
+        room.with($ -> {
+            $.file("create");
+        });
+
+        assert Files.exists(file) == true;
+        assert Files.isRegularFile(file) == true;
+    }
+
+    @Test
+    public void createDirectory() throws Exception {
+        Path dir = room.locateAbsent("create");
+        assert Files.exists(dir) == false;
+
+        room.with($ -> {
+            $.dir("create");
+        });
+
+        assert Files.exists(dir) == true;
+        assert Files.isDirectory(dir) == true;
+    }
+
+    @Test
+    public void createDirectoryNest() throws Exception {
+        Path file = room.locateAbsent("a/b/c");
+        assert Files.exists(file) == false;
+
+        room.with($ -> {
+            $.dir("a", () -> {
+                $.dir("b", () -> {
+                    $.file("c");
+                });
+            });
+        });
+
+        assert Files.exists(file) == true;
+        assert Files.isRegularFile(file) == true;
     }
 }
