@@ -29,6 +29,9 @@ public class CleanRoomTest {
     @Rule
     public static final CleanRoom room = new CleanRoom(base);
 
+    @Rule
+    public static final CleanRoom room2 = new CleanRoom();
+
     @Test
     public void locateFile() {
         Path file = room.locateFile("empty");
