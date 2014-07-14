@@ -14,14 +14,16 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Method;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
 
 /**
  * <p>
  * This is pseudo character-based user.
  * </p>
  * 
- * @version 2011/09/22 15:34:02
+ * @version 2014/07/14 22:00:03
  */
 public class CommandLineUser extends ReusableRule {
 
@@ -36,6 +38,9 @@ public class CommandLineUser extends ReusableRule {
 
     /** The ignore system output. */
     private boolean ignore;
+
+    /** The message buffer. */
+    private List<Runnable> messages = new ArrayList();
 
     /**
      * 
@@ -52,10 +57,13 @@ public class CommandLineUser extends ReusableRule {
     }
 
     /**
-     * @see testament.ReusableRule#before(java.lang.reflect.Method)
+     * {@inheritDoc}
      */
     @Override
     protected void before(Method method) throws Exception {
+        // clear message
+        messages.clear();
+
         // swap
         System.setIn(input = new MockInputStream());
 
@@ -66,7 +74,7 @@ public class CommandLineUser extends ReusableRule {
     }
 
     /**
-     * @see testament.ReusableRule#after(java.lang.reflect.Method)
+     * {@inheritDoc}
      */
     @Override
     protected void after(Method method) {
@@ -80,6 +88,19 @@ public class CommandLineUser extends ReusableRule {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Throwable validateError(Throwable throwable) {
+        // display buffered message
+        for (Runnable message : messages) {
+            message.run();
+        }
+
+        return super.validateError(throwable);
+    }
+
+    /**
      * @param value
      */
     public void willInput(String... values) {
@@ -89,12 +110,85 @@ public class CommandLineUser extends ReusableRule {
     }
 
     /**
-     * @version 2011/09/22 16:12:01
+     * <p>
+     * Test whether this user outputed the specified value or not.
+     * </p>
+     * 
+     * @param valus An outputed value to test.
+     * @return A result.
      */
-    private static class MockOutputStream extends PrintStream {
+    public boolean receiveOutput(String valus) {
+        return output.text.indexOf(valus) != -1;
+    }
+
+    /**
+     * <p>
+     * Test whether this user outputed the specified value or not.
+     * </p>
+     * 
+     * @param valus An outputed value to test.
+     * @return A result.
+     */
+    public boolean receiveError(String valus) {
+        return error.text.indexOf(valus) != -1;
+    }
+
+    /**
+     * <p>
+     * Test whether this user outputed the specified value or not.
+     * </p>
+     * 
+     * @param valus An outputed value to test.
+     * @return A result.
+     */
+    public boolean receive(String valus) {
+        return receiveOutput(valus) || receiveError(valus);
+    }
+
+    /**
+     * <p>
+     * Clear buffered output message.
+     * </p>
+     * 
+     * @return
+     */
+    public void clearOutput() {
+        output.text = new StringBuilder();
+    }
+
+    /**
+     * <p>
+     * Clear buffered error message.
+     * </p>
+     * 
+     * @return
+     */
+    public void clearError() {
+        error.text = new StringBuilder();
+    }
+
+    /**
+     * <p>
+     * Clear buffered output and error message.
+     * </p>
+     * 
+     * @return
+     */
+    public void clear() {
+        clearOutput();
+        clearError();
+    }
+
+    /**
+     * @version 2014/07/14 22:20:48
+     */
+    private class MockOutputStream extends PrintStream {
 
         /** The original. */
         private final PrintStream original;
+
+        /** The output result. */
+        private StringBuilder text = new StringBuilder();
 
         /**
          * @param original
@@ -106,18 +200,24 @@ public class CommandLineUser extends ReusableRule {
         }
 
         /**
-         * @see java.io.PrintStream#write(byte[], int, int)
+         * {@inheritDoc}
          */
         @Override
         public void write(byte[] buf, int off, int len) {
-            // do nothing
+            String message = new String(buf, off, len);
+
+            text.append(message);
+
+            messages.add(() -> {
+                original.append(message);
+            });
         }
     }
 
     /**
-     * @version 2011/09/22 15:36:26
+     * @version 2014/07/14 22:20:51
      */
-    private static class MockInputStream extends InputStream {
+    private class MockInputStream extends InputStream {
 
         /** The original system input. */
         private final InputStream original = System.in;
@@ -126,7 +226,7 @@ public class CommandLineUser extends ReusableRule {
         private final Deque<UserInput> deque = new ArrayDeque();
 
         /**
-         * @see java.io.InputStream#read()
+         * {@inheritDoc}
          */
         @Override
         public int read() throws IOException {
@@ -148,7 +248,7 @@ public class CommandLineUser extends ReusableRule {
     }
 
     /**
-     * @version 2011/09/22 15:38:07
+     * @version 2014/07/14 22:20:58
      */
     private static class UserInput {
 

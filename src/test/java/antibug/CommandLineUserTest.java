@@ -13,10 +13,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import kiss.I;
+
 import org.junit.Rule;
 import org.junit.Test;
-
-import kiss.I;
 
 /**
  * @version 2011/09/22 16:22:02
@@ -47,6 +47,14 @@ public class CommandLineUserTest {
         user.willInput("2");
         assert "1".equals(read());
         assert "2".equals(read());
+    }
+
+    @Test
+    public void output() throws Exception {
+        assert user.receive("test") == false;
+        System.out.println("test");
+        assert user.receive("test") == true;
+
     }
 
     /**
