@@ -181,7 +181,7 @@ public class Benchmark extends ReusableRule {
          * Write micro benchmark code.
          * </p>
          * 
-         * @return
+         * @return A result of computation.
          * @throws Throwable
          */
         Object measure() throws Throwable;
