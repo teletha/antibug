@@ -11,8 +11,8 @@ package antibug.javadoc;
 
 
 /**
- * @version 2012/02/25 14:55:39
+ * @version 2014/07/26 21:47:13
  */
-public class Javadoc {
+public class Document {
 
 }
