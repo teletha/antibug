@@ -9,15 +9,21 @@
  */
 package antibug.javadoc;
 
-import org.junit.Test;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * @version 2012/02/25 14:55:59
+ * @version 2014/07/26 23:17:12
  */
-public class JavadocTest {
+public class TypeInfo {
 
-    @Test
-    public void doc() throws Exception {
+    /** The type name. */
+    public String name;
 
-    }
+    /** The simple type name. */
+    public String simpleName;
+
+    /** The inner class list. */
+    public List<TypeInfo> inners = new ArrayList();
+
 }
