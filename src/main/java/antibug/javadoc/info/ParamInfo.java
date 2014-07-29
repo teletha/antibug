@@ -7,20 +7,16 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.javadoc;
-
-import kiss.Codec;
+package antibug.javadoc.info;
 
 /**
- * @version 2014/07/29 15:49:05
+ * @version 2014/07/29 18:49:10
  */
-public class IdentifierCodec implements Codec<Identifier> {
+public class ParamInfo {
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Identifier decode(String value) {
-        return new Identifier(value);
-    }
+    /** The parameter type. */
+    public Identifier type;
+
+    /** The parameter name. */
+    public String name;
 }

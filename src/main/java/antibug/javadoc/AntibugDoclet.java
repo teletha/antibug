@@ -15,6 +15,7 @@ import java.util.Map;
 import kiss.I;
 import kiss.Manageable;
 import kiss.Singleton;
+import antibug.javadoc.info.Identifier;
 import antibug.javadoc.info.MethodInfo;
 import antibug.javadoc.info.PackageInfo;
 import antibug.javadoc.info.TypeInfo;
@@ -30,6 +31,10 @@ import com.sun.javadoc.RootDoc;
  */
 @Manageable(lifestyle = Singleton.class)
 public class AntibugDoclet extends Doclet {
+
+    static {
+        I.load(Identifier.class, true);
+    }
 
     /** All documents. */
     protected final Documents documents = I.make(Documents.class);
@@ -62,7 +67,6 @@ public class AntibugDoclet extends Doclet {
     protected void build(RootDoc root) {
         for (ClassDoc classDoc : root.classes()) {
             TypeInfo typeInfo = findTypeInfoBy(classDoc);
-            PackageInfo packageInfo = findPackageBy(classDoc.containingPackage());
         }
     }
 
@@ -92,11 +96,13 @@ public class AntibugDoclet extends Doclet {
             }
 
             for (MethodDoc methodDoc : doc.methods()) {
-                info.methods.add(findMethodInfo(methodDoc));
+                info.methods.add(findMethodInfo(methodDoc, info));
             }
 
+            PackageInfo packageInfo = findPackageBy(doc.containingPackage());
+            packageInfo.types.add(info);
+
             // store
-            documents.types.add(info);
             types.put(doc, info);
         }
 
@@ -112,10 +118,11 @@ public class AntibugDoclet extends Doclet {
      * @param methodDoc
      * @return
      */
-    private MethodInfo findMethodInfo(MethodDoc doc) {
+    private MethodInfo findMethodInfo(MethodDoc doc, TypeInfo declaring) {
         MethodInfo info = new MethodInfo();
         info.name = doc.name();
         info.signature = doc.signature();
+        info.declaring = declaring.getId();
 
         // API definition
         return info;
@@ -139,7 +146,7 @@ public class AntibugDoclet extends Doclet {
             info.name = doc.name();
 
             // store
-            documents.packages.put(info.getId(), info);
+            documents.packages.add(info);
         }
 
         // API definition
