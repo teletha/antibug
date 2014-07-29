@@ -9,10 +9,18 @@
  */
 package antibug.javadoc;
 
+import kiss.Codec;
 
 /**
- * @version 2014/07/26 21:47:13
+ * @version 2014/07/29 15:49:05
  */
-public class Document {
+public class IdentifierCodec implements Codec<Identifier> {
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Identifier decode(String value) {
+        return new Identifier(value);
+    }
 }

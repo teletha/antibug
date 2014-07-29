@@ -7,14 +7,23 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.javadoc;
+package antibug.javadoc.info;
+
+import antibug.javadoc.Identifier;
 
 /**
  * @version 2014/07/26 21:47:55
  */
-public class PackageInfo {
+public class PackageInfo extends IdentifiableInfo {
 
     /** The fully qualified package name. */
     public String name;
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Identifier computeId() {
+        return new Identifier(name, "", "");
+    }
 }

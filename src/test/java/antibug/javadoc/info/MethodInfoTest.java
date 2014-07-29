@@ -7,23 +7,27 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.javadoc;
+package antibug.javadoc.info;
 
 import org.junit.Rule;
 import org.junit.Test;
 
+import antibug.javadoc.JavadocParser;
+
 /**
  * @version 2014/07/26 21:55:11
  */
-public class MethodTest {
+public class MethodInfoTest {
 
     @Rule
-    public static final JavadocParser javadoc = new JavadocParser();
+    public static final JavadocParser parser = new JavadocParser();
 
     /**
      * Text
      */
     @Test
-    public void text() {
+    public void method() {
+        MethodInfo info = parser.getMethod();
+        assert info.name.equals("method");
     }
 }

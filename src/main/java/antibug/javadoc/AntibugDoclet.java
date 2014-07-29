@@ -15,9 +15,13 @@ import java.util.Map;
 import kiss.I;
 import kiss.Manageable;
 import kiss.Singleton;
+import antibug.javadoc.info.MethodInfo;
+import antibug.javadoc.info.PackageInfo;
+import antibug.javadoc.info.TypeInfo;
 
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.Doclet;
+import com.sun.javadoc.MethodDoc;
 import com.sun.javadoc.PackageDoc;
 import com.sun.javadoc.RootDoc;
 
@@ -87,10 +91,31 @@ public class AntibugDoclet extends Doclet {
                 parent.inners.add(info);
             }
 
+            for (MethodDoc methodDoc : doc.methods()) {
+                info.methods.add(findMethodInfo(methodDoc));
+            }
+
             // store
             documents.types.add(info);
             types.put(doc, info);
         }
+
+        // API definition
+        return info;
+    }
+
+    /**
+     * <p>
+     * Find method info by {@link MethodDoc}.
+     * </p>
+     * 
+     * @param methodDoc
+     * @return
+     */
+    private MethodInfo findMethodInfo(MethodDoc doc) {
+        MethodInfo info = new MethodInfo();
+        info.name = doc.name();
+        info.signature = doc.signature();
 
         // API definition
         return info;
@@ -114,7 +139,7 @@ public class AntibugDoclet extends Doclet {
             info.name = doc.name();
 
             // store
-            documents.packages.add(info);
+            documents.packages.put(info.getId(), info);
         }
 
         // API definition
