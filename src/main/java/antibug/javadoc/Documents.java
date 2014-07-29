@@ -11,9 +11,12 @@ package antibug.javadoc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 import kiss.Manageable;
 import kiss.Singleton;
+import antibug.javadoc.info.PackageInfo;
+import antibug.javadoc.info.TypeInfo;
 
 /**
  * @version 2014/07/26 21:47:07
@@ -22,7 +25,7 @@ import kiss.Singleton;
 public class Documents {
 
     /** The package list. */
-    public List<PackageInfo> packages = new ArrayList();
+    public TreeMap<Identifier, PackageInfo> packages = new TreeMap();
 
     /** The type list. */
     public List<TypeInfo> types = new ArrayList();

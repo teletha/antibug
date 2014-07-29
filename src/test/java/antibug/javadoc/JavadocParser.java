@@ -20,8 +20,10 @@ import java.util.Set;
 
 import kiss.I;
 import antibug.ReusableRule;
+import antibug.javadoc.info.MethodInfo;
+import antibug.javadoc.info.PackageInfo;
+import antibug.javadoc.info.TypeInfo;
 
-import com.sun.javadoc.MethodDoc;
 import com.sun.tools.javadoc.Main;
 
 /**
@@ -36,7 +38,7 @@ public class JavadocParser extends ReusableRule {
     private static AntibugDoclet doclet = I.make(AntibugDoclet.class);
 
     /** The current method document. */
-    private MethodDoc current;
+    private Method current;
 
     /**
      * {@inheritDoc}
@@ -51,6 +53,7 @@ public class JavadocParser extends ReusableRule {
      */
     @Override
     protected void before(Method method) throws Exception {
+        current = method;
     }
 
     /**
@@ -72,14 +75,15 @@ public class JavadocParser extends ReusableRule {
      * @return
      */
     public PackageInfo getPackage() {
-        for (PackageInfo info : doclet.documents.packages) {
-            if (info.name.equals(testcase.getPackage().getName())) {
-                return info;
-            }
+        Identifier key = new Identifier(testcase.getPackage().getName());
+        PackageInfo info = doclet.documents.packages.get(key);
+
+        if (info == null) {
+            // If this exception will be thrown, it is bug of this program. So we must rethrow the
+            // wrapped error in here.
+            throw new Error();
         }
-        // If this exception will be thrown, it is bug of this program. So we must rethrow the
-        // wrapped error in here.
-        throw new Error();
+        return info;
     }
 
     /**
@@ -113,13 +117,21 @@ public class JavadocParser extends ReusableRule {
 
     /**
      * <p>
-     * Current method documentation.
+     * Retrieve the current method info.
      * </p>
      * 
      * @return
      */
-    public MethodDoc method() {
-        return current;
+    public MethodInfo getMethod() {
+        TypeInfo type = getType();
+
+        for (MethodInfo info : type.methods) {
+            if (info.name.equals(current.getName())) {
+                System.out.println(info.signature + "   " + current.toString());
+
+            }
+        }
+        return null;
     }
 
     /**

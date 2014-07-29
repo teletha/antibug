@@ -7,23 +7,16 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.javadoc;
-
-import java.util.ArrayList;
-import java.util.List;
+package antibug.javadoc.info;
 
 /**
- * @version 2014/07/26 23:17:12
+ * @version 2014/07/26 22:32:46
  */
-public class TypeInfo {
+public class MethodInfo {
 
-    /** The type name. */
+    /** The method name. */
     public String name;
 
-    /** The simple type name. */
-    public String simpleName;
-
-    /** The inner class list. */
-    public List<TypeInfo> inners = new ArrayList();
-
+    /** The method signature. */
+    public String signature;
 }

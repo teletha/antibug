@@ -7,12 +7,14 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.javadoc;
+package antibug.javadoc.info;
 
 import org.junit.Rule;
 import org.junit.Test;
 
-import antibug.javadoc.ClassInfoTest.Inner.InnerNest;
+import antibug.javadoc.JavadocParser;
+import antibug.javadoc.info.TypeInfo;
+import antibug.javadoc.info.ClassInfoTest.Inner.InnerNest;
 
 /**
  * @version 2014/07/26 23:33:55
