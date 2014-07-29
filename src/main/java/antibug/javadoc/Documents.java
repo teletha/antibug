@@ -11,12 +11,11 @@ package antibug.javadoc;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeMap;
 
 import kiss.Manageable;
 import kiss.Singleton;
+import antibug.javadoc.info.Identifier;
 import antibug.javadoc.info.PackageInfo;
-import antibug.javadoc.info.TypeInfo;
 
 /**
  * @version 2014/07/26 21:47:07
@@ -25,8 +24,22 @@ import antibug.javadoc.info.TypeInfo;
 public class Documents {
 
     /** The package list. */
-    public TreeMap<Identifier, PackageInfo> packages = new TreeMap();
+    public List<PackageInfo> packages = new ArrayList();
 
-    /** The type list. */
-    public List<TypeInfo> types = new ArrayList();
+    /**
+     * <p>
+     * Find {@link PackageInfo} by {@link Identifier}.
+     * </p>
+     * 
+     * @param id An identifier.
+     * @return A package.
+     */
+    public PackageInfo getPackageBy(Identifier id) {
+        for (PackageInfo info : packages) {
+            if (info.getId() == id) {
+                return info;
+            }
+        }
+        return new PackageInfo(id);
+    }
 }

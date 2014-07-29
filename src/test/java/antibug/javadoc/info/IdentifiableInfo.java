@@ -9,7 +9,6 @@
  */
 package antibug.javadoc.info;
 
-import antibug.javadoc.Identifier;
 
 /**
  * @version 2014/07/29 15:38:20

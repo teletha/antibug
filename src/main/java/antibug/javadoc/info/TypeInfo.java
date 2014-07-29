@@ -12,8 +12,6 @@ package antibug.javadoc.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import antibug.javadoc.Identifier;
-
 /**
  * @version 2014/07/26 23:17:12
  */
@@ -36,6 +34,6 @@ public class TypeInfo extends IdentifiableInfo {
      */
     @Override
     protected Identifier computeId() {
-        return new Identifier("", name, "");
+        return Identifier.of("", name, "");
     }
 }

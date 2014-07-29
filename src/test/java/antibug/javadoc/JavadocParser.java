@@ -17,9 +17,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.StringJoiner;
 
 import kiss.I;
 import antibug.ReusableRule;
+import antibug.javadoc.info.Identifier;
 import antibug.javadoc.info.MethodInfo;
 import antibug.javadoc.info.PackageInfo;
 import antibug.javadoc.info.TypeInfo;
@@ -46,6 +48,8 @@ public class JavadocParser extends ReusableRule {
     @Override
     protected void beforeClass() throws Exception {
         parse(testcase);
+
+        I.write(doclet.documents, System.out, true);
     }
 
     /**
@@ -75,15 +79,20 @@ public class JavadocParser extends ReusableRule {
      * @return
      */
     public PackageInfo getPackage() {
-        Identifier key = new Identifier(testcase.getPackage().getName());
-        PackageInfo info = doclet.documents.packages.get(key);
+        return getPackage(testcase.getPackage());
+    }
 
-        if (info == null) {
-            // If this exception will be thrown, it is bug of this program. So we must rethrow the
-            // wrapped error in here.
-            throw new Error();
-        }
-        return info;
+    /**
+     * <p>
+     * Retrieve the current package info.
+     * </p>
+     * 
+     * @return
+     */
+    public PackageInfo getPackage(Package pack) {
+        Identifier key = Identifier.of(pack.getName());
+
+        return doclet.documents.getPackageBy(key);
     }
 
     /**
@@ -105,7 +114,7 @@ public class JavadocParser extends ReusableRule {
      * @return
      */
     public TypeInfo getType(Class target) {
-        for (TypeInfo info : doclet.documents.types) {
+        for (TypeInfo info : getPackage(target.getPackage()).types) {
             if (info.name.equals(target.getName())) {
                 return info;
             }
@@ -124,14 +133,28 @@ public class JavadocParser extends ReusableRule {
      */
     public MethodInfo getMethod() {
         TypeInfo type = getType();
+        Identifier key = of(current);
 
         for (MethodInfo info : type.methods) {
+            if (info.getId() == key) {
+
+            }
             if (info.name.equals(current.getName())) {
                 System.out.println(info.signature + "   " + current.toString());
 
             }
         }
         return null;
+    }
+
+    private Identifier of(Method method) {
+        Class clazz = method.getDeclaringClass();
+        StringJoiner joiner = new StringJoiner(",", "(", ")");
+
+        for (Class param : method.getParameterTypes()) {
+            joiner.add(param.getName());
+        }
+        return Identifier.of(clazz.getPackage().getName(), clazz.getSimpleName(), method.getName() + joiner);
     }
 
     /**

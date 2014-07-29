@@ -9,7 +9,8 @@
  */
 package antibug.javadoc.info;
 
-import antibug.javadoc.Identifier;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @version 2014/07/26 21:47:55
@@ -19,11 +20,32 @@ public class PackageInfo extends IdentifiableInfo {
     /** The fully qualified package name. */
     public String name;
 
+    /** The list of all types in this package. */
+    public List<TypeInfo> types = new ArrayList();
+
+    /**
+     * <p>
+     * JavaBean.
+     * </p>
+     */
+    public PackageInfo() {
+        // empty
+    }
+
+    /**
+     * <p>
+     * Create by {@link Identifier}.
+     * </p>
+     */
+    public PackageInfo(Identifier id) {
+        this.name = id.packageName;
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
     protected Identifier computeId() {
-        return new Identifier(name, "", "");
+        return Identifier.of(name, "", "");
     }
 }
