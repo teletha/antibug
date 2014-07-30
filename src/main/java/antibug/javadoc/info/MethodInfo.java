@@ -11,15 +11,11 @@ package antibug.javadoc.info;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringJoiner;
 
 /**
  * @version 2014/07/26 22:32:46
  */
 public class MethodInfo extends IdentifiableInfo {
-
-    /** The method name. */
-    public String name;
 
     /** The method signature. */
     public String signature;
@@ -32,17 +28,4 @@ public class MethodInfo extends IdentifiableInfo {
 
     /** The return type id. */
     public Identifier returnType;
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected Identifier computeId() {
-        StringJoiner joiner = new StringJoiner(",", name.concat("("), ")");
-
-        for (ParamInfo info : params) {
-            joiner.add(info.type.toString());
-        }
-        return Identifier.of(declaring.packageName, declaring.typeName, joiner.toString());
-    }
 }

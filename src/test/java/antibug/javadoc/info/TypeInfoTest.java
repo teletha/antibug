@@ -13,13 +13,12 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import antibug.javadoc.JavadocParser;
-import antibug.javadoc.info.TypeInfo;
-import antibug.javadoc.info.ClassInfoTest.Inner.InnerNest;
+import antibug.javadoc.info.TypeInfoTest.Inner.InnerNest;
 
 /**
  * @version 2014/07/26 23:33:55
  */
-public class ClassInfoTest {
+public class TypeInfoTest {
 
     @Rule
     public static final JavadocParser parser = new JavadocParser();
@@ -27,15 +26,14 @@ public class ClassInfoTest {
     @Test
     public void name() {
         TypeInfo info = parser.getType();
-        assert info.name.equals(ClassInfoTest.class.getName());
+        assert parser.equals(info, TypeInfoTest.class);
     }
 
     @Test
     public void innerType() {
         Class target = Inner.class;
         TypeInfo info = parser.getType(target);
-        assert info.name.equals(target.getName());
-        assert info.simpleName.equals(target.getSimpleName());
+        assert parser.equals(info, target);
         assert info.inners.size() == 1;
     }
 
@@ -43,8 +41,7 @@ public class ClassInfoTest {
     public void innerNestType() {
         Class target = InnerNest.class;
         TypeInfo info = parser.getType(target);
-        assert info.name.equals(target.getName());
-        assert info.simpleName.equals(target.getSimpleName());
+        assert parser.equals(info, target);
         assert info.inners.size() == 0;
     }
 

@@ -9,33 +9,11 @@
  */
 package antibug.javadoc.info;
 
-
 /**
  * @version 2014/07/29 15:38:20
  */
 public abstract class IdentifiableInfo {
 
     /** The id. */
-    private Identifier id;
-
-    /**
-     * Get the id property of this {@link IdentifiableInfo}.
-     * 
-     * @return The id property.
-     */
-    public Identifier getId() {
-        if (id == null) {
-            id = computeId();
-        }
-        return id;
-    }
-
-    /**
-     * <p>
-     * Compute {@link Identifier}.
-     * </p>
-     * 
-     * @return
-     */
-    protected abstract Identifier computeId();
+    public Identifier id;
 }

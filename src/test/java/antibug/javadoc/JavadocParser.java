@@ -9,6 +9,8 @@
  */
 package antibug.javadoc;
 
+import static antibug.javadoc.AntibugDoclet.*;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -28,16 +30,10 @@ import antibug.javadoc.info.TypeInfo;
 
 import com.sun.tools.javadoc.Main;
 
-/**
- * @version 2014/07/26 21:56:00
- */
 public class JavadocParser extends ReusableRule {
 
     /** The empty writer to suppress messages. */
     private static final NoOperationWriter NoOp = new NoOperationWriter();
-
-    /** The root document. */
-    private static AntibugDoclet doclet = I.make(AntibugDoclet.class);
 
     /** The current method document. */
     private Method current;
@@ -49,7 +45,9 @@ public class JavadocParser extends ReusableRule {
     protected void beforeClass() throws Exception {
         parse(testcase);
 
-        I.write(doclet.documents, System.out, true);
+        StringBuilder builder = new StringBuilder();
+        I.write(doclet.documents, builder, true);
+        System.out.println(builder);
     }
 
     /**
@@ -58,17 +56,6 @@ public class JavadocParser extends ReusableRule {
     @Override
     protected void before(Method method) throws Exception {
         current = method;
-    }
-
-    /**
-     * <p>
-     * Retrieve all documents.
-     * </p>
-     * 
-     * @return
-     */
-    public Documents info() {
-        return doclet.documents;
     }
 
     /**
@@ -114,14 +101,9 @@ public class JavadocParser extends ReusableRule {
      * @return
      */
     public TypeInfo getType(Class target) {
-        for (TypeInfo info : getPackage(target.getPackage()).types) {
-            if (info.name.equals(target.getName())) {
-                return info;
-            }
-        }
-        // If this exception will be thrown, it is bug of this program. So we must rethrow the
-        // wrapped error in here.
-        throw new Error();
+        Identifier key = Identifier.of(target.getPackage().getName(), target.getSimpleName(), "");
+
+        return doclet.documents.getTypeBy(key);
     }
 
     /**
@@ -132,29 +114,59 @@ public class JavadocParser extends ReusableRule {
      * @return
      */
     public MethodInfo getMethod() {
-        TypeInfo type = getType();
-        Identifier key = of(current);
-
-        for (MethodInfo info : type.methods) {
-            if (info.getId() == key) {
-
-            }
-            if (info.name.equals(current.getName())) {
-                System.out.println(info.signature + "   " + current.toString());
-
-            }
-        }
-        return null;
+        return getMethod(current);
     }
 
-    private Identifier of(Method method) {
-        Class clazz = method.getDeclaringClass();
+    /**
+     * <p>
+     * Retrieve the target method info.
+     * </p>
+     * 
+     * @return
+     */
+    public MethodInfo getMethod(Method target) {
+        Class clazz = target.getDeclaringClass();
         StringJoiner joiner = new StringJoiner(",", "(", ")");
 
-        for (Class param : method.getParameterTypes()) {
+        for (Class param : target.getParameterTypes()) {
             joiner.add(param.getName());
         }
-        return Identifier.of(clazz.getPackage().getName(), clazz.getSimpleName(), method.getName() + joiner);
+
+        Identifier key = Identifier.of(clazz.getPackage().getName(), clazz.getSimpleName(), target.getName() + joiner);
+
+        return doclet.documents.getMethodBy(key);
+    }
+
+    /**
+     * <p>
+     * Assertion helper.
+     * </p>
+     * 
+     * @param info
+     * @param class1
+     * @return
+     */
+    public boolean equals(TypeInfo info, Class clazz) {
+        if (info == null || clazz == null) {
+            return false;
+        }
+        return info.id.packageName.equals(clazz.getPackage().getName()) && info.id.typeName.equals(clazz.getSimpleName());
+    }
+
+    /**
+     * <p>
+     * Assertion helper.
+     * </p>
+     * 
+     * @param info
+     * @param clazz
+     * @return
+     */
+    public boolean equals(PackageInfo info, Class clazz) {
+        if (info == null || clazz == null) {
+            return false;
+        }
+        return info.id.packageName.equals(clazz.getPackage().getName());
     }
 
     /**
