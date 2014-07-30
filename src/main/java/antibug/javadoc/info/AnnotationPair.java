@@ -9,20 +9,11 @@
  */
 package antibug.javadoc.info;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * @version 2014/07/29 18:49:10
+ * @version 2014/07/30 16:41:19
  */
-public class ParamInfo {
+public class AnnotationPair {
 
-    /** The parameter type. */
-    public Identifier type;
+    public String key;
 
-    /** The parameter name. */
-    public String name;
-
-    /** The parameter annotation list. */
-    public List<AnnotationInfo> annotation = new ArrayList();
 }

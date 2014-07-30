@@ -17,12 +17,6 @@ import java.util.List;
  */
 public class MethodInfo extends IdentifiableInfo {
 
-    /** The method signature. */
-    public String signature;
-
-    /** The declaring class id. */
-    public Identifier declaring;
-
     /** The parameters. */
     public List<ParamInfo> params = new ArrayList();
 

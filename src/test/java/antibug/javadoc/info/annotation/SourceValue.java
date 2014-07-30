@@ -7,21 +7,19 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.javadoc.info;
+package antibug.javadoc.info.annotation;
 
 /**
- * @version 2014/07/29 15:38:20
+ * @version 2014/07/30 15:53:03
  */
-public abstract class IdentifiableInfo {
-
-    /** The id. */
-    public Identifier id;
+public @interface SourceValue {
 
     /**
-     * {@inheritDoc}
+     * <p>
+     * No default value.
+     * </p>
+     * 
+     * @return A value.
      */
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "[" + id + "]";
-    }
+    public String value();
 }
