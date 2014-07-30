@@ -13,7 +13,6 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import antibug.javadoc.JavadocParser;
-import antibug.javadoc.info.PackageInfo;
 
 /**
  * @version 2014/07/26 23:07:56
@@ -26,6 +25,6 @@ public class PackageInfoTest {
     @Test
     public void name() {
         PackageInfo info = parser.getPackage();
-        assert info.name.equals(PackageInfoTest.class.getPackage().getName());
+        assert parser.equals(info, PackageInfoTest.class);
     }
 }

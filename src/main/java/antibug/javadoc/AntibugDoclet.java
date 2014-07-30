@@ -11,6 +11,7 @@ package antibug.javadoc;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringJoiner;
 
 import kiss.I;
 import kiss.Manageable;
@@ -24,6 +25,7 @@ import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.Doclet;
 import com.sun.javadoc.MethodDoc;
 import com.sun.javadoc.PackageDoc;
+import com.sun.javadoc.Parameter;
 import com.sun.javadoc.RootDoc;
 
 /**
@@ -32,12 +34,15 @@ import com.sun.javadoc.RootDoc;
 @Manageable(lifestyle = Singleton.class)
 public class AntibugDoclet extends Doclet {
 
+    /** The singleton-like. */
+    static AntibugDoclet doclet;
+
     static {
         I.load(Identifier.class, true);
     }
 
     /** All documents. */
-    protected final Documents documents = I.make(Documents.class);
+    protected final Documents documents = new Documents();
 
     /** Avoid linear search. */
     private Map<ClassDoc, TypeInfo> types = new HashMap();
@@ -51,7 +56,7 @@ public class AntibugDoclet extends Doclet {
      * </p>
      */
     public static boolean start(RootDoc root) {
-        AntibugDoclet doclet = I.make(AntibugDoclet.class);
+        doclet = new AntibugDoclet();
         doclet.build(root);
 
         return true;
@@ -72,6 +77,34 @@ public class AntibugDoclet extends Doclet {
 
     /**
      * <p>
+     * Find package info by {@link ClassDoc}.
+     * </p>
+     * 
+     * @param doc
+     * @return
+     */
+    private PackageInfo findPackageBy(PackageDoc doc) {
+        // check cache
+        PackageInfo info = packages.get(doc);
+
+        if (info == null) {
+            // build package info
+            info = new PackageInfo();
+            info.id = Identifier.of(doc.name(), "", "");
+
+            // associate with documents
+            documents.packages.add(info);
+
+            // cache
+            packages.put(doc, info);
+        }
+
+        // API definition
+        return info;
+    }
+
+    /**
+     * <p>
      * Find type info by {@link ClassDoc}.
      * </p>
      * 
@@ -85,24 +118,22 @@ public class AntibugDoclet extends Doclet {
         if (info == null) {
             // build type info
             info = new TypeInfo();
-            info.name = doc.qualifiedTypeName();
-            info.simpleName = doc.simpleTypeName();
+            info.id = Identifier.of(doc.containingPackage().name(), doc.simpleTypeName(), "");
 
             if (doc.containingClass() != null) {
                 TypeInfo parent = findTypeInfoBy(doc.containingClass());
-                info.name = parent.name + "$" + info.simpleName;
-
-                parent.inners.add(info);
+                parent.inners.add(info.id);
             }
 
             for (MethodDoc methodDoc : doc.methods()) {
                 info.methods.add(findMethodInfo(methodDoc, info));
             }
 
+            // associate with package
             PackageInfo packageInfo = findPackageBy(doc.containingPackage());
             packageInfo.types.add(info);
 
-            // store
+            // cache
             types.put(doc, info);
         }
 
@@ -120,34 +151,16 @@ public class AntibugDoclet extends Doclet {
      */
     private MethodInfo findMethodInfo(MethodDoc doc, TypeInfo declaring) {
         MethodInfo info = new MethodInfo();
-        info.name = doc.name();
-        info.signature = doc.signature();
-        info.declaring = declaring.getId();
+        StringJoiner joiner = new StringJoiner(",", doc.name() + "(", ")");
 
-        // API definition
-        return info;
-    }
-
-    /**
-     * <p>
-     * Find package info by {@link ClassDoc}.
-     * </p>
-     * 
-     * @param doc
-     * @return
-     */
-    private PackageInfo findPackageBy(PackageDoc doc) {
-        // check cache
-        PackageInfo info = packages.get(doc);
-
-        if (info == null) {
-            // build package info
-            info = new PackageInfo();
-            info.name = doc.name();
-
-            // store
-            documents.packages.add(info);
+        for (Parameter param : doc.parameters()) {
+            TypeInfo type = findTypeInfoBy(param.type().asClassDoc());
+            joiner.add(type.id.toString());
         }
+
+        info.id = Identifier.of(declaring.id.packageName, declaring.id.typeName, joiner.toString());
+        info.signature = doc.signature();
+        info.declaring = declaring.id;
 
         // API definition
         return info;

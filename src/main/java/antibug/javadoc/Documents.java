@@ -12,15 +12,17 @@ package antibug.javadoc;
 import java.util.ArrayList;
 import java.util.List;
 
-import kiss.Manageable;
-import kiss.Singleton;
+import antibug.javadoc.info.ExternalMethodInfo;
+import antibug.javadoc.info.ExternalPackageInfo;
+import antibug.javadoc.info.ExternalTypeInfo;
 import antibug.javadoc.info.Identifier;
+import antibug.javadoc.info.MethodInfo;
 import antibug.javadoc.info.PackageInfo;
+import antibug.javadoc.info.TypeInfo;
 
 /**
  * @version 2014/07/26 21:47:07
  */
-@Manageable(lifestyle = Singleton.class)
 public class Documents {
 
     /** The package list. */
@@ -36,10 +38,48 @@ public class Documents {
      */
     public PackageInfo getPackageBy(Identifier id) {
         for (PackageInfo info : packages) {
-            if (info.getId() == id) {
+            if (info.id.equalsPackage(id)) {
                 return info;
             }
         }
-        return new PackageInfo(id);
+        return new ExternalPackageInfo(id);
+    }
+
+    /**
+     * <p>
+     * Find {@link PackageInfo} by {@link Identifier}.
+     * </p>
+     * 
+     * @param id An identifier.
+     * @return A package.
+     */
+    public TypeInfo getTypeBy(Identifier id) {
+        PackageInfo packageInfo = getPackageBy(id);
+
+        for (TypeInfo info : packageInfo.types) {
+            if (info.id.equalsType(id)) {
+                return info;
+            }
+        }
+        return new ExternalTypeInfo(id);
+    }
+
+    /**
+     * <p>
+     * Find {@link PackageInfo} by {@link Identifier}.
+     * </p>
+     * 
+     * @param id An identifier.
+     * @return A package.
+     */
+    public MethodInfo getMethodBy(Identifier id) {
+        TypeInfo typeInfo = getTypeBy(id);
+
+        for (MethodInfo info : typeInfo.methods) {
+            if (info.id.equalsMember(id)) {
+                return info;
+            }
+        }
+        return new ExternalMethodInfo(id);
     }
 }

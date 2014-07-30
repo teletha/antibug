@@ -41,6 +41,28 @@ public class Identifier implements Comparable<Identifier> {
     }
 
     /**
+     * <p>
+     * Convert to package identifier.
+     * </p>
+     * 
+     * @return An identifier.
+     */
+    public Identifier asPackage() {
+        return of(packageName, "", "");
+    }
+
+    /**
+     * <p>
+     * Convert to type identifier.
+     * </p>
+     * 
+     * @return An identifier.
+     */
+    public Identifier asType() {
+        return of(packageName, typeName, "");
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -65,6 +87,42 @@ public class Identifier implements Comparable<Identifier> {
     }
 
     /**
+     * <p>
+     * Test equality of package.
+     * </p>
+     * 
+     * @param id A target {@link Identifier} to test.
+     * @return A result.
+     */
+    public boolean equalsPackage(Identifier id) {
+        return packageName.equals(id.packageName);
+    }
+
+    /**
+     * <p>
+     * Test equality of type.
+     * </p>
+     * 
+     * @param id A target {@link Identifier} to test.
+     * @return A result.
+     */
+    public boolean equalsType(Identifier id) {
+        return typeName.equals(id.typeName) && equalsPackage(id);
+    }
+
+    /**
+     * <p>
+     * Test equality of type.
+     * </p>
+     * 
+     * @param id A target {@link Identifier} to test.
+     * @return A result.
+     */
+    public boolean equalsMember(Identifier id) {
+        return memberName.equals(id.memberName) && equalsType(id);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -72,13 +130,27 @@ public class Identifier implements Comparable<Identifier> {
         StringBuilder builder = new StringBuilder(packageName);
 
         if (typeName.length() != 0) {
-            builder.append(' ').append(typeName);
+            builder.append('+').append(typeName);
 
             if (memberName.length() != 0) {
-                builder.append(' ').append(memberName);
+                builder.append('+').append(memberName);
             }
         }
         return builder.toString();
+    }
+
+    /**
+     * @return
+     */
+    public Object toTypeString() {
+        return asType().toString();
+    }
+
+    /**
+     * @return
+     */
+    public Object toPackageString() {
+        return asPackage().toString();
     }
 
     /**
@@ -94,7 +166,7 @@ public class Identifier implements Comparable<Identifier> {
             id = "";
         }
 
-        String[] parts = id.split(" ");
+        String[] parts = id.split("\\+");
 
         switch (parts.length) {
         case 0:

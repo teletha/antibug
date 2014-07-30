@@ -9,14 +9,23 @@
  */
 package antibug.javadoc.info;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * @version 2014/07/26 21:47:55
+ * @version 2014/07/30 11:59:17
  */
-public class PackageInfo extends IdentifiableInfo {
+public class ExternalTypeInfo extends TypeInfo {
 
-    /** The list of all types in this package. */
-    public List<TypeInfo> types = new ArrayList();
+    /**
+     * @param id
+     */
+    public ExternalTypeInfo(Identifier id) {
+        this.id = id;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return id.toString();
+    }
 }

@@ -28,6 +28,6 @@ public class MethodInfoTest {
     @Test
     public void method() {
         MethodInfo info = parser.getMethod();
-        assert info.name.equals("method");
+        assert info.id.memberName.equals("method()");
     }
 }

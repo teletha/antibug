@@ -17,23 +17,9 @@ import java.util.List;
  */
 public class TypeInfo extends IdentifiableInfo {
 
-    /** The type name. */
-    public String name;
-
-    /** The simple type name. */
-    public String simpleName;
-
     /** The inner class list. */
-    public List<TypeInfo> inners = new ArrayList();
+    public List<Identifier> inners = new ArrayList();
 
     /** The method list. */
     public List<MethodInfo> methods = new ArrayList();
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected Identifier computeId() {
-        return Identifier.of("", name, "");
-    }
 }
