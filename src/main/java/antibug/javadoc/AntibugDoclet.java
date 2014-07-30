@@ -11,22 +11,26 @@ package antibug.javadoc;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.StringJoiner;
 
 import kiss.I;
 import kiss.Manageable;
 import kiss.Singleton;
+import antibug.javadoc.info.AnnotationInfo;
 import antibug.javadoc.info.Identifier;
 import antibug.javadoc.info.MethodInfo;
 import antibug.javadoc.info.PackageInfo;
+import antibug.javadoc.info.ParamInfo;
 import antibug.javadoc.info.TypeInfo;
 
+import com.sun.javadoc.AnnotationDesc;
+import com.sun.javadoc.AnnotationDesc.ElementValuePair;
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.Doclet;
 import com.sun.javadoc.MethodDoc;
 import com.sun.javadoc.PackageDoc;
 import com.sun.javadoc.Parameter;
 import com.sun.javadoc.RootDoc;
+import com.sun.javadoc.Type;
 
 /**
  * @version 2014/07/26 22:34:28
@@ -126,7 +130,7 @@ public class AntibugDoclet extends Doclet {
             }
 
             for (MethodDoc methodDoc : doc.methods()) {
-                info.methods.add(findMethodInfo(methodDoc, info));
+                info.methods.add(findMethodInfo(methodDoc, info.id));
             }
 
             // associate with package
@@ -149,20 +153,54 @@ public class AntibugDoclet extends Doclet {
      * @param methodDoc
      * @return
      */
-    private MethodInfo findMethodInfo(MethodDoc doc, TypeInfo declaring) {
+    private MethodInfo findMethodInfo(MethodDoc doc, Identifier id) {
         MethodInfo info = new MethodInfo();
-        StringJoiner joiner = new StringJoiner(",", doc.name() + "(", ")");
+        info.id = Identifier.of(id.packageName, id.typeName, doc.name() + doc.signature());
 
-        for (Parameter param : doc.parameters()) {
-            TypeInfo type = findTypeInfoBy(param.type().asClassDoc());
-            joiner.add(type.id.toString());
+        for (Parameter parameter : doc.parameters()) {
+            ParamInfo param = new ParamInfo();
+            param.name = parameter.name();
+            param.type = id(parameter.type());
+
+            for (AnnotationDesc desc : parameter.annotations()) {
+                AnnotationInfo anno = new AnnotationInfo();
+                anno.type = id(desc.annotationType());
+
+                for (ElementValuePair pair : desc.elementValues()) {
+                    anno.keys.add(id(pair.element()));
+                    anno.values.add(pair.value().value());
+                }
+                param.annotation.add(anno);
+            }
+
+            info.params.add(param);
         }
-
-        info.id = Identifier.of(declaring.id.packageName, declaring.id.typeName, joiner.toString());
-        info.signature = doc.signature();
-        info.declaring = declaring.id;
 
         // API definition
         return info;
+    }
+
+    /**
+     * @param element
+     * @return
+     */
+    private Identifier id(MethodDoc method) {
+        return findMethodInfo(method, findTypeInfoBy(method.containingClass()).id).id;
+    }
+
+    /**
+     * <p>
+     * Find {@link Identifier} info by {@link Type}.
+     * </p>
+     * 
+     * @param methodDoc
+     * @return
+     */
+    private Identifier id(Type type) {
+        if (type.isPrimitive()) {
+            return Identifier.of("", type.simpleTypeName(), "");
+        } else {
+            return Identifier.of(type.asClassDoc().containingPackage().name(), type.simpleTypeName(), "");
+        }
     }
 }

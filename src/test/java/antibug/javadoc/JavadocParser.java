@@ -101,8 +101,16 @@ public class JavadocParser extends ReusableRule {
      * @return
      */
     public TypeInfo getType(Class target) {
-        Identifier key = Identifier.of(target.getPackage().getName(), target.getSimpleName(), "");
+        Identifier key;
+        Package pack = target.getPackage();
 
+        if (pack == null) {
+            // primitive or root package?
+            key = Identifier.of("", target.getSimpleName(), "");
+        } else {
+            // other
+            key = Identifier.of(pack.getName(), target.getSimpleName(), "");
+        }
         return doclet.documents.getTypeBy(key);
     }
 
@@ -126,15 +134,30 @@ public class JavadocParser extends ReusableRule {
      */
     public MethodInfo getMethod(Method target) {
         Class clazz = target.getDeclaringClass();
-        StringJoiner joiner = new StringJoiner(",", "(", ")");
+        StringJoiner joiner = new StringJoiner(", ", "(", ")");
 
         for (Class param : target.getParameterTypes()) {
             joiner.add(param.getName());
         }
 
         Identifier key = Identifier.of(clazz.getPackage().getName(), clazz.getSimpleName(), target.getName() + joiner);
-
         return doclet.documents.getMethodBy(key);
+    }
+
+    /**
+     * <p>
+     * Assertion helper.
+     * </p>
+     * 
+     * @param info
+     * @param clazz
+     * @return
+     */
+    public boolean equals(PackageInfo info, Class clazz) {
+        if (info == null || clazz == null) {
+            return false;
+        }
+        return info.id.packageName.equals(clazz.getPackage().getName());
     }
 
     /**
@@ -159,14 +182,56 @@ public class JavadocParser extends ReusableRule {
      * </p>
      * 
      * @param info
+     * @param method
+     * @return
+     */
+    public boolean equals(MethodInfo info, Method method) {
+        if (info == null || method == null) {
+            return false;
+        }
+
+        Class clazz = method.getDeclaringClass();
+        StringJoiner joiner = new StringJoiner(", ", method.getName() + "(", ")");
+
+        for (Class param : method.getParameterTypes()) {
+            joiner.add(param.getName());
+        }
+        return info.id.packageName.equals(clazz.getPackage().getName()) && info.id.typeName.equals(clazz.getSimpleName()) && info.id.memberName.equals(joiner.toString());
+    }
+
+    /**
+     * <p>
+     * Assertion helper.
+     * </p>
+     * 
+     * @param type
      * @param clazz
      * @return
      */
-    public boolean equals(PackageInfo info, Class clazz) {
-        if (info == null || clazz == null) {
-            return false;
+    public boolean equals(Identifier type, Class clazz) {
+        return getType(clazz).id.equals(type);
+    }
+
+    /**
+     * <p>
+     * Retrieve the target method info.
+     * </p>
+     */
+    public Method findMethod(String name, Class... parameters) {
+        return findMethod(testcase, name, parameters);
+    }
+
+    /**
+     * <p>
+     * Retrieve the target method info.
+     * </p>
+     */
+    public Method findMethod(Class host, String name, Class... parameters) {
+        try {
+            return host.getDeclaredMethod(name, parameters);
+        } catch (Exception e) {
+            throw I.quiet(e);
         }
-        return info.id.packageName.equals(clazz.getPackage().getName());
     }
 
     /**

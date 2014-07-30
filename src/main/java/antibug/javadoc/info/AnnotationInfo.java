@@ -13,16 +13,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @version 2014/07/29 18:49:10
+ * @version 2014/07/30 15:46:05
  */
-public class ParamInfo {
+public class AnnotationInfo {
 
-    /** The parameter type. */
+    /** The annotation type. */
     public Identifier type;
 
-    /** The parameter name. */
-    public String name;
+    /** The key list. */
+    public List<Identifier> keys = new ArrayList();
 
-    /** The parameter annotation list. */
-    public List<AnnotationInfo> annotation = new ArrayList();
+    /** The value list. */
+    public List<Object> values = new ArrayList();
 }
