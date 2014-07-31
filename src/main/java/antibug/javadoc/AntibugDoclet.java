@@ -15,8 +15,10 @@ import java.util.Map;
 import kiss.I;
 import kiss.Manageable;
 import kiss.Singleton;
+import kiss.XML;
 import antibug.javadoc.info.AnnotationInfo;
 import antibug.javadoc.info.Identifier;
+import antibug.javadoc.info.MarkupValue;
 import antibug.javadoc.info.MethodInfo;
 import antibug.javadoc.info.PackageInfo;
 import antibug.javadoc.info.ParamInfo;
@@ -24,6 +26,7 @@ import antibug.javadoc.info.TypeInfo;
 
 import com.sun.javadoc.AnnotationDesc;
 import com.sun.javadoc.AnnotationDesc.ElementValuePair;
+import com.sun.javadoc.AnnotationValue;
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.Doclet;
 import com.sun.javadoc.MethodDoc;
@@ -168,7 +171,7 @@ public class AntibugDoclet extends Doclet {
 
                 for (ElementValuePair pair : desc.elementValues()) {
                     anno.keys.add(id(pair.element()));
-                    anno.values.add(pair.value().value());
+                    anno.values.add(analyze(pair.value()));
                 }
                 param.annotation.add(anno);
             }
@@ -178,6 +181,42 @@ public class AntibugDoclet extends Doclet {
 
         // API definition
         return info;
+    }
+
+    /**
+     * @param value
+     * @return
+     */
+    private MarkupValue analyze(AnnotationValue value) {
+        XML xml = I.xml("root");
+        // Returns the value. The type of the returned object is one of the following:
+        //
+        // a wrapper class for a primitive type
+        // String
+        // Type (representing a class literal)
+        // FieldDoc (representing an enum constant)
+        // AnnotationDesc
+        // AnnotationValue[]
+        Object object = value.value();
+
+        return null;
+    }
+
+    /**
+     * @param value
+     * @return
+     */
+    private void analyze(XML xml, Object object) {
+        // Returns the value. The type of the returned object is one of the following:
+        //
+        // a wrapper class for a primitive type
+        // String
+        // Type (representing a class literal)
+        // FieldDoc (representing an enum constant)
+        // AnnotationDesc
+        // AnnotationValue[]
+        if (object instanceof String) {
+        }
     }
 
     /**
