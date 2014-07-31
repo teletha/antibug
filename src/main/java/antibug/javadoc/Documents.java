@@ -73,13 +73,21 @@ public class Documents {
      * @return A package.
      */
     public MethodInfo getMethodBy(Identifier id) {
+        /*
+         * Block comment
+         */
         TypeInfo typeInfo = getTypeBy(id);
 
+        /**
+         * InDoc
+         */
         for (MethodInfo info : typeInfo.methods) {
             if (info.id.equalsMember(id)) {
                 return info;
             }
         }
+
+        // API definition
         return new ExternalMethodInfo(id);
     }
 }

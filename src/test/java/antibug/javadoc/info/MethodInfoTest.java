@@ -16,6 +16,8 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import antibug.javadoc.JavadocParser;
+import antibug.javadoc.info.annotation.Primitive;
+import antibug.javadoc.info.annotation.SourceAnnotationValue;
 import antibug.javadoc.info.annotation.SourceMarker;
 import antibug.javadoc.info.annotation.SourceValue;
 
@@ -90,5 +92,17 @@ public class MethodInfoTest {
     }
 
     public void paramAnnotations(@SourceValue("test") Callable task) {
+    }
+
+    @Test
+    @SourceAnnotationValue({@Primitive(intValue = 10, booleanValue = true),
+            @Primitive(intValue = 20, booleanValue = false),
+            @Primitive(intValue = 30, longValue = -100, booleanValue = false)})
+    public void methodAnnotation() {
+        // <Anno>
+        // _<type href="~" >@SourceAnnotationValue</type>
+        // _<values>
+        // __<
+        // _</value>
     }
 }

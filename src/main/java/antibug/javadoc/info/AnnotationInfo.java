@@ -24,5 +24,5 @@ public class AnnotationInfo {
     public List<Identifier> keys = new ArrayList();
 
     /** The value list. */
-    public List<Object> values = new ArrayList();
+    public List<MarkupValue> values = new ArrayList();
 }
