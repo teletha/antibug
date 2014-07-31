@@ -29,6 +29,7 @@ import static com.sun.tools.javac.code.Flags.*;
 import static com.sun.tools.javac.tree.JCTree.Tag.*;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.io.Writer;
 
 import com.sun.source.tree.MemberReferenceTree.ReferenceMode;
@@ -143,6 +144,11 @@ public class Analyzer extends JCTree.Visitor {
     String lineSep = System.getProperty("line.separator");
 
     /**
+     * Visitor argument: the current precedence level.
+     */
+    int prec;
+
+    /**
      * Align code to be indented to left margin.
      */
     void align() throws IOException {
@@ -217,25 +223,6 @@ public class Analyzer extends JCTree.Visitor {
 
         logicalLine++;
     }
-
-    /**************************************************************************
-     * Traversal methods
-     *************************************************************************/
-
-    /** Exception to propogate IOException through visitXXX methods */
-    private static class UncheckedIOException extends Error {
-
-        static final long serialVersionUID = -4032692679158424751L;
-
-        UncheckedIOException(IOException e) {
-            super(e.getMessage(), e);
-        }
-    }
-
-    /**
-     * Visitor argument: the current precedence level.
-     */
-    int prec;
 
     /**
      * Visitor method: print expression tree.
@@ -347,13 +334,6 @@ public class Analyzer extends JCTree.Visitor {
      */
     public void printDocComment(JCTree tree) throws IOException {
         // ignore
-    }
-
-    // where
-    static int lineEndPos(String s, int start) {
-        int pos = s.indexOf('\n', start);
-        if (pos < 0) pos = s.length();
-        return pos;
     }
 
     /**

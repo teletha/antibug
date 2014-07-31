@@ -24,7 +24,6 @@ import kiss.I;
 import com.sun.source.tree.CompilationUnitTree;
 import com.sun.source.util.JavacTask;
 import com.sun.source.util.Trees;
-import com.sun.tools.javac.tree.JCTree;
 
 /**
  * @version 2014/07/31 10:41:40
@@ -48,17 +47,14 @@ public class SourceParser {
         Trees trees = Trees.instance(task);
 
         for (CompilationUnitTree unit : javacTask.parse()) {
-            LineWriter writer = new LineWriter();
+            SourceXML xml = new SourceXML(I.xml("source"));
             SourceMapper mapper = new SourceMapper(unit, trees.getSourcePositions());
 
             // start analyzing
-            new Analyzer(writer, mapper).printExpr((JCTree) unit);
+            SourceTreeVisitor visitor = new SourceTreeVisitor(xml, mapper);
+            unit.accept(visitor, xml);
 
-            int number = 1;
-
-            for (StringBuilder line : writer) {
-                System.out.println(number++ + "   " + line);
-            }
+            System.out.println(xml);
         }
     }
 }
