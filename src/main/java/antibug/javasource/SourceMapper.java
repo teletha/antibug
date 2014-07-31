@@ -12,6 +12,8 @@ package antibug.javasource;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+import kiss.I;
+
 import com.sun.source.tree.CompilationUnitTree;
 import com.sun.source.tree.LineMap;
 import com.sun.source.tree.Tree;
@@ -60,15 +62,19 @@ public class SourceMapper {
      * @param i
      * @return
      */
-    public String readLineFrom(int lineNumber) throws IOException {
-        while (currentLine++ < lineNumber) {
-            reader.readLine();
-        }
-        String line = reader.readLine().trim();
+    public String readLineFrom(int lineNumber) {
+        try {
+            while (currentLine++ < lineNumber) {
+                reader.readLine();
+            }
+            String line = reader.readLine().trim();
 
-        if (line.startsWith("*")) {
-            line = " ".concat(line);
+            if (line.startsWith("*")) {
+                line = " ".concat(line);
+            }
+            return line;
+        } catch (IOException e) {
+            throw I.quiet(e);
         }
-        return line;
     }
 }
