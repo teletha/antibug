@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.javasource;
+package antibug.source;
 
 import java.util.List;
 import java.util.Set;
