@@ -22,7 +22,6 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import antibug.powerassert.PowerAssertOff;
-import antibug.source.SourceParser;
 import antibug.xml.XMLFormatter;
 
 /**
@@ -67,6 +66,11 @@ public class LowLevelSourceTest {
                     line = line.substring(0, line.length() - 1);
                 }
 
+                // ignore whitespace only line
+                if (isWhitespaceLine(line)) {
+                    continue;
+                }
+
                 // remove comment at the end of a sentence
                 int index = original.indexOf(" //");
 
@@ -81,11 +85,12 @@ public class LowLevelSourceTest {
                     // build error message
                     StringBuilder message = new StringBuilder();
                     message.append("Wrong code at line ").append(i + 1).append(separator);
-                    message.append("◯  ").append(original).append(separator);
-                    message.append("×  ").append(line);
-                    xml.find("line[n=\"" + (i + 1) + "\"]").to(new Fomatter(message));
+                    message.append("◯【").append(original).append("】").append(separator);
+                    message.append("×【").append(line).append("】");
+                    xml.find("line[n=\"" + (i + 1) + "\"]").to(new Formatter(message));
 
-                    System.out.println(separator + message);
+                    xml.to(new Formatter(System.out));
+                    System.out.println(separator + separator + message);
 
                     // build error
                     Error cause = new Error(message.toString());
@@ -100,14 +105,27 @@ public class LowLevelSourceTest {
     }
 
     /**
+     * @param line
+     * @return
+     */
+    private boolean isWhitespaceLine(String line) {
+        for (int i = 0; i < line.length(); i++) {
+            if (!Character.isWhitespace(line.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * @version 2014/08/02 0:23:35
      */
-    private static class Fomatter extends XMLFormatter {
+    private static class Formatter extends XMLFormatter {
 
         /**
          * @param writer
          */
-        public Fomatter(Appendable out) {
+        private Formatter(Appendable out) {
             super(out);
         }
 
