@@ -39,13 +39,17 @@ public class Sample<T> implements Serializable {
      * @param id An identifier.
      * @return A package.
      */
-    public PackageInfo getPackageBy(Identifier id) {
+    public <T> PackageInfo getPackageBy(Identifier id) throws Exception, RuntimeException {
         for (PackageInfo info : packages) {
             if (info.id.equalsPackage(id)) {
                 return info;
             }
         }
         return new ExternalPackageInfo(id);
+    }
+
+    static {
+        System.out.println("DOC");
     }
 
     // /**

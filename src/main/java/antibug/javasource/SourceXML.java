@@ -233,8 +233,34 @@ class SourceXML {
      * 
      * @return Chainable API.
      */
+    SourceXML memberAccess(String name) {
+        xml.append(I.xml("member").text(name));
+
+        return this;
+    }
+
+    /**
+     * <p>
+     * Write type.
+     * </p>
+     * 
+     * @return Chainable API.
+     */
     SourceXML type(String name) {
         xml.append(I.xml("type").text(name));
+
+        return this;
+    }
+
+    /**
+     * <p>
+     * Write member declaration.
+     * </p>
+     * 
+     * @return Chainable API.
+     */
+    SourceXML declaraMember(String value) {
+        xml.append(I.xml("member").text(value));
 
         return this;
     }
