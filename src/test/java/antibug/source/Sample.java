@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.javasource;
+package antibug.source;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -7,9 +7,10 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.javasource;
+package antibug.source;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ import javax.tools.StandardJavaFileManager;
 import javax.tools.ToolProvider;
 
 import kiss.I;
+import kiss.XML;
 
 import com.sun.source.tree.CompilationUnitTree;
 import com.sun.source.util.JavacTask;
@@ -29,6 +31,45 @@ import com.sun.source.util.Trees;
  * @version 2014/07/31 10:41:40
  */
 public class SourceParser {
+
+    /** The compiler interface. */
+    private static final JavaCompiler compiler;
+
+    /** The file manager. */
+    private static final StandardJavaFileManager manager;
+
+    static {
+        compiler = ToolProvider.getSystemJavaCompiler();
+        manager = compiler.getStandardFileManager(null, null, null);
+    }
+
+    /**
+     * <p>
+     * Parse the given source and build {@link XML} representation.
+     * </p>
+     * 
+     * @param source A source file.
+     * @return A {@link XML}.
+     */
+    public static XML parse(Path source) {
+        try {
+            JavacTask task = (JavacTask) compiler.getTask(null, manager, null, null, null, manager.getJavaFileObjects(source.toFile()));
+            Trees trees = Trees.instance(task);
+
+            XML xml = I.xml("source");
+            SourceXML root = new SourceXML(xml);
+
+            for (CompilationUnitTree unit : task.parse()) {
+                SourceMapper mapper = new SourceMapper(unit, trees.getSourcePositions());
+
+                // start analyzing
+                unit.accept(new SourceTreeVisitor(root, mapper), root);
+            }
+            return xml;
+        } catch (IOException e) {
+            throw I.quiet(e);
+        }
+    }
 
     public static final void main(final String[] args) throws Exception {
         JavaCompiler javac = ToolProvider.getSystemJavaCompiler();

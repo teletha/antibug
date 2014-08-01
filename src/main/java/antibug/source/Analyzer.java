@@ -23,7 +23,7 @@
  * questions.
  */
 
-package antibug.javasource;
+package antibug.source;
 
 import static com.sun.tools.javac.code.Flags.*;
 import static com.sun.tools.javac.tree.JCTree.Tag.*;
