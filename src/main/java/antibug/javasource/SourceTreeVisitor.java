@@ -73,7 +73,7 @@ import com.sun.source.tree.WildcardTree;
 /**
  * @version 2014/07/31 21:39:41
  */
-class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
+class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
     /** The root xml. */
     private final SourceXML root;
@@ -85,7 +85,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
     private final SourceMapper mapper;
 
     /** The current AST line number. */
-    private int logicalLine = 0;
+    private int logicalLine = 1;
 
     /** The current AST indent size. */
     private int indent = 0;
@@ -96,16 +96,19 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
     SourceTreeVisitor(SourceXML xml, SourceMapper mapper) {
         this.root = xml;
         this.mapper = mapper;
-
-        startNewLine();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Object visitAnnotatedType(AnnotatedTypeTree arg0, SourceXML context) {
-        System.out.println("visitAnnotatedType");
+    public SourceXML visitAnnotatedType(AnnotatedTypeTree type, SourceXML context) {
+        traceLine(type, context);
+
+        for (AnnotationTree annotation : type.getAnnotations()) {
+            annotation.accept(this, context);
+        }
+        type.getUnderlyingType().accept(this, context);
         return null;
     }
 
@@ -113,32 +116,20 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitAnnotation(AnnotationTree annotation, SourceXML context) {
-        traceLine(annotation);
+    public SourceXML visitAnnotation(AnnotationTree annotation, SourceXML context) {
+        context = traceLine(annotation, context);
 
-        SourceXML anno = xml.child("annotation").text("@" + annotation.getAnnotationType());
+        SourceXML anno = context.child("annotation").text("@" + annotation.getAnnotationType());
+        anno.join("(", ")", annotation.getArguments(), tree -> tree.accept(this, anno));
 
-        List<? extends ExpressionTree> values = annotation.getArguments();
-
-        if (!values.isEmpty()) {
-            anno.text("(");
-            for (int i = 0, size = values.size(); i < size; i++) {
-                values.get(i).accept(this, anno);
-
-                if (i < size - 1) {
-                    anno.text(",").space();
-                }
-            }
-            anno.text(")");
-        }
-        return startNewLine();
+        return context;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Object visitArrayAccess(ArrayAccessTree arg0, SourceXML context) {
+    public SourceXML visitArrayAccess(ArrayAccessTree arg0, SourceXML context) {
         System.out.println("visitArrayAccess");
         return null;
     }
@@ -147,7 +138,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitArrayType(ArrayTypeTree arg0, SourceXML context) {
+    public SourceXML visitArrayType(ArrayTypeTree arg0, SourceXML context) {
         System.out.println("visitArrayType");
         return null;
     }
@@ -156,7 +147,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitAssert(AssertTree arg0, SourceXML context) {
+    public SourceXML visitAssert(AssertTree arg0, SourceXML context) {
         System.out.println("visitAssert");
         return null;
     }
@@ -165,7 +156,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitAssignment(AssignmentTree assign, SourceXML context) {
+    public SourceXML visitAssignment(AssignmentTree assign, SourceXML context) {
         context.variable(assign.getVariable().toString()).space().text("=").space();
         assign.getExpression().accept(this, context);
         return null;
@@ -175,7 +166,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitBinary(BinaryTree arg0, SourceXML context) {
+    public SourceXML visitBinary(BinaryTree arg0, SourceXML context) {
         System.out.println("visitBinary");
         return null;
     }
@@ -184,7 +175,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitBlock(BlockTree arg0, SourceXML context) {
+    public SourceXML visitBlock(BlockTree arg0, SourceXML context) {
         System.out.println("visitBlock");
         return null;
     }
@@ -193,7 +184,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitBreak(BreakTree arg0, SourceXML context) {
+    public SourceXML visitBreak(BreakTree arg0, SourceXML context) {
         System.out.println("visitCase");
         return null;
     }
@@ -202,7 +193,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitCase(CaseTree arg0, SourceXML context) {
+    public SourceXML visitCase(CaseTree arg0, SourceXML context) {
         System.out.println("visitCase");
         return null;
     }
@@ -211,7 +202,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitCatch(CatchTree arg0, SourceXML context) {
+    public SourceXML visitCatch(CatchTree arg0, SourceXML context) {
         System.out.println("visitCatch");
         return null;
     }
@@ -220,11 +211,11 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitClass(ClassTree clazz, SourceXML context) {
+    public SourceXML visitClass(ClassTree clazz, SourceXML context) {
         // ===========================================
         // Annotations and Modifiers
         // ===========================================
-        visitModifiers(clazz.getModifiers(), context);
+        context = clazz.getModifiers().accept(this, context);
 
         // ===========================================
         // Type Declaration
@@ -251,21 +242,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
         // ===========================================
         // Type Parameters
         // ===========================================
-        List<? extends TypeParameterTree> parameters = clazz.getTypeParameters();
-
-        if (!parameters.isEmpty()) {
-            SourceXML param = xml.child("typeParam").text("<");
-
-            for (int i = 0, size = parameters.size(); i < size; i++) {
-                parameters.get(i).accept(this, param);
-
-                if (i < size - 1) {
-                    param.text(",").space();
-                }
-            }
-            param.text(">");
-        }
-        xml.space();
+        xml.children("typeParam", "<", ">", clazz.getTypeParameters(), (tree, xml) -> tree.accept(this, xml)).space();
 
         // ===========================================
         // Extends
@@ -283,15 +260,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
         List<? extends Tree> implement = clazz.getImplementsClause();
 
         if (!implement.isEmpty()) {
-            xml.reserved("implements").space();
-
-            for (int i = 0, size = implement.size(); i < size; i++) {
-                implement.get(i).accept(this, xml);
-
-                if (i < size - 1) {
-                    xml.text(",").space();
-                }
-            }
+            xml.reserved("implements").space().join(implement, tree -> tree.accept(this, xml));
         }
         xml.text("{");
         startNewLine();
@@ -302,20 +271,20 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
         for (Tree tree : clazz.getMembers()) {
             tree.accept(this, context);
         }
-        return null;
+        return context;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Object visitCompilationUnit(CompilationUnitTree unit, SourceXML context) {
-        traceLine(unit);
+    public SourceXML visitCompilationUnit(CompilationUnitTree unit, SourceXML context) {
+        context = traceLine(unit, context);
 
-        xml.reserved("package").space().text(unit.getPackageName()).semiColon().line();
+        context.reserved("package").space().text(unit.getPackageName()).semiColon().line();
 
         for (ImportTree tree : unit.getImports()) {
-            visitImport(tree, context);
+            context = visitImport(tree, context);
         }
 
         for (Tree tree : unit.getTypeDecls()) {
@@ -328,7 +297,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitCompoundAssignment(CompoundAssignmentTree arg0, SourceXML context) {
+    public SourceXML visitCompoundAssignment(CompoundAssignmentTree arg0, SourceXML context) {
         System.out.println("visitCompoundAssignment");
         return null;
     }
@@ -337,7 +306,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitConditionalExpression(ConditionalExpressionTree arg0, SourceXML context) {
+    public SourceXML visitConditionalExpression(ConditionalExpressionTree arg0, SourceXML context) {
         System.out.println("visitConditionalExpression");
         return null;
     }
@@ -346,7 +315,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitContinue(ContinueTree arg0, SourceXML context) {
+    public SourceXML visitContinue(ContinueTree arg0, SourceXML context) {
         System.out.println("visitContinue");
         return null;
     }
@@ -355,7 +324,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitDoWhileLoop(DoWhileLoopTree arg0, SourceXML context) {
+    public SourceXML visitDoWhileLoop(DoWhileLoopTree arg0, SourceXML context) {
         System.out.println("visitDoWhileLoop");
         return null;
     }
@@ -364,7 +333,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitEmptyStatement(EmptyStatementTree arg0, SourceXML context) {
+    public SourceXML visitEmptyStatement(EmptyStatementTree arg0, SourceXML context) {
         System.out.println("visitEmptyStatement");
         return null;
     }
@@ -373,7 +342,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitEnhancedForLoop(EnhancedForLoopTree arg0, SourceXML context) {
+    public SourceXML visitEnhancedForLoop(EnhancedForLoopTree arg0, SourceXML context) {
         System.out.println("visitEnhancedForLoop");
         return null;
     }
@@ -382,7 +351,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitErroneous(ErroneousTree arg0, SourceXML context) {
+    public SourceXML visitErroneous(ErroneousTree arg0, SourceXML context) {
         System.out.println("visitErroneous");
         return null;
     }
@@ -391,7 +360,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitExpressionStatement(ExpressionStatementTree arg0, SourceXML context) {
+    public SourceXML visitExpressionStatement(ExpressionStatementTree arg0, SourceXML context) {
         System.out.println("visitExpressionStatement");
         return null;
     }
@@ -400,7 +369,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitForLoop(ForLoopTree arg0, SourceXML context) {
+    public SourceXML visitForLoop(ForLoopTree arg0, SourceXML context) {
         System.out.println("visitForLoop");
         return null;
     }
@@ -409,7 +378,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitIdentifier(IdentifierTree identifier, SourceXML context) {
+    public SourceXML visitIdentifier(IdentifierTree identifier, SourceXML context) {
         context.type(identifier.getName().toString());
 
         return null;
@@ -419,7 +388,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitIf(IfTree arg0, SourceXML context) {
+    public SourceXML visitIf(IfTree arg0, SourceXML context) {
         System.out.println("visitIf");
         return null;
     }
@@ -428,20 +397,20 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitImport(ImportTree tree, SourceXML context) {
-        traceLine(tree);
+    public SourceXML visitImport(ImportTree tree, SourceXML context) {
+        context = traceLine(tree, context);
 
         xml.reserved("import").space();
         if (tree.isStatic()) xml.reserved("static").space();
         xml.text(tree.getQualifiedIdentifier()).semiColon().line();
-        return startNewLine();
+        return context;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Object visitInstanceOf(InstanceOfTree arg0, SourceXML context) {
+    public SourceXML visitInstanceOf(InstanceOfTree arg0, SourceXML context) {
         System.out.println("visitInstanceOf");
         return null;
     }
@@ -450,7 +419,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitIntersectionType(IntersectionTypeTree arg0, SourceXML context) {
+    public SourceXML visitIntersectionType(IntersectionTypeTree arg0, SourceXML context) {
         System.out.println("visitIntersectionType");
         return null;
     }
@@ -459,7 +428,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitLabeledStatement(LabeledStatementTree arg0, SourceXML context) {
+    public SourceXML visitLabeledStatement(LabeledStatementTree arg0, SourceXML context) {
         System.out.println("visitLabeledStatement");
         return null;
     }
@@ -468,7 +437,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitLambdaExpression(LambdaExpressionTree arg0, SourceXML context) {
+    public SourceXML visitLambdaExpression(LambdaExpressionTree arg0, SourceXML context) {
         System.out.println("visitLambdaExpression");
         return null;
     }
@@ -477,8 +446,8 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitLiteral(LiteralTree literal, SourceXML context) {
-        traceLine(literal);
+    public SourceXML visitLiteral(LiteralTree literal, SourceXML context) {
+        traceLine(literal, context);
 
         Object value = literal.getValue();
 
@@ -537,7 +506,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitMemberReference(MemberReferenceTree arg0, SourceXML context) {
+    public SourceXML visitMemberReference(MemberReferenceTree arg0, SourceXML context) {
         System.out.println("visitMemberReference");
         return null;
     }
@@ -546,7 +515,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitMemberSelect(MemberSelectTree arg0, SourceXML context) {
+    public SourceXML visitMemberSelect(MemberSelectTree arg0, SourceXML context) {
         System.out.println("visitMemberSelect");
         return null;
     }
@@ -555,8 +524,10 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitMethod(MethodTree arg0, SourceXML context) {
-        System.out.println("visitMethod");
+    public SourceXML visitMethod(MethodTree method, SourceXML context) {
+        traceLine(method, context);
+
+        visitModifiers(method.getModifiers(), xml);
         return null;
     }
 
@@ -564,7 +535,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitMethodInvocation(MethodInvocationTree arg0, SourceXML context) {
+    public SourceXML visitMethodInvocation(MethodInvocationTree arg0, SourceXML context) {
         System.out.println("visitMethodInvocation");
         return null;
     }
@@ -573,27 +544,31 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitModifiers(ModifiersTree modifiers, SourceXML context) {
+    public SourceXML visitModifiers(ModifiersTree modifiers, SourceXML context) {
+        context = traceLine(modifiers, context);
+
         // ===========================================
         // Annotations
         // ===========================================
         for (AnnotationTree tree : modifiers.getAnnotations()) {
-            visitAnnotation(tree, context);
+            context = visitAnnotation(tree, context);
         }
+
+        context = startNewLine();
 
         // ===========================================
         // Modifiers
         // ===========================================
-        visitModifier(modifiers.getFlags(), xml);
+        context = visitModifier(modifiers.getFlags(), context);
 
-        return null;
+        return context;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Object visitNewArray(NewArrayTree arg0, SourceXML context) {
+    public SourceXML visitNewArray(NewArrayTree arg0, SourceXML context) {
         System.out.println("visitNewArray");
         return null;
     }
@@ -602,8 +577,28 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitNewClass(NewClassTree arg0, SourceXML context) {
-        System.out.println("visitNewClass");
+    public SourceXML visitNewClass(NewClassTree clazz, SourceXML context) {
+        // check enclosing class
+        ExpressionTree enclosing = clazz.getEnclosingExpression();
+
+        if (enclosing != null) {
+            enclosing.accept(this, context);
+            context.text(".");
+        }
+
+        context.reserved("new").space();
+        visitTypeParameters(clazz.getTypeArguments(), context);
+        clazz.getIdentifier().accept(this, context);
+        context.text("(");
+        context.join(clazz.getArguments(), item -> item.accept(this, context));
+        context.text(")");
+
+        ClassTree body = clazz.getClassBody();
+
+        if (body != null) {
+            body.accept(this, context);
+        }
+
         return null;
     }
 
@@ -611,7 +606,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitOther(Tree arg0, SourceXML context) {
+    public SourceXML visitOther(Tree arg0, SourceXML context) {
         System.out.println("visitOther");
         return null;
     }
@@ -620,23 +615,14 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitParameterizedType(ParameterizedTypeTree type, SourceXML context) {
-        context.type(type.getType().toString());
+    public SourceXML visitParameterizedType(ParameterizedTypeTree type, SourceXML context) {
+        traceLine(type, context);
 
-        List<? extends Tree> arguments = type.getTypeArguments();
+        type.getType().accept(this, context);
 
-        if (!arguments.isEmpty()) {
-            SourceXML params = context.child("typeParam").text("<");
-
-            for (int i = 0, size = arguments.size(); i < size; i++) {
-                arguments.get(i).accept(this, params);
-
-                if (i < size - 1) {
-                    params.text(",").space();
-                }
-            }
-            params.text(">");
-        }
+        context.children("typeParam", "<", ">", type.getTypeArguments(), (tree, xml) -> {
+            tree.accept(this, xml);
+        });
         return null;
     }
 
@@ -644,7 +630,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitParenthesized(ParenthesizedTree arg0, SourceXML context) {
+    public SourceXML visitParenthesized(ParenthesizedTree arg0, SourceXML context) {
         System.out.println("visitParenthesized");
         return null;
     }
@@ -653,7 +639,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitPrimitiveType(PrimitiveTypeTree arg0, SourceXML context) {
+    public SourceXML visitPrimitiveType(PrimitiveTypeTree arg0, SourceXML context) {
         System.out.println("visitPrimitiveType");
         return null;
     }
@@ -662,7 +648,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitReturn(ReturnTree arg0, SourceXML context) {
+    public SourceXML visitReturn(ReturnTree arg0, SourceXML context) {
         System.out.println("visitReturn");
         return null;
     }
@@ -671,7 +657,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitSwitch(SwitchTree arg0, SourceXML context) {
+    public SourceXML visitSwitch(SwitchTree arg0, SourceXML context) {
         System.out.println("visitSwitch");
         return null;
     }
@@ -680,7 +666,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitSynchronized(SynchronizedTree arg0, SourceXML context) {
+    public SourceXML visitSynchronized(SynchronizedTree arg0, SourceXML context) {
         System.out.println("visitSynchronized");
         return null;
     }
@@ -689,7 +675,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitThrow(ThrowTree arg0, SourceXML context) {
+    public SourceXML visitThrow(ThrowTree arg0, SourceXML context) {
         System.out.println("visitThrow");
         return null;
     }
@@ -698,7 +684,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitTry(TryTree arg0, SourceXML context) {
+    public SourceXML visitTry(TryTree arg0, SourceXML context) {
         System.out.println("visitTry");
         return null;
     }
@@ -707,7 +693,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitTypeCast(TypeCastTree arg0, SourceXML context) {
+    public SourceXML visitTypeCast(TypeCastTree arg0, SourceXML context) {
         System.out.println("visitTypeCast");
         return null;
     }
@@ -716,7 +702,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitTypeParameter(TypeParameterTree param, SourceXML context) {
+    public SourceXML visitTypeParameter(TypeParameterTree param, SourceXML context) {
         context.type(param.toString());
         return null;
     }
@@ -725,7 +711,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitUnary(UnaryTree arg0, SourceXML context) {
+    public SourceXML visitUnary(UnaryTree arg0, SourceXML context) {
         System.out.println("visitUnary");
         return null;
     }
@@ -734,7 +720,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitUnionType(UnionTypeTree arg0, SourceXML context) {
+    public SourceXML visitUnionType(UnionTypeTree arg0, SourceXML context) {
         System.out.println("visitUnionType");
         return null;
     }
@@ -743,14 +729,20 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitVariable(VariableTree variable, SourceXML context) {
-        traceLine(variable);
+    public SourceXML visitVariable(VariableTree variable, SourceXML context) {
+        context = traceLine(variable, context);
 
         // Annotations and Modifiers
-        visitModifiers(variable.getModifiers(), xml);
+        visitModifiers(variable.getModifiers(), context);
 
         // Type
         variable.getType().accept(this, xml);
+
+        // Name
+        xml.variable(variable.getName().toString()).space().text("=").space();
+
+        // Value
+        variable.getInitializer().accept(this, xml);
 
         return null;
     }
@@ -759,7 +751,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitWhileLoop(WhileLoopTree arg0, SourceXML context) {
+    public SourceXML visitWhileLoop(WhileLoopTree arg0, SourceXML context) {
         System.out.println("visitWhileLoop");
         return null;
     }
@@ -768,7 +760,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public Object visitWildcard(WildcardTree arg0, SourceXML context) {
+    public SourceXML visitWildcard(WildcardTree arg0, SourceXML context) {
         System.out.println("visitWildcard");
         return null;
     }
@@ -779,7 +771,7 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * </p>
      */
     private SourceXML startNewLine() {
-        return this.xml = root.child("line").attr("n", ++logicalLine);
+        return this.xml = root.child("line").attr("n", logicalLine++);
     }
 
     /**
@@ -788,14 +780,20 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * </p>
      * 
      * @param current
+     * @param context TODO
      */
-    private void traceLine(Tree current) {
+    private SourceXML traceLine(Tree current, SourceXML context) {
         int actualLine = mapper.getLine(current);
 
-        while (logicalLine < actualLine) {
-            xml.text(mapper.readLineFrom(logicalLine) + "☆");
-            startNewLine();
+        if (actualLine < logicalLine) {
+            return context;
         }
+
+        while (logicalLine < actualLine) {
+            SourceXML line = startNewLine();
+            line.text(mapper.readLineFrom(logicalLine) + "☆");
+        }
+        return startNewLine();
     }
 
     private static final Modifier[] MODIFIE_ORDER = {Modifier.PUBLIC, Modifier.PROTECTED, Modifier.PRIVATE,
@@ -806,11 +804,24 @@ class SourceTreeVisitor implements TreeVisitor<Object, SourceXML> {
      * Write modifiers.
      * </p>
      */
-    private void visitModifier(Set<Modifier> modifiers, SourceXML context) {
+    private SourceXML visitModifier(Set<Modifier> modifiers, SourceXML context) {
         for (Modifier modifier : MODIFIE_ORDER) {
             if (modifiers.contains(modifier)) {
                 context.reserved(modifier.name().toLowerCase()).space();
             }
         }
+        return context;
+    }
+
+    /**
+     * <p>
+     * Write type parameters.
+     * </p>
+     * 
+     * @param list
+     * @param context
+     */
+    private void visitTypeParameters(List<? extends Tree> list, SourceXML context) {
+        context.children("typeParam", "<", ">", list, (tree, xml) -> tree.accept(this, xml)).space();
     }
 }
