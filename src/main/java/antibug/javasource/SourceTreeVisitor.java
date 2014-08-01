@@ -56,6 +56,7 @@ import com.sun.source.tree.ParameterizedTypeTree;
 import com.sun.source.tree.ParenthesizedTree;
 import com.sun.source.tree.PrimitiveTypeTree;
 import com.sun.source.tree.ReturnTree;
+import com.sun.source.tree.StatementTree;
 import com.sun.source.tree.SwitchTree;
 import com.sun.source.tree.SynchronizedTree;
 import com.sun.source.tree.ThrowTree;
@@ -78,8 +79,8 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     /** The root xml. */
     private final SourceXML root;
 
-    /** The current line xml. */
-    private SourceXML xml;
+    /** The latest line xml. */
+    private SourceXML latestLine;
 
     /** The actual line mapper. */
     private final SourceMapper mapper;
@@ -175,8 +176,17 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitBlock(BlockTree arg0, SourceXML context) {
-        System.out.println("visitBlock");
+    public SourceXML visitBlock(BlockTree block, SourceXML context) {
+        context = traceLine(block, context);
+
+        if (block.isStatic()) {
+            context.space().reserved("static");;
+        }
+        context.space().text("{");
+        for (StatementTree tree : block.getStatements()) {
+            tree.accept(this, context);
+        }
+        context.text("}");
         return null;
     }
 
@@ -222,27 +232,27 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         // ===========================================
         switch (clazz.getKind()) {
         case CLASS:
-            xml.reserved("class").space();
+            latestLine.reserved("class").space();
             break;
 
         case INTERFACE:
-            xml.reserved("interface").space();
+            latestLine.reserved("interface").space();
             break;
 
         case ANNOTATION:
-            xml.reserved("@interface").space();
+            latestLine.reserved("@interface").space();
             break;
 
         case ENUM:
-            xml.reserved("enum").space();
+            latestLine.reserved("enum").space();
             break;
         }
-        xml.type(clazz.getSimpleName().toString());
+        latestLine.type(clazz.getSimpleName().toString());
 
         // ===========================================
         // Type Parameters
         // ===========================================
-        xml.children("typeParam", "<", ">", clazz.getTypeParameters(), (tree, xml) -> tree.accept(this, xml)).space();
+        visitTypeParameters(clazz.getTypeParameters(), latestLine);
 
         // ===========================================
         // Extends
@@ -250,8 +260,8 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         Tree extend = clazz.getExtendsClause();
 
         if (extend != null) {
-            xml.reserved("extends").space();
-            extend.accept(this, xml);
+            latestLine.reserved("extends").space();
+            extend.accept(this, latestLine);
         }
 
         // ===========================================
@@ -260,9 +270,9 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         List<? extends Tree> implement = clazz.getImplementsClause();
 
         if (!implement.isEmpty()) {
-            xml.reserved("implements").space().join(implement, tree -> tree.accept(this, xml));
+            latestLine.reserved("implements").space().join(implement, tree -> tree.accept(this, latestLine));
         }
-        xml.text("{");
+        latestLine.text("{");
         startNewLine();
 
         // ===========================================
@@ -342,8 +352,16 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitEnhancedForLoop(EnhancedForLoopTree arg0, SourceXML context) {
-        System.out.println("visitEnhancedForLoop");
+    public SourceXML visitEnhancedForLoop(EnhancedForLoopTree loop, SourceXML context) {
+        context = traceLine(loop, context);
+
+        latestLine.reserved("for").space().text("(");
+        loop.getVariable().accept(this, latestLine);
+        latestLine.space().text(":").space();
+        loop.getExpression().accept(this, latestLine);
+        latestLine.text(")").space();
+        loop.getStatement().accept(this, latestLine);
+
         return null;
     }
 
@@ -388,8 +406,24 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitIf(IfTree arg0, SourceXML context) {
-        System.out.println("visitIf");
+    public SourceXML visitIf(IfTree tree, SourceXML context) {
+        traceLine(tree, context);
+
+        // Condition
+        latestLine.reserved("if").space();
+        tree.getCondition().accept(this, latestLine);
+        latestLine.space();
+
+        // Then
+        tree.getThenStatement().accept(this, latestLine);
+
+        StatementTree elseStatement = tree.getElseStatement();
+
+        if (elseStatement != null) {
+            latestLine.space().reserved("else").space();
+            elseStatement.accept(this, latestLine);
+        }
+
         return null;
     }
 
@@ -400,9 +434,9 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitImport(ImportTree tree, SourceXML context) {
         context = traceLine(tree, context);
 
-        xml.reserved("import").space();
-        if (tree.isStatic()) xml.reserved("static").space();
-        xml.text(tree.getQualifiedIdentifier()).semiColon().line();
+        latestLine.reserved("import").space();
+        if (tree.isStatic()) latestLine.reserved("static").space();
+        latestLine.text(tree.getQualifiedIdentifier()).semiColon().line();
         return context;
     }
 
@@ -515,8 +549,12 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitMemberSelect(MemberSelectTree arg0, SourceXML context) {
-        System.out.println("visitMemberSelect");
+    public SourceXML visitMemberSelect(MemberSelectTree select, SourceXML context) {
+        traceLine(select, context);
+
+        select.getExpression().accept(this, latestLine);
+        latestLine.text(".").memberAccess(select.getIdentifier().toString());
+
         return null;
     }
 
@@ -527,16 +565,110 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitMethod(MethodTree method, SourceXML context) {
         traceLine(method, context);
 
-        visitModifiers(method.getModifiers(), xml);
+        // ===========================================
+        // Annotations and Modifiers
+        // ===========================================
+        visitModifiers(method.getModifiers(), latestLine);
+
+        // ===========================================
+        // Type Parameter Declarations
+        // ===========================================
+        visitTypeParameters(method.getTypeParameters(), latestLine);
+
+        // ===========================================
+        // Return Type
+        // ===========================================
+        method.getReturnType().accept(this, latestLine);
+
+        // ===========================================
+        // Method Name And Parameters
+        // ===========================================
+        latestLine.declaraMember(method.getName().toString()).text("(");
+        latestLine.join(method.getParameters(), tree -> tree.accept(this, latestLine));
+        latestLine.text(")");
+
+        // ===========================================
+        // Throws
+        // ===========================================
+        List<? extends ExpressionTree> exceptions = method.getThrows();
+
+        if (!exceptions.isEmpty()) {
+            latestLine.space().reserved("throws").space().join(exceptions, item -> item.accept(this, latestLine));
+        }
+
+        // ===========================================
+        // Default Value for Annotation
+        // ===========================================
+        Tree defaultValue = method.getDefaultValue();
+
+        if (defaultValue != null) {
+            latestLine.space().reserved("default").space();
+            defaultValue.accept(this, latestLine);
+        }
+
+        // ===========================================
+        // Method Body
+        // ===========================================
+        BlockTree body = method.getBody();
+
+        if (body == null) {
+            // abstract
+            latestLine.semiColon();
+        } else {
+            // concreat
+            body.accept(this, latestLine);
+        }
+
         return null;
+
+        // }
+        // if (tree.defaultValue != null) {
+        // print(" default ");
+        // printExpr(tree.defaultValue);
+        // }
+        // if (tree.body != null) {
+        // print(" ");
+        // printStat(tree.body);
+        // } else {
+        // print(";");
+        // }
+        // } catch (IOException e) {
+        // throw new UncheckedIOException(e);
+        // }
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitMethodInvocation(MethodInvocationTree arg0, SourceXML context) {
-        System.out.println("visitMethodInvocation");
+    public SourceXML visitMethodInvocation(MethodInvocationTree invoke, SourceXML context) {
+        traceLine(invoke, context);
+
+        invoke.getMethodSelect().accept(this, latestLine);
+
+        // try {
+        // if (!tree.typeargs.isEmpty()) {
+        // if (tree.meth.hasTag(SELECT)) {
+        // JCFieldAccess left = (JCFieldAccess) tree.meth;
+        // printExpr(left.selected);
+        // print(".<");
+        // printExprs(tree.typeargs);
+        // print(">" + left.name);
+        // } else {
+        // print("<");
+        // printExprs(tree.typeargs);
+        // print(">");
+        // printExpr(tree.meth);
+        // }
+        // } else {
+        // printExpr(tree.meth);
+        // }
+        // print("(");
+        // printExprs(tree.args);
+        // print(")");
+        // } catch (IOException e) {
+        // throw new UncheckedIOException(e);
+        // }
         return null;
     }
 
@@ -550,11 +682,14 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         // ===========================================
         // Annotations
         // ===========================================
-        for (AnnotationTree tree : modifiers.getAnnotations()) {
-            context = visitAnnotation(tree, context);
-        }
+        List<? extends AnnotationTree> annotations = modifiers.getAnnotations();
 
-        context = startNewLine();
+        if (!annotations.isEmpty()) {
+            for (AnnotationTree tree : annotations) {
+                context = visitAnnotation(tree, context);
+            }
+            context = startNewLine();
+        }
 
         // ===========================================
         // Modifiers
@@ -598,6 +733,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         if (body != null) {
             body.accept(this, context);
         }
+        context.text(";");
 
         return null;
     }
@@ -630,8 +766,13 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitParenthesized(ParenthesizedTree arg0, SourceXML context) {
-        System.out.println("visitParenthesized");
+    public SourceXML visitParenthesized(ParenthesizedTree tree, SourceXML context) {
+        traceLine(tree, context);
+
+        latestLine.text("(");
+        tree.getExpression().accept(this, latestLine);
+        latestLine.text(")");
+
         return null;
     }
 
@@ -736,13 +877,18 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         visitModifiers(variable.getModifiers(), context);
 
         // Type
-        variable.getType().accept(this, xml);
+        variable.getType().accept(this, latestLine);
 
         // Name
-        xml.variable(variable.getName().toString()).space().text("=").space();
+        latestLine.variable(variable.getName().toString());
 
         // Value
-        variable.getInitializer().accept(this, xml);
+        ExpressionTree initializer = variable.getInitializer();
+
+        if (initializer != null) {
+            latestLine.space().text("=").space();
+            initializer.accept(this, latestLine);
+        }
 
         return null;
     }
@@ -771,7 +917,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * </p>
      */
     private SourceXML startNewLine() {
-        return this.xml = root.child("line").attr("n", logicalLine++);
+        return this.latestLine = root.child("line").attr("n", logicalLine++);
     }
 
     /**
