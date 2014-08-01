@@ -33,10 +33,10 @@ public class SourceParser {
     public static final void main(final String[] args) throws Exception {
         JavaCompiler javac = ToolProvider.getSystemJavaCompiler();
 
-        Path dir = I.locate("src/main/java/antibug/javadoc");
+        Path dir = I.locate("src/test/java/antibug/javasource");
         List<File> files = new ArrayList();
 
-        for (Path path : I.walk(dir, "Documents.java")) {
+        for (Path path : I.walk(dir, "Sample.java")) {
             files.add(path.toFile());
         }
 
@@ -55,6 +55,23 @@ public class SourceParser {
             unit.accept(visitor, xml);
 
             System.out.println(xml);
+
+            // SAMPLE
+            // LineWriter writer = new LineWriter();
+            // Analyzer analyzer = new Analyzer(writer, mapper);
+            // analyzer.visitTopLevel((JCCompilationUnit) unit);
+            //
+            // int number = 1;
+            //
+            // for (StringBuilder stringBuilder : writer) {
+            // System.out.println(number++ + "   " + stringBuilder);
+            // }
+
+            // SAMPLE
+            // StringWriter writer = new StringWriter();
+            // Pretty analyzer = new Pretty(writer, false);
+            // analyzer.visitTopLevel((JCCompilationUnit) unit);
+            // System.out.println(writer.toString());
         }
     }
 }

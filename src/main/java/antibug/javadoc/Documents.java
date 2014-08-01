@@ -9,7 +9,6 @@
  */
 package antibug.javadoc;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,14 +19,11 @@ import antibug.javadoc.info.Identifier;
 import antibug.javadoc.info.MethodInfo;
 import antibug.javadoc.info.PackageInfo;
 import antibug.javadoc.info.TypeInfo;
-import antibug.javadoc.info.annotation.Primitive;
 
 /**
  * @version 2014/07/26 21:47:07
  */
-@SuppressWarnings("all")
-@Primitive(intValue = 20, booleanValue = false)
-public class Documents<T> implements Serializable {
+public class Documents {
 
     /** The package list. */
     public List<PackageInfo> packages = new ArrayList();

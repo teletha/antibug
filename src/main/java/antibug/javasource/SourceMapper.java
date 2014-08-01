@@ -64,7 +64,7 @@ public class SourceMapper {
      */
     public String readLineFrom(int lineNumber) {
         try {
-            while (currentLine++ < lineNumber) {
+            while (++currentLine < lineNumber) {
                 reader.readLine();
             }
             String line = reader.readLine().trim();

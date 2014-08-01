@@ -9,6 +9,10 @@
  */
 package antibug.javasource;
 
+import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+
 import kiss.I;
 import kiss.XML;
 
@@ -45,6 +49,63 @@ class SourceXML {
      */
     SourceXML child(String name) {
         return new SourceXML(xml.child(name));
+    }
+
+    /**
+     * <p>
+     * Create child elements.
+     * </p>
+     */
+    <T> SourceXML children(String name, String prefix, String suffix, List<T> list, BiConsumer<T, SourceXML> item) {
+        int size = list.size();
+
+        if (size != 0) {
+            SourceXML container = child(name);
+
+            container.text(prefix);
+
+            for (int i = 0; i < size; i++) {
+                item.accept(list.get(i), container);
+
+                if (i < size - 1) {
+                    container.text(",").space();
+                }
+            }
+            container.text(suffix);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Create child elements.
+     * </p>
+     */
+    <T> SourceXML join(List<T> list, Consumer<T> item) {
+        return join(null, null, list, item);
+    }
+
+    /**
+     * <p>
+     * Create child elements.
+     * </p>
+     */
+    <T> SourceXML join(String prefix, String suffix, List<T> list, Consumer<T> item) {
+        int size = list.size();
+
+        if (size != 0) {
+            if (prefix != null) text(prefix);
+
+            for (int i = 0; i < size; i++) {
+                item.accept(list.get(i));
+
+                if (i < size - 1) {
+                    text(",").space();
+                }
+            }
+            if (suffix != null) text(suffix);
+        }
+        return this;
     }
 
     /**
@@ -89,37 +150,6 @@ class SourceXML {
             xml.append(text.toString());
         }
         return this;
-    }
-
-    /**
-     * <p>
-     * Encode xml text.
-     * </p>
-     * 
-     * @param text
-     * @return
-     */
-    private String encode(String text) {
-        StringBuilder builder = new StringBuilder();
-
-        for (int i = 0; i < text.length(); i++) {
-            char c = text.charAt(i);
-
-            switch (c) {
-            case '<':
-                builder.append("&lt;");
-                break;
-
-            case '>':
-                builder.append("&gt;");
-                break;
-
-            default:
-                builder.append(c);
-                break;
-            }
-        }
-        return builder.toString();
     }
 
     /**
