@@ -67,7 +67,9 @@ public class SourceMapper {
             while (++currentLine < lineNumber) {
                 reader.readLine();
             }
-            String line = reader.readLine().trim();
+            String line = reader.readLine();
+
+            line = removeHeadWhitespace(line);
 
             if (line.startsWith("*")) {
                 line = " ".concat(line);
@@ -76,5 +78,19 @@ public class SourceMapper {
         } catch (IOException e) {
             throw I.quiet(e);
         }
+    }
+
+    /**
+     * @param line
+     * @return
+     */
+    private String removeHeadWhitespace(String line) {
+        int index = 0;
+
+        while (index < line.length() && Character.isWhitespace(line.charAt(index))) {
+            index++;
+        }
+
+        return line.substring(index);
     }
 }

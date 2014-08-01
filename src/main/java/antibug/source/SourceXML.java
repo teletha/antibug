@@ -266,6 +266,20 @@ class SourceXML {
     }
 
     /**
+     * 
+     */
+    void shrink() {
+        String text = xml.text();
+
+        for (int i = 0; i < text.length(); i++) {
+            if (!Character.isWhitespace(text.charAt(i))) {
+                return;
+            }
+        }
+        xml.text("");
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
