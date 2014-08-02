@@ -9,8 +9,11 @@
  */
 package antibug.source;
 
+import static com.sun.tools.javac.code.Flags.*;
 import static com.sun.tools.javac.tree.JCTree.Tag.*;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
 import java.util.Set;
 
@@ -64,6 +67,7 @@ import com.sun.source.tree.SwitchTree;
 import com.sun.source.tree.SynchronizedTree;
 import com.sun.source.tree.ThrowTree;
 import com.sun.source.tree.Tree;
+import com.sun.source.tree.Tree.Kind;
 import com.sun.source.tree.TreeVisitor;
 import com.sun.source.tree.TryTree;
 import com.sun.source.tree.TypeCastTree;
@@ -75,6 +79,7 @@ import com.sun.source.tree.WhileLoopTree;
 import com.sun.source.tree.WildcardTree;
 import com.sun.tools.javac.tree.JCTree.JCFieldAccess;
 import com.sun.tools.javac.tree.JCTree.JCMethodInvocation;
+import com.sun.tools.javac.tree.JCTree.JCVariableDecl;
 
 /**
  * @version 2014/07/31 21:39:41
@@ -110,6 +115,9 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
     /** The current precedence level. */
     private int precedenceLevel = START;
+
+    /** The enclosing class name stack. */
+    private Deque<String> classNames = new ArrayDeque();
 
     /**
      * @param mapper
@@ -294,6 +302,8 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     @Override
     public SourceXML visitClass(ClassTree clazz, SourceXML context) {
+        context = traceLine(clazz, context);
+
         // ===========================================
         // Annotations and Modifiers
         // ===========================================
@@ -322,7 +332,9 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         default:
             throw new Error(clazz.getKind().toString());
         }
-        latestLine.type(clazz.getSimpleName().toString());
+
+        classNames.add(clazz.getSimpleName().toString());
+        latestLine.type(classNames.peekLast());
 
         // ===========================================
         // Type Parameters
@@ -345,7 +357,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         List<? extends Tree> implement = clazz.getImplementsClause();
 
         if (!implement.isEmpty()) {
-            latestLine.space().reserved("implements").space().join(implement, tree -> tree.accept(this, latestLine));
+            latestLine.space().reserved("implements").space().join(implement, this);
         }
 
         latestLine.space().text("{");
@@ -354,12 +366,24 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         // ===========================================
         // Members
         // ===========================================
+        EnumConstantsInfo info = new EnumConstantsInfo(clazz.getKind());
+
         for (Tree tree : clazz.getMembers()) {
-            tree.accept(this, context);
+            info.processNonFirstConstant(tree);
+            context = tree.accept(this, context);
+
+            if (isEnum(tree)) {
+                info.completeIfAllConstantsDeclared(tree);
+            } else if (tree instanceof VariableTree) {
+                // field declaration
+                context.semiColon();
+            }
         }
+        info.complete();
 
         indentLevel--;
-        return context;
+        classNames.pollLast();
+        return startNewLine().text("}");
     }
 
     /**
@@ -676,35 +700,45 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitMethod(MethodTree method, SourceXML context) {
-        traceLine(method, context);
+    public SourceXML visitMethod(MethodTree executor, SourceXML context) {
+        traceLine(executor, context);
 
         // ===========================================
         // Annotations and Modifiers
         // ===========================================
-        visitModifiers(method.getModifiers(), latestLine);
+        visitModifiers(executor.getModifiers(), latestLine);
 
         // ===========================================
         // Type Parameter Declarations
         // ===========================================
-        writeTypeParameter(method.getTypeParameters(), latestLine);
+        writeTypeParameter(executor.getTypeParameters(), latestLine);
 
         // ===========================================
         // Return Type
         // ===========================================
-        method.getReturnType().accept(this, latestLine).space();
+        Tree returnType = executor.getReturnType();
+
+        if (returnType != null) {
+            returnType.accept(this, latestLine).space();
+        }
 
         // ===========================================
-        // Method Name And Parameters
+        // Name And Parameters
         // ===========================================
-        latestLine.declaraMember(method.getName().toString()).text("(");
-        latestLine.join(method.getParameters(), tree -> tree.accept(this, latestLine));
+        String name = executor.getName().toString();
+
+        if (name.equals("<init>")) {
+            name = classNames.peekLast();
+        }
+
+        latestLine.declaraMember(name).text("(");
+        latestLine.join(executor.getParameters(), tree -> tree.accept(this, latestLine));
         latestLine.text(")");
 
         // ===========================================
         // Throws
         // ===========================================
-        List<? extends ExpressionTree> exceptions = method.getThrows();
+        List<? extends ExpressionTree> exceptions = executor.getThrows();
 
         if (!exceptions.isEmpty()) {
             latestLine.space().reserved("throws").space().join(exceptions, item -> item.accept(this, latestLine));
@@ -713,7 +747,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         // ===========================================
         // Default Value for Annotation
         // ===========================================
-        Tree defaultValue = method.getDefaultValue();
+        Tree defaultValue = executor.getDefaultValue();
 
         if (defaultValue != null) {
             latestLine.space().reserved("default").space();
@@ -721,15 +755,16 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         }
 
         // ===========================================
-        // Method Body
+        // Body
         // ===========================================
-        BlockTree body = method.getBody();
+        BlockTree body = executor.getBody();
 
         if (body == null) {
             // abstract
             latestLine.semiColon();
         } else {
             // concreat
+            precedenceLevel = ROOT;
             body.accept(this, latestLine);
         }
 
@@ -1093,21 +1128,35 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitVariable(VariableTree variable, SourceXML context) {
         context = traceLine(variable, context);
 
-        // Annotations and Modifiers
-        visitModifiers(variable.getModifiers(), context);
+        if (isEnum(variable)) {
+            latestLine.variable(variable.getName().toString());
+            NewClassTree constructor = (NewClassTree) variable.getInitializer();
+            List<? extends ExpressionTree> arguments = constructor.getArguments();
 
-        // Type
-        variable.getType().accept(this, latestLine).space();
+            if (!arguments.isEmpty()) {
+                context.text("(").join(arguments, this).text(")");
+            }
+        } else {
+            // Annotations and Modifiers
+            visitModifiers(variable.getModifiers(), context);
 
-        // Name
-        latestLine.variable(variable.getName().toString());
+            // Type
+            variable.getType().accept(this, latestLine).space();
 
-        // Value
-        ExpressionTree initializer = variable.getInitializer();
+            // Name
+            latestLine.variable(variable.getName().toString());
 
-        if (initializer != null) {
-            latestLine.space().text("=").space();
-            initializer.accept(this, latestLine);
+            // Value
+            ExpressionTree initializer = variable.getInitializer();
+
+            if (initializer != null) {
+                latestLine.space().text("=").space();
+                initializer.accept(this, latestLine);
+            }
+
+            if (precedenceLevel == ROOT) {
+                latestLine.semiColon();
+            }
         }
 
         return context;
@@ -1193,5 +1242,107 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     private SourceXML writeTypeParameter(List<? extends Tree> list, SourceXML context) {
         return context.children("typeParam", "<", ">", list, (tree, xml) -> tree.accept(this, xml));
+    }
+
+    /**
+     * Helper method to check enum.
+     * 
+     * @param tree
+     * @return
+     */
+    private boolean isEnum(Tree tree) {
+        return tree instanceof JCVariableDecl && (((JCVariableDecl) tree).mods.flags & ENUM) != 0;
+    }
+
+    /**
+     * @version 2014/08/02 23:27:08
+     */
+    private class EnumConstantsInfo {
+
+        /** The flag whether this class is enum or not. */
+        private final boolean inEnum;
+
+        /** The flag whether fisrt enum constant was declared or not. */
+        private boolean constatntDeclared;
+
+        /** The flag whether constants related process was completed or not. */
+        private boolean completed;
+
+        /** The latest declared line number. */
+        private int line;
+
+        /** The latest declared line. */
+        private SourceXML lineXML;
+
+        /**
+         * @param kind
+         */
+        private EnumConstantsInfo(Kind kind) {
+            inEnum = kind == Kind.ENUM;
+        }
+
+        /**
+         * <p>
+         * Process constant location.
+         * </p>
+         * 
+         * @param tree
+         * @return
+         */
+        private void processNonFirstConstant(Tree tree) {
+            if (!inEnum || !isEnum(tree)) {
+                return;
+            }
+
+            lineXML = latestLine;
+
+            if (!constatntDeclared) {
+                constatntDeclared = true;
+                return;
+            }
+
+            // write separator
+            latestLine.text(",");
+
+            if (line == mapper.getLine(tree)) {
+                latestLine.space();
+            }
+        }
+
+        /**
+         * 
+         */
+        private void complete() {
+            if (inEnum && constatntDeclared && !completed) {
+                completed = true;
+
+                lineXML.semiColon();
+            }
+        }
+
+        /**
+         * <p>
+         * Check constant location.
+         * </p>
+         * 
+         * @param tree
+         * @return
+         */
+        private void completeIfAllConstantsDeclared(Tree tree) {
+            if (!inEnum) {
+                return;
+            }
+
+            if (!constatntDeclared) {
+                return;
+            }
+
+            if (!isEnum(tree)) {
+                complete();
+            } else {
+                line = mapper.getLine(tree);
+                lineXML = latestLine;
+            }
+        }
     }
 }
