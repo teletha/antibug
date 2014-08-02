@@ -81,7 +81,7 @@ public class SourceParser {
         Path dir = I.locate("src/test/java/antibug/source");
         List<File> files = new ArrayList();
 
-        for (Path path : I.walk(dir, "Sample.java")) {
+        for (Path path : I.walk(dir, "EnumClass.java")) {
             files.add(path.toFile());
         }
 

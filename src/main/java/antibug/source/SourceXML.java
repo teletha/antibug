@@ -16,7 +16,6 @@ import java.util.function.Consumer;
 import kiss.I;
 import kiss.XML;
 
-import com.sun.source.tree.StatementTree;
 import com.sun.source.tree.Tree;
 import com.sun.source.tree.TreeVisitor;
 
@@ -30,7 +29,7 @@ import com.sun.source.tree.TreeVisitor;
 class SourceXML {
 
     /** The current xml. */
-    private final XML xml;
+    final XML xml;
 
     /** The visitor. */
     SourceTreeVisitor visitor;
@@ -89,7 +88,7 @@ class SourceXML {
      * Create child elements.
      * </p>
      */
-    SourceXML join(List<? extends StatementTree> list, TreeVisitor<SourceXML, SourceXML> visitor) {
+    SourceXML join(List<? extends Tree> list, TreeVisitor<SourceXML, SourceXML> visitor) {
         return join(null, null, list, item -> item.accept(visitor, this));
     }
 

@@ -12,7 +12,7 @@ package antibug.source;
 /**
  * @version 2014/08/02 12:59:02
  */
-public interface SampleInterface<T> {
+public interface Interface<T> {
 
     /**
      * <p>

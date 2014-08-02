@@ -9,21 +9,24 @@
  */
 package antibug.source;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
 /**
- * @version 2014/08/02 12:59:29
+ * @version 2014/08/02 17:00:08
  */
-@Retention(RetentionPolicy.RUNTIME)
-public @interface SampleAnnotation {
+public class InnerClass {
 
     /**
-     * <p>
-     * Default value is "no".
-     * </p>
-     * 
-     * @return A current value.
+     * @version 2014/08/02 17:37:56
      */
-    String value() default "no";
+    public static class StaticInnerClass<T> {
+
+        protected final class Nested {
+        }
+
+        @interface NestedAnnotation {
+        }
+
+        @SuppressWarnings("unused")
+        private enum NestedEnum {
+        }
+    }
 }

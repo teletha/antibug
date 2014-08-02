@@ -32,17 +32,22 @@ public class LowLevelSourceTest {
 
     @Test
     public void annotationWithDefaultValue() throws Exception {
-        assertSourceAsText(SampleAnnotation.class);
+        assertSourceAsText(Annotation.class);
     }
 
     @Test
     public void interfaceWithStaticAndDefaultMethod() throws Exception {
-        assertSourceAsText(SampleInterface.class);
+        assertSourceAsText(Interface.class);
     }
 
     @Test
     public void innerClass() throws Exception {
-        assertSourceAsText(SampleInnerClass.class);
+        assertSourceAsText(InnerClass.class);
+    }
+
+    @Test
+    public void enumClass() throws Exception {
+        assertSourceAsText(EnumClass.class);
     }
 
     /**
@@ -65,6 +70,7 @@ public class LowLevelSourceTest {
             for (XML line : xml.find("line")) {
                 lines.add(line.text());
             }
+            removeTailWhitespaceLine(lines);
 
             // diff
             List<String> originals = Files.readAllLines(source);
@@ -122,6 +128,23 @@ public class LowLevelSourceTest {
             }
         } catch (IOException e) {
             throw I.quiet(e);
+        }
+    }
+
+    /**
+     * <p>
+     * Revemo tailing whitespace line.
+     * </p>
+     * 
+     * @param lines
+     */
+    private void removeTailWhitespaceLine(List<String> lines) {
+        for (int i = lines.size() - 1; 0 < i; i--) {
+            if (isWhitespaceLine(lines.get(i))) {
+                lines.remove(i);
+            } else {
+                break;
+            }
         }
     }
 
