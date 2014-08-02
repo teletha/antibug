@@ -31,8 +31,18 @@ import antibug.xml.XMLFormatter;
 public class LowLevelSourceTest {
 
     @Test
-    public void testname() throws Exception {
-        assertSourceAsText(Sample.class);
+    public void annotationWithDefaultValue() throws Exception {
+        assertSourceAsText(SampleAnnotation.class);
+    }
+
+    @Test
+    public void interfaceWithStaticAndDefaultMethod() throws Exception {
+        assertSourceAsText(SampleInterface.class);
+    }
+
+    @Test
+    public void innerClass() throws Exception {
+        assertSourceAsText(SampleInnerClass.class);
     }
 
     /**
@@ -43,6 +53,8 @@ public class LowLevelSourceTest {
      * @param target A target class to test.
      */
     private void assertSourceAsText(Class target) {
+        String separator = System.getProperty("line.separator");
+
         try {
             Path source = I.locate("src/test/java").resolve(target.getName().replace(".", "/") + ".java");
             XML xml = SourceParser.parse(source);
@@ -57,7 +69,18 @@ public class LowLevelSourceTest {
             // diff
             List<String> originals = Files.readAllLines(source);
 
-            for (int i = 0; i < lines.size(); i++) {
+            // check size
+            int size = lines.size();
+
+            if (originals.size() != size) {
+                StringBuilder message = new StringBuilder();
+                message.append("Line ").append(size).append(" is missing.").append(separator);
+                message.append("【").append(originals.get(size)).append("】");
+
+                throw new AssertionError(message.toString());
+            }
+
+            for (int i = 0; i < size; i++) {
                 String line = lines.get(i);
                 String original = originals.get(i);
 
@@ -80,8 +103,6 @@ public class LowLevelSourceTest {
 
                 // check equality
                 if (!line.equals(original)) {
-                    String separator = System.getProperty("line.separator");
-
                     // build error message
                     StringBuilder message = new StringBuilder();
                     message.append("Wrong code at line ").append(i + 1).append(separator);

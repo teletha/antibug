@@ -16,6 +16,10 @@ import java.util.function.Consumer;
 import kiss.I;
 import kiss.XML;
 
+import com.sun.source.tree.StatementTree;
+import com.sun.source.tree.Tree;
+import com.sun.source.tree.TreeVisitor;
+
 /**
  * <p>
  * XML manipulation helper.
@@ -28,6 +32,9 @@ class SourceXML {
     /** The current xml. */
     private final XML xml;
 
+    /** The visitor. */
+    SourceTreeVisitor visitor;
+
     /**
      * <p>
      * Create new wrapper.
@@ -35,8 +42,9 @@ class SourceXML {
      * 
      * @param xml
      */
-    SourceXML(XML xml) {
+    SourceXML(XML xml, SourceTreeVisitor visitor) {
         this.xml = xml;
+        this.visitor = visitor;
     }
 
     /**
@@ -48,7 +56,7 @@ class SourceXML {
      * @return A child element.
      */
     SourceXML child(String name) {
-        return new SourceXML(xml.child(name));
+        return new SourceXML(xml.child(name), visitor);
     }
 
     /**
@@ -74,6 +82,15 @@ class SourceXML {
             container.text(suffix);
         }
         return this;
+    }
+
+    /**
+     * <p>
+     * Create child elements.
+     * </p>
+     */
+    SourceXML join(List<? extends StatementTree> list, TreeVisitor<SourceXML, SourceXML> visitor) {
+        return join(null, null, list, item -> item.accept(visitor, this));
     }
 
     /**
@@ -285,5 +302,12 @@ class SourceXML {
     @Override
     public String toString() {
         return xml.toString();
+    }
+
+    /**
+     * @param expression
+     */
+    SourceXML visit(Tree tree) {
+        return tree.accept(visitor, this);
     }
 }
