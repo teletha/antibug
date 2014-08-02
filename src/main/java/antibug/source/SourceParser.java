@@ -11,6 +11,7 @@ package antibug.source;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,8 @@ import kiss.XML;
 import com.sun.source.tree.CompilationUnitTree;
 import com.sun.source.util.JavacTask;
 import com.sun.source.util.Trees;
+import com.sun.tools.javac.tree.JCTree.JCCompilationUnit;
+import com.sun.tools.javac.tree.Pretty;
 
 /**
  * @version 2014/07/31 10:41:40
@@ -57,13 +60,14 @@ public class SourceParser {
             Trees trees = Trees.instance(task);
 
             XML xml = I.xml("source");
-            SourceXML root = new SourceXML(xml);
+            SourceXML root = new SourceXML(xml, null);
 
             for (CompilationUnitTree unit : task.parse()) {
                 SourceMapper mapper = new SourceMapper(unit, trees.getSourcePositions());
+                SourceTreeVisitor visitor = root.visitor = new SourceTreeVisitor(root, mapper);
 
                 // start analyzing
-                unit.accept(new SourceTreeVisitor(root, mapper), root);
+                unit.accept(visitor, root);
             }
             return xml;
         } catch (IOException e) {
@@ -74,7 +78,7 @@ public class SourceParser {
     public static final void main(final String[] args) throws Exception {
         JavaCompiler javac = ToolProvider.getSystemJavaCompiler();
 
-        Path dir = I.locate("src/test/java/antibug/javasource");
+        Path dir = I.locate("src/test/java/antibug/source");
         List<File> files = new ArrayList();
 
         for (Path path : I.walk(dir, "Sample.java")) {
@@ -88,14 +92,14 @@ public class SourceParser {
         Trees trees = Trees.instance(task);
 
         for (CompilationUnitTree unit : javacTask.parse()) {
-            SourceXML xml = new SourceXML(I.xml("source"));
-            SourceMapper mapper = new SourceMapper(unit, trees.getSourcePositions());
+            // SourceXML xml = new SourceXML(I.xml("source"), null);
+            // SourceMapper mapper = new SourceMapper(unit, trees.getSourcePositions());
 
             // start analyzing
-            SourceTreeVisitor visitor = new SourceTreeVisitor(xml, mapper);
-            unit.accept(visitor, xml);
-
-            System.out.println(xml);
+            // SourceTreeVisitor visitor = new SourceTreeVisitor(xml, mapper);
+            // unit.accept(visitor, xml);
+            //
+            // System.out.println(xml);
 
             // SAMPLE
             // LineWriter writer = new LineWriter();
@@ -109,10 +113,10 @@ public class SourceParser {
             // }
 
             // SAMPLE
-            // StringWriter writer = new StringWriter();
-            // Pretty analyzer = new Pretty(writer, false);
-            // analyzer.visitTopLevel((JCCompilationUnit) unit);
-            // System.out.println(writer.toString());
+            StringWriter writer = new StringWriter();
+            Pretty analyzer = new Pretty(writer, false);
+            analyzer.visitTopLevel((JCCompilationUnit) unit);
+            System.out.println(writer.toString());
         }
     }
 }

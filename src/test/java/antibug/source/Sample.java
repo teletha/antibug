@@ -18,7 +18,7 @@ import antibug.javadoc.info.Identifier;
 import antibug.javadoc.info.PackageInfo;
 import antibug.javadoc.info.annotation.Primitive;
 import antibug.javadoc.info.annotation.SourceMarker;
-import antibug.javadoc.info.annotation.Typo; // COMMENT
+import antibug.javadoc.info.annotation.Typo;
 
 /**
  * @version 2014/07/26 21:47:07
@@ -26,6 +26,10 @@ import antibug.javadoc.info.annotation.Typo; // COMMENT
 @SuppressWarnings("all")
 @Primitive(intValue = 20, booleanValue = false)
 public class Sample<T> implements Serializable {
+
+    static {
+        Sample.<String> callGeneric("").charAt(0);
+    }
 
     /** The package list. */
     @SourceMarker
@@ -48,53 +52,7 @@ public class Sample<T> implements Serializable {
         return new ExternalPackageInfo(id);
     }
 
-    static {
-        System.out.println("DOC");
+    private static <T> String callGeneric(T value) {
+        return null;
     }
-
-    // /**
-    // * <p>
-    // * Find {@link PackageInfo} by {@link Identifier}.
-    // * </p>
-    // *
-    // * @param id An identifier.
-    // * @return A package.
-    // */
-    // public TypeInfo getTypeBy(Identifier id) {
-    // PackageInfo packageInfo = getPackageBy(id);
-    //
-    // for (TypeInfo info : packageInfo.types) {
-    // if (info.id.equalsType(id)) {
-    // return info;
-    // }
-    // }
-    // return new ExternalTypeInfo(id);
-    // }
-    //
-    // /**
-    // * <p>
-    // * Find {@link PackageInfo} by {@link Identifier}.
-    // * </p>
-    // *
-    // * @param id An identifier.
-    // * @return A package.
-    // */
-    // public MethodInfo getMethodBy(Identifier id) {
-    // /*
-    // * Block comment
-    // */
-    // TypeInfo typeInfo = getTypeBy(id);
-    //
-    // /**
-    // * InDoc
-    // */
-    // for (MethodInfo info : typeInfo.methods) {
-    // if (info.id.equalsMember(id)) {
-    // return info;
-    // }
-    // }
-    //
-    // // API definition
-    // return new ExternalMethodInfo(id);
-    // }
 }
