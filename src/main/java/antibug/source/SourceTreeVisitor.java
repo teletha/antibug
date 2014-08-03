@@ -376,7 +376,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitCompilationUnit(CompilationUnitTree unit, SourceXML context) {
         context = traceLine(unit, context);
 
-        context.reserved("package").space().text(unit.getPackageName()).semiColon().line();
+        context.reserved("package").space().text(unit.getPackageName()).semiColon();
 
         for (ImportTree tree : unit.getImports()) {
             context = visitImport(tree, context);
@@ -480,10 +480,10 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
         statement.start();
         context.reserved("for").space().text("(").join(loop.getInitializer()).semiColon().space();
-        loop.getCondition().accept(this, context).semiColon().space().join(loop.getUpdate()).text(")");
+        loop.getCondition().accept(this, context).semiColon().join(" ", loop.getUpdate(), ",", null).text(")");
         statement.end(false);
 
-        loop.getStatement().accept(this, context);
+        context.visit(loop.getStatement());
 
         return context;
     }
@@ -533,7 +533,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
         latestLine.reserved("import").space();
         if (tree.isStatic()) latestLine.reserved("static").space();
-        latestLine.text(tree.getQualifiedIdentifier()).semiColon().line();
+        latestLine.text(tree.getQualifiedIdentifier()).semiColon();
         return context;
     }
 
@@ -550,9 +550,10 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitIntersectionType(IntersectionTypeTree arg0, SourceXML context) {
-        System.out.println("visitIntersectionType");
-        return context;
+    public SourceXML visitIntersectionType(IntersectionTypeTree intersection, SourceXML context) {
+        context = traceLine(intersection, context);
+
+        return context.join(null, intersection.getBounds(), " &", null);
     }
 
     /**
@@ -696,7 +697,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         }
 
         statement.start();
-        latestLine.declaraMember(name).text("(").join(executor.getParameters()).text(")");
+        latestLine.memberDeclare(name).text("(").join(executor.getParameters()).text(")");
         statement.end(false);
 
         // ===========================================

@@ -58,31 +58,6 @@ class SourceXML {
 
     /**
      * <p>
-     * Create child elements.
-     * </p>
-     */
-    <T> SourceXML children(String name, String prefix, String suffix, List<T> list, BiConsumer<T, SourceXML> item) {
-        int size = list.size();
-
-        if (size != 0) {
-            SourceXML container = child(name);
-
-            container.text(prefix);
-
-            for (int i = 0; i < size; i++) {
-                item.accept(list.get(i), container);
-
-                if (i < size - 1) {
-                    container.text(",").space();
-                }
-            }
-            container.text(suffix);
-        }
-        return this;
-    }
-
-    /**
-     * <p>
      * Join the given items.
      * </p>
      */
@@ -119,8 +94,16 @@ class SourceXML {
         int size = trees.size();
 
         if (size != 0) {
-            if (prefix != null) current.text(prefix);
+            // prefix
+            if (prefix != null) {
+                if (prefix.equals(" ")) {
+                    current.space();
+                } else {
+                    current.text(prefix);
+                }
+            }
 
+            // join
             for (int i = 0; i < size; i++) {
                 current = trees.get(i).accept(visitor, current);
 
@@ -132,7 +115,14 @@ class SourceXML {
                 }
             }
 
-            if (suffix != null) current.text(suffix);
+            // suffix
+            if (suffix != null) {
+                if (suffix.equals(" ")) {
+                    current.space();
+                } else {
+                    current.text(suffix);
+                }
+            }
         }
         return current;
     }
@@ -196,14 +186,6 @@ class SourceXML {
 
     /**
      * <p>
-     * Write line break.
-     * </p>
-     */
-    void line() {
-    }
-
-    /**
-     * <p>
      * Write attribute.
      * </p>
      * 
@@ -257,6 +239,19 @@ class SourceXML {
 
     /**
      * <p>
+     * Write member declaration.
+     * </p>
+     * 
+     * @return Chainable API.
+     */
+    SourceXML memberDeclare(String value) {
+        xml.append(I.xml("member").text(value));
+    
+        return this;
+    }
+
+    /**
+     * <p>
      * Write type.
      * </p>
      * 
@@ -301,19 +296,6 @@ class SourceXML {
         }
 
         return current;
-    }
-
-    /**
-     * <p>
-     * Write member declaration.
-     * </p>
-     * 
-     * @return Chainable API.
-     */
-    SourceXML declaraMember(String value) {
-        xml.append(I.xml("member").text(value));
-
-        return this;
     }
 
     /**
