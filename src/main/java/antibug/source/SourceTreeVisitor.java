@@ -143,7 +143,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         context = traceLine(annotation, context);
 
         SourceXML anno = context.child("annotation").text("@" + annotation.getAnnotationType());
-        anno.join("(", ")", annotation.getArguments(), tree -> tree.accept(this, anno));
+        anno.text("(").join(annotation.getArguments()).text(")");
 
         return context;
     }
@@ -352,7 +352,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         List<? extends Tree> implement = clazz.getImplementsClause();
 
         if (!implement.isEmpty()) {
-            latestLine.space().reserved("implements").space().join(implement, this);
+            latestLine.space().reserved("implements").space().join(implement);
         }
 
         latestLine.space().text("{");
@@ -485,8 +485,8 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         context = traceLine(loop, context);
 
         statement.start();
-        context.reserved("for").space().text("(").join(loop.getInitializer(), this).semiColon().space();
-        loop.getCondition().accept(this, context).semiColon().space().join(loop.getUpdate(), this).text(")");
+        context.reserved("for").space().text("(").join(loop.getInitializer()).semiColon().space();
+        loop.getCondition().accept(this, context).semiColon().space().join(loop.getUpdate()).text(")");
         statement.end(false);
 
         loop.getStatement().accept(this, context);
@@ -702,7 +702,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         }
 
         statement.start();
-        latestLine.declaraMember(name).text("(").join(executor.getParameters(), this).text(")");
+        latestLine.declaraMember(name).text("(").join(executor.getParameters()).text(")");
         statement.end(false);
 
         // ===========================================
@@ -711,7 +711,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         List<? extends ExpressionTree> exceptions = executor.getThrows();
 
         if (!exceptions.isEmpty()) {
-            latestLine.space().reserved("throws").space().join(exceptions, item -> item.accept(this, latestLine));
+            latestLine.space().reserved("throws").space().join(exceptions);
         }
 
         // ===========================================
@@ -768,7 +768,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
         SourceXML xml = context;
 
-        context.text("(").join(invoke.getArguments(), item -> item.accept(this, xml)).text(")");
+        context.text("(").join(invoke.getArguments()).text(")");
 
         statement.end(true);
         return context;
@@ -811,7 +811,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
         context.reserved("new").space();
         array.getType().accept(this, context);
-        context.text("[").join(array.getDimensions(), item -> item.accept(this, context)).text("]");
+        context.text("[").join(array.getDimensions()).text("]");
 
         statement.end(true);
         return context;
@@ -836,9 +836,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         context.reserved("new").space();
         writeTypeParameter(clazz.getTypeArguments(), context);
         clazz.getIdentifier().accept(this, context);
-        context.text("(");
-        context.join(clazz.getArguments(), item -> item.accept(this, context));
-        context.text(")");
+        context.text("(").join(clazz.getArguments()).text(")");
 
         ClassTree body = clazz.getClassBody();
 
@@ -1053,7 +1051,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             List<? extends ExpressionTree> arguments = constructor.getArguments();
 
             if (!arguments.isEmpty()) {
-                context.text("(").join(arguments, this).text(")");
+                context.text("(").join(arguments).text(")");
             }
         } else {
             statement.start();

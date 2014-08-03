@@ -11,13 +11,11 @@ package antibug.source;
 
 import java.util.List;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 import kiss.I;
 import kiss.XML;
 
 import com.sun.source.tree.Tree;
-import com.sun.source.tree.TreeVisitor;
 
 /**
  * <p>
@@ -29,10 +27,10 @@ import com.sun.source.tree.TreeVisitor;
 class SourceXML {
 
     /** The current xml. */
-    final XML xml;
+    private final XML xml;
 
     /** The visitor. */
-    SourceTreeVisitor visitor;
+    private final SourceTreeVisitor visitor;
 
     /**
      * <p>
@@ -88,38 +86,17 @@ class SourceXML {
      * Create child elements.
      * </p>
      */
-    SourceXML join(List<? extends Tree> list, TreeVisitor<SourceXML, SourceXML> visitor) {
-        return join(null, null, list, item -> item.accept(visitor, this));
-    }
-
-    /**
-     * <p>
-     * Create child elements.
-     * </p>
-     */
-    <T> SourceXML join(List<T> list, Consumer<T> item) {
-        return join(null, null, list, item);
-    }
-
-    /**
-     * <p>
-     * Create child elements.
-     * </p>
-     */
-    <T> SourceXML join(String prefix, String suffix, List<T> list, Consumer<T> item) {
+    SourceXML join(List<? extends Tree> list) {
         int size = list.size();
 
         if (size != 0) {
-            if (prefix != null) text(prefix);
-
             for (int i = 0; i < size; i++) {
-                item.accept(list.get(i));
+                list.get(i).accept(visitor, this);
 
                 if (i < size - 1) {
                     text(",").space();
                 }
             }
-            if (suffix != null) text(suffix);
         }
         return this;
     }
@@ -296,17 +273,17 @@ class SourceXML {
     }
 
     /**
+     * @param expression
+     */
+    SourceXML visit(Tree tree) {
+        return tree.accept(visitor, this);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
     public String toString() {
         return xml.toString();
-    }
-
-    /**
-     * @param expression
-     */
-    SourceXML visit(Tree tree) {
-        return tree.accept(visitor, this);
     }
 }
