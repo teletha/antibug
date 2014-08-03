@@ -60,14 +60,13 @@ public class SourceParser {
             Trees trees = Trees.instance(task);
 
             XML xml = I.xml("source");
-            SourceXML root = new SourceXML(xml, null);
 
             for (CompilationUnitTree unit : task.parse()) {
                 SourceMapper mapper = new SourceMapper(unit, trees.getSourcePositions());
-                SourceTreeVisitor visitor = root.visitor = new SourceTreeVisitor(root, mapper);
+                SourceTreeVisitor visitor = new SourceTreeVisitor(xml, mapper);
 
                 // start analyzing
-                unit.accept(visitor, root);
+                unit.accept(visitor, null);
             }
             return xml;
         } catch (IOException e) {
