@@ -86,15 +86,6 @@ import com.sun.tools.javac.tree.JCTree.JCVariableDecl;
  */
 class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
-    /** Stop counting of precedence level. */
-    private static final int STOP = 100;
-
-    /** Start counting of precedence level. */
-    private static final int START = 0;
-
-    /** The root precedence level. */
-    private static final int ROOT = 1;
-
     /** The root xml. */
     private final SourceXML root;
 
@@ -113,11 +104,11 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     /** The indent pattern. */
     private String indent = "    ";
 
-    /** The current precedence level. */
-    private int precedenceLevel = START;
-
     /** The enclosing class name stack. */
     private Deque<String> classNames = new ArrayDeque();
+
+    /** The statement level manager. */
+    private Statement statement = new Statement();
 
     /**
      * @param mapper
@@ -190,8 +181,10 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     @Override
     public SourceXML visitAssignment(AssignmentTree assign, SourceXML context) {
+        statement.start();
         context.variable(assign.getVariable().toString()).space().text("=").space();
         assign.getExpression().accept(this, context);
+        statement.end(true);
         return context;
     }
 
@@ -371,13 +364,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         for (Tree tree : clazz.getMembers()) {
             info.processNonFirstConstant(tree);
             context = tree.accept(this, context);
-
-            if (isEnum(tree)) {
-                info.completeIfAllConstantsDeclared(tree);
-            } else if (tree instanceof VariableTree) {
-                // field declaration
-                context.semiColon();
-            }
+            info.completeIfAllConstantsDeclared(tree);
         }
         info.complete();
 
@@ -493,33 +480,14 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     @Override
     public SourceXML visitForLoop(ForLoopTree loop, SourceXML context) {
-        precedenceLevel = STOP;
         context = traceLine(loop, context);
 
+        statement.start();
         context.reserved("for").space().text("(").join(loop.getInitializer(), this).semiColon().space();
         loop.getCondition().accept(this, context).semiColon().space().join(loop.getUpdate(), this).text(")");
+        statement.end(false);
 
-        precedenceLevel = START;
         loop.getStatement().accept(this, context);
-
-        // if (tree.init.nonEmpty()) {
-        // if (tree.init.head.hasTag(VARDEF)) {
-        // printExpr(tree.init.head);
-        // for (List<JCStatement> l = tree.init.tail; l.nonEmpty(); l = l.tail) {
-        // JCVariableDecl vdef = (JCVariableDecl) l.head;
-        // print(", " + vdef.name + " = ");
-        // printExpr(vdef.init);
-        // }
-        // } else {
-        // printExprs(tree.init);
-        // }
-        // }
-        // print("; ");
-        // if (tree.cond != null) printExpr(tree.cond);
-        // print("; ");
-        // printExprs(tree.step);
-        // print(") ");
-        // printStat(tree.body);
 
         return context;
     }
@@ -539,12 +507,13 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     @Override
     public SourceXML visitIf(IfTree tree, SourceXML context) {
-        precedenceLevel++;
         traceLine(tree, context);
 
         // Condition
+        statement.start();
         latestLine.reserved("if").space();
         tree.getCondition().accept(this, latestLine);
+        statement.end(false);
 
         // Then
         tree.getThenStatement().accept(this, latestLine);
@@ -556,7 +525,6 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             elseStatement.accept(this, latestLine);
         }
 
-        precedenceLevel--;
         return context;
     }
 
@@ -731,9 +699,9 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             name = classNames.peekLast();
         }
 
-        latestLine.declaraMember(name).text("(");
-        latestLine.join(executor.getParameters(), tree -> tree.accept(this, latestLine));
-        latestLine.text(")");
+        statement.start();
+        latestLine.declaraMember(name).text("(").join(executor.getParameters(), this).text(")");
+        statement.end(false);
 
         // ===========================================
         // Throws
@@ -764,7 +732,6 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             latestLine.semiColon();
         } else {
             // concreat
-            precedenceLevel = ROOT;
             body.accept(this, latestLine);
         }
 
@@ -776,7 +743,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     @Override
     public SourceXML visitMethodInvocation(MethodInvocationTree invoke, SourceXML context) {
-        precedenceLevel++;
+        statement.start();
         traceLine(invoke, context);
 
         JCMethodInvocation tree = (JCMethodInvocation) invoke;
@@ -801,11 +768,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
         context.text("(").join(invoke.getArguments(), item -> item.accept(this, xml)).text(")");
 
-        if (precedenceLevel == ROOT) {
-            context.semiColon();
-        }
-        precedenceLevel--;
-
+        statement.end(true);
         return context;
     }
 
@@ -841,50 +804,14 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     @Override
     public SourceXML visitNewArray(NewArrayTree array, SourceXML context) {
-        precedenceLevel++;
+        statement.start();
         traceLine(array, context);
 
         context.reserved("new").space();
         array.getType().accept(this, context);
         context.text("[").join(array.getDimensions(), item -> item.accept(this, context)).text("]");
 
-        if (precedenceLevel == ROOT) {
-            context.semiColon();
-        }
-        // if (tree.elemtype != null) {
-        // print("new ");
-        // JCTree elem = tree.elemtype;
-        // printBaseElementType(elem);
-        //
-        // if (!tree.annotations.isEmpty()) {
-        // print(' ');
-        // printTypeAnnotations(tree.annotations);
-        // }
-        // if (tree.elems != null) {
-        // print("[]");
-        // }
-        //
-        // int i = 0;
-        // List<List<JCAnnotation>> da = tree.dimAnnotations;
-        // for (List<JCExpression> l = tree.dims; l.nonEmpty(); l = l.tail) {
-        // if (da.size() > i && !da.get(i).isEmpty()) {
-        // print(' ');
-        // printTypeAnnotations(da.get(i));
-        // }
-        // print("[");
-        // i++;
-        // printExpr(l.head);
-        // print("]");
-        // }
-        // printBrackets(elem);
-        // }
-        // if (tree.elems != null) {
-        // print("{");
-        // printExprs(tree.elems);
-        // print("}");
-        // }
-
-        precedenceLevel--;
+        statement.end(true);
         return context;
     }
 
@@ -893,7 +820,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     @Override
     public SourceXML visitNewClass(NewClassTree clazz, SourceXML context) {
-        precedenceLevel++;
+        statement.start();
         traceLine(clazz, context);
 
         // check enclosing class
@@ -917,11 +844,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             body.accept(this, context);
         }
 
-        if (precedenceLevel == ROOT) {
-            context.semiColon();
-        }
-
-        precedenceLevel--;
+        statement.end(true);
         return context;
     }
 
@@ -954,9 +877,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitParenthesized(ParenthesizedTree tree, SourceXML context) {
         traceLine(tree, context);
 
-        latestLine.text("(");
-        tree.getExpression().accept(this, latestLine);
-        latestLine.text(")");
+        latestLine.text("(").visit(tree.getExpression()).text(")");
 
         return context;
     }
@@ -996,14 +917,13 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     @Override
     public SourceXML visitReturn(ReturnTree tree, SourceXML context) {
-        precedenceLevel = STOP;
+        statement.start();
         context = traceLine(tree, context);
 
         context.reserved("return").space();
         tree.getExpression().accept(this, context);
-        context.semiColon();
 
-        precedenceLevel = START;
+        statement.end(true);
         return context;
     }
 
@@ -1030,12 +950,12 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     @Override
     public SourceXML visitThrow(ThrowTree tree, SourceXML context) {
-        precedenceLevel = STOP;
         traceLine(tree, context);
 
-        latestLine.reserved("throw").space().visit(tree.getExpression()).semiColon();
+        statement.start();
+        latestLine.reserved("throw").space().visit(tree.getExpression());
+        statement.end(true);
 
-        precedenceLevel = START;
         return context;
     }
 
@@ -1046,12 +966,13 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitTry(TryTree tree, SourceXML context) {
         traceLine(tree, context);
 
-        latestLine.reserved("try");
-        tree.getBlock().accept(this, latestLine);
+        latestLine.reserved("try").visit(tree.getBlock());
 
         for (CatchTree catchTree : tree.getCatches()) {
-            latestLine.space().reserved("catch").space().text("(");
-            catchTree.getParameter().accept(this, latestLine).text(")");
+            statement.start();
+            latestLine.space().reserved("catch").space().text("(").visit(catchTree.getParameter()).text(")");
+            statement.end(false);
+
             catchTree.getBlock().accept(this, latestLine);
         }
 
@@ -1081,7 +1002,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     @Override
     public SourceXML visitUnary(UnaryTree unary, SourceXML context) {
-        precedenceLevel++;
+        statement.start();
         ExpressionTree expression = unary.getExpression();
 
         switch (unary.getKind()) {
@@ -1104,11 +1025,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             throw new Error(unary.getKind().toString());
         }
 
-        if (precedenceLevel == ROOT) {
-            context.semiColon();
-        }
-
-        precedenceLevel--;
+        statement.end(true);
         return context;
     }
 
@@ -1137,6 +1054,8 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
                 context.text("(").join(arguments, this).text(")");
             }
         } else {
+            statement.start();
+
             // Annotations and Modifiers
             visitModifiers(variable.getModifiers(), context);
 
@@ -1154,9 +1073,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
                 initializer.accept(this, latestLine);
             }
 
-            if (precedenceLevel == ROOT) {
-                latestLine.semiColon();
-            }
+            statement.end(true);
         }
 
         return context;
@@ -1343,6 +1260,36 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
                 line = mapper.getLine(tree);
                 lineXML = latestLine;
             }
+        }
+    }
+
+    /**
+     * @version 2014/08/03 11:59:03
+     */
+    private class Statement {
+
+        /** The current nest level. */
+        private int expressionNestLevel = 0;
+
+        /**
+         * <p>
+         * Mark start of statment.
+         * </p>
+         */
+        private void start() {
+            expressionNestLevel++;
+        }
+
+        /**
+         * <p>
+         * Write end of statment symbol if needed.
+         * </p>
+         */
+        private void end(boolean writeSemicolon) {
+            if (writeSemicolon && expressionNestLevel == 1) {
+                latestLine.semiColon();
+            }
+            expressionNestLevel--;
         }
     }
 }
