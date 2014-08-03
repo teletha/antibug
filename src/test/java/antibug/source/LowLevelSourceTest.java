@@ -55,6 +55,16 @@ public class LowLevelSourceTest {
         assertSourceAsText(EnumClass.class);
     }
 
+    @Test
+    public void cast() throws Exception {
+        assertSourceAsText(Cast.class);
+    }
+
+    @Test
+    public void statement() throws Exception {
+        assertSourceAsText(Statement.class);
+    }
+
     /**
      * <p>
      * Assertion helper.
