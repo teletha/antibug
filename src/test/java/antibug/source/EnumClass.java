@@ -33,13 +33,38 @@ public class EnumClass {
         C;
     }
 
-    enum Constructor {
+    enum ConstructorAndMethod {
         A("aaa");
 
         String name;
 
-        Constructor(String name) {
+        ConstructorAndMethod(String name) {
             this.name = name;
         }
+
+        String getName() {
+            return name;
+        }
+    }
+
+    enum AbstractMethod {
+        A("aaa") {
+
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            String getName() {
+                return name;
+            }
+        };
+
+        String name;
+
+        AbstractMethod(String name) {
+            this.name = name;
+        }
+
+        abstract String getName();
     }
 }
