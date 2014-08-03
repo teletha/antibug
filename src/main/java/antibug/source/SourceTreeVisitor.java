@@ -20,6 +20,8 @@ import java.util.Set;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.type.TypeKind;
 
+import kiss.XML;
+
 import com.sun.source.tree.AnnotatedTypeTree;
 import com.sun.source.tree.AnnotationTree;
 import com.sun.source.tree.ArrayAccessTree;
@@ -87,7 +89,7 @@ import com.sun.tools.javac.tree.JCTree.JCVariableDecl;
 class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
     /** The root xml. */
-    private final SourceXML root;
+    private final XML root;
 
     /** The latest line xml. */
     private SourceXML latestLine;
@@ -113,7 +115,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     /**
      * @param mapper
      */
-    SourceTreeVisitor(SourceXML xml, SourceMapper mapper) {
+    SourceTreeVisitor(XML xml, SourceMapper mapper) {
         this.root = xml;
         this.mapper = mapper;
     }
@@ -182,9 +184,9 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     @Override
     public SourceXML visitAssignment(AssignmentTree assign, SourceXML context) {
         statement.start();
-        context.variable(assign.getVariable().toString()).space().text("=").space();
-        assign.getExpression().accept(this, context);
+        context.variable(assign.getVariable().toString()).space().text("=").space().visit(assign.getExpression());
         statement.end(true);
+
         return context;
     }
 
@@ -1103,7 +1105,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * </p>
      */
     private SourceXML startNewLine() {
-        SourceXML newLine = root.child("line").attr("n", logicalLine++);
+        SourceXML newLine = new SourceXML(root.child("line").attr("n", logicalLine++), this);
 
         for (int i = 0; i < indentLevel; i++) {
             newLine.text(indent);
