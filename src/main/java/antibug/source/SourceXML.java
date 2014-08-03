@@ -83,22 +83,58 @@ class SourceXML {
 
     /**
      * <p>
-     * Create child elements.
+     * Join the given items.
      * </p>
      */
-    SourceXML join(List<? extends Tree> list) {
-        int size = list.size();
+    SourceXML join(List<? extends Tree> trees) {
+        return join(null, trees, null);
+    }
+
+    /**
+     * <p>
+     * Join the given items.
+     * </p>
+     * 
+     * @param prefix
+     * @param arguments
+     * @param suffix
+     */
+    SourceXML join(String prefix, List<? extends Tree> trees, String suffix) {
+        return join(prefix, trees, ",", suffix);
+    }
+
+    /**
+     * <p>
+     * Join the given items.
+     * </p>
+     * 
+     * @param prefix
+     * @param trees
+     * @param separator
+     * @param suffix
+     * @return
+     */
+    SourceXML join(String prefix, List<? extends Tree> trees, String separator, String suffix) {
+        SourceXML current = this;
+        int size = trees.size();
 
         if (size != 0) {
+            if (prefix != null) current.text(prefix);
+
             for (int i = 0; i < size; i++) {
-                list.get(i).accept(visitor, this);
+                current = trees.get(i).accept(visitor, current);
 
                 if (i < size - 1) {
-                    text(",").space();
+                    if (separator != null && separator.length() != 0) {
+                        current.text(separator);
+                    }
+                    current.space();
                 }
             }
+
+            if (suffix != null) current.text(suffix);
         }
-        return this;
+        return current;
     }
 
     /**
@@ -247,6 +283,28 @@ class SourceXML {
 
     /**
      * <p>
+     * Write type parameters.
+     * </p>
+     * 
+     * @param typeArguments
+     * @param b
+     */
+    SourceXML typeParams(List<? extends Tree> list, boolean withSpace) {
+        SourceXML current = this;
+
+        if (!list.isEmpty()) {
+            current = child("typeParam").join("<", list, ">");
+
+            if (withSpace) {
+                current.space();
+            }
+        }
+
+        return current;
+    }
+
+    /**
+     * <p>
      * Write member declaration.
      * </p>
      * 
@@ -277,6 +335,19 @@ class SourceXML {
      */
     SourceXML visit(Tree tree) {
         return tree.accept(visitor, this);
+    }
+
+    /**
+     * @param members
+     */
+    SourceXML visit(List<? extends Tree> trees) {
+        SourceXML context = this;
+
+        for (Tree tree : trees) {
+            context = tree.accept(visitor, context);
+        }
+
+        return context;
     }
 
     /**

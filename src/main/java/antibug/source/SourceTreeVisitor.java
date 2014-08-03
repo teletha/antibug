@@ -88,6 +88,9 @@ import com.sun.tools.javac.tree.JCTree.JCVariableDecl;
  */
 class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
+    private static final Modifier[] MODIFIE_ORDER = {Modifier.PUBLIC, Modifier.PROTECTED, Modifier.PRIVATE,
+            Modifier.ABSTRACT, Modifier.STATIC, Modifier.FINAL, Modifier.DEFAULT};
+
     /** The root xml. */
     private final XML root;
 
@@ -142,10 +145,9 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitAnnotation(AnnotationTree annotation, SourceXML context) {
         context = traceLine(annotation, context);
 
-        SourceXML anno = context.child("annotation").text("@" + annotation.getAnnotationType());
-        anno.text("(").join(annotation.getArguments()).text(")");
-
-        return context;
+        return context.child("annotation")
+                .text("@" + annotation.getAnnotationType())
+                .join("(", annotation.getArguments(), ")");
     }
 
     /**
@@ -253,16 +255,8 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         if (block.isStatic()) {
             context.reserved("static");
         }
-        context.space().text("{");
-        indentLevel++;
 
-        for (StatementTree tree : block.getStatements()) {
-            context = tree.accept(this, context);
-        }
-        indentLevel--;
-        startNewLine().text("}");
-
-        return context;
+        return writeBlock(block.getStatements(), context);
     }
 
     /**
@@ -334,7 +328,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         // ===========================================
         // Type Parameters
         // ===========================================
-        writeTypeParameter(clazz.getTypeParameters(), latestLine);
+        latestLine.typeParams(clazz.getTypeParameters(), false);
 
         // ===========================================
         // Extends
@@ -681,7 +675,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         // ===========================================
         // Type Parameter Declarations
         // ===========================================
-        writeTypeParameter(executor.getTypeParameters(), latestLine);
+        latestLine.typeParams(executor.getTypeParameters(), true);
 
         // ===========================================
         // Return Type
@@ -755,18 +749,13 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             if (tree.meth.hasTag(SELECT)) {
                 JCFieldAccess left = (JCFieldAccess) tree.meth;
                 context = left.selected.accept(this, context);
-                context.text(".");
-                writeTypeParameter(types, context).space();
-                context.text(left.name.toString());
+                context.text(".").typeParams(types, true).text(left.name.toString());
             } else {
-                writeTypeParameter(types, context);
-                tree.meth.accept(this, context);
+                context.typeParams(types, true).visit(tree.meth);
             }
         } else {
             tree.meth.accept(this, context);
         }
-
-        SourceXML xml = context;
 
         context.text("(").join(invoke.getArguments()).text(")");
 
@@ -789,14 +778,27 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         if (!annotations.isEmpty()) {
             for (AnnotationTree tree : annotations) {
                 context = visitAnnotation(tree, context);
+
+                if (1 < statement.expressionNestLevel) {
+                    context.space();
+                }
             }
-            context = startNewLine();
+
+            if (statement.expressionNestLevel <= 1) {
+                context = startNewLine();
+            }
         }
 
         // ===========================================
         // Modifiers
         // ===========================================
-        context = writeModifier(modifiers.getFlags(), context);
+        Set<Modifier> flags = modifiers.getFlags();
+
+        for (Modifier modifier : MODIFIE_ORDER) {
+            if (flags.contains(modifier)) {
+                context.reserved(modifier.name().toLowerCase()).space();
+            }
+        }
 
         return context;
     }
@@ -833,10 +835,13 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             context.text(".");
         }
 
-        context.reserved("new").space();
-        writeTypeParameter(clazz.getTypeArguments(), context);
-        clazz.getIdentifier().accept(this, context);
-        context.text("(").join(clazz.getArguments()).text(")");
+        context.reserved("new")
+                .space()
+                .typeParams(clazz.getTypeArguments(), true)
+                .visit(clazz.getIdentifier())
+                .text("(")
+                .join(clazz.getArguments())
+                .text(")");
 
         ClassTree body = clazz.getClassBody();
 
@@ -864,8 +869,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitParameterizedType(ParameterizedTypeTree type, SourceXML context) {
         traceLine(type, context);
 
-        type.getType().accept(this, context);
-        writeTypeParameter(type.getTypeArguments(), context);
+        context.visit(type.getType()).typeParams(type.getTypeArguments(), true);
 
         return context;
     }
@@ -983,9 +987,10 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitTypeCast(TypeCastTree arg0, SourceXML context) {
-        System.out.println("visitTypeCast");
-        return context;
+    public SourceXML visitTypeCast(TypeCastTree cast, SourceXML context) {
+        context = traceLine(cast, context);
+
+        return context.text("(").visit(cast.getType()).text(")").space().visit(cast.getExpression());
     }
 
     /**
@@ -993,7 +998,10 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     @Override
     public SourceXML visitTypeParameter(TypeParameterTree param, SourceXML context) {
-        context.type(param.toString());
+        context = traceLine(param, context);
+
+        context.join(null, param.getAnnotations(), null, " ").type(param.getName().toString());
+
         return context;
     }
 
@@ -1052,6 +1060,13 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
             if (!arguments.isEmpty()) {
                 context.text("(").join(arguments).text(")");
+            }
+
+            NewClassTree initializer = (NewClassTree) variable.getInitializer();
+            ClassTree body = initializer.getClassBody();
+
+            if (body != null) {
+                writeBlock(body.getMembers(), context);
             }
         } else {
             statement.start();
@@ -1132,33 +1147,17 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         return startNewLine();
     }
 
-    private static final Modifier[] MODIFIE_ORDER = {Modifier.PUBLIC, Modifier.PROTECTED, Modifier.PRIVATE,
-            Modifier.STATIC, Modifier.FINAL, Modifier.DEFAULT};
+    private SourceXML writeBlock(List<? extends Tree> trees, SourceXML context) {
+        context.space().text("{");
+        indentLevel++;
 
-    /**
-     * <p>
-     * Write modifiers.
-     * </p>
-     */
-    private SourceXML writeModifier(Set<Modifier> modifiers, SourceXML context) {
-        for (Modifier modifier : MODIFIE_ORDER) {
-            if (modifiers.contains(modifier)) {
-                context.reserved(modifier.name().toLowerCase()).space();
-            }
+        for (Tree tree : trees) {
+            context = tree.accept(this, context);
         }
-        return context;
-    }
+        indentLevel--;
+        startNewLine().text("}");
 
-    /**
-     * <p>
-     * Write type parameters.
-     * </p>
-     * 
-     * @param list
-     * @param context
-     */
-    private SourceXML writeTypeParameter(List<? extends Tree> list, SourceXML context) {
-        return context.children("typeParam", "<", ">", list, (tree, xml) -> tree.accept(this, xml));
+        return context;
     }
 
     /**
