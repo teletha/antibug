@@ -65,6 +65,11 @@ public class LowLevelSourceTest {
         assertSourceAsText(Statement.class);
     }
 
+    @Test
+    public void operator() throws Exception {
+        assertSourceAsText(Operator.class);
+    }
+
     /**
      * <p>
      * Assertion helper.

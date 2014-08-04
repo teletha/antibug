@@ -10,7 +10,7 @@
 package antibug.source;
 
 /**
- * @version 2014/08/04 7:27:59
+ * @version 2014/08/04 9:33:32
  */
 public class Statement {
 
@@ -31,10 +31,25 @@ public class Statement {
         return value;
     }
 
-    int ForOneLine(int value) {
-        for (int i = 0; i < 10; i++)
-            value++;
+    int While(int value) {
+        while (value <= 10) {
+            ++value;
+        }
+        return value;
+    }
 
+    int DoWhile(int value) {
+        do {
+            value++;
+        } while (value < 0);
+
+        return value;
+    }
+
+    int If(int value) {
+        if (value == 0) {
+            value++;
+        }
         return value;
     }
 }
