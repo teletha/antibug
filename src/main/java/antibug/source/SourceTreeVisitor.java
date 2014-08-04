@@ -738,8 +738,21 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitLambdaExpression(LambdaExpressionTree arg0, SourceXML context) {
-        System.out.println("visitLambdaExpression");
+    public SourceXML visitLambdaExpression(LambdaExpressionTree lambda, SourceXML context) {
+        context = traceLine(lambda, context);
+
+        List<? extends VariableTree> params = lambda.getParameters();
+
+        if (params.size() == 1) {
+            context.visit(params.get(0));
+        } else {
+            context.text("(").join(params).text(")");
+        }
+
+        statement.store();
+        context.space().text("->").visit(lambda.getBody());
+        statement.restore();
+
         return context;
     }
 
@@ -1274,11 +1287,14 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             // Type
             if (isVararg(variable)) {
                 ArrayTypeTree array = (ArrayTypeTree) variable.getType();
-                latestLine.visit(array.getType()).text("...");
+                latestLine.visit(array.getType()).text("...").space();
             } else {
-                latestLine.visit(variable.getType());
+                Tree type = variable.getType();
+
+                if (type != null) {
+                    latestLine.visit(type).space();
+                }
             }
-            latestLine.space();
 
             // Name
             latestLine.variable(variable.getName().toString());
@@ -1513,6 +1529,9 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         /** The current nest level. */
         private int expressionNestLevel = 0;
 
+        /** The nest level recoder. */
+        private Deque<Integer> levels = new ArrayDeque();
+
         /**
          * <p>
          * Mark start of statment.
@@ -1532,6 +1551,21 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
                 latestLine.semiColon();
             }
             expressionNestLevel--;
+        }
+
+        /**
+         * 
+         */
+        private void store() {
+            levels.addLast(expressionNestLevel);
+            expressionNestLevel = 0;
+        }
+
+        /**
+         * 
+         */
+        private void restore() {
+            expressionNestLevel = levels.pollLast();
         }
     }
 }

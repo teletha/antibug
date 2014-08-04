@@ -100,6 +100,11 @@ public class LowLevelSourceTest {
         assertSourceAsText(Array.class);
     }
 
+    @Test
+    public void lambda() throws Exception {
+        assertSourceAsText(Lambda.class);
+    }
+
     /**
      * <p>
      * Assertion helper.
