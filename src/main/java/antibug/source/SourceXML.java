@@ -10,7 +10,6 @@
 package antibug.source;
 
 import java.util.List;
-import java.util.function.BiConsumer;
 
 import kiss.I;
 import kiss.XML;
@@ -246,7 +245,7 @@ class SourceXML {
      */
     SourceXML memberDeclare(String value) {
         xml.append(I.xml("member").text(value));
-    
+
         return this;
     }
 
@@ -287,7 +286,7 @@ class SourceXML {
     SourceXML typeParams(List<? extends Tree> list, boolean withSpace) {
         SourceXML current = this;
 
-        if (!list.isEmpty()) {
+        if (list != null && !list.isEmpty()) {
             current = child("typeParam").join("<", list, ">");
 
             if (withSpace) {

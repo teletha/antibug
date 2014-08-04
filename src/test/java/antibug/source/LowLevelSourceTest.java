@@ -105,6 +105,11 @@ public class LowLevelSourceTest {
         assertSourceAsText(Lambda.class);
     }
 
+    @Test
+    public void methodReference() throws Exception {
+        assertSourceAsText(MethodReference.class);
+    }
+
     /**
      * <p>
      * Assertion helper.

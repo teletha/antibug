@@ -801,8 +801,28 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitMemberReference(MemberReferenceTree arg0, SourceXML context) {
-        System.out.println("visitMemberReference");
+    public SourceXML visitMemberReference(MemberReferenceTree refer, SourceXML context) {
+        context = traceLine(refer, context);
+
+        String name;
+
+        switch (refer.getMode()) {
+        case INVOKE:
+            name = refer.getName().toString();
+            break;
+
+        case NEW:
+            name = "new";
+            break;
+
+        default:
+            // If this exception will be thrown, it is bug of this program. So we must rethrow the
+            // wrapped error in here.
+            throw new Error(refer.getMode().toString());
+        }
+
+        context.visit(refer.getQualifierExpression()).text("::").typeParams(refer.getTypeArguments(), true).text(name);
+
         return context;
     }
 
