@@ -52,4 +52,50 @@ public class Statement {
         }
         return value;
     }
+
+    int Break(int value) {
+        root: while (value < 10) {
+            if (value % 2 == 0) {
+                break;
+            }
+
+            if (value % 3 == 0) {
+                break root;
+            }
+            value++;
+        }
+        return value;
+    }
+
+    int Continue(int value) {
+        root: for (; value < 10; value++) {
+            if (value % 2 == 0) {
+                continue;
+            }
+
+            if (value % 3 == 0) {
+                continue root;
+            }
+            return 0;
+        }
+        return value;
+    }
+
+    int Switch(int value) {
+        switch (value) {
+        case 1:
+            value++;
+            break;
+
+        case 2:
+            value--;
+
+        case 3:
+            return 4;
+
+        default:
+            return 5;
+        }
+        return 6;
+    }
 }

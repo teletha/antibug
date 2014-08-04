@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.lang.model.element.Modifier;
+import javax.lang.model.element.Name;
 import javax.lang.model.type.TypeKind;
 
 import kiss.XML;
@@ -307,8 +308,18 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitBreak(BreakTree arg0, SourceXML context) {
-        System.out.println("visitCase");
+    public SourceXML visitBreak(BreakTree tree, SourceXML context) {
+        context = traceLine(tree, context);
+
+        context.reserved("break");
+
+        Name label = tree.getLabel();
+
+        if (label != null) {
+            context.space().text(label.toString());
+        }
+        context.semiColon();
+
         return context;
     }
 
@@ -316,9 +327,22 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitCase(CaseTree arg0, SourceXML context) {
-        System.out.println("visitCase");
-        return context;
+    public SourceXML visitCase(CaseTree tree, SourceXML context) {
+        indentLevel--;
+        context = traceLine(tree, context);
+
+        ExpressionTree value = tree.getExpression();
+
+        if (value == null) {
+            // default
+            context = context.reserved("default").text(":");
+        } else {
+            // case
+            context = context.reserved("case").space().visit(tree.getExpression()).text(":");
+        }
+
+        indentLevel++;
+        return context.visit(tree.getStatements());
     }
 
     /**
@@ -520,8 +544,18 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitContinue(ContinueTree arg0, SourceXML context) {
-        System.out.println("visitContinue");
+    public SourceXML visitContinue(ContinueTree tree, SourceXML context) {
+        context = traceLine(tree, context);
+
+        context.reserved("continue");
+
+        Name label = tree.getLabel();
+
+        if (label != null) {
+            context.space().text(label.toString());
+        }
+        context.semiColon();
+
         return context;
     }
 
@@ -686,9 +720,10 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitLabeledStatement(LabeledStatementTree arg0, SourceXML context) {
-        System.out.println("visitLabeledStatement");
-        return context;
+    public SourceXML visitLabeledStatement(LabeledStatementTree label, SourceXML context) {
+        context = traceLine(label, context);
+
+        return context.text(label.getLabel().toString()).text(":").space().visit(label.getStatement());
     }
 
     /**
@@ -1062,8 +1097,12 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitSwitch(SwitchTree arg0, SourceXML context) {
-        System.out.println("visitSwitch");
+    public SourceXML visitSwitch(SwitchTree tree, SourceXML context) {
+        context = traceLine(tree, context);
+
+        context.reserved("switch").space().visit(tree.getExpression());
+        writeBlock(tree.getCases(), context);
+
         return context;
     }
 
@@ -1104,7 +1143,13 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             latestLine.space().reserved("catch").space().text("(").visit(catchTree.getParameter()).text(")");
             statement.end(false);
 
-            catchTree.getBlock().accept(this, latestLine);
+            latestLine.visit(catchTree.getBlock());
+        }
+
+        BlockTree finallyTree = tree.getFinallyBlock();
+
+        if (finallyTree != null) {
+            latestLine.space().reserved("finally").visit(finallyTree);
         }
 
         return context;
@@ -1191,8 +1236,11 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitUnionType(UnionTypeTree arg0, SourceXML context) {
-        System.out.println("visitUnionType");
+    public SourceXML visitUnionType(UnionTypeTree tree, SourceXML context) {
+        context = traceLine(tree, context);
+
+        context.join(null, tree.getTypeAlternatives(), " |", null);
+
         return context;
     }
 
