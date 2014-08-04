@@ -85,6 +85,11 @@ public class LowLevelSourceTest {
         assertSourceAsText(Modifier.class);
     }
 
+    @Test
+    public void methodCall() throws Exception {
+        assertSourceAsText(MethodCall.class);
+    }
+
     /**
      * <p>
      * Assertion helper.
@@ -136,11 +141,11 @@ public class LowLevelSourceTest {
                 }
 
                 // remove comment at the end of a sentence
-                int index = original.indexOf(" //");
-
-                if (index != -1) {
-                    original = original.substring(0, index);
-                }
+                // int index = original.indexOf(" //");
+                //
+                // if (index != -1) {
+                // original = original.substring(0, index);
+                // }
 
                 // check equality
                 if (!line.equals(original)) {

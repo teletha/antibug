@@ -168,7 +168,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitArrayType(ArrayTypeTree array, SourceXML context) {
         traceLine(array, context);
 
-        array.getType().accept(this, context).text("[]");
+        context.visit(array.getType()).text("[]");
 
         return context;
     }
@@ -645,7 +645,13 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     @Override
     public SourceXML visitIdentifier(IdentifierTree identifier, SourceXML context) {
-        context.type(identifier.getName().toString());
+        String value = identifier.getName().toString();
+
+        if (value.equals("this")) {
+            context.reserved("this");
+        } else {
+            context.type(value);
+        }
 
         return context;
     }
@@ -817,8 +823,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitMemberSelect(MemberSelectTree select, SourceXML context) {
         context = traceLine(select, context);
 
-        select.getExpression().accept(this, context);
-        context.text(".").memberAccess(select.getIdentifier().toString());
+        context.visit(select.getExpression()).text(".").memberAccess(select.getIdentifier().toString());
 
         return context;
     }
@@ -1274,7 +1279,13 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             visitModifiers(variable.getModifiers(), context);
 
             // Type
-            variable.getType().accept(this, latestLine).space();
+            if (isVararg(variable)) {
+                ArrayTypeTree array = (ArrayTypeTree) variable.getType();
+                latestLine.visit(array.getType()).text("...");
+            } else {
+                latestLine.visit(variable.getType());
+            }
+            latestLine.space();
 
             // Name
             latestLine.variable(variable.getName().toString());
@@ -1397,6 +1408,16 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     private boolean isEnum(Tree tree) {
         return tree instanceof JCVariableDecl && (((JCVariableDecl) tree).mods.flags & ENUM) != 0;
+    }
+
+    /**
+     * Helper method to check vararg.
+     * 
+     * @param tree
+     * @return
+     */
+    private boolean isVararg(VariableTree tree) {
+        return tree instanceof JCVariableDecl && (((JCVariableDecl) tree).mods.flags & VARARGS) != 0;
     }
 
     /**
