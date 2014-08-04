@@ -792,6 +792,10 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             context.string(escape(value.toString()));
             break;
 
+        case CHAR_LITERAL:
+            context.character(escape(value.toString()));
+            break;
+
         case INT_LITERAL:
             context.number(value.toString());
             break;
@@ -1187,7 +1191,17 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitTry(TryTree tree, SourceXML context) {
         traceLine(tree, context);
 
-        latestLine.reserved("try").visit(tree.getBlock());
+        latestLine.reserved("try");
+
+        List<? extends Tree> resources = tree.getResources();
+
+        if (!resources.isEmpty()) {
+            statement.start();
+            latestLine.space().join("(", resources, ";", ")");
+            statement.end(false);
+        }
+
+        latestLine.visit(tree.getBlock());
 
         for (CatchTree catchTree : tree.getCatches()) {
             statement.start();

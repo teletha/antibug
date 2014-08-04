@@ -27,4 +27,6 @@ public class Primitive {
     short SHORT = 12;
 
     boolean BOOLEAN = true;
+
+    char CHAR = 'A';
 }
