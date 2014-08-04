@@ -70,6 +70,11 @@ public class LowLevelSourceTest {
         assertSourceAsText(Operator.class);
     }
 
+    @Test
+    public void typeParameter() throws Exception {
+        assertSourceAsText(TypeParameter.class);
+    }
+
     /**
      * <p>
      * Assertion helper.
