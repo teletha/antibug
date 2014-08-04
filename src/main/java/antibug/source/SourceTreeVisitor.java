@@ -90,7 +90,8 @@ import com.sun.tools.javac.tree.JCTree.JCVariableDecl;
 class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
     private static final Modifier[] MODIFIE_ORDER = {Modifier.PUBLIC, Modifier.PROTECTED, Modifier.PRIVATE,
-            Modifier.ABSTRACT, Modifier.STATIC, Modifier.FINAL, Modifier.DEFAULT};
+            Modifier.ABSTRACT, Modifier.STATIC, Modifier.FINAL, Modifier.STRICTFP, Modifier.DEFAULT,
+            Modifier.TRANSIENT, Modifier.VOLATILE, Modifier.SYNCHRONIZED, Modifier.NATIVE};
 
     /** The root xml. */
     private final XML root;

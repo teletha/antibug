@@ -80,6 +80,11 @@ public class LowLevelSourceTest {
         assertSourceAsText(Try.class);
     }
 
+    @Test
+    public void modifier() throws Exception {
+        assertSourceAsText(Modifier.class);
+    }
+
     /**
      * <p>
      * Assertion helper.
