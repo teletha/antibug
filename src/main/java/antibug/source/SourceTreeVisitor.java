@@ -597,14 +597,19 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitEnhancedForLoop(EnhancedForLoopTree loop, SourceXML context) {
         context = traceLine(loop, context);
 
-        latestLine.reserved("for").space().text("(");
-        loop.getVariable().accept(this, latestLine);
-        latestLine.space().text(":").space();
-        loop.getExpression().accept(this, latestLine);
-        latestLine.text(")");
-        loop.getStatement().accept(this, latestLine);
+        statement.start();
+        context = context.reserved("for")
+                .space()
+                .text("(")
+                .visit(loop.getVariable())
+                .space()
+                .text(":")
+                .space()
+                .visit(loop.getExpression())
+                .text(")");
+        statement.end(false);
 
-        return context;
+        return context.visit(loop.getStatement());
     }
 
     /**
@@ -634,13 +639,19 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         context = traceLine(loop, context);
 
         statement.start();
-        context.reserved("for").space().text("(").join(loop.getInitializer()).semiColon().space();
-        loop.getCondition().accept(this, context).semiColon().join(" ", loop.getUpdate(), ",", null).text(")");
+        context = context.reserved("for")
+                .space()
+                .text("(")
+                .join(loop.getInitializer())
+                .semiColon()
+                .space()
+                .visit(loop.getCondition())
+                .semiColon()
+                .join(" ", loop.getUpdate(), ",", null)
+                .text(")");
         statement.end(false);
 
-        context.visit(loop.getStatement());
-
-        return context;
+        return context.visit(loop.getStatement());
     }
 
     /**
@@ -767,7 +778,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
         switch (literal.getKind()) {
         case STRING_LITERAL:
-            context.string(value.toString());
+            context.string(escape(value.toString()));
             break;
 
         case INT_LITERAL:
@@ -1442,6 +1453,33 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     private boolean isVararg(VariableTree tree) {
         return tree instanceof JCVariableDecl && (((JCVariableDecl) tree).mods.flags & VARARGS) != 0;
+    }
+
+    /**
+     * <p>
+     * Escape quote.
+     * </p>
+     * 
+     * @param value
+     * @return
+     */
+    private String escape(String value) {
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < value.length(); i++) {
+            char c = value.charAt(i);
+
+            switch (c) {
+            case '"':
+                builder.append("\\\"");
+                break;
+
+            default:
+                builder.append(c);
+                break;
+            }
+        }
+        return builder.toString();
     }
 
     /**

@@ -110,6 +110,11 @@ public class LowLevelSourceTest {
         assertSourceAsText(MethodReference.class);
     }
 
+    @Test
+    public void sample() throws Exception {
+        assertSourceAsText(LowLevelSourceTest.class);
+    }
+
     /**
      * <p>
      * Assertion helper.
@@ -238,7 +243,6 @@ public class LowLevelSourceTest {
          */
         @Override
         public void startDocument() throws SAXException {
-            // ignore xml declaration
         }
 
         /**
