@@ -53,6 +53,15 @@ public class Statement {
         return value;
     }
 
+    int IfElse(int value) {
+        if (value == 0) {
+            value++;
+        } else {
+            value--;
+        }
+        return value;
+    }
+
     int Break(int value) {
         root: while (value < 10) {
             if (value % 2 == 0) {

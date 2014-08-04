@@ -618,9 +618,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitExpressionStatement(ExpressionStatementTree expression, SourceXML context) {
         context = traceLine(expression, context);
 
-        expression.getExpression().accept(this, context);
-
-        return context;
+        return context.visit(expression.getExpression());
     }
 
     /**
@@ -665,18 +663,16 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
         // Condition
         statement.start();
-        latestLine.reserved("if").space();
-        tree.getCondition().accept(this, latestLine);
+        latestLine.reserved("if").space().visit(tree.getCondition());
         statement.end(false);
 
         // Then
-        tree.getThenStatement().accept(this, latestLine);
+        latestLine.visit(tree.getThenStatement());
 
         StatementTree elseStatement = tree.getElseStatement();
 
         if (elseStatement != null) {
-            latestLine.space().reserved("else").space();
-            elseStatement.accept(this, latestLine);
+            latestLine.space().reserved("else").visit(elseStatement);
         }
 
         return context;
@@ -764,6 +760,14 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             context.number(value.toString() + "L");
             break;
 
+        case FLOAT_LITERAL:
+            context.number(value.toString() + "F");
+            break;
+
+        case DOUBLE_LITERAL:
+            context.number(value.toString() + "D");
+            break;
+
         case NULL_LITERAL:
         case BOOLEAN_LITERAL:
             context.reserved(String.valueOf(value));
@@ -772,38 +776,6 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         default:
             throw new Error(literal.getKind().toString());
         }
-
-        // try {
-        // switch (tree.typetag) {
-        // case INT:
-        // print(tree.value.toString());
-        // break;
-        // case LONG:
-        // print(tree.value + "L");
-        // break;
-        // case FLOAT:
-        // print(tree.value + "F");
-        // break;
-        // case DOUBLE:
-        // print(tree.value.toString());
-        // break;
-        // case CHAR:
-        // print("\'" + Convert.quote(String.valueOf((char) ((Number) tree.value).intValue())) +
-        // "\'");
-        // break;
-        // case BOOLEAN:
-        // print(((Number) tree.value).intValue() == 1 ? "true" : "false");
-        // break;
-        // case BOT:
-        // print("null");
-        // break;
-        // default:
-        // print("\"" + Convert.quote(tree.value.toString()) + "\"");
-        // break;
-        // }
-        // } catch (IOException e) {
-        // throw new UncheckedIOException(e);
-        // }
         return context;
     }
 

@@ -90,6 +90,11 @@ public class LowLevelSourceTest {
         assertSourceAsText(MethodCall.class);
     }
 
+    @Test
+    public void primitive() throws Exception {
+        assertSourceAsText(Primitive.class);
+    }
+
     /**
      * <p>
      * Assertion helper.
