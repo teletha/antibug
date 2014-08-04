@@ -81,6 +81,13 @@ public class LowLevelSourceTest {
     }
 
     @Test
+    public void constructor() throws Exception {
+        XML xml = assertSourceAsText(Constructor.class);
+        assert xml.find("reserved:contains(this)").size() == 1;
+        assert xml.find("reserved:contains(super)").size() == 1;
+    }
+
+    @Test
     public void modifier() throws Exception {
         assertSourceAsText(Modifier.class);
     }
@@ -111,6 +118,18 @@ public class LowLevelSourceTest {
     }
 
     @Test
+    public void assertion() throws Exception {
+        assertSourceAsText(Assert.class);
+    }
+
+    @Test
+    public void classLiteral() throws Exception {
+        XML xml = assertSourceAsText(ClassLiteral.class);
+
+        assert xml.find("reserved:contains(class)").size() == 2;
+    }
+
+    @Test
     public void sample() throws Exception {
         assertSourceAsText(LowLevelSourceTest.class);
     }
@@ -122,7 +141,7 @@ public class LowLevelSourceTest {
      * 
      * @param target A target class to test.
      */
-    private void assertSourceAsText(Class target) {
+    private XML assertSourceAsText(Class target) {
         String separator = System.getProperty("line.separator");
 
         try {
@@ -191,6 +210,8 @@ public class LowLevelSourceTest {
                     throw new AssertionError(cause);
                 }
             }
+
+            return xml;
         } catch (IOException e) {
             throw I.quiet(e);
         }

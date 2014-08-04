@@ -113,4 +113,10 @@ public class Statement {
         }
         return 6;
     }
+
+    void Synchronized(String value) {
+        synchronized (value) {
+            System.out.println(value);
+        }
+    }
 }

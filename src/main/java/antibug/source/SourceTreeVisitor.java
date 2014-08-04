@@ -182,8 +182,21 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitAssert(AssertTree arg0, SourceXML context) {
-        System.out.println("visitAssert");
+    public SourceXML visitAssert(AssertTree assertion, SourceXML context) {
+        context = traceLine(assertion, context);
+
+        statement.start();
+        context.reserved("assert").space().visit(assertion.getCondition());
+
+        ExpressionTree detail = assertion.getDetail();
+
+        if (detail != null) {
+            context.space().text(":").space().visit(detail);
+        }
+        statement.end(false);
+
+        context.semiColon();
+
         return context;
     }
 
@@ -663,6 +676,8 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
         if (value.equals("this")) {
             context.reserved("this");
+        } else if (value.equals("super")) {
+            context.reserved("super");
         } else {
             context.type(value);
         }
@@ -845,7 +860,13 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitMemberSelect(MemberSelectTree select, SourceXML context) {
         context = traceLine(select, context);
 
-        return context.visit(select.getExpression()).text(".").memberAccess(select.getIdentifier().toString());
+        String member = select.getIdentifier().toString();
+
+        if (member.equals("class")) {
+            return context.visit(select.getExpression()).text(".").reserved("class");
+        } else {
+            return context.visit(select.getExpression()).text(".").memberAccess(member);
+        }
     }
 
     /**
@@ -942,9 +963,8 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
                 context.typeParams(types, true).visit(tree.meth);
             }
         } else {
-            tree.meth.accept(this, context);
+            context.visit(tree.meth);
         }
-
         context.text("(").join(invoke.getArguments()).text(")");
 
         statement.end(true);
@@ -1148,8 +1168,11 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitSynchronized(SynchronizedTree arg0, SourceXML context) {
-        System.out.println("visitSynchronized");
+    public SourceXML visitSynchronized(SynchronizedTree tree, SourceXML context) {
+        context = traceLine(tree, context);
+
+        context.reserved("synchronized").space().visit(tree.getExpression()).visit(tree.getBlock());
+
         return context;
     }
 
