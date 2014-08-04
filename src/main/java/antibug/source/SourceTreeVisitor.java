@@ -744,13 +744,13 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         List<? extends VariableTree> params = lambda.getParameters();
 
         if (params.size() == 1) {
-            context.visit(params.get(0));
+            context = context.visit(params.get(0));
         } else {
-            context.text("(").join(params).text(")");
+            context = context.text("(").join(params).text(")");
         }
 
         statement.store();
-        context.space().text("->").visit(lambda.getBody());
+        context = context.space().text("->").visit(lambda.getBody());
         statement.restore();
 
         return context;
@@ -821,9 +821,10 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             throw new Error(refer.getMode().toString());
         }
 
-        context.visit(refer.getQualifierExpression()).text("::").typeParams(refer.getTypeArguments(), true).text(name);
-
-        return context;
+        return context.visit(refer.getQualifierExpression())
+                .text("::")
+                .typeParams(refer.getTypeArguments(), true)
+                .text(name);
     }
 
     /**
@@ -833,9 +834,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitMemberSelect(MemberSelectTree select, SourceXML context) {
         context = traceLine(select, context);
 
-        context.visit(select.getExpression()).text(".").memberAccess(select.getIdentifier().toString());
-
-        return context;
+        return context.visit(select.getExpression()).text(".").memberAccess(select.getIdentifier().toString());
     }
 
     /**
@@ -1063,9 +1062,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitParameterizedType(ParameterizedTypeTree type, SourceXML context) {
         traceLine(type, context);
 
-        context.visit(type.getType()).typeParams(type.getTypeArguments(), false);
-
-        return context;
+        return context.visit(type.getType()).typeParams(type.getTypeArguments(), false);
     }
 
     /**
@@ -1073,11 +1070,9 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     @Override
     public SourceXML visitParenthesized(ParenthesizedTree tree, SourceXML context) {
-        traceLine(tree, context);
+        context = traceLine(tree, context);
 
-        latestLine.text("(").visit(tree.getExpression()).text(")");
-
-        return context;
+        return context.text("(").visit(tree.getExpression()).text(")");
     }
 
     /**
