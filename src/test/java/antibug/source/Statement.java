@@ -31,6 +31,12 @@ public class Statement {
         return value;
     }
 
+    void ForEach(int[] values) {
+        for (int value : values) {
+            System.out.println(value);
+        }
+    }
+
     int While(int value) {
         while (value <= 10) {
             ++value;
