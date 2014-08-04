@@ -75,6 +75,11 @@ public class LowLevelSourceTest {
         assertSourceAsText(TypeParameter.class);
     }
 
+    @Test
+    public void tryCatchFinally() throws Exception {
+        assertSourceAsText(Try.class);
+    }
+
     /**
      * <p>
      * Assertion helper.
