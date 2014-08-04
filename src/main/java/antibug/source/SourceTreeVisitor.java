@@ -227,11 +227,55 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             break;
 
         case AND:
-            operator = "&&";
+            operator = "&";
             break;
 
         case OR:
+            operator = "|";
+            break;
+
+        case PLUS:
+            operator = "+";
+            break;
+
+        case MINUS:
+            operator = "-";
+            break;
+
+        case MULTIPLY:
+            operator = "*";
+            break;
+
+        case DIVIDE:
+            operator = "/";
+            break;
+
+        case REMAINDER:
+            operator = "%";
+            break;
+
+        case CONDITIONAL_OR:
             operator = "||";
+            break;
+
+        case CONDITIONAL_AND:
+            operator = "&&";
+            break;
+
+        case XOR:
+            operator = "^";
+            break;
+
+        case LEFT_SHIFT:
+            operator = "<<";
+            break;
+
+        case RIGHT_SHIFT:
+            operator = ">>";
+            break;
+
+        case UNSIGNED_RIGHT_SHIFT:
+            operator = ">>>";
             break;
 
         default:
@@ -392,8 +436,62 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitCompoundAssignment(CompoundAssignmentTree arg0, SourceXML context) {
-        System.out.println("visitCompoundAssignment");
+    public SourceXML visitCompoundAssignment(CompoundAssignmentTree assign, SourceXML context) {
+        String operator = "";
+
+        switch (assign.getKind()) {
+        case PLUS_ASSIGNMENT:
+            operator = "+=";
+            break;
+
+        case MINUS_ASSIGNMENT:
+            operator = "-=";
+            break;
+
+        case MULTIPLY_ASSIGNMENT:
+            operator = "*=";
+            break;
+
+        case DIVIDE_ASSIGNMENT:
+            operator = "/=";
+            break;
+
+        case REMAINDER_ASSIGNMENT:
+            operator = "%=";
+            break;
+
+        case OR_ASSIGNMENT:
+            operator = "|=";
+            break;
+
+        case AND_ASSIGNMENT:
+            operator = "&=";
+            break;
+
+        case XOR_ASSIGNMENT:
+            operator = "^=";
+            break;
+
+        case LEFT_SHIFT_ASSIGNMENT:
+            operator = "<<=";
+            break;
+
+        case RIGHT_SHIFT_ASSIGNMENT:
+            operator = ">>=";
+            break;
+
+        case UNSIGNED_RIGHT_SHIFT_ASSIGNMENT:
+            operator = ">>>=";
+            break;
+
+        default:
+            throw new Error(assign.getKind().toString());
+        }
+
+        statement.start();
+        context = context.visit(assign.getVariable()).space().text(operator).space().visit(assign.getExpression());
+        statement.end(true);
+
         return context;
     }
 
@@ -401,8 +499,21 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitConditionalExpression(ConditionalExpressionTree arg0, SourceXML context) {
-        System.out.println("visitConditionalExpression");
+    public SourceXML visitConditionalExpression(ConditionalExpressionTree ternary, SourceXML context) {
+        context = traceLine(ternary, context);
+
+        statement.start();
+        context = context.visit(ternary.getCondition())
+                .space()
+                .text("?")
+                .space()
+                .visit(ternary.getTrueExpression())
+                .space()
+                .text(":")
+                .space()
+                .visit(ternary.getFalseExpression());
+        statement.end(true);
+
         return context;
     }
 
@@ -419,8 +530,15 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitDoWhileLoop(DoWhileLoopTree arg0, SourceXML context) {
-        System.out.println("visitDoWhileLoop");
+    public SourceXML visitDoWhileLoop(DoWhileLoopTree loop, SourceXML context) {
+        context = traceLine(loop, context);
+
+        context = context.reserved("do").visit(loop.getStatement());
+
+        statement.start();
+        context.space().reserved("while").space().visit(loop.getCondition()).semiColon();
+        statement.end(false);
+
         return context;
     }
 
@@ -541,8 +659,17 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitInstanceOf(InstanceOfTree arg0, SourceXML context) {
-        System.out.println("visitInstanceOf");
+    public SourceXML visitInstanceOf(InstanceOfTree instanceOf, SourceXML context) {
+        context = traceLine(instanceOf, context);
+
+        statement.start();
+        context = context.visit(instanceOf.getExpression())
+                .space()
+                .reserved("instanceof")
+                .space()
+                .visit(instanceOf.getType());
+        statement.end(true);
+
         return context;
     }
 
@@ -1026,8 +1153,25 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         case PREFIX_INCREMENT:
             expression.accept(this, context.text("++"));
             break;
+
         case PREFIX_DECREMENT:
             expression.accept(this, context.text("--"));
+            break;
+
+        case LOGICAL_COMPLEMENT:
+            expression.accept(this, context.text("!"));
+            break;
+
+        case BITWISE_COMPLEMENT:
+            expression.accept(this, context.text("~"));
+            break;
+
+        case UNARY_PLUS:
+            expression.accept(this, context.text("+"));
+            break;
+
+        case UNARY_MINUS:
+            expression.accept(this, context.text("-"));
             break;
 
         default:
@@ -1099,8 +1243,15 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitWhileLoop(WhileLoopTree arg0, SourceXML context) {
-        System.out.println("visitWhileLoop");
+    public SourceXML visitWhileLoop(WhileLoopTree loop, SourceXML context) {
+        context = traceLine(loop, context);
+
+        statement.start();
+        context.reserved("while").space().visit(loop.getCondition());
+        statement.end(false);
+
+        context.visit(loop.getStatement());
+
         return context;
     }
 
@@ -1156,9 +1307,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             context = tree.accept(this, context);
         }
         indentLevel--;
-        startNewLine().text("}");
-
-        return context;
+        return startNewLine().text("}");
     }
 
     /**
