@@ -212,6 +212,19 @@ class SourceXML {
 
     /**
      * <p>
+     * Write char literal.
+     * </p>
+     * 
+     * @return Chainable API.
+     */
+    SourceXML character(String value) {
+        xml.append(I.xml("char").text("'" + value + "'"));
+
+        return this;
+    }
+
+    /**
+     * <p>
      * Write number literal.
      * </p>
      * 

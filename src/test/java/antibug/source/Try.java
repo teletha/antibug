@@ -9,6 +9,9 @@
  */
 package antibug.source;
 
+import java.io.Closeable;
+import java.io.IOException;
+
 /**
  * @version 2014/08/04 11:51:07
  */
@@ -58,5 +61,13 @@ public class Try {
             value--;
         }
         return value;
+    }
+
+    int TryWithResource(Closeable resource) {
+        try (Closeable a = resource) {
+            return 1;
+        } catch (IOException e) {
+            return 2;
+        }
     }
 }
