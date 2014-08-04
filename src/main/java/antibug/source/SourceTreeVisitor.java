@@ -380,8 +380,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         Tree extend = clazz.getExtendsClause();
 
         if (extend != null) {
-            latestLine.space().reserved("extends").space();
-            extend.accept(this, latestLine);
+            latestLine.space().reserved("extends").space().visit(extend);
         }
 
         // ===========================================
@@ -997,7 +996,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitParameterizedType(ParameterizedTypeTree type, SourceXML context) {
         traceLine(type, context);
 
-        context.visit(type.getType()).typeParams(type.getTypeArguments(), true);
+        context.visit(type.getType()).typeParams(type.getTypeArguments(), false);
 
         return context;
     }
@@ -1130,6 +1129,12 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
         context.join(null, param.getAnnotations(), null, " ").type(param.getName().toString());
 
+        List<? extends Tree> bounds = param.getBounds();
+
+        if (!bounds.isEmpty()) {
+            context = context.space().reserved("extends").space().join(null, bounds, " &", null);
+        }
+
         return context;
     }
 
@@ -1259,8 +1264,33 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitWildcard(WildcardTree arg0, SourceXML context) {
-        System.out.println("visitWildcard");
+    public SourceXML visitWildcard(WildcardTree wildcard, SourceXML context) {
+        context = traceLine(wildcard, context);
+
+        context = context.text("?");
+
+        Tree bound = wildcard.getBound();
+
+        if (bound != null) {
+            String keyword = "";
+
+            switch (wildcard.getKind()) {
+            case EXTENDS_WILDCARD:
+                keyword = "extends";
+                break;
+
+            case SUPER_WILDCARD:
+                keyword = "super";
+                break;
+
+            default:
+                // If this exception will be thrown, it is bug of this program. So we must rethrow
+                // the wrapped error in here.
+                throw new Error(wildcard.getKind().toString());
+            }
+            context = context.space().reserved(keyword).space().visit(bound);
+        }
+
         return context;
     }
 
