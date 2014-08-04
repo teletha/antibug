@@ -156,8 +156,13 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * {@inheritDoc}
      */
     @Override
-    public SourceXML visitArrayAccess(ArrayAccessTree arg0, SourceXML context) {
-        System.out.println("visitArrayAccess");
+    public SourceXML visitArrayAccess(ArrayAccessTree array, SourceXML context) {
+        context = traceLine(array, context);
+
+        statement.start();
+        context = context.visit(array.getExpression()).text("[").visit(array.getIndex()).text("]");
+        statement.end(true);
+
         return context;
     }
 
@@ -951,9 +956,25 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         statement.start();
         traceLine(array, context);
 
-        context.reserved("new").space();
-        array.getType().accept(this, context);
-        context.text("[").join(array.getDimensions()).text("]");
+        Tree type = array.getType();
+
+        if (type == null) {
+            // shorthand initializer (e.g. array = {1, 2, 3})
+            context.text("{").join(array.getInitializers()).text("}");
+        } else {
+            // new initializer (e.g. array = new int[] {1, 2, 3})
+            context.join(array.getAnnotations());
+
+            context.reserved("new").space();
+            array.getType().accept(this, context);
+            context.text("[").join(array.getDimensions()).text("]");
+
+            List<? extends ExpressionTree> initializers = array.getInitializers();
+
+            if (initializers != null && !initializers.isEmpty()) {
+                context.space().join("{", initializers, "}");
+            }
+        }
 
         statement.end(true);
         return context;

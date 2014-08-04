@@ -95,6 +95,11 @@ public class LowLevelSourceTest {
         assertSourceAsText(Primitive.class);
     }
 
+    @Test
+    public void array() throws Exception {
+        assertSourceAsText(Array.class);
+    }
+
     /**
      * <p>
      * Assertion helper.
