@@ -315,6 +315,9 @@ class SourceXML {
      * @param expression
      */
     SourceXML visit(Tree tree) {
+        if (tree == null) {
+            return this;
+        }
         return tree.accept(visitor, this);
     }
 

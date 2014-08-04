@@ -133,9 +133,9 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         traceLine(type, context);
 
         for (AnnotationTree annotation : type.getAnnotations()) {
-            annotation.accept(this, context).space();
+            context.visit(annotation).space();
         }
-        type.getUnderlyingType().accept(this, context);
+        context.visit(type.getUnderlyingType());
 
         return context;
     }
@@ -302,11 +302,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             throw new Error(binary.getKind().toString());
         }
 
-        binary.getLeftOperand().accept(this, context);
-        context.space().text(operator).space();
-        binary.getRightOperand().accept(this, context);
-
-        return context;
+        return context.visit(binary.getLeftOperand()).space().text(operator).space().visit(binary.getRightOperand());
     }
 
     /**
@@ -383,7 +379,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         // ===========================================
         // Annotations and Modifiers
         // ===========================================
-        context = clazz.getModifiers().accept(this, context);
+        context = context.visit(clazz.getModifiers());
 
         // ===========================================
         // Type Declaration
@@ -445,7 +441,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
         for (Tree tree : clazz.getMembers()) {
             info.processNonFirstConstant(tree);
-            context = tree.accept(this, context);
+            context = context.visit(tree);
             info.completeIfAllConstantsDeclared(tree);
         }
         info.complete();
@@ -469,7 +465,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         }
 
         for (Tree tree : unit.getTypeDecls()) {
-            tree.accept(this, context);
+            context.visit(tree);
         }
         return startNewLine();
     }
@@ -892,7 +888,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         Tree returnType = executor.getReturnType();
 
         if (returnType != null) {
-            returnType.accept(this, latestLine).space();
+            latestLine.visit(returnType).space();
         }
 
         // ===========================================
@@ -923,8 +919,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         Tree defaultValue = executor.getDefaultValue();
 
         if (defaultValue != null) {
-            latestLine.space().reserved("default").space();
-            defaultValue.accept(this, latestLine);
+            latestLine.space().reserved("default").space().visit(defaultValue);
         }
 
         // ===========================================
@@ -937,7 +932,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             latestLine.semiColon();
         } else {
             // concreat
-            body.accept(this, latestLine);
+            latestLine.visit(body);
         }
 
         return context;
@@ -957,8 +952,8 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         if (!types.isEmpty()) {
             if (tree.meth.hasTag(SELECT)) {
                 JCFieldAccess left = (JCFieldAccess) tree.meth;
-                context = left.selected.accept(this, context);
-                context.text(".").typeParams(types, true).text(left.name.toString());
+
+                context = context.visit(left.selected).text(".").typeParams(types, true).text(left.name.toString());
             } else {
                 context.typeParams(types, true).visit(tree.meth);
             }
@@ -1026,11 +1021,13 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             context.text("{").join(array.getInitializers()).text("}");
         } else {
             // new initializer (e.g. array = new int[] {1, 2, 3})
-            context.join(array.getAnnotations());
-
-            context.reserved("new").space();
-            array.getType().accept(this, context);
-            context.text("[").join(array.getDimensions()).text("]");
+            context.join(array.getAnnotations())
+                    .reserved("new")
+                    .space()
+                    .visit(array.getType())
+                    .text("[")
+                    .join(array.getDimensions())
+                    .text("]");
 
             List<? extends ExpressionTree> initializers = array.getInitializers();
 
@@ -1055,8 +1052,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         ExpressionTree enclosing = clazz.getEnclosingExpression();
 
         if (enclosing != null) {
-            enclosing.accept(this, context);
-            context.text(".");
+            context.visit(enclosing).text(".");
         }
 
         context.reserved("new")
@@ -1065,13 +1061,8 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
                 .visit(clazz.getIdentifier())
                 .text("(")
                 .join(clazz.getArguments())
-                .text(")");
-
-        ClassTree body = clazz.getClassBody();
-
-        if (body != null) {
-            body.accept(this, context);
-        }
+                .text(")")
+                .visit(clazz.getClassBody());
 
         statement.end(true);
         return context;
@@ -1144,8 +1135,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         statement.start();
         context = traceLine(tree, context);
 
-        context.reserved("return").space();
-        tree.getExpression().accept(this, context);
+        context.reserved("return").space().visit(tree.getExpression());
 
         statement.end(true);
         return context;
@@ -1254,35 +1244,35 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
         switch (unary.getKind()) {
         case POSTFIX_INCREMENT:
-            expression.accept(this, context).text("++");
+            context.visit(expression).text("++");
             break;
 
         case POSTFIX_DECREMENT:
-            expression.accept(this, context).text("--");
+            context.visit(expression).text("--");
             break;
 
         case PREFIX_INCREMENT:
-            expression.accept(this, context.text("++"));
+            context.text("++").visit(expression);
             break;
 
         case PREFIX_DECREMENT:
-            expression.accept(this, context.text("--"));
+            context.text("--").visit(expression);
             break;
 
         case LOGICAL_COMPLEMENT:
-            expression.accept(this, context.text("!"));
+            context.text("!").visit(expression);
             break;
 
         case BITWISE_COMPLEMENT:
-            expression.accept(this, context.text("~"));
+            context.text("~").visit(expression);
             break;
 
         case UNARY_PLUS:
-            expression.accept(this, context.text("+"));
+            context.text("+").visit(expression);
             break;
 
         case UNARY_MINUS:
-            expression.accept(this, context.text("-"));
+            context.text("-").visit(expression);
             break;
 
         default:
@@ -1352,8 +1342,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             ExpressionTree initializer = variable.getInitializer();
 
             if (initializer != null) {
-                latestLine.space().text("=").space();
-                initializer.accept(this, latestLine);
+                latestLine.space().text("=").space().visit(initializer);
             }
 
             statement.end(true);
@@ -1451,9 +1440,8 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         context.space().text("{");
         indentLevel++;
 
-        for (Tree tree : trees) {
-            context = tree.accept(this, context);
-        }
+        context.visit(trees);
+
         indentLevel--;
         return startNewLine().text("}");
     }
