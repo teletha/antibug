@@ -1501,8 +1501,36 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             char c = value.charAt(i);
 
             switch (c) {
+            case '\b':
+                builder.append("\\b");
+                break;
+
+            case '\t':
+                builder.append("\\t");
+                break;
+
+            case '\n':
+                builder.append("\\n");
+                break;
+
+            case '\r':
+                builder.append("\\r");
+                break;
+
+            case '\f':
+                builder.append("\\f");
+                break;
+
             case '"':
                 builder.append("\\\"");
+                break;
+
+            case '\'':
+                builder.append("\\'");
+                break;
+
+            case '\\':
+                builder.append("\\\\");
                 break;
 
             default:

@@ -80,7 +80,7 @@ public class SourceParser {
         Path dir = I.locate("src/test/java/antibug/source");
         List<File> files = new ArrayList();
 
-        for (Path path : I.walk(dir, "MethodCall.java")) {
+        for (Path path : I.walk(dir, "StringLiteral.java")) {
             files.add(path.toFile());
         }
 

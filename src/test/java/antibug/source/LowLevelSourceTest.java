@@ -135,6 +135,11 @@ public class LowLevelSourceTest {
     }
 
     @Test
+    public void stringLiteral() throws Exception {
+        assertSourceAsText(StringLiteral.class);
+    }
+
+    @Test
     public void sample() throws Exception {
         assertSourceAsText(LowLevelSourceTest.class);
     }
