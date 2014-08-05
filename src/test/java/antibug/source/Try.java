@@ -64,10 +64,16 @@ public class Try {
     }
 
     int TryWithResource(Closeable resource) {
-        try (Closeable a = resource) {
+        try (final Closeable close = resource) {
             return 1;
         } catch (IOException e) {
             return 2;
+        }
+    }
+
+    int TryWithResource2(Closeable resource) throws Exception {
+        try (final Closeable close1 = resource; final Closeable clsoe2 = resource) {
+            return 1;
         }
     }
 }
