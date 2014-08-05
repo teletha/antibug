@@ -147,9 +147,13 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitAnnotation(AnnotationTree annotation, SourceXML context) {
         context = traceLine(annotation, context);
 
-        return context.child("annotation")
-                .text("@" + annotation.getAnnotationType())
-                .join("(", annotation.getArguments(), ")");
+        context = context.child("annotation").text("@" + annotation.getAnnotationType());
+
+        statement.start();
+        context = context.join("(", annotation.getArguments(), ")");
+        statement.end(false);
+
+        return context;
     }
 
     /**
@@ -923,7 +927,9 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         Tree defaultValue = executor.getDefaultValue();
 
         if (defaultValue != null) {
+            statement.start();
             latestLine.space().reserved("default").space().visit(defaultValue);
+            statement.end(false);
         }
 
         // ===========================================

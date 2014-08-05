@@ -31,6 +31,11 @@ import antibug.xml.XMLFormatter;
 public class LowLevelSourceTest {
 
     @Test
+    public void annotation() throws Exception {
+        assertSourceAsText(AnnotationUse.class);
+    }
+
+    @Test
     public void annotationTypeUse() throws Exception {
         assertSourceAsText(AnnotationTypeUse.class);
     }

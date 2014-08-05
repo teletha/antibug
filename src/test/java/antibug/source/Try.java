@@ -71,7 +71,7 @@ public class Try {
         }
     }
 
-    int TryWithResource2(Closeable resource) throws Exception {
+    int TryWithResources(Closeable resource) throws Exception {
         try (final Closeable close1 = resource; final Closeable clsoe2 = resource) {
             return 1;
         }
