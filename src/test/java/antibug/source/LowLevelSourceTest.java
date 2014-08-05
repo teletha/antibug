@@ -140,6 +140,11 @@ public class LowLevelSourceTest {
     }
 
     @Test
+    public void multiline() throws Exception {
+        assertSourceAsText(MultiLine.class);
+    }
+
+    @Test
     public void sample() throws Exception {
         assertSourceAsText(LowLevelSourceTest.class);
     }
@@ -156,6 +161,11 @@ public class LowLevelSourceTest {
 
         try {
             Path source = I.locate("src/test/java").resolve(target.getName().replace(".", "/") + ".java");
+
+            if (Files.notExists(source)) {
+                source = I.locate("src/main/java").resolve(target.getName().replace(".", "/") + ".java");
+            }
+
             XML xml = SourceParser.parse(source);
 
             // convert xml to text

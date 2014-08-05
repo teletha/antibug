@@ -31,6 +31,12 @@ class SourceXML {
     /** The visitor. */
     private final SourceTreeVisitor visitor;
 
+    /** The line number. */
+    private final int line;
+
+    /** The line manager. */
+    private SourceMapper mapper;
+
     /**
      * <p>
      * Create new wrapper.
@@ -38,9 +44,11 @@ class SourceXML {
      * 
      * @param xml
      */
-    SourceXML(XML xml, SourceTreeVisitor visitor) {
+    SourceXML(int line, XML xml, SourceTreeVisitor visitor, SourceMapper mapper) {
         this.xml = xml;
         this.visitor = visitor;
+        this.line = line;
+        this.mapper = mapper;
     }
 
     /**
@@ -52,7 +60,7 @@ class SourceXML {
      * @return A child element.
      */
     SourceXML child(String name) {
-        return new SourceXML(xml.child(name), visitor);
+        return new SourceXML(line, xml.child(name), visitor, mapper);
     }
 
     /**
@@ -104,14 +112,16 @@ class SourceXML {
 
             // join
             for (int i = 0; i < size; i++) {
-                current = trees.get(i).accept(visitor, current);
-
-                if (i < size - 1) {
+                if (0 < i) {
                     if (separator != null && separator.length() != 0) {
                         current.text(separator);
                     }
-                    current.space();
+
+                    if (mapper.getLine(trees.get(i)) == current.line) {
+                        current.space();
+                    }
                 }
+                current = current.visit(trees.get(i));
             }
 
             // suffix
@@ -180,20 +190,6 @@ class SourceXML {
     SourceXML semiColon() {
         xml.append(";");
 
-        return this;
-    }
-
-    /**
-     * <p>
-     * Write attribute.
-     * </p>
-     * 
-     * @param name An attribute name.
-     * @param value An attribute value.
-     * @return Chainable API.
-     */
-    SourceXML attr(String name, Object value) {
-        xml.attr(name, value);
         return this;
     }
 
@@ -308,20 +304,6 @@ class SourceXML {
         }
 
         return current;
-    }
-
-    /**
-     * 
-     */
-    void shrink() {
-        String text = xml.text();
-
-        for (int i = 0; i < text.length(); i++) {
-            if (!Character.isWhitespace(text.charAt(i))) {
-                return;
-            }
-        }
-        xml.text("");
     }
 
     /**
