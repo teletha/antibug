@@ -51,19 +51,19 @@ public class SourceParser {
      * Parse the given source and build {@link XML} representation.
      * </p>
      * 
-     * @param source A source file.
+     * @param path A source file.
      * @return A {@link XML}.
      */
-    public static XML parse(Path source) {
+    public static XML parse(Path path) {
         try {
-            JavacTask task = (JavacTask) compiler.getTask(null, manager, null, null, null, manager.getJavaFileObjects(source.toFile()));
+            JavacTask task = (JavacTask) compiler.getTask(null, manager, null, null, null, manager.getJavaFileObjects(path.toFile()));
             Trees trees = Trees.instance(task);
 
             XML xml = I.xml("source");
 
             for (CompilationUnitTree unit : task.parse()) {
-                SourceMapper mapper = new SourceMapper(unit, trees.getSourcePositions());
-                SourceTreeVisitor visitor = new SourceTreeVisitor(xml, mapper);
+                SourceMapper source = new SourceMapper(unit, trees.getSourcePositions());
+                SourceTreeVisitor visitor = new SourceTreeVisitor(xml, source);
 
                 // start analyzing
                 unit.accept(visitor, null);

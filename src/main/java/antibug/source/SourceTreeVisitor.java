@@ -105,14 +105,11 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     /** The current AST line number. */
     private int logicalLine = 1;
 
-    /** The current AST indent size. */
-    private int indentLevel = 0;
-
-    /** The indent pattern. */
-    private String indent = "    ";
-
     /** The enclosing class name stack. */
     private Deque<String> classNames = new ArrayDeque();
+
+    /** The indent level manager. */
+    private Indent indent = new Indent();
 
     /** The statement level manager. */
     private Statement statement = new Statement();
@@ -347,7 +344,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     @Override
     public SourceXML visitCase(CaseTree tree, SourceXML context) {
-        indentLevel--;
+        indent.decrease();
         context = traceLine(tree, context);
 
         ExpressionTree value = tree.getExpression();
@@ -360,7 +357,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             context = context.reserved("case").space().visit(tree.getExpression()).text(":");
         }
 
-        indentLevel++;
+        indent.increase();
         return context.visit(tree.getStatements());
     }
 
@@ -436,7 +433,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         }
 
         latestLine.space().text("{");
-        indentLevel++;
+        indent.increase();
 
         // ===========================================
         // Members
@@ -450,7 +447,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         }
         info.complete();
 
-        indentLevel--;
+        indent.decrease();
         classNames.pollLast();
         return startNewLine().text("}");
     }
@@ -787,7 +784,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     @Override
     public SourceXML visitLiteral(LiteralTree literal, SourceXML context) {
-        traceLine(literal, context);
+        context = traceLine(literal, context);
 
         Object value = literal.getValue();
 
@@ -1022,16 +1019,16 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     @Override
     public SourceXML visitNewArray(NewArrayTree array, SourceXML context) {
         statement.start();
-        traceLine(array, context);
+        context = traceLine(array, context);
 
         Tree type = array.getType();
 
         if (type == null) {
             // shorthand initializer (e.g. array = {1, 2, 3})
-            context.text("{").join(array.getInitializers()).text("}");
+            context = context.text("{").join(array.getInitializers()).text("}");
         } else {
             // new initializer (e.g. array = new int[] {1, 2, 3})
-            context.join(array.getAnnotations())
+            context = context.join(array.getAnnotations())
                     .reserved("new")
                     .space()
                     .visit(array.getType())
@@ -1042,7 +1039,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             List<? extends ExpressionTree> initializers = array.getInitializers();
 
             if (initializers != null && !initializers.isEmpty()) {
-                context.space().join("{", initializers, "}");
+                context = context.space().join("{", initializers, "}");
             }
         }
 
@@ -1427,11 +1424,10 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      * </p>
      */
     private SourceXML startNewLine() {
-        SourceXML newLine = new SourceXML(root.child("line").attr("n", logicalLine++), this);
+        SourceXML newLine = new SourceXML(logicalLine, root.child("line").attr("n", logicalLine++), this, mapper);
 
-        for (int i = 0; i < indentLevel; i++) {
-            newLine.text(indent);
-        }
+        newLine.text(indent.toString());
+
         return this.latestLine = newLine;
     }
 
@@ -1458,11 +1454,11 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
     private SourceXML writeBlock(List<? extends Tree> trees, SourceXML context) {
         context.space().text("{");
-        indentLevel++;
+        indent.increase();
 
         context.visit(trees);
 
-        indentLevel--;
+        indent.decrease();
         return startNewLine().text("}");
     }
 

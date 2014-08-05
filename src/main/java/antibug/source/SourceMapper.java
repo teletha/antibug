@@ -24,14 +24,19 @@ import com.sun.source.util.SourcePositions;
  */
 public class SourceMapper {
 
+    /** The compiled source. */
     private final CompilationUnitTree unit;
 
+    /** The source position manager. */
     private final SourcePositions positions;
 
+    /** The line manager. */
     private final LineMap map;
 
+    /** The actual source reader. */
     private final BufferedReader reader;
 
+    /** The actual source line. */
     private int currentLine = 1;
 
     /**
@@ -39,7 +44,7 @@ public class SourceMapper {
      * @param map
      * @throws IOException
      */
-    public SourceMapper(CompilationUnitTree unit, SourcePositions positions) throws IOException {
+    SourceMapper(CompilationUnitTree unit, SourcePositions positions) throws IOException {
         this.unit = unit;
         this.positions = positions;
         this.map = unit.getLineMap();
@@ -54,15 +59,27 @@ public class SourceMapper {
      * @param tree
      * @return
      */
-    public int getLine(Tree tree) {
+    int getLine(Tree tree) {
         return (int) map.getLineNumber(positions.getStartPosition(unit, tree));
+    }
+
+    /**
+     * <p>
+     * Compute line number of the given token.
+     * </p>
+     * 
+     * @param tree
+     * @return
+     */
+    int getEndLine(Tree tree) {
+        return (int) map.getLineNumber(positions.getEndPosition(unit, tree));
     }
 
     /**
      * @param i
      * @return
      */
-    public String readLineFrom(int lineNumber) {
+    String readLineFrom(int lineNumber) {
         try {
             while (++currentLine < lineNumber) {
                 reader.readLine();
