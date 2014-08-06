@@ -113,4 +113,8 @@ public class Operator {
     int brace(int value) {
         return (value + 1) * (value - 1);
     }
+
+    String string(String value) {
+        return value + " with " + value;
+    }
 }

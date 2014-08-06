@@ -26,7 +26,16 @@ class Indent {
      * </p>
      */
     void increase() {
-        size++;
+        increase(1);
+    }
+
+    /**
+     * <p>
+     * Increase indent size.
+     * </p>
+     */
+    void increase(int size) {
+        this.size += size;
     }
 
     /**
@@ -35,7 +44,16 @@ class Indent {
      * </p>
      */
     void decrease() {
-        size--;
+        decrease(1);
+    }
+
+    /**
+     * <p>
+     * Decrease indent size.
+     * </p>
+     */
+    void decrease(int size) {
+        this.size -= size;
     }
 
     /**
