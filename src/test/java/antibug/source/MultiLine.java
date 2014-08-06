@@ -9,29 +9,40 @@
  */
 package antibug.source;
 
+import java.nio.channels.IllegalBlockingModeException;
+import java.nio.channels.IllegalChannelGroupException;
+
+import javax.crypto.IllegalBlockSizeException;
+
 /**
  * @version 2014/08/05 12:27:18
  */
-public abstract class MultiLine {
+public abstract class MultiLine
+        implements java.util.function.IntBinaryOperator, java.util.function.IntConsumer,
+        com.sun.tools.doclets.internal.toolkit.taglets.InheritableTaglet,
+        com.sun.org.apache.xml.internal.dtm.ref.IncrementalSAXSource {
 
-    String[] strings = {"looooooooooooooooooooooooooooooooooooooooooong", "short",
-            "looooooooooooooooooooooooooooooong", "short", "looooooooooooooooooooooooooooooong", "short", "log",
-            "short", "looooooooooooooooooooooooooooooooooooooooooong"};
+    String[] array = {"looooooooooooooooooooooooooooooooooooooooooong", "short", "looooooooooooooooooooooooooooooong",
+            "short", "looooooooooooooooooooooooooooooong", "short", "log", "short",
+            "looooooooooooooooooooooooooooooooooooooooooong"};
 
-    int[][] ints = {
+    int[][] nestedArray = {
             {123456789, 123456789, 123456789, 123456789, 123456789, 123456789, 123456789, 123456789, 123456789,
                     123456789, 123456789, 123456789, 123456789, 123456789},
             {123456789, 123456789, 123456789, 123456789, 123456789, 123456789, 123456789, 123456789, 123456789,
                     123456789, 123456789, 123456789, 123456789, 123456789}};
 
-    StringBuilder builder = new StringBuilder().append("0000000000000000000000000000")
+    StringBuilder chain = new StringBuilder().append("0000000000000000000000000000")
             .append("111111111111111111111111111111")
             .append("2222222222222222222222222222")
             .append("3333333333333333333333333333");
 
-    abstract void throwLine(int parameter1, int parameter2, int parameter3, int parameter4, int parameter5, int parameter6, int parameter7, int parameter8, int parameter9, int parameter10)
-            throws Exception;
+    abstract void throwMultiLines(int p) throws IllegalAccessError, IllegalAccessException, IllegalArgumentException,
+            IllegalMonitorStateException, IllegalStateException, IllegalThreadStateException,
+            IllegalBlockingModeException, IllegalBlockSizeException, IllegalChannelGroupException;
 
-    private static void a() {
-    }
+    abstract void throwNextLine(int parameter1, int parameter2, int parameter3, int parameter4, int parameter5, int parameter6, int parameter7, int parameter8, int parameter9, int parameter10)
+            throws IllegalAccessError, IllegalAccessException, IllegalArgumentException, IllegalMonitorStateException,
+            IllegalStateException, IllegalThreadStateException, IllegalBlockingModeException,
+            IllegalBlockSizeException, IllegalChannelGroupException;
 }
