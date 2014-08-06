@@ -35,7 +35,9 @@ class SourceXML {
     private final int line;
 
     /** The line manager. */
-    private SourceMapper mapper;
+    private final SourceMapper mapper;
+
+    private final Indent indent;
 
     /**
      * <p>
@@ -44,11 +46,12 @@ class SourceXML {
      * 
      * @param xml
      */
-    SourceXML(int line, XML xml, SourceTreeVisitor visitor, SourceMapper mapper) {
+    SourceXML(int line, XML xml, SourceTreeVisitor visitor, SourceMapper mapper, Indent indent) {
         this.xml = xml;
         this.visitor = visitor;
         this.line = line;
         this.mapper = mapper;
+        this.indent = indent;
     }
 
     /**
@@ -60,7 +63,7 @@ class SourceXML {
      * @return A child element.
      */
     SourceXML child(String name) {
-        return new SourceXML(line, xml.child(name), visitor, mapper);
+        return new SourceXML(line, xml.child(name), visitor, mapper, indent);
     }
 
     /**
@@ -112,16 +115,21 @@ class SourceXML {
 
             // join
             for (int i = 0; i < size; i++) {
-                if (0 < i) {
+                boolean shouldWrapIndent = mapper.getLine(trees.get(i)) != current.line;
+
+                if (shouldWrapIndent) indent.increase(2);
+                current = current.visit(trees.get(i));
+                if (shouldWrapIndent) indent.decrease(2);
+
+                if (i < size - 1) {
                     if (separator != null && separator.length() != 0) {
                         current.text(separator);
                     }
 
-                    if (mapper.getLine(trees.get(i)) == current.line) {
+                    if (mapper.getLine(trees.get(i + 1)) == current.line) {
                         current.space();
                     }
                 }
-                current = current.visit(trees.get(i));
             }
 
             // suffix
