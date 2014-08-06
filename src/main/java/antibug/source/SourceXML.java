@@ -32,7 +32,7 @@ class SourceXML {
     private final SourceTreeVisitor visitor;
 
     /** The line number. */
-    private final int line;
+    final int line;
 
     /** The line manager. */
     private final SourceMapper mapper;
@@ -166,9 +166,21 @@ class SourceXML {
      * @return Chainable API.
      */
     SourceXML space() {
-        xml.append(" ");
-
+        if (!isWhiteSpace(xml.text())) {
+            xml.append(" ");
+        }
         return this;
+    }
+
+    private boolean isWhiteSpace(String text) {
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+
+            if (!Character.isWhitespace(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**

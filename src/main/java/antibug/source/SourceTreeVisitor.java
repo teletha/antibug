@@ -429,7 +429,11 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         List<? extends Tree> implement = clazz.getImplementsClause();
 
         if (!implement.isEmpty()) {
-            latestLine.space().reserved("implements").space().join(implement);
+            boolean shouldWrap = latestLine.line != mapper.getEndLine(implement.get(0));
+
+            if (shouldWrap) indent.increase(2);
+            traceLine(implement.get(0), latestLine).space().reserved("implements").space().join(implement);
+            if (shouldWrap) indent.decrease(2);
         }
 
         latestLine.space().text("{");
@@ -669,6 +673,8 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
      */
     @Override
     public SourceXML visitIdentifier(IdentifierTree identifier, SourceXML context) {
+        context = traceLine(identifier, context);
+
         String value = identifier.getName().toString();
 
         if (value.equals("this")) {
@@ -928,9 +934,11 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         List<? extends ExpressionTree> exceptions = executor.getThrows();
 
         if (!exceptions.isEmpty()) {
-            indent.increase(2);
+            boolean shouldWrap = latestLine.line != mapper.getEndLine(exceptions.get(0));
+
+            if (shouldWrap) indent.increase(2);
             traceLine(exceptions.get(0), latestLine).space().reserved("throws").space().join(exceptions);
-            indent.decrease(2);
+            if (shouldWrap) indent.decrease(2);
         }
 
         // ===========================================
