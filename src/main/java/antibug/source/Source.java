@@ -255,6 +255,25 @@ public class Source {
     }
 
     /**
+     * @param expression
+     * @param context
+     * @return
+     */
+    public SourceXML lineFor(Tree tree, SourceXML context) {
+        int start = context.line;
+        int end = getEndLine(tree);
+        boolean shouldWrap = start != end;
+
+        if (shouldWrap) {
+            wrappers.addLast(tree);
+            indentSize += 2;
+            return startNewLine();
+        } else {
+            return context;
+        }
+    }
+
+    /**
      * <p>
      * Create new line.
      * </p>
