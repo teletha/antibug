@@ -112,11 +112,7 @@ class SourceXML {
 
             // join
             for (int i = 0; i < size; i++) {
-                boolean shouldWrapIndent = lines.getLine(trees.get(i)) != current.line;
-
-                if (shouldWrapIndent) lines.increase(2);
-                current = current.visit(trees.get(i));
-                if (shouldWrapIndent) lines.decrease(2);
+                current = lines.lineFor(trees.get(i)).visit(trees.get(i));
 
                 if (i < size - 1) {
                     if (separator != null && separator.length() != 0) {
@@ -330,7 +326,12 @@ class SourceXML {
         if (tree == null) {
             return this;
         }
-        return tree.accept(visitor, this);
+
+        SourceXML context = tree.accept(visitor, this);
+
+        lines.unwrap(tree);
+
+        return context;
     }
 
     /**
