@@ -62,11 +62,10 @@ public class SourceParser {
             XML xml = I.xml("source");
 
             for (CompilationUnitTree unit : task.parse()) {
-                SourceMapper source = new SourceMapper(unit, trees.getSourcePositions());
-                SourceTreeVisitor visitor = new SourceTreeVisitor(xml, source);
+                Source lines = new Source(xml, unit, trees.getSourcePositions());
 
                 // start analyzing
-                unit.accept(visitor, null);
+                lines.parse();
             }
             return xml;
         } catch (IOException e) {
