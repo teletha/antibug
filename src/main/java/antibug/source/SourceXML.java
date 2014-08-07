@@ -35,9 +35,7 @@ class SourceXML {
     final int line;
 
     /** The line manager. */
-    private final SourceMapper mapper;
-
-    private final Indent indent;
+    private final Source lines;
 
     /**
      * <p>
@@ -46,12 +44,11 @@ class SourceXML {
      * 
      * @param xml
      */
-    SourceXML(int line, XML xml, SourceTreeVisitor visitor, SourceMapper mapper, Indent indent) {
+    SourceXML(int line, XML xml, SourceTreeVisitor visitor, Source lines) {
         this.xml = xml;
         this.visitor = visitor;
         this.line = line;
-        this.mapper = mapper;
-        this.indent = indent;
+        this.lines = lines;
     }
 
     /**
@@ -63,7 +60,7 @@ class SourceXML {
      * @return A child element.
      */
     SourceXML child(String name) {
-        return new SourceXML(line, xml.child(name), visitor, mapper, indent);
+        return new SourceXML(line, xml.child(name), visitor, lines);
     }
 
     /**
@@ -115,18 +112,18 @@ class SourceXML {
 
             // join
             for (int i = 0; i < size; i++) {
-                boolean shouldWrapIndent = mapper.getLine(trees.get(i)) != current.line;
+                boolean shouldWrapIndent = lines.getLine(trees.get(i)) != current.line;
 
-                if (shouldWrapIndent) indent.increase(2);
+                if (shouldWrapIndent) lines.increase(2);
                 current = current.visit(trees.get(i));
-                if (shouldWrapIndent) indent.decrease(2);
+                if (shouldWrapIndent) lines.decrease(2);
 
                 if (i < size - 1) {
                     if (separator != null && separator.length() != 0) {
                         current.text(separator);
                     }
 
-                    if (mapper.getLine(trees.get(i + 1)) == current.line) {
+                    if (lines.getLine(trees.get(i + 1)) == current.line) {
                         current.space();
                     }
                 }
