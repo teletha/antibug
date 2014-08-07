@@ -11,6 +11,9 @@ package antibug.source;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.List;
 
 import kiss.I;
 import kiss.XML;
@@ -187,7 +190,7 @@ public class Source {
      * Increase indent size.
      * </p>
      */
-    void increase() {
+    void increaseIndent() {
         increase(1);
     }
 
@@ -205,7 +208,7 @@ public class Source {
      * Decrease indent size.
      * </p>
      */
-    void decrease() {
+    void decreaseIndent() {
         decrease(1);
     }
 
@@ -223,5 +226,70 @@ public class Source {
      */
     public void parse() {
         unit.accept(visitor, null);
+    }
+
+    /**
+     * @param exceptions
+     */
+    public SourceXML lineFor(List<? extends Tree> trees) {
+        return lineFor(trees.get(0));
+    }
+
+    private Deque<Tree> wrappers = new ArrayDeque();
+
+    /**
+     * @param exceptions
+     */
+    public SourceXML lineFor(Tree tree) {
+        int start = latestLine.line;
+        int end = getEndLine(tree);
+        boolean shouldWrap = start != end;
+
+        if (shouldWrap) {
+            wrappers.addLast(tree);
+            indentSize += 2;
+            return startNewLine();
+        } else {
+            return latestLine;
+        }
+    }
+
+    /**
+     * <p>
+     * Create new line.
+     * </p>
+     */
+    private SourceXML startNewLine(int additionalIndentSize) {
+        SourceXML newLine = new SourceXML(logicalLine, root.child("line").attr("n", logicalLine++), visitor, this);
+
+        newLine.text(indent(additionalIndentSize));
+
+        return this.latestLine = newLine;
+    }
+
+    /**
+     * <p>
+     * Build indent pattern.
+     * </p>
+     * 
+     * @return
+     */
+    private String indent(int additionalIndentSize) {
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < indentSize + additionalIndentSize; i++) {
+            builder.append(indent);
+        }
+        return builder.toString();
+    }
+
+    /**
+     * @param tree
+     */
+    public void unwrap(Tree tree) {
+        if (wrappers.peekLast() == tree) {
+            wrappers.pollLast();
+            indentSize -= 2;
+        }
     }
 }
