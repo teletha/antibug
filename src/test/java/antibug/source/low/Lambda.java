@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.source;
+package antibug.source.low;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;

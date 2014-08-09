@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.source;
+package antibug.source.low;
 
 import java.util.function.Consumer;
 import java.util.function.Function;

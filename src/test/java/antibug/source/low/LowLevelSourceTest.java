@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.source;
+package antibug.source.low;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,6 +22,7 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import antibug.powerassert.PowerAssertOff;
+import antibug.source.SourceParser;
 import antibug.xml.XMLFormatter;
 
 /**

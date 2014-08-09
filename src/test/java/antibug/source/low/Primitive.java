@@ -7,21 +7,26 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.source;
-
-import java.util.ArrayList;
+package antibug.source.low;
 
 /**
- * @version 2014/08/04 15:51:06
+ * @version 2014/08/04 13:17:36
  */
-@SuppressWarnings("serial")
-public class Constructor extends ArrayList {
+public class Primitive {
 
-    Constructor() {
-        this(10);
-    }
+    int INT = 1;
 
-    Constructor(int size) {
-        super(size);
-    }
+    long LONG = 20L;
+
+    float FLOAT = 0.3F;
+
+    double DOUBLE = -0.5D;
+
+    byte BYTE = 2;
+
+    short SHORT = 12;
+
+    boolean BOOLEAN = true;
+
+    char CHAR = 'A';
 }

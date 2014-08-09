@@ -9,24 +9,14 @@
  */
 package antibug.source;
 
+import antibug.javadoc.info.Identifier;
+
 /**
- * @version 2014/08/04 13:17:36
+ * @version 2014/08/09 10:19:31
  */
-public class Primitive {
+public class ClassManager {
 
-    int INT = 1;
-
-    long LONG = 20L;
-
-    float FLOAT = 0.3F;
-
-    double DOUBLE = -0.5D;
-
-    byte BYTE = 2;
-
-    short SHORT = 12;
-
-    boolean BOOLEAN = true;
-
-    char CHAR = 'A';
+    Identifier get(String type) {
+        return null;
+    }
 }

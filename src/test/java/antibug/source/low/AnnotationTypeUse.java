@@ -7,21 +7,21 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.source;
+package antibug.source.low;
 
 import java.io.Serializable;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
-import antibug.source.AnnotationTypeUse.Type;
-import antibug.source.AnnotationTypeUse.Use;
+import antibug.source.low.AnnotationTypeUse.Type;
+import antibug.source.low.AnnotationTypeUse.Use;
 
 /**
  * @version 2014/08/03 19:51:43
  */
 @Type
 @SuppressWarnings("all")
-public class AnnotationTypeUse<@Type @Use(1) T> extends @Type EnumClass implements @Use(10) Serializable {
+public class AnnotationTypeUse<@Type @Use(1) T> extends antibug.source.low.EnumClass implements @Use(10) Serializable {
 
     /** field. */
     @Type
@@ -46,7 +46,7 @@ public class AnnotationTypeUse<@Type @Use(1) T> extends @Type EnumClass implemen
     @Type
     public <@Use(4) @Type G> G getName(@Type Object id) throws @Type @Use(3) RuntimeException {
         @Type
-        Object use = new @Type AnnotationTypeUse("C.C");
+        Object use = new antibug.source.low.AnnotationTypeUse("C.C");
         String[] names = new @Type String[0];
 
         return (@Type G) id;
