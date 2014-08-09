@@ -10,11 +10,8 @@
 package antibug.source;
 
 /**
- * @version 2014/08/04 15:34:18
+ * @version 2014/08/09 10:24:35
  */
-public class ClassLiteral {
+public class LinkTest {
 
-    void print() {
-        System.out.println(ClassLiteral.class);
-    }
 }

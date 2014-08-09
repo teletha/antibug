@@ -7,15 +7,21 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.source;
+package antibug.source.low;
+
+import java.util.ArrayList;
 
 /**
- * @version 2014/08/04 15:36:35
+ * @version 2014/08/04 15:51:06
  */
-public class Assert {
+@SuppressWarnings("serial")
+public class Constructor extends ArrayList {
 
-    void main(int value) {
-        assert value == 10;
-        assert value == 20 : "invalid";
+    Constructor() {
+        this(10);
+    }
+
+    Constructor(int size) {
+        super(size);
     }
 }

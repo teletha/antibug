@@ -153,7 +153,7 @@ public class Source {
      * @param i
      * @return
      */
-    String readLineFrom(int lineNumber) {
+    private String readLineFrom(int lineNumber) {
         try {
             while (++actualLine < lineNumber) {
                 reader.readLine();
