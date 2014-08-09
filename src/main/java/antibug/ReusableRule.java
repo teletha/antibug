@@ -135,6 +135,7 @@ public abstract class ReusableRule implements TestRule {
             /**
              * {@inheritDoc}
              */
+            @Override
             public void evaluate() throws Throwable {
                 try {
                     Method method = description.isSuite() ? null : description.getTestClass()
@@ -346,5 +347,4 @@ public abstract class ReusableRule implements TestRule {
             afterClass();
         }
     }
-
 }

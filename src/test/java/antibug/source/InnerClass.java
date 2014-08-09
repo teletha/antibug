@@ -9,6 +9,9 @@
  */
 package antibug.source;
 
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
 /**
  * @version 2014/08/02 17:00:08
  */
@@ -28,5 +31,32 @@ public class InnerClass {
         @SuppressWarnings("unused")
         private enum NestedEnum {
         }
+    }
+
+    <T> Consumer<T> anonymous() {
+        return new Consumer<T>() {
+
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public void accept(Object t) {
+            }
+        };
+    }
+
+    Supplier<String> local() {
+        class Local implements Supplier<String> {
+
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            public String get() {
+                return null;
+            }
+        }
+
+        return new Local();
     }
 }
