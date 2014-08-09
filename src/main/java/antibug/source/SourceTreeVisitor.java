@@ -361,6 +361,8 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitClass(ClassTree clazz, SourceXML context) {
         context = lines.traceLine(clazz, context);
 
+        boolean isAnonyous = clazz.getSimpleName().length() == 0;
+
         // ===========================================
         // Annotations and Modifiers
         // ===========================================
@@ -371,7 +373,10 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         // ===========================================
         switch (clazz.getKind()) {
         case CLASS:
-            lines.latestLine.reserved("class").space();
+            // ignore anonymous class
+            if (!isAnonyous) {
+                lines.latestLine.reserved("class").space();
+            }
             break;
 
         case INTERFACE:
@@ -423,12 +428,14 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
         // Members
         // ===========================================
         EnumConstantsInfo info = new EnumConstantsInfo(clazz.getKind());
+        if (isAnonyous) statement.store();
 
         for (Tree tree : clazz.getMembers()) {
             info.processNonFirstConstant(tree);
             context = context.visit(tree);
             info.completeIfAllConstantsDeclared(tree);
         }
+        if (isAnonyous) statement.restore();
         info.complete();
 
         lines.decreaseIndent();
