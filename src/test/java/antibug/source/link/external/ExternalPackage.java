@@ -7,11 +7,12 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.source;
+package antibug.source.link.external;
+
 
 /**
- * @version 2014/08/09 10:24:35
+ * @version 2014/08/09 10:40:08
  */
-public class LinkTest {
+public class ExternalPackage {
 
 }

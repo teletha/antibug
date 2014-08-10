@@ -22,7 +22,7 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import antibug.powerassert.PowerAssertOff;
-import antibug.source.SourceParser;
+import antibug.source.Source;
 import antibug.xml.XMLFormatter;
 
 /**
@@ -167,7 +167,7 @@ public class LowLevelSourceTest {
                 source = I.locate("src/main/java").resolve(target.getName().replace(".", "/") + ".java");
             }
 
-            XML xml = SourceParser.parse(source);
+            XML xml = Source.parse(source);
 
             // convert xml to text
             List<String> lines = new ArrayList();

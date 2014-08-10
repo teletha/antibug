@@ -11,9 +11,14 @@ package antibug.source;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
+
+import javax.tools.JavaCompiler;
+import javax.tools.StandardJavaFileManager;
+import javax.tools.ToolProvider;
 
 import kiss.I;
 import kiss.XML;
@@ -21,7 +26,9 @@ import kiss.XML;
 import com.sun.source.tree.CompilationUnitTree;
 import com.sun.source.tree.LineMap;
 import com.sun.source.tree.Tree;
+import com.sun.source.util.JavacTask;
 import com.sun.source.util.SourcePositions;
+import com.sun.source.util.Trees;
 
 /**
  * @version 2014/08/07 10:24:20
@@ -222,13 +229,6 @@ public class Source {
     }
 
     /**
-     * 
-     */
-    public void parse() {
-        unit.accept(visitor, null);
-    }
-
-    /**
      * @param exceptions
      */
     public SourceXML lineFor(List<? extends Tree> trees) {
@@ -309,6 +309,44 @@ public class Source {
         if (wrappers.peekLast() == tree) {
             wrappers.pollLast();
             indentSize -= 2;
+        }
+    }
+
+    /** The compiler interface. */
+    private static final JavaCompiler compiler;
+
+    /** The file manager. */
+    private static final StandardJavaFileManager manager;
+
+    static {
+        compiler = ToolProvider.getSystemJavaCompiler();
+        manager = compiler.getStandardFileManager(null, null, null);
+    }
+
+    /**
+     * <p>
+     * Parse the given source and build {@link XML} representation.
+     * </p>
+     * 
+     * @param path A source file.
+     * @return A {@link XML}.
+     */
+    public static XML parse(Path path) {
+        try {
+            JavacTask task = (JavacTask) compiler.getTask(null, manager, null, null, null, manager.getJavaFileObjects(path.toFile()));
+            Trees trees = Trees.instance(task);
+
+            XML xml = I.xml("source");
+
+            for (CompilationUnitTree unit : task.parse()) {
+                Source lines = new Source(xml, unit, trees.getSourcePositions());
+
+                // start analyzing
+                unit.accept(lines.visitor, null);
+            }
+            return xml;
+        } catch (IOException e) {
+            throw I.quiet(e);
         }
     }
 }
