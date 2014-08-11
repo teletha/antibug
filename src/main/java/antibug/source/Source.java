@@ -24,6 +24,7 @@ import kiss.I;
 import kiss.XML;
 
 import com.sun.source.tree.CompilationUnitTree;
+import com.sun.source.tree.ImportTree;
 import com.sun.source.tree.LineMap;
 import com.sun.source.tree.Tree;
 import com.sun.source.util.JavacTask;
@@ -310,6 +311,24 @@ public class Source {
             wrappers.pollLast();
             indentSize -= 2;
         }
+    }
+
+    /**
+     * <p>
+     * Import type.
+     * </p>
+     * 
+     * @param tree
+     */
+    public void importType(ImportTree tree) {
+        System.out.println("import " + tree.getQualifiedIdentifier());
+    }
+
+    /**
+     * @param name
+     */
+    public void resolveType(String name) {
+
     }
 
     /** The compiler interface. */

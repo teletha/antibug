@@ -10,6 +10,7 @@
 package antibug.source.link;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import javax.xml.parsers.DocumentBuilder;
 
@@ -40,6 +41,8 @@ public class Linker {
     InputSource sax;
 
     Disposable externalModule;
+
+    Consumer<String> generic;
 
     com.sun.tools.javac.util.List samaName;
 }
