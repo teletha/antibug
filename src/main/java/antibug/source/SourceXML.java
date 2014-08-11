@@ -35,7 +35,7 @@ class SourceXML {
     final int line;
 
     /** The line manager. */
-    private final Source lines;
+    private final Source source;
 
     /**
      * <p>
@@ -48,7 +48,7 @@ class SourceXML {
         this.xml = xml;
         this.visitor = visitor;
         this.line = line;
-        this.lines = lines;
+        this.source = lines;
     }
 
     /**
@@ -60,7 +60,7 @@ class SourceXML {
      * @return A child element.
      */
     SourceXML child(String name) {
-        return new SourceXML(line, xml.child(name), visitor, lines);
+        return new SourceXML(line, xml.child(name), visitor, source);
     }
 
     /**
@@ -112,14 +112,14 @@ class SourceXML {
 
             // join
             for (int i = 0; i < size; i++) {
-                current = lines.lineFor(trees.get(i)).visit(trees.get(i));
+                current = source.lineFor(trees.get(i)).visit(trees.get(i));
 
                 if (i < size - 1) {
                     if (separator != null && separator.length() != 0) {
                         current.text(separator);
                     }
 
-                    if (lines.getLine(trees.get(i + 1)) == current.line) {
+                    if (source.getLine(trees.get(i + 1)) == current.line) {
                         current.space();
                     }
                 }
@@ -292,6 +292,8 @@ class SourceXML {
      * @return Chainable API.
      */
     SourceXML type(String name) {
+        source.resolveType(name);
+
         xml.append(I.xml("type").text(name));
 
         return this;
@@ -329,7 +331,7 @@ class SourceXML {
 
         SourceXML context = tree.accept(visitor, this);
 
-        lines.unwrap(tree);
+        source.unwrap(tree);
 
         return context;
     }
