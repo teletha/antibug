@@ -12,14 +12,19 @@ package antibug.source;
 import static com.sun.tools.javac.code.Flags.*;
 import static com.sun.tools.javac.tree.JCTree.Tag.*;
 
+import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.Name;
 import javax.lang.model.type.TypeKind;
+
+import kiss.I;
 
 import com.sun.source.tree.AnnotatedTypeTree;
 import com.sun.source.tree.AnnotationTree;
@@ -90,6 +95,9 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     private static final Modifier[] MODIFIE_ORDER = {Modifier.PUBLIC, Modifier.PROTECTED, Modifier.PRIVATE,
             Modifier.ABSTRACT, Modifier.STATIC, Modifier.FINAL, Modifier.STRICTFP, Modifier.DEFAULT,
             Modifier.TRANSIENT, Modifier.VOLATILE, Modifier.SYNCHRONIZED, Modifier.NATIVE};
+
+    /** The type resolver. */
+    private final TypeManager types = new TypeManager();
 
     /** The enclosing class name stack. */
     private Deque<String> classNames = new ArrayDeque();
@@ -706,7 +714,7 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
     public SourceXML visitImport(ImportTree tree, SourceXML context) {
         context = source.traceLine(tree, context);
 
-        source.importType(tree);
+        types.importType(tree);
 
         source.latestLine.reserved("import").space();
         if (tree.isStatic()) source.latestLine.reserved("static").space();
@@ -865,7 +873,9 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
             int end = source.getEndLine(select);
 
             if (start == end) {
-                System.out.println(select.getExpression() + "  " + member + "  " + select.getExpression().getClass());
+                Class type = types.findBy(select.getExpression() + "." + member);
+                System.out.println(type);
+
                 return context.visit(select.getExpression()).text(".").memberAccess(member);
             } else {
                 context = context.visit(select.getExpression());
@@ -1649,6 +1659,107 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
          */
         private void restore() {
             expressionNestLevel = levels.pollLast();
+        }
+    }
+
+    /**
+     * @version 2014/08/13 16:13:38
+     */
+    private static final class TypeManager {
+
+        /** Type mapping for java.lang.* */
+        private static Map<String, Class> langs = new HashMap();
+
+        // initializer
+        static {
+            Class[] classes = {Appendable.class, AutoCloseable.class, CharSequence.class, Cloneable.class,
+                    Comparable.class, Iterable.class, Readable.class, Runnable.class, UncaughtExceptionHandler.class,
+                    Boolean.class, Byte.class, Character.class, Character.Subset.class, Character.UnicodeBlock.class,
+                    Class.class, ClassLoader.class, ClassValue.class, Compiler.class, Double.class, Enum.class,
+                    Float.class, InheritableThreadLocal.class, Integer.class, Long.class, Math.class, Number.class,
+                    Object.class, Package.class, Process.class, ProcessBuilder.class, ProcessBuilder.Redirect.class,
+                    Runtime.class, RuntimePermission.class, SecurityManager.class, Short.class,
+                    StackTraceElement.class, StrictMath.class, String.class, StringBuilder.class, StringBuffer.class,
+                    System.class, Thread.class, ThreadGroup.class, ThreadLocal.class, Throwable.class, Void.class,
+                    Character.UnicodeScript.class, ProcessBuilder.Redirect.Type.class, Thread.State.class,
+                    ArithmeticException.class, ArrayIndexOutOfBoundsException.class, ArrayStoreException.class,
+                    ClassCastException.class, ClassNotFoundException.class, CloneNotSupportedException.class,
+                    EnumConstantNotPresentException.class, Exception.class, IllegalAccessException.class,
+                    IllegalArgumentException.class, IllegalMonitorStateException.class, IllegalStateException.class,
+                    IllegalThreadStateException.class, IndexOutOfBoundsException.class, InstantiationException.class,
+                    InterruptedException.class, NegativeArraySizeException.class, NoSuchFieldException.class,
+                    NoSuchMethodException.class, NullPointerException.class, NumberFormatException.class,
+                    ReflectiveOperationException.class, RuntimeException.class, SecurityException.class,
+                    StringIndexOutOfBoundsException.class, TypeNotPresentException.class,
+                    UnsupportedOperationException.class, AbstractMethodError.class, AssertionError.class,
+                    BootstrapMethodError.class, ClassCircularityError.class, ClassFormatError.class, Error.class,
+                    ExceptionInInitializerError.class, IllegalAccessError.class, IncompatibleClassChangeError.class,
+                    InstantiationError.class, InternalError.class, LinkageError.class, NoClassDefFoundError.class,
+                    NoSuchFieldError.class, NoSuchMethodError.class, OutOfMemoryError.class, StackOverflowError.class,
+                    ThreadDeath.class, UnknownError.class, UnsatisfiedLinkError.class,
+                    UnsupportedClassVersionError.class, VerifyError.class, VirtualMachineError.class, Deprecated.class,
+                    FunctionalInterface.class, Override.class, SafeVarargs.class, SuppressWarnings.class};
+
+            for (Class clazz : classes) {
+                langs.put(clazz.getSimpleName(), clazz);
+            }
+        }
+
+        /** The normal imported types. */
+        private Map<String, Class> normals = new HashMap();
+
+        /**
+         * Find type by the specified name.
+         * 
+         * @param name
+         * @return
+         * @throws ClassNotFoundException
+         */
+        private Class findBy(String name) {
+            System.out.println(name);
+            // from java.lang
+            Class clazz = langs.get(name);
+
+            if (clazz == null) {
+                // from normal import
+                clazz = normals.get(name);
+
+                if (clazz == null) {
+                    // Is this fully qualified class name?
+                    try {
+                        clazz = Class.forName(name);
+                    } catch (ClassNotFoundException e) {
+                        // not found
+                    }
+                }
+            }
+            return clazz;
+        }
+
+        /**
+         * Import type.
+         * 
+         * @param tree
+         */
+        private void importType(ImportTree tree) {
+            try {
+                String fqcn = tree.getQualifiedIdentifier().toString();
+
+                if (tree.isStatic()) {
+                    // static import
+                } else {
+                    // normal import
+                    if (fqcn.endsWith(".*")) {
+                        // wildcard
+                    } else {
+                        // fqcn
+                        Class clazz = Class.forName(fqcn);
+                        normals.put(clazz.getSimpleName(), clazz);
+                    }
+                }
+            } catch (ClassNotFoundException e) {
+                throw I.quiet(e);
+            }
         }
     }
 }
