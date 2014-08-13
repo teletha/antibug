@@ -9,6 +9,8 @@
  */
 package antibug.source.link;
 
+import static java.lang.Math.*;
+
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -45,4 +47,9 @@ public class Linker {
     Consumer<String> generic;
 
     com.sun.tools.javac.util.List samaName;
+
+    {
+        max(10, 1);
+        min(10, 1);
+    }
 }

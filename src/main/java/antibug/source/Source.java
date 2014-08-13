@@ -15,11 +15,13 @@ import java.nio.file.Path;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
+import java.util.Map;
 
 import javax.tools.JavaCompiler;
 import javax.tools.StandardJavaFileManager;
 import javax.tools.ToolProvider;
 
+import js.util.HashMap;
 import kiss.I;
 import kiss.XML;
 
@@ -313,6 +315,9 @@ public class Source {
         }
     }
 
+    /** The normal import. */
+    private final Map<String, Class> imports = new HashMap();
+
     /**
      * <p>
      * Import type.
@@ -321,7 +326,24 @@ public class Source {
      * @param tree
      */
     public void importType(ImportTree tree) {
-        System.out.println("import " + tree.getQualifiedIdentifier());
+        try {
+            String fqcn = tree.getQualifiedIdentifier().toString();
+
+            if (tree.isStatic()) {
+                // static import
+            } else {
+                // normal import
+                if (fqcn.endsWith(".*")) {
+                    // wildcard
+                } else {
+                    // fqcn
+                    Class clazz = Class.forName(fqcn);
+                    imports.put(clazz.getSimpleName(), clazz);
+                }
+            }
+        } catch (ClassNotFoundException e) {
+            throw I.quiet(e);
+        }
     }
 
     /**
@@ -329,6 +351,23 @@ public class Source {
      */
     public void resolveType(String name) {
 
+    }
+
+    /**
+     * @param name
+     */
+    public void resolveType(Tree tree) {
+        String access = tree.toString();
+
+        if (access.equals("this")) {
+            // ignore
+            System.out.println(access + " ->  keyword");
+        } else if (imports.containsKey(access)) {
+            // normal import
+            System.out.println(access + " ->  import " + imports.get(access));
+        } else {
+            System.out.println(access);
+        }
     }
 
     /** The compiler interface. */

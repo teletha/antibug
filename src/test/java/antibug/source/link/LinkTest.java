@@ -18,6 +18,11 @@ import kiss.XML;
 import org.junit.Test;
 
 import antibug.source.Source;
+import antibug.source.low.Array;
+import antibug.source.low.Lambda;
+import antibug.source.low.MethodCall;
+import antibug.source.low.Operator;
+import antibug.source.low.Statement;
 
 /**
  * @version 2014/08/09 10:24:35
@@ -28,6 +33,15 @@ public class LinkTest {
     public void samePackage() throws Exception {
         XML xml = parse(Linker.class);
         assert findLink(xml, String.class) == 1;
+    }
+
+    @Test
+    public void samePackage2() throws Exception {
+        parse(MethodCall.class);
+        parse(Lambda.class);
+        parse(Operator.class);
+        parse(Statement.class);
+        parse(Array.class);
     }
 
     private static int findLink(XML xml, Class target) {
