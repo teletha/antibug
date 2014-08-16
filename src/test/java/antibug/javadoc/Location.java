@@ -84,6 +84,17 @@ public class Location {
     }
 
     /**
+     * Locate by string representation.
+     * 
+     * @param value
+     * @return
+     */
+    public static Location of(String documentRoot, String value) {
+
+        return null;
+    }
+
+    /**
      * Locate by class.
      * 
      * @param clazz

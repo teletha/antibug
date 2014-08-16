@@ -135,4 +135,11 @@ public class LocationJDKTest {
     public void clazz() {
         assert Location.of(List.class).getJavadocLocation().equals(JDKDocLocation + "java/util/List.html");
     }
+
+    @Test
+    public void parse() {
+        assert Location.of(JDKDocLocation, "java/util/List.html")
+                .getJavadocLocation()
+                .equals(JDKDocLocation + "java/util/List.html");
+    }
 }
