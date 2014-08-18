@@ -13,6 +13,8 @@ import java.lang.reflect.Executable;
 import java.lang.reflect.Parameter;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 import kiss.I;
 import kiss.model.ClassUtil;
@@ -24,6 +26,14 @@ public class Location {
 
     /** The jdk location. */
     public static final String JDKDocLocation = "http://docs.oracle.com/javase/8/docs/api/";
+
+    /** The list of doc root locations. */
+    private static final List<String> roots = new ArrayList();
+
+    // initialization
+    static {
+        installDocRoot(JDKDocLocation);
+    }
 
     /** The type name. */
     private final String[] packages;
@@ -84,14 +94,41 @@ public class Location {
     }
 
     /**
+     * <p>
+     * Install document root location.
+     * </p>
+     * 
+     * @param uri
+     */
+    public static void installDocRoot(String uri) {
+        if (uri != null && (uri.startsWith("http://") || uri.startsWith("https://"))) {
+            if (!uri.endsWith("/")) {
+                uri = uri.concat("/");
+            }
+            roots.add(uri);
+        }
+    }
+
+    /**
      * Locate by string representation.
      * 
      * @param value
      * @return
      */
-    public static Location of(String documentRoot, String value) {
+    public static Location of(String value) {
+        String documentRoot = null;
+        String path;
 
-        return null;
+        // detect root
+        for (String root : roots) {
+            if (value.startsWith(root)) {
+                documentRoot = root;
+                path = value.substring(root.length() + 1);
+                break;
+            }
+        }
+
+        return new Location(null, null, documentRoot);
     }
 
     /**
