@@ -41,8 +41,8 @@
       <systemPath>${java.home}/../lib/tools.jar</systemPath>
     </dependency>
     <dependency>
-      <groupId>teemowork</groupId>
-      <artifactId>Teemowork</artifactId>
+      <groupId>npc</groupId>
+      <artifactId>booton</artifactId>
       <version>0.1</version>
       <scope>compile</scope>
     </dependency>
