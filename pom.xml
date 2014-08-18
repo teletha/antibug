@@ -42,7 +42,7 @@
     </dependency>
     <dependency>
       <groupId>teemowork</groupId>
-      <artifactId>teemowork</artifactId>
+      <artifactId>Teemowork</artifactId>
       <version>0.1</version>
       <scope>compile</scope>
     </dependency>
