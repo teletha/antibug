@@ -7,18 +7,10 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.javadoc;
+package antibug.javadoc.info;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import antibug.javadoc.info.ExternalMethodInfo;
-import antibug.javadoc.info.ExternalPackageInfo;
-import antibug.javadoc.info.ExternalTypeInfo;
-import antibug.javadoc.info.Identifier;
-import antibug.javadoc.info.MethodInfo;
-import antibug.javadoc.info.PackageInfo;
-import antibug.javadoc.info.TypeInfo;
 
 /**
  * @version 2014/07/26 21:47:07
@@ -73,14 +65,8 @@ public class Documents {
      * @return A package.
      */
     public MethodInfo getMethodBy(Identifier id) {
-        /*
-         * Block comment
-         */
         TypeInfo typeInfo = getTypeBy(id);
 
-        /**
-         * InDoc
-         */
         for (MethodInfo info : typeInfo.methods) {
             if (info.id.equalsMember(id)) {
                 return info;

@@ -17,6 +17,7 @@ import kiss.Manageable;
 import kiss.Singleton;
 import kiss.XML;
 import antibug.javadoc.info.AnnotationInfo;
+import antibug.javadoc.info.Documents;
 import antibug.javadoc.info.Identifier;
 import antibug.javadoc.info.MarkupValue;
 import antibug.javadoc.info.MethodInfo;
