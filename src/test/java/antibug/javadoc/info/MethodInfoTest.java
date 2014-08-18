@@ -10,20 +10,17 @@
 package antibug.javadoc.info;
 
 import java.lang.reflect.Method;
-import java.util.concurrent.Callable;
 
 import org.junit.Rule;
 import org.junit.Test;
 
 import antibug.javadoc.JavadocParser;
-import antibug.javadoc.info.annotation.Primitive;
-import antibug.javadoc.info.annotation.SourceAnnotationValue;
 import antibug.javadoc.info.annotation.SourceMarker;
-import antibug.javadoc.info.annotation.SourceValue;
 
 /**
  * @version 2014/07/26 21:55:11
  */
+@SuppressWarnings("unused")
 public class MethodInfoTest {
 
     @Rule
@@ -55,7 +52,7 @@ public class MethodInfoTest {
         assert param.annotation.size() == 0;
     }
 
-    public void parames(String name, int age) {
+    protected void parames(String name, int age) {
     }
 
     @Test
@@ -73,36 +70,36 @@ public class MethodInfoTest {
         assert parser.equals(anno.type, SourceMarker.class);
     }
 
-    public void paramAnnotation(@SourceMarker Runnable task) {
+    protected void paramAnnotation(@SourceMarker Runnable task) {
     }
 
-    @Test
-    public void parameterAnnotations() {
-        Method method = parser.findMethod("paramAnnotations", Callable.class);
-        MethodInfo info = parser.getMethod(method);
-        assert parser.equals(info, method);
+    // @Test
+    // public void parameterAnnotations() {
+    // Method method = parser.findMethod("paramAnnotations", Callable.class);
+    // MethodInfo info = parser.getMethod(method);
+    // assert parser.equals(info, method);
+    //
+    // ParamInfo param = info.params.get(0);
+    // assert param.name.equals("task");
+    // assert parser.equals(param.type, Callable.class);
+    // assert param.annotation.size() == 1;
+    //
+    // AnnotationInfo anno = param.annotation.get(0);
+    // assert parser.equals(anno.type, SourceValue.class);
+    // }
+    //
+    // protected void paramAnnotations(@SourceValue("test") Callable task) {
+    // }
 
-        ParamInfo param = info.params.get(0);
-        assert param.name.equals("task");
-        assert parser.equals(param.type, Callable.class);
-        assert param.annotation.size() == 1;
-
-        AnnotationInfo anno = param.annotation.get(0);
-        assert parser.equals(anno.type, SourceValue.class);
-    }
-
-    public void paramAnnotations(@SourceValue("test") Callable task) {
-    }
-
-    @Test
-    @SourceAnnotationValue({@Primitive(intValue = 10, booleanValue = true),
-            @Primitive(intValue = 20, booleanValue = false),
-            @Primitive(intValue = 30, longValue = -100, booleanValue = false)})
-    public void methodAnnotation() {
-        // <Anno>
-        // _<type href="~" >@SourceAnnotationValue</type>
-        // _<values>
-        // __<
-        // _</value>
-    }
+    // @Test
+    // @SourceAnnotationValue({@Primitive(intValue = 10, booleanValue = true),
+    // @Primitive(intValue = 20, booleanValue = false),
+    // @Primitive(intValue = 30, longValue = -100, booleanValue = false)})
+    // public void methodAnnotation() {
+    // // <Anno>
+    // // _<type href="~" >@SourceAnnotationValue</type>
+    // // _<values>
+    // // __<
+    // // _</value>
+    // }
 }
