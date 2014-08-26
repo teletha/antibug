@@ -17,6 +17,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import kiss.I;
 
@@ -45,30 +46,37 @@ public class ChronusTest {
     /** The test result. */
     private static boolean done = false;
 
+    /** The test result. */
+    private static AtomicInteger value = new AtomicInteger();
+
     @Before
     public void reset() {
         done = false;
+        value.set(0);
     }
 
     @Test
     public void scheduledThreadPoolExecutorInt() throws Exception {
-        execute(() -> {
+        execute(3, () -> {
             ScheduledExecutorService service = new ScheduledThreadPoolExecutor(2);
             service.schedule(createTask(), 10, MILLISECONDS);
+            service.schedule(createTask(), 20, MILLISECONDS);
+            service.schedule(createTask(), 30, MILLISECONDS);
         });
     }
 
     @Test
     public void newCachedThreadPool() throws Exception {
-        execute(() -> {
+        execute(2, () -> {
             ExecutorService service = Executors.newCachedThreadPool();
+            service.submit(createDelayedTask());
             service.submit(createDelayedTask());
         });
     }
 
     @Test
     public void newCachedThreadPoolThreadFactory() throws Exception {
-        execute(() -> {
+        execute(1, () -> {
             ExecutorService service = Executors.newCachedThreadPool(runnable -> {
                 return new Thread(runnable);
             });
@@ -78,7 +86,7 @@ public class ChronusTest {
 
     @Test
     public void newWorkStealingPool() throws Exception {
-        execute(() -> {
+        execute(1, () -> {
             ExecutorService service = Executors.newWorkStealingPool();
             service.submit(createDelayedTask());
         });
@@ -88,7 +96,7 @@ public class ChronusTest {
 
     @Test
     public void staticField() throws Exception {
-        execute(() -> {
+        execute(1, () -> {
             staticService.submit(createDelayedTask());
         });
     }
@@ -97,7 +105,7 @@ public class ChronusTest {
 
     @Test
     public void field() throws Exception {
-        execute(() -> {
+        execute(1, () -> {
             service.submit(createDelayedTask());
         });
     }
@@ -122,6 +130,7 @@ public class ChronusTest {
     private static final Runnable createTask() {
         return () -> {
             done = true;
+            value.incrementAndGet();
         };
     }
 
@@ -135,8 +144,9 @@ public class ChronusTest {
     private static final Runnable createDelayedTask() {
         return () -> {
             try {
-                Thread.sleep(10);
+                Thread.sleep(50);
                 done = true;
+                value.incrementAndGet();
             } catch (Exception e) {
                 throw I.quiet(e);
             }
@@ -150,11 +160,11 @@ public class ChronusTest {
      * 
      * @param task
      */
-    private final void execute(Runnable task) {
+    private final void execute(int expectedValue, Runnable task) {
         task.run();
-        assert done == false;
+        assert value.get() == 0;
         chronus.await();
-        assert done == true;
+        assert value.get() == expectedValue;
     }
 
     /**

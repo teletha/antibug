@@ -10,10 +10,9 @@
 package antibug.internal;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -40,7 +39,7 @@ public class Awaitable {
     private static volatile AtomicBoolean awaiting = new AtomicBoolean();
 
     /** The non-executed tasks. */
-    private static final Set remaining = new HashSet();
+    private static final CopyOnWriteArraySet remaining = new CopyOnWriteArraySet();
 
     /**
      * <p>
@@ -55,14 +54,14 @@ public class Awaitable {
 
             while (!remaining.isEmpty()) {
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(25);
                 } catch (InterruptedException e) {
                     throw I.quiet(e);
                 }
 
                 long end = System.currentTimeMillis();
 
-                if (start + 1000 < end) {
+                if (start + 1000 < end && !remaining.isEmpty()) {
                     throw new Error("Task can't exceed 1000ms. Remaining tasks are " + remaining + ".");
                 }
             }
