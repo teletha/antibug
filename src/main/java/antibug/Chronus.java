@@ -167,12 +167,13 @@ public class Chronus extends ReusableRule {
                     // Executors.method() -> Awaitable.wrap(Executors.method())
                     switch (name) {
                     case "newCachedThreadPool":
-                    case "newSingleThreadPool":
                     case "newFixedThreadPool":
-                    case "newWorkStealingPool":
-                    case "newSingleThreadScheduledExecutor":
                     case "newScheduledThreadPool":
+                    case "newSingleThreadExecutor":
+                    case "newSingleThreadScheduledExecutor":
+                    case "newWorkStealingPool":
                     case "unconfigurableExecutorService":
+                    case "unconfigurableScheduledExecutorService":
                         wrap();
                         return;
                     }
