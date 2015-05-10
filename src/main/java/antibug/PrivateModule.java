@@ -386,7 +386,7 @@ public class PrivateModule extends ReusableRule {
          * @param visiter
          */
         public ClassConverter(ClassVisitor visiter) {
-            super(Opcodes.ASM4, visiter);
+            super(Opcodes.ASM5, visiter);
         }
 
         /**
@@ -417,7 +417,7 @@ public class PrivateModule extends ReusableRule {
          * @param paramMethodVisitor
          */
         public MethodConverter(MethodVisitor paramMethodVisitor) {
-            super(Opcodes.ASM4, paramMethodVisitor);
+            super(Opcodes.ASM5, paramMethodVisitor);
         }
 
         /**
@@ -448,6 +448,7 @@ public class PrivateModule extends ReusableRule {
         /**
          * @see java.nio.file.DirectoryStream.Filter#accept(java.lang.Object)
          */
+        @Override
         public boolean accept(Path path) throws IOException {
             return accept(path.toString().substring(prefix).replace(File.separatorChar, '/'));
         }
