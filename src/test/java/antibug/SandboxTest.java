@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Nameless Production Committee
+ * Copyright (C) 2015 Nameless Production Committee
  *
  * Licensed under the MIT License (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,6 @@ public class SandboxTest {
     @Test
     public void read1() throws Exception {
         sandbox.readable(true);
-        System.out.println("日本語です(´・ω・`)");
         new FileReader(new File("pom.xml"));
     }
 
