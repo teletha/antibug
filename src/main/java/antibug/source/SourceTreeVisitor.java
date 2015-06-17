@@ -24,8 +24,6 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.element.Name;
 import javax.lang.model.type.TypeKind;
 
-import kiss.I;
-
 import com.sun.source.tree.AnnotatedTypeTree;
 import com.sun.source.tree.AnnotationTree;
 import com.sun.source.tree.ArrayAccessTree;
@@ -87,14 +85,16 @@ import com.sun.tools.javac.tree.JCTree.JCFieldAccess;
 import com.sun.tools.javac.tree.JCTree.JCMethodInvocation;
 import com.sun.tools.javac.tree.JCTree.JCVariableDecl;
 
+import kiss.I;
+
 /**
  * @version 2014/07/31 21:39:41
  */
 class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
     private static final Modifier[] MODIFIE_ORDER = {Modifier.PUBLIC, Modifier.PROTECTED, Modifier.PRIVATE,
-            Modifier.ABSTRACT, Modifier.STATIC, Modifier.FINAL, Modifier.STRICTFP, Modifier.DEFAULT,
-            Modifier.TRANSIENT, Modifier.VOLATILE, Modifier.SYNCHRONIZED, Modifier.NATIVE};
+            Modifier.ABSTRACT, Modifier.STATIC, Modifier.FINAL, Modifier.STRICTFP, Modifier.DEFAULT, Modifier.TRANSIENT,
+            Modifier.VOLATILE, Modifier.SYNCHRONIZED, Modifier.NATIVE};
 
     /** The type resolver. */
     private final TypeManager types = new TypeManager();
@@ -874,7 +874,6 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
 
             if (start == end) {
                 Class type = types.findBy(select.getExpression() + "." + member);
-                System.out.println(type);
 
                 return context.visit(select.getExpression()).text(".").memberAccess(member);
             } else {
@@ -1678,12 +1677,12 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
                     Class.class, ClassLoader.class, ClassValue.class, Compiler.class, Double.class, Enum.class,
                     Float.class, InheritableThreadLocal.class, Integer.class, Long.class, Math.class, Number.class,
                     Object.class, Package.class, Process.class, ProcessBuilder.class, ProcessBuilder.Redirect.class,
-                    Runtime.class, RuntimePermission.class, SecurityManager.class, Short.class,
-                    StackTraceElement.class, StrictMath.class, String.class, StringBuilder.class, StringBuffer.class,
-                    System.class, Thread.class, ThreadGroup.class, ThreadLocal.class, Throwable.class, Void.class,
-                    Character.UnicodeScript.class, ProcessBuilder.Redirect.Type.class, Thread.State.class,
-                    ArithmeticException.class, ArrayIndexOutOfBoundsException.class, ArrayStoreException.class,
-                    ClassCastException.class, ClassNotFoundException.class, CloneNotSupportedException.class,
+                    Runtime.class, RuntimePermission.class, SecurityManager.class, Short.class, StackTraceElement.class,
+                    StrictMath.class, String.class, StringBuilder.class, StringBuffer.class, System.class, Thread.class,
+                    ThreadGroup.class, ThreadLocal.class, Throwable.class, Void.class, Character.UnicodeScript.class,
+                    ProcessBuilder.Redirect.Type.class, Thread.State.class, ArithmeticException.class,
+                    ArrayIndexOutOfBoundsException.class, ArrayStoreException.class, ClassCastException.class,
+                    ClassNotFoundException.class, CloneNotSupportedException.class,
                     EnumConstantNotPresentException.class, Exception.class, IllegalAccessException.class,
                     IllegalArgumentException.class, IllegalMonitorStateException.class, IllegalStateException.class,
                     IllegalThreadStateException.class, IndexOutOfBoundsException.class, InstantiationException.class,
@@ -1716,7 +1715,6 @@ class SourceTreeVisitor implements TreeVisitor<SourceXML, SourceXML> {
          * @throws ClassNotFoundException
          */
         private Class findBy(String name) {
-            System.out.println(name);
             // from java.lang
             Class clazz = langs.get(name);
 

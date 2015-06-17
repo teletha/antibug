@@ -37,7 +37,7 @@ public class SandboxTest {
     @Test
     public void read1() throws Exception {
         sandbox.readable(true);
-
+        System.out.println("日本語です(´・ω・`)");
         new FileReader(new File("pom.xml"));
     }
 

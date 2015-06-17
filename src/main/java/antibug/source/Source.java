@@ -22,9 +22,6 @@ import javax.tools.JavaCompiler;
 import javax.tools.StandardJavaFileManager;
 import javax.tools.ToolProvider;
 
-import kiss.I;
-import kiss.XML;
-
 import com.sun.source.tree.CompilationUnitTree;
 import com.sun.source.tree.ImportTree;
 import com.sun.source.tree.LineMap;
@@ -32,6 +29,9 @@ import com.sun.source.tree.Tree;
 import com.sun.source.util.JavacTask;
 import com.sun.source.util.SourcePositions;
 import com.sun.source.util.Trees;
+
+import kiss.I;
+import kiss.XML;
 
 /**
  * @version 2014/08/07 10:24:20
@@ -391,7 +391,8 @@ public class Source {
      */
     public static XML parse(Path path) {
         try {
-            JavacTask task = (JavacTask) compiler.getTask(null, manager, null, null, null, manager.getJavaFileObjects(path.toFile()));
+            JavacTask task = (JavacTask) compiler
+                    .getTask(null, manager, null, null, null, manager.getJavaFileObjects(path.toFile()));
             Trees trees = Trees.instance(task);
 
             XML xml = I.xml("source");

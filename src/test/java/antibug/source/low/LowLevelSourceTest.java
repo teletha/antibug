@@ -224,7 +224,6 @@ public class LowLevelSourceTest {
                     xml.find("line[n=\"" + (i + 1) + "\"]").to(new Formatter(message));
 
                     xml.to(new Formatter(System.out));
-                    System.out.println(separator + separator + message);
 
                     // build error
                     Error cause = new Error(message.toString());
