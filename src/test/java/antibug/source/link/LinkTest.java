@@ -12,9 +12,7 @@ package antibug.source.link;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import kiss.I;
-import kiss.XML;
-
+import org.junit.Ignore;
 import org.junit.Test;
 
 import antibug.source.Source;
@@ -23,6 +21,8 @@ import antibug.source.low.Lambda;
 import antibug.source.low.MethodCall;
 import antibug.source.low.Operator;
 import antibug.source.low.Statement;
+import kiss.I;
+import kiss.XML;
 
 /**
  * @version 2014/08/09 10:24:35
@@ -30,6 +30,7 @@ import antibug.source.low.Statement;
 public class LinkTest {
 
     @Test
+    @Ignore
     public void samePackage() throws Exception {
         XML xml = parse(Linker.class);
         assert findLink(xml, String.class) == 1;

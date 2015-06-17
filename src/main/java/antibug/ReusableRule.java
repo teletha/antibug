@@ -16,9 +16,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-import kiss.I;
-import kiss.model.ClassUtil;
-
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
@@ -28,6 +25,8 @@ import org.junit.runners.ParentRunner;
 import org.junit.runners.model.Statement;
 
 import antibug.powerassert.PowerAssertionError;
+import kiss.I;
+import kiss.model.ClassUtil;
 
 /**
  * <p>
@@ -44,7 +43,6 @@ import antibug.powerassert.PowerAssertionError;
  * Testcase must define {@link ReusableRule} as static field because JUnit instantiates testcase
  * class each test method invocation. The example is following:
  * </p>
- * 
  * <pre>
  * public class SomeTest {
  * 
@@ -55,7 +53,6 @@ import antibug.powerassert.PowerAssertionError;
  * <p>
  * The implementation of {@link ReusableRule} can contains sub rules like the following:
  * </p>
- * 
  * <pre>
  * public class YourRule extends ReusableRule {
  * 
@@ -126,7 +123,6 @@ public abstract class ReusableRule implements TestRule {
      */
     @Override
     public final Statement apply(Statement base, Description description) {
-
         // reset previous error
         error = null;
 
@@ -138,8 +134,8 @@ public abstract class ReusableRule implements TestRule {
             @Override
             public void evaluate() throws Throwable {
                 try {
-                    Method method = description.isSuite() ? null : description.getTestClass()
-                            .getMethod(description.getMethodName());
+                    Method method = description.isSuite() ? null
+                            : description.getTestClass().getMethod(description.getMethodName());
 
                     // call before class
                     if (executed++ == 0) {

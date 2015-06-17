@@ -13,10 +13,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import kiss.I;
-
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
+
+import kiss.I;
 
 /**
  * @version 2011/09/22 16:22:02
@@ -24,29 +25,30 @@ import org.junit.Test;
 public class CommandLineUserTest {
 
     @Rule
+    @ClassRule
     public static final CommandLineUser user = new CommandLineUser();
 
     @Test
     public void input() throws Exception {
         user.willInput("1");
-        assert "1".equals(read());
+        assert"1".equals(read());
     }
 
     @Test
     public void inputSeparately() throws Exception {
         user.willInput("1");
-        assert "1".equals(read());
+        assert"1".equals(read());
 
         user.willInput("2");
-        assert "2".equals(read());
+        assert"2".equals(read());
     }
 
     @Test
     public void inputSequentially() throws Exception {
         user.willInput("1");
         user.willInput("2");
-        assert "1".equals(read());
-        assert "2".equals(read());
+        assert"1".equals(read());
+        assert"2".equals(read());
     }
 
     @Test

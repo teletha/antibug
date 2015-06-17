@@ -13,6 +13,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.ClassRule;
 import org.junit.Rule;
 
 import antibug.ReusableRule;
@@ -23,6 +24,7 @@ import antibug.ReusableRule;
 public class PowerAssertTester extends ReusableRule {
 
     @Rule
+    @ClassRule
     public final PowerAssert POWER_ASSERT = new PowerAssert(this);
 
     /** For self test. */
@@ -57,14 +59,14 @@ public class PowerAssertTester extends ReusableRule {
         //
         // for (Operand expected : expecteds) {
         // if (!context.operands.contains(expected)) {
-        // throw new AssertionError("Can't capture the below operand.\r\nExpect  : " +
+        // throw new AssertionError("Can't capture the below operand.\r\nExpect : " +
         // expected.toString() + "\r\nValue : " + expected.value + "\r\n");
         // }
         // }
         //
         // for (String operator : operators) {
         // if (code.indexOf(operator) == -1) {
-        // throw new AssertionError("Can't capture the below code.\r\nExpect  : " + operator +
+        // throw new AssertionError("Can't capture the below code.\r\nExpect : " + operator +
         // "\r\nCode : " + code);
         // }
         // }

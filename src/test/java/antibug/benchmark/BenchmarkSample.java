@@ -15,6 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.PathMatcher;
 import java.nio.file.Paths;
 
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -26,6 +27,7 @@ import antibug.benchmark.Benchmark.Code;
 public class BenchmarkSample {
 
     @Rule
+    @ClassRule
     public static final Benchmark benchmark = new Benchmark();
 
     private Path path = Paths.get(new File("").getAbsolutePath());

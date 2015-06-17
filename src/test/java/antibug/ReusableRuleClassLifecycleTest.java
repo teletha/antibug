@@ -18,7 +18,7 @@ import org.junit.Test;
 public class ReusableRuleClassLifecycleTest {
 
     @Rule
-    public static final ClassLifeCycle rule = new ClassLifeCycle();
+    public final ClassLifeCycle rule = new ClassLifeCycle();
 
     @Test
     public void notInvoked() throws Exception {

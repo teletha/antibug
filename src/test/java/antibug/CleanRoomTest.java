@@ -13,11 +13,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.AccessControlException;
 
-import kiss.I;
-import kiss.model.ClassUtil;
-
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
+
+import kiss.I;
+import kiss.model.ClassUtil;
 
 /**
  * @version 2014/07/10 19:19:18
@@ -27,9 +28,11 @@ public class CleanRoomTest {
     private static final Path base = I.locateTemporary();
 
     @Rule
+    @ClassRule
     public static final CleanRoom room = new CleanRoom(base);
 
     @Rule
+    @ClassRule
     public static final CleanRoom room2 = new CleanRoom();
 
     @Test
@@ -75,8 +78,8 @@ public class CleanRoomTest {
         Path file = room.locateAbsent("absent.txt");
 
         assert Files.notExists(file);
-        assert !Files.isRegularFile(file);
-        assert !Files.isDirectory(file);
+        assert!Files.isRegularFile(file);
+        assert!Files.isDirectory(file);
     }
 
     @Test
@@ -84,7 +87,7 @@ public class CleanRoomTest {
         Path file = room.locateAbsent("present.txt");
 
         // the specified file doesn't exist yet
-        assert !Files.exists(file);
+        assert!Files.exists(file);
 
         // create file
         file = room.locateFile("present.txt");

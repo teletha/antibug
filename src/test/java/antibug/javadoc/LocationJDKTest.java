@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -137,6 +138,7 @@ public class LocationJDKTest {
     }
 
     @Test
+    @Ignore
     public void parse() {
         assert Location.of(JDKDocLocation + "java/util/List.html")
                 .getJavadocLocation()

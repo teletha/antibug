@@ -9,6 +9,7 @@
  */
 package antibug.javadoc.info;
 
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -21,6 +22,7 @@ import antibug.javadoc.info.TypeInfoTest.Inner.InnerNest;
 public class TypeInfoTest {
 
     @Rule
+    @ClassRule
     public static final JavadocParser parser = new JavadocParser();
 
     @Test

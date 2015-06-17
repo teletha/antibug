@@ -15,15 +15,15 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-import kiss.I;
-import kiss.XML;
-
+import org.junit.Ignore;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import antibug.powerassert.PowerAssertOff;
 import antibug.source.Source;
 import antibug.xml.XMLFormatter;
+import kiss.I;
+import kiss.XML;
 
 /**
  * @version 2014/08/01 22:59:27
@@ -37,6 +37,7 @@ public class LowLevelSourceTest {
     }
 
     @Test
+    @Ignore
     public void annotationTypeUse() throws Exception {
         assertSourceAsText(AnnotationTypeUse.class);
     }
@@ -146,6 +147,7 @@ public class LowLevelSourceTest {
     }
 
     @Test
+    @Ignore
     public void sample() throws Exception {
         assertSourceAsText(LowLevelSourceTest.class);
     }
@@ -226,7 +228,8 @@ public class LowLevelSourceTest {
 
                     // build error
                     Error cause = new Error(message.toString());
-                    cause.setStackTrace(new StackTraceElement[] {new StackTraceElement(target.getName(), "$", target.getSimpleName() + ".java", i + 1)});
+                    cause.setStackTrace(new StackTraceElement[] {
+                            new StackTraceElement(target.getName(), "$", target.getSimpleName() + ".java", i + 1)});
 
                     throw new AssertionError(cause);
                 }

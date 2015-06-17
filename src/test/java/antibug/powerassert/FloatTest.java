@@ -9,6 +9,7 @@
  */
 package antibug.powerassert;
 
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -18,6 +19,7 @@ import org.junit.Test;
 public class FloatTest {
 
     @Rule
+    @ClassRule
     public static final PowerAssertTester tester = new PowerAssertTester();
 
     @Test
@@ -62,7 +64,7 @@ public class FloatTest {
 
         tester.willUse("-1");
         tester.willCapture("value", value);
-        assert -1 == value;
+        assert-1 == value;
     }
 
     @Test

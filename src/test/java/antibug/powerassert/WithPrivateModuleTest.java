@@ -9,6 +9,7 @@
  */
 package antibug.powerassert;
 
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -20,9 +21,11 @@ import antibug.PrivateModule;
 public class WithPrivateModuleTest {
 
     @Rule
+    @ClassRule
     public static final PrivateModule module = new PrivateModule(true, false);
 
     @Rule
+    @ClassRule
     public static final PowerAssertTester tester = new PowerAssertTester();
 
     @Test

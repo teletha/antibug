@@ -11,6 +11,7 @@ package antibug;
 
 import java.lang.reflect.Method;
 
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -20,6 +21,7 @@ import org.junit.Test;
 public class ReusableRuleLifecycleTest {
 
     @Rule
+    @ClassRule
     public static final Lifecycle rule = new Lifecycle();
 
     @Test

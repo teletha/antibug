@@ -18,10 +18,11 @@ import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.security.AccessControlException;
 
-import kiss.I;
-
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
+
+import kiss.I;
 
 /**
  * @version 2010/02/09 11:23:23
@@ -30,6 +31,7 @@ import org.junit.Test;
 public class SandboxTest {
 
     @Rule
+    @ClassRule
     public static final Sandbox sandbox = new Sandbox(Sandbox.READ);
 
     @Test

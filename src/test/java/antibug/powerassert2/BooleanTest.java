@@ -11,6 +11,7 @@ package antibug.powerassert2;
 
 import static antibug.powerassert2.PowerAssertContext.*;
 
+import org.junit.ClassRule;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
@@ -22,6 +23,7 @@ import org.junit.Test;
 public class BooleanTest {
 
     @Rule
+    @ClassRule
     public static final PowerAssertTester tester = new PowerAssertTester();
 
     @Test
@@ -67,7 +69,7 @@ public class BooleanTest {
 
         tester.willUse("!");
         tester.willCapture("value", value);
-        assert !value;
+        assert!value;
     }
 
     @Test

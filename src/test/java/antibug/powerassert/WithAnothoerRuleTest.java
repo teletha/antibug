@@ -9,6 +9,7 @@
  */
 package antibug.powerassert;
 
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -18,6 +19,7 @@ import org.junit.Test;
 public class WithAnothoerRuleTest {
 
     @Rule
+    @ClassRule
     public static final PowerAssertTester tester = new PowerAssertTester();
 
     @Test

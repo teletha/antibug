@@ -9,6 +9,7 @@
  */
 package antibug.powerassert;
 
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -19,6 +20,7 @@ import org.junit.Test;
 public class CharacterTest {
 
     @Rule
+    @ClassRule
     public static final PowerAssertTester tester = new PowerAssertTester();
 
     @Test
@@ -27,7 +29,7 @@ public class CharacterTest {
 
         tester.willUse("'b'");
         tester.willCapture("value", value);
-        assert 'b' == value;
+        assert'b' == value;
     }
 
     @Test
@@ -37,7 +39,7 @@ public class CharacterTest {
         tester.willUse("'b'");
         tester.willUse("!=");
         tester.willCapture("value", value);
-        assert 'b' != value;
+        assert'b' != value;
     }
 
     @Test

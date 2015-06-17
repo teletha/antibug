@@ -11,6 +11,7 @@ package antibug.javadoc.info;
 
 import java.lang.reflect.Method;
 
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -20,10 +21,10 @@ import antibug.javadoc.info.annotation.SourceMarker;
 /**
  * @version 2014/07/26 21:55:11
  */
-@SuppressWarnings("unused")
 public class MethodInfoTest {
 
     @Rule
+    @ClassRule
     public static final JavadocParser parser = new JavadocParser();
 
     /**

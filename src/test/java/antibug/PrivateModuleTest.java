@@ -11,6 +11,7 @@ package antibug;
 
 import java.nio.file.Files;
 
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -22,15 +23,19 @@ import antibug.relative.module.RelativeModule;
 public class PrivateModuleTest {
 
     @Rule
+    @ClassRule
     public static final PrivateModule module = new PrivateModule(true, false);
 
     @Rule
+    @ClassRule
     public static final PrivateModule moduleJar = new PrivateModule(true, true);
 
     @Rule
+    @ClassRule
     public static final PrivateModule renameRelative1 = new PrivateModule("relative/module", true, false);
 
     @Rule
+    @ClassRule
     public static final PrivateModule renameRelative2 = new PrivateModule("relative/module/", true, false);
 
     @Test
