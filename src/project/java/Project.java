@@ -16,6 +16,6 @@ public class Project extends bee.api.Project {
 
         require("npc", "sinobu", "0.9.4");
         require("junit", "junit", "4.12");
-        require("sun.jdk", "tools", "8.0");
+        require("sun.jdk", "tools", "8.0").atSystem();
     }
 }
