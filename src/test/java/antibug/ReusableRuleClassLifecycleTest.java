@@ -13,7 +13,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 /**
- * @version 2011/03/20 9:26:12
+ * @version 2015/06/18 18:05:01
  */
 public class ReusableRuleClassLifecycleTest {
 
@@ -21,17 +21,22 @@ public class ReusableRuleClassLifecycleTest {
     public final ClassLifeCycle rule = new ClassLifeCycle();
 
     @Test
-    public void notInvoked() throws Exception {
+    public void notInvoked1() throws Exception {
+        throw new AssertionError("We must not invoke this test method.");
+    }
+
+    @Test
+    public void notInvoked2() throws Exception {
         throw new AssertionError("We must not invoke this test method.");
     }
 
     /**
-     * @version 2011/03/20 9:26:32
+     * @version 2015/06/18 18:04:53
      */
     private static final class ClassLifeCycle extends ReusableRule {
 
         /**
-         * @see testament.ReusableRule#beforeClass()
+         * {@inheritDoc}
          */
         @Override
         protected void beforeClass() throws Exception {
@@ -40,7 +45,7 @@ public class ReusableRuleClassLifecycleTest {
         }
 
         /**
-         * @see testament.ReusableRule#afterClass()
+         * {@inheritDoc}
          */
         @Override
         protected void afterClass() {
