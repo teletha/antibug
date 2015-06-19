@@ -134,8 +134,8 @@ public abstract class ReusableRule implements TestRule {
             @Override
             public void evaluate() throws Throwable {
                 try {
-                    Method method = description.isSuite() ? null
-                            : description.getTestClass().getMethod(description.getMethodName());
+                    Method method = description.isSuite() ? null : description.getTestClass()
+                            .getMethod(description.getMethodName());
 
                     // call before class
                     if (executed++ == 0) {
@@ -257,32 +257,6 @@ public abstract class ReusableRule implements TestRule {
      */
     protected Throwable validateError(Throwable throwable) {
         return throwable;
-    }
-
-    /**
-     * <p>
-     * Burke the current trapped error unconditionaly.
-     * </p>
-     */
-    protected final void burkeError() {
-        burkeError(null);
-    }
-
-    /**
-     * <p>
-     * Burke the current trapped error if its type is the specified {@link Throwable}.
-     * </p>
-     * 
-     * @param condition The conditional type.
-     */
-    protected final void burkeError(Class<? extends Throwable> condition) {
-        if (condition == null) {
-            condition = Throwable.class;
-        }
-
-        if (condition.isInstance(error)) {
-            error = null;
-        }
     }
 
     /**
