@@ -36,16 +36,17 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
-import kiss.I;
+import org.junit.AssumptionViolatedException;
 
-import org.junit.internal.AssumptionViolatedException;
+import bee.util.ZipArchiver;
+import kiss.I;
 
 /**
  * <p>
  * The environmental rule for test that depends on file system.
  * </p>
  * 
- * @version 2014/07/11 0:17:55
+ * @version 2015/06/23 21:19:51
  */
 public class CleanRoom extends Sandbox {
 
@@ -468,7 +469,7 @@ public class CleanRoom extends Sandbox {
     }
 
     /**
-     * @version 2014/07/11 0:01:36
+     * @version 2015/06/23 21:20:01
      */
     public static class FileSystemDSL {
 
@@ -540,6 +541,38 @@ public class CleanRoom extends Sandbox {
                 directories.pollLast();
             }
             return dir;
+        }
+
+        /**
+         * <p>
+         * Locate a present resource zip file which is assured that the specified archive exists.
+         * </p>
+         * 
+         * @param name A archive name.
+         * @return A located present zip file.
+         */
+        public final Path zip(String name, Runnable child) {
+            Path zip = directories.peekLast().resolve(name + ".zip");
+
+            Path temp = I.locateTemporary();
+            directories.add(temp);
+
+            try {
+                if (Files.notExists(temp)) {
+                    Files.createDirectory(temp);
+                }
+                child.run();
+            } catch (IOException e) {
+                throw I.quiet(e);
+            } finally {
+                directories.pollLast();
+            }
+
+            ZipArchiver archiver = new ZipArchiver();
+            archiver.add(temp);
+            archiver.pack(zip);
+
+            return zip;
         }
     }
 }
