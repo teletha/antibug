@@ -30,6 +30,8 @@ import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.HashSet;
 import java.util.Set;
@@ -167,6 +169,38 @@ public class CleanRoom extends Sandbox {
 
     /**
      * <p>
+     * Locate a present resource file which is assured that the spcified file exists.
+     * </p>
+     * 
+     * @param name A file name.
+     * @param lines A text contents.
+     * @return A located present file.
+     */
+    public Path locateFile(String name, String... lines) {
+        return locateFile(name, Arrays.asList(lines));
+    }
+
+    /**
+     * <p>
+     * Locate a present resource file which is assured that the spcified file exists.
+     * </p>
+     * 
+     * @param name A file name.
+     * @param lines A text contents.
+     * @return A located present file.
+     */
+    public Path locateFile(String name, Iterable<? extends CharSequence> lines) {
+        try {
+            Path file = locate(name, true, true);
+            Files.write(file, lines);
+            return file;
+        } catch (IOException e) {
+            throw I.quiet(e);
+        }
+    }
+
+    /**
+     * <p>
      * Locate a present resource file which is assured that the spcified file exists as archive.
      * </p>
      * 
@@ -209,6 +243,21 @@ public class CleanRoom extends Sandbox {
      */
     public Path locateDirectory(String name) {
         return locate(name, true, false);
+    }
+
+    /**
+     * <p>
+     * Locate a present resource directory which is assured that the specified directory exists.
+     * </p>
+     * 
+     * @param name A directory name.
+     * @param children
+     * @return A located present directory.
+     */
+    public Path locateDirectory(String name, Consumer<FileSystemDSL> children) {
+        Path directory = locateDirectory(name);
+        children.accept(new FileSystemDSL(directory));
+        return directory;
     }
 
     /**
@@ -492,12 +541,38 @@ public class CleanRoom extends Sandbox {
          * @return A located present file.
          */
         public final Path file(String name) {
+            return file(name, Collections.EMPTY_LIST);
+        }
+
+        /**
+         * <p>
+         * Locate a present resource file which is assured that the spcified file exists.
+         * </p>
+         * 
+         * @param name A file name.
+         * @return A located present file.
+         */
+        public final Path file(String name, String... lines) {
+            return file(name, Arrays.asList(lines));
+        }
+
+        /**
+         * <p>
+         * Locate a present resource file which is assured that the spcified file exists.
+         * </p>
+         * 
+         * @param name A file name.
+         * @return A located present file.
+         */
+        public final Path file(String name, Iterable<? extends CharSequence> lines) {
             Path file = directories.peekLast().resolve(name);
 
             try {
                 if (Files.notExists(file)) {
                     Files.createFile(file);
                 }
+
+                Files.write(file, lines);
             } catch (IOException e) {
                 throw I.quiet(e);
             }
