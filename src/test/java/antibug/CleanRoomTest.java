@@ -12,6 +12,7 @@ package antibug;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.AccessControlException;
+import java.time.Instant;
 
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -21,7 +22,7 @@ import kiss.I;
 import kiss.model.ClassUtil;
 
 /**
- * @version 2014/07/10 19:19:18
+ * @version 2015/06/26 17:00:48
  */
 public class CleanRoomTest {
 
@@ -41,7 +42,16 @@ public class CleanRoomTest {
 
         assert Files.exists(file);
         assert Files.isRegularFile(file);
+    }
 
+    @Test
+    public void locateFileWithTimeStamp() throws Exception {
+        Instant now = Instant.now();
+        Path file = room.locateFile("empty", now, "Contents");
+
+        assert Files.exists(file);
+        assert Files.isRegularFile(file);
+        assert Files.getLastModifiedTime(file).toMillis() == now.toEpochMilli();
     }
 
     @Test

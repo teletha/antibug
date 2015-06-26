@@ -29,6 +29,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
+import java.time.Instant;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Collections;
@@ -164,7 +166,20 @@ public class CleanRoom extends Sandbox {
      * @return A located present file.
      */
     public Path locateFile(String name) {
-        return locate(name, true, true);
+        return locateFile(name, (Instant) null);
+    }
+
+    /**
+     * <p>
+     * Locate a present resource file which is assured that the spcified file exists.
+     * </p>
+     * 
+     * @param name A file name.
+     * @param modified A last modified time.
+     * @return A located present file.
+     */
+    public Path locateFile(String name, Instant modified) {
+        return locateFile(name, modified, (Iterable) null);
     }
 
     /**
@@ -177,7 +192,21 @@ public class CleanRoom extends Sandbox {
      * @return A located present file.
      */
     public Path locateFile(String name, String... lines) {
-        return locateFile(name, Arrays.asList(lines));
+        return locateFile(name, null, lines);
+    }
+
+    /**
+     * <p>
+     * Locate a present resource file which is assured that the spcified file exists.
+     * </p>
+     * 
+     * @param name A file name.
+     * @param modified A last modified time.
+     * @param lines A text contents.
+     * @return A located present file.
+     */
+    public Path locateFile(String name, Instant modified, String... lines) {
+        return locateFile(name, modified, Arrays.asList(lines));
     }
 
     /**
@@ -190,9 +219,24 @@ public class CleanRoom extends Sandbox {
      * @return A located present file.
      */
     public Path locateFile(String name, Iterable<? extends CharSequence> lines) {
+        return locateFile(name, null, lines);
+    }
+
+    /**
+     * <p>
+     * Locate a present resource file which is assured that the spcified file exists.
+     * </p>
+     * 
+     * @param name A file name.
+     * @param modified A last modified time.
+     * @param lines A text contents.
+     * @return A located present file.
+     */
+    public Path locateFile(String name, Instant modified, Iterable<? extends CharSequence> lines) {
         try {
             Path file = locate(name, true, true);
-            Files.write(file, lines);
+            if (lines != null) Files.write(file, lines);
+            if (modified != null) Files.setLastModifiedTime(file, FileTime.from(modified));
             return file;
         } catch (IOException e) {
             throw I.quiet(e);
