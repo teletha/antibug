@@ -39,6 +39,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipError;
+import java.util.zip.ZipOutputStream;
 
 import org.junit.AssumptionViolatedException;
 
@@ -252,7 +255,19 @@ public class CleanRoom extends Sandbox {
      * @return A located present archive file.
      */
     public Path locateArchive(String name) {
-        return locateArchive(locateFile(name));
+        return locateArchive(name, null);
+    }
+
+    /**
+     * <p>
+     * Locate a present resource file which is assured that the spcified file exists as archive.
+     * </p>
+     * 
+     * @param name A file name.
+     * @return A located present archive file.
+     */
+    public Path locateArchive(String name, Consumer<FileSystemDSL> structure) {
+        return locateArchive(locateFile(name), structure);
     }
 
     /**
@@ -265,7 +280,52 @@ public class CleanRoom extends Sandbox {
      */
     public Path locateArchive(Path path) {
         try {
-            FileSystem system = FileSystems.newFileSystem(path, null);
+            FileSystem system;
+
+            try {
+                system = FileSystems.newFileSystem(path, null);
+            } catch (ZipError e) {
+                // create zip
+                ZipOutputStream stream = new ZipOutputStream(Files.newOutputStream(path));
+                stream.putNextEntry(new ZipEntry("file"));
+                stream.closeEntry();
+                stream.close();
+
+                system = FileSystems.newFileSystem(path, null);
+            }
+
+            // register archive to dispose in cleanup phase
+            archives.add(system);
+
+            // API definition
+            return system.getPath("/");
+        } catch (IOException e) {
+            throw I.quiet(e);
+        }
+    }
+
+    /**
+     * <p>
+     * Locate a present resource file which is assured that the spcified file exists as archive.
+     * </p>
+     * 
+     * @param name A file name.
+     * @return A located present archive file.
+     */
+    public Path locateArchive(Path path, Consumer<FileSystemDSL> structure) {
+        try {
+            FileSystem system;
+
+            try {
+                system = FileSystems.newFileSystem(path, null);
+            } catch (ZipError e) {
+                // create zip
+                FileSystemDSL dsl = new FileSystemDSL(path.getParent());
+                dsl.zip(path.getFileName().toString(), () -> {
+                    if (structure != null) structure.accept(dsl);
+                });
+                system = FileSystems.newFileSystem(path, null);
+            }
 
             // register archive to dispose in cleanup phase
             archives.add(system);
@@ -671,7 +731,7 @@ public class CleanRoom extends Sandbox {
          * @return A located present zip file.
          */
         public final Path zip(String name, Runnable child) {
-            Path zip = directories.peekLast().resolve(name + ".zip");
+            Path zip = directories.peekLast().resolve(name);
 
             Path temp = I.locateTemporary();
             directories.add(temp);
