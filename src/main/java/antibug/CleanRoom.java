@@ -290,7 +290,7 @@ public class CleanRoom extends Sandbox {
                 stream.putNextEntry(new ZipEntry("file"));
                 stream.closeEntry();
                 stream.close();
-
+                System.out.println("create new zip");
                 system = FileSystems.newFileSystem(path, null);
             }
 
@@ -457,11 +457,13 @@ public class CleanRoom extends Sandbox {
     protected void after(Method method) {
         for (FileSystem system : archives) {
             try {
+                System.out.println(system + "  @@");
                 system.close();
             } catch (IOException e) {
                 catchError(e);
             }
         }
+        archives.clear();
         super.after(method);
     }
 
@@ -557,6 +559,8 @@ public class CleanRoom extends Sandbox {
          */
         @Override
         public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+            System.out.println(dir);
+            Files.newDirectoryStream(dir).forEach(System.out::println);
             Files.deleteIfExists(dir);
             return FileVisitResult.CONTINUE;
         }
