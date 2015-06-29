@@ -67,23 +67,23 @@ public class CleanRoomTest {
         assert Files.notExists(file.resolve("not-exists"));
     }
 
-    @Test
-    public void locateNewArchive() {
-        Path file = room.locateArchive("test.zip", $ -> {
-            $.file("file");
-            $.dir("dir", () -> {
-                $.file("child");
-            });
-        });
-
-        assert Files.exists(file.resolve("file"));
-        assert Files.isRegularFile(file.resolve("file"));
-        assert Files.exists(file.resolve("dir"));
-        assert Files.isDirectory(file.resolve("dir"));
-        assert Files.exists(file.resolve("dir/child"));
-        assert Files.isRegularFile(file.resolve("dir/child"));
-        assert Files.notExists(file.resolve("not-exists"));
-    }
+    // @Test
+    // public void locateNewArchive() {
+    // Path file = room.locateArchive("test.zip", $ -> {
+    // $.file("file");
+    // $.dir("dir", () -> {
+    // $.file("child");
+    // });
+    // });
+    //
+    // assert Files.exists(file.resolve("file"));
+    // assert Files.isRegularFile(file.resolve("file"));
+    // assert Files.exists(file.resolve("dir"));
+    // assert Files.isDirectory(file.resolve("dir"));
+    // assert Files.exists(file.resolve("dir/child"));
+    // assert Files.isRegularFile(file.resolve("dir/child"));
+    // assert Files.notExists(file.resolve("not-exists"));
+    // }
 
     @Test
     public void locateDirectoryFromAbsent() {
