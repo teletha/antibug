@@ -177,7 +177,6 @@ public abstract class ReusableRule implements TestRule {
 
                         // invoke afterClass
                         try {
-                            System.out.println("Invoke After Class");
                             afterClass();
                         } catch (Throwable e) {
                             catchError(e);

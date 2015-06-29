@@ -42,7 +42,6 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipError;
 import java.util.zip.ZipOutputStream;
 
 import org.junit.AssumptionViolatedException;
@@ -292,27 +291,15 @@ public class CleanRoom extends Sandbox {
      * @return A located present archive file.
      */
     public Path locateArchive(Path path, Consumer<FileSystemDSL> structure) {
+        FileSystemDSL dsl = new FileSystemDSL(path.getParent());
+        dsl.zip(path.getFileName().toString(), () -> {
+            if (structure != null) structure.accept(dsl);
+        });
+
         try {
-            FileSystem system;
-
-            try {
-                system = FileSystems.newFileSystem(path, null);
-            } catch (ZipError e) {
-                // create zip
-                FileSystemDSL dsl = new FileSystemDSL(path.getParent());
-                dsl.zip(path.getFileName().toString(), () -> {
-                    if (structure != null) structure.accept(dsl);
-                });
-                system = FileSystems.newFileSystem(path, null);
-            }
-
-            // register archive to dispose in cleanup phase
+            FileSystem system = FileSystems.newFileSystem(path, null);
             archives.add(system);
-
-            // API definition
-            Path p = system.getPath("/");
-            system.close();
-            return p;
+            return system.getPath("/");
         } catch (IOException e) {
             throw I.quiet(e);
         }
@@ -438,10 +425,6 @@ public class CleanRoom extends Sandbox {
     protected void after(Method method) {
         for (FileSystem system : archives) {
             try {
-                Path path = Paths.get(system.toString());
-                System.out.println(path);
-                // Files.delete(path);
-
                 system.close();
             } catch (IOException e) {
                 catchError(e);
@@ -461,7 +444,7 @@ public class CleanRoom extends Sandbox {
 
         // Delete root directory of clean room.
         try {
-            Files.delete(clean);
+            Files.deleteIfExists(clean);
         } catch (DirectoryNotEmptyException | NoSuchFileException e) {
             // CleanRoom is used by other testcase, So we can't delete.
         } catch (IOException e) {
@@ -534,7 +517,7 @@ public class CleanRoom extends Sandbox {
          */
         @Override
         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-            Files.deleteIfExists(file);
+            Files.delete(file);
             return FileVisitResult.CONTINUE;
         }
 
@@ -543,7 +526,7 @@ public class CleanRoom extends Sandbox {
          */
         @Override
         public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-            Files.deleteIfExists(dir);
+            Files.delete(dir);
             return FileVisitResult.CONTINUE;
         }
     }
@@ -751,7 +734,6 @@ public class CleanRoom extends Sandbox {
             } catch (IOException e) {
                 throw I.quiet(e);
             }
-
             return zip;
         }
     }

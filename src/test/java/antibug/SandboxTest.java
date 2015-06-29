@@ -37,12 +37,12 @@ public class SandboxTest {
     @Test
     public void read1() throws Exception {
         sandbox.readable(true);
-        new FileReader(new File("pom.xml"));
+        new FileReader(new File("src/project/java/Project.java"));
     }
 
     @Test(expected = AccessControlException.class)
     public void read2() throws Exception {
-        new FileReader(new File("pom.xml"));
+        new FileReader(new File("src/project/java/Project.java"));
     }
 
     @Test
