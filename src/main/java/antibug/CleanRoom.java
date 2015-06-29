@@ -310,7 +310,9 @@ public class CleanRoom extends Sandbox {
             archives.add(system);
 
             // API definition
-            return system.getPath("/");
+            Path p = system.getPath("/");
+            system.close();
+            return p;
         } catch (IOException e) {
             throw I.quiet(e);
         }
@@ -436,8 +438,11 @@ public class CleanRoom extends Sandbox {
     protected void after(Method method) {
         for (FileSystem system : archives) {
             try {
+                Path path = Paths.get(system.toString());
+                System.out.println(path);
+                // Files.delete(path);
+
                 system.close();
-                System.out.println("Close " + system + "  " + system.getClass());
             } catch (IOException e) {
                 catchError(e);
             }
@@ -459,9 +464,6 @@ public class CleanRoom extends Sandbox {
             Files.delete(clean);
         } catch (DirectoryNotEmptyException | NoSuchFileException e) {
             // CleanRoom is used by other testcase, So we can't delete.
-            for (Path path : I.walk(clean)) {
-                System.out.println("@ " + path);
-            }
         } catch (IOException e) {
             catchError(e);
         }

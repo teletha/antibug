@@ -134,8 +134,8 @@ public abstract class ReusableRule implements TestRule {
             @Override
             public void evaluate() throws Throwable {
                 try {
-                    Method method = description.isSuite() ? null : description.getTestClass()
-                            .getMethod(description.getMethodName());
+                    Method method = description.isSuite() ? null
+                            : description.getTestClass().getMethod(description.getMethodName());
 
                     // call before class
                     if (executed++ == 0) {
@@ -177,6 +177,7 @@ public abstract class ReusableRule implements TestRule {
 
                         // invoke afterClass
                         try {
+                            System.out.println("Invoke After Class");
                             afterClass();
                         } catch (Throwable e) {
                             catchError(e);
