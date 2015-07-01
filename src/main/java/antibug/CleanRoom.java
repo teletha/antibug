@@ -316,7 +316,19 @@ public class CleanRoom extends Sandbox {
      * @return A located present directory.
      */
     public Path locateDirectory(String name) {
-        return locate(name, true, false);
+        return locateDirectory(name, null, null);
+    }
+
+    /**
+     * <p>
+     * Locate a present resource directory which is assured that the specified directory exists.
+     * </p>
+     * 
+     * @param name A directory name.
+     * @return A located present directory.
+     */
+    public Path locateDirectory(String name, Instant modified) {
+        return locateDirectory(name, modified, null);
     }
 
     /**
@@ -329,9 +341,28 @@ public class CleanRoom extends Sandbox {
      * @return A located present directory.
      */
     public Path locateDirectory(String name, Consumer<FileSystemDSL> children) {
-        Path directory = locateDirectory(name);
-        children.accept(new FileSystemDSL(directory));
-        return directory;
+        return locateDirectory(name, null, children);
+    }
+
+    /**
+     * <p>
+     * Locate a present resource directory which is assured that the specified directory exists.
+     * </p>
+     * 
+     * @param name A directory name.
+     * @param children
+     * @return A located present directory.
+     */
+    public Path locateDirectory(String name, Instant modified, Consumer<FileSystemDSL> children) {
+        try {
+            Path directory = locate(name, true, false);
+            if (children != null) children.accept(new FileSystemDSL(directory));
+            if (modified != null) Files.setLastModifiedTime(directory, FileTime.from(modified));
+
+            return directory;
+        } catch (IOException e) {
+            throw I.quiet(e);
+        }
     }
 
     /**

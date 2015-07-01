@@ -84,19 +84,29 @@ public class CleanRoomTest {
 
     @Test
     public void locateDirectoryFromPresent() {
-        Path file = room.locateDirectory("dir");
+        Path path = room.locateDirectory("dir");
 
-        assert Files.exists(file);
-        assert Files.isDirectory(file);
+        assert Files.exists(path);
+        assert Files.isDirectory(path);
+    }
+
+    @Test
+    public void locateDirectoryWithTimeStamp() throws Exception {
+        Instant now = Instant.now();
+        Path path = room.locateDirectory("empty", now);
+
+        assert Files.exists(path);
+        assert Files.isDirectory(path);
+        assert Files.getLastModifiedTime(path).toMillis() == now.toEpochMilli();
     }
 
     @Test
     public void locateAbsent() {
-        Path file = room.locateAbsent("absent.txt");
+        Path path = room.locateAbsent("absent.txt");
 
-        assert Files.notExists(file);
-        assert!Files.isRegularFile(file);
-        assert!Files.isDirectory(file);
+        assert Files.notExists(path);
+        assert!Files.isRegularFile(path);
+        assert!Files.isDirectory(path);
     }
 
     @Test
