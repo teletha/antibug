@@ -11,12 +11,12 @@ package antibug;
 
 import static antibug.AntiBug.*;
 import static antibug.util.UnsafeUtility.*;
+import static java.nio.file.FileVisitResult.*;
 import static java.nio.file.StandardCopyOption.*;
 
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.nio.file.DirectoryNotEmptyException;
@@ -25,6 +25,7 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
+import java.nio.file.FileVisitor;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
@@ -46,6 +47,7 @@ import java.util.zip.ZipOutputStream;
 
 import org.junit.AssumptionViolatedException;
 
+import kiss.Disposable;
 import kiss.I;
 
 /**
@@ -662,8 +664,7 @@ public class CleanRoom extends Sandbox {
          * @return A located present directory.
          */
         public final Path dir(String name) {
-            return dir(name, () -> {
-            });
+            return dir(name, null);
         }
 
         /**
@@ -682,7 +683,7 @@ public class CleanRoom extends Sandbox {
                 if (Files.notExists(dir)) {
                     Files.createDirectory(dir);
                 }
-                child.run();
+                if (child != null) child.run();
             } catch (IOException e) {
                 throw I.quiet(e);
             } finally {
@@ -717,24 +718,107 @@ public class CleanRoom extends Sandbox {
             }
 
             try {
-                ZipOutputStream out = new ZipOutputStream(Files.newOutputStream(zip), I.$encoding);
-
-                for (Path path : I.walk(temp)) {
-                    ZipEntry entry = new ZipEntry(temp.relativize(path).toString().replace(File.separatorChar, '/'));
-                    entry.setSize(Files.size(path));
-                    entry.setTime(Files.getLastModifiedTime(path).toMillis());
-                    out.putNextEntry(entry);
-
-                    InputStream in = Files.newInputStream(path);
-                    I.copy(in, out, false);
-                    in.close();
-                    out.closeEntry();
-                }
-                out.close();
+                Archiver archiver = new Archiver(temp, zip);
+                I.walk(temp, archiver);
+                archiver.dispose();
             } catch (IOException e) {
                 throw I.quiet(e);
             }
             return zip;
+        }
+    }
+
+    /**
+     * @version 2015/06/23 21:21:57
+     */
+    private static class Archiver extends ZipOutputStream implements FileVisitor<Path>, Disposable {
+
+        /** The base path. */
+        private Path base;
+
+        /**
+         * @param output
+         */
+        private Archiver(Path in, Path destination) throws IOException {
+            super(Files.newOutputStream(destination), I.$encoding);
+
+            base = in;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+            try {
+                ZipEntry entry = new ZipEntry(base.relativize(dir).toString().replace(File.separatorChar, '/') + "/");
+                entry.setTime(attrs.lastModifiedTime().toMillis());
+                putNextEntry(entry);
+                closeEntry();
+            } catch (IOException e) {
+                // ignore
+            }
+            return CONTINUE;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+            try {
+                ZipEntry entry = new ZipEntry(base.relativize(file).toString().replace(File.separatorChar, '/'));
+                entry.setSize(attrs.size());
+                entry.setTime(attrs.lastModifiedTime().toMillis());
+                putNextEntry(entry);
+
+                // copy data
+                I.copy(Files.newInputStream(file), this, true);
+                closeEntry();
+            } catch (IOException e) {
+                // ignore
+            }
+
+            // API definition
+            return CONTINUE;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
+            // API definition
+            return CONTINUE;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+            // API definition
+            return CONTINUE;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void close() throws IOException {
+            // super.close();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void dispose() {
+            try {
+                super.close();
+            } catch (IOException e) {
+                throw I.quiet(e);
+            }
         }
     }
 }

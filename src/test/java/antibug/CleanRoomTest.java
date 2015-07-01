@@ -57,6 +57,7 @@ public class CleanRoomTest {
     public void locateArchive() {
         Path file = room.locateArchive("test.zip", $ -> {
             $.file("file");
+            $.dir("empty");
             $.dir("dir", () -> {
                 $.file("child");
             });
@@ -64,6 +65,8 @@ public class CleanRoomTest {
 
         assert Files.exists(file.resolve("file"));
         assert Files.isRegularFile(file.resolve("file"));
+        assert Files.exists(file.resolve("empty"));
+        assert Files.isDirectory(file.resolve("empty"));
         assert Files.exists(file.resolve("dir"));
         assert Files.isDirectory(file.resolve("dir"));
         assert Files.exists(file.resolve("dir/child"));
