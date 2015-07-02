@@ -459,6 +459,8 @@ public class CleanRoom extends Sandbox {
         for (FileSystem system : archives) {
             try {
                 system.close();
+            } catch (NoSuchFileException e) {
+                // if the archive file is deleted during test, we can ignore
             } catch (IOException e) {
                 catchError(e);
             }
