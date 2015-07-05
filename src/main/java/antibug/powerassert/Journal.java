@@ -157,4 +157,14 @@ interface Journal {
      * @param expression
      */
     void operator(String operator);
+
+    /**
+     * <p>
+     * Write lambda method call.
+     * </p>
+     * 
+     * @param methodName A method name.
+     * @param description A method parameter size.
+     */
+    void lambda(String methodName, String description);
 }

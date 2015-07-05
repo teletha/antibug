@@ -161,7 +161,8 @@ public class PowerAssertContext implements Journal {
         Operand owner = stack.pollLast();
         boolean qualified = !owner.name.equals("this") || hasLocal(methodId, expression);
 
-        Operand operand = new Variable(qualified ? owner + "." + expression : expression, Type.getType(description), variable);
+        Operand operand = new Variable(qualified ? owner + "." + expression : expression, Type
+                .getType(description), variable);
         stack.add(operand);
         operands.add(operand);
     }
@@ -295,7 +296,8 @@ public class PowerAssertContext implements Journal {
 
             if (operator.equals("==") || operator.equals("!=")) {
                 // check operands
-                if (right.value instanceof Integer && ((Integer) right.value).intValue() == 0 && left.value instanceof Boolean) {
+                if (right.value instanceof Integer && ((Integer) right.value)
+                        .intValue() == 0 && left.value instanceof Boolean) {
 
                     // boolean == 0 or boolean != 0
                     stack.add(left);
@@ -304,6 +306,13 @@ public class PowerAssertContext implements Journal {
             }
             stack.add(new Operand(left + " " + operator + " " + right, null));
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void lambda(String methodName, String description) {
     }
 
     /**

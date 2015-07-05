@@ -10,11 +10,13 @@
 package antibug.powerassert;
 
 import static jdk.internal.org.objectweb.asm.Opcodes.*;
-import jdk.internal.org.objectweb.asm.Label;
-import jdk.internal.org.objectweb.asm.Type;
+
 import antibug.bytecode.Agent.Translator;
 import antibug.bytecode.Bytecode;
 import antibug.bytecode.LocalVariable;
+import jdk.internal.org.objectweb.asm.Handle;
+import jdk.internal.org.objectweb.asm.Label;
+import jdk.internal.org.objectweb.asm.Type;
 
 /**
  * @version 2012/01/14 22:48:47
@@ -77,7 +79,8 @@ class PowerAssertTranslator extends Translator {
             case GETSTATIC:
                 String className = computeClassName(owner);
 
-                journal.fieldStatic(className, this.className.equals(owner) ? name : className + "." + name, desc, local);
+                journal.fieldStatic(className, this.className.equals(owner) ? name
+                        : className + "." + name, desc, local);
                 break;
             }
         }
@@ -207,7 +210,8 @@ class PowerAssertTranslator extends Translator {
             builder.insert(builder.length() - 2, ";");
 
             // instantiate PowerAssertError
-            super.visitMethodInsn(opcode, Type.getType(PowerAssertionError.class).getInternalName(), name, builder.toString(), access);
+            super.visitMethodInsn(opcode, Type.getType(PowerAssertionError.class).getInternalName(), name, builder
+                    .toString(), access);
 
             // reset state
             startAssertion = false;
@@ -493,4 +497,19 @@ class PowerAssertTranslator extends Translator {
         PowerAssertContext.registerLocalVariable(hashCode(), name, desc, index);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void visitInvokeDynamicInsn(String name, String desc, Handle bsm, Object... bsmArgs) {
+        super.visitInvokeDynamicInsn(name, desc, bsm, bsmArgs);
+
+        if (processAssertion) {
+            // save current value
+            // Type type = Type.getType(desc);
+            // LocalVariable local = copy(type.getReturnType());
+
+            journal.lambda(name, desc);
+        }
+    }
 }
