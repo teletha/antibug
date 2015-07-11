@@ -272,7 +272,7 @@ public class PrivateModule extends ReusableRule {
                     Archiver archiver = new Archiver(temporary, path);
 
                     // scan all class files and pack it
-                    I.walk(temporary, archiver);
+                    Files.walkFileTree(temporary, archiver);
 
                     // close stream properly
                     archiver.output.close();
