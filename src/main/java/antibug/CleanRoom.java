@@ -752,7 +752,7 @@ public class CleanRoom extends Sandbox {
 
             try {
                 Archiver archiver = new Archiver(temp, zip);
-                I.walk(temp, archiver);
+                Files.walkFileTree(temp, archiver);
                 archiver.dispose();
             } catch (IOException e) {
                 throw I.quiet(e);
