@@ -762,7 +762,7 @@ public class CleanRoom extends Sandbox {
     }
 
     /**
-     * @version 2015/06/23 21:21:57
+     * @version 2015/07/13 22:01:18
      */
     private static class Archiver extends ZipOutputStream implements FileVisitor<Path>, Disposable {
 
@@ -779,17 +779,33 @@ public class CleanRoom extends Sandbox {
         }
 
         /**
+         * <p>
+         * Create entry path.
+         * </p>
+         * 
+         * @param path
+         * @return
+         */
+        private String name(Path path) {
+            return base.relativize(path).toString().replace(File.separatorChar, '/');
+        }
+
+        /**
          * {@inheritDoc}
          */
         @Override
         public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-            try {
-                ZipEntry entry = new ZipEntry(base.relativize(dir).toString().replace(File.separatorChar, '/') + "/");
-                entry.setTime(attrs.lastModifiedTime().toMillis());
-                putNextEntry(entry);
-                closeEntry();
-            } catch (IOException e) {
-                // ignore
+            if (base != dir) {
+                try {
+                    ZipEntry entry = new ZipEntry(name(dir) + "/");
+                    entry.setCreationTime(attrs.creationTime());
+                    entry.setLastAccessTime(attrs.lastAccessTime());
+                    entry.setLastModifiedTime(attrs.lastModifiedTime());
+                    putNextEntry(entry);
+                    closeEntry();
+                } catch (IOException e) {
+                    // ignore
+                }
             }
             return CONTINUE;
         }
@@ -800,12 +816,12 @@ public class CleanRoom extends Sandbox {
         @Override
         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
             try {
-                ZipEntry entry = new ZipEntry(base.relativize(file).toString().replace(File.separatorChar, '/'));
+                ZipEntry entry = new ZipEntry(name(file));
                 entry.setSize(attrs.size());
-                entry.setTime(attrs.lastModifiedTime().toMillis());
+                entry.setCreationTime(attrs.creationTime());
+                entry.setLastAccessTime(attrs.lastAccessTime());
+                entry.setLastModifiedTime(attrs.lastModifiedTime());
                 putNextEntry(entry);
-
-                // copy data
                 I.copy(Files.newInputStream(file), this, true);
                 closeEntry();
             } catch (IOException e) {

@@ -54,7 +54,7 @@ public class CleanRoomTest {
     }
 
     @Test
-    public void locateArchive() {
+    public void locateArchive() throws Exception {
         Path file = room.locateArchive("test.zip", $ -> {
             $.file("file");
             $.dir("empty");
@@ -72,6 +72,7 @@ public class CleanRoomTest {
         assert Files.exists(file.resolve("dir/child"));
         assert Files.isRegularFile(file.resolve("dir/child"));
         assert Files.notExists(file.resolve("not-exists"));
+        assert Files.walk(file).count() == 5;
     }
 
     @Test
