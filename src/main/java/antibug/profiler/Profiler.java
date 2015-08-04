@@ -246,7 +246,7 @@ public class Profiler<K, E, Y> {
      */
     public final void show(List<Result> results) {
         if (execute) {
-            double total = 0;
+            long total = 0;
             Map<Object, Result> grouped = new HashMap();
 
             for (Result result : results) {
@@ -274,7 +274,7 @@ public class Profiler<K, E, Y> {
      * @param results
      */
     protected void show(double total, List<Result> results) {
-        System.out.format("Total Profiled Time: %5.0fms%n", total);
+        System.out.format("Total Profiled Time: %-6.0fms%n", total / 1000000);
 
         int size = Math.min(15, results.size());
 
@@ -286,9 +286,9 @@ public class Profiler<K, E, Y> {
             Result result = results.get(i);
 
             if (result.elapsed != 0) {
-                String format = name + "  " + time + "ms  %2.0f%%  " + count + "call%n";
+                String format = name + "  " + time + "ms  %2.0f%%  " + count + "count%n";
 
-                System.out.format(format, result.name, result.elapsed, result.elapsed / total * 100, result.count);
+                System.out.format(format, result.name, result.elapsed / 1000000, result.elapsed / total * 100, result.count);
             }
         }
     }
@@ -361,21 +361,21 @@ public class Profiler<K, E, Y> {
         /**
          * 
          */
-        private void stop() {
-            end = System.currentTimeMillis();
-            elapsed += end - latest;
-        }
-
-        /**
-         * 
-         */
         private void start() {
-            long now = System.currentTimeMillis();
+            long now = System.nanoTime();
 
             if (start == 0) {
                 start = now;
             }
             latest = now;
+        }
+
+        /**
+         * 
+         */
+        private void stop() {
+            end = System.nanoTime();
+            elapsed += end - latest;
         }
 
         /**
