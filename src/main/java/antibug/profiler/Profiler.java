@@ -39,7 +39,7 @@ public class Profiler<K, E, Y> {
      */
     public Profiler() {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            show(new ArrayList(results.values()));
+            show();
         }));
     }
 
@@ -244,12 +244,12 @@ public class Profiler<K, E, Y> {
      * 
      * @param results
      */
-    public final void show(List<Result> results) {
+    public final void show() {
         if (execute) {
             long total = 0;
             Map<Object, Result> grouped = new HashMap();
 
-            for (Result result : results) {
+            for (Result result : results.values()) {
                 Object key = group(result.key1, result.key2, result.key3);
 
                 Result computed = grouped.computeIfAbsent(key, name -> new Result(name(result.key1, result.key2, result.key3)));
