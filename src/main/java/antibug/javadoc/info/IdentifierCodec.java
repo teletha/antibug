@@ -9,12 +9,13 @@
  */
 package antibug.javadoc.info;
 
-import kiss.Codec;
+import kiss.Decoder;
+import kiss.Encoder;
 
 /**
  * @version 2014/07/29 15:49:05
  */
-public class IdentifierCodec implements Codec<Identifier> {
+public class IdentifierCodec implements Decoder<Identifier>, Encoder<Identifier> {
 
     /**
      * {@inheritDoc}
@@ -22,5 +23,13 @@ public class IdentifierCodec implements Codec<Identifier> {
     @Override
     public Identifier decode(String value) {
         return Identifier.of(value);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String encode(Identifier value) {
+        return String.valueOf(value);
     }
 }

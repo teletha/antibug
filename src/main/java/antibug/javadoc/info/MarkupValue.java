@@ -9,6 +9,9 @@
  */
 package antibug.javadoc.info;
 
+import kiss.Decoder;
+import kiss.Encoder;
+
 /**
  * @version 2014/07/31 9:29:12
  */
@@ -33,10 +36,10 @@ public class MarkupValue {
     }
 
     /**
-     * @version 2014/07/31 9:30:53
+     * @version 2016/01/20 22:06:20
      */
     @SuppressWarnings("unused")
-    private static class Codec implements kiss.Codec<MarkupValue> {
+    private static class Codec implements Decoder<MarkupValue>, Encoder<MarkupValue> {
 
         /**
          * {@inheritDoc}
