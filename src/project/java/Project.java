@@ -14,7 +14,7 @@ public class Project extends bee.api.Project {
         producer("Nameless Production Committee");
         describe("JUnit Extension Tools.");
 
-        require("npc", "sinobu", "0.9.4");
+        require("npc", "sinobu", "1.0");
         require("junit", "junit", "4.12");
         require("sun.jdk", "tools", "8.0").atSystem();
     }

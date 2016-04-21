@@ -21,14 +21,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.StringJoiner;
 
-import kiss.I;
+import com.sun.tools.javadoc.Main;
+
 import antibug.ReusableRule;
 import antibug.javadoc.info.Identifier;
 import antibug.javadoc.info.MethodInfo;
 import antibug.javadoc.info.PackageInfo;
 import antibug.javadoc.info.TypeInfo;
-
-import com.sun.tools.javadoc.Main;
+import kiss.I;
 
 public class JavadocParser extends ReusableRule {
 
@@ -46,7 +46,7 @@ public class JavadocParser extends ReusableRule {
         parse(testcase);
 
         StringBuilder builder = new StringBuilder();
-        I.write(doclet.documents, builder, true);
+        I.write(doclet.documents, builder);
         System.out.println(builder);
     }
 
@@ -196,7 +196,8 @@ public class JavadocParser extends ReusableRule {
         for (Class param : method.getParameterTypes()) {
             joiner.add(param.getName());
         }
-        return info.id.packageName.equals(clazz.getPackage().getName()) && info.id.typeName.equals(clazz.getSimpleName()) && info.id.memberName.equals(joiner.toString());
+        return info.id.packageName.equals(clazz.getPackage().getName()) && info.id.typeName
+                .equals(clazz.getSimpleName()) && info.id.memberName.equals(joiner.toString());
     }
 
     /**
@@ -265,7 +266,8 @@ public class JavadocParser extends ReusableRule {
             options.add(locateTestSource(clazz));
         }
 
-        Main.execute("", NoOp, NoOp, NoOp, AntibugDoclet.class.getName(), AntibugDoclet.class.getClassLoader(), options.toArray(new String[options.size()]));
+        Main.execute("", NoOp, NoOp, NoOp, AntibugDoclet.class.getName(), AntibugDoclet.class.getClassLoader(), options
+                .toArray(new String[options.size()]));
     }
 
     /**
