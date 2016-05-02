@@ -9,6 +9,7 @@
  */
 package antibug.powerassert;
 
+import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +32,7 @@ import kiss.model.ClassUtil;
 public abstract class PowerAssertRenderer<T> {
 
     /** The registered renderers. */
-    private static final Map<Class, Class<? extends PowerAssertRenderer>> renderers = new HashMap();
+    private static final Map<Type, Class<? extends PowerAssertRenderer>> renderers = new HashMap();
 
     static {
         register(CharSequenceRenderer.class);
@@ -60,7 +61,7 @@ public abstract class PowerAssertRenderer<T> {
      * @param renderer
      */
     public static final void register(Class<? extends PowerAssertRenderer> renderer) {
-        Class[] params = ClassUtil.getParameter(renderer, PowerAssertRenderer.class);
+        Type[] params = ClassUtil.getParameter(renderer, PowerAssertRenderer.class);
 
         if (params.length == 1) {
             renderers.put(params[0], renderer);
