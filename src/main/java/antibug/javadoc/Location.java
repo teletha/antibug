@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kiss.I;
-import kiss.model.ClassUtil;
 
 /**
  * @version 2014/08/16 9:03:13
@@ -63,7 +62,7 @@ public class Location {
         this.specifier = specifier;
         this.documentRoot = documentRoot;
 
-        Path archive = ClassUtil.getArchive(type);
+        Path archive = I.locate(type);
         this.externalDoc = archive == null || Files.isRegularFile(archive);
     }
 

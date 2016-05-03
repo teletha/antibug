@@ -26,7 +26,6 @@ import org.junit.runners.model.Statement;
 
 import antibug.powerassert.PowerAssertionError;
 import kiss.I;
-import kiss.model.ClassUtil;
 
 /**
  * <p>
@@ -69,7 +68,7 @@ public abstract class ReusableRule implements TestRule {
     protected final Class testcase = getCaller();
 
     /** The root directory of testcases. */
-    protected final Path testcaseRoot = ClassUtil.getArchive(testcase);
+    protected final Path testcaseRoot = I.locate(testcase);
 
     /** The parent directory of testcase class. */
     protected final Path testcaseDirectory = testcaseRoot.resolve(testcase.getPackage().getName().replace('.', '/'));
@@ -134,8 +133,7 @@ public abstract class ReusableRule implements TestRule {
             @Override
             public void evaluate() throws Throwable {
                 try {
-                    Method method = description.isSuite() ? null
-                            : description.getTestClass().getMethod(description.getMethodName());
+                    Method method = description.isSuite() ? null : description.getTestClass().getMethod(description.getMethodName());
 
                     // call before class
                     if (executed++ == 0) {
