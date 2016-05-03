@@ -77,7 +77,7 @@ public abstract class PowerAssertRenderer<T> {
      * @return A formatted message.
      */
     public static final String format(Object object) {
-        for (Class type : ClassUtil.getTypes(object.getClass())) {
+        for (Class type : I.collectTypesOf(object.getClass())) {
             Class<? extends PowerAssertRenderer> renderer = renderers.get(type);
 
             if (renderer != null) {
