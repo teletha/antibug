@@ -28,6 +28,7 @@ import java.util.jar.Attributes;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
 
+import antibug.util.UnsafeUtility;
 import jdk.internal.org.objectweb.asm.ClassReader;
 import jdk.internal.org.objectweb.asm.ClassVisitor;
 import jdk.internal.org.objectweb.asm.ClassWriter;
@@ -36,8 +37,6 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 import jdk.internal.org.objectweb.asm.Opcodes;
 import jdk.internal.org.objectweb.asm.Type;
 import kiss.I;
-import kiss.model.ClassUtil;
-import antibug.util.UnsafeUtility;
 
 /**
  * <p>
@@ -410,7 +409,8 @@ public class Agent {
             Type type = Type.getType(instantiator);
             mv.visitTypeInsn(NEW, type.getInternalName());
             mv.visitInsn(DUP);
-            mv.visitMethodInsn(INVOKESPECIAL, type.getInternalName(), "<init>", Type.getConstructorDescriptor(ClassUtil.getMiniConstructor(instantiator)), false);
+            mv.visitMethodInsn(INVOKESPECIAL, type.getInternalName(), "<init>", Type
+                    .getConstructorDescriptor(I.collectConstructors(instantiator)[0]), false);
 
             LocalVariable local = newLocal(type);
             local.store();
@@ -480,7 +480,6 @@ public class Agent {
          * <p>
          * Helper method to write below code.
          * </p>
-         * 
          * <pre>
          * mv.visitVisitInsn(Opcodes.DUP);
          * 
