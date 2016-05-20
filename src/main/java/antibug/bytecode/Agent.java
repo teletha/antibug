@@ -37,6 +37,7 @@ import jdk.internal.org.objectweb.asm.MethodVisitor;
 import jdk.internal.org.objectweb.asm.Opcodes;
 import jdk.internal.org.objectweb.asm.Type;
 import kiss.I;
+import kiss.model.Model;
 
 /**
  * <p>
@@ -410,7 +411,7 @@ public class Agent {
             mv.visitTypeInsn(NEW, type.getInternalName());
             mv.visitInsn(DUP);
             mv.visitMethodInsn(INVOKESPECIAL, type.getInternalName(), "<init>", Type
-                    .getConstructorDescriptor(I.collectConstructors(instantiator)[0]), false);
+                    .getConstructorDescriptor(Model.collectConstructors(instantiator)[0]), false);
 
             LocalVariable local = newLocal(type);
             local.store();

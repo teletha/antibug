@@ -18,6 +18,7 @@ import kiss.Extensible;
 import kiss.I;
 import kiss.Manageable;
 import kiss.Singleton;
+import kiss.model.Model;
 
 /**
  * <p>
@@ -60,7 +61,7 @@ public abstract class PowerAssertRenderer<T> {
      * @param renderer
      */
     public static final void register(Class<? extends PowerAssertRenderer> renderer) {
-        Type[] params = I.collectParameters(renderer, PowerAssertRenderer.class);
+        Type[] params = Model.collectParameters(renderer, PowerAssertRenderer.class);
 
         if (params.length == 1) {
             renderers.put(params[0], renderer);
@@ -76,7 +77,7 @@ public abstract class PowerAssertRenderer<T> {
      * @return A formatted message.
      */
     public static final String format(Object object) {
-        for (Class type : I.collectTypes(object.getClass())) {
+        for (Class type : Model.collectTypes(object.getClass())) {
             Class<? extends PowerAssertRenderer> renderer = renderers.get(type);
 
             if (renderer != null) {
