@@ -9,6 +9,7 @@
  */
 package antibug;
 
+import static java.util.concurrent.TimeUnit.*;
 import static jdk.internal.org.objectweb.asm.Opcodes.*;
 
 import java.lang.instrument.ClassFileTransformer;
@@ -18,17 +19,17 @@ import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import antibug.bytecode.Agent;
+import antibug.internal.Awaitable;
 import jdk.internal.org.objectweb.asm.ClassReader;
 import jdk.internal.org.objectweb.asm.ClassVisitor;
 import jdk.internal.org.objectweb.asm.ClassWriter;
 import jdk.internal.org.objectweb.asm.MethodVisitor;
 import jdk.internal.org.objectweb.asm.Type;
 import kiss.I;
-import antibug.bytecode.Agent;
-import antibug.internal.Awaitable;
 
 /**
- * @version 2014/03/06 12:14:04
+ * @version 2016/11/01 11:21:53
  */
 public class Chronus extends ReusableRule {
 
@@ -43,6 +44,9 @@ public class Chronus extends ReusableRule {
 
     /** The bytecode enhancer. */
     private final Agent agent = new Agent(new Transformer());
+
+    /** The base time. */
+    private long base;
 
     /**
      * <p>
@@ -74,17 +78,84 @@ public class Chronus extends ReusableRule {
      * 
      * @param millseconds
      */
-    public void freeze(int millseconds) {
-        try {
-            long start = System.currentTimeMillis();
-            Thread.sleep(millseconds);
-            long end = System.currentTimeMillis();
+    public void freeze(long millseconds) {
+        freezeNano(MILLISECONDS.toNanos(millseconds));
+    }
 
-            if (end - start < millseconds) {
-                wait((int) (millseconds - end + start));
+    /**
+     * <p>
+     * Freeze process.
+     * </p>
+     * 
+     * @param time A nano time to freeze.
+     */
+    private void freezeNano(long time) {
+        try {
+            long start = System.nanoTime();
+            NANOSECONDS.sleep(time);
+            long end = System.nanoTime();
+
+            long remaining = start + time - end;
+
+            if (0 < remaining) {
+                freezeNano(remaining);
             }
         } catch (InterruptedException e) {
             throw I.quiet(e);
+        }
+    }
+
+    /**
+     * <p>
+     * Set base time.
+     * </p>
+     */
+    public void mark() {
+        base = System.nanoTime();
+    }
+
+    /**
+     * <p>
+     * Freeze process the specified duration from marked time.
+     * </p>
+     * 
+     * @param ms
+     * @return If {@link Chronus} freezes process, return true otherwise false.
+     */
+    public boolean freezeFromMark(long ms) {
+        long now = System.nanoTime();
+        long wait = base + MILLISECONDS.toNanos(ms) - now;
+
+        if (wait <= 0) {
+            return false;
+        } else {
+            freezeNano(wait);
+            return true;
+        }
+    }
+
+    /**
+     * <p>
+     * Freeze process the specified duration from marked time.
+     * </p>
+     * 
+     * @param millseconds
+     * @return If {@link Chronus} freezes process, return true otherwise false.
+     */
+    public void freezeFromMark(long start, long end, Runnable assertion) {
+        if (freezeFromMark(start)) {
+            try {
+                assertion.run();
+            } catch (AssertionError e) {
+                long now = System.nanoTime();
+
+                if (now < base + MILLISECONDS.toNanos(end)) {
+                    throw e;
+                } else {
+                    // ignore error
+                }
+            }
+
         }
     }
 
@@ -206,7 +277,8 @@ public class Chronus extends ReusableRule {
              * </p>
              */
             private void wrap() {
-                mv.visitMethodInsn(INVOKESTATIC, Tool.getInternalName(), "wrap", "(Ljava/util/concurrent/ExecutorService;)Ljava/util/concurrent/ExecutorService;", false);
+                mv.visitMethodInsn(INVOKESTATIC, Tool
+                        .getInternalName(), "wrap", "(Ljava/util/concurrent/ExecutorService;)Ljava/util/concurrent/ExecutorService;", false);
             }
 
             /**

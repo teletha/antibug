@@ -79,8 +79,7 @@ class PowerAssertTranslator extends Translator {
             case GETSTATIC:
                 String className = computeClassName(owner);
 
-                journal.fieldStatic(className, this.className.equals(owner) ? name
-                        : className + "." + name, desc, local);
+                journal.fieldStatic(className, this.className.equals(owner) ? name : className + "." + name, desc, local);
                 break;
             }
         }
@@ -210,8 +209,7 @@ class PowerAssertTranslator extends Translator {
             builder.insert(builder.length() - 2, ";");
 
             // instantiate PowerAssertError
-            super.visitMethodInsn(opcode, Type.getType(PowerAssertionError.class).getInternalName(), name, builder
-                    .toString(), access);
+            super.visitMethodInsn(opcode, Type.getType(PowerAssertionError.class).getInternalName(), name, builder.toString(), access);
 
             // reset state
             startAssertion = false;
@@ -503,6 +501,8 @@ class PowerAssertTranslator extends Translator {
     @Override
     public void visitInvokeDynamicInsn(String name, String desc, Handle bsm, Object... bsmArgs) {
         super.visitInvokeDynamicInsn(name, desc, bsm, bsmArgs);
+
+        PowerAssertContext.registerLocalVariable(hashCode(), name, desc, -1);
 
         if (processAssertion) {
             // save current value

@@ -63,7 +63,10 @@ public class PowerAssertContext implements Journal {
         for (int i = local.size(); i < index + 1; i++) {
             local.add(null);
         }
-        local.set(index, new String[] {name, description});
+
+        if (0 <= index) {
+            local.set(index, new String[] {name, description});
+        }
     }
 
     /**
@@ -161,8 +164,7 @@ public class PowerAssertContext implements Journal {
         Operand owner = stack.pollLast();
         boolean qualified = !owner.name.equals("this") || hasLocal(methodId, expression);
 
-        Operand operand = new Variable(qualified ? owner + "." + expression : expression, Type
-                .getType(description), variable);
+        Operand operand = new Variable(qualified ? owner + "." + expression : expression, Type.getType(description), variable);
         stack.add(operand);
         operands.add(operand);
     }
@@ -296,8 +298,7 @@ public class PowerAssertContext implements Journal {
 
             if (operator.equals("==") || operator.equals("!=")) {
                 // check operands
-                if (right.value instanceof Integer && ((Integer) right.value)
-                        .intValue() == 0 && left.value instanceof Boolean) {
+                if (right.value instanceof Integer && ((Integer) right.value).intValue() == 0 && left.value instanceof Boolean) {
 
                     // boolean == 0 or boolean != 0
                     stack.add(left);
