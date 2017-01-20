@@ -11,7 +11,7 @@ package antibug.powerassert;
 
 import java.util.Arrays;
 
-import jdk.internal.org.objectweb.asm.Type;
+import org.objectweb.asm.Type;
 
 /**
  * @version 2012/01/20 1:03:27

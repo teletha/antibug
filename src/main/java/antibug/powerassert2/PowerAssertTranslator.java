@@ -10,7 +10,7 @@
 package antibug.powerassert2;
 
 import static antibug.bytecode.Bytecode.*;
-import static jdk.internal.org.objectweb.asm.Opcodes.*;
+import static org.objectweb.asm.Opcodes.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayDeque;
@@ -18,9 +18,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import jdk.internal.org.objectweb.asm.Label;
-import jdk.internal.org.objectweb.asm.Opcodes;
-import jdk.internal.org.objectweb.asm.Type;
+import org.objectweb.asm.Label;
+import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.Type;
+
 import antibug.bytecode.Agent.Translator;
 
 /**
@@ -540,7 +541,8 @@ class PowerAssertTranslator extends Translator {
 
             Type type = opcode == ALOAD ? OBJECT_TYPE : getLocalType(index);
 
-            super.visitMethodInsn(INVOKESTATIC, ContextName, "log", "(" + type.getDescriptor() + "ZLjava/lang/String;)" + type.getDescriptor(), false);
+            super.visitMethodInsn(INVOKESTATIC, ContextName, "log", "(" + type.getDescriptor() + "ZLjava/lang/String;)" + type
+                    .getDescriptor(), false);
 
             if (opcode == ALOAD) {
                 super.visitTypeInsn(CHECKCAST, getLocalType(index).getInternalName());

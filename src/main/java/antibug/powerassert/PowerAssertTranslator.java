@@ -9,14 +9,14 @@
  */
 package antibug.powerassert;
 
-import static jdk.internal.org.objectweb.asm.Opcodes.*;
+import static org.objectweb.asm.Opcodes.*;
 
 import antibug.bytecode.Agent.Translator;
 import antibug.bytecode.Bytecode;
 import antibug.bytecode.LocalVariable;
-import jdk.internal.org.objectweb.asm.Handle;
-import jdk.internal.org.objectweb.asm.Label;
-import jdk.internal.org.objectweb.asm.Type;
+import org.objectweb.asm.Handle;
+import org.objectweb.asm.Label;
+import org.objectweb.asm.Type;
 
 /**
  * @version 2012/01/14 22:48:47

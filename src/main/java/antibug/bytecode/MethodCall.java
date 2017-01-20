@@ -9,7 +9,7 @@
  */
 package antibug.bytecode;
 
-import jdk.internal.org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.MethodVisitor;
 
 /**
  * @version 2012/01/18 9:29:55
