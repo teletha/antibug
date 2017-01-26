@@ -27,11 +27,12 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import jdk.internal.org.objectweb.asm.ClassReader;
-import jdk.internal.org.objectweb.asm.ClassVisitor;
-import jdk.internal.org.objectweb.asm.ClassWriter;
-import jdk.internal.org.objectweb.asm.MethodVisitor;
-import jdk.internal.org.objectweb.asm.Opcodes;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassVisitor;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
+
 import kiss.I;
 
 /**
@@ -168,8 +169,7 @@ public class PrivateModule extends ReusableRule {
         // compute packaging structure
         int index = relativePath.lastIndexOf('/');
         originalPackage = testcase.getPackage().getName().replace('.', '/') + "/" + relativePath;
-        overriddenPackage = renamePackage ? index == -1 ? relativePath : relativePath.substring(index + 1)
-                : originalPackage;
+        overriddenPackage = renamePackage ? index == -1 ? relativePath : relativePath.substring(index + 1) : originalPackage;
 
         strategy = new PrivateClassStrategy() {
 
