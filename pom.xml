@@ -36,7 +36,23 @@
       <url>https://opensource.org/licenses/MIT</url>
     </license>
   </licenses>
-  <repositories/>
+  <repositories>
+    <repository>
+      <id>central</id>
+      <name>repo1.maven.org</name>
+      <url>http://repo1.maven.org/maven2/</url>
+    </repository>
+    <repository>
+      <id>bintray</id>
+      <name>jcenter.bintray.com</name>
+      <url>http://jcenter.bintray.com/</url>
+    </repository>
+    <repository>
+      <id>jitpack</id>
+      <name>jitpack.io</name>
+      <url>https://jitpack.io/</url>
+    </repository>
+  </repositories>
   <url>https://github.com/teletha/antiBug</url>
   <scm>
     <url>https://github.com/teletha/antiBug</url>
