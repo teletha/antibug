@@ -20,7 +20,6 @@ import org.junit.runners.model.Statement;
 import antibug.PrivateModule;
 import antibug.bytecode.Agent;
 import antibug.powerassert.PowerAssertOff;
-import antibug.powerassert.PowerAssertTester;
 
 /**
  * <p>
@@ -49,7 +48,9 @@ public class PowerAssert implements TestRule {
     /** The self tester. (use Object type to cut the reference to PowerAssertTester) */
     private final Object tester;
 
-    /** The validate method of tester. (use Method type to cut the reference to PowerAssertTester) */
+    /**
+     * The validate method of tester. (use Method type to cut the reference to PowerAssertTester)
+     */
     private final Method validate;
 
     /**

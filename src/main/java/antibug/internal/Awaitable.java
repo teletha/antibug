@@ -205,8 +205,7 @@ public class Awaitable {
          * {@inheritDoc}
          */
         @Override
-        public Object get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException,
-                TimeoutException {
+        public Object get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
             return future.get(timeout, unit);
         }
 
@@ -387,7 +386,7 @@ public class Awaitable {
         public ScheduledFuture<?> schedule(Runnable command, long delay, TimeUnit unit) {
             Task task = new Task(command);
 
-            return task.connect(service.schedule((Runnable) task, delay, unit));
+            return task.connect(service.schedule((Callable) task, delay, unit));
         }
 
         /**
