@@ -19,32 +19,6 @@ import org.junit.Test;
 public class AnnotationUse {
 
     /**
-     * @version 2014/08/05 10:22:16
-     */
-    public @interface Anno {
-
-        String string() default "def";
-
-        int[] arrayInt() default {0, 0, 0, 0};
-
-        RetentionPolicy enumType() default RetentionPolicy.RUNTIME;
-
-        Class classType() default System.class;
-
-        Test anno() default @Test(expected = IllegalAccessError.class, timeout = 10L);
-    }
-
-    /**
-     * @version 2014/08/05 10:38:13
-     */
-    public @interface AnnoUse {
-
-        Anno single();
-
-        Anno[] array();
-    }
-
-    /**
      * @version 2014/08/05 10:22:19
      */
     @Anno(string = "value", arrayInt = {1, 2, 3}, enumType = RetentionPolicy.CLASS, classType = Class.class, anno = @Test(timeout = 1000L))
