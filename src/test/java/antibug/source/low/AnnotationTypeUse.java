@@ -10,11 +10,6 @@
 package antibug.source.low;
 
 import java.io.Serializable;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Target;
-
-import antibug.source.low.AnnotationTypeUse.Type;
-import antibug.source.low.AnnotationTypeUse.Use;
 
 /**
  * @version 2014/08/03 19:51:43
@@ -50,26 +45,5 @@ public class AnnotationTypeUse<@Type @Use(1) T> extends antibug.source.low.EnumC
         String[] names = new @Type String[0];
 
         return (@Type G) id;
-    }
-
-    /**
-     * @version 2014/08/03 20:43:05
-     */
-    @Target(ElementType.TYPE_USE)
-    @interface Type {
-    }
-
-    /**
-     * @version 2014/08/03 20:43:05
-     */
-    @Target(ElementType.TYPE_USE)
-    @interface Use {
-
-        /**
-         * Return id.
-         * 
-         * @return An identifier.
-         */
-        int value();
     }
 }

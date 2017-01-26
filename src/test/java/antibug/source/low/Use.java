@@ -9,12 +9,19 @@
  */
 package antibug.source.low;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+
 /**
- * @version 2014/08/05 10:38:13
+ * @version 2014/08/03 20:43:05
  */
-public @interface AnnoUse {
+@Target(ElementType.TYPE_USE)
+@interface Use {
 
-    Anno single();
-
-    Anno[] array();
+    /**
+     * Return id.
+     * 
+     * @return An identifier.
+     */
+    int value();
 }
