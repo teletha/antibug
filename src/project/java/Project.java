@@ -10,14 +10,14 @@
 public class Project extends bee.api.Project {
 
     {
-        product("npc", "antibug", "0.3");
+        product("com.github.teletha", "antibug", "0.3");
         producer("Nameless Production Committee");
         describe("JUnit Extension Tools.");
 
-        require("npc", "sinobu", "1.0");
+        require("com.github.teletha", "sinobu", "1.0");
         require("junit", "junit", "4.12");
         requireJavaTools();
 
-        versionControlSystem("https://github.com/Teletha/AntiBug");
+        versionControlSystem("https://github.com/teletha/antiBug");
     }
 }
