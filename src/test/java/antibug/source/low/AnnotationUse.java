@@ -21,7 +21,7 @@ public class AnnotationUse {
     /**
      * @version 2014/08/05 10:22:16
      */
-    @interface Anno {
+    public @interface Anno {
 
         String string() default "def";
 
@@ -37,7 +37,7 @@ public class AnnotationUse {
     /**
      * @version 2014/08/05 10:38:13
      */
-    @interface AnnoUse {
+    public @interface AnnoUse {
 
         Anno single();
 
@@ -49,6 +49,6 @@ public class AnnotationUse {
      */
     @Anno(string = "value", arrayInt = {1, 2, 3}, enumType = RetentionPolicy.CLASS, classType = Class.class, anno = @Test(timeout = 1000L))
     @AnnoUse(single = @Anno(string = "single"), array = {@Anno(string = "array1"), @Anno(string = "array2")})
-    private class User {
+    public class User {
     }
 }
