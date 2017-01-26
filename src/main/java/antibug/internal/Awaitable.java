@@ -91,7 +91,7 @@ public class Awaitable {
     /**
      * @version 2014/03/05 23:43:32
      */
-    private static class Task implements Callable, Runnable, Future, ScheduledFuture {
+    private static class Task<V> implements Callable, Runnable, Future<V>, ScheduledFuture<V> {
 
         /** The actual task. */
         private final Callable callable;
@@ -146,7 +146,7 @@ public class Awaitable {
             }
         }
 
-        private Future future;
+        private Future<V> future;
 
         /**
          * <p>
@@ -156,7 +156,7 @@ public class Awaitable {
          * @param future
          * @return
          */
-        private Task connect(Future future) {
+        private Task connect(Future<V> future) {
             this.future = future;
 
             return this;
@@ -197,7 +197,7 @@ public class Awaitable {
          * {@inheritDoc}
          */
         @Override
-        public Object get() throws InterruptedException, ExecutionException {
+        public V get() throws InterruptedException, ExecutionException {
             return future.get();
         }
 
@@ -205,7 +205,7 @@ public class Awaitable {
          * {@inheritDoc}
          */
         @Override
-        public Object get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
+        public V get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
             return future.get(timeout, unit);
         }
 
