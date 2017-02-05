@@ -9,7 +9,6 @@
  */
 package antibug.benchmark;
 
-import static antibug.benchmark.Benchmark.*;
 import static java.math.BigInteger.*;
 
 import java.math.BigInteger;
@@ -108,7 +107,7 @@ class Statistics extends Error {
             BigInteger one = sorted.get(newSize / 2).timesPerExecution;
             BigInteger other = sorted.get(newSize / 2 + 1).timesPerExecution;
 
-            median = one.add(other).divide(TWO);
+            median = one.add(other).divide(Benchmark.TWO);
         }
 
         // Mode
