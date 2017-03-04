@@ -221,9 +221,9 @@ public class LowLevelSourceTest {
                     message.append("Wrong code at line ").append(i + 1).append(separator);
                     message.append("◯【").append(original).append("】").append(separator);
                     message.append("×【").append(line).append("】");
-                    xml.find("line[n=\"" + (i + 1) + "\"]").to(new Formatter(message));
+                    xml.find("line[n=\"" + (i + 1) + "\"]").to(message);
 
-                    xml.to(new Formatter(System.out));
+                    xml.to(System.out);
 
                     // build error
                     Error cause = new Error(message.toString());
