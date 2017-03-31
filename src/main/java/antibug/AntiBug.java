@@ -20,11 +20,6 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
 
-import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLFilter;
-
-import antibug.xml.XML;
 import kiss.I;
 
 /**
@@ -238,68 +233,5 @@ public class AntiBug {
         } catch (IOException e) {
             throw I.quiet(e);
         }
-    }
-
-    /**
-     * <p>
-     * Parse the given xml text and build document using the given filters.
-     * </p>
-     * 
-     * @param text A xml text.
-     * @param filters A xml event filter.
-     * @return
-     */
-    public static XML xml(String text, XMLFilter... filters) {
-        return XML.xml(text, filters);
-    }
-
-    /**
-     * <p>
-     * Parse the given xml text and build document using the given filters.
-     * </p>
-     * 
-     * @param path A xml source path.
-     * @param filters A xml event filter.
-     * @return
-     */
-    public static XML xml(Path path, XMLFilter... filters) {
-        return XML.xml(path, filters);
-    }
-
-    /**
-     * <p>
-     * Parse the given xml text and build document using the given filters.
-     * </p>
-     * 
-     * @param source A xml source.
-     * @param filters A xml event filter.
-     * @return
-     */
-    public static XML xml(InputSource source, XMLFilter... filters) {
-        return XML.xml(source, filters);
-    }
-
-    /**
-     * <p>
-     * Wrap xml document.
-     * </p>
-     * 
-     * @param doc A parsed document.
-     * @return
-     */
-    public static XML xml(Document doc) {
-        return XML.xml(doc);
-    }
-
-    /**
-     * <p>
-     * Wrap xml document.
-     * </p>
-     * 
-     * @param filter
-     * @return
-     */
-    public static XML xml(XMLFilter filter) {
-        return XML.xml(filter);
     }
 }

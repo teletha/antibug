@@ -17,11 +17,9 @@ import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
-import org.xml.sax.SAXException;
 
 import antibug.powerassert.PowerAssertOff;
 import antibug.source.Source;
-import antibug.xml.XMLFormatter;
 import kiss.I;
 import kiss.XML;
 
@@ -268,33 +266,5 @@ public class LowLevelSourceTest {
             }
         }
         return true;
-    }
-
-    /**
-     * @version 2014/08/02 0:23:35
-     */
-    private static class Formatter extends XMLFormatter {
-
-        /**
-         * @param writer
-         */
-        private Formatter(Appendable out) {
-            super(out);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void startDocument() throws SAXException {
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        protected boolean asCharacter(String uri, String local) {
-            return !local.equals("line") && !local.equals("source");
-        }
     }
 }
