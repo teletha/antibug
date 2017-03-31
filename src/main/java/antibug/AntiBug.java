@@ -47,9 +47,14 @@ public class AntiBug {
      */
     public static final Path memo(String... contents) {
         try {
+            StringBuilder builder = new StringBuilder();
+            for (String content : contents) {
+                builder.append(content);
+            }
+
             Path temporary = I.locateTemporary();
             Files.createFile(temporary);
-            Files.write(temporary, I.list(contents));
+            Files.write(temporary, builder.toString().getBytes(I.$encoding));
 
             assert Files.exists(temporary);
             assert Files.size(temporary) != 0;
