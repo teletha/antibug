@@ -20,14 +20,12 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
 
-import kiss.I;
-
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLFilter;
 
-import antibug.util.Note;
 import antibug.xml.XML;
+import kiss.I;
 
 /**
  * <p>
@@ -38,6 +36,29 @@ import antibug.xml.XML;
  * @version 2012/02/16 15:56:29
  */
 public class AntiBug {
+
+    /**
+     * <p>
+     * Create temporary file with contents.
+     * </p>
+     * 
+     * @param contents A text contents.
+     * @return A created temporary file.
+     */
+    public static final Path memo(String... contents) {
+        try {
+            Path temporary = I.locateTemporary();
+            Files.createFile(temporary);
+            Files.write(temporary, I.list(contents));
+
+            assert Files.exists(temporary);
+            assert Files.size(temporary) != 0;
+
+            return temporary;
+        } catch (IOException e) {
+            throw I.quiet(e);
+        }
+    }
 
     /**
      * <p>
@@ -121,18 +142,6 @@ public class AntiBug {
         } catch (URISyntaxException e) {
             throw I.quiet(e);
         }
-    }
-
-    /**
-     * <p>
-     * Take a note.
-     * </p>
-     * 
-     * @param contents
-     * @return
-     */
-    public static Note note(String... contents) {
-        return new Note(contents);
     }
 
     /**
