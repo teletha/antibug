@@ -862,7 +862,7 @@ public class CleanRoom extends Sandbox {
          * {@inheritDoc}
          */
         @Override
-        public void dispose() {
+        public void vandalize() {
             try {
                 super.close();
             } catch (IOException e) {
