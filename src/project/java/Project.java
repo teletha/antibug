@@ -14,6 +14,7 @@ public class Project extends bee.api.Project {
         producer("Nameless Production Committee");
         describe("JUnit Extension Tools.");
 
+        require("org.ow2.asm", "asm", "5.2");
         require("com.github.teletha", "sinobu", "1.0");
         require("junit", "junit", "4.12");
         requireJavaTools();
