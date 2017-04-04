@@ -9,9 +9,7 @@
  */
 package antibug.powerassert;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.UndeclaredThrowableException;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -101,7 +99,7 @@ public class PowerAssert implements TestRule {
                     } else {
                         throw error; // rethrow for unit test
                     }
-                } catch (UndeclaredThrowableException | InvocationTargetException | AssertionError error) {
+                } catch (Throwable error) {
                     Throwable cause = error;
 
                     while (cause != null) {
