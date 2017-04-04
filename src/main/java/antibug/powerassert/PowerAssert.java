@@ -9,7 +9,9 @@
  */
 package antibug.powerassert;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.UndeclaredThrowableException;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -99,20 +101,27 @@ public class PowerAssert implements TestRule {
                     } else {
                         throw error; // rethrow for unit test
                     }
-                } catch (AssertionError error) {
-                    // should we print this error message in detal?
-                    if (description.getAnnotation(PowerAssertOff.class) == null && !description.getTestClass()
-                            .isAnnotationPresent(PowerAssertOff.class)) {
-                        // find the class which rises assertion error
-                        Class clazz = Class.forName(error.getStackTrace()[0].getClassName());
+                } catch (UndeclaredThrowableException | InvocationTargetException | AssertionError error) {
+                    Throwable cause = error;
 
-                        // translate assertion code only once
-                        if (translated.add(clazz.getName())) {
-                            agent.transform(clazz);
+                    while (cause != null) {
+                        if (AssertionError.class.isInstance(cause)) {
+                            // should we print this error message in detal?
+                            if (description.getAnnotation(PowerAssertOff.class) == null && !description.getTestClass()
+                                    .isAnnotationPresent(PowerAssertOff.class)) {
+                                // find the class which rises assertion error
+                                Class clazz = Class.forName(cause.getStackTrace()[0].getClassName());
 
-                            evaluate(); // retry testcase
-                            return;
+                                // translate assertion code only once
+                                if (translated.add(clazz.getName())) {
+                                    agent.transform(clazz);
+
+                                    evaluate(); // retry testcase
+                                    return;
+                                }
+                            }
                         }
+                        cause = cause.getCause();
                     }
                     throw error; // rethrow for unit test
                 }
