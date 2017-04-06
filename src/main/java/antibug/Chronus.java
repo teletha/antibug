@@ -30,9 +30,9 @@ import antibug.internal.Awaitable;
 import kiss.I;
 
 /**
- * @version 2016/11/01 11:21:53
+ * @version 2017/04/06 14:20:16
  */
-public class Chronus extends ReusableRule {
+public class Chronus {
 
     /** The re-usable type. */
     private static final Type Executor = Type.getType(Executors.class);
