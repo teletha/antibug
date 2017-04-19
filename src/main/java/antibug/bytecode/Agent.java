@@ -37,6 +37,7 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
 import antibug.util.UnsafeUtility;
+import filer.Filer;
 import kiss.I;
 import kiss.model.Model;
 
@@ -160,7 +161,7 @@ public class Agent {
 
         try {
             // Build temporary agent jar.
-            Path jar = I.locateTemporary();
+            Path jar = Filer.locateTemporary();
             new JarOutputStream(Files.newOutputStream(jar), manifest).close();
 
             // Load agent dynamically.

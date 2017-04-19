@@ -47,6 +47,7 @@ import java.util.zip.ZipOutputStream;
 
 import org.junit.AssumptionViolatedException;
 
+import filer.Filer;
 import kiss.Disposable;
 import kiss.I;
 
@@ -90,7 +91,7 @@ public class CleanRoom extends Sandbox {
      * @param relativePath A relative location path you want to use.
      */
     public CleanRoom(String relativePath) {
-        this(I.locate(relativePath));
+        this(Filer.locate(relativePath));
     }
 
     /**
@@ -736,7 +737,7 @@ public class CleanRoom extends Sandbox {
         public final Path zip(String name, Runnable child) {
             Path zip = directories.peekLast().resolve(name);
 
-            Path temp = I.locateTemporary();
+            Path temp = Filer.locateTemporary();
             directories.add(temp);
 
             try {

@@ -20,6 +20,7 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
 
+import filer.Filer;
 import kiss.I;
 
 /**
@@ -47,7 +48,7 @@ public class AntiBug {
                 builder.append(content);
             }
 
-            Path temporary = I.locateTemporary();
+            Path temporary = Filer.locateTemporary();
             Files.createFile(temporary);
             Files.write(temporary, builder.toString().getBytes(I.$encoding));
 
