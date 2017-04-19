@@ -19,18 +19,16 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import kiss.I;
-
 import org.junit.Before;
-import org.junit.ClassRule;
 import org.junit.Test;
+
+import kiss.I;
 
 /**
  * @version 2014/03/06 12:12:22
  */
 public class ChronusTest {
 
-    @ClassRule
     public static final Chronus chronus = new Chronus(ChronusTest.class);
 
     /**
