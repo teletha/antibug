@@ -21,7 +21,7 @@ import antibug.source.low.Lambda;
 import antibug.source.low.MethodCall;
 import antibug.source.low.Operator;
 import antibug.source.low.Statement;
-import kiss.I;
+import filer.Filer;
 import kiss.XML;
 
 /**
@@ -56,10 +56,10 @@ public class LinkTest {
      * @return
      */
     private static XML parse(Class target) {
-        Path source = I.locate("src/test/java").resolve(target.getName().replace(".", "/") + ".java");
+        Path source = Filer.locate("src/test/java").resolve(target.getName().replace(".", "/") + ".java");
 
         if (Files.notExists(source)) {
-            source = I.locate("src/main/java").resolve(target.getName().replace(".", "/") + ".java");
+            source = Filer.locate("src/main/java").resolve(target.getName().replace(".", "/") + ".java");
         }
 
         return Source.parse(source);

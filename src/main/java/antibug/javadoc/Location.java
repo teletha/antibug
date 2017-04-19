@@ -16,6 +16,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import filer.Filer;
 import kiss.I;
 
 /**
@@ -62,7 +63,7 @@ public class Location {
         this.specifier = specifier;
         this.documentRoot = documentRoot;
 
-        Path archive = I.locate(type);
+        Path archive = Filer.locate(type);
         this.externalDoc = archive == null || Files.isRegularFile(archive);
     }
 

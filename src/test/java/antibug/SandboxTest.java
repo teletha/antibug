@@ -22,6 +22,7 @@ import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 
+import filer.Filer;
 import kiss.I;
 
 /**
@@ -47,7 +48,7 @@ public class SandboxTest {
 
     @Test
     public void writableFile() throws Exception {
-        Path file = I.locateTemporary();
+        Path file = Filer.locateTemporary();
 
         sandbox.writable(false, file);
 
@@ -78,7 +79,7 @@ public class SandboxTest {
 
     @Test(expected = NoSuchFileException.class)
     public void writableDirectory() throws Exception {
-        Path file = I.locateTemporary();
+        Path file = Filer.locateTemporary();
 
         sandbox.writable(false, file);
 

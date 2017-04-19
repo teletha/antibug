@@ -25,6 +25,7 @@ import org.junit.runners.ParentRunner;
 import org.junit.runners.model.Statement;
 
 import antibug.powerassert.PowerAssertionError;
+import filer.Filer;
 import kiss.I;
 
 /**
@@ -68,7 +69,7 @@ public abstract class ReusableRule implements TestRule {
     protected final Class testcase = getCaller();
 
     /** The root directory of testcases. */
-    protected final Path testcaseRoot = I.locate(testcase);
+    protected final Path testcaseRoot = Filer.locate(testcase);
 
     /** The parent directory of testcase class. */
     protected final Path testcaseDirectory = testcaseRoot.resolve(testcase.getPackage().getName().replace('.', '/'));

@@ -20,6 +20,7 @@ import org.junit.Test;
 
 import antibug.powerassert.PowerAssertOff;
 import antibug.source.Source;
+import filer.Filer;
 import kiss.I;
 import kiss.XML;
 
@@ -161,10 +162,10 @@ public class LowLevelSourceTest {
         String separator = System.getProperty("line.separator");
 
         try {
-            Path source = I.locate("src/test/java").resolve(target.getName().replace(".", "/") + ".java");
+            Path source = Filer.locate("src/test/java").resolve(target.getName().replace(".", "/") + ".java");
 
             if (Files.notExists(source)) {
-                source = I.locate("src/main/java").resolve(target.getName().replace(".", "/") + ".java");
+                source = Filer.locate("src/main/java").resolve(target.getName().replace(".", "/") + ".java");
             }
 
             XML xml = Source.parse(source);

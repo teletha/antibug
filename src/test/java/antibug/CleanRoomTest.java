@@ -18,14 +18,14 @@ import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 
-import kiss.I;
+import filer.Filer;
 
 /**
  * @version 2015/06/30 2:18:44
  */
 public class CleanRoomTest {
 
-    private static final Path base = I.locateTemporary();
+    private static final Path base = Filer.locateTemporary();
 
     @Rule
     @ClassRule
@@ -106,8 +106,8 @@ public class CleanRoomTest {
         Path path = room.locateAbsent("absent.txt");
 
         assert Files.notExists(path);
-        assert!Files.isRegularFile(path);
-        assert!Files.isDirectory(path);
+        assert !Files.isRegularFile(path);
+        assert !Files.isDirectory(path);
     }
 
     @Test
@@ -115,7 +115,7 @@ public class CleanRoomTest {
         Path file = room.locateAbsent("present.txt");
 
         // the specified file doesn't exist yet
-        assert!Files.exists(file);
+        assert !Files.exists(file);
 
         // create file
         file = room.locateFile("present.txt");

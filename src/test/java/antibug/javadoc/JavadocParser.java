@@ -28,6 +28,7 @@ import antibug.javadoc.info.Identifier;
 import antibug.javadoc.info.MethodInfo;
 import antibug.javadoc.info.PackageInfo;
 import antibug.javadoc.info.TypeInfo;
+import filer.Filer;
 import kiss.I;
 
 public class JavadocParser extends ReusableRule {
@@ -244,7 +245,7 @@ public class JavadocParser extends ReusableRule {
      * @return
      */
     private String locateTestSource(Class target) {
-        return I.locate("src/test/java").resolve(target.getName().replace('.', '/').concat(".java")).toString();
+        return Filer.locate("src/test/java").resolve(target.getName().replace('.', '/').concat(".java")).toString();
     }
 
     /**

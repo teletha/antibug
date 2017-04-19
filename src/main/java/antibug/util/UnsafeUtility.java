@@ -14,8 +14,10 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.file.Path;
 
-import kiss.I;
 import sun.reflect.ReflectionFactory;
+
+import filer.Filer;
+import kiss.I;
 
 /**
  * @version 2010/02/12 15:53:22
@@ -36,7 +38,7 @@ public class UnsafeUtility {
             return Class.forName(toolClassName, false, null);
         } catch (ClassNotFoundException ignore) {
             // search JAVA_HOME
-            Path home = I.locate(System.getProperty("java.home"));
+            Path home = Filer.locate(System.getProperty("java.home"));
 
             if (home.getFileName().toString().equalsIgnoreCase("jre")) {
                 home = home.getParent();
@@ -44,7 +46,8 @@ public class UnsafeUtility {
 
             try {
                 // load tools.jar
-                URLClassLoader loader = new URLClassLoader(new URL[] {home.resolve("lib/tools.jar").toUri().toURL()}, ClassLoader.getSystemClassLoader());
+                URLClassLoader loader = new URLClassLoader(new URL[] {home.resolve("lib/tools.jar").toUri().toURL()}, ClassLoader
+                        .getSystemClassLoader());
 
                 return Class.forName(toolClassName, false, loader);
             } catch (ClassNotFoundException e) {
