@@ -16,6 +16,7 @@ public class Project extends bee.api.Project {
 
         require("org.ow2.asm", "asm", "5.2");
         require("com.github.teletha", "sinobu", "1.0");
+        require("com.github.teletha", "filer", "0.5");
         require("junit", "junit", "4.12");
         requireJavaTools();
 
