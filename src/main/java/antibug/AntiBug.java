@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -50,7 +51,7 @@ public class AntiBug {
 
             Path temporary = Filer.locateTemporary();
             Files.createFile(temporary);
-            Files.write(temporary, builder.toString().getBytes(I.$encoding));
+            Files.write(temporary, builder.toString().getBytes(StandardCharsets.UTF_8));
 
             assert Files.exists(temporary);
             assert Files.size(temporary) != 0;
@@ -182,7 +183,7 @@ public class AntiBug {
      * @throws IOException if an I/O error occurs
      */
     public static final String readLine(Path path, Charset... charset) {
-        List<String> lines = readLines(path, option(charset, I.$encoding), false);
+        List<String> lines = readLines(path, option(charset, StandardCharsets.UTF_8), false);
 
         return lines.size() == 0 ? "" : lines.get(0);
     }
@@ -200,7 +201,7 @@ public class AntiBug {
      * @throws IOException if an I/O error occurs
      */
     public static final List<String> readLines(Path path, Charset... charset) {
-        return readLines(path, option(charset, I.$encoding), true);
+        return readLines(path, option(charset, StandardCharsets.UTF_8), true);
     }
 
     /**

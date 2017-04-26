@@ -19,6 +19,7 @@ import java.io.FileDescriptor;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.DirectoryStream.Filter;
 import java.nio.file.FileAlreadyExistsException;
@@ -774,7 +775,7 @@ public class CleanRoom extends Sandbox {
          * @param output
          */
         private Archiver(Path in, Path destination) throws IOException {
-            super(Files.newOutputStream(destination), I.$encoding);
+            super(Files.newOutputStream(destination), StandardCharsets.UTF_8);
 
             base = in;
         }
