@@ -12,19 +12,6 @@ package antibug.javadoc;
 import java.util.HashMap;
 import java.util.Map;
 
-import kiss.I;
-import kiss.Manageable;
-import kiss.Singleton;
-import kiss.XML;
-import antibug.javadoc.info.AnnotationInfo;
-import antibug.javadoc.info.Documents;
-import antibug.javadoc.info.Identifier;
-import antibug.javadoc.info.MarkupValue;
-import antibug.javadoc.info.MethodInfo;
-import antibug.javadoc.info.PackageInfo;
-import antibug.javadoc.info.ParamInfo;
-import antibug.javadoc.info.TypeInfo;
-
 import com.sun.javadoc.AnnotationDesc;
 import com.sun.javadoc.AnnotationDesc.ElementValuePair;
 import com.sun.javadoc.AnnotationValue;
@@ -36,6 +23,20 @@ import com.sun.javadoc.Parameter;
 import com.sun.javadoc.RootDoc;
 import com.sun.javadoc.Type;
 
+import antibug.javadoc.info.AnnotationInfo;
+import antibug.javadoc.info.Documents;
+import antibug.javadoc.info.Identifier;
+import antibug.javadoc.info.IdentifierCodec;
+import antibug.javadoc.info.MarkupValue;
+import antibug.javadoc.info.MethodInfo;
+import antibug.javadoc.info.PackageInfo;
+import antibug.javadoc.info.ParamInfo;
+import antibug.javadoc.info.TypeInfo;
+import kiss.I;
+import kiss.Manageable;
+import kiss.Singleton;
+import kiss.XML;
+
 /**
  * @version 2014/07/26 22:34:28
  */
@@ -46,7 +47,7 @@ public class AntibugDoclet extends Doclet {
     static AntibugDoclet doclet;
 
     static {
-        I.load(Identifier.class, true);
+        I.load(IdentifierCodec.class, true);
     }
 
     /** All documents. */
