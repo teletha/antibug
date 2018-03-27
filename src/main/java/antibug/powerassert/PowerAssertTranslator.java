@@ -185,7 +185,7 @@ class PowerAssertTranslator extends Translator {
                 break;
 
             case ANEWARRAY:
-                LocalVariable local = copy(Type.getType(type));
+                LocalVariable local = copy(Type.getObjectType(type));
 
                 journal.arrayNew(computeClassName(type), local);
                 break;
@@ -217,30 +217,34 @@ class PowerAssertTranslator extends Translator {
             processAssertion = false;
             return;
         }
-
         super.visitMethodInsn(opcode, owner, name, desc, access);
 
         if (processAssertion) {
             Type type = Type.getType(desc);
             boolean constructor = name.charAt(0) == '<';
 
-            // save current value
-            LocalVariable local = copy(constructor ? Type.getType(owner) : type.getReturnType());
+            try {
+                // save current value
+                LocalVariable local = copy(constructor ? Type.getObjectType(owner) : type.getReturnType());
 
-            switch (opcode) {
-            case INVOKESTATIC:
-                journal.methodStatic(computeClassName(owner), name, desc, local);
-                break;
+                switch (opcode) {
+                case INVOKESTATIC:
+                    journal.methodStatic(computeClassName(owner), name, desc, local);
+                    break;
 
-            case INVOKESPECIAL:
-                if (constructor) {
-                    journal.constructor(computeClassName(owner), desc, local);
+                case INVOKESPECIAL:
+                    if (constructor) {
+                        journal.constructor(computeClassName(owner), desc, local);
+                        break;
+                    }
+                    // fall-through for private method call
+                default:
+                    journal.method(name, desc, local);
                     break;
                 }
-                // fall-through for private method call
-            default:
-                journal.method(name, desc, local);
-                break;
+            } catch (Throwable e) {
+                e.printStackTrace();
+                throw e;
             }
         }
     }

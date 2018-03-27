@@ -33,7 +33,7 @@ public class PowerAssertTest {
 
         test.willUse("1");
         test.willCapture("value", (int) value);
-        assert(short) 1 == value;
+        assert (short) 1 == value;
     }
 
     @Test
@@ -42,7 +42,7 @@ public class PowerAssertTest {
 
         test.willUse("128");
         test.willCapture("value", (int) value);
-        assert(short) 128 == value;
+        assert (short) 128 == value;
     }
 
     @Test
@@ -118,7 +118,7 @@ public class PowerAssertTest {
 
         test.willCapture("value", value);
         test.willUse("!value.equals(\"test\")");
-        assert!value.equals("test");
+        assert !value.equals("test");
     }
 
     @Test
@@ -286,7 +286,7 @@ public class PowerAssertTest {
         test.willCapture("other", other);
         test.willUse("-");
         test.willUse("==");
-        assert-one == other;
+        assert -one == other;
     }
 
     @Test
@@ -334,7 +334,7 @@ public class PowerAssertTest {
         test.willCapture("other", other);
         test.willUse("|");
         test.willUse("==");
-        assert(one | other) == other;
+        assert (one | other) == other;
     }
 
     @Test
@@ -346,7 +346,7 @@ public class PowerAssertTest {
         test.willCapture("other", other);
         test.willUse("^");
         test.willUse("==");
-        assert(one ^ other) == other;
+        assert (one ^ other) == other;
     }
 
     @Test
@@ -358,7 +358,7 @@ public class PowerAssertTest {
         test.willCapture("other", other);
         test.willUse("&");
         test.willUse("==");
-        assert(one & other) == other;
+        assert (one & other) == other;
     }
 
     @Test
@@ -382,7 +382,7 @@ public class PowerAssertTest {
         test.willCapture("other", other);
         test.willUse("++one");
         test.willUse("==");
-        assert++one == other;
+        assert ++one == other;
     }
 
     @Test
@@ -406,7 +406,7 @@ public class PowerAssertTest {
         test.willCapture("other", other);
         test.willUse("--");
         test.willUse("==");
-        assert--one == other;
+        assert --one == other;
     }
 
     @Test
@@ -458,6 +458,7 @@ public class PowerAssertTest {
     /**
      * @version 2012/01/22 19:58:35
      */
+
     private static class External {
 
         private static void assertInExternal(String value) {
