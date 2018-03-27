@@ -13,7 +13,6 @@ import static net.bytebuddy.jar.asm.Opcodes.*;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
-import java.lang.management.ManagementFactory;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -28,10 +27,11 @@ import java.util.jar.Attributes;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
 
-import antibug.util.UnsafeUtility;
 import filer.Filer;
 import kiss.I;
 import kiss.model.Model;
+import net.bytebuddy.agent.ByteBuddyAgent;
+import net.bytebuddy.agent.ByteBuddyAgent.ProcessProvider;
 import net.bytebuddy.jar.asm.ClassReader;
 import net.bytebuddy.jar.asm.ClassVisitor;
 import net.bytebuddy.jar.asm.ClassWriter;
@@ -49,27 +49,6 @@ import net.bytebuddy.jar.asm.Type;
  */
 public class Agent {
 
-    /** The entry point for Attach API. */
-    private static Method attach;
-
-    /** The entry point for Attach API. */
-    private static Method loadAgent;
-
-    // load Attach API
-    static {
-        // search attach method
-        try {
-            Class clazz = UnsafeUtility.getTool("com.sun.tools.attach.VirtualMachine");
-
-            if (clazz != null) {
-                attach = clazz.getMethod("attach", String.class);
-                loadAgent = clazz.getMethod("loadAgent", String.class);
-            }
-        } catch (Exception e) {
-            throw I.quiet(e);
-        }
-    }
-
     /** The redefined classes. */
     private static final Set<String> redefines = new HashSet();
 
@@ -78,9 +57,6 @@ public class Agent {
 
     /** The Instrumentation tool. */
     private volatile static Instrumentation tool;
-
-    /** The actual agent. */
-    private final ClassFileTransformer agent;
 
     /**
      * <p>
@@ -106,9 +82,6 @@ public class Agent {
                 createTool();
             }
         }
-
-        // store agent
-        this.agent = agent;
 
         // register agent
         tool.addTransformer(agent, true);
@@ -164,8 +137,7 @@ public class Agent {
             new JarOutputStream(Files.newOutputStream(jar), manifest).close();
 
             // Load agent dynamically.
-            String name = ManagementFactory.getRuntimeMXBean().getName();
-            loadAgent.invoke(attach.invoke(null, name.substring(0, name.indexOf('@'))), jar.toString());
+            ByteBuddyAgent.attach(jar.toFile(), ProcessProvider.ForCurrentVm.INSTANCE);
         } catch (Exception e) {
             throw I.quiet(e);
         }
