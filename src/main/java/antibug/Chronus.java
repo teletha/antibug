@@ -10,7 +10,7 @@
 package antibug;
 
 import static java.util.concurrent.TimeUnit.*;
-import static org.objectweb.asm.Opcodes.*;
+import static net.bytebuddy.jar.asm.Opcodes.*;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.security.ProtectionDomain;
@@ -19,15 +19,14 @@ import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Type;
-
 import antibug.bytecode.Agent;
 import antibug.internal.Awaitable;
 import kiss.I;
+import net.bytebuddy.jar.asm.ClassReader;
+import net.bytebuddy.jar.asm.ClassVisitor;
+import net.bytebuddy.jar.asm.ClassWriter;
+import net.bytebuddy.jar.asm.MethodVisitor;
+import net.bytebuddy.jar.asm.Type;
 
 /**
  * @version 2017/04/06 14:20:16

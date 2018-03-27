@@ -9,10 +9,10 @@
  */
 package antibug.bytecode;
 
-import org.objectweb.asm.Label;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
+import net.bytebuddy.jar.asm.Label;
+import net.bytebuddy.jar.asm.MethodVisitor;
+import net.bytebuddy.jar.asm.Opcodes;
+import net.bytebuddy.jar.asm.Type;
 
 /**
  * A {@link MethodVisitor} that renumbers local variables in their order of appearance. This adapter

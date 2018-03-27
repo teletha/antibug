@@ -9,14 +9,14 @@
  */
 package antibug.powerassert;
 
-import static org.objectweb.asm.Opcodes.*;
+import static net.bytebuddy.jar.asm.Opcodes.*;
 
 import antibug.bytecode.Agent.Translator;
 import antibug.bytecode.Bytecode;
 import antibug.bytecode.LocalVariable;
-import org.objectweb.asm.Handle;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.Type;
+import net.bytebuddy.jar.asm.Handle;
+import net.bytebuddy.jar.asm.Label;
+import net.bytebuddy.jar.asm.Type;
 
 /**
  * @version 2012/01/14 22:48:47
@@ -246,7 +246,7 @@ class PowerAssertTranslator extends Translator {
     }
 
     /**
-     * @see org.objectweb.asm.MethodVisitor#visitIincInsn(int, int)
+     * @see net.bytebuddy.jar.asm.MethodVisitor#visitIincInsn(int, int)
      */
     @Override
     public void visitIincInsn(int index, int increment) {

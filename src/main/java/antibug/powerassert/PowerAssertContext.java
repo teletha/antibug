@@ -9,7 +9,7 @@
  */
 package antibug.powerassert;
 
-import static org.objectweb.asm.Type.*;
+import static net.bytebuddy.jar.asm.Type.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayDeque;
@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.objectweb.asm.Type;
+import net.bytebuddy.jar.asm.Type;
 
 /**
  * @version 2013/08/28 16:48:33

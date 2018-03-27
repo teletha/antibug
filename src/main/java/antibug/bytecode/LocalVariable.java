@@ -9,11 +9,11 @@
  */
 package antibug.bytecode;
 
-import static org.objectweb.asm.Opcodes.*;
-import static org.objectweb.asm.Type.*;
+import static net.bytebuddy.jar.asm.Opcodes.*;
+import static net.bytebuddy.jar.asm.Type.*;
 
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Type;
+import net.bytebuddy.jar.asm.MethodVisitor;
+import net.bytebuddy.jar.asm.Type;
 
 /**
  * @version 2012/01/18 10:12:18

@@ -9,7 +9,7 @@
  */
 package antibug.bytecode;
 
-import static org.objectweb.asm.Opcodes.*;
+import static net.bytebuddy.jar.asm.Opcodes.*;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
@@ -28,18 +28,17 @@ import java.util.jar.Attributes;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
 
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Label;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
-
 import antibug.util.UnsafeUtility;
 import filer.Filer;
 import kiss.I;
 import kiss.model.Model;
+import net.bytebuddy.jar.asm.ClassReader;
+import net.bytebuddy.jar.asm.ClassVisitor;
+import net.bytebuddy.jar.asm.ClassWriter;
+import net.bytebuddy.jar.asm.Label;
+import net.bytebuddy.jar.asm.MethodVisitor;
+import net.bytebuddy.jar.asm.Opcodes;
+import net.bytebuddy.jar.asm.Type;
 
 /**
  * <p>
