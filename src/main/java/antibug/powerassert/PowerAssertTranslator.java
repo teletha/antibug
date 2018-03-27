@@ -223,28 +223,23 @@ class PowerAssertTranslator extends Translator {
             Type type = Type.getType(desc);
             boolean constructor = name.charAt(0) == '<';
 
-            try {
-                // save current value
-                LocalVariable local = copy(constructor ? Type.getObjectType(owner) : type.getReturnType());
+            // save current value
+            LocalVariable local = copy(constructor ? Type.getObjectType(owner) : type.getReturnType());
 
-                switch (opcode) {
-                case INVOKESTATIC:
-                    journal.methodStatic(computeClassName(owner), name, desc, local);
-                    break;
+            switch (opcode) {
+            case INVOKESTATIC:
+                journal.methodStatic(computeClassName(owner), name, desc, local);
+                break;
 
-                case INVOKESPECIAL:
-                    if (constructor) {
-                        journal.constructor(computeClassName(owner), desc, local);
-                        break;
-                    }
-                    // fall-through for private method call
-                default:
-                    journal.method(name, desc, local);
+            case INVOKESPECIAL:
+                if (constructor) {
+                    journal.constructor(computeClassName(owner), desc, local);
                     break;
                 }
-            } catch (Throwable e) {
-                e.printStackTrace();
-                throw e;
+                // fall-through for private method call
+            default:
+                journal.method(name, desc, local);
+                break;
             }
         }
     }
