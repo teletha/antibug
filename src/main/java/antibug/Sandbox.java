@@ -365,7 +365,7 @@ public class Sandbox extends ReusableRule {
             }
 
             RuntimeMXBean runtime = ManagementFactory.getRuntimeMXBean();
-            readClassPath(runtime.getBootClassPath());
+            if (runtime.isBootClassPathSupported()) readClassPath(runtime.getBootClassPath());
             readClassPath(runtime.getClassPath());
             readClassPath(runtime.getLibraryPath());
 
