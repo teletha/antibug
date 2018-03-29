@@ -148,8 +148,7 @@ public class AntiBug {
 
     /**
      * <p>
-     * Reads all characters from a FilePath into a {@link String}, using the given character set or
-     * {@link I#getEncoding()}.
+     * Reads all characters from a FilePath into a {@link String}, using the given character set.
      * </p>
      * 
      * @param FilePath A FilePath to read from.
@@ -177,8 +176,7 @@ public class AntiBug {
      * </p>
      * 
      * @param FilePath A FilePath to read from
-     * @param charset A character set used when writing the file. If you don't specify, Otherwise
-     *            {@link I#getEncoding()}.
+     * @param charset A character set used when writing the file. If you don't specify.
      * @return the first line, or null if the FilePath is empty
      * @throws IOException if an I/O error occurs
      */
@@ -195,8 +193,7 @@ public class AntiBug {
      * </p>
      * 
      * @param FilePath A FilePath to read from
-     * @param charset A character set used when writing the file. If you don't specify, Otherwise
-     *            {@link I#getEncoding()}.
+     * @param charset A character set used when writing the file. If you don't specify.
      * @return the first line, or null if the FilePath is empty
      * @throws IOException if an I/O error occurs
      */
