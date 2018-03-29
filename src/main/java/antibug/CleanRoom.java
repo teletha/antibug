@@ -1,16 +1,15 @@
 /*
- * Copyright (C) 2016 Nameless Production Committee
+ * Copyright (C) 2018 Nameless Production Committee
  *
  * Licensed under the MIT License (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *          http://opensource.org/licenses/mit-license.php
+ *          https://opensource.org/licenses/MIT
  */
 package antibug;
 
 import static antibug.AntiBug.*;
-import static antibug.util.UnsafeUtility.*;
 import static java.nio.file.FileVisitResult.*;
 import static java.nio.file.StandardCopyOption.*;
 
@@ -57,7 +56,7 @@ import kiss.I;
  * The environmental rule for test that depends on file system.
  * </p>
  * 
- * @version 2015/06/23 21:19:51
+ * @version 2018/03/30 2:05:16
  */
 public class CleanRoom extends Sandbox {
 
@@ -127,6 +126,43 @@ public class CleanRoom extends Sandbox {
 
         // access control
         writable(false, host);
+    }
+
+    /**
+     * <p>
+     * Speculate the instantiator class for the instance of this method caller class.
+     * </p>
+     * <p>
+     * <em>NOTE</em>: You should call this method in constructor or instance initializer block.
+     * Otherwise, it will cause an unexpected behavior.
+     * </p>
+     */
+    private static Class speculateInstantiator() {
+        StackTraceElement[] elements = new Throwable().getStackTrace();
+
+        try {
+            Class caller = Class.forName(elements[1].getClassName());
+
+            for (int i = 2; i < elements.length; i++) {
+                Class clazz = Class.forName(elements[i].getClassName());
+
+                // check subclass
+                if (caller.isAssignableFrom(clazz)) {
+                    // check constructor
+                    if (elements[i].getMethodName().equals("<init>")) {
+                        continue;
+                    }
+                }
+
+                // API definition
+                return clazz;
+            }
+        } catch (ClassNotFoundException e) {
+            throw I.quiet(e);
+        }
+
+        // Not found
+        throw new IllegalStateException("The suitable caller class is not found.");
     }
 
     /**
