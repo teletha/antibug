@@ -16,6 +16,10 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import antibug.powerassert.PowerAssertExtension;
+
 /**
  * @version 2018/03/31 3:23:22
  */
@@ -23,6 +27,7 @@ import java.lang.annotation.Target;
 @Retention(RUNTIME)
 @Target(METHOD)
 @org.junit.jupiter.api.Test
+@ExtendWith(PowerAssertExtension.class)
 public @interface Test {
     /**
      * Switch power assert.
