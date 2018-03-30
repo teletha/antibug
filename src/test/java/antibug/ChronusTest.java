@@ -19,13 +19,13 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import kiss.I;
 
 /**
- * @version 2014/03/06 12:12:22
+ * @version 2018/03/31 3:10:33
  */
 public class ChronusTest {
 
@@ -47,7 +47,7 @@ public class ChronusTest {
     /** The test result. */
     private static AtomicInteger value = new AtomicInteger();
 
-    @Before
+    @BeforeEach
     public void reset() {
         done = false;
         value.set(0);

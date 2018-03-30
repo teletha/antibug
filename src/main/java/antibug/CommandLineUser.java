@@ -12,20 +12,24 @@ package antibug;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.lang.reflect.Method;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
+
+import org.junit.jupiter.api.extension.AfterEachCallback;
+import org.junit.jupiter.api.extension.BeforeEachCallback;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.TestExecutionExceptionHandler;
 
 /**
  * <p>
  * This is pseudo character-based user.
  * </p>
  * 
- * @version 2014/07/14 22:00:03
+ * @version 2018/03/31 3:08:40
  */
-public class CommandLineUser extends ReusableRule {
+public class CommandLineUser implements BeforeEachCallback, AfterEachCallback, TestExecutionExceptionHandler {
 
     /** The mock system input. */
     private MockInputStream input;
@@ -60,7 +64,7 @@ public class CommandLineUser extends ReusableRule {
      * {@inheritDoc}
      */
     @Override
-    protected void before(Method method) throws Exception {
+    public void beforeEach(ExtensionContext context) throws Exception {
         // clear message
         messages.clear();
 
@@ -77,7 +81,7 @@ public class CommandLineUser extends ReusableRule {
      * {@inheritDoc}
      */
     @Override
-    protected void after(Method method) {
+    public void afterEach(ExtensionContext context) throws Exception {
         // restore original
         System.setIn(input.original);
 
@@ -91,13 +95,12 @@ public class CommandLineUser extends ReusableRule {
      * {@inheritDoc}
      */
     @Override
-    protected Throwable validateError(Throwable throwable) {
+    public void handleTestExecutionException(ExtensionContext context, Throwable throwable) throws Throwable {
         // display buffered message
         for (Runnable message : messages) {
             message.run();
         }
-
-        return super.validateError(throwable);
+        throw throwable;
     }
 
     /**
