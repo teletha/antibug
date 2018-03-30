@@ -11,29 +11,18 @@ package antibug;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.security.AccessControlException;
 import java.time.Instant;
 
-import org.junit.ClassRule;
-import org.junit.Rule;
-import org.junit.Test;
-
-import filer.Filer;
+import org.junit.jupiter.api.Test;
 
 /**
- * @version 2015/06/30 2:18:44
+ * @version 2018/03/31 1:20:48
  */
-public class CleanRoomTest {
-
-    private static final Path base = Filer.locateTemporary();
-
-    @Rule
-    @ClassRule
-    public static final CleanRoom room = new CleanRoom();
+public class CleanRoomTest implements CleanRoomX {
 
     @Test
     public void locateFile() {
-        Path file = room.locateFile("empty");
+        Path file = room().locateFile("empty");
 
         assert Files.exists(file);
         assert Files.isRegularFile(file);
@@ -42,7 +31,7 @@ public class CleanRoomTest {
     @Test
     public void locateFileWithTimeStamp() throws Exception {
         Instant now = Instant.now();
-        Path file = room.locateFile("empty", now, "Contents");
+        Path file = room().locateFile("empty", now, "Contents");
 
         assert Files.exists(file);
         assert Files.isRegularFile(file);
@@ -51,7 +40,7 @@ public class CleanRoomTest {
 
     @Test
     public void locateArchive() throws Exception {
-        Path file = room.locateArchive("test.zip", $ -> {
+        Path file = room().locateArchive("test.zip", $ -> {
             $.file("file");
             $.dir("empty");
             $.dir("dir", () -> {
@@ -73,7 +62,7 @@ public class CleanRoomTest {
 
     @Test
     public void locateDirectoryFromAbsent() {
-        Path file = room.locateDirectory("absent");
+        Path file = room().locateDirectory("absent");
 
         assert Files.exists(file);
         assert Files.isDirectory(file);
@@ -81,7 +70,7 @@ public class CleanRoomTest {
 
     @Test
     public void locateDirectoryFromPresent() {
-        Path path = room.locateDirectory("dir");
+        Path path = room().locateDirectory("dir");
 
         assert Files.exists(path);
         assert Files.isDirectory(path);
@@ -90,7 +79,7 @@ public class CleanRoomTest {
     @Test
     public void locateDirectoryWithTimeStamp() throws Exception {
         Instant now = Instant.now();
-        Path path = room.locateDirectory("empty", now);
+        Path path = room().locateDirectory("empty", now);
 
         assert Files.exists(path);
         assert Files.isDirectory(path);
@@ -99,7 +88,7 @@ public class CleanRoomTest {
 
     @Test
     public void locateAbsent() {
-        Path path = room.locateAbsent("absent.txt");
+        Path path = room().locateAbsent("absent.txt");
 
         assert Files.notExists(path);
         assert !Files.isRegularFile(path);
@@ -108,23 +97,23 @@ public class CleanRoomTest {
 
     @Test
     public void locatePresentFile() {
-        Path file = room.locateAbsent("present.txt");
+        Path file = room().locateAbsent("present.txt");
 
         // the specified file doesn't exist yet
         assert !Files.exists(file);
 
         // create file
-        file = room.locateFile("present.txt");
+        file = room().locateFile("present.txt");
         assert Files.exists(file);
 
         // the file has already existed
-        file = room.locateFile("present.txt");
+        file = room().locateFile("present.txt");
         assert Files.exists(file);
     }
 
     @Test
     public void locatedFileCanDelete() throws Exception {
-        Path file = room.locateFile("empty");
+        Path file = room().locateFile("empty");
 
         assert Files.exists(file);
         assert Files.deleteIfExists(file);
@@ -133,10 +122,10 @@ public class CleanRoomTest {
 
     @Test
     public void createFile() throws Exception {
-        Path file = room.locateAbsent("create");
+        Path file = room().locateAbsent("create");
         assert Files.exists(file) == false;
 
-        room.with($ -> {
+        room().with($ -> {
             $.file("create");
         });
 
@@ -146,10 +135,10 @@ public class CleanRoomTest {
 
     @Test
     public void createDirectory() throws Exception {
-        Path dir = room.locateAbsent("create");
+        Path dir = room().locateAbsent("create");
         assert Files.exists(dir) == false;
 
-        room.with($ -> {
+        room().with($ -> {
             $.dir("create");
         });
 
@@ -159,10 +148,10 @@ public class CleanRoomTest {
 
     @Test
     public void createDirectoryNest() throws Exception {
-        Path file = room.locateAbsent("a/b/c");
+        Path file = room().locateAbsent("a/b/c");
         assert Files.exists(file) == false;
 
-        room.with($ -> {
+        room().with($ -> {
             $.dir("a", () -> {
                 $.dir("b", () -> {
                     $.file("c");

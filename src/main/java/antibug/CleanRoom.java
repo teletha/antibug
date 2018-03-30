@@ -14,7 +14,6 @@ import static java.nio.file.StandardCopyOption.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryNotEmptyException;
@@ -43,6 +42,10 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import org.junit.AssumptionViolatedException;
+import org.junit.jupiter.api.extension.AfterAllCallback;
+import org.junit.jupiter.api.extension.AfterEachCallback;
+import org.junit.jupiter.api.extension.BeforeEachCallback;
+import org.junit.jupiter.api.extension.ExtensionContext;
 
 import filer.Filer;
 import kiss.Disposable;
@@ -55,7 +58,7 @@ import kiss.I;
  * 
  * @version 2018/03/30 2:05:16
  */
-public class CleanRoom extends ReusableRule {
+public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAllCallback {
 
     /** The counter for instances. */
     private static final AtomicInteger counter = new AtomicInteger();
@@ -374,9 +377,7 @@ public class CleanRoom extends ReusableRule {
      * {@inheritDoc}
      */
     @Override
-    protected void before(Method method) throws Exception {
-        super.before(method);
-
+    public void beforeEach(ExtensionContext context) throws Exception {
         // renew clean room for this test if needed
         // clean up all resources
         sweep(root);
@@ -388,25 +389,24 @@ public class CleanRoom extends ReusableRule {
      * {@inheritDoc}
      */
     @Override
-    protected void after(Method method) {
+    public void afterEach(ExtensionContext context) throws Exception {
         for (FileSystem system : archives) {
             try {
                 system.close();
             } catch (NoSuchFileException e) {
                 // if the archive file is deleted during test, we can ignore
             } catch (IOException e) {
-                catchError(e);
+                throw I.quiet(e);
             }
         }
         archives.clear();
-        super.after(method);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    protected void afterClass() {
+    public void afterAll(ExtensionContext context) throws Exception {
         // Dispose clean room actually.
         sweep(root);
 
@@ -416,11 +416,8 @@ public class CleanRoom extends ReusableRule {
         } catch (DirectoryNotEmptyException | NoSuchFileException e) {
             // CleanRoom is used by other testcase, So we can't delete.
         } catch (IOException e) {
-            catchError(e);
+            throw I.quiet(e);
         }
-
-        // delegate
-        super.afterClass();
     }
 
     /**
@@ -447,7 +444,7 @@ public class CleanRoom extends ReusableRule {
             try {
                 Files.walkFileTree(path, new Sweeper());
             } catch (IOException e) {
-                catchError(e);
+                throw I.quiet(e);
             }
         }
     }
