@@ -9,6 +9,8 @@
  */
 public class Project extends bee.api.Project {
 
+    String JunitVersion = "5.1.0";
+
     {
         product("com.github.teletha", "antibug", "0.3");
         producer("Nameless Production Committee");
@@ -19,6 +21,9 @@ public class Project extends bee.api.Project {
         require("com.github.teletha", "sinobu", "1.0");
         require("com.github.teletha", "filer", "0.5");
         require("junit", "junit", "4.12");
+        require("org.junit.jupiter", "junit-jupiter-api", JunitVersion);
+        require("org.junit.jupiter", "junit-jupiter-engine", JunitVersion);
+        require("org.junit.vintage", "junit-vintage-engine", JunitVersion);
 
         versionControlSystem("https://github.com/teletha/antiBug");
     }
