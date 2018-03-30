@@ -29,11 +29,7 @@ public class CleanRoomTest {
 
     @Rule
     @ClassRule
-    public static final CleanRoom room = new CleanRoom(base);
-
-    @Rule
-    @ClassRule
-    public static final CleanRoom room2 = new CleanRoom();
+    public static final CleanRoom room = new CleanRoom();
 
     @Test
     public void locateFile() {
@@ -133,11 +129,6 @@ public class CleanRoomTest {
         assert Files.exists(file);
         assert Files.deleteIfExists(file);
         assert Files.notExists(file);
-    }
-
-    @Test(expected = AccessControlException.class)
-    public void cantWriteInOriginalDirectory() throws Exception {
-        Files.write(base.resolve("file"), "test".getBytes());
     }
 
     @Test

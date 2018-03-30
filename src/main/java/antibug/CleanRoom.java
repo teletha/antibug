@@ -9,18 +9,15 @@
  */
 package antibug;
 
-import static antibug.AntiBug.*;
 import static java.nio.file.FileVisitResult.*;
 import static java.nio.file.StandardCopyOption.*;
 
 import java.io.File;
-import java.io.FileDescriptor;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryNotEmptyException;
-import java.nio.file.DirectoryStream.Filter;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
@@ -58,7 +55,7 @@ import kiss.I;
  * 
  * @version 2018/03/30 2:05:16
  */
-public class CleanRoom extends Sandbox {
+public class CleanRoom extends ReusableRule {
 
     /** The counter for instances. */
     private static final AtomicInteger counter = new AtomicInteger();
@@ -69,101 +66,8 @@ public class CleanRoom extends Sandbox {
     /** The temporary bioclean room for this instance which are related with file system. */
     public final Path root = clean.resolve(String.valueOf(counter.incrementAndGet()));
 
-    /** The host directory for test. */
-    private final Path host;
-
-    /** The clean room monitor. */
-    private final Monitor monitor = new Monitor(root);
-
     /** The all used archives. */
     private final Set<FileSystem> archives = new HashSet();
-
-    /**
-     * Create a clean room for the current directory.
-     */
-    public CleanRoom() {
-        this.host = null;
-    }
-
-    /**
-     * Create a clean room for the directory that the specified path indicates.
-     * 
-     * @param relativePath A relative location path you want to use.
-     */
-    public CleanRoom(String relativePath) {
-        this(Filer.locate(relativePath));
-    }
-
-    /**
-     * Create a clean room for the directory that the specified path indicates.
-     * 
-     * @param path A relative location path you want to use.
-     */
-    public CleanRoom(Path path) {
-        Path directory = locatePackage(speculateInstantiator());
-
-        if (path != null) {
-            if (path.isAbsolute()) {
-                directory = path;
-
-                if (Files.notExists(directory)) {
-                    try {
-                        Files.createDirectories(directory);
-                    } catch (IOException e) {
-                        throw I.quiet(e);
-                    }
-                }
-            } else {
-                directory = directory.resolve(path);
-            }
-        }
-
-        if (!Files.isDirectory(directory)) {
-            directory = directory.getParent();
-        }
-
-        this.host = directory;
-
-        // access control
-        writable(false, host);
-    }
-
-    /**
-     * <p>
-     * Speculate the instantiator class for the instance of this method caller class.
-     * </p>
-     * <p>
-     * <em>NOTE</em>: You should call this method in constructor or instance initializer block.
-     * Otherwise, it will cause an unexpected behavior.
-     * </p>
-     */
-    private static Class speculateInstantiator() {
-        StackTraceElement[] elements = new Throwable().getStackTrace();
-
-        try {
-            Class caller = Class.forName(elements[1].getClassName());
-
-            for (int i = 2; i < elements.length; i++) {
-                Class clazz = Class.forName(elements[i].getClassName());
-
-                // check subclass
-                if (caller.isAssignableFrom(clazz)) {
-                    // check constructor
-                    if (elements[i].getMethodName().equals("<init>")) {
-                        continue;
-                    }
-                }
-
-                // API definition
-                return clazz;
-            }
-        } catch (ClassNotFoundException e) {
-            throw I.quiet(e);
-        }
-
-        // Not found
-        throw new IllegalStateException("The suitable caller class is not found.");
-    }
 
     /**
      * <p>
@@ -473,20 +377,11 @@ public class CleanRoom extends Sandbox {
     protected void before(Method method) throws Exception {
         super.before(method);
 
-        // start monitoring clean room
-        use(monitor);
-
         // renew clean room for this test if needed
-        if (monitor.modified) {
-            // clean up all resources
-            sweep(root);
+        // clean up all resources
+        sweep(root);
 
-            // copy all resources newly
-            copyDirectory(host, root);
-
-            // reset
-            monitor.modified = false;
-        }
+        Files.createDirectories(root);
     }
 
     /**
@@ -526,29 +421,6 @@ public class CleanRoom extends Sandbox {
 
         // delegate
         super.afterClass();
-    }
-
-    /**
-     * <p>
-     * Helper method to copy all resource in the specified directory.
-     * </p>
-     * 
-     * @param input A input directory.
-     * @param output An output directory.
-     * @throws IOException I/O error.
-     */
-    private void copyDirectory(Path input, Path output) throws IOException {
-        Files.createDirectories(output);
-
-        if (input != null) {
-            for (Path path : Files.newDirectoryStream(input, monitor)) {
-                if (Files.isDirectory(path)) {
-                    copyDirectory(path, output.resolve(path.getFileName()));
-                } else {
-                    copyFile(path, output.resolve(path.getFileName()));
-                }
-            }
-        }
     }
 
     /**
@@ -601,65 +473,6 @@ public class CleanRoom extends Sandbox {
         public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
             Files.delete(dir);
             return FileVisitResult.CONTINUE;
-        }
-    }
-
-    /**
-     * @version 2010/02/13 13:23:22
-     */
-    private class Monitor extends Security implements Filter<Path> {
-
-        /** The path prefix. */
-        private final String prefix;
-
-        /** The flag for file resource modification. */
-        private boolean modified = true;
-
-        /**
-         * @param root
-         */
-        public Monitor(Path root) {
-            this.prefix = root.toString();
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void checkDelete(String file) {
-            if (!modified && file.startsWith(prefix)) {
-                modified = true;
-            }
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void checkWrite(FileDescriptor fd) {
-            if (!modified && fd.toString().startsWith(prefix)) {
-                modified = true;
-            }
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void checkWrite(String file) {
-            if (!modified && file.startsWith(prefix)) {
-                modified = true;
-            }
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public boolean accept(Path path) throws IOException {
-            String name = path.getFileName().toString();
-
-            return !name.equals("package-info.html") && !name.endsWith(".class");
         }
     }
 
