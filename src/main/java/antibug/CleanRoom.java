@@ -41,7 +41,7 @@ import java.util.function.Consumer;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import org.junit.AssumptionViolatedException;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
@@ -91,9 +91,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
      * @param charset Your exepcted charcter encoding.
      */
     public void assume(Charset charset) {
-        if (Charset.defaultCharset() != charset) {
-            throw new AssumptionViolatedException("Charset must be " + charset + ".");
-        }
+        Assumptions.assumeTrue(Charset.defaultCharset() == charset, "Platform charset must be " + charset + ".");
     }
 
     /**

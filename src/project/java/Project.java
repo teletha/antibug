@@ -20,10 +20,8 @@ public class Project extends bee.api.Project {
         require("net.bytebuddy", "byte-buddy-agent", "1.8.0");
         require("com.github.teletha", "sinobu", "1.0");
         require("com.github.teletha", "filer", "0.5");
-        require("junit", "junit", "4.12");
         require("org.junit.jupiter", "junit-jupiter-api", JunitVersion);
         require("org.junit.jupiter", "junit-jupiter-engine", JunitVersion);
-        require("org.junit.vintage", "junit-vintage-engine", JunitVersion);
 
         versionControlSystem("https://github.com/teletha/antiBug");
     }
