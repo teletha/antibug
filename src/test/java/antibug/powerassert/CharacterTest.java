@@ -9,44 +9,41 @@
  */
 package antibug.powerassert;
 
-import org.junit.ClassRule;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 /**
- * @version 2012/01/18 13:15:48
+ * @version 2018/03/31 16:30:56
  */
-
 public class CharacterTest {
 
-    @Rule
-    @ClassRule
-    public static final PowerAssertTester tester = new PowerAssertTester();
+    @RegisterExtension
+    static PowerAssertTester test = new PowerAssertTester();
 
     @Test
     public void constant() throws Exception {
         char value = 'a';
 
-        tester.willUse("'b'");
-        tester.willCapture("value", value);
-        assert'b' == value;
+        test.willUse("'b'");
+        test.willCapture("value", value);
+        assert 'b' == value;
     }
 
     @Test
     public void not() throws Exception {
         char value = 'b';
 
-        tester.willUse("'b'");
-        tester.willUse("!=");
-        tester.willCapture("value", value);
-        assert'b' != value;
+        test.willUse("'b'");
+        test.willUse("!=");
+        test.willCapture("value", value);
+        assert 'b' != value;
     }
 
     @Test
     public void array() throws Exception {
         char[] array = {0, 1, 2};
 
-        tester.willCapture("array", array);
+        test.willCapture("array", array);
         assert array == null;
     }
 
@@ -54,9 +51,9 @@ public class CharacterTest {
     public void arrayIndex() throws Exception {
         char[] array = {'a', '1', 'あ'};
 
-        tester.willCapture("array", array);
-        tester.willCapture("array[1]", '1');
-        tester.willUse("'@'");
+        test.willCapture("array", array);
+        test.willCapture("array[1]", '1');
+        test.willUse("'@'");
         assert array[1] == '@';
     }
 
@@ -64,20 +61,20 @@ public class CharacterTest {
     public void arrayLength() throws Exception {
         char[] array = {'a', '1', 'あ'};
 
-        tester.willCapture("array", array);
-        tester.willCapture("array.length", 3);
+        test.willCapture("array", array);
+        test.willCapture("array.length", 3);
         assert array.length == 10;
     }
 
     @Test
     public void arrayNew() throws Exception {
-        tester.willUse("new char[] {'a', '1'} == null");
+        test.willUse("new char[] {'a', '1'} == null");
         assert new char[] {'a', '1'} == null;
     }
 
     @Test
     public void varargs() throws Exception {
-        tester.willCapture("var()", false);
+        test.willCapture("var()", false);
         assert var();
     }
 
@@ -87,7 +84,7 @@ public class CharacterTest {
 
     @Test
     public void varargsWithHead() throws Exception {
-        tester.willCapture("head('c')", false);
+        test.willCapture("head('c')", false);
         assert head('c');
     }
 
@@ -97,8 +94,8 @@ public class CharacterTest {
 
     @Test
     public void method() throws Exception {
-        tester.willCapture("test()", 'r');
-        tester.willUse("'a'");
+        test.willCapture("test()", 'r');
+        test.willUse("'a'");
         assert test() == 'a';
     }
 
@@ -108,7 +105,7 @@ public class CharacterTest {
 
     @Test
     public void parameter() throws Exception {
-        tester.willCapture("test('p')", false);
+        test.willCapture("test('p')", false);
         assert test('p');
     }
 
@@ -124,8 +121,8 @@ public class CharacterTest {
 
     @Test
     public void fieldCharacterAccess() throws Exception {
-        tester.willCapture("charField", 'a');
-        tester.willUse("'b'");
+        test.willCapture("charField", 'a');
+        test.willUse("'b'");
         assert charField == 'b';
     }
 
@@ -133,14 +130,14 @@ public class CharacterTest {
     public void fieldIntAccessWithHiddenName() throws Exception {
         char charField = 'a';
 
-        tester.willCapture("this.charField", charField);
+        test.willCapture("this.charField", charField);
         assert this.charField == 0;
     }
 
     @Test
     public void fieldCharacterStaticAccess() throws Exception {
-        tester.willCapture("charFieldStatic", 'a');
-        tester.willUse("'b'");
+        test.willCapture("charFieldStatic", 'a');
+        test.willUse("'b'");
         assert charFieldStatic == 'b';
     }
 }

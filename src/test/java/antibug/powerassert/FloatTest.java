@@ -9,25 +9,23 @@
  */
 package antibug.powerassert;
 
-import org.junit.ClassRule;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 /**
- * @version 2012/01/18 13:15:48
+ * @version 2018/03/31 16:30:46
  */
 public class FloatTest {
 
-    @Rule
-    @ClassRule
-    public static final PowerAssertTester tester = new PowerAssertTester();
+    @RegisterExtension
+    static PowerAssertTester test = new PowerAssertTester();
 
     @Test
     public void constant_0() throws Exception {
         float value = -1;
 
-        tester.willUse("0");
-        tester.willCapture("value", value);
+        test.willUse("0");
+        test.willCapture("value", value);
         assert 0 == value;
     }
 
@@ -35,8 +33,8 @@ public class FloatTest {
     public void constant_1() throws Exception {
         float value = -1;
 
-        tester.willUse("1");
-        tester.willCapture("value", value);
+        test.willUse("1");
+        test.willCapture("value", value);
         assert 1 == value;
     }
 
@@ -44,8 +42,8 @@ public class FloatTest {
     public void constant_2() throws Exception {
         float value = -1;
 
-        tester.willUse("2");
-        tester.willCapture("value", value);
+        test.willUse("2");
+        test.willCapture("value", value);
         assert 2 == value;
     }
 
@@ -53,8 +51,8 @@ public class FloatTest {
     public void constant_3() throws Exception {
         float value = -1;
 
-        tester.willUse("3");
-        tester.willCapture("value", value);
+        test.willUse("3");
+        test.willCapture("value", value);
         assert 3 == value;
     }
 
@@ -62,17 +60,17 @@ public class FloatTest {
     public void constant_M1() throws Exception {
         float value = 0;
 
-        tester.willUse("-1");
-        tester.willCapture("value", value);
-        assert-1 == value;
+        test.willUse("-1");
+        test.willCapture("value", value);
+        assert -1 == value;
     }
 
     @Test
     public void big() throws Exception {
         float value = 2;
 
-        tester.willUse("0.12345678");
-        tester.willCapture("value", value);
+        test.willUse("0.12345678");
+        test.willCapture("value", value);
         assert 0.12345678f == value;
     }
 
@@ -80,9 +78,9 @@ public class FloatTest {
     public void not() throws Exception {
         float value = 0.3f;
 
-        tester.willUse("0.3");
-        tester.willUse("!=");
-        tester.willCapture("value", value);
+        test.willUse("0.3");
+        test.willUse("!=");
+        test.willCapture("value", value);
         assert 0.3f != value;
     }
 
@@ -90,9 +88,9 @@ public class FloatTest {
     public void negative() throws Exception {
         float value = 0.3f;
 
-        tester.willUse("0.3");
-        tester.willUse("-value");
-        tester.willCapture("value", value);
+        test.willUse("0.3");
+        test.willUse("-value");
+        test.willCapture("value", value);
         assert 0.3f == -value;
     }
 
@@ -100,7 +98,7 @@ public class FloatTest {
     public void array() throws Exception {
         float[] array = {0, 1, 2};
 
-        tester.willCapture("array", array);
+        test.willCapture("array", array);
         assert array == null;
     }
 
@@ -108,8 +106,8 @@ public class FloatTest {
     public void arrayIndex() throws Exception {
         float[] array = {0, 1, 2};
 
-        tester.willCapture("array", array);
-        tester.willCapture("array[1]", 1f);
+        test.willCapture("array", array);
+        test.willCapture("array[1]", 1f);
         assert array[1] == 128;
     }
 
@@ -117,20 +115,20 @@ public class FloatTest {
     public void arrayLength() throws Exception {
         float[] array = {0, 1, 2};
 
-        tester.willCapture("array", array);
-        tester.willCapture("array.length", 3);
+        test.willCapture("array", array);
+        test.willCapture("array.length", 3);
         assert array.length == 10;
     }
 
     @Test
     public void arrayNew() throws Exception {
-        tester.willUse("new float[] {1.0, 2.0}");
+        test.willUse("new float[] {1.0, 2.0}");
         assert new float[] {1, 2} == null;
     }
 
     @Test
     public void varargs() throws Exception {
-        tester.willCapture("var()", false);
+        test.willCapture("var()", false);
         assert var();
     }
 
@@ -140,7 +138,7 @@ public class FloatTest {
 
     @Test
     public void method() throws Exception {
-        tester.willCapture("test()", 1f);
+        test.willCapture("test()", 1f);
         assert test() == 2f;
     }
 
@@ -150,7 +148,7 @@ public class FloatTest {
 
     @Test
     public void parameter() throws Exception {
-        tester.willCapture("test(12.0)", false);
+        test.willCapture("test(12.0)", false);
         assert test(12);
     }
 
@@ -166,7 +164,7 @@ public class FloatTest {
 
     @Test
     public void fieldFloatAccess() throws Exception {
-        tester.willCapture("floatField", 0.123f);
+        test.willCapture("floatField", 0.123f);
         assert floatField == 0;
     }
 
@@ -174,13 +172,13 @@ public class FloatTest {
     public void fieldIntAccessWithHiddenName() throws Exception {
         float floatField = 0.123f;
 
-        tester.willCapture("this.floatField", floatField);
+        test.willCapture("this.floatField", floatField);
         assert this.floatField == 0;
     }
 
     @Test
     public void fieldFloatStaticAccess() throws Exception {
-        tester.willCapture("floatFieldStatic", 0.123f);
+        test.willCapture("floatFieldStatic", 0.123f);
         assert floatFieldStatic == 0;
     }
 }

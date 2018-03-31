@@ -9,24 +9,22 @@
  */
 package antibug.powerassert;
 
-import org.junit.ClassRule;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 /**
- * @version 2015/07/05 10:26:11
+ * @version 2018/03/31 16:31:21
  */
 public class LambdaTest {
 
-    @Rule
-    @ClassRule
-    public static final PowerAssertTester tester = new PowerAssertTester();
+    @RegisterExtension
+    static PowerAssertTester test = new PowerAssertTester();
 
     @Test
-    @Ignore
+    @Disabled
     public void runnable() throws Exception {
-        tester.willCapture("runnable(() -> new Object())", false);
+        test.willCapture("runnable(() -> new Object())", false);
         assert runnable(() -> new Object());
     }
 

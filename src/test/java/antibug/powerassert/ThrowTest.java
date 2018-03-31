@@ -9,24 +9,22 @@
  */
 package antibug.powerassert;
 
-import org.junit.ClassRule;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 /**
- * @version 2012/01/19 15:08:05
+ * @version 2018/03/31 16:32:28
  */
 public class ThrowTest {
 
-    @Rule
-    @ClassRule
-    public static final PowerAssertTester tester = new PowerAssertTester();
+    @RegisterExtension
+    static PowerAssertTester test = new PowerAssertTester();
 
     @Test
     public void useAssertWithMessage() {
         int value = 4;
 
-        tester.willCapture("value", value);
+        test.willCapture("value", value);
         assert value == -1 : "this value is " + value;
     }
 
@@ -34,7 +32,7 @@ public class ThrowTest {
     public void useAssertWithIntMessage() {
         int value = 4;
 
-        tester.willCapture("value", value);
+        test.willCapture("value", value);
         assert value == -1 : value;
     }
 }

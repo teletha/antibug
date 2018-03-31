@@ -9,21 +9,17 @@
  */
 package antibug.powerassert;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Rule;
-
-import antibug.ReusableRule;
+import org.junit.jupiter.api.extension.BeforeAllCallback;
+import org.junit.jupiter.api.extension.BeforeEachCallback;
+import org.junit.jupiter.api.extension.ExtensionContext;
 
 /**
- * @version 2012/01/19 10:47:08
+ * @version 2018/03/31 12:24:38
  */
-public class PowerAssertTester extends ReusableRule {
-
-    @Rule
-    public final PowerAssert POWER_ASSERT = new PowerAssert(this);
+public class PowerAssertTester implements BeforeAllCallback, BeforeEachCallback {
 
     /** For self test. */
     private final List<Operand> expecteds = new ArrayList();
@@ -32,12 +28,31 @@ public class PowerAssertTester extends ReusableRule {
     private final List<String> operators = new ArrayList();
 
     /**
-     * @see testament.ReusableRule#before(java.lang.reflect.Method)
+     * {@inheritDoc}
      */
     @Override
-    protected void before(Method method) throws Exception {
+    public void beforeAll(ExtensionContext context) throws Exception {
+        PowerAssert.errorCapture = this::validate;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void beforeEach(ExtensionContext context) throws Exception {
         expecteds.clear();
         operators.clear();
+    }
+
+    /**
+     * <p>
+     * Validate error message.
+     * </p>
+     * 
+     * @param context
+     */
+    void validate(PowerAssertionError e) {
+        validate(e.context);
     }
 
     /**
@@ -56,7 +71,8 @@ public class PowerAssertTester extends ReusableRule {
 
         for (Operand expected : expecteds) {
             if (!context.operands.contains(expected)) {
-                throw new AssertionError("Can't capture the below operand.\r\nExpect  : " + expected.toString() + "\r\nValue : " + expected.value + "\r\n");
+                throw new AssertionError("Can't capture the below operand.\r\nExpect  : " + expected
+                        .toString() + "\r\nValue : " + expected.value + "\r\n");
             }
         }
 

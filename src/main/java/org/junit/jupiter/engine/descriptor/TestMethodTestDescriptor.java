@@ -37,8 +37,7 @@ import org.junit.platform.commons.util.ExceptionUtils;
 import org.junit.platform.engine.TestDescriptor;
 import org.junit.platform.engine.UniqueId;
 
-import antibug.powerassert.PowerAssertSystem;
-import antibug.powerassert.PowerAssertionError;
+import antibug.powerassert.PowerAssert;
 
 /**
  * {@link TestDescriptor} for tests based on Java methods.
@@ -162,32 +161,12 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
                 Method testMethod = getTestMethod();
                 Object instance = extensionContext.getRequiredTestInstance();
                 executableInvoker.invoke(testMethod, instance, extensionContext, context.getExtensionRegistry());
-            } catch (PowerAssertionError e) {
-                throw e; // throw test error
             } catch (Throwable throwable) {
-                Throwable cause = throwable;
-
-                while (cause != null) {
-                    if (AssertionError.class.isInstance(cause)) {
-                        // should we print this error message in detal?
-                        // if (description.getAnnotation(PowerAssertOff.class) == null &&
-                        // !description.getTestClass()
-                        // .isAnnotationPresent(PowerAssertOff.class)) {
-
-                        // find the class which rises assertion error
-                        Class clazz = Class.forName(cause.getStackTrace()[0].getClassName());
-
-                        // translate assertion code only once
-                        if (PowerAssertSystem.translate(clazz)) {
-                            invokeTestMethod(context, dynamicTestExecutor);
-                            return;
-                        }
-                        // }
-                    }
-                    cause = cause.getCause();
-                }
-
-                invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), extensionContext, throwable);
+                PowerAssert.capture(throwable, () -> {
+                    invokeTestMethod(context, dynamicTestExecutor);
+                }, e -> {
+                    invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), extensionContext, e);
+                });
             }
         });
     }

@@ -9,25 +9,23 @@
  */
 package antibug.powerassert;
 
-import org.junit.ClassRule;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 /**
- * @version 2012/01/18 13:15:48
+ * @version 2018/03/31 16:30:51
  */
 public class DoubleTest {
 
-    @Rule
-    @ClassRule
-    public static final PowerAssertTester tester = new PowerAssertTester();
+    @RegisterExtension
+    static PowerAssertTester test = new PowerAssertTester();
 
     @Test
     public void constant_0() throws Exception {
         double value = -1;
 
-        tester.willUse("0");
-        tester.willCapture("value", value);
+        test.willUse("0");
+        test.willCapture("value", value);
         assert 0 == value;
     }
 
@@ -35,8 +33,8 @@ public class DoubleTest {
     public void constant_1() throws Exception {
         double value = -1;
 
-        tester.willUse("1");
-        tester.willCapture("value", value);
+        test.willUse("1");
+        test.willCapture("value", value);
         assert 1 == value;
     }
 
@@ -44,8 +42,8 @@ public class DoubleTest {
     public void constant_2() throws Exception {
         double value = -1;
 
-        tester.willUse("2");
-        tester.willCapture("value", value);
+        test.willUse("2");
+        test.willCapture("value", value);
         assert 2 == value;
     }
 
@@ -53,8 +51,8 @@ public class DoubleTest {
     public void constant_3() throws Exception {
         double value = -1;
 
-        tester.willUse("3");
-        tester.willCapture("value", value);
+        test.willUse("3");
+        test.willCapture("value", value);
         assert 3 == value;
     }
 
@@ -62,17 +60,17 @@ public class DoubleTest {
     public void constant_M1() throws Exception {
         double value = 0;
 
-        tester.willUse("-1");
-        tester.willCapture("value", value);
-        assert-1 == value;
+        test.willUse("-1");
+        test.willCapture("value", value);
+        assert -1 == value;
     }
 
     @Test
     public void big() throws Exception {
         double value = 2;
 
-        tester.willUse("0.1234567898765432");
-        tester.willCapture("value", value);
+        test.willUse("0.1234567898765432");
+        test.willCapture("value", value);
         assert 0.1234567898765432d == value;
     }
 
@@ -80,9 +78,9 @@ public class DoubleTest {
     public void not() throws Exception {
         double value = 0.3;
 
-        tester.willUse("0.3");
-        tester.willUse("!=");
-        tester.willCapture("value", value);
+        test.willUse("0.3");
+        test.willUse("!=");
+        test.willCapture("value", value);
         assert 0.3 != value;
     }
 
@@ -90,9 +88,9 @@ public class DoubleTest {
     public void negative() throws Exception {
         double value = 0.3;
 
-        tester.willUse("0.3");
-        tester.willUse("-value");
-        tester.willCapture("value", value);
+        test.willUse("0.3");
+        test.willUse("-value");
+        test.willCapture("value", value);
         assert 0.3 == -value;
     }
 
@@ -100,7 +98,7 @@ public class DoubleTest {
     public void array() throws Exception {
         double[] array = {0, 1, 2};
 
-        tester.willCapture("array", array);
+        test.willCapture("array", array);
         assert array == null;
     }
 
@@ -108,8 +106,8 @@ public class DoubleTest {
     public void arrayIndex() throws Exception {
         double[] array = {0, 1, 2};
 
-        tester.willCapture("array", array);
-        tester.willCapture("array[1]", 1d);
+        test.willCapture("array", array);
+        test.willCapture("array[1]", 1d);
         assert array[1] == 128;
     }
 
@@ -117,20 +115,20 @@ public class DoubleTest {
     public void arrayLength() throws Exception {
         double[] array = {0, 1, 2};
 
-        tester.willCapture("array", array);
-        tester.willCapture("array.length", 3);
+        test.willCapture("array", array);
+        test.willCapture("array.length", 3);
         assert array.length == 10;
     }
 
     @Test
     public void arrayNew() throws Exception {
-        tester.willUse("new double[] {1.0, 2.0}");
+        test.willUse("new double[] {1.0, 2.0}");
         assert new double[] {1, 2} == null;
     }
 
     @Test
     public void varargs() throws Exception {
-        tester.willCapture("var()", false);
+        test.willCapture("var()", false);
         assert var();
     }
 
@@ -140,7 +138,7 @@ public class DoubleTest {
 
     @Test
     public void method() throws Exception {
-        tester.willCapture("test()", 1d);
+        test.willCapture("test()", 1d);
         assert test() == 2;
     }
 
@@ -150,7 +148,7 @@ public class DoubleTest {
 
     @Test
     public void parameter() throws Exception {
-        tester.willCapture("test(0.123456)", false);
+        test.willCapture("test(0.123456)", false);
         assert test(0.123456d);
     }
 
@@ -160,7 +158,7 @@ public class DoubleTest {
 
     @Test
     public void parameters() throws Exception {
-        tester.willCapture("test(0.123456, 1.0)", false);
+        test.willCapture("test(0.123456, 1.0)", false);
         assert test(0.123456d, 1.0d);
     }
 
@@ -176,7 +174,7 @@ public class DoubleTest {
 
     @Test
     public void fieldDoubleAccess() throws Exception {
-        tester.willCapture("doubleField", 32.1011d);
+        test.willCapture("doubleField", 32.1011d);
         assert doubleField == 0;
     }
 
@@ -184,13 +182,13 @@ public class DoubleTest {
     public void fieldIntAccessWithHiddenName() throws Exception {
         double doubleField = 32.1011d;
 
-        tester.willCapture("this.doubleField", doubleField);
+        test.willCapture("this.doubleField", doubleField);
         assert this.doubleField == 0;
     }
 
     @Test
     public void fieldDoubleStaticAccess() throws Exception {
-        tester.willCapture("doubleFieldStatic", 32.1011d);
+        test.willCapture("doubleFieldStatic", 32.1011d);
         assert doubleFieldStatic == 0;
     }
 }

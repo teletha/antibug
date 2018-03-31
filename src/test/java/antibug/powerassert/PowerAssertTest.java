@@ -14,18 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.ClassRule;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 /**
- * @version 2012/01/10 9:53:52
+ * @version 2018/03/31 16:32:05
  */
 public class PowerAssertTest {
 
-    @Rule
-    @ClassRule
-    public static final PowerAssertTester test = new PowerAssertTester();
+    @RegisterExtension
+    static PowerAssertTester test = new PowerAssertTester();
 
     @Test
     public void shortConstantAndVariable() throws Exception {

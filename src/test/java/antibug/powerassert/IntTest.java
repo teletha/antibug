@@ -9,25 +9,23 @@
  */
 package antibug.powerassert;
 
-import org.junit.ClassRule;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 /**
- * @version 2012/01/18 13:15:48
+ * @version 2018/03/31 16:31:05
  */
 public class IntTest {
 
-    @Rule
-    @ClassRule
-    public static final PowerAssertTester tester = new PowerAssertTester();
+    @RegisterExtension
+    static PowerAssertTester test = new PowerAssertTester();
 
     @Test
     public void constant_0() throws Exception {
         int value = -1;
 
-        tester.willUse("0");
-        tester.willCapture("value", value);
+        test.willUse("0");
+        test.willCapture("value", value);
         assert 0 == value;
     }
 
@@ -35,8 +33,8 @@ public class IntTest {
     public void constant_1() throws Exception {
         int value = -1;
 
-        tester.willUse("1");
-        tester.willCapture("value", value);
+        test.willUse("1");
+        test.willCapture("value", value);
         assert 1 == value;
     }
 
@@ -44,8 +42,8 @@ public class IntTest {
     public void constant_2() throws Exception {
         int value = -1;
 
-        tester.willUse("2");
-        tester.willCapture("value", value);
+        test.willUse("2");
+        test.willCapture("value", value);
         assert 2 == value;
     }
 
@@ -53,8 +51,8 @@ public class IntTest {
     public void constant_3() throws Exception {
         int value = -1;
 
-        tester.willUse("3");
-        tester.willCapture("value", value);
+        test.willUse("3");
+        test.willCapture("value", value);
         assert 3 == value;
     }
 
@@ -62,17 +60,17 @@ public class IntTest {
     public void constant_M1() throws Exception {
         int value = 0;
 
-        tester.willUse("-1");
-        tester.willCapture("value", value);
-        assert-1 == value;
+        test.willUse("-1");
+        test.willCapture("value", value);
+        assert -1 == value;
     }
 
     @Test
     public void big() throws Exception {
         int value = 2;
 
-        tester.willUse("123456789");
-        tester.willCapture("value", value);
+        test.willUse("123456789");
+        test.willCapture("value", value);
         assert 123456789 == value;
     }
 
@@ -80,9 +78,9 @@ public class IntTest {
     public void not() throws Exception {
         int value = 10;
 
-        tester.willUse("10");
-        tester.willUse("!=");
-        tester.willCapture("value", value);
+        test.willUse("10");
+        test.willUse("!=");
+        test.willCapture("value", value);
         assert 10 != value;
     }
 
@@ -90,9 +88,9 @@ public class IntTest {
     public void negative() throws Exception {
         int value = 10;
 
-        tester.willUse("10");
-        tester.willUse("-value");
-        tester.willCapture("value", value);
+        test.willUse("10");
+        test.willUse("-value");
+        test.willCapture("value", value);
         assert 10 == -value;
     }
 
@@ -100,7 +98,7 @@ public class IntTest {
     public void array() throws Exception {
         int[] array = {0, 1, 2};
 
-        tester.willCapture("array", array);
+        test.willCapture("array", array);
         assert array == null;
     }
 
@@ -108,8 +106,8 @@ public class IntTest {
     public void arrayIndex() throws Exception {
         int[] array = {0, 1, 2};
 
-        tester.willCapture("array", array);
-        tester.willCapture("array[1]", 1);
+        test.willCapture("array", array);
+        test.willCapture("array[1]", 1);
         assert array[1] == 128;
     }
 
@@ -117,20 +115,20 @@ public class IntTest {
     public void arrayLength() throws Exception {
         int[] array = {0, 1, 2};
 
-        tester.willCapture("array", array);
-        tester.willCapture("array.length", 3);
+        test.willCapture("array", array);
+        test.willCapture("array.length", 3);
         assert array.length == 10;
     }
 
     @Test
     public void arrayNew() throws Exception {
-        tester.willUse("new int[] {1, 2}");
+        test.willUse("new int[] {1, 2}");
         assert new int[] {1, 2} == null;
     }
 
     @Test
     public void varargs() throws Exception {
-        tester.willCapture("var()", false);
+        test.willCapture("var()", false);
         assert var();
     }
 
@@ -140,7 +138,7 @@ public class IntTest {
 
     @Test
     public void varargsWithHead() throws Exception {
-        tester.willCapture("head(1)", false);
+        test.willCapture("head(1)", false);
         assert head(1);
     }
 
@@ -150,7 +148,7 @@ public class IntTest {
 
     @Test
     public void method() throws Exception {
-        tester.willCapture("test()", 1);
+        test.willCapture("test()", 1);
         assert test() == 2;
     }
 
@@ -160,7 +158,7 @@ public class IntTest {
 
     @Test
     public void parameter() throws Exception {
-        tester.willCapture("test(12)", false);
+        test.willCapture("test(12)", false);
         assert test(12);
     }
 
@@ -176,7 +174,7 @@ public class IntTest {
 
     @Test
     public void fieldIntAccess() throws Exception {
-        tester.willCapture("intField", 11);
+        test.willCapture("intField", 11);
         assert intField == 0;
     }
 
@@ -184,13 +182,13 @@ public class IntTest {
     public void fieldIntAccessWithHiddenName() throws Exception {
         int intField = 11;
 
-        tester.willCapture("this.intField", intField);
+        test.willCapture("this.intField", intField);
         assert this.intField == 0;
     }
 
     @Test
     public void fieldIntStaticAccess() throws Exception {
-        tester.willCapture("intFieldStatic", 11);
+        test.willCapture("intFieldStatic", 11);
         assert intFieldStatic == 0;
     }
 }

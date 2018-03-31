@@ -9,24 +9,22 @@
  */
 package antibug.powerassert;
 
-import org.junit.ClassRule;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 /**
- * @version 2012/01/18 13:15:48
+ * @version 2018/03/31 16:31:52
  */
 public class ObjectTest {
 
-    @Rule
-    @ClassRule
-    public static final PowerAssertTester tester = new PowerAssertTester();
+    @RegisterExtension
+    static PowerAssertTester test = new PowerAssertTester();
 
     @Test
     public void constant() throws Exception {
         Object value = new Object();
 
-        tester.willCapture("value", value);
+        test.willCapture("value", value);
         assert null == value;
     }
 
@@ -34,8 +32,8 @@ public class ObjectTest {
     public void not() throws Exception {
         Object value = null;
 
-        tester.willUse("!=");
-        tester.willCapture("value", value);
+        test.willUse("!=");
+        test.willCapture("value", value);
         assert null != value;
     }
 
@@ -43,7 +41,7 @@ public class ObjectTest {
     public void array() throws Exception {
         Object[] array = {"0", "1", "2"};
 
-        tester.willCapture("array", array);
+        test.willCapture("array", array);
         assert array == null;
     }
 
@@ -51,8 +49,8 @@ public class ObjectTest {
     public void arrayIndex() throws Exception {
         Object[] array = {"0", "1", "2"};
 
-        tester.willCapture("array", array);
-        tester.willCapture("array[1]", "1");
+        test.willCapture("array", array);
+        test.willCapture("array[1]", "1");
         assert array[1] == "128";
     }
 
@@ -60,20 +58,20 @@ public class ObjectTest {
     public void arrayLength() throws Exception {
         Object[] array = {"0", "1", "2"};
 
-        tester.willCapture("array", array);
-        tester.willCapture("array.length", 3);
+        test.willCapture("array", array);
+        test.willCapture("array.length", 3);
         assert array.length == 10;
     }
 
     @Test
     public void arrayNew() throws Exception {
-        tester.willUse("new Object[] {\"1\", \"2\"}");
+        test.willUse("new Object[] {\"1\", \"2\"}");
         assert new Object[] {"1", "2"} == null;
     }
 
     @Test
     public void varargs() throws Exception {
-        tester.willCapture("var()", false);
+        test.willCapture("var()", false);
         assert var();
     }
 
@@ -83,7 +81,7 @@ public class ObjectTest {
 
     @Test
     public void varargsWithHead() throws Exception {
-        tester.willCapture("head(\"1\")", false);
+        test.willCapture("head(\"1\")", false);
         assert head("1");
     }
 
@@ -93,7 +91,7 @@ public class ObjectTest {
 
     @Test
     public void method() throws Exception {
-        tester.willCapture("test()", "1");
+        test.willCapture("test()", "1");
         assert test() == "2";
     }
 
@@ -103,7 +101,7 @@ public class ObjectTest {
 
     @Test
     public void parameter() throws Exception {
-        tester.willCapture("test(\"12\")", false);
+        test.willCapture("test(\"12\")", false);
         assert test("12");
     }
 
@@ -113,7 +111,7 @@ public class ObjectTest {
 
     @Test
     public void parameterWithVarArg() throws Exception {
-        tester.willCapture("var2()", false);
+        test.willCapture("var2()", false);
         assert var2();
     }
 
@@ -129,13 +127,13 @@ public class ObjectTest {
 
     @Test
     public void fieldObjectAccess() throws Exception {
-        tester.willCapture("ObjectField", "11");
+        test.willCapture("ObjectField", "11");
         assert ObjectField == "";
     }
 
     @Test
     public void fieldObjectStaticAccess() throws Exception {
-        tester.willCapture("ObjectFieldStatic", "11");
+        test.willCapture("ObjectFieldStatic", "11");
         assert ObjectFieldStatic == "";
     }
 }
