@@ -26,7 +26,7 @@ public class PowerAssertTest {
     static PowerAssertTester test = new PowerAssertTester();
 
     @Test
-    public void shortConstantAndVariable() throws Exception {
+    void shortConstantAndVariable() {
         short value = 2;
 
         test.willUse("1");
@@ -35,7 +35,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void shortBigConstantAndVariable() throws Exception {
+    void shortBigConstantAndVariable() {
         short value = 2;
 
         test.willUse("128");
@@ -44,7 +44,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void nullLiteral1() throws Exception {
+    void nullLiteral1() {
         String value = "";
 
         test.willCapture("value", value);
@@ -52,7 +52,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void nullLiteral2() throws Exception {
+    void nullLiteral2() {
         String value = null;
 
         test.willCapture("value", value);
@@ -60,7 +60,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void nullValue() throws Exception {
+    void nullValue() {
         String value = null;
 
         test.willCapture("value", value);
@@ -68,7 +68,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void nullParameter() throws Exception {
+    void nullParameter() {
         test.willCapture("nullMethod(null)", false);
         assert nullMethod(null);
     }
@@ -78,7 +78,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void classLiteral() throws Exception {
+    void classLiteral() {
         Class value = int.class;
 
         test.willCapture("value", value);
@@ -87,13 +87,13 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void classLiteralWithMethodCall() throws Exception {
+    void classLiteralWithMethodCall() {
         test.willCapture("Integer.class.getName()", "java.lang.Integer");
         assert Integer.class.getName() == "fail";
     }
 
     @Test
-    public void enumLiteral() throws Exception {
+    void enumLiteral() {
         RetentionPolicy value = RetentionPolicy.CLASS;
 
         test.willCapture("value", RetentionPolicy.CLASS);
@@ -102,7 +102,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void methodCall() throws Exception {
+    void methodCall() {
         String value = "test";
 
         test.willCapture("value", value);
@@ -111,7 +111,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void methodCallWithNot() throws Exception {
+    void methodCallWithNot() {
         String value = "test";
 
         test.willCapture("value", value);
@@ -120,7 +120,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void privateMethodCall() throws Exception {
+    void privateMethodCall() {
         assert privateMethod();
     }
 
@@ -129,7 +129,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void methodCalls() throws Exception {
+    void methodCalls() {
         String value = "test";
 
         test.willCapture("value", value);
@@ -139,7 +139,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void methodCallInt() throws Exception {
+    void methodCallInt() {
         List list = new ArrayList();
         list.add("a");
         list.add("b");
@@ -151,7 +151,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void methodCallObject() throws Exception {
+    void methodCallObject() {
         List list = new ArrayList();
         list.add("a");
         list.add("b");
@@ -163,7 +163,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void methodStaticCall() throws Exception {
+    void methodStaticCall() {
         Object value = "";
 
         test.willCapture("Integer.valueOf(10)", new Integer(10));
@@ -172,7 +172,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void lessThan() {
+    void lessThan() {
         int one = 10;
         int other = 20;
 
@@ -183,7 +183,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void lessEqual() {
+    void lessEqual() {
         int one = 10;
         int other = 20;
 
@@ -194,7 +194,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void greaterThan() {
+    void greaterThan() {
         int one = 10;
         int other = 20;
 
@@ -205,7 +205,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void greaterEqual() {
+    void greaterEqual() {
         int one = 10;
         int other = 20;
 
@@ -216,7 +216,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void addition() {
+    void addition() {
         int one = 10;
         int other = 20;
 
@@ -228,7 +228,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void subtraction() {
+    void subtraction() {
         int one = 10;
         int other = 20;
 
@@ -240,7 +240,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void multiplication() {
+    void multiplication() {
         int one = 10;
         int other = 20;
 
@@ -252,7 +252,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void division() {
+    void division() {
         int one = 10;
         int other = 20;
 
@@ -264,7 +264,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void remainder() {
+    void remainder() {
         int one = 10;
         int other = 20;
 
@@ -276,7 +276,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void negative() {
+    void negative() {
         int one = 10;
         int other = 20;
 
@@ -288,7 +288,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void leftShift() {
+    void leftShift() {
         int one = 10;
         int other = 20;
 
@@ -300,7 +300,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void rightShift() {
+    void rightShift() {
         int one = 10;
         int other = 20;
 
@@ -312,7 +312,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void unrotateRightShift() {
+    void unrotateRightShift() {
         int one = 10;
         int other = 20;
 
@@ -324,7 +324,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void or() {
+    void or() {
         int one = 10;
         int other = 20;
 
@@ -336,7 +336,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void xor() {
+    void xor() {
         int one = 10;
         int other = 20;
 
@@ -348,7 +348,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void and() {
+    void and() {
         int one = 10;
         int other = 20;
 
@@ -360,7 +360,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void increment() {
+    void increment() {
         int one = 10;
         int other = 20;
 
@@ -372,7 +372,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void incrementPre() {
+    void incrementPre() {
         int one = 10;
         int other = 20;
 
@@ -384,7 +384,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void decrement() {
+    void decrement() {
         int one = 10;
         int other = 20;
 
@@ -396,7 +396,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void decrementPre() {
+    void decrementPre() {
         int one = 10;
         int other = 20;
 
@@ -408,7 +408,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void instanceOf() {
+    void instanceOf() {
         Object value = "test";
 
         test.willCapture("value", value);
@@ -417,7 +417,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void instantiate() {
+    void instantiate() {
         Object value = "test";
 
         test.willCapture("value", value);
@@ -426,7 +426,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void instantiateWithParameter() {
+    void instantiateWithParameter() {
         Object value = "test";
 
         test.willCapture("value", value);
@@ -435,7 +435,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void assertTwice() throws Exception {
+    void assertTwice() {
         int value = 2;
         assert value != 1; // success
 
@@ -445,7 +445,7 @@ public class PowerAssertTest {
     }
 
     @Test
-    public void external() {
+    void external() {
         String value = "test";
 
         test.willCapture("value", value);

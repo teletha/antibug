@@ -23,6 +23,7 @@ import java.util.List;
 
 import filer.Filer;
 import kiss.I;
+import kiss.WiseRunnable;
 
 /**
  * <p>
@@ -178,7 +179,7 @@ public class AntiBug {
      * @param FilePath A FilePath to read from
      * @param charset A character set used when writing the file. If you don't specify.
      * @return the first line, or null if the FilePath is empty
-     * @throws IOException if an I/O error occurs
+     * @throws IOException if an  I/O error occurs
      */
     public static final String readLine(Path path, Charset... charset) {
         List<String> lines = readLines(path, option(charset, StandardCharsets.UTF_8), false);
@@ -195,7 +196,7 @@ public class AntiBug {
      * @param FilePath A FilePath to read from
      * @param charset A character set used when writing the file. If you don't specify.
      * @return the first line, or null if the FilePath is empty
-     * @throws IOException if an I/O error occurs
+     * @throws IOException if an  I/O error occurs
      */
     public static final List<String> readLines(Path path, Charset... charset) {
         return readLines(path, option(charset, StandardCharsets.UTF_8), true);
@@ -231,6 +232,21 @@ public class AntiBug {
             return all ? lines : lines.isEmpty() ? Collections.EMPTY_LIST : Collections.singletonList(lines.get(0));
         } catch (IOException e) {
             throw I.quiet(e);
+        }
+    }
+
+    /**
+     * Helper method to catch error.
+     * 
+     * @param code
+     * @return
+     */
+    public static final Throwable willCatch(WiseRunnable code) {
+        try {
+            code.run();
+            return null;
+        } catch (Throwable e) {
+            return e;
         }
     }
 }
