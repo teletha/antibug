@@ -9,6 +9,8 @@
  */
 package antibug;
 
+import org.junit.jupiter.api.Test;
+
 /**
  * @version 2018/03/31 8:44:55
  */
@@ -20,7 +22,9 @@ public class AAATEst {
     }
 
     @Test
-    void ok1() {
-        System.out.println("OK1");
+    void fail() {
+        System.out.println("Start Fail Test");
+        int value = 20;
+        assert 10 == value;
     }
 }
