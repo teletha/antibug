@@ -9,12 +9,12 @@
  */
 public class Project extends bee.api.Project {
 
-    String JunitVersion = "5.1.0";
+    String JunitVersion = "[5.1.0,)";
 
-    String BuddyVersion = "1.8.3";
+    String BuddyVersion = "[1.8.3,)";
 
     {
-        product("com.github.teletha", "antibug", "0.3");
+        product("com.github.teletha", "antibug", "0.6");
         producer("Nameless Production Committee");
         describe("JUnit Extension Tools.");
 
