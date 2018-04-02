@@ -9,18 +9,25 @@
  */
 package antibug;
 
+import java.io.File;
 import java.io.Serializable;
 import java.lang.invoke.SerializedLambda;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
+import kiss.I;
 import kiss.WiseBiConsumer;
 import kiss.WiseConsumer;
 import kiss.WiseRunnable;
+import kiss.WiseTriConsumer;
 import net.bytebuddy.jar.asm.Type;
 
 /**
@@ -31,7 +38,18 @@ public class Code {
     private static final Map<String, Object> defaults = new HashMap();
 
     static {
+        defaults.put(Type.getInternalName(int.class), 0);
+        defaults.put(Type.getInternalName(long.class), 0L);
+        defaults.put(Type.getInternalName(float.class), 0F);
+        defaults.put(Type.getInternalName(double.class), 0D);
+        defaults.put(Type.getInternalName(byte.class), 0);
+        defaults.put(Type.getInternalName(char.class), ' ');
+        defaults.put(Type.getInternalName(boolean.class), false);
+        defaults.put(Type.getInternalName(BigInteger.class), BigInteger.ZERO);
+        defaults.put(Type.getInternalName(BigDecimal.class), BigDecimal.ZERO);
         defaults.put(Type.getInternalName(String.class), "");
+        defaults.put(Type.getInternalName(Path.class), Paths.get(""));
+        defaults.put(Type.getInternalName(File.class), new File(""));
     }
 
     /**
@@ -50,24 +68,38 @@ public class Code {
         }
     }
 
-    public static boolean requireNonNull(WiseRunnable code) {
-        return true;
-    }
-
+    /**
+     * Check <code>null</code> paramter.
+     * 
+     * @param code
+     * @return
+     */
     public static <P> boolean rejectNullArgs(WiseConsumer<P> code) {
-        assert catches(() -> code.accept(null)) instanceof NullPointerException : "Code must reject null argument.";
-        return true;
+        return rejectNullArgs(code, params -> code.accept((P) params.get(0)));
     }
 
+    /**
+     * Check <code>null</code> paramter.
+     * 
+     * @param code
+     * @return
+     */
     public static <P1, P2> boolean rejectNullArgs(WiseBiConsumer<P1, P2> code) {
-        execute(code, params -> {
-            code.accept((P1) params.get(0), (P2) params.get(1));
-        });
-        return true;
+        return rejectNullArgs(code, params -> code.accept((P1) params.get(0), (P2) params.get(1)));
     }
 
-    private static void execute(Serializable code, Consumer<List> executor) {
-        SerializedLambda lambda = getSerializedLambda(code);
+    /**
+     * Check <code>null</code> paramter.
+     * 
+     * @param code
+     * @return
+     */
+    public static <P1, P2, P3> boolean rejectNullArgs(WiseTriConsumer<P1, P2, P3> code) {
+        return rejectNullArgs(code, params -> code.accept((P1) params.get(0), (P2) params.get(1), (P3) params.get(2)));
+    }
+
+    private static boolean rejectNullArgs(Serializable code, Consumer<List> executor) {
+        SerializedLambda lambda = lambda(code);
         Type type = Type.getMethodType(lambda.getImplMethodSignature());
         Type[] types = type.getArgumentTypes();
         List defaultValues = new ArrayList();
@@ -83,15 +115,16 @@ public class Code {
             Throwable error = catches(() -> executor.accept(list));
             assert error instanceof NullPointerException || error instanceof IllegalArgumentException;
         }
-
+        return true;
     }
 
-    // getting the SerializedLambda
-    public static SerializedLambda getSerializedLambda(Object function) {
-        if (function == null || !(function instanceof java.io.Serializable)) {
-            throw new IllegalArgumentException();
-        }
-
+    /**
+     * Compute {@link SerializedLambda}.
+     * 
+     * @param function
+     * @return
+     */
+    private static SerializedLambda lambda(Serializable function) {
         for (Class<?> clazz = function.getClass(); clazz != null; clazz = clazz.getSuperclass()) {
             try {
                 Method replaceMethod = clazz.getDeclaredMethod("writeReplace");
@@ -103,11 +136,10 @@ public class Code {
                 }
             } catch (NoSuchMethodError e) {
                 // fall through the loop and try the next class
-            } catch (Throwable t) {
-                throw new RuntimeException("Error while extracting serialized lambda", t);
+            } catch (Throwable e) {
+                throw I.quiet(e);
             }
         }
-
         throw new RuntimeException("writeReplace method not found");
     }
 }
