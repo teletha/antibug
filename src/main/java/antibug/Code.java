@@ -69,6 +69,18 @@ public class Code {
     }
 
     /**
+     * Capture {@link NullPointerException}.
+     * 
+     * @param code An executable code.
+     * @return A result.
+     */
+    public static boolean catcheNPE(WiseRunnable code) {
+        assert catches(code) instanceof NullPointerException;
+
+        return true;
+    }
+
+    /**
      * Check <code>null</code> paramter.
      * 
      * @param code
