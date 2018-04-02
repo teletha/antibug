@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.StringJoiner;
 import java.util.concurrent.ConcurrentHashMap;
 
 import net.bytebuddy.jar.asm.Type;
@@ -313,7 +314,20 @@ public class PowerAssertContext implements Journal {
      * {@inheritDoc}
      */
     @Override
-    public void lambda(String methodName, String description) {
+    public void lambda(String name, String description) {
+        Lambda lambda = new Lambda(name, null, description);
+        stack.add(lambda);
+        operands.add(lambda);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void methodReference(String methodName, String description) {
+        MethodReference ref = new MethodReference(methodName, null, stack.pollLast());
+        stack.add(ref);
+        operands.add(ref);
     }
 
     /**
@@ -804,6 +818,87 @@ public class PowerAssertContext implements Journal {
             builder.append(')');
 
             return builder.toString();
+        }
+    }
+
+    /**
+     * @version 2018/04/02 23:00:08
+     */
+    private class Lambda extends Operand {
+
+        /** The return type. */
+        private final Type returnType;
+
+        /** The paramter types. */
+        private final Type[] parameterTypes;
+
+        /**
+         * @param name
+         * @param value
+         */
+        private Lambda(String name, Object value, String desription) {
+            super(name, value);
+
+            Type type = Type.getMethodType(desription);
+            this.returnType = type.getReturnType();
+            this.parameterTypes = type.getArgumentTypes();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString() {
+            StringJoiner joiner = parameterTypes.length == 1 ? new StringJoiner(", ") : new StringJoiner(", ", "(", ")");
+            for (int i = 0; i < parameterTypes.length; i++) {
+                joiner.add("p" + (i + 1));
+            }
+            return joiner + " -> { ... }";
+        }
+    }
+
+    /**
+     * @version 2018/04/03 8:05:36
+     */
+    private class MethodReference extends Operand {
+
+        private final Operand callee;
+
+        /**
+         * @param name
+         * @param value
+         */
+        private MethodReference(String name, Object value, Operand callee) {
+            super(name, value);
+
+            this.callee = callee;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString() {
+            if (callee instanceof Invocation) {
+                Invocation invocation = (Invocation) callee;
+
+                if (invocation.methodName.equals("getClass")) {
+                    // When the JDK compiler compiles the code including "instance method
+                    // reference", it
+                    // generates the byte code expressed in following ASM codes.
+                    //
+                    // visitInsn(DUP);
+                    // visitMethodInsn(INVOKEVIRTUAL,
+                    // "java/lang/Object","getClass","()Ljava/lang/Class;");
+                    // visitInsn(POP);
+                    //
+                    // Although i guess that it is the initialization code for the class to
+                    // which the lambda method belongs, ECJ doesn't generated such code.
+                    // so we should delete them unconditionally.
+                    return invocation.invoker + "::" + name;
+                }
+            }
+            return callee + "::" + name;
         }
     }
 }

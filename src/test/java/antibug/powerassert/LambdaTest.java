@@ -9,26 +9,72 @@
  */
 package antibug.powerassert;
 
-import org.junit.jupiter.api.Disabled;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 /**
  * @version 2018/03/31 16:31:21
  */
-public class LambdaTest {
+class LambdaTest {
 
     @RegisterExtension
     static PowerAssertTester test = new PowerAssertTester();
 
     @Test
-    @Disabled
-    public void runnable() throws Exception {
-        test.willCapture("runnable(() -> new Object())", false);
+    void runnable() {
+        test.willCapture("runnable(() -> { ... })", false);
         assert runnable(() -> new Object());
     }
 
     private boolean runnable(Runnable run) {
         return false;
+    }
+
+    @Test
+    void runnableMethodReference() {
+        List list = new ArrayList();
+
+        test.willCapture("runnable(list::clear)", false);
+        assert runnable(list::clear);
+    }
+
+    @Test
+    void consumer() {
+        test.willCapture("consumer(p1 -> { ... })", false);
+        assert consumer(v -> v.toString());
+    }
+
+    private boolean consumer(Consumer<String> value) {
+        return false;
+    }
+
+    @Test
+    void consumerMethodReference() {
+        test.willCapture("consumer(this::consumerRef)", false);
+        assert consumer(this::consumerRef);
+    }
+
+    private void consumerRef(String value) {
+    }
+
+    @Test
+    void bifunction() {
+        test.willCapture("bifunction((p1, p2) -> { ... })", false);
+        assert bifunction((context, value) -> "");
+    }
+
+    private boolean bifunction(BiFunction<String, String, String> run) {
+        return false;
+    }
+
+    @Test
+    void bifunctionMethodReference() {
+        test.willCapture("biconsumer(String::concat)", false);
+        assert bifunction(String::concat);
     }
 }

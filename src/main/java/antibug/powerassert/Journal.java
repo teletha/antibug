@@ -167,4 +167,14 @@ interface Journal {
      * @param description A method parameter size.
      */
     void lambda(String methodName, String description);
+
+    /**
+     * <p>
+     * Write method reference call.
+     * </p>
+     * 
+     * @param methodName A method name.
+     * @param description A method parameter size.
+     */
+    void methodReference(String methodName, String description);
 }

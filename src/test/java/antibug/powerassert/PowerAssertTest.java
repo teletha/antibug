@@ -166,7 +166,7 @@ public class PowerAssertTest {
     void methodStaticCall() {
         Object value = "";
 
-        test.willCapture("Integer.valueOf(10)", new Integer(10));
+        test.willCapture("Integer.valueOf(10)", Integer.valueOf(10));
         test.willCapture("value", "");
         assert Integer.valueOf(10) == value;
     }
