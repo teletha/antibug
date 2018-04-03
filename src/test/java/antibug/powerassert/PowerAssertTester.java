@@ -17,7 +17,7 @@ import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
 /**
- * @version 2018/03/31 12:24:38
+ * @version 2018/04/04 2:19:05
  */
 public class PowerAssertTester implements BeforeAllCallback, BeforeEachCallback {
 
@@ -26,6 +26,9 @@ public class PowerAssertTester implements BeforeAllCallback, BeforeEachCallback 
 
     /** For self test. */
     private final List<String> operators = new ArrayList();
+
+    /** The expected error message. */
+    private String message;
 
     /**
      * {@inheritDoc}
@@ -42,6 +45,7 @@ public class PowerAssertTester implements BeforeAllCallback, BeforeEachCallback 
     public void beforeEach(ExtensionContext context) throws Exception {
         expecteds.clear();
         operators.clear();
+        message = null;
     }
 
     /**
@@ -52,17 +56,8 @@ public class PowerAssertTester implements BeforeAllCallback, BeforeEachCallback 
      * @param context
      */
     void validate(PowerAssertionError e) {
-        validate(e.context);
-    }
+        PowerAssertContext context = e.context;
 
-    /**
-     * <p>
-     * Validate error message.
-     * </p>
-     * 
-     * @param context
-     */
-    void validate(PowerAssertContext context) {
         if (context.stack.size() != 1) {
             throw new AssertionError("Stack size is not 1. \n" + context.stack);
         }
@@ -81,6 +76,12 @@ public class PowerAssertTester implements BeforeAllCallback, BeforeEachCallback 
                 throw new AssertionError("Can't capture the below code.\r\nExpect  : " + operator + "\r\nCode : " + code);
             }
         }
+
+        if (message != null) {
+            if (!e.getMessage().startsWith(message)) {
+                throw new AssertionError("Actual message is [" + e.getMessage() + "].");
+            }
+        }
     }
 
     /**
@@ -96,5 +97,12 @@ public class PowerAssertTester implements BeforeAllCallback, BeforeEachCallback 
      */
     void willUse(String operator) {
         operators.add(operator);
+    }
+
+    /**
+     * @param string
+     */
+    void willMessage(String message) {
+        this.message = message;
     }
 }

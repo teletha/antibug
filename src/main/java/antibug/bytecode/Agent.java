@@ -45,7 +45,7 @@ import net.bytebuddy.jar.asm.Type;
  * Provide functionality to transform bytecode.
  * </p>
  * 
- * @version 2012/01/10 19:09:14
+ * @version 2018/04/04 0:49:41
  */
 public class Agent {
 
@@ -320,7 +320,7 @@ public class Agent {
          * 
          */
         protected Translator() {
-            super(Opcodes.ASM5, null);
+            super(Opcodes.ASM6, null);
         }
 
         /**

@@ -59,6 +59,7 @@ public class PowerAssert {
                         // translate assertion code only once
                         if (translated.add(clazz.getName())) {
                             agent.transform(clazz);
+
                             testExecutor.run();
                             return;
                         }
