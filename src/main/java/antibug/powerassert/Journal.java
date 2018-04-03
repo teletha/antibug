@@ -176,5 +176,5 @@ interface Journal {
      * @param methodName A method name.
      * @param description A method parameter size.
      */
-    void methodReference(String methodName, String description);
+    void methodReference(String methodName, String description, int parameterDiff);
 }

@@ -512,7 +512,7 @@ class PowerAssertTranslator extends Translator {
             Type callerType = Type.getMethodType(description);
             int parameterDiff = lambdaType.getArgumentTypes().length - functionalInterfaceType.getArgumentTypes().length;
             boolean useContext = callerType.getArgumentTypes().length - Math.max(parameterDiff, 0) == 1;
-
+            System.out.println(parameterDiff);
             // detect functional interface
             Class interfaceClass = convert(callerType.getReturnType());
             System.out.println(interfaceClass + "  " + name + "   " + description);
@@ -521,14 +521,14 @@ class PowerAssertTranslator extends Translator {
             Class lambdaClass = convert(handle.getOwner());
             String lambdaMethodName = handle.getName();
             String lambdaMethodSignature = handle.getDesc();
-            System.out.println(useContext + "  " + lambdaClass + "  " + lambdaMethodName + "  " + lambdaMethodSignature);
+            System.out.println(useContext + "  " + handle.getOwner() + "  " + lambdaMethodName + "  " + lambdaMethodSignature);
 
             if (handle.getTag() == H_INVOKESTATIC) {
                 // lambda
                 journal.lambda(handle.getName(), handle.getDesc());
             } else {
                 // method reference
-                journal.methodReference(handle.getName(), handle.getDesc());
+                journal.methodReference(handle.getName(), lambdaClass.getName(), parameterDiff);
             }
         }
     }

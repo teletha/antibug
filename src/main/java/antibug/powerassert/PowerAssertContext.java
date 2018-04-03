@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.StringJoiner;
 import java.util.concurrent.ConcurrentHashMap;
 
+import kiss.I;
 import net.bytebuddy.jar.asm.Type;
 
 /**
@@ -324,8 +325,8 @@ public class PowerAssertContext implements Journal {
      * {@inheritDoc}
      */
     @Override
-    public void methodReference(String methodName, String description) {
-        MethodReference ref = new MethodReference(methodName, null, stack.pollLast());
+    public void methodReference(String methodName, String className, int parameterDiff) {
+        MethodReference ref = new MethodReference(methodName, parameterDiff == -1 ? new Constant(I.type(className)) : stack.pollLast());
         stack.add(ref);
         operands.add(ref);
     }
@@ -868,8 +869,8 @@ public class PowerAssertContext implements Journal {
          * @param name
          * @param value
          */
-        private MethodReference(String name, Object value, Operand callee) {
-            super(name, value);
+        private MethodReference(String name, Operand callee) {
+            super(name, null);
 
             this.callee = callee;
         }
@@ -896,6 +897,14 @@ public class PowerAssertContext implements Journal {
                     // which the lambda method belongs, ECJ doesn't generated such code.
                     // so we should delete them unconditionally.
                     return invocation.invoker + "::" + name;
+                }
+            }
+
+            if (callee instanceof Constant) {
+                Constant constant = (Constant) callee;
+
+                if (constant.value instanceof Class) {
+                    return ((Class) constant.value).getSimpleName() + "::" + name;
                 }
             }
             return callee + "::" + name;
