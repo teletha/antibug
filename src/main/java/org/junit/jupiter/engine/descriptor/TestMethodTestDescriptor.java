@@ -33,11 +33,13 @@ import org.junit.jupiter.engine.execution.ExecutableInvoker;
 import org.junit.jupiter.engine.execution.JupiterEngineExecutionContext;
 import org.junit.jupiter.engine.execution.ThrowableCollector;
 import org.junit.jupiter.engine.extension.ExtensionRegistry;
+import org.junit.platform.commons.util.AnnotationUtils;
 import org.junit.platform.commons.util.ExceptionUtils;
 import org.junit.platform.engine.TestDescriptor;
 import org.junit.platform.engine.UniqueId;
 
 import antibug.powerassert.PowerAssert;
+import antibug.powerassert.PowerAssertOff;
 
 /**
  * {@link TestDescriptor} for tests based on Java methods.
@@ -162,6 +164,14 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
                 Object instance = extensionContext.getRequiredTestInstance();
                 executableInvoker.invoke(testMethod, instance, extensionContext, context.getExtensionRegistry());
             } catch (Throwable throwable) {
+                ExtensionContext c = context.getExtensionContext();
+                Optional<PowerAssertOff> off = AnnotationUtils.findAnnotation(c.getTestMethod(), PowerAssertOff.class);
+                Optional<PowerAssertOff> offAll = AnnotationUtils.findAnnotation(c.getTestClass(), PowerAssertOff.class);
+
+                if (off.isPresent() || offAll.isPresent()) {
+                    throw throwable;
+                }
+
                 PowerAssert.capture(throwable, () -> {
                     invokeTestMethod(context, dynamicTestExecutor);
                 }, e -> {
