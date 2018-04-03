@@ -20,11 +20,10 @@ import java.util.Map;
 import java.util.StringJoiner;
 import java.util.concurrent.ConcurrentHashMap;
 
-import kiss.I;
 import net.bytebuddy.jar.asm.Type;
 
 /**
- * @version 2013/08/28 16:48:33
+ * @version 2018/04/03 23:42:29
  */
 public class PowerAssertContext implements Journal {
 
@@ -315,8 +314,12 @@ public class PowerAssertContext implements Journal {
      * {@inheritDoc}
      */
     @Override
-    public void lambda(String name, String description) {
-        Lambda lambda = new Lambda(name, null, description);
+    public void lambda(String name, String description, int referenceSize) {
+        for (int i = 0; i < referenceSize; i++) {
+            stack.pollLast();
+        }
+
+        Lambda lambda = new Lambda(name, null, description, referenceSize);
         stack.add(lambda);
         operands.add(lambda);
     }
@@ -325,8 +328,11 @@ public class PowerAssertContext implements Journal {
      * {@inheritDoc}
      */
     @Override
-    public void methodReference(String methodName, String className, int parameterDiff) {
-        MethodReference ref = new MethodReference(methodName, parameterDiff == -1 ? new Constant(I.type(className)) : stack.pollLast());
+    public void methodReference(String className, String methodName, int referenceSize) {
+        if (referenceSize == -1) {
+            stack.add(new ClassReference(className));
+        }
+        MethodReference ref = new MethodReference(methodName, stack.pollLast());
         stack.add(ref);
         operands.add(ref);
     }
@@ -827,22 +833,22 @@ public class PowerAssertContext implements Journal {
      */
     private class Lambda extends Operand {
 
-        /** The return type. */
-        private final Type returnType;
-
         /** The paramter types. */
         private final Type[] parameterTypes;
+
+        /** The outer reference size. */
+        private final int referenceSize;
 
         /**
          * @param name
          * @param value
          */
-        private Lambda(String name, Object value, String desription) {
+        private Lambda(String name, Object value, String desription, int referenceSize) {
             super(name, value);
 
             Type type = Type.getMethodType(desription);
-            this.returnType = type.getReturnType();
             this.parameterTypes = type.getArgumentTypes();
+            this.referenceSize = referenceSize;
         }
 
         /**
@@ -850,8 +856,10 @@ public class PowerAssertContext implements Journal {
          */
         @Override
         public String toString() {
-            StringJoiner joiner = parameterTypes.length == 1 ? new StringJoiner(", ") : new StringJoiner(", ", "(", ")");
-            for (int i = 0; i < parameterTypes.length; i++) {
+            int size = parameterTypes.length - referenceSize;
+
+            StringJoiner joiner = size == 1 ? new StringJoiner(", ") : new StringJoiner(", ", "(", ")");
+            for (int i = 0; i < size; i++) {
                 joiner.add("p" + (i + 1));
             }
             return joiner + " -> { ... }";
@@ -900,14 +908,20 @@ public class PowerAssertContext implements Journal {
                 }
             }
 
-            if (callee instanceof Constant) {
-                Constant constant = (Constant) callee;
-
-                if (constant.value instanceof Class) {
-                    return ((Class) constant.value).getSimpleName() + "::" + name;
-                }
-            }
             return callee + "::" + name;
+        }
+    }
+
+    /**
+     * @version 2018/04/03 22:56:53
+     */
+    private static class ClassReference extends Operand {
+
+        /**
+         * @param value
+         */
+        private ClassReference(String className) {
+            super(className, className, Type.getType(Class.class));
         }
     }
 }

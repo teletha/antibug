@@ -11,8 +11,6 @@ package antibug.powerassert;
 
 import static net.bytebuddy.jar.asm.Opcodes.*;
 
-import java.lang.reflect.Array;
-
 import antibug.bytecode.Agent.Translator;
 import antibug.bytecode.Bytecode;
 import antibug.bytecode.LocalVariable;
@@ -21,7 +19,7 @@ import net.bytebuddy.jar.asm.Label;
 import net.bytebuddy.jar.asm.Type;
 
 /**
- * @version 2012/01/14 22:48:47
+ * @version 2018/04/03 23:42:19
  */
 class PowerAssertTranslator extends Translator {
 
@@ -509,98 +507,15 @@ class PowerAssertTranslator extends Translator {
             Handle handle = (Handle) bsmArgs[1];
             Type functionalInterfaceType = (Type) bsmArgs[0];
             Type lambdaType = Type.getMethodType(handle.getDesc());
-            Type callerType = Type.getMethodType(description);
             int parameterDiff = lambdaType.getArgumentTypes().length - functionalInterfaceType.getArgumentTypes().length;
-            boolean useContext = callerType.getArgumentTypes().length - Math.max(parameterDiff, 0) == 1;
-            System.out.println(parameterDiff);
-            // detect functional interface
-            Class interfaceClass = convert(callerType.getReturnType());
-            System.out.println(interfaceClass + "  " + name + "   " + description);
-
-            // detect lambda method
-            Class lambdaClass = convert(handle.getOwner());
-            String lambdaMethodName = handle.getName();
-            String lambdaMethodSignature = handle.getDesc();
-            System.out.println(useContext + "  " + handle.getOwner() + "  " + lambdaMethodName + "  " + lambdaMethodSignature);
 
             if (handle.getTag() == H_INVOKESTATIC) {
                 // lambda
-                journal.lambda(handle.getName(), handle.getDesc());
+                journal.lambda(handle.getName(), handle.getDesc(), parameterDiff);
             } else {
                 // method reference
-                journal.methodReference(handle.getName(), lambdaClass.getName(), parameterDiff);
+                journal.methodReference(computeClassName(handle.getOwner()), handle.getName(), parameterDiff);
             }
-        }
-    }
-
-    /**
-     * Convert parameter type to class.
-     * 
-     * @param type A parameter {@link Type}.
-     * @return A parameter {@link Class}.
-     */
-    static final Class convert(Type type) {
-        switch (type.getSort()) {
-        case Type.INT:
-            return int.class;
-
-        case Type.LONG:
-            return long.class;
-
-        case Type.FLOAT:
-            return float.class;
-
-        case Type.DOUBLE:
-            return double.class;
-
-        case Type.CHAR:
-            return char.class;
-
-        case Type.BYTE:
-            return byte.class;
-
-        case Type.SHORT:
-            return short.class;
-
-        case Type.BOOLEAN:
-            return boolean.class;
-
-        case Type.VOID:
-            return void.class;
-
-        case Type.ARRAY:
-            return Array.newInstance(convert(type.getElementType()), new int[type.getDimensions()]).getClass();
-
-        default:
-            try {
-                return Class.forName(type.getClassName());
-            } catch (ClassNotFoundException e) {
-                // If this exception will be thrown, it is bug of this program. So we must
-                // rethrow the wrapped error in here.
-                throw new Error(e);
-            }
-        }
-    }
-
-    /**
-     * <p>
-     * Helper method to convert the specified class name to {@link Class}.
-     * </p>
-     * 
-     * @param className A fully qualified internal class name.
-     * @return Java class.
-     */
-    static final Class convert(String className) {
-        if (className == null) {
-            return null;
-        }
-
-        try {
-            return Class.forName(className.replace('/', '.'));
-        } catch (ClassNotFoundException e) {
-            // If this exception will be thrown, it is bug of this program. So we must rethrow the
-            // wrapped error in here.
-            throw new Error(e);
         }
     }
 }

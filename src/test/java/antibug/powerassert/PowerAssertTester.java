@@ -68,7 +68,6 @@ public class PowerAssertTester implements BeforeAllCallback, BeforeEachCallback 
         }
 
         String code = context.stack.peek().toString();
-        System.out.println(code);
 
         for (Operand expected : expecteds) {
             if (!context.operands.contains(expected)) {

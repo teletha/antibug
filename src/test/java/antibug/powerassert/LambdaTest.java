@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -74,7 +75,19 @@ class LambdaTest {
 
     @Test
     void bifunctionMethodReference() {
-        test.willCapture("biconsumer(String::concat)", false);
+        test.willCapture("bifunction(String::concat)", false);
         assert bifunction(String::concat);
+    }
+
+    @Test
+    void supplier() {
+        String value = "outer";
+
+        test.willCapture("supplier(() -> { ... })", false);
+        assert supplier(() -> value);
+    }
+
+    private boolean supplier(Supplier<String> supplier) {
+        return false;
     }
 }
