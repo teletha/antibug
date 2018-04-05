@@ -13,23 +13,26 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 /**
- * @version 2018/03/31 16:31:52
+ * @version 2018/04/05 9:27:45
  */
-public class ObjectTest {
+class ObjectTest {
 
     @RegisterExtension
     static PowerAssertTester test = new PowerAssertTester();
 
     @Test
-    public void constant() {
+    void constant() {
         Object value = new Object();
+        Object other = new Object();
 
         test.willCapture("value", value);
-        assert null == value;
+        test.willCapture("other", value);
+        assert value == other;
     }
 
+    @SuppressWarnings("null")
     @Test
-    public void not() {
+    void not() {
         Object value = null;
 
         test.willUse("!=");
@@ -38,15 +41,16 @@ public class ObjectTest {
     }
 
     @Test
-    public void array() {
+    void array() {
         Object[] array = {"0", "1", "2"};
+        Object[] other = {"0", "1", "2"};
 
         test.willCapture("array", array);
-        assert array == null;
+        assert array == other;
     }
 
     @Test
-    public void arrayIndex() {
+    void arrayIndex() {
         Object[] array = {"0", "1", "2"};
 
         test.willCapture("array", array);
@@ -55,7 +59,7 @@ public class ObjectTest {
     }
 
     @Test
-    public void arrayLength() {
+    void arrayLength() {
         Object[] array = {"0", "1", "2"};
 
         test.willCapture("array", array);
@@ -64,19 +68,19 @@ public class ObjectTest {
     }
 
     @Test
-    public void arrayNew() {
+    void arrayNew() {
         test.willUse("new Object[] {\"1\", \"2\"}");
         assert new Object[] {"1", "2"} == null;
     }
 
     @Test
-    public void varargZero() {
+    void varargZero() {
         test.willCapture("var()", false);
         assert var();
     }
 
     @Test
-    public void varargs() {
+    void varargs() {
         String value = "B";
 
         test.willCapture("value", value);
@@ -89,7 +93,7 @@ public class ObjectTest {
     }
 
     @Test
-    public void varargsWithHead() {
+    void varargsWithHead() {
         test.willCapture("head(\"1\")", false);
         assert head("1");
     }
@@ -99,7 +103,7 @@ public class ObjectTest {
     }
 
     @Test
-    public void method() {
+    void method() {
         test.willCapture("test()", "1");
         assert test() == "2";
     }
@@ -109,7 +113,7 @@ public class ObjectTest {
     }
 
     @Test
-    public void methodChain() {
+    void methodChain() {
         String base = "X";
 
         test.willCapture("base", "X");
@@ -119,7 +123,7 @@ public class ObjectTest {
     }
 
     @Test
-    public void parameter() {
+    void parameter() {
         test.willCapture("test(\"12\")", false);
         assert test("12");
     }
@@ -129,7 +133,7 @@ public class ObjectTest {
     }
 
     @Test
-    public void parameterWithVarArg() {
+    void parameterWithVarArg() {
         test.willCapture("var2()", false);
         assert var2();
     }
@@ -145,13 +149,13 @@ public class ObjectTest {
     private static Object ObjectFieldStatic = "11";
 
     @Test
-    public void fieldObjectAccess() {
+    void fieldObjectAccess() {
         test.willCapture("ObjectField", "11");
         assert ObjectField == "";
     }
 
     @Test
-    public void fieldObjectStaticAccess() {
+    void fieldObjectStaticAccess() {
         test.willCapture("ObjectFieldStatic", "11");
         assert ObjectFieldStatic == "";
     }

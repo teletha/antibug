@@ -21,7 +21,7 @@ public class IntTest {
     static PowerAssertTester test = new PowerAssertTester();
 
     @Test
-    public void constant_0() throws Exception {
+    void constant_0() {
         int value = -1;
 
         test.willUse("0");
@@ -30,7 +30,7 @@ public class IntTest {
     }
 
     @Test
-    public void constant_1() throws Exception {
+    void constant_1() {
         int value = -1;
 
         test.willUse("1");
@@ -39,7 +39,7 @@ public class IntTest {
     }
 
     @Test
-    public void constant_2() throws Exception {
+    void constant_2() {
         int value = -1;
 
         test.willUse("2");
@@ -48,7 +48,7 @@ public class IntTest {
     }
 
     @Test
-    public void constant_3() throws Exception {
+    void constant_3() {
         int value = -1;
 
         test.willUse("3");
@@ -57,7 +57,7 @@ public class IntTest {
     }
 
     @Test
-    public void constant_M1() throws Exception {
+    void constant_M1() {
         int value = 0;
 
         test.willUse("-1");
@@ -66,7 +66,7 @@ public class IntTest {
     }
 
     @Test
-    public void big() throws Exception {
+    void big() {
         int value = 2;
 
         test.willUse("123456789");
@@ -75,7 +75,7 @@ public class IntTest {
     }
 
     @Test
-    public void not() throws Exception {
+    void not() {
         int value = 10;
 
         test.willUse("10");
@@ -85,7 +85,7 @@ public class IntTest {
     }
 
     @Test
-    public void negative() throws Exception {
+    void negative() {
         int value = 10;
 
         test.willUse("10");
@@ -95,15 +95,16 @@ public class IntTest {
     }
 
     @Test
-    public void array() throws Exception {
+    void array() {
         int[] array = {0, 1, 2};
+        int[] other = {0, 1, 2};
 
         test.willCapture("array", array);
-        assert array == null;
+        assert array == other;
     }
 
     @Test
-    public void arrayIndex() throws Exception {
+    void arrayIndex() {
         int[] array = {0, 1, 2};
 
         test.willCapture("array", array);
@@ -112,7 +113,7 @@ public class IntTest {
     }
 
     @Test
-    public void arrayLength() throws Exception {
+    void arrayLength() {
         int[] array = {0, 1, 2};
 
         test.willCapture("array", array);
@@ -121,13 +122,13 @@ public class IntTest {
     }
 
     @Test
-    public void arrayNew() throws Exception {
+    void arrayNew() {
         test.willUse("new int[] {1, 2}");
         assert new int[] {1, 2} == null;
     }
 
     @Test
-    public void varargs() throws Exception {
+    void varargs() {
         test.willCapture("var()", false);
         assert var();
     }
@@ -137,7 +138,7 @@ public class IntTest {
     }
 
     @Test
-    public void varargsWithHead() throws Exception {
+    void varargsWithHead() {
         test.willCapture("head(1)", false);
         assert head(1);
     }
@@ -147,7 +148,7 @@ public class IntTest {
     }
 
     @Test
-    public void method() throws Exception {
+    void method() {
         test.willCapture("test()", 1);
         assert test() == 2;
     }
@@ -157,7 +158,7 @@ public class IntTest {
     }
 
     @Test
-    public void parameter() throws Exception {
+    void parameter() {
         test.willCapture("test(12)", false);
         assert test(12);
     }
@@ -173,13 +174,13 @@ public class IntTest {
     private static int intFieldStatic = 11;
 
     @Test
-    public void fieldIntAccess() throws Exception {
+    void fieldIntAccess() {
         test.willCapture("intField", 11);
         assert intField == 0;
     }
 
     @Test
-    public void fieldIntAccessWithHiddenName() throws Exception {
+    void fieldIntAccessWithHiddenName() {
         int intField = 11;
 
         test.willCapture("this.intField", intField);
@@ -187,7 +188,7 @@ public class IntTest {
     }
 
     @Test
-    public void fieldIntStaticAccess() throws Exception {
+    void fieldIntStaticAccess() {
         test.willCapture("intFieldStatic", 11);
         assert intFieldStatic == 0;
     }

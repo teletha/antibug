@@ -13,15 +13,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 /**
- * @version 2018/03/31 16:31:35
+ * @version 2018/04/05 9:28:37
  */
-public class LongTest {
+class LongTest {
 
     @RegisterExtension
     static PowerAssertTester test = new PowerAssertTester();
 
     @Test
-    public void constant_0() throws Exception {
+    void constant_0() {
         long value = -1;
 
         test.willUse("0");
@@ -30,7 +30,7 @@ public class LongTest {
     }
 
     @Test
-    public void constant_1() throws Exception {
+    void constant_1() {
         long value = -1;
 
         test.willUse("1");
@@ -39,7 +39,7 @@ public class LongTest {
     }
 
     @Test
-    public void constant_2() throws Exception {
+    void constant_2() {
         long value = -1;
 
         test.willUse("2");
@@ -48,7 +48,7 @@ public class LongTest {
     }
 
     @Test
-    public void constant_3() throws Exception {
+    void constant_3() {
         long value = -1;
 
         test.willUse("3");
@@ -57,7 +57,7 @@ public class LongTest {
     }
 
     @Test
-    public void constant_M1() throws Exception {
+    void constant_M1() {
         long value = 0;
 
         test.willUse("-1");
@@ -66,7 +66,7 @@ public class LongTest {
     }
 
     @Test
-    public void big() throws Exception {
+    void big() {
         long value = 2;
 
         test.willUse("1234567890123");
@@ -75,7 +75,7 @@ public class LongTest {
     }
 
     @Test
-    public void not() throws Exception {
+    void not() {
         long value = 10;
 
         test.willUse("10");
@@ -85,7 +85,7 @@ public class LongTest {
     }
 
     @Test
-    public void negative() throws Exception {
+    void negative() {
         long value = 10;
 
         test.willUse("10");
@@ -95,15 +95,16 @@ public class LongTest {
     }
 
     @Test
-    public void array() throws Exception {
+    void array() {
         long[] array = {0, 1, 2};
+        long[] other = {0, 1, 2};
 
         test.willCapture("array", array);
-        assert array == null;
+        assert array == other;
     }
 
     @Test
-    public void arrayIndex() throws Exception {
+    void arrayIndex() {
         long[] array = {0, 1, 2};
 
         test.willCapture("array", array);
@@ -112,7 +113,7 @@ public class LongTest {
     }
 
     @Test
-    public void arrayLength() throws Exception {
+    void arrayLength() {
         long[] array = {0, 1, 2};
 
         test.willCapture("array", array);
@@ -121,13 +122,13 @@ public class LongTest {
     }
 
     @Test
-    public void arrayNew() throws Exception {
+    void arrayNew() {
         test.willUse("new long[] {1, 2}");
         assert new long[] {1, 2} == null;
     }
 
     @Test
-    public void varargs() throws Exception {
+    void varargs() {
         test.willCapture("var()", false);
         assert var();
     }
@@ -137,7 +138,7 @@ public class LongTest {
     }
 
     @Test
-    public void method() throws Exception {
+    void method() {
         test.willCapture("test()", 1L);
         assert test() == 2;
     }
@@ -147,7 +148,7 @@ public class LongTest {
     }
 
     @Test
-    public void parameter() throws Exception {
+    void parameter() {
         test.willCapture("test(12)", false);
         assert test(12);
     }
@@ -163,13 +164,13 @@ public class LongTest {
     private static long longFieldStatic = 11;
 
     @Test
-    public void fieldLongAccess() throws Exception {
+    void fieldLongAccess() {
         test.willCapture("longField", 11L);
         assert longField == 0;
     }
 
     @Test
-    public void fieldIntAccessWithHiddenName() throws Exception {
+    void fieldIntAccessWithHiddenName() {
         long longField = 11;
 
         test.willCapture("this.longField", longField);
@@ -177,7 +178,7 @@ public class LongTest {
     }
 
     @Test
-    public void fieldLongStaticAccess() throws Exception {
+    void fieldLongStaticAccess() {
         test.willCapture("longFieldStatic", 11L);
         assert longFieldStatic == 0;
     }

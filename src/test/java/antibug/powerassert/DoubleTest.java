@@ -97,9 +97,10 @@ public class DoubleTest {
     @Test
     public void array() throws Exception {
         double[] array = {0, 1, 2};
+        double[] other = {0, 1, 2};
 
         test.willCapture("array", array);
-        assert array == null;
+        assert array == other;
     }
 
     @Test

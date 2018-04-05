@@ -15,13 +15,13 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 /**
  * @version 2018/03/31 16:30:56
  */
-public class CharacterTest {
+class CharacterTest {
 
     @RegisterExtension
     static PowerAssertTester test = new PowerAssertTester();
 
     @Test
-    public void constant() throws Exception {
+    void constant() {
         char value = 'a';
 
         test.willUse("'b'");
@@ -30,7 +30,7 @@ public class CharacterTest {
     }
 
     @Test
-    public void not() throws Exception {
+    void not() {
         char value = 'b';
 
         test.willUse("'b'");
@@ -40,15 +40,16 @@ public class CharacterTest {
     }
 
     @Test
-    public void array() throws Exception {
+    void array() {
         char[] array = {0, 1, 2};
+        char[] other = {0, 1, 2};
 
         test.willCapture("array", array);
-        assert array == null;
+        assert array == other;
     }
 
     @Test
-    public void arrayIndex() throws Exception {
+    void arrayIndex() {
         char[] array = {'a', '1', 'あ'};
 
         test.willCapture("array", array);
@@ -58,7 +59,7 @@ public class CharacterTest {
     }
 
     @Test
-    public void arrayLength() throws Exception {
+    void arrayLength() {
         char[] array = {'a', '1', 'あ'};
 
         test.willCapture("array", array);
@@ -67,13 +68,13 @@ public class CharacterTest {
     }
 
     @Test
-    public void arrayNew() throws Exception {
+    void arrayNew() {
         test.willUse("new char[] {'a', '1'} == null");
         assert new char[] {'a', '1'} == null;
     }
 
     @Test
-    public void varargs() throws Exception {
+    void varargs() {
         test.willCapture("var()", false);
         assert var();
     }
@@ -83,7 +84,7 @@ public class CharacterTest {
     }
 
     @Test
-    public void varargsWithHead() throws Exception {
+    void varargsWithHead() {
         test.willCapture("head('c')", false);
         assert head('c');
     }
@@ -93,7 +94,7 @@ public class CharacterTest {
     }
 
     @Test
-    public void method() throws Exception {
+    void method() {
         test.willCapture("test()", 'r');
         test.willUse("'a'");
         assert test() == 'a';
@@ -104,7 +105,7 @@ public class CharacterTest {
     }
 
     @Test
-    public void parameter() throws Exception {
+    void parameter() {
         test.willCapture("test('p')", false);
         assert test('p');
     }
@@ -120,14 +121,14 @@ public class CharacterTest {
     private static char charFieldStatic = 'a';
 
     @Test
-    public void fieldCharacterAccess() throws Exception {
+    void fieldCharacterAccess() {
         test.willCapture("charField", 'a');
         test.willUse("'b'");
         assert charField == 'b';
     }
 
     @Test
-    public void fieldIntAccessWithHiddenName() throws Exception {
+    void fieldIntAccessWithHiddenName() {
         char charField = 'a';
 
         test.willCapture("this.charField", charField);
@@ -135,7 +136,7 @@ public class CharacterTest {
     }
 
     @Test
-    public void fieldCharacterStaticAccess() throws Exception {
+    void fieldCharacterStaticAccess() {
         test.willCapture("charFieldStatic", 'a');
         test.willUse("'b'");
         assert charFieldStatic == 'b';

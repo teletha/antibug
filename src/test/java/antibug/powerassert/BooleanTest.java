@@ -15,13 +15,13 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 /**
  * @version 2018/03/31 12:25:18
  */
-public class BooleanTest {
+class BooleanTest {
 
     @RegisterExtension
     static PowerAssertTester test = new PowerAssertTester();
 
     @Test
-    public void constant() throws Exception {
+    void constant() {
         boolean value = false;
 
         test.willCapture("value", value);
@@ -29,7 +29,7 @@ public class BooleanTest {
     }
 
     @Test
-    public void not() throws Exception {
+    void not() {
         boolean value = true;
 
         test.willUse("!");
@@ -38,15 +38,16 @@ public class BooleanTest {
     }
 
     @Test
-    public void array() throws Exception {
+    void array() {
         boolean[] array = {false, false, false};
+        boolean[] other = {false, false, false};
 
         test.willCapture("array", array);
-        assert array == null;
+        assert array == other;
     }
 
     @Test
-    public void arrayIndex() throws Exception {
+    void arrayIndex() {
         boolean[] array = {false, false, false};
 
         test.willCapture("array", array);
@@ -55,7 +56,7 @@ public class BooleanTest {
     }
 
     @Test
-    public void arrayLength() throws Exception {
+    void arrayLength() {
         boolean[] array = {false, false, false};
 
         test.willCapture("array", array);
@@ -64,13 +65,13 @@ public class BooleanTest {
     }
 
     @Test
-    public void arrayNew() throws Exception {
+    void arrayNew() {
         test.willUse("new boolean[] {true, false}");
         assert new boolean[] {true, false} == null;
     }
 
     @Test
-    public void varargs() throws Exception {
+    void varargs() {
         test.willCapture("var()", false);
         assert var();
     }
@@ -80,7 +81,7 @@ public class BooleanTest {
     }
 
     @Test
-    public void method() throws Exception {
+    void method() {
         test.willCapture("test()", false);
         assert test();
     }
@@ -90,7 +91,7 @@ public class BooleanTest {
     }
 
     @Test
-    public void parameter() throws Exception {
+    void parameter() {
         test.willCapture("test(false)", false);
         assert test(false);
     }
@@ -106,13 +107,13 @@ public class BooleanTest {
     private static boolean booleanFieldStatic = false;
 
     @Test
-    public void fieldBooleanAccess() throws Exception {
+    void fieldBooleanAccess() {
         test.willCapture("booleanField", false);
         assert booleanField;
     }
 
     @Test
-    public void fieldIntAccessWithHiddenName() throws Exception {
+    void fieldIntAccessWithHiddenName() {
         boolean booleanField = false;
 
         test.willCapture("this.booleanField", booleanField);
@@ -120,7 +121,7 @@ public class BooleanTest {
     }
 
     @Test
-    public void fieldBooleanStaticAccess() throws Exception {
+    void fieldBooleanStaticAccess() {
         test.willCapture("booleanFieldStatic", false);
         assert booleanFieldStatic;
     }

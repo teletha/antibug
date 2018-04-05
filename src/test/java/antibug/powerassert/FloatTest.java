@@ -13,15 +13,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 /**
- * @version 2018/03/31 16:30:46
+ * @version 2018/04/05 9:31:44
  */
-public class FloatTest {
+class FloatTest {
 
     @RegisterExtension
     static PowerAssertTester test = new PowerAssertTester();
 
     @Test
-    public void constant_0() throws Exception {
+    void constant_0() {
         float value = -1;
 
         test.willUse("0");
@@ -30,7 +30,7 @@ public class FloatTest {
     }
 
     @Test
-    public void constant_1() throws Exception {
+    void constant_1() {
         float value = -1;
 
         test.willUse("1");
@@ -39,7 +39,7 @@ public class FloatTest {
     }
 
     @Test
-    public void constant_2() throws Exception {
+    void constant_2() {
         float value = -1;
 
         test.willUse("2");
@@ -48,7 +48,7 @@ public class FloatTest {
     }
 
     @Test
-    public void constant_3() throws Exception {
+    void constant_3() {
         float value = -1;
 
         test.willUse("3");
@@ -57,7 +57,7 @@ public class FloatTest {
     }
 
     @Test
-    public void constant_M1() throws Exception {
+    void constant_M1() {
         float value = 0;
 
         test.willUse("-1");
@@ -66,7 +66,7 @@ public class FloatTest {
     }
 
     @Test
-    public void big() throws Exception {
+    void big() {
         float value = 2;
 
         test.willUse("0.12345678");
@@ -75,7 +75,7 @@ public class FloatTest {
     }
 
     @Test
-    public void not() throws Exception {
+    void not() {
         float value = 0.3f;
 
         test.willUse("0.3");
@@ -85,7 +85,7 @@ public class FloatTest {
     }
 
     @Test
-    public void negative() throws Exception {
+    void negative() {
         float value = 0.3f;
 
         test.willUse("0.3");
@@ -95,15 +95,16 @@ public class FloatTest {
     }
 
     @Test
-    public void array() throws Exception {
+    void array() {
         float[] array = {0, 1, 2};
+        float[] other = {0, 1, 2};
 
         test.willCapture("array", array);
-        assert array == null;
+        assert array == other;
     }
 
     @Test
-    public void arrayIndex() throws Exception {
+    void arrayIndex() {
         float[] array = {0, 1, 2};
 
         test.willCapture("array", array);
@@ -112,7 +113,7 @@ public class FloatTest {
     }
 
     @Test
-    public void arrayLength() throws Exception {
+    void arrayLength() {
         float[] array = {0, 1, 2};
 
         test.willCapture("array", array);
@@ -121,13 +122,13 @@ public class FloatTest {
     }
 
     @Test
-    public void arrayNew() throws Exception {
+    void arrayNew() {
         test.willUse("new float[] {1.0, 2.0}");
         assert new float[] {1, 2} == null;
     }
 
     @Test
-    public void varargs() throws Exception {
+    void varargs() {
         test.willCapture("var()", false);
         assert var();
     }
@@ -137,7 +138,7 @@ public class FloatTest {
     }
 
     @Test
-    public void method() throws Exception {
+    void method() {
         test.willCapture("test()", 1f);
         assert test() == 2f;
     }
@@ -147,7 +148,7 @@ public class FloatTest {
     }
 
     @Test
-    public void parameter() throws Exception {
+    void parameter() {
         test.willCapture("test(12.0)", false);
         assert test(12);
     }
@@ -163,13 +164,13 @@ public class FloatTest {
     private static float floatFieldStatic = 0.123f;
 
     @Test
-    public void fieldFloatAccess() throws Exception {
+    void fieldFloatAccess() {
         test.willCapture("floatField", 0.123f);
         assert floatField == 0;
     }
 
     @Test
-    public void fieldIntAccessWithHiddenName() throws Exception {
+    void fieldIntAccessWithHiddenName() {
         float floatField = 0.123f;
 
         test.willCapture("this.floatField", floatField);
@@ -177,7 +178,7 @@ public class FloatTest {
     }
 
     @Test
-    public void fieldFloatStaticAccess() throws Exception {
+    void fieldFloatStaticAccess() {
         test.willCapture("floatFieldStatic", 0.123f);
         assert floatFieldStatic == 0;
     }

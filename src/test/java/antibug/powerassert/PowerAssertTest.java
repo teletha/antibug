@@ -20,7 +20,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 /**
  * @version 2018/03/31 16:32:05
  */
-public class PowerAssertTest {
+class PowerAssertTest {
 
     @RegisterExtension
     static PowerAssertTester test = new PowerAssertTester();
