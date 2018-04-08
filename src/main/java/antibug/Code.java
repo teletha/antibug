@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringJoiner;
 import java.util.function.Consumer;
 
 import kiss.I;
@@ -130,17 +131,24 @@ public class Code {
             defaultValues.add(defaults.get(types[i].getInternalName()));
         }
 
+        // compute method name
+        String className = name(Type.getObjectType(lambda.getImplClass()));
+        StringJoiner methodName = new StringJoiner(", ", className + "#" + lambda.getImplMethodName() + "(", ")");
+        for (Type param : types) {
+            methodName.add(name(param));
+        }
+
         for (int i = 0; i < types.length; i++) {
             List list = new ArrayList(defaultValues);
             list.set(i, null);
 
             Throwable error = catches(() -> executor.accept(list));
-            assert error instanceof NullPointerException || error instanceof IllegalArgumentException;
+            assert error instanceof NullPointerException || error instanceof IllegalArgumentException : "The method [" + methodName + "] must reject null input.";
         }
 
         if (rejectDefault) {
             Throwable error = catches(() -> executor.accept(defaultValues));
-            assert error instanceof NullPointerException || error instanceof IllegalArgumentException;
+            assert error instanceof NullPointerException || error instanceof IllegalArgumentException : "The method [" + methodName + "]  must reject empty input.";
         }
         return true;
     }
@@ -168,5 +176,11 @@ public class Code {
             }
         }
         throw new RuntimeException("writeReplace method not found");
+    }
+
+    private static String name(Type type) {
+        String name = type.getClassName();
+        int index = name.lastIndexOf(".");
+        return index == -1 ? name : name.substring(index + 1);
     }
 }
