@@ -26,7 +26,7 @@ class ObjectTest {
         Object other = new Object();
 
         test.willCapture("value", value);
-        test.willCapture("other", value);
+        test.willCapture("other", other);
         assert value == other;
     }
 

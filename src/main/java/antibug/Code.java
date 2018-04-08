@@ -87,7 +87,7 @@ public class Code {
      * @return
      */
     public static <P> boolean rejectNullArgs(WiseConsumer<P> code) {
-        return rejectNullArgs(code, params -> code.accept((P) params.get(0)));
+        return rejectArgs(code, params -> code.accept((P) params.get(0)), false);
     }
 
     /**
@@ -97,7 +97,7 @@ public class Code {
      * @return
      */
     public static <P1, P2> boolean rejectNullArgs(WiseBiConsumer<P1, P2> code) {
-        return rejectNullArgs(code, params -> code.accept((P1) params.get(0), (P2) params.get(1)));
+        return rejectArgs(code, params -> code.accept((P1) params.get(0), (P2) params.get(1)), false);
     }
 
     /**
@@ -107,10 +107,20 @@ public class Code {
      * @return
      */
     public static <P1, P2, P3> boolean rejectNullArgs(WiseTriConsumer<P1, P2, P3> code) {
-        return rejectNullArgs(code, params -> code.accept((P1) params.get(0), (P2) params.get(1), (P3) params.get(2)));
+        return rejectArgs(code, params -> code.accept((P1) params.get(0), (P2) params.get(1), (P3) params.get(2)), false);
     }
 
-    private static boolean rejectNullArgs(Serializable code, Consumer<List> executor) {
+    /**
+     * Check <code>null</code> or empty paramter.
+     * 
+     * @param code
+     * @return
+     */
+    public static boolean rejectEmptyArgs(WiseConsumer<String> code) {
+        return rejectArgs(code, params -> code.accept((String) params.get(0)), true);
+    }
+
+    private static boolean rejectArgs(Serializable code, Consumer<List> executor, boolean rejectDefault) {
         SerializedLambda lambda = lambda(code);
         Type type = Type.getMethodType(lambda.getImplMethodSignature());
         Type[] types = type.getArgumentTypes();
@@ -125,6 +135,11 @@ public class Code {
             list.set(i, null);
 
             Throwable error = catches(() -> executor.accept(list));
+            assert error instanceof NullPointerException || error instanceof IllegalArgumentException;
+        }
+
+        if (rejectDefault) {
+            Throwable error = catches(() -> executor.accept(defaultValues));
             assert error instanceof NullPointerException || error instanceof IllegalArgumentException;
         }
         return true;
