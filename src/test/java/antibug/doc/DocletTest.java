@@ -11,6 +11,7 @@ package antibug.doc;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Locale;
 
@@ -38,7 +39,7 @@ public class DocletTest {
 
     public static void main(String[] args) throws Exception {
         Path output = Filer.locate(".doc");
-        Filer.createDirectory(output);
+        Files.createDirectories(output);
 
         DocumentationTool doc = ToolProvider.getSystemDocumentationTool();
         StandardJavaFileManager manager = doc.getStandardFileManager(null, Locale.getDefault(), StandardCharsets.UTF_8);
