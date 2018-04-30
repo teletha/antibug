@@ -22,6 +22,7 @@ public class Project extends bee.api.Project {
         require("com.github.teletha", "filer", "0.5");
         require("org.junit.jupiter", "junit-jupiter-api", JunitVersion);
         require("org.junit.jupiter", "junit-jupiter-engine", JunitVersion);
+        require("org.junit.platform", "junit-platform-launcher", "1.2.0");
         require("net.bytebuddy", "byte-buddy", BuddyVersion);
         require("net.bytebuddy", "byte-buddy-agent", BuddyVersion);
 
