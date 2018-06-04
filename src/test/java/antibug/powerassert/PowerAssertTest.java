@@ -463,4 +463,22 @@ class PowerAssertTest {
             assert value.length() == 20;
         }
     }
+
+    @Test
+    void lambda() {
+        String value = "test";
+        String axx = "";
+
+        test.willCapture("value", value);
+        test.willCapture("value.length()", 4);
+        validate(() -> {
+            System.out.println(axx.length() + "  " + value.length());
+            assert value.length() == 5;
+        });
+    }
+
+    private void validate(Runnable run) {
+        run.run();
+    }
+
 }

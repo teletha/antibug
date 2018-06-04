@@ -227,6 +227,7 @@ public class PowerAssertContext implements Journal {
     @Override
     public void local(int methodId, int index, Object variable) {
         Operand operand;
+        System.out.println("Local " + methodId);
         String[] local = locals.get(methodId).get(index);
         String name = local[0];
 
@@ -239,16 +240,16 @@ public class PowerAssertContext implements Journal {
         Type type = Type.getType(local[1]);
 
         switch (type.getSort()) {
-        case BOOLEAN: // boolean
+        case BOOLEAN:
             operand = new Operand(local[0], (int) variable == 1);
             break;
 
-        case CHAR: // char
+        case CHAR:
             operand = new Operand(local[0], (char) ((Integer) variable).intValue());
             break;
 
         default:
-            operand = new Operand(local[0], variable, Type.getType(local[1]));
+            operand = new Operand(local[0], variable, type);
             break;
         }
 
@@ -421,8 +422,7 @@ public class PowerAssertContext implements Journal {
 
     /**
      * <p>
-     * Helper method to chech whether the specified method declare the spcified local variable or
-     * not.
+     * Helper method to chech whether the specified method declare the spcified local variable or not.
      * </p>
      * 
      * @param methodId
