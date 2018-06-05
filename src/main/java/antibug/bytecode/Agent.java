@@ -313,6 +313,9 @@ public class Agent {
         /** The internal method type. */
         protected Type methodType;
 
+        /** The method identifier. */
+        protected int methodIdentifier;
+
         /** The local variable manager. */
         private Variables variables;
 
@@ -333,6 +336,7 @@ public class Agent {
             this.className = className;
             this.methodName = methodName;
             this.methodType = methodDescriptor;
+            this.methodIdentifier = (className + "#" + methodName + methodDescriptor).hashCode();
             this.variables = manager.collectors.get(methodName + methodDescriptor.getDescriptor());
         }
 

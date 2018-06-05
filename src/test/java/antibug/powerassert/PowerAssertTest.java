@@ -13,6 +13,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -467,12 +468,10 @@ class PowerAssertTest {
     @Test
     void lambda() {
         String value = "test";
-        String axx = "";
 
-        test.willCapture("value", value);
-        test.willCapture("value.length()", 4);
+        test.willCapture("var0", value);
+        test.willCapture("var0.length()", 4);
         validate(() -> {
-            System.out.println(axx.length() + "  " + value.length());
             assert value.length() == 5;
         });
     }
@@ -481,4 +480,18 @@ class PowerAssertTest {
         run.run();
     }
 
+    @Test
+    void lambdaWithParam() {
+        String value = "test";
+
+        test.willCapture("param", value);
+        test.willCapture("param.length()", 4);
+        validate(value, param -> {
+            assert param.length() == 5;
+        });
+    }
+
+    private void validate(String value, Consumer<String> run) {
+        run.accept(value);
+    }
 }

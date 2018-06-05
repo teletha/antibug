@@ -227,8 +227,16 @@ public class PowerAssertContext implements Journal {
     @Override
     public void local(int methodId, int index, Object variable) {
         Operand operand;
-        System.out.println("Local " + methodId);
-        String[] local = locals.get(methodId).get(index);
+        List<String[]> variables = locals.get(methodId);
+
+        if (variables == null) {
+            operand = new Operand("var" + index, variable);
+            stack.add(new Variable("var" + index, null, operand.value));
+            operands.add(operand);
+            return;
+        }
+
+        String[] local = variables.get(index);
         String name = local[0];
 
         if (nextIncrement != null) {
@@ -422,7 +430,8 @@ public class PowerAssertContext implements Journal {
 
     /**
      * <p>
-     * Helper method to chech whether the specified method declare the spcified local variable or not.
+     * Helper method to chech whether the specified method declare the spcified local variable or
+     * not.
      * </p>
      * 
      * @param methodId

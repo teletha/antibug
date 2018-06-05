@@ -73,7 +73,7 @@ class PowerAssertTranslator extends Translator {
 
             switch (opcode) {
             case GETFIELD:
-                journal.field(name, desc, local, hashCode());
+                journal.field(name, desc, local, methodIdentifier);
                 break;
 
             case GETSTATIC:
@@ -252,7 +252,7 @@ class PowerAssertTranslator extends Translator {
         super.visitIincInsn(index, increment);
 
         if (processAssertion) {
-            journal.increment(hashCode(), index, increment);
+            journal.increment(methodIdentifier, index, increment);
         }
     }
 
@@ -376,7 +376,7 @@ class PowerAssertTranslator extends Translator {
                 break;
 
             case ARRAYLENGTH:
-                journal.field("length", "I", copy(Type.INT_TYPE), hashCode());
+                journal.field("length", "I", copy(Type.INT_TYPE), methodIdentifier);
                 break;
 
             case IADD:
@@ -480,7 +480,7 @@ class PowerAssertTranslator extends Translator {
         super.visitVarInsn(opcode, index);
 
         if (processAssertion) {
-            journal.local(hashCode(), index, local(opcode, index));
+            journal.local(methodIdentifier, index, local(opcode, index));
         }
     }
 
@@ -491,7 +491,7 @@ class PowerAssertTranslator extends Translator {
     public void visitLocalVariable(String name, String desc, String signature, Label start, Label end, int index) {
         super.visitLocalVariable(name, desc, signature, start, end, index);
 
-        PowerAssertContext.registerLocalVariable(hashCode(), name, desc, index);
+        PowerAssertContext.registerLocalVariable(methodIdentifier, name, desc, index);
     }
 
     /**
@@ -501,7 +501,7 @@ class PowerAssertTranslator extends Translator {
     public void visitInvokeDynamicInsn(String name, String description, Handle bsm, Object... bsmArgs) {
         super.visitInvokeDynamicInsn(name, description, bsm, bsmArgs);
 
-        PowerAssertContext.registerLocalVariable(hashCode(), name, description, -1);
+        PowerAssertContext.registerLocalVariable(methodIdentifier, name, description, -1);
 
         if (processAssertion) {
             Handle handle = (Handle) bsmArgs[1];
