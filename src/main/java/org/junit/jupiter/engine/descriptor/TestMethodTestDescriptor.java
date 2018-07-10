@@ -173,13 +173,13 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
                 }
 
                 PowerAssert.capture(throwable, () -> {
+                    invokeBeforeEachMethods(context);
                     invokeTestMethod(context, dynamicTestExecutor);
                 }, e -> {
                     invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), extensionContext, e);
                 });
             }
         });
-
     }
 
     private void invokeTestExecutionExceptionHandlers(ExtensionRegistry registry, ExtensionContext context, Throwable ex) {
