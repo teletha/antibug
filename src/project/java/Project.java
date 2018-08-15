@@ -9,7 +9,7 @@
  */
 public class Project extends bee.api.Project {
 
-    String JunitVersion = "[5.1.0,)";
+    String JunitVersion = "5.2.0";
 
     String BuddyVersion = "[1.8.3,)";
 
