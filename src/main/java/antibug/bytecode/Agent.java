@@ -214,7 +214,7 @@ public class Agent {
              * @param arg0
              */
             private ClassTranslator(ClassWriter writer, String className, LocalVariableManager manager) {
-                super(Opcodes.ASM5, writer);
+                super(Opcodes.ASM6, writer);
 
                 this.className = className;
                 this.manager = manager;
@@ -255,7 +255,7 @@ public class Agent {
          * @param api
          */
         private LocalVariableManager() {
-            super(Opcodes.ASM5);
+            super(Opcodes.ASM6);
         }
 
         /**
@@ -286,7 +286,7 @@ public class Agent {
          * @param api
          */
         private Variables() {
-            super(Opcodes.ASM5);
+            super(Opcodes.ASM6);
         }
 
         /**

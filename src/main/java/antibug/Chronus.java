@@ -193,7 +193,7 @@ public class Chronus {
              * @param arg0
              */
             private ClassTranslator(ClassWriter writer) {
-                super(ASM5, writer);
+                super(ASM6, writer);
             }
 
             /**
@@ -214,7 +214,7 @@ public class Chronus {
              * @param visitor
              */
             protected MethodTranslator(MethodVisitor visitor) {
-                super(ASM5, visitor);
+                super(ASM6, visitor);
             }
 
             /**
