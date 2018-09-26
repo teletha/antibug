@@ -30,7 +30,6 @@ class ObjectTest {
         assert value == other;
     }
 
-    @SuppressWarnings("null")
     @Test
     void not() {
         Object value = null;
