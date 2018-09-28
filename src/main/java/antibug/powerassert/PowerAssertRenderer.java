@@ -14,20 +14,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import kiss.Extensible;
-import kiss.I;
-import kiss.Manageable;
-import kiss.Singleton;
-import kiss.model.Model;
+import org.junit.platform.commons.util.ReflectionUtils;
 
 /**
- * <p>
- * Don't use automatic {@link Extensible} mechanism because {@link I#load(Class)} against test
- * classes directory will may cause some unpredictable error for tests. So we adopts special
- * extended mechanism by {@link #register(Class)}.
- * </p>
- * 
- * @version 2012/02/15 12:32:18
+ * @version 2018/09/28 21:20:09
  */
 public abstract class PowerAssertRenderer<T> {
 
@@ -35,19 +25,19 @@ public abstract class PowerAssertRenderer<T> {
     private static final Map<Type, Class<? extends PowerAssertRenderer>> renderers = new HashMap();
 
     static {
-        register(CharSequenceRenderer.class);
-        register(EnumRenderer.class);
-        register(CharacterRnederer.class);
-        register(ClassRnederer.class);
-        register(IntArrayRnederer.class);
-        register(LongArrayRnederer.class);
-        register(FloatArrayRnederer.class);
-        register(DoubleArrayRnederer.class);
-        register(BooleanArrayRnederer.class);
-        register(CharArrayRnederer.class);
-        register(ByteArrayRnederer.class);
-        register(ShortArrayRnederer.class);
-        register(ObjectArrayRnederer.class);
+        register(CharSequenceRenderer.class, CharSequence.class);
+        register(EnumRenderer.class, Enum.class);
+        register(CharacterRnederer.class, Character.class);
+        register(ClassRnederer.class, Class.class);
+        register(IntArrayRnederer.class, Integer.class);
+        register(LongArrayRnederer.class, Long.class);
+        register(FloatArrayRnederer.class, Float.class);
+        register(DoubleArrayRnederer.class, Double.class);
+        register(BooleanArrayRnederer.class, Boolean.class);
+        register(CharArrayRnederer.class, Character.class);
+        register(ByteArrayRnederer.class, Byte.class);
+        register(ShortArrayRnederer.class, Short.class);
+        register(ObjectArrayRnederer.class, Object.class);
 
         // Don't register ObjectRenderer because Object type must be evaluated at last.
         // register(ObjectRnederer.class);
@@ -60,12 +50,8 @@ public abstract class PowerAssertRenderer<T> {
      * 
      * @param renderer
      */
-    public static final void register(Class<? extends PowerAssertRenderer> renderer) {
-        Type[] params = Model.collectParameters(renderer, PowerAssertRenderer.class);
-
-        if (params.length == 1) {
-            renderers.put(params[0], renderer);
-        }
+    public static final void register(Class<? extends PowerAssertRenderer> renderer, Class type) {
+        renderers.put(type, renderer);
     }
 
     /**
@@ -77,14 +63,14 @@ public abstract class PowerAssertRenderer<T> {
      * @return A formatted message.
      */
     public static final String format(Object object) {
-        for (Class type : Model.collectTypes(object.getClass())) {
+        for (Class type : ReflectionUtils.getAllAssignmentCompatibleClasses(object.getClass())) {
             Class<? extends PowerAssertRenderer> renderer = renderers.get(type);
 
             if (renderer != null) {
-                return I.make(renderer).render(object);
+                return ReflectionUtils.newInstance(renderer).render(object);
             }
         }
-        return I.make(ObjectRnederer.class).render(object);
+        return ReflectionUtils.newInstance(ObjectRnederer.class).render(object);
     }
 
     /**
@@ -280,9 +266,8 @@ public abstract class PowerAssertRenderer<T> {
     }
 
     /**
-     * @version 2012/02/15 12:06:51
+     * @version 2018/09/28 21:20:00
      */
-    @Manageable(lifestyle = Singleton.class)
     private static final class ObjectRnederer extends PowerAssertRenderer<Object> {
 
         /**
