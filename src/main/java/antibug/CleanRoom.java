@@ -13,6 +13,7 @@ import static java.nio.file.FileVisitResult.*;
 import static java.nio.file.StandardCopyOption.*;
 
 import java.io.File;
+import java.io.IOError;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -186,7 +187,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
             if (modified != null) Files.setLastModifiedTime(file, FileTime.from(modified));
             return file;
         } catch (IOException e) {
-            throw I.quiet(e);
+            throw new IOError(e);
         }
     }
 
@@ -245,7 +246,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
             archives.add(system);
             return system.getPath("/");
         } catch (IOException e) {
-            throw I.quiet(e);
+            throw new IOError(e);
         }
     }
 
@@ -303,7 +304,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
 
             return directory;
         } catch (IOException e) {
-            throw I.quiet(e);
+            throw new IOError(e);
         }
     }
 
@@ -341,7 +342,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
                 try {
                     Files.createDirectories(virtual.getParent());
                 } catch (IOException e) {
-                    throw I.quiet(e);
+                    throw new IOError(e);
                 }
 
                 // create requested file
@@ -350,14 +351,14 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
                 } catch (FileAlreadyExistsException e) {
                     // ignore
                 } catch (IOException e) {
-                    throw I.quiet(e);
+                    throw new IOError(e);
                 }
             } else {
                 // create requested directory
                 try {
                     Files.createDirectories(virtual);
                 } catch (IOException e) {
-                    throw I.quiet(e);
+                    throw new IOError(e);
                 }
             }
         }
@@ -393,7 +394,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
             } catch (NoSuchFileException e) {
                 // if the archive file is deleted during test, we can ignore
             } catch (IOException e) {
-                throw I.quiet(e);
+                throw new IOError(e);
             }
         }
         archives.clear();
@@ -413,7 +414,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
         } catch (DirectoryNotEmptyException | NoSuchFileException e) {
             // CleanRoom is used by other testcase, So we can't delete.
         } catch (IOException e) {
-            throw I.quiet(e);
+            throw new IOError(e);
         }
     }
 
@@ -441,7 +442,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
             try {
                 Files.walkFileTree(path, new Sweeper());
             } catch (IOException e) {
-                throw I.quiet(e);
+                throw new IOError(e);
             }
         }
     }
@@ -527,7 +528,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
 
                 Files.write(file, lines);
             } catch (IOException e) {
-                throw I.quiet(e);
+                throw new IOError(e);
             }
             return file;
         }
@@ -563,7 +564,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
                 }
                 if (child != null) child.run();
             } catch (IOException e) {
-                throw I.quiet(e);
+                throw new IOError(e);
             } finally {
                 directories.pollLast();
             }
@@ -591,7 +592,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
                 }
                 child.run();
             } catch (IOException e) {
-                throw I.quiet(e);
+                throw new IOError(e);
             } finally {
                 directories.pollLast();
             }
@@ -601,7 +602,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
                 Files.walkFileTree(temp, archiver);
                 archiver.dispose();
             } catch (IOException e) {
-                throw I.quiet(e);
+                throw new IOError(e);
             }
             return zip;
         }
@@ -712,7 +713,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
             try {
                 super.close();
             } catch (IOException e) {
-                throw I.quiet(e);
+                throw new IOError(e);
             }
         }
     }

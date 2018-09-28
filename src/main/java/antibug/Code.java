@@ -24,7 +24,6 @@ import java.util.Map;
 import java.util.StringJoiner;
 import java.util.function.Consumer;
 
-import kiss.I;
 import kiss.WiseBiConsumer;
 import kiss.WiseConsumer;
 import kiss.WiseRunnable;
@@ -172,7 +171,7 @@ public class Code {
             } catch (NoSuchMethodError e) {
                 // fall through the loop and try the next class
             } catch (Throwable e) {
-                throw I.quiet(e);
+                throw new Error(e);
             }
         }
         throw new RuntimeException("writeReplace method not found");

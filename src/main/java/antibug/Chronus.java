@@ -21,7 +21,6 @@ import java.util.concurrent.Executors;
 
 import antibug.bytecode.Agent;
 import antibug.internal.Awaitable;
-import kiss.I;
 import net.bytebuddy.jar.asm.ClassReader;
 import net.bytebuddy.jar.asm.ClassVisitor;
 import net.bytebuddy.jar.asm.ClassWriter;
@@ -101,7 +100,7 @@ public class Chronus {
                 freezeNano(remaining);
             }
         } catch (InterruptedException e) {
-            throw I.quiet(e);
+            throw new Error(e);
         }
     }
 
@@ -179,7 +178,7 @@ public class Chronus {
                     return writer.toByteArray();
                 } catch (Throwable e) {
                     e.printStackTrace();
-                    throw I.quiet(e);
+                    throw new Error(e);
                 }
             }
         }
