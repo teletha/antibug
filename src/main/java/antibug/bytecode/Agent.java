@@ -27,7 +27,6 @@ import java.util.jar.Attributes;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
 
-import filer.Filer;
 import kiss.I;
 import kiss.model.Model;
 import net.bytebuddy.agent.ByteBuddyAgent;
@@ -133,7 +132,7 @@ public class Agent {
 
         try {
             // Build temporary agent jar.
-            Path jar = Filer.locateTemporary();
+            Path jar = Files.createTempFile("antibug", "agent.jar");
             new JarOutputStream(Files.newOutputStream(jar), manifest).close();
 
             // Load agent dynamically.

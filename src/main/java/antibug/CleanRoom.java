@@ -47,7 +47,6 @@ import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
-import filer.Filer;
 import kiss.Disposable;
 import kiss.I;
 
@@ -581,11 +580,12 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
          */
         public final Path zip(String name, Runnable child) {
             Path zip = directories.peekLast().resolve(name);
-
-            Path temp = Filer.locateTemporary();
-            directories.add(temp);
+            Path temp;
 
             try {
+                temp = Files.createTempDirectory("antibug");
+                directories.add(temp);
+
                 if (Files.notExists(temp)) {
                     Files.createDirectory(temp);
                 }
