@@ -24,8 +24,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import kiss.I;
-
 /**
  * <p>
  * This is internal API.
@@ -56,7 +54,7 @@ public class Awaitable {
                 try {
                     Thread.sleep(25);
                 } catch (InterruptedException e) {
-                    throw I.quiet(e);
+                    throw new Error(e);
                 }
 
                 long end = System.currentTimeMillis();
@@ -128,7 +126,7 @@ public class Awaitable {
             try {
                 call();
             } catch (Exception e) {
-                throw I.quiet(e);
+                throw new Error(e);
             }
         }
 

@@ -10,13 +10,12 @@
 package antibug;
 
 import java.io.BufferedReader;
+import java.io.IOError;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
-
-import kiss.I;
 
 /**
  * @version 2018/03/31 3:09:30
@@ -66,7 +65,7 @@ public class CommandLineUserTest {
         try {
             return new BufferedReader(new InputStreamReader(System.in)).readLine();
         } catch (IOException e) {
-            throw I.quiet(e);
+            throw new IOError(e);
         }
     }
 }

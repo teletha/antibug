@@ -22,8 +22,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import kiss.I;
-
 /**
  * @version 2018/03/31 3:10:33
  */
@@ -146,7 +144,7 @@ public class ChronusTest {
                 done = true;
                 value.incrementAndGet();
             } catch (Exception e) {
-                throw I.quiet(e);
+                throw new Error(e);
             }
         };
     }

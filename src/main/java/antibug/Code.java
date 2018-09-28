@@ -22,12 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
-import java.util.function.Consumer;
 
-import kiss.WiseBiConsumer;
-import kiss.WiseConsumer;
-import kiss.WiseRunnable;
-import kiss.WiseTriConsumer;
 import net.bytebuddy.jar.asm.Type;
 
 /**
@@ -120,7 +115,7 @@ public class Code {
         return rejectArgs(code, params -> code.accept((String) params.get(0)), true);
     }
 
-    private static boolean rejectArgs(Serializable code, Consumer<List> executor, boolean rejectDefault) {
+    private static boolean rejectArgs(Serializable code, WiseConsumer<List> executor, boolean rejectDefault) {
         SerializedLambda lambda = lambda(code);
         Type type = Type.getMethodType(lambda.getImplMethodSignature());
         Type[] types = type.getArgumentTypes();
@@ -181,5 +176,37 @@ public class Code {
         String name = type.getClassName();
         int index = name.lastIndexOf(".");
         return index == -1 ? name : name.substring(index + 1);
+    }
+
+    /**
+     * @version 2018/09/28 16:58:44
+     */
+    public static interface WiseRunnable extends Serializable {
+
+        void run() throws Throwable;
+    }
+
+    /**
+     * @version 2018/09/28 16:58:44
+     */
+    public static interface WiseConsumer<V> extends Serializable {
+
+        void accept(V value) throws Throwable;
+    }
+
+    /**
+     * @version 2018/09/28 16:58:44
+     */
+    public static interface WiseBiConsumer<V1, V2> extends Serializable {
+
+        void accept(V1 value1, V2 value2) throws Throwable;
+    }
+
+    /**
+     * @version 2018/09/28 16:58:44
+     */
+    public static interface WiseTriConsumer<V1, V2, V3> extends Serializable {
+
+        void accept(V1 value1, V2 value2, V3 value3) throws Throwable;
     }
 }

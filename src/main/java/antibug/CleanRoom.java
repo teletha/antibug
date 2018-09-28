@@ -48,9 +48,6 @@ import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
-import kiss.Disposable;
-import kiss.I;
-
 /**
  * <p>
  * The environmental rule for test that depends on file system.
@@ -611,7 +608,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     /**
      * @version 2015/07/13 22:01:18
      */
-    private static class Archiver extends ZipOutputStream implements FileVisitor<Path>, Disposable {
+    private static class Archiver extends ZipOutputStream implements FileVisitor<Path> {
 
         /** The base path. */
         private Path base;
@@ -669,7 +666,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
                 entry.setLastAccessTime(attrs.lastAccessTime());
                 entry.setLastModifiedTime(attrs.lastModifiedTime());
                 putNextEntry(entry);
-                I.copy(Files.newInputStream(file), this, true);
+                Files.newInputStream(file).transferTo(this);
                 closeEntry();
             } catch (IOException e) {
                 // ignore
@@ -705,11 +702,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
             // super.close();
         }
 
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void vandalize() {
+        public void dispose() {
             try {
                 super.close();
             } catch (IOException e) {
