@@ -27,8 +27,8 @@ import java.util.jar.Attributes;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
 
-import kiss.I;
-import kiss.model.Model;
+import org.junit.platform.commons.util.ReflectionUtils;
+
 import net.bytebuddy.agent.ByteBuddyAgent;
 import net.bytebuddy.agent.ByteBuddyAgent.ProcessProvider;
 import net.bytebuddy.jar.asm.ClassReader;
@@ -98,7 +98,7 @@ public class Agent {
             redefines.add(target.getName().replace('.', '/'));
             tool.retransformClasses(target);
         } catch (Exception e) {
-            throw I.quiet(e);
+            throw new Error(e);
         }
     }
 
@@ -138,7 +138,7 @@ public class Agent {
             // Load agent dynamically.
             ByteBuddyAgent.attach(jar.toFile(), ProcessProvider.ForCurrentVm.INSTANCE);
         } catch (Exception e) {
-            throw I.quiet(e);
+            throw new Error(e);
         }
     }
 
@@ -224,12 +224,16 @@ public class Agent {
              */
             @Override
             public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
-                MethodVisitor visitor = super.visitMethod(access, name, desc, signature, exceptions);
-                LocalVariableSorter sorter = new LocalVariableSorter(access, desc, visitor);
-                Translator translator = I.make(TranslatorTransformer.this.translator);
-                translator.set(sorter, className, name, Type.getMethodType(desc), manager);
+                try {
+                    MethodVisitor visitor = super.visitMethod(access, name, desc, signature, exceptions);
+                    LocalVariableSorter sorter = new LocalVariableSorter(access, desc, visitor);
+                    Translator translator = ReflectionUtils.newInstance(TranslatorTransformer.this.translator);
+                    translator.set(sorter, className, name, Type.getMethodType(desc), manager);
 
-                return translator;
+                    return translator;
+                } catch (Exception e) {
+                    throw new Error(e);
+                }
             }
         }
     }
@@ -387,7 +391,7 @@ public class Agent {
             mv.visitTypeInsn(NEW, type.getInternalName());
             mv.visitInsn(DUP);
             mv.visitMethodInsn(INVOKESPECIAL, type.getInternalName(), "<init>", Type
-                    .getConstructorDescriptor(Model.collectConstructors(instantiator)[0]), false);
+                    .getConstructorDescriptor(ReflectionUtils.getDeclaredConstructor(instantiator)), false);
 
             LocalVariable local = newLocal(type);
             local.store();

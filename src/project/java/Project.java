@@ -18,6 +18,7 @@ public class Project extends bee.api.Project {
         producer("Nameless Production Committee");
         describe("JUnit Extension Tools.");
 
+        require("com.github.teletha", "sinobu", "1.0");
         require("org.junit.jupiter", "junit-jupiter-api", JunitVersion);
         require("org.junit.jupiter", "junit-jupiter-engine", JunitVersion);
         require("org.junit.platform", "junit-platform-launcher", "1.2.0");
