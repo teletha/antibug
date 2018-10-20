@@ -29,15 +29,15 @@ public abstract class PowerAssertRenderer<T> {
         register(EnumRenderer.class, Enum.class);
         register(CharacterRnederer.class, Character.class);
         register(ClassRnederer.class, Class.class);
-        register(IntArrayRnederer.class, Integer.class);
-        register(LongArrayRnederer.class, Long.class);
-        register(FloatArrayRnederer.class, Float.class);
-        register(DoubleArrayRnederer.class, Double.class);
-        register(BooleanArrayRnederer.class, Boolean.class);
-        register(CharArrayRnederer.class, Character.class);
-        register(ByteArrayRnederer.class, Byte.class);
-        register(ShortArrayRnederer.class, Short.class);
-        register(ObjectArrayRnederer.class, Object.class);
+        register(IntArrayRnederer.class, Integer[].class, int[].class);
+        register(LongArrayRnederer.class, Long[].class, long[].class);
+        register(FloatArrayRnederer.class, Float[].class, float[].class);
+        register(DoubleArrayRnederer.class, Double[].class, double[].class);
+        register(BooleanArrayRnederer.class, Boolean[].class, boolean[].class);
+        register(CharArrayRnederer.class, Character[].class, char[].class);
+        register(ByteArrayRnederer.class, Byte[].class, byte[].class);
+        register(ShortArrayRnederer.class, Short[].class, short[].class);
+        register(ObjectArrayRnederer.class, Object[].class);
 
         // Don't register ObjectRenderer because Object type must be evaluated at last.
         // register(ObjectRnederer.class);
@@ -50,8 +50,10 @@ public abstract class PowerAssertRenderer<T> {
      * 
      * @param renderer
      */
-    public static final void register(Class<? extends PowerAssertRenderer> renderer, Class type) {
-        renderers.put(type, renderer);
+    public static final void register(Class<? extends PowerAssertRenderer> renderer, Class... types) {
+        for (Class type : types) {
+            renderers.put(type, renderer);
+        }
     }
 
     /**
