@@ -137,7 +137,7 @@ public abstract class PowerAssertRenderer<T> {
          */
         @Override
         protected String render(Class value) {
-            return value.getSimpleName() + ".class";
+            return value.getName() + ".class";
         }
     }
 
