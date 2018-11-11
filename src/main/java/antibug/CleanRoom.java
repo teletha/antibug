@@ -358,6 +358,12 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
                     throw new IOError(e);
                 }
             }
+        } else {
+            try {
+                Files.deleteIfExists(virtual);
+            } catch (IOException e) {
+                throw new IOError(e);
+            }
         }
 
         // validate file state
