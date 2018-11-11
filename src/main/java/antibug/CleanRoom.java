@@ -318,6 +318,22 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     }
 
     /**
+     * Locate a resource.
+     * 
+     * @param name A resource name.
+     * @return A located file system resource.
+     */
+    public Path locate(String name) {
+        // null check
+        if (name == null) {
+            name = "";
+        }
+
+        // locate virtual file in the clean room
+        return root.resolve(name);
+    }
+
+    /**
      * Helper method to locate file in clean room.
      * 
      * @param path
@@ -357,12 +373,6 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
                 } catch (IOException e) {
                     throw new IOError(e);
                 }
-            }
-        } else {
-            try {
-                Files.deleteIfExists(virtual);
-            } catch (IOException e) {
-                throw new IOError(e);
             }
         }
 
