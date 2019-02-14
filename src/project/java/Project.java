@@ -9,18 +9,17 @@
  */
 public class Project extends bee.api.Project {
 
-    String JunitVersion = "5.2.0";
+    String JunitVersion = "[5.4.0,)";
 
-    String BuddyVersion = "[1.8.20,)";
+    String BuddyVersion = "[1.9.10,)";
 
     {
-        product("com.github.teletha", "antibug", "0.6");
+        product("com.github.teletha", "antibug", "0.7");
         producer("Nameless Production Committee");
-        describe("JUnit Extension Tools.");
+        describe("Bug Detection Tools. (including PowerAssert");
 
         require("org.junit.jupiter", "junit-jupiter-api", JunitVersion);
         require("org.junit.jupiter", "junit-jupiter-engine", JunitVersion);
-        require("org.junit.platform", "junit-platform-launcher", "1.2.0");
         require("net.bytebuddy", "byte-buddy", BuddyVersion);
         require("net.bytebuddy", "byte-buddy-agent", BuddyVersion);
 
