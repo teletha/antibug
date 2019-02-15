@@ -37,17 +37,9 @@ public class Example implements Doclet {
 
     @Override
     public void init(Locale locale, Reporter reporter) {
+        System.out.println("INIT");
         reporter.print(Kind.NOTE, "Doclet using locale: " + locale);
         this.reporter = reporter;
-    }
-
-    public void printElement(DocTrees trees, Element e) {
-        DocCommentTree docCommentTree = trees.getDocCommentTree(e);
-        if (docCommentTree != null) {
-            System.out.println("Element (" + e.getKind() + ": " + e + ") has the following comments:");
-            System.out.println("Entire body: " + docCommentTree.getFullBody());
-            System.out.println("Block tags: " + docCommentTree.getBlockTags());
-        }
     }
 
     @Override
@@ -69,9 +61,6 @@ public class Example implements Doclet {
 
         for (TypeElement t : ElementFilter.typesIn(docEnv.getIncludedElements())) {
             System.out.println(t.getKind() + ":" + t);
-            for (Element e : t.getEnclosedElements()) {
-                printElement(docTrees, e);
-            }
         }
         return true;
     }
@@ -85,6 +74,7 @@ public class Example implements Doclet {
 
     @Override
     public Set<? extends Option> getSupportedOptions() {
+        System.out.println("");
         Option[] options = {new Option() {
             private final List<String> someOption = Arrays.asList("-overviewfile", "--overview-file", "-o");
 
