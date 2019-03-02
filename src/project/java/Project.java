@@ -9,9 +9,7 @@
  */
 public class Project extends bee.api.Project {
 
-    String JunitVersion = "5.4.0";
-
-    String BuddyVersion = "[1.9.10,)";
+    String JunitVersion = "LATEST";
 
     {
         product("com.github.teletha", "antibug", "0.7");
@@ -21,8 +19,8 @@ public class Project extends bee.api.Project {
         require("org.junit.jupiter", "junit-jupiter-api", JunitVersion);
         require("org.junit.jupiter", "junit-jupiter-engine", JunitVersion);
         require("org.junit.jupiter", "junit-jupiter-params", JunitVersion);
-        require("net.bytebuddy", "byte-buddy", BuddyVersion);
-        require("net.bytebuddy", "byte-buddy-agent", BuddyVersion);
+        require("net.bytebuddy", "byte-buddy");
+        require("net.bytebuddy", "byte-buddy-agent");
 
         versionControlSystem("https://github.com/teletha/antiBug");
     }
