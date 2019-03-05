@@ -23,13 +23,10 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
 
 /**
- * <p>
  * This is internal API.
- * </p>
- * 
- * @version 2014/03/05 22:06:45
  */
 public class Awaitable {
 
@@ -89,10 +86,10 @@ public class Awaitable {
     /**
      * @version 2014/03/05 23:43:32
      */
-    private static class Task<V> implements Callable, Runnable, Future<V>, ScheduledFuture<V> {
+    private static class Task<V> implements Callable<V>, Runnable, Future<V>, ScheduledFuture<V> {
 
         /** The actual task. */
-        private final Callable callable;
+        private final Callable<V> callable;
 
         /**
          * @param task
@@ -134,7 +131,7 @@ public class Awaitable {
          * {@inheritDoc}
          */
         @Override
-        public Object call() throws Exception {
+        public V call() throws Exception {
             try {
                 return callable.call();
             } finally {
@@ -330,7 +327,9 @@ public class Awaitable {
          */
         @Override
         public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks) throws InterruptedException {
-            throw new UnsupportedOperationException();
+            List<Task<T>> collect = tasks.stream().map(task -> new Task(task)).collect(Collectors.toList());
+
+            return service.invokeAll(collect);
         }
 
         /**
@@ -339,7 +338,9 @@ public class Awaitable {
         @Override
         public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
                 throws InterruptedException {
-            throw new UnsupportedOperationException();
+            List<Task<T>> collect = tasks.stream().map(task -> new Task(task)).collect(Collectors.toList());
+
+            return service.invokeAll(collect, timeout, unit);
         }
 
         /**
@@ -347,7 +348,9 @@ public class Awaitable {
          */
         @Override
         public <T> T invokeAny(Collection<? extends Callable<T>> tasks) throws InterruptedException, ExecutionException {
-            throw new UnsupportedOperationException();
+            List<Task<T>> collect = tasks.stream().map(task -> new Task(task)).collect(Collectors.toList());
+
+            return service.invokeAny(collect);
         }
 
         /**
@@ -356,7 +359,9 @@ public class Awaitable {
         @Override
         public <T> T invokeAny(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
                 throws InterruptedException, ExecutionException, TimeoutException {
-            throw new UnsupportedOperationException();
+            List<Task<T>> collect = tasks.stream().map(task -> new Task(task)).collect(Collectors.toList());
+
+            return service.invokeAny(collect, timeout, unit);
         }
     }
 
