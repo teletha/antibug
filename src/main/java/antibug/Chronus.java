@@ -20,9 +20,11 @@ import java.util.concurrent.Delayed;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -48,7 +50,7 @@ public class Chronus implements ScheduledExecutorService {
      * By {@link Executors#newCachedThreadPool()}.
      */
     public Chronus() {
-        this(() -> Executors.newScheduledThreadPool(1));
+        this(() -> Executors.newScheduledThreadPool(ForkJoinPool.getCommonPoolParallelism()));
     }
 
     /**
@@ -67,6 +69,21 @@ public class Chronus implements ScheduledExecutorService {
      */
     private ScheduledExecutorService executor() {
         return holder.updateAndGet(e -> e != null ? e : builder.get());
+    }
+
+    /**
+     * Config the limit size of execution threads.
+     * 
+     * @param size
+     * @return
+     */
+    public Chronus configExecutionLimit(int size) {
+        ScheduledExecutorService executor = executor();
+
+        if (executor instanceof ThreadPoolExecutor) {
+            ((ThreadPoolExecutor) executor).setCorePoolSize(size);
+        }
+        return this;
     }
 
     /**
