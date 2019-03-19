@@ -5,69 +5,290 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *          https://opensource.org/licenses/MIT
+ *          http://opensource.org/licenses/mit-license.php
  */
 package antibug;
 
 import static java.util.concurrent.TimeUnit.*;
-import static net.bytebuddy.jar.asm.Opcodes.*;
 
-import java.lang.instrument.ClassFileTransformer;
-import java.security.ProtectionDomain;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.concurrent.Delayed;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
-import antibug.bytecode.Agent;
-import antibug.internal.Awaitable;
-import net.bytebuddy.jar.asm.ClassReader;
-import net.bytebuddy.jar.asm.ClassVisitor;
-import net.bytebuddy.jar.asm.ClassWriter;
-import net.bytebuddy.jar.asm.MethodVisitor;
-import net.bytebuddy.jar.asm.Type;
+public class Chronus implements ScheduledExecutorService {
 
-/**
- * @version 2018/08/31 21:27:52
- */
-public class Chronus {
+    /** The flag for task manager. */
+    private volatile AtomicBoolean awaiting = new AtomicBoolean();
 
-    /** The re-usable type. */
-    private static final Type Executor = Type.getType(Executors.class);
+    /** The non-executed tasks. */
+    private volatile CopyOnWriteArraySet remaining = new CopyOnWriteArraySet();
 
-    /** The re-usable type. */
-    private static final Type Tool = Type.getType(Awaitable.class);
+    /** The lazy service initializer. */
+    private final Supplier<ScheduledExecutorService> builder;
 
-    /** The internal name. */
-    private final Set<String> names = new HashSet();
-
-    /** The bytecode enhancer. */
-    private final Agent agent = new Agent(new Transformer());
-
-    /** The base time. */
-    private long base;
+    /** The service holder. */
+    private final AtomicReference<ScheduledExecutorService> holder = new AtomicReference();
 
     /**
-     * <p>
-     * Manipulate time.
-     * </p>
-     * 
-     * @param clazz
+     * By {@link Executors#newCachedThreadPool()}.
      */
-    public Chronus(Class... classes) {
-        for (Class clazz : classes) {
-            names.add(clazz.getName().replace('.', '/'));
-            agent.transform(clazz);
+    public Chronus() {
+        this(() -> Executors.newScheduledThreadPool(1));
+    }
+
+    /**
+     * By your {@link ExecutorService}.
+     * 
+     * @param builder Your {@link ExecutorService}.
+     */
+    public Chronus(Supplier<ScheduledExecutorService> builder) {
+        this.builder = Objects.requireNonNull(builder);
+    }
+
+    /**
+     * Retrieve {@link ExecutorService} by lazy initialization.
+     * 
+     * @return
+     */
+    private ScheduledExecutorService executor() {
+        return holder.updateAndGet(e -> e != null ? e : builder.get());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void execute(Runnable command) {
+        executor().execute(new Task(command));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void shutdown() {
+        executor().shutdown();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Runnable> shutdownNow() {
+        return executor().shutdownNow();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isShutdown() {
+        return executor().isShutdown();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isTerminated() {
+        return executor().isTerminated();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
+        return executor().awaitTermination(timeout, unit);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public <T> Future<T> submit(Callable<T> command) {
+        Task task = new Task(command);
+
+        return task.connect(executor().submit((Callable) task));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public <T> Future<T> submit(Runnable command, T result) {
+        Task task = new Task(command, result);
+
+        return task.connect(executor().submit((Callable) task));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Future<?> submit(Runnable command) {
+        Task task = new Task(command);
+
+        return task.connect(executor().submit((Callable) task));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks) throws InterruptedException {
+        List<Task<T>> collect = tasks.stream().map(task -> new Task(task)).collect(Collectors.toList());
+
+        return executor().invokeAll(collect);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit) throws InterruptedException {
+        List<Task<T>> collect = tasks.stream().map(task -> new Task(task)).collect(Collectors.toList());
+
+        return executor().invokeAll(collect, timeout, unit);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public <T> T invokeAny(Collection<? extends Callable<T>> tasks) throws InterruptedException, ExecutionException {
+        List<Task<T>> collect = tasks.stream().map(task -> new Task(task)).collect(Collectors.toList());
+
+        return executor().invokeAny(collect);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public <T> T invokeAny(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
+            throws InterruptedException, ExecutionException, TimeoutException {
+        List<Task<T>> collect = tasks.stream().map(task -> new Task(task)).collect(Collectors.toList());
+
+        return executor().invokeAny(collect, timeout, unit);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ScheduledFuture<?> schedule(Runnable command, long delay, TimeUnit unit) {
+        Task task = new Task(command);
+
+        return task.connect(executor().schedule((Callable) task, delay, unit));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public <V> ScheduledFuture<V> schedule(Callable<V> callable, long delay, TimeUnit unit) {
+        Task task = new Task(callable);
+
+        return task.connect(executor().schedule((Callable) task, delay, unit));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit) {
+        return executor().scheduleAtFixedRate(command, initialDelay, period, unit);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ScheduledFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit) {
+        return executor().scheduleWithFixedDelay(command, initialDelay, delay, unit);
+    }
+
+    private long marked;
+
+    /**
+     * 
+     */
+    public Chronus mark() {
+        marked = System.nanoTime();
+
+        return this;
+    }
+
+    /**
+     * @param start
+     * @param end
+     * @param unit
+     */
+    public Chronus elapse(int start, TimeUnit unit) {
+        long startTime = marked + unit.toNanos(start);
+
+        await(startTime - System.nanoTime(), NANOSECONDS);
+
+        return this;
+    }
+
+    /**
+     * @param start
+     * @param end
+     * @param unit
+     * @param within
+     */
+    public Chronus within(int end, TimeUnit unit, Runnable within) {
+        if (within != null && System.nanoTime() < marked + unit.toNanos(end)) {
+            within.run();
         }
+        return this;
     }
 
     /**
      * <p>
-     * Await all asynchronus tasks.
+     * Wait all task executions.
      * </p>
      */
     public void await() {
-        Awaitable.await();
+        awaiting.set(true);
+
+        try {
+            long start = System.currentTimeMillis();
+
+            while (!remaining.isEmpty()) {
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    throw new Error(e);
+                }
+
+                long end = System.currentTimeMillis();
+
+                if (start + 3000 < end && !remaining.isEmpty()) {
+                    throw new Error("Task can't exceed 3000ms. Remaining tasks are " + remaining + ".\r\n" + executor());
+                }
+            }
+        } finally {
+            awaiting.set(false);
+            remaining.clear();
+        }
     }
 
     /**
@@ -77,8 +298,8 @@ public class Chronus {
      * 
      * @param millseconds
      */
-    public void freeze(long millseconds) {
-        freezeNano(MILLISECONDS.toNanos(millseconds));
+    public void await(long time, TimeUnit unit) {
+        freezeNano(unit.toNanos(time));
     }
 
     /**
@@ -105,202 +326,151 @@ public class Chronus {
     }
 
     /**
-     * <p>
-     * Set base time.
-     * </p>
-     */
-    public void mark() {
-        base = System.nanoTime();
-    }
-
-    /**
-     * <p>
-     * Freeze process the specified duration from marked time.
-     * </p>
      * 
-     * @param ms
-     * @return If {@link Chronus} freezes process, return true otherwise false.
      */
-    public boolean freezeFromMark(long ms) {
-        long now = System.nanoTime();
-        long wait = base + MILLISECONDS.toNanos(ms) - now;
+    protected class Task<V> implements Callable<V>, Runnable, Future<V>, ScheduledFuture<V> {
 
-        if (wait <= 0) {
-            return false;
-        } else {
-            freezeNano(wait);
-            return true;
+        /** The actual task. */
+        private final Callable<V> callable;
+
+        /**
+         * @param task
+         */
+        Task(Runnable task) {
+            this(Executors.callable(task));
         }
-    }
 
-    /**
-     * <p>
-     * Freeze process the specified duration from marked time.
-     * </p>
-     * 
-     * @param millseconds
-     * @return If {@link Chronus} freezes process, return true otherwise false.
-     */
-    public void freezeFromMark(long start, long end, Runnable assertion) {
-        if (freezeFromMark(start)) {
-            try {
-                assertion.run();
-            } catch (AssertionError e) {
-                long now = System.nanoTime();
-
-                if (now < base + MILLISECONDS.toNanos(end)) {
-                    throw e;
-                } else {
-                    // ignore error
-                }
-            }
-
+        /**
+         * @param task
+         */
+        private Task(Runnable task, Object result) {
+            this(Executors.callable(task, result));
         }
-    }
 
-    /**
-     * @version 2014/03/05 9:51:01
-     */
-    private class Transformer implements ClassFileTransformer {
+        /**
+         * @param task
+         */
+        Task(Callable task) {
+            this.callable = task;
+
+            // System.out.println("add task " + this);
+            remaining.add(this);
+        }
 
         /**
          * {@inheritDoc}
          */
         @Override
-        public byte[] transform(ClassLoader loader, String name, Class<?> clazz, ProtectionDomain domain, byte[] bytes) {
-            if (!names.contains(name)) {
-                return bytes;
+        public void run() {
+            try {
+                call();
+            } catch (Throwable e) {
+                throw new Error(e);
+            }
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public V call() throws Exception {
+            try {
+                return callable.call();
+            } finally {
+                if (remaining.remove(this)) {
+                    // System.out.println("remove task " + this);
+                }
+            }
+        }
+
+        private Future<V> future;
+
+        /**
+         * <p>
+         * Delegate {@link Future} fuature.
+         * </p>
+         * 
+         * @param future
+         * @return
+         */
+        Task connect(Future<V> future) {
+            this.future = future;
+
+            return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public boolean cancel(boolean mayInterruptIfRunning) {
+            boolean cancel = future.cancel(mayInterruptIfRunning);
+
+            if (cancel) {
+                if (remaining.remove(this)) {
+                    // System.out.println("cancel task " + this);
+                }
+            }
+            return cancel;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public boolean isCancelled() {
+            return future.isCancelled();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public boolean isDone() {
+            return future.isDone();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public V get() throws InterruptedException, ExecutionException {
+            try {
+                return get(1000, MILLISECONDS);
+            } catch (TimeoutException e) {
+                throw new Error(e);
+            }
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public V get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
+            return future.get(timeout, unit);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public long getDelay(TimeUnit unit) {
+            if (future instanceof ScheduledFuture) {
+                return ((ScheduledFuture) future).getDelay(unit);
             } else {
-                try {
-                    ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
-                    new ClassReader(bytes).accept(new ClassTranslator(writer), ClassReader.SKIP_DEBUG);
-
-                    return writer.toByteArray();
-                } catch (Throwable e) {
-                    e.printStackTrace();
-                    throw new Error(e);
-                }
+                return 0;
             }
         }
 
         /**
-         * @version 2012/01/14 13:16:21
+         * {@inheritDoc}
          */
-        private class ClassTranslator extends ClassVisitor {
-
-            /**
-             * @param arg0
-             */
-            private ClassTranslator(ClassWriter writer) {
-                super(ASM7, writer);
-            }
-
-            /**
-             * {@inheritDoc}
-             */
-            @Override
-            public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
-                return new MethodTranslator(super.visitMethod(access, name, desc, signature, exceptions));
-            }
-        }
-
-        /**
-         * @version 2014/03/06 11:52:18
-         */
-        private class MethodTranslator extends MethodVisitor {
-
-            /**
-             * @param visitor
-             */
-            protected MethodTranslator(MethodVisitor visitor) {
-                super(ASM7, visitor);
-            }
-
-            /**
-             * {@inheritDoc}
-             */
-            @Override
-            public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean type) {
-                mv.visitMethodInsn(opcode, owner, name, desc, type);
-
-                if (opcode == INVOKESPECIAL && name.equals("<init>")) {
-                    // For constructor
-                    // new ExecutorService() -> Awaitable.wrap(new ExecutorService())
-                    if (isAssignable(ExecutorService.class, owner)) {
-                        wrap();
-                        return;
-                    }
-                }
-
-                if (opcode == INVOKESTATIC && owner.equals(Executor.getInternalName())) {
-                    // For Executors utility methods
-                    // Executors.method() -> Awaitable.wrap(Executors.method())
-                    switch (name) {
-                    case "newCachedThreadPool":
-                    case "newFixedThreadPool":
-                    case "newScheduledThreadPool":
-                    case "newSingleThreadExecutor":
-                    case "newSingleThreadScheduledExecutor":
-                    case "newWorkStealingPool":
-                    case "unconfigurableExecutorService":
-                    case "unconfigurableScheduledExecutorService":
-                        wrap();
-                        return;
-                    }
-                }
-
-            }
-
-            /**
-             * {@inheritDoc}
-             */
-            @Override
-            public void visitFieldInsn(int opcode, String owner, String name, String desc) {
-                super.visitFieldInsn(opcode, owner, name, desc);
-
-                switch (opcode) {
-                case GETSTATIC:
-                case GETFIELD:
-                    // For field access
-                    // service.submit() -> Awaitable.wrap(service).submit()
-                    if (isAssignable(ExecutorService.class, desc)) {
-                        wrap();
-                    }
-                    break;
-                }
-            }
-
-            /**
-             * <p>
-             * Call wrapper code.
-             * </p>
-             */
-            private void wrap() {
-                mv.visitMethodInsn(INVOKESTATIC, Tool
-                        .getInternalName(), "wrap", "(Ljava/util/concurrent/ExecutorService;)Ljava/util/concurrent/ExecutorService;", false);
-            }
-
-            /**
-             * <p>
-             * Chech type.
-             * </p>
-             * 
-             * @param type
-             * @param desc
-             * @return
-             */
-            private boolean isAssignable(Class type, String desc) {
-                if (desc.charAt(0) == 'L') {
-                    desc = desc.substring(1, desc.length() - 1);
-                }
-
-                try {
-                    Class<?> clazz = Class.forName(desc.replace('/', '.'));
-
-                    return type.isAssignableFrom(clazz);
-                } catch (ClassNotFoundException e) {
-                    return false;
-                }
+        @Override
+        public int compareTo(Delayed o) {
+            if (future instanceof ScheduledFuture) {
+                return ((ScheduledFuture) future).compareTo(o);
+            } else {
+                return 0;
             }
         }
     }

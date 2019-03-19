@@ -11,33 +11,14 @@ package antibug;
 
 import static java.util.concurrent.TimeUnit.*;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * @version 2018/03/31 3:10:33
- */
 public class ChronusTest {
 
-    public static final Chronus chronus = new Chronus(ChronusTest.class);
-
-    /**
-     * @version 2014/03/06 11:54:38
-     */
-    private static class ExternalService {
-
-        private static ExecutorService service() {
-            return Executors.newCachedThreadPool();
-        }
-    }
+    public final Chronus chronus = new Chronus();
 
     /** The test result. */
     private static boolean done = false;
@@ -46,80 +27,30 @@ public class ChronusTest {
     private static AtomicInteger value = new AtomicInteger();
 
     @BeforeEach
-    public void reset() {
+    void reset() {
         done = false;
         value.set(0);
     }
 
     @Test
-    public void scheduledThreadPoolExecutorInt() throws Exception {
+    void schedule() {
         execute(3, () -> {
-            ScheduledExecutorService service = new ScheduledThreadPoolExecutor(2);
-            service.schedule(createTask(), 10, MILLISECONDS);
-            service.schedule(createTask(), 20, MILLISECONDS);
-            service.schedule(createTask(), 30, MILLISECONDS);
+            chronus.schedule(createTask(), 10, MILLISECONDS);
+            chronus.schedule(createTask(), 20, MILLISECONDS);
+            chronus.schedule(createTask(), 30, MILLISECONDS);
         });
     }
 
     @Test
-    public void newCachedThreadPool() throws Exception {
+    void submit() {
         execute(2, () -> {
-            ExecutorService service = Executors.newCachedThreadPool();
-            service.submit(createDelayedTask());
-            service.submit(createDelayedTask());
-        });
-    }
-
-    @Test
-    public void newCachedThreadPoolThreadFactory() throws Exception {
-        execute(1, () -> {
-            ExecutorService service = Executors.newCachedThreadPool(runnable -> {
-                return new Thread(runnable);
-            });
-            service.submit(createDelayedTask());
-        });
-    }
-
-    @Test
-    public void newWorkStealingPool() throws Exception {
-        execute(1, () -> {
-            ExecutorService service = Executors.newWorkStealingPool();
-            service.submit(createDelayedTask());
-        });
-    }
-
-    private static ExecutorService staticService = ExternalService.service();
-
-    @Test
-    public void staticField() throws Exception {
-        execute(1, () -> {
-            staticService.submit(createDelayedTask());
-        });
-    }
-
-    private ExecutorService service = ExternalService.service();
-
-    @Test
-    public void field() throws Exception {
-        execute(1, () -> {
-            service.submit(createDelayedTask());
-        });
-    }
-
-    @Test
-    public void cancel() throws Exception {
-        executeWithCancel(() -> {
-            ExecutorService service = Executors.newCachedThreadPool(runnable -> {
-                return new Thread(runnable);
-            });
-            return service.submit(createDelayedTask());
+            chronus.submit(createDelayedTask());
+            chronus.submit(createDelayedTask());
         });
     }
 
     /**
-     * <p>
      * Create task.
-     * </p>
      * 
      * @return
      */
@@ -131,9 +62,7 @@ public class ChronusTest {
     }
 
     /**
-     * <p>
      * Create delayed task.
-     * </p>
      * 
      * @return
      */
@@ -150,9 +79,7 @@ public class ChronusTest {
     }
 
     /**
-     * <p>
      * Helper method to test.
-     * </p>
      * 
      * @param task
      */
@@ -161,25 +88,5 @@ public class ChronusTest {
         assert value.get() == 0;
         chronus.await();
         assert value.get() == expectedValue;
-    }
-
-    /**
-     * <p>
-     * Helper method to test.
-     * </p>
-     * 
-     * @param task
-     * @throws Exception
-     */
-    private final void executeWithCancel(Callable<Future> task) throws Exception {
-        Future result = task.call();
-        assert done == false;
-        assert result.isCancelled() == false;
-
-        result.cancel(true);
-        chronus.await();
-
-        assert done == false;
-        assert result.isCancelled() == true;
     }
 }
