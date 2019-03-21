@@ -18,6 +18,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ForkJoinPool;
@@ -69,6 +70,17 @@ public class Chronus implements ScheduledExecutorService {
      */
     private ScheduledExecutorService executor() {
         return holder.updateAndGet(e -> e != null ? e : builder.get());
+    }
+
+    /**
+     * Create delayed {@link Executors} in the specified duration.
+     * 
+     * @param time A delay time.
+     * @param unit A time unit.
+     * @return A delayed {@link Executor}.
+     */
+    public Executor in(long time, TimeUnit unit) {
+        return task -> schedule(task, time, unit);
     }
 
     /**
