@@ -5,7 +5,7 @@
  * made available under the terms of the Eclipse Public License v2.0 which
  * accompanies this distribution and is available at
  *
- * http://www.eclipse.org/legal/epl-v20.html
+ * https://www.eclipse.org/legal/epl-v20.html
  */
 
 package org.junit.jupiter.engine.descriptor;
@@ -67,6 +67,8 @@ import antibug.powerassert.PowerAssertOff;
  */
 @API(status = INTERNAL, since = "5.0")
 public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
+
+    public static final String SEGMENT_TYPE = "method";
 
     private static final ExecutableInvoker executableInvoker = new ExecutableInvoker();
 
