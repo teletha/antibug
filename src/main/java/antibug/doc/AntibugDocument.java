@@ -43,6 +43,7 @@ public class AntibugDocument extends Document<AntibugDocument> {
     /**
      * 
      */
+    @SuppressWarnings("unused")
     private static class Visitor extends ElementKindVisitor9<Element, Object> {
 
         /**

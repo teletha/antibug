@@ -9,7 +9,7 @@
  */
 package antibug.doc;
 
-import static javax.tools.StandardLocation.*;
+import static javax.tools.StandardLocation.SOURCE_PATH;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -52,6 +52,7 @@ public abstract class Document<Self extends Document> {
     private Path output = Path.of("docs");
 
     /** The utility manager. */
+    @SuppressWarnings("unused")
     private DocletEnvironment env;
 
     /**

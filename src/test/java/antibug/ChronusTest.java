@@ -9,7 +9,7 @@
  */
 package antibug;
 
-import static java.util.concurrent.TimeUnit.*;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -21,14 +21,10 @@ public class ChronusTest {
     public final Chronus chronus = new Chronus();
 
     /** The test result. */
-    private static boolean done = false;
-
-    /** The test result. */
     private static AtomicInteger value = new AtomicInteger();
 
     @BeforeEach
     void reset() {
-        done = false;
         value.set(0);
     }
 
@@ -56,7 +52,6 @@ public class ChronusTest {
      */
     private static final Runnable createTask() {
         return () -> {
-            done = true;
             value.incrementAndGet();
         };
     }
@@ -70,7 +65,6 @@ public class ChronusTest {
         return () -> {
             try {
                 Thread.sleep(50);
-                done = true;
                 value.incrementAndGet();
             } catch (Exception e) {
                 throw new Error(e);
