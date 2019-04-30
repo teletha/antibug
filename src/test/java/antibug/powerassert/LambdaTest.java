@@ -18,9 +18,6 @@ import java.util.function.Supplier;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
-/**
- * @version 2018/03/31 16:31:21
- */
 class LambdaTest {
 
     @RegisterExtension
@@ -89,31 +86,5 @@ class LambdaTest {
 
     private boolean supplier(Supplier<String> supplier) {
         return false;
-    }
-
-    @Test
-    void context() {
-        test.willCapture("v.equals(\"ng\")", false);
-        run("ok", v -> {
-            assert v.equals("ng");
-        });
-    }
-
-    @Test
-    void nestedContext() {
-        test.willCapture("v.equals(\"ng nest\")", false);
-        run("ok", v -> {
-            run(() -> {
-                assert v.equals("ng nest");
-            });
-        });
-    }
-
-    private void run(String v, Consumer<String> con) {
-        con.accept(v);
-    }
-
-    private void run(Runnable run) {
-        run.run();
     }
 }

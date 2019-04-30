@@ -262,7 +262,6 @@ public class PowerAssertContext implements Journal {
 
             nextIncrement = null;
         }
-
         Type type = Type.getType(local[1]);
 
         switch (type.getSort()) {

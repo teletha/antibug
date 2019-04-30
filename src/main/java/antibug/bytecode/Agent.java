@@ -310,6 +310,9 @@ public class Agent {
         /** The internal class name. */
         protected String className;
 
+        /** The internal class type. */
+        protected Type classType;
+
         /** The internal method name. */
         protected String methodName;
 
@@ -337,6 +340,7 @@ public class Agent {
         final void set(LocalVariableSorter visitor, String className, String methodName, Type methodDescriptor, LocalVariableManager manager) {
             mv = visitor;
             this.className = className;
+            this.classType = Type.getObjectType(className);
             this.methodName = methodName;
             this.methodType = methodDescriptor;
             this.methodIdentifier = methodIdentifier(className, methodName, methodDescriptor);

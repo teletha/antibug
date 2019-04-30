@@ -16,6 +16,7 @@ import antibug.bytecode.Bytecode;
 import antibug.bytecode.LocalVariable;
 import net.bytebuddy.jar.asm.Handle;
 import net.bytebuddy.jar.asm.Label;
+import net.bytebuddy.jar.asm.Opcodes;
 import net.bytebuddy.jar.asm.Type;
 
 /**
@@ -509,10 +510,16 @@ class PowerAssertTranslator extends Translator {
 
         if (parameterDiff != 0) {
             int calleeMethodId = methodIdentifier(className, handle.getName(), Type.getMethodType(handle.getDesc()));
+            boolean needAccessToInstance = handle.getTag() == Opcodes.H_INVOKESPECIAL; // or invoke
+                                                                                       // static
+
+            if (needAccessToInstance) {
+                PowerAssertContext.registerLocalVariable(calleeMethodId, 0, () -> new String[] {"this", classType.getDescriptor()});
+            }
 
             for (int i = 0; i < parameterDiff; i++) {
                 int index = i + 1;
-                PowerAssertContext.registerLocalVariable(calleeMethodId, i, () -> {
+                PowerAssertContext.registerLocalVariable(calleeMethodId, i + (needAccessToInstance ? 1 : 0), () -> {
                     return PowerAssertContext.getLocalVariable(methodIdentifier).get(index).get();
                 });
             }
