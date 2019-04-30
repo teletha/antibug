@@ -69,6 +69,18 @@ class LambdaContextTest {
         });
     }
 
+    @Test
+    void paramInNestedLocalAccessibleNoParameterLambda() {
+        CharSequence local = "local";
+
+        test.willCapture("v.equals(local)", false);
+        run("ok", v -> {
+            run(() -> {
+                assert v.equals(local);
+            });
+        });
+    }
+
     private void run(String v, Consumer<String> con) {
         con.accept(v);
     }

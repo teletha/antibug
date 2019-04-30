@@ -510,13 +510,12 @@ class PowerAssertTranslator extends Translator {
 
         if (parameterDiff != 0) {
             int calleeMethodId = methodIdentifier(className, handle.getName(), Type.getMethodType(handle.getDesc()));
-            boolean needAccessToInstance = handle.getTag() == Opcodes.H_INVOKESPECIAL; // or invoke
-                                                                                       // static
+            boolean needAccessToInstance = handle.getTag() == Opcodes.H_INVOKESPECIAL;
 
             if (needAccessToInstance) {
                 PowerAssertContext.registerLocalVariable(calleeMethodId, 0, () -> new String[] {"this", classType.getDescriptor()});
             }
-
+            System.out.println(lambdaType + "   " + functionalInterfaceType + "  " + parameterDiff);
             for (int i = 0; i < parameterDiff; i++) {
                 int index = i + 1;
                 PowerAssertContext.registerLocalVariable(calleeMethodId, i + (needAccessToInstance ? 1 : 0), () -> {
