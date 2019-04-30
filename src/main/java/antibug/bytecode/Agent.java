@@ -339,8 +339,20 @@ public class Agent {
             this.className = className;
             this.methodName = methodName;
             this.methodType = methodDescriptor;
-            this.methodIdentifier = (className + "#" + methodName + methodDescriptor).hashCode();
+            this.methodIdentifier = methodIdentifier(className, methodName, methodDescriptor);
             this.variables = manager.collectors.get(methodName + methodDescriptor.getDescriptor());
+        }
+
+        /**
+         * Calculate method identifier by its signature.
+         * 
+         * @param className
+         * @param methodName
+         * @param methodDescriptor
+         * @return
+         */
+        protected final int methodIdentifier(String className, String methodName, Type methodDescriptor) {
+            return (className + "#" + methodName + methodDescriptor).hashCode();
         }
 
         /**

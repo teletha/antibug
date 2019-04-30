@@ -500,15 +500,25 @@ class PowerAssertTranslator extends Translator {
     @Override
     public void visitInvokeDynamicInsn(String name, String description, Handle bsm, Object... bsmArgs) {
         super.visitInvokeDynamicInsn(name, description, bsm, bsmArgs);
-
         PowerAssertContext.registerLocalVariable(methodIdentifier, name, description, -1);
 
-        if (processAssertion) {
-            Handle handle = (Handle) bsmArgs[1];
-            Type functionalInterfaceType = (Type) bsmArgs[0];
-            Type lambdaType = Type.getMethodType(handle.getDesc());
-            int parameterDiff = lambdaType.getArgumentTypes().length - functionalInterfaceType.getArgumentTypes().length;
+        Handle handle = (Handle) bsmArgs[1];
+        Type functionalInterfaceType = (Type) bsmArgs[0];
+        Type lambdaType = Type.getMethodType(handle.getDesc());
+        int parameterDiff = lambdaType.getArgumentTypes().length - functionalInterfaceType.getArgumentTypes().length;
 
+        if (parameterDiff != 0) {
+            int calleeMethodId = methodIdentifier(className, handle.getName(), Type.getMethodType(handle.getDesc()));
+
+            for (int i = 0; i < parameterDiff; i++) {
+                int index = i + 1;
+                PowerAssertContext.registerLocalVariable(calleeMethodId, i, () -> {
+                    return PowerAssertContext.getLocalVariable(methodIdentifier).get(index).get();
+                });
+            }
+        }
+
+        if (processAssertion) {
             if (handle.getTag() == H_INVOKESTATIC) {
                 // lambda
                 journal.lambda(handle.getName(), handle.getDesc(), parameterDiff);

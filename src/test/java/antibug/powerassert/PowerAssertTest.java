@@ -469,8 +469,8 @@ class PowerAssertTest {
     void lambda() {
         String value = "test";
 
-        test.willCapture("var0", value);
-        test.willCapture("var0.length()", 4);
+        test.willCapture("value", value);
+        test.willCapture("value.length()", 4);
         validate(() -> {
             assert value.length() == 5;
         });

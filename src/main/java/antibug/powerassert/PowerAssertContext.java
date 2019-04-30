@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Supplier;
 
 import net.bytebuddy.jar.asm.Type;
 
@@ -31,7 +32,7 @@ public class PowerAssertContext implements Journal {
     private static final Integer Zero = Integer.valueOf(0);
 
     /** The local variable name mapping. */
-    private static final Map<Integer, List<String[]>> locals = new ConcurrentHashMap();
+    private static final Map<Integer, List<Supplier<String[]>>> locals = new ConcurrentHashMap();
 
     /** The operand stack frame. */
     ArrayDeque<Operand> stack = new ArrayDeque();
@@ -41,6 +42,10 @@ public class PowerAssertContext implements Journal {
 
     /** The incremetn state. */
     private String nextIncrement;
+
+    public static List<Supplier<String[]>> getLocalVariable(int methodId) {
+        return locals.get(methodId);
+    }
 
     /**
      * <p>
@@ -52,7 +57,20 @@ public class PowerAssertContext implements Journal {
      * @param description
      */
     public static void registerLocalVariable(int methodId, String name, String description, int index) {
-        List<String[]> local = locals.get(methodId);
+        registerLocalVariable(methodId, index, () -> new String[] {name, description});
+    }
+
+    /**
+     * <p>
+     * Register local variable.
+     * </p>
+     * 
+     * @param methodId
+     * @param name
+     * @param description
+     */
+    public static void registerLocalVariable(int methodId, int index, Supplier<String[]> resolver) {
+        List<Supplier<String[]>> local = locals.get(methodId);
 
         if (local == null) {
             local = new ArrayList();
@@ -66,7 +84,7 @@ public class PowerAssertContext implements Journal {
         }
 
         if (0 <= index) {
-            local.set(index, new String[] {name, description});
+            local.set(index, resolver);
         }
     }
 
@@ -185,7 +203,7 @@ public class PowerAssertContext implements Journal {
      */
     @Override
     public void increment(int methodId, int index, int increment) {
-        String[] local = locals.get(methodId).get(index);
+        String[] local = locals.get(methodId).get(index).get();
         Operand latest = stack.peekLast();
 
         if (latest == null || !latest.toString().equals(local[0])) {
@@ -227,7 +245,7 @@ public class PowerAssertContext implements Journal {
     @Override
     public void local(int methodId, int index, Object variable) {
         Operand operand;
-        List<String[]> variables = locals.get(methodId);
+        List<Supplier<String[]>> variables = locals.get(methodId);
 
         if (variables == null) {
             operand = new Operand("var" + index, variable);
@@ -236,7 +254,7 @@ public class PowerAssertContext implements Journal {
             return;
         }
 
-        String[] local = variables.get(index);
+        String[] local = variables.get(index).get();
         String name = local[0];
 
         if (nextIncrement != null) {
@@ -439,8 +457,8 @@ public class PowerAssertContext implements Journal {
      * @return
      */
     private static boolean hasLocal(int methodId, String name) {
-        for (String[] local : locals.get(methodId)) {
-            if (local[0].equals(name)) {
+        for (Supplier<String[]> local : locals.get(methodId)) {
+            if (local.get()[0].equals(name)) {
                 return true;
             }
         }
