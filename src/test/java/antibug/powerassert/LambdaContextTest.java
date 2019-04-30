@@ -30,7 +30,7 @@ class LambdaContextTest {
     }
 
     @Test
-    void paramInNestedNoParameterLambda() {
+    void noParameter() {
         test.willCapture("v.equals(\"use in nested runnable\")", false);
         run("ok", v -> {
             run(() -> {
@@ -40,7 +40,7 @@ class LambdaContextTest {
     }
 
     @Test
-    void paramInNestedParameterLambda() {
+    void parameter() {
         test.willCapture("v.equals(\"use in nested consumer\")", false);
         run("ok", v -> {
             run("ignored", x -> {
@@ -50,7 +50,7 @@ class LambdaContextTest {
     }
 
     @Test
-    void paramInNestedInstantAccessibleNoParameterLambda() {
+    void instantAccessibleNoParameter() {
         test.willCapture("v.equals(instanceAccess)", false);
         run("ok", v -> {
             run(() -> {
@@ -60,7 +60,7 @@ class LambdaContextTest {
     }
 
     @Test
-    void paramInNestedInstantAccessibleParameterLambda() {
+    void instantAccessibleParameter() {
         test.willCapture("v.equals(instanceAccess)", false);
         run("ok", v -> {
             run("ignored", x -> {
@@ -70,7 +70,7 @@ class LambdaContextTest {
     }
 
     @Test
-    void paramInNestedLocalAccessibleNoParameterLambda() {
+    void localAccessibleNoParameter() {
         CharSequence local = "local";
 
         test.willCapture("v.equals(local)", false);
@@ -81,7 +81,72 @@ class LambdaContextTest {
         });
     }
 
-    private void run(String v, Consumer<String> con) {
+    @Test
+    void localAccessibleNoParameterOrderShuffle1() {
+        String x = "use";
+        String y = "local";
+
+        test.willCapture("v.equals(x.concat(y))", false);
+        run("ok", v -> {
+            run(() -> {
+                assert v.equals(x.concat(y));
+            });
+        });
+    }
+
+    @Test
+    void localAccessibleNoParameterOrderShuffle2() {
+        String x = "use";
+        String y = "local";
+
+        test.willCapture("v.equals(y.concat(x))", false);
+        run("ok", v -> {
+            run(() -> {
+                assert v.equals(y.concat(x));
+            });
+        });
+    }
+
+    @Test
+    void localAccessibleNoParameterOrderShuffle3() {
+        String x = "use";
+        String y = "local";
+
+        test.willCapture("x.equals(y.concat(v))", false);
+        run("ok", v -> {
+            run(() -> {
+                assert x.equals(y.concat(v));
+            });
+        });
+    }
+
+    @Test
+    void localAccessibleNoParameterOrderShuffle4() {
+        String x = "use";
+        String y = "local";
+
+        test.willCapture("y.equals(x.concat(v))", false);
+        run("ok", v -> {
+            run(() -> {
+                assert y.equals(x.concat(v));
+            });
+        });
+    }
+
+    @Test
+    void localAccessibleNoParameterOrderShuffle5() {
+        String x = "use";
+        String y = "local";
+
+        test.willCapture("y.equals(v.concat(x))", false);
+        run("ok", v -> {
+            run(() -> {
+                assert y.equals(v.concat(x));
+            });
+        });
+    }
+
+    private <V> void run(V v, Consumer<V> con) {
         con.accept(v);
     }
 

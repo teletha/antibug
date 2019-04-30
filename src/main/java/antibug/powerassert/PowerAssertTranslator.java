@@ -11,6 +11,9 @@ package antibug.powerassert;
 
 import static net.bytebuddy.jar.asm.Opcodes.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import antibug.bytecode.Agent.Translator;
 import antibug.bytecode.Bytecode;
 import antibug.bytecode.LocalVariable;
@@ -39,6 +42,8 @@ class PowerAssertTranslator extends Translator {
     /** The context for code log. */
     private Journal journal;
 
+    private List<Integer> parameterIndex = new ArrayList();
+
     /**
      * <p>
      * Compute simple class name.
@@ -61,6 +66,7 @@ class PowerAssertTranslator extends Translator {
     @Override
     public void visitFieldInsn(int opcode, String owner, String name, String desc) {
         super.visitFieldInsn(opcode, owner, name, desc);
+        parameterIndex.clear();
 
         if (!startAssertion && opcode == GETSTATIC && name.equals("$assertionsDisabled")) {
             startAssertion = true;
@@ -92,6 +98,7 @@ class PowerAssertTranslator extends Translator {
     @Override
     public void visitJumpInsn(int opcode, Label label) {
         super.visitJumpInsn(opcode, label);
+        parameterIndex.clear();
 
         if (processAssertion) {
             switch (opcode) {
@@ -178,6 +185,7 @@ class PowerAssertTranslator extends Translator {
         }
 
         super.visitTypeInsn(opcode, type);
+        parameterIndex.clear();
 
         if (processAssertion) {
             switch (opcode) {
@@ -199,6 +207,7 @@ class PowerAssertTranslator extends Translator {
      */
     @Override
     public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean access) {
+
         // replace invocation of AssertionError constructor.
         if (startAssertion && opcode == INVOKESPECIAL && owner.equals("java/lang/AssertionError")) {
             load(journal); // load context
@@ -219,6 +228,7 @@ class PowerAssertTranslator extends Translator {
             return;
         }
         super.visitMethodInsn(opcode, owner, name, desc, access);
+        parameterIndex.clear();
 
         if (processAssertion) {
             Type type = Type.getType(desc);
@@ -251,6 +261,7 @@ class PowerAssertTranslator extends Translator {
     @Override
     public void visitIincInsn(int index, int increment) {
         super.visitIincInsn(index, increment);
+        parameterIndex.clear();
 
         if (processAssertion) {
             journal.increment(methodIdentifier, index, increment);
@@ -263,6 +274,7 @@ class PowerAssertTranslator extends Translator {
     @Override
     public void visitIntInsn(int opcode, int operand) {
         super.visitIntInsn(opcode, operand);
+        parameterIndex.clear();
 
         if (processAssertion) {
             switch (opcode) {
@@ -317,6 +329,7 @@ class PowerAssertTranslator extends Translator {
     @Override
     public void visitInsn(int opcode) {
         super.visitInsn(opcode);
+        parameterIndex.clear();
 
         if (processAssertion) {
             switch (opcode) {
@@ -467,6 +480,7 @@ class PowerAssertTranslator extends Translator {
     @Override
     public void visitLdcInsn(Object value) {
         super.visitLdcInsn(value);
+        parameterIndex.clear();
 
         if (processAssertion) {
             journal.constant(ldc(value));
@@ -479,6 +493,7 @@ class PowerAssertTranslator extends Translator {
     @Override
     public void visitVarInsn(int opcode, int index) {
         super.visitVarInsn(opcode, index);
+        parameterIndex.add(index);
 
         if (processAssertion) {
             journal.local(methodIdentifier, index, local(opcode, index));
@@ -491,6 +506,7 @@ class PowerAssertTranslator extends Translator {
     @Override
     public void visitLocalVariable(String name, String desc, String signature, Label start, Label end, int index) {
         super.visitLocalVariable(name, desc, signature, start, end, index);
+        parameterIndex.clear();
 
         PowerAssertContext.registerLocalVariable(methodIdentifier, name, desc, index);
     }
@@ -512,12 +528,8 @@ class PowerAssertTranslator extends Translator {
             int calleeMethodId = methodIdentifier(className, handle.getName(), Type.getMethodType(handle.getDesc()));
             boolean needAccessToInstance = handle.getTag() == Opcodes.H_INVOKESPECIAL;
 
-            if (needAccessToInstance) {
-                PowerAssertContext.registerLocalVariable(calleeMethodId, 0, () -> new String[] {"this", classType.getDescriptor()});
-            }
-            System.out.println(lambdaType + "   " + functionalInterfaceType + "  " + parameterDiff);
             for (int i = 0; i < parameterDiff; i++) {
-                int index = i + 1;
+                int index = parameterIndex.get(parameterIndex.size() - parameterDiff + i);
                 PowerAssertContext.registerLocalVariable(calleeMethodId, i + (needAccessToInstance ? 1 : 0), () -> {
                     return PowerAssertContext.getLocalVariable(methodIdentifier).get(index).get();
                 });
@@ -533,5 +545,41 @@ class PowerAssertTranslator extends Translator {
                 journal.methodReference(computeClassName(handle.getOwner()), handle.getName(), parameterDiff);
             }
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void visitTableSwitchInsn(int min, int max, Label dflt, Label... labels) {
+        super.visitTableSwitchInsn(min, max, dflt, labels);
+        parameterIndex.clear();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void visitLookupSwitchInsn(Label dflt, int[] keys, Label[] labels) {
+        super.visitLookupSwitchInsn(dflt, keys, labels);
+        parameterIndex.clear();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void visitMultiANewArrayInsn(String descriptor, int numDimensions) {
+        super.visitMultiANewArrayInsn(descriptor, numDimensions);
+        parameterIndex.clear();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void visitTryCatchBlock(Label start, Label end, Label handler, String type) {
+        super.visitTryCatchBlock(start, end, handler, type);
+        parameterIndex.clear();
     }
 }

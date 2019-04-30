@@ -67,8 +67,7 @@ public class PowerAssertTester implements BeforeAllCallback, BeforeEachCallback 
         for (Operand expected : expecteds) {
             if (!context.operands.contains(expected)) {
                 throw new AssertionError("Can't capture the below operand.\r\nExpect  : " + expected
-                        .toString() + "\r\nValue : " + expected.value + "\r\nActual : " + context.operands
-                                .get(context.operands.size() - 1) + "\r\n");
+                        .toString() + "\r\nValue : " + expected.value + "\r\nActual : " + context.operands + "\r\n");
             }
         }
 
