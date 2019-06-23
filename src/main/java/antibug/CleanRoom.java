@@ -9,8 +9,8 @@
  */
 package antibug;
 
-import static java.nio.file.FileVisitResult.*;
-import static java.nio.file.StandardCopyOption.*;
+import static java.nio.file.FileVisitResult.CONTINUE;
+import static java.nio.file.StandardCopyOption.COPY_ATTRIBUTES;
 
 import java.io.File;
 import java.io.IOError;
@@ -239,7 +239,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
         });
 
         try {
-            FileSystem system = FileSystems.newFileSystem(path, null);
+            FileSystem system = FileSystems.newFileSystem(path, (ClassLoader) null);
             archives.add(system);
             return system.getPath("/");
         } catch (IOException e) {
