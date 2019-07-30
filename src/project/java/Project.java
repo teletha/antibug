@@ -17,6 +17,7 @@ public class Project extends bee.api.Project {
         require("org.junit.jupiter", "junit-jupiter-api");
         require("org.junit.jupiter", "junit-jupiter-engine");
         require("org.junit.jupiter", "junit-jupiter-params");
+        require("org.junit.platform", "junit-platform-launcher");
         require("net.bytebuddy", "byte-buddy");
         require("net.bytebuddy", "byte-buddy-agent");
 
