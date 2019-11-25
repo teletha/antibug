@@ -9,8 +9,8 @@
  */
 package antibug;
 
-import static java.nio.file.FileVisitResult.CONTINUE;
-import static java.nio.file.StandardCopyOption.COPY_ATTRIBUTES;
+import static java.nio.file.FileVisitResult.*;
+import static java.nio.file.StandardCopyOption.*;
 
 import java.io.File;
 import java.io.IOError;
@@ -39,6 +39,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -180,7 +182,9 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     public Path locateFile(String name, Instant modified, Iterable<? extends CharSequence> lines) {
         try {
             Path file = locate(name, true, true);
-            if (lines != null) Files.write(file, lines);
+            if (lines != null) {
+                Files.writeString(file, StreamSupport.stream(lines.spliterator(), false).collect(Collectors.joining("\r\n")));
+            }
             if (modified != null) Files.setLastModifiedTime(file, FileTime.from(modified));
             return file;
         } catch (IOException e) {
