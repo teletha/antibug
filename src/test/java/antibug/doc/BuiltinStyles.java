@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
+import kiss.WiseFunction;
 import stylist.Style;
 import stylist.StyleDSL;
 import stylist.Stylist;
@@ -28,7 +29,7 @@ public interface BuiltinStyles extends StyleDSL {
 
     Font Oswald = new Font("Oswald", "https://fonts.googleapis.com/css?family=Oswald:300");
 
-    Numeric BlockBorderWidth = new Numeric(3, px);
+    Numeric BlockBorderWidth = Numeric.of(3, px);
 
     Numeric BlockVerticalGap = Numeric.of(6, px);
 
@@ -36,13 +37,15 @@ public interface BuiltinStyles extends StyleDSL {
 
     Numeric BlockInterval = Numeric.of(2, px);
 
-    Numeric HeadSize = new Numeric(18, px);
+    Numeric HeadSize = Numeric.of(18, px);
 
     Color ParagraphColor = Color.rgb(31, 141, 214);
 
     Color ListColor = Color.rgb(250, 210, 50);
 
-    Color SignatureColor = Color.of("#dd514c");
+    Color SignatureColor = Color.rgb(221, 81, 76);
+
+    Color CodeColor = Color.rgb(94, 185, 94);
 
     /**
      * Define block-like.
@@ -50,7 +53,7 @@ public interface BuiltinStyles extends StyleDSL {
      * @param color
      */
     private static void block(Color color, boolean paintBackground) {
-        margin.bottom(BlockInterval).left(0, px);
+        margin.vertical(BlockInterval).left(0, px);
         padding.vertical(BlockVerticalGap).horizontal(BlockHorizontalGap);
         border.left.width(BlockBorderWidth).solid().color(color);
         if (paintBackground) background.color(color.opacify(-0.9d));
@@ -87,10 +90,9 @@ public interface BuiltinStyles extends StyleDSL {
         $.not($.attr("class").exist(), list);
 
         $.lastChild(() -> {
-            margin.vertical(58, px);
-            padding.top(12, px).bottom(BottomGap).left(LeftGap);
-            border.left.width(BlockBorderWidth).solid().color(SignatureColor);
+            block(SignatureColor, false);
             background.color(Color.Transparent);
+            margin.vertical(58, px);
             position.relative();
 
             $.before(() -> {
@@ -148,7 +150,7 @@ public interface BuiltinStyles extends StyleDSL {
                 $.before(() -> {
                     font.family(MaterialIcon).size(11, px).color(ListColor.saturate(-20));
                     content.text("\\e876");
-                    display.inlineBlock();
+                    display.block();
                     text.verticalAlign.bottom();
                     padding.right(5, px);
                 });
@@ -161,7 +163,10 @@ public interface BuiltinStyles extends StyleDSL {
     };
 
     Style pre = () -> {
-        $.not($.attr("class").exist(), list);
+        $.not($.attr("class").exist(), () -> {
+            block(CodeColor, true);
+            font.family("Yu Gothic UI", Font.SansSerif);
+        });
     };
 
     Style a = () -> {
@@ -236,7 +241,18 @@ public interface BuiltinStyles extends StyleDSL {
      * <li>Create item and test. Create item and test. Create item and test. Create item and test.
      * Create item and test.</li>
      * </ul>
-     * <link rel="stylesheet" href= "../../../../../docs/javadoc.css"/>
+     * <p>
+     * {@link #map(WiseFunction)} preassign context.
+     * </p>
+     * <pre>
+     * ───①───②───③───④───⑤──┼
+     *    ↓   ↓   ↓   ↓   ↓
+     *  ┌────────────────────┐
+     *   map ○→●
+     *  └────────────────────┘
+     *    ↓   ↓   ↓   ↓   ↓  ↓
+     * ───❶───❷───❸───❹───❺──┼
+     * </pre> <link rel="stylesheet" href= "../../../../../docs/javadoc.css"/>
      * 
      * @param <T> A intext.
      * @param name A file name. asd aoijsouh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu

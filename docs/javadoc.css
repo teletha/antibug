@@ -32,6 +32,7 @@ dd:not([class]) {
 }
 
 dl:not([class]) {
+	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
 	padding-top: 6px;
@@ -47,9 +48,11 @@ dl:not([class]) {
 dl:last-child {
 	margin-top: 58px;
 	margin-bottom: 58px;
-	padding-top: 12px;
+	margin-left: 0;
+	padding-top: 6px;
 	padding-bottom: 6px;
-	padding-left: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	border-left-width: 3px;
 	border-left-style: solid;
 	border-left-color: hsl(2,68%,58%);
@@ -162,6 +165,7 @@ heading {
 }
 
 list {
+	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
 	padding-top: 6px;
@@ -175,6 +179,7 @@ list {
 }
 
 ol:not([class]) {
+	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
 	padding-top: 6px;
@@ -188,6 +193,7 @@ ol:not([class]) {
 }
 
 p:not([class]) {
+	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
 	padding-top: 6px;
@@ -200,6 +206,7 @@ p:not([class]) {
 }
 
 pre:not([class]) {
+	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
 	padding-top: 6px;
@@ -208,11 +215,13 @@ pre:not([class]) {
 	padding-right: 10px;
 	border-left-width: 3px;
 	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	background-color: hsla(48,95%,59%,0.09999999999999998);
+	border-left-color: hsl(120,39%,55%);
+	background-color: hsla(120,39%,55%,0.09999999999999998);
+	font-family: "Yu Gothic UI",sans-serif;
 }
 
 ul:not([class]) {
+	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
 	padding-top: 6px;
@@ -228,6 +237,7 @@ ul:not([class]) {
 ul:not([class]) li {
 	list-style-type: none;
 	padding-bottom: 6px;
+		display: table;
 }
 
 ul:not([class]) li::before {
@@ -235,15 +245,8 @@ ul:not([class]) li::before {
 	font-size: 11px;
 	color: hsl(48,75%,59%);
 	content: '\e876';
-	display: inline-block;
-	vertical-align: bottom;
-	padding-right: 5px;
-}
-
-%,59%);
-	content: '\e876';
-	display: inline-block;
-	vertical-align: bottom;
+	display: table-cell;
+	vertical-align: base;
 	padding-right: 5px;
 }
 
