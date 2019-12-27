@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css?family=Oswald:300https://fonts.googleapis.com/icon?family=Material+Icons");
+a:not([class]) {
+	text-decoration: none;
+}
+
+* {
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	border-width: 0;
+	font-size: 12px;
+	font-family: "Yu Gothic UI",sans-serif;
+	line-height: 1.35;
+}
+
+body {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: hsl(0,0%,100%);
+}
+
+dd:not([class]) {
+	margin-bottom: 20px;
+}
+
+dl:not([class]) {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	background-color: hsla(48,95%,59%,0.09999999999999998);
+}
+
+dl:last-child {
+	margin-top: 58px;
+	margin-bottom: 58px;
+	padding-top: 12px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(2,68%,58%);
+	background-color: hsla(0,0%,0%,0);
+	position: relative;
+}
+
+dl:last-child::before {
+	font-size: 18px;
+	font-family: Oswald,sans-serif;
+	display: block;
+	content: 'Signature';
+	position: absolute;
+	top: -36px;
+	left: -3px;
+}
+
+dl:last-child dt {
+	display: block;
+	width: 70px;
+	font-size: 9px;
+	font-weight: bold;
+	color: hsl(2,68%,58%);
+	padding-top: 2px;
+	border-bottom-style: none;
+}
+
+dl:last-child dd {
+	margin-bottom: 15px;
+	margin-left: 70px;
+}
+
+dl:last-child b {
+	display: block;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: hsl(0,0%,93%);
+	padding-bottom: 3px;
+	margin-bottom: 3px;
+	font-weight: bold;
+}
+
+dt:not([class]) {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: hsl(0,0%,87%);
+	padding-bottom: 3px;
+	margin-bottom: 3px;
+}
+
+h {
+	font-size: 18px;
+	font-family: Oswald,sans-serif;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	display: block;
+}
+
+h1 {
+	font-size: 18px;
+	font-family: Oswald,sans-serif;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	display: block;
+}
+
+h2 {
+	font-size: 18px;
+	font-family: Oswald,sans-serif;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	display: block;
+}
+
+h3 {
+	font-size: 18px;
+	font-family: Oswald,sans-serif;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	display: block;
+}
+
+h4 {
+	font-size: 18px;
+	font-family: Oswald,sans-serif;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	display: block;
+}
+
+h5 {
+	font-size: 18px;
+	font-family: Oswald,sans-serif;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	display: block;
+}
+
+heading {
+	font-size: 18px;
+	font-family: Oswald,sans-serif;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	display: block;
+}
+
+list {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	background-color: hsla(48,95%,59%,0.09999999999999998);
+}
+
+ol:not([class]) {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	background-color: hsla(48,95%,59%,0.09999999999999998);
+}
+
+p:not([class]) {
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+pre:not([class]) {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	background-color: hsla(48,95%,59%,0.09999999999999998);
+}
+
+ul:not([class]) {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	background-color: hsla(48,95%,59%,0.09999999999999998);
+}
+
+ul:not([class]) li {
+	list-style-type: none;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+
+ul:not([class]) li::before {
+	font-family: MaterialIcon;
+	font-size: 11px;
+	color: hsl(48,75%,59%);
+	content: '\e876';
+	margin-right: -10px;
+	margin-left: 4px;
+	display: inline-block;
+	vertical-align: bottom;
+}
+
