@@ -22,8 +22,8 @@ a:not([class]) {
 body {
 	padding-top: 5px;
 	padding-bottom: 5px;
-	padding-left: 10px;
-	padding-right: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
 	background-color: hsl(0,0%,100%);
 }
 
@@ -32,12 +32,12 @@ dd:not([class]) {
 }
 
 dl:not([class]) {
-	margin-top: 2px;
 	margin-bottom: 2px;
+	margin-left: 0;
 	padding-top: 6px;
 	padding-bottom: 6px;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	border-left-width: 3px;
 	border-left-style: solid;
 	border-left-color: hsl(48,95%,59%);
@@ -48,8 +48,8 @@ dl:last-child {
 	margin-top: 58px;
 	margin-bottom: 58px;
 	padding-top: 12px;
-	padding-bottom: 5px;
-	padding-left: 10px;
+	padding-bottom: 6px;
+	padding-left: 20px;
 	border-left-width: 3px;
 	border-left-style: solid;
 	border-left-color: hsl(2,68%,58%);
@@ -70,11 +70,13 @@ dl:last-child::before {
 dl:last-child dt {
 	display: block;
 	width: 70px;
+	float: left;
 	font-size: 9px;
 	font-weight: bold;
 	color: hsl(2,68%,58%);
 	padding-top: 2px;
 	border-bottom-style: none;
+	text-transform: capitalize;
 }
 
 dl:last-child dd {
@@ -90,6 +92,7 @@ dl:last-child b {
 	padding-bottom: 3px;
 	margin-bottom: 3px;
 	font-weight: bold;
+	text-transform: capitalize;
 }
 
 dt:not([class]) {
@@ -101,68 +104,70 @@ dt:not([class]) {
 }
 
 h {
-	font-size: 18px;
 	font-family: Oswald,sans-serif;
-	padding-top: 20px;
-	padding-bottom: 10px;
+	font-size: 18px;
+	font-weight: normal;
+	padding-top: 6px;
+	padding-bottom: 6px;
 	display: block;
 }
 
 h1 {
-	font-size: 18px;
 	font-family: Oswald,sans-serif;
-	padding-top: 20px;
-	padding-bottom: 10px;
+	font-size: 18px;
+	font-weight: normal;
+	padding-top: 6px;
+	padding-bottom: 6px;
 	display: block;
 }
 
 h2 {
-	font-size: 18px;
 	font-family: Oswald,sans-serif;
-	padding-top: 20px;
-	padding-bottom: 10px;
+	font-size: 18px;
+	font-weight: normal;
+	padding-top: 6px;
+	padding-bottom: 6px;
 	display: block;
 }
 
 h3 {
-	font-size: 18px;
 	font-family: Oswald,sans-serif;
-	padding-top: 20px;
-	padding-bottom: 10px;
+	font-size: 18px;
+	font-weight: normal;
+	padding-top: 6px;
+	padding-bottom: 6px;
 	display: block;
 }
 
 h4 {
-	font-size: 18px;
 	font-family: Oswald,sans-serif;
-	padding-top: 20px;
-	padding-bottom: 10px;
+	font-size: 18px;
+	font-weight: normal;
+	padding-top: 6px;
+	padding-bottom: 6px;
 	display: block;
 }
 
-h5 {
-	font-size: 18px;
-	font-family: Oswald,sans-serif;
-	padding-top: 20px;
-	padding-bottom: 10px;
-	display: block;
+h5:not([class]) {
+	display: none;
 }
 
 heading {
-	font-size: 18px;
 	font-family: Oswald,sans-serif;
-	padding-top: 20px;
-	padding-bottom: 10px;
+	font-size: 18px;
+	font-weight: normal;
+	padding-top: 6px;
+	padding-bottom: 6px;
 	display: block;
 }
 
 list {
-	margin-top: 2px;
 	margin-bottom: 2px;
+	margin-left: 0;
 	padding-top: 6px;
 	padding-bottom: 6px;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	border-left-width: 3px;
 	border-left-style: solid;
 	border-left-color: hsl(48,95%,59%);
@@ -170,12 +175,12 @@ list {
 }
 
 ol:not([class]) {
-	margin-top: 2px;
 	margin-bottom: 2px;
+	margin-left: 0;
 	padding-top: 6px;
 	padding-bottom: 6px;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	border-left-width: 3px;
 	border-left-style: solid;
 	border-left-color: hsl(48,95%,59%);
@@ -183,19 +188,24 @@ ol:not([class]) {
 }
 
 p:not([class]) {
+	margin-bottom: 2px;
+	margin-left: 0;
 	padding-top: 6px;
 	padding-bottom: 6px;
 	padding-left: 10px;
 	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(204,75%,48%);
 }
 
 pre:not([class]) {
-	margin-top: 2px;
 	margin-bottom: 2px;
+	margin-left: 0;
 	padding-top: 6px;
 	padding-bottom: 6px;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	border-left-width: 3px;
 	border-left-style: solid;
 	border-left-color: hsl(48,95%,59%);
@@ -203,12 +213,12 @@ pre:not([class]) {
 }
 
 ul:not([class]) {
-	margin-top: 2px;
 	margin-bottom: 2px;
+	margin-left: 0;
 	padding-top: 6px;
 	padding-bottom: 6px;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	border-left-width: 3px;
 	border-left-style: solid;
 	border-left-color: hsl(48,95%,59%);
@@ -217,18 +227,26 @@ ul:not([class]) {
 
 ul:not([class]) li {
 	list-style-type: none;
-	padding-top: 6px;
 	padding-bottom: 6px;
 }
 
 ul:not([class]) li::before {
-	font-family: MaterialIcon;
+	font-family: "Material Icons";
 	font-size: 11px;
 	color: hsl(48,75%,59%);
 	content: '\e876';
-	margin-right: -10px;
-	margin-left: 4px;
 	display: inline-block;
 	vertical-align: bottom;
+	padding-right: 5px;
+}
+
+%,59%);
+	content: '\e876';
+	display: inline-block;
+	vertical-align: bottom;
+	padding-right: 5px;
+}
+
+
 }
 

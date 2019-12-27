@@ -24,11 +24,41 @@ import stylist.value.Numeric;
 
 public interface BuiltinStyles extends StyleDSL {
 
-    Font MaterialIcon = new Font("MaterialIcon", "https://fonts.googleapis.com/icon?family=Material+Icons");
+    Font MaterialIcon = new Font("Material Icons", "https://fonts.googleapis.com/icon?family=Material+Icons");
 
     Font Oswald = new Font("Oswald", "https://fonts.googleapis.com/css?family=Oswald:300");
 
     Numeric BlockBorderWidth = new Numeric(3, px);
+
+    Numeric BlockVerticalGap = Numeric.of(6, px);
+
+    Numeric BlockHorizontalGap = Numeric.of(10, px);
+
+    Numeric BlockInterval = Numeric.of(2, px);
+
+    Numeric HeadSize = new Numeric(18, px);
+
+    Color ParagraphColor = Color.rgb(31, 141, 214);
+
+    Color ListColor = Color.rgb(250, 210, 50);
+
+    Color SignatureColor = Color.of("#dd514c");
+
+    /**
+     * Define block-like.
+     * 
+     * @param color
+     */
+    private static void block(Color color, boolean paintBackground) {
+        margin.bottom(BlockInterval).left(0, px);
+        padding.vertical(BlockVerticalGap).horizontal(BlockHorizontalGap);
+        border.left.width(BlockBorderWidth).solid().color(color);
+        if (paintBackground) background.color(color.opacify(-0.9d));
+    }
+
+    Numeric LeftGap = Numeric.of(20, px);
+
+    Numeric BottomGap = Numeric.of(6, px);
 
     Style all = () -> {
         margin.size(0, px);
@@ -39,83 +69,58 @@ public interface BuiltinStyles extends StyleDSL {
     };
 
     Style body = () -> {
-        padding.vertical(5, px).horizontal(10, px);
+        padding.vertical(5, px).horizontal(LeftGap);
         background.color(Color.White);
     };
 
     Style p = () -> {
         $.not($.attr("class").exist(), () -> {
-            padding.vertical(6, px).horizontal(10, px);
+            block(ParagraphColor, false);
         });
     };
 
-    Color ColorList = Color.rgb(250, 210, 50);
-
     Style list = () -> {
-        margin.vertical(2, px);
-        padding.vertical(6, px).horizontal(20, px);
-        border.left.width(3, px).solid().color(ColorList);
-        background.color(ColorList.opacify(-0.9d));
+        block(ListColor, true);
     };
-
-    Numeric HeadSize = new Numeric(18, px);
-
-    Color SignatureColor = Color.of("#dd514c");
 
     Style dl = () -> {
         $.not($.attr("class").exist(), list);
 
         $.lastChild(() -> {
             margin.vertical(58, px);
-            padding.top(12, px).bottom(5, px).left(10, px);
+            padding.top(12, px).bottom(BottomGap).left(LeftGap);
             border.left.width(BlockBorderWidth).solid().color(SignatureColor);
             background.color(Color.Transparent);
             position.relative();
-        });
 
-        $.lastChild().before(() -> {
-            font.size(HeadSize).family(Oswald, Font.SansSerif);
-            display.block();
-            content.text("Signature");
-            position.absolute().top(-36, px).left(-3, px);
-        });
+            $.before(() -> {
+                font.size(HeadSize).family(Oswald, Font.SansSerif);
+                display.block();
+                content.text("Signature");
+                position.absolute().top(-36, px).left(-3, px);
+            });
 
-        $.lastChild().select("dt", () -> {
-            display.block().width(70, px);
-            font.size(9, px).weight.bold().color(SignatureColor);
-            padding.top(2, px);
-            border.bottom.none();
-        });
-        $.lastChild().select("dd", () -> {
-            margin.bottom(15, px).left(70, px);
-        });
+            $.select("dt", () -> {
+                display.block().width(70, px).floatLeft();
+                font.size(9, px).weight.bold().color(SignatureColor);
+                padding.top(2, px);
+                border.bottom.none();
+                text.transform.capitalize();
+            });
 
-        $.lastChild().select("b", () -> {
-            display.block();
-            border.bottom.width(1, px).solid().color(Color.WhiteGray);
-            padding.bottom(3, px);
-            margin.bottom(3, px);
-            font.weight.bold();
-        });
-    };
+            $.select("dd", () -> {
+                margin.bottom(15, px).left(70, px);
+            });
 
-    Style ul = () -> {
-        $.not($.attr("class").exist(), list);
-        $.not($.attr("class").exist()).select("li", () -> {
-            listStyle.none();
-            padding.vertical(6, px);
+            $.select("b", () -> {
+                display.block();
+                border.bottom.width(1, px).solid().color(Color.WhiteGray);
+                padding.bottom(3, px);
+                margin.bottom(3, px);
+                font.weight.bold();
+                text.transform.capitalize();
+            });
         });
-        $.not($.attr("class").exist()).select("li").before(() -> {
-            font.family(MaterialIcon).size(11, px).color(ColorList.saturate(-20));
-            content.text("\\e876");
-            margin.right(-10, px).left(4, px);
-            display.inlineBlock();
-            text.verticalAlign.bottom();
-        });
-    };
-
-    Style ol = () -> {
-        $.not($.attr("class").exist(), list);
     };
 
     Style dt = () -> {
@@ -132,6 +137,29 @@ public interface BuiltinStyles extends StyleDSL {
         });
     };
 
+    Style ul = () -> {
+        $.not($.attr("class").exist(), () -> {
+            list.style();
+
+            $.select("li", () -> {
+                listStyle.none();
+                padding.bottom(BottomGap);
+
+                $.before(() -> {
+                    font.family(MaterialIcon).size(11, px).color(ListColor.saturate(-20));
+                    content.text("\\e876");
+                    display.inlineBlock();
+                    text.verticalAlign.bottom();
+                    padding.right(5, px);
+                });
+            });
+        });
+    };
+
+    Style ol = () -> {
+        $.not($.attr("class").exist(), list);
+    };
+
     Style pre = () -> {
         $.not($.attr("class").exist(), list);
     };
@@ -143,9 +171,8 @@ public interface BuiltinStyles extends StyleDSL {
     };
 
     Style heading = () -> {
-        font.size(HeadSize);
-        font.family(Oswald, Font.SansSerif);
-        padding.top(20, px).bottom(10, px);
+        font.family(Oswald, Font.SansSerif).size(HeadSize).weight.normal();
+        padding.vertical(BlockVerticalGap);
         display.block();
     };
 
@@ -170,11 +197,62 @@ public interface BuiltinStyles extends StyleDSL {
     };
 
     Style h5 = () -> {
-        heading.style();
+        $.not($.attr("class").exist(), () -> {
+            display.none();
+        });
     };
 
+    /**
+     * a
+     * <h2>OK Title is Good</h2>
+     * <p>
+     * Locate a present resource file which is assured that the spcified file exists. adqw aar aw ar
+     * r r aeawew adqw aar aw ar r r aeawewadqw aar aw ar r r aeawewadqw aar aw ar r r aeawew adqw
+     * aar aw ar r r aeawew
+     * </p>
+     * <p>
+     * Locate a present resource file which is assured that the spcified file exists. adqw aar aw
+     * arli r r aeawew adqw aar aw ar r r aeawewadqw aar aw ar r r aeawewadqw aar aw ar r r aeawew
+     * adqw aar aw ar r r aeawew
+     * </p>
+     * <h>This is test title. </h>
+     * <dl>
+     * <dt>Action set</dt>
+     * <dd>This is my test action.aaaaaaasda ads asda ds ad aweaafgafa a</dd>
+     * <dt>Action set</dt>
+     * <dd>This is my test action. adqw aar aw ar r r aeawewaearatararara</dd>
+     * <dt>Action set</dt>
+     * <dd>This is my test action.asdaweawe adqw aar aw ar r r aeawew adqw aar aw ar r r aeawew adqw
+     * aar aw ar r r aeawew adqw aar aw ar r r aeawew</dd>
+     * </dl>
+     * <h3>This is test title.</h3>
+     * <ul>
+     * <li>Create item and test. Create item and test. Create item and test. Create item and test.
+     * Create item and test.</li>
+     * <li>Create item and test. Create item and test. Create item and test. Create item and test.
+     * Create item and test.</li>
+     * <li>Create item and test. Create item and test. Create item and test. Create item and test.
+     * Create item and test.</li>
+     * <li>Create item and test. Create item and test. Create item and test. Create item and test.
+     * Create item and test.</li>
+     * </ul>
+     * <link rel="stylesheet" href= "../../../../../docs/javadoc.css"/>
+     * 
+     * @param <T> A intext.
+     * @param name A file name. asd aoijsouh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu
+     *            iayiudaidydsiusad uh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu
+     *            iayiudaidydsiu uh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu iayiudaidydsiu
+     *            uh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu iayiudaidydsiu
+     * @param modified A last modified time. uh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu
+     *            iayiudaidydsiu uh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu iayiudaidydsiu
+     * @return A located present file. uh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu uh
+     *         ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu iayiudaidydsiu iayiudaidydsiu
+     * 
+     * @see String
+     */
     public static void main(String[] args) throws IOException {
         String formatted = Stylist.pretty().format(BuiltinStyles.class);
+        System.out.println(formatted);
         formatted = formatted.replaceAll(".+#([^\\s\\*]+) \\*/\\.[a-zA-Z]+", "$1").replaceFirst("all", "*");
         System.out.println(formatted);
 
