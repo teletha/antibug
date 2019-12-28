@@ -327,7 +327,7 @@ public interface BuiltinStyles extends StyleDSL {
     public static void main(String[] args) throws IOException {
         String formatted = Stylist.pretty().importNormalizeStyle().format(BuiltinStyles.class);
         System.out.println(formatted);
-        formatted = formatted.replaceAll(".+#([^\\s\\*]+) \\*/\\.[a-zA-Z]+", "$1").replaceFirst("all", "*");
+        formatted = formatted.replaceAll(".+#([^\\s\\*]+) \\*/\\.[a-zA-Z]+", "$1").replaceFirst("^([^@]+);$", "$1 !important;");
         System.out.println(formatted);
 
         Files.writeString(Path.of("docs/javadoc.css"), formatted, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
