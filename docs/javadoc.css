@@ -1,22 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Oswald:300");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://unpkg.com/ress/dist/ress.min.css");
 a:not([class]) {
 	text-decoration: none;
-}
-
-* {
-	margin-left: 0;
-	margin-right: 0;
-	margin-top: 0;
-	margin-bottom: 0;
-	padding-left: 0;
-	padding-right: 0;
-	padding-top: 0;
-	padding-bottom: 0;
-	border-width: 0;
-	font-size: 12px;
-	font-family: "Yu Gothic UI",sans-serif;
-	line-height: 1.35;
 }
 
 body {
@@ -25,6 +11,8 @@ body {
 	padding-left: 20px;
 	padding-right: 20px;
 	background-color: hsl(0,0%,100%);
+	font-size: 12px;
+	font-family: "Yu Gothic UI",sans-serif;
 }
 
 dd:not([class]) {
@@ -42,12 +30,12 @@ dl:not([class]) {
 	border-left-width: 3px;
 	border-left-style: solid;
 	border-left-color: hsl(48,95%,59%);
-	background-color: hsla(48,95%,59%,0.09999999999999998);
+	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
 dl:last-child {
-	margin-top: 58px;
-	margin-bottom: 58px;
+	margin-top: 56px;
+	margin-bottom: 2px;
 	margin-left: 0;
 	padding-top: 6px;
 	padding-bottom: 6px;
@@ -61,9 +49,10 @@ dl:last-child {
 }
 
 dl:last-child::before {
-	font-size: 18px;
-	font-family: Oswald,sans-serif;
 	display: block;
+	font-family: Oswald,sans-serif;
+	font-size: 18px;
+	font-weight: normal;
 	content: 'Signature';
 	position: absolute;
 	top: -36px;
@@ -92,8 +81,8 @@ dl:last-child b {
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
 	border-bottom-color: hsl(0,0%,93%);
-	padding-bottom: 3px;
-	margin-bottom: 3px;
+	padding-bottom: 2px;
+	margin-bottom: 2px;
 	font-weight: bold;
 	text-transform: capitalize;
 }
@@ -102,16 +91,16 @@ dt:not([class]) {
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
 	border-bottom-color: hsl(0,0%,87%);
-	padding-bottom: 3px;
-	margin-bottom: 3px;
+	padding-bottom: 2px;
+	margin-bottom: 2px;
 }
 
 h {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
-	padding-top: 6px;
-	padding-bottom: 6px;
+	margin-top: 24px;
+	margin-bottom: 12px;
 	display: block;
 }
 
@@ -119,8 +108,8 @@ h1 {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
-	padding-top: 6px;
-	padding-bottom: 6px;
+	margin-top: 24px;
+	margin-bottom: 12px;
 	display: block;
 }
 
@@ -128,8 +117,8 @@ h2 {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
-	padding-top: 6px;
-	padding-bottom: 6px;
+	margin-top: 24px;
+	margin-bottom: 12px;
 	display: block;
 }
 
@@ -137,8 +126,8 @@ h3 {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
-	padding-top: 6px;
-	padding-bottom: 6px;
+	margin-top: 24px;
+	margin-bottom: 12px;
 	display: block;
 }
 
@@ -146,8 +135,8 @@ h4 {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
-	padding-top: 6px;
-	padding-bottom: 6px;
+	margin-top: 24px;
+	margin-bottom: 12px;
 	display: block;
 }
 
@@ -159,8 +148,8 @@ heading {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
-	padding-top: 6px;
-	padding-bottom: 6px;
+	margin-top: 24px;
+	margin-bottom: 12px;
 	display: block;
 }
 
@@ -175,7 +164,7 @@ list {
 	border-left-width: 3px;
 	border-left-style: solid;
 	border-left-color: hsl(48,95%,59%);
-	background-color: hsla(48,95%,59%,0.09999999999999998);
+	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
 ol:not([class]) {
@@ -189,7 +178,7 @@ ol:not([class]) {
 	border-left-width: 3px;
 	border-left-style: solid;
 	border-left-color: hsl(48,95%,59%);
-	background-color: hsla(48,95%,59%,0.09999999999999998);
+	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
 p:not([class]) {
@@ -216,7 +205,7 @@ pre:not([class]) {
 	border-left-width: 3px;
 	border-left-style: solid;
 	border-left-color: hsl(120,39%,55%);
-	background-color: hsla(120,39%,55%,0.09999999999999998);
+	background-color: hsla(120,39%,55%,0.19999999999999996);
 	font-family: "Yu Gothic UI",sans-serif;
 }
 
@@ -231,13 +220,12 @@ ul:not([class]) {
 	border-left-width: 3px;
 	border-left-style: solid;
 	border-left-color: hsl(48,95%,59%);
-	background-color: hsla(48,95%,59%,0.09999999999999998);
+	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
 ul:not([class]) li {
 	list-style-type: none;
 	padding-bottom: 6px;
-		display: table;
 }
 
 ul:not([class]) li::before {
@@ -245,11 +233,31 @@ ul:not([class]) li::before {
 	font-size: 11px;
 	color: hsl(48,75%,59%);
 	content: '\e876';
-	display: table-cell;
-	vertical-align: base;
+	display: block;
+	vertical-align: bottom;
 	padding-right: 5px;
 }
 
+ng-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	background-color: hsla(48,95%,59%,0.09999999999999998);
+}
 
+ul:not([class]) li {
+	list-style-type: none;
+	padding-bottom: 6px;
+}
+
+ul:not([class]) li::before {
+	font-family: "Material Icons";
+	font-size: 11px;
+	color: hsl(48,75%,59%);
+	content: '\e876';
+	display: block;
+	vertical-align: bottom;
+	padding-right: 5px;
 }
 

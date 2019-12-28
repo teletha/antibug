@@ -39,6 +39,10 @@ public interface BuiltinStyles extends StyleDSL {
 
     Numeric HeadSize = Numeric.of(18, px);
 
+    Numeric HeadTopGap = BlockVerticalGap.multiply(4);
+
+    Numeric HeadBottomGap = BlockVerticalGap.multiply(2);
+
     Color ParagraphColor = Color.rgb(31, 141, 214);
 
     Color ListColor = Color.rgb(250, 210, 50);
@@ -56,24 +60,25 @@ public interface BuiltinStyles extends StyleDSL {
         margin.vertical(BlockInterval).left(0, px);
         padding.vertical(BlockVerticalGap).horizontal(BlockHorizontalGap);
         border.left.width(BlockBorderWidth).solid().color(color);
-        if (paintBackground) background.color(color.opacify(-0.9d));
+        if (paintBackground) background.color(color.opacify(-0.8d));
     }
 
     Numeric LeftGap = Numeric.of(20, px);
 
     Numeric BottomGap = Numeric.of(6, px);
 
-    Style all = () -> {
-        margin.size(0, px);
-        padding.size(0, px);
-        border.width(0, px);
-        font.size(12, px).family("Yu Gothic UI", Font.SansSerif);
-        line.height(1.35);
+    Numeric SmallGap = Numeric.of(2, px);
+
+    Style heading = () -> {
+        font.family(Oswald, Font.SansSerif).size(HeadSize).weight.normal();
+        margin.top(HeadTopGap).bottom(HeadBottomGap);
+        display.block();
     };
 
     Style body = () -> {
         padding.vertical(5, px).horizontal(LeftGap);
         background.color(Color.White);
+        font.size(12, px).family("Yu Gothic UI", Font.SansSerif);
     };
 
     Style p = () -> {
@@ -86,26 +91,85 @@ public interface BuiltinStyles extends StyleDSL {
         block(ListColor, true);
     };
 
+    /**
+     * a
+     * <h2>OK Title is Good</h2>
+     * <p>
+     * Locate a present resource file which is assured that the spcified file exists. adqw aar aw ar
+     * r r aeawew adqw aar aw ar r r aeawewadqw aar aw ar r r aeawewadqw aar aw ar r r aeawew adqw
+     * aar aw ar r r aeawew
+     * </p>
+     * <p>
+     * Locate a present resource file which is assured that the spcified file exists. adqw aar aw
+     * arli r r aeawew adqw aar aw ar r r aeawewadqw aar aw ar r r aeawewadqw aar aw ar r r aeawew
+     * adqw aar aw ar r r aeawew
+     * </p>
+     * <h>This is test title. </h>
+     * <dl>
+     * <dt>Action set</dt>
+     * <dd>This is my test action.aaaaaaasda ads asda ds ad aweaafgafa a</dd>
+     * <dt>Action set</dt>
+     * <dd>This is my test action. adqw aar aw ar r r aeawewaearatararara</dd>
+     * <dt>Action set</dt>
+     * <dd>This is my test action.asdaweawe adqw aar aw ar r r aeawew adqw aar aw ar r r aeawew adqw
+     * aar aw ar r r aeawew adqw aar aw ar r r aeawew</dd>
+     * </dl>
+     * <h3>This is test title.</h3>
+     * <ul>
+     * <li>Create item and test. Create item and test. Create item and test. Create item and test.
+     * Create item and test.</li>
+     * <li>Create item and test. Create item and test. Create item and test. Create item and test.
+     * Create item and test.</li>
+     * <li>Create item and test. Create item and test. Create item and test. Create item and test.
+     * Create item and test.</li>
+     * <li>Create item and test. Create item and test. Create item and test. Create item and test.
+     * Create item and test.</li>
+     * </ul>
+     * <p>
+     * {@link #map(WiseFunction)} preassign context.
+     * </p>
+     * <pre>
+     * ───①───②───③───④───⑤──┼
+     *    ↓   ↓   ↓   ↓   ↓
+     *  ┌────────────────────┐
+     *   map ○→●
+     *  └────────────────────┘
+     *    ↓   ↓   ↓   ↓   ↓  ↓
+     * ───❶───❷───❸───❹───❺──┼
+     * </pre> <link rel="stylesheet" href= "../../../../../docs/javadoc.css"/>
+     * 
+     * @param <T> A intext.
+     * @param name A file name. asd aoijsouh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu
+     *            iayiudaidydsiusad uh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu
+     *            iayiudaidydsiu uh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu iayiudaidydsiu
+     *            uh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu iayiudaidydsiu
+     * @param modified A last modified time. uh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu
+     *            iayiudaidydsiu uh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu iayiudaidydsiu
+     * @return A located present file. uh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu uh
+     *         ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu iayiudaidydsiu iayiudaidydsiu
+     * 
+     * @see String
+     */
     Style dl = () -> {
         $.not($.attr("class").exist(), list);
 
         $.lastChild(() -> {
             block(SignatureColor, false);
             background.color(Color.Transparent);
-            margin.vertical(58, px);
+            margin.top(BlockInterval.add(HeadSize).add(HeadBottomGap).add(HeadTopGap));
             position.relative();
 
             $.before(() -> {
-                font.size(HeadSize).family(Oswald, Font.SansSerif);
                 display.block();
+                font.family(Oswald, Font.SansSerif).size(HeadSize).weight.normal();
                 content.text("Signature");
-                position.absolute().top(-36, px).left(-3, px);
+                position.absolute().top(BlockVerticalGap.add(HeadSize).add(HeadBottomGap).negate()).left(BlockBorderWidth.negate());
             });
 
             $.select("dt", () -> {
                 display.block().width(70, px).floatLeft();
                 font.size(9, px).weight.bold().color(SignatureColor);
-                padding.top(2, px);
+                padding.top(SmallGap);
                 border.bottom.none();
                 text.transform.capitalize();
             });
@@ -117,8 +181,8 @@ public interface BuiltinStyles extends StyleDSL {
             $.select("b", () -> {
                 display.block();
                 border.bottom.width(1, px).solid().color(Color.WhiteGray);
-                padding.bottom(3, px);
-                margin.bottom(3, px);
+                padding.bottom(SmallGap);
+                margin.bottom(SmallGap);
                 font.weight.bold();
                 text.transform.capitalize();
             });
@@ -128,8 +192,8 @@ public interface BuiltinStyles extends StyleDSL {
     Style dt = () -> {
         $.not($.attr("class").exist(), () -> {
             border.bottom.width(1, px).solid().color("#ddd");
-            padding.bottom(3, px);
-            margin.bottom(3, px);
+            padding.bottom(SmallGap);
+            margin.bottom(SmallGap);
         });
     };
 
@@ -173,12 +237,6 @@ public interface BuiltinStyles extends StyleDSL {
         $.not($.attr("class").exist(), () -> {
             text.decoration.none();
         });
-    };
-
-    Style heading = () -> {
-        font.family(Oswald, Font.SansSerif).size(HeadSize).weight.normal();
-        padding.vertical(BlockVerticalGap);
-        display.block();
     };
 
     Style h = () -> {
@@ -267,7 +325,7 @@ public interface BuiltinStyles extends StyleDSL {
      * @see String
      */
     public static void main(String[] args) throws IOException {
-        String formatted = Stylist.pretty().format(BuiltinStyles.class);
+        String formatted = Stylist.pretty().importNormalizeStyle().format(BuiltinStyles.class);
         System.out.println(formatted);
         formatted = formatted.replaceAll(".+#([^\\s\\*]+) \\*/\\.[a-zA-Z]+", "$1").replaceFirst("all", "*");
         System.out.println(formatted);
