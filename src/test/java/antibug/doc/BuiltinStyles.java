@@ -25,9 +25,11 @@ import stylist.value.Numeric;
 
 public interface BuiltinStyles extends StyleDSL {
 
-    Font MaterialIcon = new Font("Material Icons", "https://fonts.googleapis.com/icon?family=Material+Icons");
+    Font IconFont = Font.fromGoogle("Material Icons");
 
-    Font Oswald = new Font("Oswald", "https://fonts.googleapis.com/css?family=Oswald:300");
+    Font HeadFont = Font.fromGoogle("Oswald");
+
+    Font BodyFont = new Font("Yu Gothic UI", "");
 
     Numeric BlockBorderWidth = Numeric.of(3, px);
 
@@ -42,6 +44,8 @@ public interface BuiltinStyles extends StyleDSL {
     Numeric HeadTopGap = BlockVerticalGap.multiply(4);
 
     Numeric HeadBottomGap = BlockVerticalGap.multiply(2);
+
+    double LineHeight = 1.5;
 
     Color ParagraphColor = Color.rgb(31, 141, 214);
 
@@ -60,17 +64,19 @@ public interface BuiltinStyles extends StyleDSL {
         margin.vertical(BlockInterval).left(0, px);
         padding.vertical(BlockVerticalGap).horizontal(BlockHorizontalGap);
         border.left.width(BlockBorderWidth).solid().color(color);
+        line.height(LineHeight);
+        font.family(BodyFont, Font.SansSerif);
         if (paintBackground) background.color(color.opacify(-0.8d));
     }
 
     Numeric LeftGap = Numeric.of(20, px);
 
-    Numeric BottomGap = Numeric.of(6, px);
+    Numeric BottomGap = Numeric.of(10, px);
 
     Numeric SmallGap = Numeric.of(2, px);
 
     Style heading = () -> {
-        font.family(Oswald, Font.SansSerif).size(HeadSize).weight.normal();
+        font.family(HeadFont, Font.SansSerif).size(HeadSize).weight.normal();
         margin.top(HeadTopGap).bottom(HeadBottomGap);
         display.block();
     };
@@ -78,7 +84,7 @@ public interface BuiltinStyles extends StyleDSL {
     Style body = () -> {
         padding.vertical(5, px).horizontal(LeftGap);
         background.color(Color.White);
-        font.size(12, px).family("Yu Gothic UI", Font.SansSerif);
+        font.size(12, px).family(BodyFont, "Noto Sans", Font.SansSerif);
     };
 
     Style p = () -> {
@@ -161,7 +167,7 @@ public interface BuiltinStyles extends StyleDSL {
 
             $.before(() -> {
                 display.block();
-                font.family(Oswald, Font.SansSerif).size(HeadSize).weight.normal();
+                font.family(HeadFont, Font.SansSerif).size(HeadSize).weight.normal();
                 content.text("Signature");
                 position.absolute().top(BlockVerticalGap.add(HeadSize).add(HeadBottomGap).negate()).left(BlockBorderWidth.negate());
             });
@@ -203,20 +209,33 @@ public interface BuiltinStyles extends StyleDSL {
         });
     };
 
+    /**
+     * <ul>
+     * <li>Create item and test. Create item and test. Create item and test. Create item and test.
+     * Create item and test.</li>
+     * <li>Create item and test. Create item and test. Create item and test. Create item and test.
+     * Create item and test.</li>
+     * <li>Create item and test. Create item and test. Create item and test. Create item and test.
+     * Create item and test.</li>
+     * <li>Create item and test. Create item and test. Create item and test. Create item and test.
+     * Create item and test.</li>
+     * </ul>
+     * </pre> <link rel="stylesheet" href= "../../../../../docs/javadoc.css"/>
+     */
     Style ul = () -> {
         $.not($.attr("class").exist(), () -> {
             list.style();
 
             $.select("li", () -> {
                 listStyle.none();
-                padding.bottom(BottomGap);
+                padding.bottom(BottomGap).left(1, em);
+                text.indent(Numeric.of(-1.5, em));
 
                 $.before(() -> {
-                    font.family(MaterialIcon).size(11, px).color(ListColor.saturate(-20));
+                    font.family(IconFont).color(ListColor.saturate(-20));
                     content.text("\\e876");
-                    display.block();
                     text.verticalAlign.bottom();
-                    padding.right(5, px);
+                    padding.right(0.5, em);
                 });
             });
         });
@@ -229,12 +248,12 @@ public interface BuiltinStyles extends StyleDSL {
     Style pre = () -> {
         $.not($.attr("class").exist(), () -> {
             block(CodeColor, true);
-            font.family("Yu Gothic UI", Font.SansSerif);
         });
     };
 
     Style a = () -> {
         $.not($.attr("class").exist(), () -> {
+            font.family(BodyFont);
             text.decoration.none();
         });
     };
@@ -327,7 +346,7 @@ public interface BuiltinStyles extends StyleDSL {
     public static void main(String[] args) throws IOException {
         String formatted = Stylist.pretty().importNormalizeStyle().format(BuiltinStyles.class);
         System.out.println(formatted);
-        formatted = formatted.replaceAll(".+#([^\\s\\*]+) \\*/\\.[a-zA-Z]+", "$1").replaceFirst("^([^@]+);$", "$1 !important;");
+        formatted = formatted.replaceAll(".+#([^\\s\\*]+) \\*/\\.[a-zA-Z]+", "$1");
         System.out.println(formatted);
 
         Files.writeString(Path.of("docs/javadoc.css"), formatted, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
