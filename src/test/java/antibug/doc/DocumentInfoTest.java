@@ -28,9 +28,18 @@ public class DocumentInfoTest extends JavadocTestSupport {
      * </p>
      */
     @Test
-    void markuped() {
+    void element() {
         MethodInfo info = currentMethod();
         assert sameXML(info.comment, "<p>Text</p>");
+    }
+
+    /**
+     * <link type="stylesheet" href="test.css"/>
+     */
+    @Test
+    void attribute() {
+        MethodInfo info = currentMethod();
+        assert sameXML(info.comment, "<link href=\"test.css\" type=\"stylesheet\"/>");
     }
 
     /**

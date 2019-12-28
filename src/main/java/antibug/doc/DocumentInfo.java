@@ -444,7 +444,10 @@ public class DocumentInfo {
          */
         @Override
         public XMLBuilder visitAttribute(AttributeTree node, XMLBuilder p) {
-            return super.visitAttribute(node, p);
+            text.append(' ').append(node.getName()).append("=\"");
+            node.getValue().forEach(n -> n.accept(this, this));
+            text.append("\"");
+            return p;
         }
 
         /**
@@ -579,7 +582,7 @@ public class DocumentInfo {
         @Override
         public XMLBuilder visitStartElement(StartElementTree node, XMLBuilder p) {
             text.append("<").append(node.getName());
-
+            node.getAttributes().forEach(attr -> attr.accept(this, this));
             text.append(node.isSelfClosing() ? "/>" : ">");
             return p;
         }
