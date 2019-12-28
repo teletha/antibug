@@ -11,6 +11,9 @@ package antibug.doc;
 
 import org.junit.jupiter.api.Test;
 
+import kiss.XML;
+import kiss.Ⅱ;
+
 public class DocumentInfoTest extends JavadocTestSupport {
 
     /**
@@ -40,6 +43,38 @@ public class DocumentInfoTest extends JavadocTestSupport {
     void attribute() {
         MethodInfo info = currentMethod();
         assert sameXML(info.comment, "<link href=\"test.css\" type=\"stylesheet\"/>");
+    }
+
+    /**
+     * @param name1 Description.
+     * @param name2 This is <em>NOT</em> error.
+     */
+    @Test
+    void paramTag() {
+        MethodInfo info = currentMethod();
+        Ⅱ<String, XML> param = info.paramTags.get(0);
+        assert param.ⅰ.equals("name1");
+        assert sameXML(param.ⅱ, "<span>Description.</span>");
+
+        param = info.paramTags.get(1);
+        assert param.ⅰ.equals("name2");
+        assert sameXML(param.ⅱ, "<span>This is <em>NOT</em> error.</span>");
+    }
+
+    /**
+     * @param <T> Description.
+     * @param <NEXT> This is <em>NOT</em> error.
+     */
+    @Test
+    void parameterTypeTag() {
+        MethodInfo info = currentMethod();
+        Ⅱ<String, XML> param = info.typeParameterTags.get(0);
+        assert param.ⅰ.equals("T");
+        assert sameXML(param.ⅱ, "<span>Description.</span>");
+
+        param = info.typeParameterTags.get(1);
+        assert param.ⅰ.equals("NEXT");
+        assert sameXML(param.ⅱ, "<span>This is <em>NOT</em> error.</span>");
     }
 
     /**

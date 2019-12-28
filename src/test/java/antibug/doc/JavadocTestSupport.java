@@ -46,7 +46,29 @@ class JavadocTestSupport {
      * @return
      */
     protected final boolean sameXML(Variable<XML> actual, String expected) {
-        assert normalize(actual.exact()).equals(expected);
+        return sameXML(actual.exact(), expected);
+    }
+
+    /**
+     * Test xml equality.
+     * 
+     * @param actual
+     * @param expected
+     * @return
+     */
+    protected final boolean sameXML(XML actual, String expected) {
+        return sameXML(actual, I.xml(expected));
+    }
+
+    /**
+     * Test xml equality.
+     * 
+     * @param actual
+     * @param expected
+     * @return
+     */
+    protected final boolean sameXML(XML actual, XML expected) {
+        assert normalize(actual).equals(normalize(expected));
 
         return true;
     }
