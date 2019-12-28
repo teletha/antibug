@@ -9,17 +9,36 @@
  */
 package antibug.doc;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 import javax.lang.model.element.Element;
 
+import kiss.Variable;
+
 public class JavadocBuilder implements Consumer<Element> {
+
+    /** Info repository. */
+    public final List<ClassInfo> classes = new ArrayList();
 
     /**
      * {@inheritDoc}
      */
     @Override
     public void accept(Element root) {
-        System.out.println(root);
+        classes.add(new ClassInfo(root));
+    }
+
+    /**
+     * @param className
+     */
+    public Variable<ClassInfo> findByClassName(String className) {
+        for (ClassInfo info : classes) {
+            if (info.fqcn.equals(className)) {
+                return Variable.of(info);
+            }
+        }
+        return Variable.empty();
     }
 }

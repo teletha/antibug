@@ -33,6 +33,8 @@ import javax.tools.JavaFileObject.Kind;
 import javax.tools.StandardJavaFileManager;
 import javax.tools.ToolProvider;
 
+import com.sun.source.util.DocTrees;
+
 import jdk.javadoc.doclet.Doclet;
 import jdk.javadoc.doclet.DocletEnvironment;
 import jdk.javadoc.doclet.Reporter;
@@ -44,6 +46,11 @@ public class AntibugDoclet implements Doclet {
 
     /** Singleton builder. */
     public final static Builder Builder = new Builder();
+
+    /** Document parser. */
+    public static DocTrees TreeScanner;
+
+    DocTrees trees;
 
     /**
      * {@inheritDoc}
@@ -57,9 +64,8 @@ public class AntibugDoclet implements Doclet {
      */
     @Override
     public final boolean run(DocletEnvironment env) {
-        for (Element element : env.getSpecifiedElements()) {
-            Builder.analyzer.accept(element);
-        }
+        TreeScanner = env.getDocTrees();
+        env.getSpecifiedElements().stream().forEach(Builder.analyzer::accept);
         return true;
     }
 

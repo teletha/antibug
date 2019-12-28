@@ -98,7 +98,6 @@ public interface BuiltinStyles extends StyleDSL {
     };
 
     /**
-     * a
      * <h2>OK Title is Good</h2>
      * <p>
      * Locate a present resource file which is assured that the spcified file exists. adqw aar aw ar
@@ -220,7 +219,7 @@ public interface BuiltinStyles extends StyleDSL {
      * <li>Create item and test. Create item and test. Create item and test. Create item and test.
      * Create item and test.</li>
      * </ul>
-     * </pre> <link rel="stylesheet" href= "../../../../../docs/javadoc.css"/>
+     * <link rel="stylesheet" href= "../../../../../docs/javadoc.css"/>
      */
     Style ul = () -> {
         $.not($.attr("class").exist(), () -> {
