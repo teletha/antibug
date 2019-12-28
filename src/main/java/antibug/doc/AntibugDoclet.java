@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import javax.lang.model.SourceVersion;
@@ -57,7 +58,7 @@ public class AntibugDoclet implements Doclet {
     @Override
     public final boolean run(DocletEnvironment env) {
         for (Element element : env.getSpecifiedElements()) {
-            System.out.println(element);
+            Builder.analyzer.accept(element);
         }
         return true;
     }
@@ -101,6 +102,9 @@ public class AntibugDoclet implements Doclet {
 
         /** The output directory. */
         private Path output = Path.of("docs");
+
+        /** The document analyzer. */
+        private Consumer<Element> analyzer = new JavadocBuilder();
 
         /**
          * Hide constructor.
@@ -182,6 +186,19 @@ public class AntibugDoclet implements Doclet {
         public final Builder output(Path outputDirectory) {
             if (outputDirectory != null) {
                 this.output = outputDirectory;
+            }
+            return this;
+        }
+
+        /**
+         * Set document analyzer.
+         * 
+         * @param analyzer
+         * @return
+         */
+        public final Builder analyzer(Consumer<Element> analyzer) {
+            if (analyzer != null) {
+                this.analyzer = analyzer;
             }
             return this;
         }
