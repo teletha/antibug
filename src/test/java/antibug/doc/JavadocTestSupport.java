@@ -11,8 +11,11 @@ package antibug.doc;
 
 import java.lang.StackWalker.Option;
 import java.lang.StackWalker.StackFrame;
+import java.util.Objects;
 import java.util.Set;
 
+import org.w3c.dom.Attr;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -68,36 +71,52 @@ class JavadocTestSupport {
      * @return
      */
     protected final boolean sameXML(XML actual, XML expected) {
-        assert normalize(actual).equals(normalize(expected));
-
-        return true;
+        return sameXML(actual, actual.to(), expected, expected.to());
     }
 
     /**
-     * Serialize trimed xml.
+     * Test xml equality.
      * 
-     * @param xml
+     * @param actual
+     * @param expected
      * @return
      */
-    private String normalize(XML xml) {
-        return I.xml(trimWhitespace(xml.to())).toString();
-    }
+    private boolean sameXML(XML actualXML, Node actual, XML expectedXML, Node expected) {
+        // base
+        assert actual != null;
+        assert expected != null;
+        assert Objects.equals(actual.getLocalName(), expected.getLocalName());
+        assert actual.getTextContent().trim().equals(expected.getTextContent().trim());
 
-    /**
-     * Trim all white space on each {@link Node}.
-     * 
-     * @param node
-     * @return
-     */
-    private Node trimWhitespace(Node node) {
-        NodeList children = node.getChildNodes();
-        for (int i = 0; i < children.getLength(); ++i) {
-            Node child = children.item(i);
-            if (child.getNodeType() == Node.TEXT_NODE) {
-                child.setTextContent(child.getTextContent().trim());
+        // attributes
+        NamedNodeMap actualAttrs = actual.getAttributes();
+        NamedNodeMap expectedAttrs = expected.getAttributes();
+        if (actualAttrs != null && expectedAttrs != null) {
+            assert actualAttrs.getLength() == expectedAttrs.getLength();
+
+            for (int i = 0; i < actualAttrs.getLength(); i++) {
+                Attr attr = (Attr) actualAttrs.item(i);
+                Attr pair = (Attr) expectedAttrs.getNamedItem(attr.getName());
+                assert pair != null : "Expected element has no attribute [" + attr.getName() + "] in " + expectedXML;
+                assert attr.getName().equals(pair.getName());
+                assert attr.getValue().equals(pair.getValue());
             }
-            trimWhitespace(child);
+            for (int i = 0; i < expectedAttrs.getLength(); i++) {
+                Attr attr = (Attr) expectedAttrs.item(i);
+                Attr pair = (Attr) actualAttrs.getNamedItem(attr.getName());
+                assert pair != null : "Actual element has no attribute [" + attr.getName() + "] in " + actualXML;
+                assert attr.getName().equals(pair.getName());
+                assert attr.getValue().equals(pair.getValue());
+            }
         }
-        return node;
+
+        // children
+        NodeList actualChildren = actual.getChildNodes();
+        NodeList expectedChildren = expected.getChildNodes();
+        assert actualChildren.getLength() == expectedChildren.getLength();
+        for (int i = 0; i < actualChildren.getLength(); i++) {
+            assert sameXML(actualXML, actualChildren.item(i), expectedXML, expectedChildren.item(i));
+        }
+        return true;
     }
 }
