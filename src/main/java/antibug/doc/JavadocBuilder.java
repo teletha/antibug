@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import javax.lang.model.element.Element;
+import javax.lang.model.element.TypeElement;
 
 import kiss.Variable;
 
@@ -27,7 +28,7 @@ public class JavadocBuilder implements Consumer<Element> {
      */
     @Override
     public void accept(Element root) {
-        classes.add(new ClassInfo(root));
+        classes.add(new ClassInfo((TypeElement) root));
     }
 
     /**

@@ -19,7 +19,7 @@ import kiss.I;
 import kiss.XML;
 import kiss.Ⅱ;
 
-public class ExecutableInfo extends DocumentInfo {
+public class ExecutableInfo extends ParameterizableInfo {
 
     public final String name;
 

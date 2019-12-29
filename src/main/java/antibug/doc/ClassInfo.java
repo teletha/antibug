@@ -16,13 +16,14 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.PackageElement;
+import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.TypeParameterElement;
 import javax.lang.model.element.VariableElement;
 import javax.lang.model.util.ElementScanner9;
 
 import kiss.Variable;
 
-public class ClassInfo extends DocumentInfo {
+public class ClassInfo extends ParameterizableInfo {
 
     /** The fully qualifed class name. */
     public final String fqcn;
@@ -39,7 +40,7 @@ public class ClassInfo extends DocumentInfo {
     /**
      * @param root
      */
-    ClassInfo(Element root) {
+    ClassInfo(TypeElement root) {
         super(root);
 
         this.fqcn = root.asType().toString();
