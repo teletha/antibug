@@ -10,8 +10,6 @@
 package antibug.doc;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,17 +17,27 @@ public class ParameterizableInfoTest extends JavadocTestSupport {
 
     @Test
     <A> void single() {
-        assert checkTypePrameter(currentMethod(), "<type/>");
+        assert checkTypePrameter(currentMethod(), "<type>A</type>");
     }
 
     @Test
     <A, B> void multi() {
-        assert checkTypePrameter(currentMethod(), "<type/>", "<type/>");
+        assert checkTypePrameter(currentMethod(), "<type>A</type>", "<type>B</type>");
     }
 
     @Test
-    <A extends Comparable & List & Map<? extends Serializable, ?>, B> void bounded() {
-        assert checkTypePrameter(currentMethod(), "<type bounded='extends'>A<parameters><type package='java.lang'>Comaprable</type></parameters></type>");
+    <A extends Comparable> void bounded() {
+        assert checkTypePrameter(currentMethod(), "<type>A</type><extends><type package='java.lang'>Comaprable</type></extends>");
+    }
+
+    @Test
+    <A extends Comparable<A>> void boundedVariable() {
+        assert checkTypePrameter(currentMethod(), "<type>A</type><extends><type package='java.lang'>Comaprable</type><parameters><type>A</type></parameters></extends>");
+    }
+
+    @Test
+    <A extends Comparable & Serializable> void intersected() {
+        assert checkTypePrameter(currentMethod(), "<type>A</type><extends><type package='java.lang'>Comaprable</type><type package='java.io'>Serializable</type></extends>");
     }
 
     /**

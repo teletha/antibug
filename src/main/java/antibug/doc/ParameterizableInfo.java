@@ -31,7 +31,6 @@ public class ParameterizableInfo extends DocumentInfo {
 
         e.getTypeParameters().forEach(type -> {
             List<? extends TypeMirror> bounds = type.getBounds();
-            System.out.println(type + "    " + type.asType() + "   " + bounds);
 
             typeParameters.add(I.pair(type.getSimpleName().toString(), parseTypeAsXML(type.asType())));
         });

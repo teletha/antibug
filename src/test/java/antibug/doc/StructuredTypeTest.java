@@ -159,37 +159,37 @@ public class StructuredTypeTest extends JavadocTestSupport {
     @ParameterizedTest
     @ArgumentsSource(NullProvider.class)
     void parameterizedTypeByLowerBoundedType(List<? extends CharSequence> type) {
-        assert checkParamType(currentMethod(), "<type package='java.util'>List</type><parameters><type bounded='extends' package='java.lang'>CharSequence</type></parameters>");
+        assert checkParamType(currentMethod(), "<type package='java.util'>List</type><parameters><type>?</type><extends><type package='java.lang'>CharSequence</type></extends></parameters>");
     }
 
     @ParameterizedTest
     @ArgumentsSource(NullProvider.class)
     <T> void parameterizedTypeByLowerBoundedVariable(List<? extends T> type) {
-        assert checkParamType(currentMethod(), "<type package='java.util'>List</type><parameters><type bounded='extends'>T</type></parameters>");
+        assert checkParamType(currentMethod(), "<type package='java.util'>List</type><parameters><type>?</type><extends><type>T</type></extends></parameters>");
     }
 
     @ParameterizedTest
     @ArgumentsSource(NullProvider.class)
     <T extends CharSequence> void parameterizedTypeByLowerBoundedBoundedVariable(List<? extends T> type) {
-        assert checkParamType(currentMethod(), "<type package='java.util'>List</type><parameters><type bounded='extends'>T</type></parameters>");
+        assert checkParamType(currentMethod(), "<type package='java.util'>List</type><parameters><type>?</type><extends><type>T</type></extends></parameters>");
     }
 
     @ParameterizedTest
     @ArgumentsSource(NullProvider.class)
     void parameterizedTypeByUpperBoundedType(List<? super CharSequence> type) {
-        assert checkParamType(currentMethod(), "<type package='java.util'>List</type><parameters><type bounded='super' package='java.lang'>CharSequence</type></parameters>");
+        assert checkParamType(currentMethod(), "<type package='java.util'>List</type><parameters><type>?</type><supers><type package='java.lang'>CharSequence</type></supers></parameters>");
     }
 
     @ParameterizedTest
     @ArgumentsSource(NullProvider.class)
     <T> void parameterizedTypeByUpperBoundedVariable(List<? super T> type) {
-        assert checkParamType(currentMethod(), "<type package='java.util'>List</type><parameters><type bounded='super'>T</type></parameters>");
+        assert checkParamType(currentMethod(), "<type package='java.util'>List</type><parameters><type>?</type><supers><type>T</type></supers></parameters>");
     }
 
     @ParameterizedTest
     @ArgumentsSource(NullProvider.class)
     <T extends CharSequence> void parameterizedTypeByUpperBoundedBoundedVariable(List<? super T> type) {
-        assert checkParamType(currentMethod(), "<type package='java.util'>List</type><parameters><type bounded='super'>T</type></parameters>");
+        assert checkParamType(currentMethod(), "<type package='java.util'>List</type><parameters><type>?</type><supers><type>T</type></supers></parameters>");
     }
 
     /**

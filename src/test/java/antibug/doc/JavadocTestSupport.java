@@ -135,6 +135,13 @@ class JavadocTestSupport {
         for (int i = 0; i < actualChildren.getLength(); i++) {
             assert sameXML(actualXML, actualChildren.item(i), expectedXML, expectedChildren.item(i));
         }
+
+        // next
+        Node actualNext = actual.getNextSibling();
+        Node expectedNext = expected.getNextSibling();
+        if (actualNext != null && expectedNext != null) {
+            assert sameXML(actualXML, actualNext, expectedXML, expectedNext);
+        }
         return true;
     }
 

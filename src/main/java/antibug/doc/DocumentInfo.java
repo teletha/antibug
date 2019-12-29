@@ -93,7 +93,7 @@ public class DocumentInfo {
      * @return New XML expression.
      */
     protected final XML parseTypeAsXML(TypeMirror type) {
-        return new TypeXMLBuilder().parse(type).root;
+        return new TypeXMLBuilder().parse(type).parent().children();
     }
 
     /**
@@ -374,9 +374,7 @@ public class DocumentInfo {
     /**
      * 
      */
-    private class TypeXMLBuilder extends SimpleTypeVisitor9<TypeXMLBuilder, TypeXMLBuilder> {
-
-        private final XML root = I.xml("<type/>");
+    private class TypeXMLBuilder extends SimpleTypeVisitor9<XML, XML> {
 
         /**
          * Parse documetation.
@@ -384,62 +382,63 @@ public class DocumentInfo {
          * @param docs
          * @return
          */
-        private TypeXMLBuilder parse(TypeMirror type) {
-            type.accept(this, this);
-            return this;
+        private XML parse(TypeMirror type) {
+            XML root = I.xml("<type/>");
+            type.accept(this, root);
+            return root;
         }
 
         /**
          * {@inheritDoc}
          */
         @Override
-        public TypeXMLBuilder visitIntersection(IntersectionType t, TypeXMLBuilder p) {
-            return super.visitIntersection(t, p);
+        public XML visitIntersection(IntersectionType t, XML xml) {
+            return xml;
         }
 
         /**
          * {@inheritDoc}
          */
         @Override
-        public TypeXMLBuilder visitUnion(UnionType t, TypeXMLBuilder p) {
-            return super.visitUnion(t, p);
+        public XML visitUnion(UnionType t, XML xml) {
+            return xml;
         }
 
         /**
          * {@inheritDoc}
          */
         @Override
-        public TypeXMLBuilder visitPrimitive(PrimitiveType primitive, TypeXMLBuilder p) {
-            root.text(primitive.toString());
-            return p;
+        public XML visitPrimitive(PrimitiveType primitive, XML xml) {
+            xml.text(primitive.toString());
+            return xml;
         }
 
         /**
          * {@inheritDoc}
          */
         @Override
-        public TypeXMLBuilder visitNull(NullType t, TypeXMLBuilder p) {
-            return super.visitNull(t, p);
+        public XML visitNull(NullType t, XML xml) {
+            return xml;
         }
 
         /**
          * {@inheritDoc}
          */
         @Override
-        public TypeXMLBuilder visitArray(ArrayType array, TypeXMLBuilder p) {
-            root.attr("array", "fix");
-            array.getComponentType().accept(this, p);
-            return p;
+        public XML visitArray(ArrayType array, XML xml) {
+            xml.attr("array", "fix");
+            array.getComponentType().accept(this, xml);
+            return xml;
         }
 
         /**
          * {@inheritDoc}
          */
         @Override
-        public TypeXMLBuilder visitDeclared(DeclaredType declared, TypeXMLBuilder p) {
+        public XML visitDeclared(DeclaredType declared, XML xml) {
             // type
             TypeElement e = (TypeElement) declared.asElement();
-            root.text(e.getSimpleName().toString());
+            xml.text(e.getSimpleName().toString());
 
             // enclosing
             Deque<String> enclosings = new LinkedList();
@@ -448,83 +447,84 @@ public class DocumentInfo {
                 enclosings.addFirst(((TypeElement) enclosing).getSimpleName().toString());
                 enclosing = enclosing.getEnclosingElement();
             }
-            if (enclosings.isEmpty() == false) root.attr("enclosing", I.join(".", enclosings));
+            if (enclosings.isEmpty() == false) xml.attr("enclosing", I.join(".", enclosings));
 
             // pacakage
-            root.attr("package", enclosing.toString());
+            xml.attr("package", enclosing.toString());
 
+            // type parameter
             List<? extends TypeMirror> paramTypes = declared.getTypeArguments();
             if (paramTypes.isEmpty() == false) {
-                XML parameters = root.after("parameters").next();
+                XML parameters = xml.after("<parameters/>").next();
                 for (TypeMirror paramType : paramTypes) {
                     parameters.append(parseTypeAsXML(paramType));
                 }
             }
 
-            return p;
+            return xml;
         }
 
         /**
          * {@inheritDoc}
          */
         @Override
-        public TypeXMLBuilder visitError(ErrorType t, TypeXMLBuilder p) {
-            return super.visitError(t, p);
+        public XML visitError(ErrorType t, XML xml) {
+            return xml;
         }
 
         /**
          * {@inheritDoc}
          */
         @Override
-        public TypeXMLBuilder visitTypeVariable(TypeVariable variable, TypeXMLBuilder p) {
-            root.text(variable.toString());
-            return p;
+        public XML visitTypeVariable(TypeVariable variable, XML xml) {
+            xml.text(variable.toString());
+            return xml;
         }
 
         /**
          * {@inheritDoc}
          */
         @Override
-        public TypeXMLBuilder visitWildcard(WildcardType wildcard, TypeXMLBuilder p) {
+        public XML visitWildcard(WildcardType wildcard, XML xml) {
             TypeMirror bounded = wildcard.getExtendsBound();
             if (bounded != null) {
-                root.attr("bounded", "extends");
-                bounded.accept(this, this);
-                return p;
+                xml.text("?");
+                xml.after("<extends/>").next().append(parseTypeAsXML(bounded));
+                return xml;
             }
 
             bounded = wildcard.getSuperBound();
             if (bounded != null) {
-                root.attr("bounded", "super");
-                bounded.accept(this, this);
-                return p;
+                xml.text("?");
+                xml.after("<supers/>").next().append(parseTypeAsXML(bounded));
+                return xml;
             }
 
-            root.text("?");
-            return p;
+            xml.text("?");
+            return xml;
         }
 
         /**
          * {@inheritDoc}
          */
         @Override
-        public TypeXMLBuilder visitExecutable(ExecutableType t, TypeXMLBuilder p) {
-            return super.visitExecutable(t, p);
+        public XML visitExecutable(ExecutableType t, XML xml) {
+            return xml;
         }
 
         /**
          * {@inheritDoc}
          */
         @Override
-        public TypeXMLBuilder visitNoType(NoType no, TypeXMLBuilder p) {
+        public XML visitNoType(NoType no, XML xml) {
             switch (no.getKind()) {
             case VOID:
-                root.text("void");
+                xml.text("void");
                 break;
 
             default:
             }
-            return p;
+            return xml;
         }
     }
 }
