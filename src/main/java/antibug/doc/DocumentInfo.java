@@ -426,8 +426,10 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public TypeXMLBuilder visitArray(ArrayType t, TypeXMLBuilder p) {
-            return super.visitArray(t, p);
+        public TypeXMLBuilder visitArray(ArrayType array, TypeXMLBuilder p) {
+            root.attr("array", "fix");
+            array.getComponentType().accept(this, p);
+            return p;
         }
 
         /**

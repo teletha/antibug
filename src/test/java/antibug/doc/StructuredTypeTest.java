@@ -29,6 +29,18 @@ public class StructuredTypeTest extends JavadocTestSupport {
     }
 
     @ParameterizedTest
+    @ArgumentsSource(NullProvider.class)
+    void primitiveIntArray(int[] type) {
+        assert checkParamType(currentMethod(), "<type array='fix'>int</type>");
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(NullProvider.class)
+    void primitiveIntVarArray(int... type) {
+        assert checkParamType(currentMethod(), "<type array='var'>int</type>");
+    }
+
+    @ParameterizedTest
     @ValueSource(longs = 0)
     void primitiveLong(long type) {
         assert checkParamType(currentMethod(), "<type>long</type>");
@@ -86,6 +98,30 @@ public class StructuredTypeTest extends JavadocTestSupport {
     @ArgumentsSource(NullProvider.class)
     void nestedMemberType(ProcessBuilder.Redirect.Type type) {
         assert checkParamType(currentMethod(), "<type package='java.lang' enclosing='ProcessBuilder.Redirect'>Type</type>");
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(NullProvider.class)
+    void arrayType(String[] type) {
+        assert checkParamType(currentMethod(), "<type package='java.lang' array='fix'>String</type>");
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(NullProvider.class)
+    void vararg(String... type) {
+        assert checkParamType(currentMethod(), "<type package='java.lang' array='var'>String</type>");
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(NullProvider.class)
+    <T> void arrayGeneric(T[] type) {
+        assert checkParamType(currentMethod(), "<type array='fix'>T</type>");
+    }
+
+    @ParameterizedTest
+    @ArgumentsSource(NullProvider.class)
+    <T> void varargGeneric(T... type) {
+        assert checkParamType(currentMethod(), "<type array='var'>T</type>");
     }
 
     @ParameterizedTest

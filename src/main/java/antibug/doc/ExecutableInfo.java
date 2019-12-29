@@ -32,8 +32,15 @@ public class ExecutableInfo extends DocumentInfo {
         super(e);
 
         this.name = e.getSimpleName().toString();
-        for (VariableElement p : e.getParameters()) {
-            params.add(I.pair(p.toString(), parseTypeAsXML(p.asType())));
+
+        List<? extends VariableElement> params = e.getParameters();
+        for (int i = 0; i < params.size(); i++) {
+            VariableElement param = params.get(i);
+            XML xml = parseTypeAsXML(param.asType());
+            if (e.isVarArgs() && i + 1 == params.size()) {
+                xml.attr("array", "var");
+            }
+            this.params.add(I.pair(param.toString(), xml));
         }
     }
 }
