@@ -46,7 +46,9 @@ import com.sun.source.doctree.InheritDocTree;
 import com.sun.source.doctree.LinkTree;
 import com.sun.source.doctree.LiteralTree;
 import com.sun.source.doctree.ParamTree;
+import com.sun.source.doctree.ReferenceTree;
 import com.sun.source.doctree.ReturnTree;
+import com.sun.source.doctree.SeeTree;
 import com.sun.source.doctree.StartElementTree;
 import com.sun.source.doctree.SummaryTree;
 import com.sun.source.doctree.SystemPropertyTree;
@@ -69,6 +71,9 @@ public class DocumentInfo {
 
     /** Tag info. */
     public final List<Ⅱ<String, XML>> paramTags = new ArrayList();
+
+    /** Tag info. */
+    public final List<XML> seeTags = new ArrayList();
 
     /** Tag info. */
     public final Variable<XML> returnTag = Variable.empty();
@@ -141,6 +146,15 @@ public class DocumentInfo {
             returnTag.set(xml(node.getDescription()));
             return p;
         }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public DocumentInfo visitSee(SeeTree node, DocumentInfo p) {
+            seeTags.add(xml(node.getReference()));
+            return p;
+        }
     }
 
     /**
@@ -174,6 +188,11 @@ public class DocumentInfo {
                     return emptyXML();
                 } else {
                     if (text.charAt(0) != '<') text.insert(0, "<span>").append("</span>");
+
+                    // Since Javadoc text is rarely correct HTML, switch by inserting dock type
+                    // declarations to use the tag soup parser instead of the XML parser.
+                    text.insert(0, "<!DOCTYPE html>");
+
                     return I.xml(text);
                 }
             } catch (Exception e) {
@@ -316,6 +335,15 @@ public class DocumentInfo {
                 }
             }
             return buffer.toString();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public DocumentXMLBuilder visitReference(ReferenceTree node, DocumentXMLBuilder p) {
+            text.append(node.getSignature());
+            return p;
         }
 
         /**

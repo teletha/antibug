@@ -110,7 +110,7 @@ public class AntibugDoclet implements Doclet {
         private Path output = Path.of("docs");
 
         /** The document analyzer. */
-        private Consumer<Element> analyzer = new JavadocBuilder();
+        private Consumer<Element> analyzer = new AntibugJavadoc();
 
         /**
          * Hide constructor.

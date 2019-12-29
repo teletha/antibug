@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.lang.model.element.Parameterizable;
-import javax.lang.model.type.TypeMirror;
 
 import kiss.I;
 import kiss.XML;
@@ -30,8 +29,6 @@ public class ParameterizableInfo extends DocumentInfo {
         super(e);
 
         e.getTypeParameters().forEach(type -> {
-            List<? extends TypeMirror> bounds = type.getBounds();
-
             typeParameters.add(I.pair(type.getSimpleName().toString(), parseTypeAsXML(type.asType())));
         });
     }

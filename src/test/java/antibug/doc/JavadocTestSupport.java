@@ -29,7 +29,7 @@ import kiss.XML;
 
 class JavadocTestSupport {
 
-    private static final JavadocBuilder builder = new JavadocBuilder();
+    private static final AntibugJavadoc builder = new AntibugJavadoc();
 
     static {
         AntibugDoclet.Builder.sources("src/test/java").analyzer(builder).build();

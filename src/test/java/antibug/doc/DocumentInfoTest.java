@@ -93,6 +93,15 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     void literalTag() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.comment, "<span>0 &lt; i</span>");
+        assert sameXML(info.comment, "<span>0 &amp;lt; i</span>");
+    }
+
+    /**
+     * @see Text
+     */
+    @Test
+    void seeTagText() {
+        ExecutableInfo info = currentMethod();
+        assert sameXML(info.seeTags.get(0), "<span>Text</span>");
     }
 }

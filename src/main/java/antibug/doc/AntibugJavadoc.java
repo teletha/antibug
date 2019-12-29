@@ -18,7 +18,7 @@ import javax.lang.model.element.TypeElement;
 
 import kiss.Variable;
 
-public class JavadocBuilder implements Consumer<Element> {
+public class AntibugJavadoc implements Consumer<Element> {
 
     /** Info repository. */
     public final List<ClassInfo> classes = new ArrayList();

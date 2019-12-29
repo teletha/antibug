@@ -17,27 +17,32 @@ public class ParameterizableInfoTest extends JavadocTestSupport {
 
     @Test
     <A> void single() {
-        assert checkTypePrameter(currentMethod(), "<type>A</type>");
+        assert checkTypeParmeterName(currentMethod(), "A");
+        assert checkTypeParameter(currentMethod(), "<type>A</type>");
     }
 
     @Test
     <A, B> void multi() {
-        assert checkTypePrameter(currentMethod(), "<type>A</type>", "<type>B</type>");
+        assert checkTypeParmeterName(currentMethod(), "A", "B");
+        assert checkTypeParameter(currentMethod(), "<type>A</type>", "<type>B</type>");
     }
 
     @Test
     <A extends Comparable> void bounded() {
-        assert checkTypePrameter(currentMethod(), "<type>A</type><extends><type package='java.lang'>Comaprable</type></extends>");
+        assert checkTypeParmeterName(currentMethod(), "A");
+        assert checkTypeParameter(currentMethod(), "<type>A</type><extends><type package='java.lang'>Comaprable</type></extends>");
     }
 
     @Test
     <A extends Comparable<A>> void boundedVariable() {
-        assert checkTypePrameter(currentMethod(), "<type>A</type><extends><type package='java.lang'>Comaprable</type><parameters><type>A</type></parameters></extends>");
+        assert checkTypeParmeterName(currentMethod(), "A");
+        assert checkTypeParameter(currentMethod(), "<type>A</type><extends><type package='java.lang'>Comaprable</type><parameters><type>A</type></parameters></extends>");
     }
 
     @Test
-    <A extends Comparable & Serializable> void intersected() {
-        assert checkTypePrameter(currentMethod(), "<type>A</type><extends><type package='java.lang'>Comaprable</type><type package='java.io'>Serializable</type></extends>");
+    <A extends Comparable & Serializable> void intersection() {
+        assert checkTypeParmeterName(currentMethod(), "A");
+        assert checkTypeParameter(currentMethod(), "<type>A</type><extends><type package='java.lang'>Comaprable</type><type package='java.io'>Serializable</type></extends>");
     }
 
     /**
@@ -47,7 +52,21 @@ public class ParameterizableInfoTest extends JavadocTestSupport {
      * @param expected
      * @return
      */
-    private boolean checkTypePrameter(ParameterizableInfo info, String... expected) {
+    private boolean checkTypeParmeterName(ParameterizableInfo info, String... expected) {
+        for (int i = 0; i < expected.length; i++) {
+            assert info.typeParameters.get(i).ⅰ.equals(expected[i]);
+        }
+        return true;
+    }
+
+    /**
+     * Shortcut method.
+     * 
+     * @param info
+     * @param expected
+     * @return
+     */
+    private boolean checkTypeParameter(ParameterizableInfo info, String... expected) {
         for (int i = 0; i < expected.length; i++) {
             assert sameXML(info.typeParameters.get(i).ⅱ, expected[i]);
         }
