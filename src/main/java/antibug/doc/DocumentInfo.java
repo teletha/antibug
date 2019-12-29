@@ -29,6 +29,7 @@ import com.sun.source.doctree.InheritDocTree;
 import com.sun.source.doctree.LinkTree;
 import com.sun.source.doctree.LiteralTree;
 import com.sun.source.doctree.ParamTree;
+import com.sun.source.doctree.ReturnTree;
 import com.sun.source.doctree.StartElementTree;
 import com.sun.source.doctree.SummaryTree;
 import com.sun.source.doctree.SystemPropertyTree;
@@ -102,6 +103,15 @@ public class DocumentInfo {
             } else {
                 paramTags.add(pair);
             }
+            return p;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public DocumentInfo visitReturn(ReturnTree node, DocumentInfo p) {
+            returnTag.set(xml(node.getDescription()));
             return p;
         }
     }

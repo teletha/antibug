@@ -78,6 +78,16 @@ public class DocumentInfoTest extends JavadocTestSupport {
     }
 
     /**
+     * @return description
+     */
+    @Test
+    void returnTag() {
+        MethodInfo info = currentMethod();
+        XML description = info.returnTag.exact();
+        assert sameXML(description, "<span>description</span>");
+    }
+
+    /**
      * {@literal 0 < i}
      */
     @Test
