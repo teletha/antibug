@@ -9,6 +9,10 @@
  */
 package antibug.doc;
 
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 
 public class ParameterizableInfoTest extends JavadocTestSupport {
@@ -24,7 +28,7 @@ public class ParameterizableInfoTest extends JavadocTestSupport {
     }
 
     @Test
-    <A extends Comparable> void bounded() {
+    <A extends Comparable & List & Map<? extends Serializable, ?>, B> void bounded() {
         assert checkTypePrameter(currentMethod(), "<type bounded='extends'>A<parameters><type package='java.lang'>Comaprable</type></parameters></type>");
     }
 

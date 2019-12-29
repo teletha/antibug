@@ -455,7 +455,7 @@ public class DocumentInfo {
 
             List<? extends TypeMirror> paramTypes = declared.getTypeArguments();
             if (paramTypes.isEmpty() == false) {
-                XML parameters = root.child("parameters");
+                XML parameters = root.after("parameters").next();
                 for (TypeMirror paramType : paramTypes) {
                     parameters.append(parseTypeAsXML(paramType));
                 }
