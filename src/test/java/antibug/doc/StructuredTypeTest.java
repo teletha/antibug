@@ -11,12 +11,8 @@ package antibug.doc;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
-import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.ArgumentsProvider;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -205,19 +201,5 @@ public class StructuredTypeTest extends JavadocTestSupport {
      */
     private boolean checkParamType(ExecutableInfo info, String expected) {
         return sameXML(info.params.get(0).ⅱ, expected);
-    }
-
-    /**
-     * Provide only null.
-     */
-    private static class NullProvider implements ArgumentsProvider {
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public Stream<? extends Arguments> provideArguments(ExtensionContext arg0) throws Exception {
-            return Stream.of(Arguments.of(new Object[] {null}));
-        }
     }
 }

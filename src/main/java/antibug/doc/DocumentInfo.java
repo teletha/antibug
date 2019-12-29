@@ -516,8 +516,15 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public TypeXMLBuilder visitNoType(NoType t, TypeXMLBuilder p) {
-            return super.visitNoType(t, p);
+        public TypeXMLBuilder visitNoType(NoType no, TypeXMLBuilder p) {
+            switch (no.getKind()) {
+            case VOID:
+                root.text("void");
+                break;
+
+            default:
+            }
+            return p;
         }
     }
 }

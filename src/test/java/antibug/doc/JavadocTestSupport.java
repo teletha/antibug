@@ -13,7 +13,11 @@ import java.lang.StackWalker.Option;
 import java.lang.StackWalker.StackFrame;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Stream;
 
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.ArgumentsProvider;
 import org.w3c.dom.Attr;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -31,7 +35,7 @@ class JavadocTestSupport {
         AntibugDoclet.Builder.sources("src/test/java").analyzer(builder).build();
     }
 
-    protected final ExecutableInfo currentMethod() {
+    protected final MethodInfo currentMethod() {
         StackFrame frame = caller();
 
         return builder.findByClassName(frame.getClassName())
@@ -40,7 +44,7 @@ class JavadocTestSupport {
                 .exact();
     }
 
-    protected final ExecutableInfo method(String name) {
+    protected final MethodInfo method(String name) {
         StackFrame frame = caller();
 
         return builder.findByClassName(frame.getClassName()).exact().findByMethodSignature(name).exact();
@@ -143,4 +147,17 @@ class JavadocTestSupport {
         return "\r\n=============== ACTUAL ===============\r\n" + actualXML + "\r\n\r\n=============== EXPECTED ===============\r\n" + expectedXML + "\r\n";
     }
 
+    /**
+     * Provide only null.
+     */
+    protected static class NullProvider implements ArgumentsProvider {
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public Stream<? extends Arguments> provideArguments(ExtensionContext arg0) throws Exception {
+            return Stream.of(Arguments.of(new Object[] {null, null, null, null, null, null}));
+        }
+    }
 }

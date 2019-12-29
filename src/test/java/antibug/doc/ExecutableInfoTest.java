@@ -9,29 +9,50 @@
  */
 package antibug.doc;
 
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
+
+import kiss.I;
 
 public class ExecutableInfoTest extends JavadocTestSupport {
 
     @Test
     void parameter0() {
-        ExecutableInfo info = method("noparam");
-        assert info.name.equals("noparam");
+        ExecutableInfo info = currentMethod();
+        assert info.name.equals("parameter0");
         assert info.params.size() == 0;
     }
 
-    public void noparam() {
+    @ParameterizedTest
+    @ArgumentsSource(NullProvider.class)
+    void parameter1(String value) {
+        assert checkParamName(currentMethod(), "value");
     }
 
-    @Test
-    void parameter1() {
-        ExecutableInfo info = method("param1");
-        assert info.name.equals("param1");
-        assert info.params.size() == 1;
-        assert info.params.get(0).ⅰ.equals("value");
-        assert sameXML(info.params.get(0).ⅱ, "<");
+    @ParameterizedTest
+    @ArgumentsSource(NullProvider.class)
+    void parameter2(String value, String text) {
+        assert checkParamName(currentMethod(), "value", "text");
     }
 
-    public void param1(int value) {
+    @ParameterizedTest
+    @ArgumentsSource(NullProvider.class)
+    void parameter3(String value, String text, Object context) {
+        assert checkParamName(currentMethod(), "value", "text", "context");
+    }
+
+    /**
+     * Shortcut method.
+     * 
+     * @param info
+     * @param expected
+     * @return
+     */
+    private boolean checkParamName(ExecutableInfo info, String... expected) {
+        assert info.params.stream().map(v -> v.ⅰ).collect(Collectors.toList()).containsAll(I.set(expected));
+        return true;
     }
 }

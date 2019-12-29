@@ -34,7 +34,7 @@ public class ClassInfo extends DocumentInfo {
     public final List<ExecutableInfo> constructors = new ArrayList();
 
     /** Info repository. */
-    public final List<ExecutableInfo> methods = new ArrayList();
+    public final List<MethodInfo> methods = new ArrayList();
 
     /**
      * @param root
@@ -52,8 +52,8 @@ public class ClassInfo extends DocumentInfo {
      * @param paramTypes
      * @return
      */
-    public Variable<ExecutableInfo> findByMethodSignature(String methodName, Class<?>... paramTypes) {
-        for (ExecutableInfo info : methods) {
+    public Variable<MethodInfo> findByMethodSignature(String methodName, Class<?>... paramTypes) {
+        for (MethodInfo info : methods) {
             if (info.name.equals(methodName)) {
                 return Variable.of(info);
             }
@@ -92,7 +92,7 @@ public class ClassInfo extends DocumentInfo {
             if (e.getKind() == ElementKind.CONSTRUCTOR) {
                 constructors.add(new ExecutableInfo(e));
             } else {
-                methods.add(new ExecutableInfo(e));
+                methods.add(new MethodInfo(e));
             }
             return p;
         }
