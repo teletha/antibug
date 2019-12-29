@@ -31,14 +31,28 @@ class JavadocTestSupport {
         AntibugDoclet.Builder.sources("src/test/java").analyzer(builder).build();
     }
 
-    protected final MethodInfo currentMethod() {
-        StackFrame frame = StackWalker.getInstance(Set.of(Option.RETAIN_CLASS_REFERENCE), 2)
-                .walk(s -> s.skip(1).limit(1).findFirst().get());
+    protected final ExecutableInfo currentMethod() {
+        StackFrame frame = caller();
 
         return builder.findByClassName(frame.getClassName())
                 .exact()
                 .findByMethodSignature(frame.getMethodName(), frame.getMethodType().parameterArray())
                 .exact();
+    }
+
+    protected final ExecutableInfo method(String name) {
+        StackFrame frame = caller();
+
+        return builder.findByClassName(frame.getClassName()).exact().findByMethodSignature(name).exact();
+    }
+
+    /**
+     * Retrieve the caller info.
+     * 
+     * @return
+     */
+    private final StackFrame caller() {
+        return StackWalker.getInstance(Set.of(Option.RETAIN_CLASS_REFERENCE), 2).walk(s -> s.skip(2).limit(1).findFirst().get());
     }
 
     /**
@@ -60,7 +74,7 @@ class JavadocTestSupport {
      * @return
      */
     protected final boolean sameXML(XML actual, String expected) {
-        return sameXML(actual, I.xml(expected));
+        return sameXML(actual, I.xml(expected.replace('\'', '"')));
     }
 
     /**
@@ -85,38 +99,48 @@ class JavadocTestSupport {
         // base
         assert actual != null;
         assert expected != null;
-        assert Objects.equals(actual.getLocalName(), expected.getLocalName());
-        assert actual.getTextContent().trim().equals(expected.getTextContent().trim());
+        assert Objects.equals(actual.getLocalName(), expected.getLocalName()) : error(actualXML, expectedXML);
+        assert actual.getTextContent().trim().equals(expected.getTextContent().trim()) : error(actualXML, expectedXML);
 
         // attributes
         NamedNodeMap actualAttrs = actual.getAttributes();
         NamedNodeMap expectedAttrs = expected.getAttributes();
         if (actualAttrs != null && expectedAttrs != null) {
-            assert actualAttrs.getLength() == expectedAttrs.getLength();
+            assert actualAttrs.getLength() == expectedAttrs.getLength() : error(actualXML, expectedXML);
 
             for (int i = 0; i < actualAttrs.getLength(); i++) {
                 Attr attr = (Attr) actualAttrs.item(i);
                 Attr pair = (Attr) expectedAttrs.getNamedItem(attr.getName());
                 assert pair != null : "Expected element has no attribute [" + attr.getName() + "] in " + expectedXML;
-                assert attr.getName().equals(pair.getName());
-                assert attr.getValue().equals(pair.getValue());
+                assert attr.getName().equals(pair.getName()) : error(actualXML, expectedXML);
+                assert attr.getValue().equals(pair.getValue()) : error(actualXML, expectedXML);
             }
             for (int i = 0; i < expectedAttrs.getLength(); i++) {
                 Attr attr = (Attr) expectedAttrs.item(i);
                 Attr pair = (Attr) actualAttrs.getNamedItem(attr.getName());
                 assert pair != null : "Actual element has no attribute [" + attr.getName() + "] in " + actualXML;
-                assert attr.getName().equals(pair.getName());
-                assert attr.getValue().equals(pair.getValue());
+                assert attr.getName().equals(pair.getName()) : error(actualXML, expectedXML);
+                assert attr.getValue().equals(pair.getValue()) : error(actualXML, expectedXML);
             }
         }
 
         // children
         NodeList actualChildren = actual.getChildNodes();
         NodeList expectedChildren = expected.getChildNodes();
-        assert actualChildren.getLength() == expectedChildren.getLength();
+        assert actualChildren.getLength() == expectedChildren.getLength() : error(actualXML, expectedXML);
         for (int i = 0; i < actualChildren.getLength(); i++) {
             assert sameXML(actualXML, actualChildren.item(i), expectedXML, expectedChildren.item(i));
         }
         return true;
     }
+
+    /**
+     * @param actualXML
+     * @param expectedXML
+     * @return
+     */
+    private String error(XML actualXML, XML expectedXML) {
+        return "\r\n=============== ACTUAL ===============\r\n" + actualXML + "\r\n\r\n=============== EXPECTED ===============\r\n" + expectedXML + "\r\n";
+    }
+
 }

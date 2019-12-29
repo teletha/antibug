@@ -21,7 +21,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
      */
     @Test
     void text() {
-        MethodInfo info = currentMethod();
+        ExecutableInfo info = currentMethod();
         assert sameXML(info.comment, "<span>Text</span>");
     }
 
@@ -32,7 +32,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
      */
     @Test
     void element() {
-        MethodInfo info = currentMethod();
+        ExecutableInfo info = currentMethod();
         assert sameXML(info.comment, "<p>Text</p>");
     }
 
@@ -41,7 +41,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
      */
     @Test
     void attribute() {
-        MethodInfo info = currentMethod();
+        ExecutableInfo info = currentMethod();
         assert sameXML(info.comment, "<link href=\"test.css\" type=\"stylesheet\"/>");
     }
 
@@ -51,7 +51,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
      */
     @Test
     void paramTag() {
-        MethodInfo info = currentMethod();
+        ExecutableInfo info = currentMethod();
         Ⅱ<String, XML> param = info.paramTags.get(0);
         assert param.ⅰ.equals("name1");
         assert sameXML(param.ⅱ, "<span>Description.</span>");
@@ -67,7 +67,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
      */
     @Test
     void parameterTypeTag() {
-        MethodInfo info = currentMethod();
+        ExecutableInfo info = currentMethod();
         Ⅱ<String, XML> param = info.typeParameterTags.get(0);
         assert param.ⅰ.equals("T");
         assert sameXML(param.ⅱ, "<span>Description.</span>");
@@ -82,7 +82,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
      */
     @Test
     void returnTag() {
-        MethodInfo info = currentMethod();
+        ExecutableInfo info = currentMethod();
         XML description = info.returnTag.exact();
         assert sameXML(description, "<span>description</span>");
     }
@@ -92,7 +92,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
      */
     @Test
     void literalTag() {
-        MethodInfo info = currentMethod();
+        ExecutableInfo info = currentMethod();
         assert sameXML(info.comment, "<span>0 &lt; i</span>");
     }
 }

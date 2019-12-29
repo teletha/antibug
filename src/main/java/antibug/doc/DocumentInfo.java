@@ -10,9 +10,26 @@
 package antibug.doc;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.TypeElement;
+import javax.lang.model.type.ArrayType;
+import javax.lang.model.type.DeclaredType;
+import javax.lang.model.type.ErrorType;
+import javax.lang.model.type.ExecutableType;
+import javax.lang.model.type.IntersectionType;
+import javax.lang.model.type.NoType;
+import javax.lang.model.type.NullType;
+import javax.lang.model.type.PrimitiveType;
+import javax.lang.model.type.TypeMirror;
+import javax.lang.model.type.TypeVariable;
+import javax.lang.model.type.UnionType;
+import javax.lang.model.type.WildcardType;
+import javax.lang.model.util.SimpleTypeVisitor9;
 
 import com.sun.source.doctree.AttributeTree;
 import com.sun.source.doctree.CommentTree;
@@ -70,11 +87,21 @@ public class DocumentInfo {
     }
 
     /**
+     * Parse {@link TypeMirror} and build its XML expression.
+     * 
+     * @param type A target type.
+     * @return New XML expression.
+     */
+    protected final XML parseTypeAsXML(TypeMirror type) {
+        return new TypeXMLBuilder().parse(type).root;
+    }
+
+    /**
      * @param docs Documents.
      * @return
      */
     private XML xml(List<? extends DocTree> docs) {
-        return new XMLBuilder().parse(docs).build();
+        return new DocumentXMLBuilder().parse(docs).build();
     }
 
     /**
@@ -119,7 +146,7 @@ public class DocumentInfo {
     /**
      * 
      */
-    private class XMLBuilder extends SimpleDocTreeVisitor<XMLBuilder, XMLBuilder> {
+    private class DocumentXMLBuilder extends SimpleDocTreeVisitor<DocumentXMLBuilder, DocumentXMLBuilder> {
 
         private StringBuilder text = new StringBuilder();
 
@@ -129,7 +156,7 @@ public class DocumentInfo {
          * @param docs
          * @return
          */
-        private XMLBuilder parse(List<? extends DocTree> docs) {
+        private DocumentXMLBuilder parse(List<? extends DocTree> docs) {
             for (DocTree doc : docs) {
                 doc.accept(this, this);
             }
@@ -158,7 +185,7 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public XMLBuilder visitAttribute(AttributeTree node, XMLBuilder p) {
+        public DocumentXMLBuilder visitAttribute(AttributeTree node, DocumentXMLBuilder p) {
             text.append(' ').append(node.getName()).append("=\"");
             node.getValue().forEach(n -> n.accept(this, this));
             text.append("\"");
@@ -169,7 +196,7 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public XMLBuilder visitComment(CommentTree node, XMLBuilder p) {
+        public DocumentXMLBuilder visitComment(CommentTree node, DocumentXMLBuilder p) {
             return super.visitComment(node, p);
         }
 
@@ -177,7 +204,7 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public XMLBuilder visitDocRoot(DocRootTree node, XMLBuilder p) {
+        public DocumentXMLBuilder visitDocRoot(DocRootTree node, DocumentXMLBuilder p) {
             return super.visitDocRoot(node, p);
         }
 
@@ -185,7 +212,7 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public XMLBuilder visitDocType(DocTypeTree node, XMLBuilder p) {
+        public DocumentXMLBuilder visitDocType(DocTypeTree node, DocumentXMLBuilder p) {
             return super.visitDocType(node, p);
         }
 
@@ -193,7 +220,7 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public XMLBuilder visitEndElement(EndElementTree node, XMLBuilder p) {
+        public DocumentXMLBuilder visitEndElement(EndElementTree node, DocumentXMLBuilder p) {
             text.append("</").append(node.getName()).append('>');
             return p;
         }
@@ -202,7 +229,7 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public XMLBuilder visitEntity(EntityTree node, XMLBuilder p) {
+        public DocumentXMLBuilder visitEntity(EntityTree node, DocumentXMLBuilder p) {
             return super.visitEntity(node, p);
         }
 
@@ -210,7 +237,7 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public XMLBuilder visitErroneous(ErroneousTree node, XMLBuilder p) {
+        public DocumentXMLBuilder visitErroneous(ErroneousTree node, DocumentXMLBuilder p) {
             return super.visitErroneous(node, p);
         }
 
@@ -218,7 +245,7 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public XMLBuilder visitIdentifier(IdentifierTree node, XMLBuilder p) {
+        public DocumentXMLBuilder visitIdentifier(IdentifierTree node, DocumentXMLBuilder p) {
             return super.visitIdentifier(node, p);
         }
 
@@ -226,7 +253,7 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public XMLBuilder visitIndex(IndexTree node, XMLBuilder p) {
+        public DocumentXMLBuilder visitIndex(IndexTree node, DocumentXMLBuilder p) {
             return super.visitIndex(node, p);
         }
 
@@ -234,7 +261,7 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public XMLBuilder visitInheritDoc(InheritDocTree node, XMLBuilder p) {
+        public DocumentXMLBuilder visitInheritDoc(InheritDocTree node, DocumentXMLBuilder p) {
             return super.visitInheritDoc(node, p);
         }
 
@@ -242,7 +269,7 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public XMLBuilder visitLink(LinkTree node, XMLBuilder p) {
+        public DocumentXMLBuilder visitLink(LinkTree node, DocumentXMLBuilder p) {
             return super.visitLink(node, p);
         }
 
@@ -250,7 +277,7 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public XMLBuilder visitLiteral(LiteralTree node, XMLBuilder p) {
+        public DocumentXMLBuilder visitLiteral(LiteralTree node, DocumentXMLBuilder p) {
             text.append(escape(node.getBody().getBody()));
             return p;
         }
@@ -295,7 +322,7 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public XMLBuilder visitStartElement(StartElementTree node, XMLBuilder p) {
+        public DocumentXMLBuilder visitStartElement(StartElementTree node, DocumentXMLBuilder p) {
             text.append("<").append(node.getName());
             node.getAttributes().forEach(attr -> attr.accept(this, this));
             text.append(node.isSelfClosing() ? "/>" : ">");
@@ -306,7 +333,7 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public XMLBuilder visitSummary(SummaryTree node, XMLBuilder p) {
+        public DocumentXMLBuilder visitSummary(SummaryTree node, DocumentXMLBuilder p) {
             return super.visitSummary(node, p);
         }
 
@@ -314,7 +341,7 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public XMLBuilder visitSystemProperty(SystemPropertyTree node, XMLBuilder p) {
+        public DocumentXMLBuilder visitSystemProperty(SystemPropertyTree node, DocumentXMLBuilder p) {
             return super.visitSystemProperty(node, p);
         }
 
@@ -322,7 +349,7 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public XMLBuilder visitText(TextTree node, XMLBuilder p) {
+        public DocumentXMLBuilder visitText(TextTree node, DocumentXMLBuilder p) {
             text.append(node.getBody());
             return p;
         }
@@ -331,7 +358,7 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public XMLBuilder visitUnknownInlineTag(UnknownInlineTagTree node, XMLBuilder p) {
+        public DocumentXMLBuilder visitUnknownInlineTag(UnknownInlineTagTree node, DocumentXMLBuilder p) {
             return super.visitUnknownInlineTag(node, p);
         }
 
@@ -339,8 +366,156 @@ public class DocumentInfo {
          * {@inheritDoc}
          */
         @Override
-        public XMLBuilder visitValue(ValueTree node, XMLBuilder p) {
+        public DocumentXMLBuilder visitValue(ValueTree node, DocumentXMLBuilder p) {
             return super.visitValue(node, p);
+        }
+    }
+
+    /**
+     * 
+     */
+    private class TypeXMLBuilder extends SimpleTypeVisitor9<TypeXMLBuilder, TypeXMLBuilder> {
+
+        private final XML root = I.xml("<type/>");
+
+        /**
+         * Parse documetation.
+         * 
+         * @param docs
+         * @return
+         */
+        private TypeXMLBuilder parse(TypeMirror type) {
+            type.accept(this, this);
+            return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public TypeXMLBuilder visitIntersection(IntersectionType t, TypeXMLBuilder p) {
+            return super.visitIntersection(t, p);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public TypeXMLBuilder visitUnion(UnionType t, TypeXMLBuilder p) {
+            return super.visitUnion(t, p);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public TypeXMLBuilder visitPrimitive(PrimitiveType primitive, TypeXMLBuilder p) {
+            root.text(primitive.toString());
+            return p;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public TypeXMLBuilder visitNull(NullType t, TypeXMLBuilder p) {
+            return super.visitNull(t, p);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public TypeXMLBuilder visitArray(ArrayType t, TypeXMLBuilder p) {
+            return super.visitArray(t, p);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public TypeXMLBuilder visitDeclared(DeclaredType declared, TypeXMLBuilder p) {
+            // type
+            TypeElement e = (TypeElement) declared.asElement();
+            root.text(e.getSimpleName().toString());
+
+            // enclosing
+            Deque<String> enclosings = new LinkedList();
+            Element enclosing = e.getEnclosingElement();
+            while (enclosing.getKind() != ElementKind.PACKAGE) {
+                enclosings.addFirst(((TypeElement) enclosing).getSimpleName().toString());
+                enclosing = enclosing.getEnclosingElement();
+            }
+            if (enclosings.isEmpty() == false) root.attr("enclosing", I.join(".", enclosings));
+
+            // pacakage
+            root.attr("package", enclosing.toString());
+
+            List<? extends TypeMirror> paramTypes = declared.getTypeArguments();
+            if (paramTypes.isEmpty() == false) {
+                XML parameters = root.child("parameters");
+                for (TypeMirror paramType : paramTypes) {
+                    parameters.append(parseTypeAsXML(paramType));
+                }
+            }
+
+            return p;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public TypeXMLBuilder visitError(ErrorType t, TypeXMLBuilder p) {
+            return super.visitError(t, p);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public TypeXMLBuilder visitTypeVariable(TypeVariable variable, TypeXMLBuilder p) {
+            root.text(variable.toString());
+            return p;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public TypeXMLBuilder visitWildcard(WildcardType wildcard, TypeXMLBuilder p) {
+            TypeMirror bounded = wildcard.getExtendsBound();
+            if (bounded != null) {
+                root.attr("bounded", "extends");
+                bounded.accept(this, this);
+                return p;
+            }
+
+            bounded = wildcard.getSuperBound();
+            if (bounded != null) {
+                root.attr("bounded", "super");
+                bounded.accept(this, this);
+                return p;
+            }
+
+            root.text("?");
+            return p;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public TypeXMLBuilder visitExecutable(ExecutableType t, TypeXMLBuilder p) {
+            return super.visitExecutable(t, p);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public TypeXMLBuilder visitNoType(NoType t, TypeXMLBuilder p) {
+            return super.visitNoType(t, p);
         }
     }
 }

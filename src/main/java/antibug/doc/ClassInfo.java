@@ -31,10 +31,10 @@ public class ClassInfo extends DocumentInfo {
     public final List<FieldInfo> fields = new ArrayList();
 
     /** Info repository. */
-    public final List<ConstructorInfo> constructors = new ArrayList();
+    public final List<ExecutableInfo> constructors = new ArrayList();
 
     /** Info repository. */
-    public final List<MethodInfo> methods = new ArrayList();
+    public final List<ExecutableInfo> methods = new ArrayList();
 
     /**
      * @param root
@@ -52,8 +52,8 @@ public class ClassInfo extends DocumentInfo {
      * @param paramTypes
      * @return
      */
-    public Variable<MethodInfo> findByMethodSignature(String methodName, Class<?>... paramTypes) {
-        for (MethodInfo info : methods) {
+    public Variable<ExecutableInfo> findByMethodSignature(String methodName, Class<?>... paramTypes) {
+        for (ExecutableInfo info : methods) {
             if (info.name.equals(methodName)) {
                 return Variable.of(info);
             }
@@ -90,9 +90,9 @@ public class ClassInfo extends DocumentInfo {
         @Override
         public ClassInfo visitExecutable(ExecutableElement e, ClassInfo p) {
             if (e.getKind() == ElementKind.CONSTRUCTOR) {
-                constructors.add(new ConstructorInfo(e));
+                constructors.add(new ExecutableInfo(e));
             } else {
-                methods.add(new MethodInfo(e));
+                methods.add(new ExecutableInfo(e));
             }
             return p;
         }

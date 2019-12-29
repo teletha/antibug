@@ -9,19 +9,31 @@
  */
 package antibug.doc;
 
-import javax.lang.model.element.ExecutableElement;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MethodInfo extends DocumentInfo {
+import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.VariableElement;
+
+import kiss.I;
+import kiss.XML;
+import kiss.Ⅱ;
+
+public class ExecutableInfo extends DocumentInfo {
 
     public final String name;
+
+    public final List<Ⅱ<String, XML>> params = new ArrayList();
 
     /**
      * @param e
      */
-    MethodInfo(ExecutableElement e) {
+    ExecutableInfo(ExecutableElement e) {
         super(e);
 
         this.name = e.getSimpleName().toString();
+        for (VariableElement p : e.getParameters()) {
+            params.add(I.pair(p.toString(), parseTypeAsXML(p.asType())));
+        }
     }
-
 }
