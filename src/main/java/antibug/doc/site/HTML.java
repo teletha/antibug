@@ -100,6 +100,15 @@ public abstract class HTML extends Tree<String, HTML.ElementNode> {
     }
 
     /**
+     * Shorthand method to write stylesheet link tag.
+     * 
+     * @param uri URI to css.
+     */
+    protected final void stylesheet(String uri) {
+        $("link", attr("rel", "stylesheet"), attr("href", uri));
+    }
+
+    /**
      * Build CSS file and return the path of the generated file.
      * 
      * @param styles A style definition class to write.
@@ -110,12 +119,12 @@ public abstract class HTML extends Tree<String, HTML.ElementNode> {
     }
 
     /**
-     * Build script tag.
+     * Shorthand method to write script tag.
      * 
-     * @param path A style definition class to write.
+     * @param uri URI to script.
      */
-    protected final void script(String path) {
-        $("script", attr("src", path));
+    protected final void script(String uri) {
+        $("script", attr("src", uri));
     }
 
     /**

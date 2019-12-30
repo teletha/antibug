@@ -1,19 +1,24 @@
-var app = new Vue({
-    el: '#app',
-    data: {
-      message: 'Hello Vue!'
+
+new Vue({
+  el: '#app',
+  data: function() {
+    return {
+      location: [{id: 1, name: 'Site1', country: 'USA', metro: 'San Jose', market: 'US', status: 'Active'},
+                  {id: 2, name: 'Site2', country: 'USA', metro: 'San Mateo', market: 'US', status: 'Active'},
+                  {id: 3, name: 'Site3', country: 'USA', metro: 'San Rafael', market: 'US', status: 'Active'}]
     }
-  })
+  }
+})
 
 
-var packageList = new Vue({
+new Vue({
   el: "#packageList",
   data: {
     packages: data.packages
   }
 })
 
-var typeList = new Vue({
+new Vue({
   el: "#typeList",
   data: {
     types: data.types

@@ -90,6 +90,8 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
         {
             $("html", () -> {
                 $("head", () -> {
+                    $("meta", attr("charset", "UTF-8"));
+                    stylesheet("https://unpkg.com/element-ui/lib/theme-chalk/index.css");
                     stylesheet("main.css", style.class);
                     stylesheet("javadoc.css", BuiltinStyles.class);
                 });
@@ -113,7 +115,8 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
                             });
                         });
                     });
-                    script("https://cdn.jsdelivr.net/npm/vue/dist/vue.js");
+                    script("https://unpkg.com/vue/dist/vue.js");
+                    script("https://unpkg.com/element-ui/lib/index.js");
                     script("data.js", data);
                     script("main.js");
                 });
