@@ -1,0 +1,254 @@
+@import url("http://fonts.googleapis.com/css?family=Material+Icons");
+@import url("http://fonts.googleapis.com/css?family=Oswald");
+@import url("https://unpkg.com/ress/dist/ress.min.css");
+/* antibug.doc.BuiltinStyles#a */.K:not([class]) {
+	font-family: "Yu Gothic UI";
+	text-decoration: none;
+}
+
+/* antibug.doc.BuiltinStyles#body */.B {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 20px;
+	padding-right: 20px;
+	background-color: hsl(0,0%,100%);
+	font-size: 12px;
+	font-family: "Yu Gothic UI","Noto Sans",sans-serif;
+}
+
+/* antibug.doc.BuiltinStyles#dd */.G:not([class]) {
+	margin-bottom: 20px;
+}
+
+/* antibug.doc.BuiltinStyles#dl */.E:not([class]) {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 0;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+	background-color: hsla(48,95%,59%,0.19999999999999996);
+}
+
+/* antibug.doc.BuiltinStyles#dl */.E:last-child {
+	margin-top: 56px;
+	margin-bottom: 2px;
+	margin-left: 0;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(2,68%,58%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+	background-color: hsla(0,0%,0%,0);
+	position: relative;
+}
+
+/* antibug.doc.BuiltinStyles#dl */.E:last-child::before {
+	display: block;
+	font-family: Oswald,sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	content: 'Signature';
+	position: absolute;
+	top: -36px;
+	left: -3px;
+}
+
+/* antibug.doc.BuiltinStyles#dl */.E:last-child dt {
+	display: block;
+	width: 70px;
+	float: left;
+	font-size: 9px;
+	font-weight: bold;
+	color: hsl(2,68%,58%);
+	padding-top: 2px;
+	border-bottom-style: none;
+	text-transform: capitalize;
+}
+
+/* antibug.doc.BuiltinStyles#dl */.E:last-child dd {
+	margin-bottom: 15px;
+	margin-left: 70px;
+}
+
+/* antibug.doc.BuiltinStyles#dl */.E:last-child b {
+	display: block;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: hsl(0,0%,93%);
+	padding-bottom: 2px;
+	margin-bottom: 2px;
+	font-weight: bold;
+	text-transform: capitalize;
+}
+
+/* antibug.doc.BuiltinStyles#dt */.F:not([class]) {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: hsl(0,0%,87%);
+	padding-bottom: 2px;
+	margin-bottom: 2px;
+}
+
+/* antibug.doc.BuiltinStyles#h */.L {
+	font-family: Oswald,sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	margin-top: 24px;
+	margin-bottom: 12px;
+	display: block;
+}
+
+/* antibug.doc.BuiltinStyles#h1 */.M {
+	font-family: Oswald,sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	margin-top: 24px;
+	margin-bottom: 12px;
+	display: block;
+}
+
+/* antibug.doc.BuiltinStyles#h2 */.N {
+	font-family: Oswald,sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	margin-top: 24px;
+	margin-bottom: 12px;
+	display: block;
+}
+
+/* antibug.doc.BuiltinStyles#h3 */.O {
+	font-family: Oswald,sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	margin-top: 24px;
+	margin-bottom: 12px;
+	display: block;
+}
+
+/* antibug.doc.BuiltinStyles#h4 */.P {
+	font-family: Oswald,sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	margin-top: 24px;
+	margin-bottom: 12px;
+	display: block;
+}
+
+/* antibug.doc.BuiltinStyles#h5 */.Q:not([class]) {
+	display: none;
+}
+
+/* antibug.doc.BuiltinStyles#heading */.A {
+	font-family: Oswald,sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	margin-top: 24px;
+	margin-bottom: 12px;
+	display: block;
+}
+
+/* antibug.doc.BuiltinStyles#list */.D {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 0;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+	background-color: hsla(48,95%,59%,0.19999999999999996);
+}
+
+/* antibug.doc.BuiltinStyles#ol */.I:not([class]) {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 0;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+	background-color: hsla(48,95%,59%,0.19999999999999996);
+}
+
+/* antibug.doc.BuiltinStyles#p */.C:not([class]) {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 0;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(204,75%,48%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* antibug.doc.BuiltinStyles#pre */.J:not([class]) {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 0;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(120,39%,55%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+	background-color: hsla(120,39%,55%,0.19999999999999996);
+}
+
+/* antibug.doc.BuiltinStyles#ul */.H:not([class]) {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 0;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+	background-color: hsla(48,95%,59%,0.19999999999999996);
+}
+
+/* antibug.doc.BuiltinStyles#ul */.H:not([class]) li {
+	list-style-type: none;
+	padding-bottom: 10px;
+	padding-left: 1em;
+	text-indent: -1.5em;
+}
+
+/* antibug.doc.BuiltinStyles#ul */.H:not([class]) li::before {
+	font-family: "Material Icons";
+	color: hsl(48,75%,59%);
+	content: '\e876';
+	vertical-align: bottom;
+	padding-right: 0.5em;
+}
+

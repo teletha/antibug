@@ -21,7 +21,8 @@ public class Project extends bee.api.Project {
         require("net.bytebuddy", "byte-buddy");
         require("net.bytebuddy", "byte-buddy-agent");
         require("com.github.teletha", "sinobu");
-        require("com.github.teletha", "stylist").atTest();
+        require("com.github.teletha", "stylist");
+        require("com.github.teletha", "psychopath");
 
         versionControlSystem("https://github.com/teletha/antibug");
     }

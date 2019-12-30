@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel='stylesheet' href='main.css'/>
+		<link rel='stylesheet' href='javadoc.css'/>
+	</head>
+	<body>
+		<nav>
+			<div id='packageList'>
+				<span v-for='package in packages'>{{package}}</span>
+			</div>
+			<div id='typeList'>
+				<span v-for='type in types'>{{type}}</span>
+			</div>
+		</nav>
+		<main id='app'>
+			<h1><em>{{message}}</em></h1>
+		</main>
+		<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'>
+		</script>
+		<script src='data.js'>
+		</script>
+		<script src='main@js'>
+		</script>
+	</body>
+</html>

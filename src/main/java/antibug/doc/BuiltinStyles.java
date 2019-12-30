@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
+import kiss.I;
 import kiss.WiseFunction;
 import stylist.Style;
 import stylist.StyleDSL;
@@ -343,11 +344,17 @@ public interface BuiltinStyles extends StyleDSL {
      * @see String
      */
     public static void main(String[] args) throws IOException {
-        String formatted = Stylist.pretty().importNormalizeStyle().format(BuiltinStyles.class);
-        System.out.println(formatted);
-        formatted = formatted.replaceAll(".+#([^\\s\\*]+) \\*/\\.[a-zA-Z]+", "$1");
-        System.out.println(formatted);
+        writeTo(Path.of("docs/javadoc.css"));
+    }
 
-        Files.writeString(Path.of("docs/javadoc.css"), formatted, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
+    static void writeTo(Path file) {
+        String formatted = Stylist.pretty().importNormalizeStyle().format(BuiltinStyles.class);
+        formatted = formatted.replaceAll(".+#([^\\s\\*]+) \\*/\\.[a-zA-Z]+", "$1");
+
+        try {
+            Files.writeString(file, formatted, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
+        } catch (IOException e) {
+            throw I.quiet(e);
+        }
     }
 }

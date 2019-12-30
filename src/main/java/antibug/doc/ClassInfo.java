@@ -25,8 +25,14 @@ import kiss.Variable;
 
 public class ClassInfo extends ParameterizableInfo {
 
+    /** The fully qualifed class name with type parameters. */
+    public final String typeName;
+
     /** The fully qualifed class name. */
     public final String fqcn;
+
+    /** The fully qualifed class name. */
+    public final String packageName;
 
     /** Info repository. */
     public final List<FieldInfo> fields = new ArrayList();
@@ -43,7 +49,9 @@ public class ClassInfo extends ParameterizableInfo {
     ClassInfo(TypeElement root) {
         super(root);
 
-        this.fqcn = root.asType().toString();
+        this.typeName = root.asType().toString();
+        this.fqcn = typeName.replaceAll("<.+>", "");
+        this.packageName = AntibugDocumentationTool.ElementUtils.getPackageOf(root).toString();
 
         root.accept(new Scanner(), this);
     }
