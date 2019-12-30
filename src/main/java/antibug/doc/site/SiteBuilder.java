@@ -9,8 +9,6 @@
  */
 package antibug.doc.site;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Objects;
 
@@ -66,6 +64,9 @@ public class SiteBuilder {
     private SiteBuilder(Directory rootDirectory) {
         this.root = Objects.requireNonNull(rootDirectory);
         current = this;
+
+        // delete all existing files
+        root.create().delete("!**@.*");
     }
 
     /**
@@ -75,17 +76,13 @@ public class SiteBuilder {
      * @param html
      */
     public final void buildHTML(String path, HTML html) {
-        File file = root.file(path).create();
-
-        try (BufferedWriter output = file.newBufferedWriter()) {
+        root.file(path).write(output -> {
             output.append("<!DOCTYPE html>").append(Formattable.EOL);
 
             for (HTML.ElementNode node : html.root) {
                 node.format(output, 0, false);
             }
-        } catch (IOException e) {
-            throw I.quiet(e);
-        }
+        });
     }
 
     /**
@@ -97,12 +94,8 @@ public class SiteBuilder {
     public final String buildCSS(String path, Class<? extends StyleDSL> styles) {
         String formatted = Stylist.pretty().importNormalizeStyle().format(styles);
 
-        File file = root.file(path).create();
-        try (BufferedWriter output = file.newBufferedWriter()) {
-            output.append(formatted);
-        } catch (IOException e) {
-            throw I.quiet(e);
-        }
+        File file = root.file(path);
+        file.write(output -> output.append(formatted));
         return root.relativize(file).path();
     }
 
@@ -113,13 +106,11 @@ public class SiteBuilder {
      * @param html
      */
     public final String buildJSONP(String path, Object object) {
-        File file = root.file(path).create();
-        try (BufferedWriter output = file.newBufferedWriter()) {
+        File file = root.file(path);
+        file.write(output -> {
             output.append("const " + file.base() + " = ");
             I.write(object, output);
-        } catch (IOException e) {
-            throw I.quiet(e);
-        }
+        });
         return root.relativize(file).path();
     }
 }

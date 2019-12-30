@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * This is an interface that shows that you can format and output beautifully.
  */
-public interface Formattable {
+interface Formattable {
 
     /** End of line code. */
     String EOL = "\r\n";

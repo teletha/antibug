@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 
-import kiss.I;
 import kiss.Tree;
 import stylist.StyleDSL;
 
@@ -98,7 +97,7 @@ public abstract class HTML extends Tree<String, HTML.ElementNode> {
      * @param styles A style definition class to write.
      * @return A path to the generated file.
      */
-    protected final void linkStylesheet(String path, Class<? extends StyleDSL> styles) {
+    protected final void stylesheet(String path, Class<? extends StyleDSL> styles) {
         $("link", attr("rel", "stylesheet"), attr("href", SiteBuilder.current.buildCSS(path, styles)));
     }
 
@@ -119,23 +118,6 @@ public abstract class HTML extends Tree<String, HTML.ElementNode> {
      */
     protected final void script(String path, Object model) {
         $("script", attr("src", SiteBuilder.current.buildJSONP(path, model)));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-
-        for (HTML.ElementNode node : root) {
-            try {
-                node.format(builder, 0, false);
-            } catch (IOException e) {
-                throw I.quiet(e);
-            }
-        }
-        return builder.toString();
     }
 
     /**
@@ -205,20 +187,6 @@ public abstract class HTML extends Tree<String, HTML.ElementNode> {
                 output.append("</").append(name).append(">");
             }
             return isBlock;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public String toString() {
-            try {
-                StringBuilder builder = new StringBuilder();
-                format(builder, 0, false);
-                return builder.toString();
-            } catch (IOException e) {
-                throw I.quiet(e);
-            }
         }
     }
 

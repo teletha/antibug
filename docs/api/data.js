@@ -33,7 +33,6 @@ const data = {
 		"antibug.doc.FieldInfo",
 		"antibug.doc.MethodInfo",
 		"antibug.doc.ParameterizableInfo",
-		"antibug.doc.site.Formattable",
 		"antibug.doc.site.HTML",
 		"antibug.doc.site.SiteBuilder",
 		"antibug.powerassert.PowerAssert",
