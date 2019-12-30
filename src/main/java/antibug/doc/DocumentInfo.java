@@ -80,7 +80,7 @@ public class DocumentInfo {
 
     protected DocumentInfo(Element e) {
         try {
-            DocCommentTree docs = AntibugDoclet.TreeScanner.getDocCommentTree(e);
+            DocCommentTree docs = AntibugDocumentationTool.DocUtils.getDocCommentTree(e);
             if (docs != null) {
                 comment.set(xml(docs.getFullBody()));
                 docs.getBlockTags().forEach(tag -> tag.accept(new TagScanner(), this));

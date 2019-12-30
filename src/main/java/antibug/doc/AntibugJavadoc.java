@@ -11,14 +11,14 @@ package antibug.doc;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
-import javax.lang.model.element.Element;
+import javax.lang.model.element.ModuleElement;
+import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 
 import kiss.Variable;
 
-public class AntibugJavadoc implements Consumer<Element> {
+public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
 
     /** Info repository. */
     public final List<ClassInfo> classes = new ArrayList();
@@ -27,8 +27,36 @@ public class AntibugJavadoc implements Consumer<Element> {
      * {@inheritDoc}
      */
     @Override
-    public void accept(Element root) {
-        classes.add(new ClassInfo((TypeElement) root));
+    protected void initialize() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void process(TypeElement root) {
+        classes.add(new ClassInfo(root));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void process(PackageElement root) {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void process(ModuleElement root) {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void complete() {
     }
 
     /**

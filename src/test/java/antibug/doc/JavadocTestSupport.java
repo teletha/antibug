@@ -29,16 +29,16 @@ import kiss.XML;
 
 class JavadocTestSupport {
 
-    private static final AntibugJavadoc builder = new AntibugJavadoc();
+    private static final AntibugJavadoc doc = new AntibugJavadoc();
 
     static {
-        AntibugDoclet.Builder.sources("src/test/java").analyzer(builder).build();
+        doc.sources("src/test/java").build();
     }
 
     protected final MethodInfo currentMethod() {
         StackFrame frame = caller();
 
-        return builder.findByClassName(frame.getClassName())
+        return doc.findByClassName(frame.getClassName())
                 .exact()
                 .findByMethodSignature(frame.getMethodName(), frame.getMethodType().parameterArray())
                 .exact();
@@ -47,7 +47,7 @@ class JavadocTestSupport {
     protected final MethodInfo method(String name) {
         StackFrame frame = caller();
 
-        return builder.findByClassName(frame.getClassName()).exact().findByMethodSignature(name).exact();
+        return doc.findByClassName(frame.getClassName()).exact().findByMethodSignature(name).exact();
     }
 
     /**
