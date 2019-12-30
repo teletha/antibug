@@ -19,6 +19,8 @@ import javax.lang.model.element.TypeElement;
 
 import antibug.doc.site.HTML;
 import antibug.doc.site.SiteBuilder;
+import stylist.Style;
+import stylist.StyleDSL;
 
 public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
 
@@ -78,41 +80,55 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
         data.packages.sort(Comparator.naturalOrder());
 
         // build HTML
+        site.buildHTML("index.html", new IndexHTML());
+    }
 
-        site.buildHTML("index.html", new HTML() {
-            {
-                $("html", () -> {
-                    $("head", () -> {
-                        stylesheet("main.css", AntibugJavadocStyles.class);
-                        stylesheet("javadoc.css", BuiltinStyles.class);
-                    });
-                    $("body", () -> {
-                        $("nav", () -> {
-                            $("div", id("packageList"), () -> {
-                                $("span", attr("v-for", "package in packages"), () -> {
-                                    text("{{package}}");
-                                });
-                            });
-                            $("div", id("typeList"), () -> {
-                                $("span", attr("v-for", "type in types"), () -> {
-                                    text("{{type}}");
-                                });
-                            });
-                        });
-                        $("main", attr("id", "app"), () -> {
-                            $("h1", () -> {
-                                $("em", () -> {
-                                    text("{{message}}");
-                                });
-                            });
-                        });
-                        script("https://cdn.jsdelivr.net/npm/vue/dist/vue.js");
-                        script("data.js", data);
-                        script("main.js");
-                    });
+    /**
+     * 
+     */
+    private final class IndexHTML extends HTML {
+        {
+            $("html", () -> {
+                $("head", () -> {
+                    stylesheet("main.css", style.class);
+                    stylesheet("javadoc.css", BuiltinStyles.class);
                 });
-            }
-        });
+                $("body", () -> {
+                    $("nav", () -> {
+                        $("ul", id("packageList"), style.packageList, () -> {
+                            $("li", attr("v-for", "package in packages"), () -> {
+                                text("{{package}}");
+                            });
+                        });
+                        $("ul", id("typeList"), () -> {
+                            $("li", attr("v-for", "type in types"), () -> {
+                                text("{{type}}");
+                            });
+                        });
+                    });
+                    $("main", attr("id", "app"), () -> {
+                        $("h1", () -> {
+                            $("em", () -> {
+                                text("{{message}}");
+                            });
+                        });
+                    });
+                    script("https://cdn.jsdelivr.net/npm/vue/dist/vue.js");
+                    script("data.js", data);
+                    script("main.js");
+                });
+            });
+        }
+    }
+
+    /**
+     * 
+     */
+    private static interface style extends StyleDSL {
+
+        Style packageList = () -> {
+            display.height(200, px);
+        };
     }
 
     /**

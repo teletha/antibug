@@ -1,12 +1,12 @@
 @import url("http://fonts.googleapis.com/css?family=Material+Icons");
 @import url("http://fonts.googleapis.com/css?family=Oswald");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* antibug.doc.BuiltinStyles#a */.K:not([class]) {
+/* antibug.doc.BuiltinStyles#a */.L {
 	font-family: "Yu Gothic UI";
 	text-decoration: none;
 }
 
-/* antibug.doc.BuiltinStyles#body */.B {
+/* antibug.doc.BuiltinStyles#body */.C {
 	padding-top: 5px;
 	padding-bottom: 5px;
 	padding-left: 20px;
@@ -16,11 +16,11 @@
 	font-family: "Yu Gothic UI","Noto Sans",sans-serif;
 }
 
-/* antibug.doc.BuiltinStyles#dd */.G:not([class]) {
+/* antibug.doc.BuiltinStyles#dd */.H {
 	margin-bottom: 20px;
 }
 
-/* antibug.doc.BuiltinStyles#dl */.E:not([class]) {
+/* antibug.doc.BuiltinStyles#dl */.F {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -36,7 +36,7 @@
 	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
-/* antibug.doc.BuiltinStyles#dl */.E:last-child {
+/* antibug.doc.BuiltinStyles#dl */.F:last-child {
 	margin-top: 56px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -53,7 +53,7 @@
 	position: relative;
 }
 
-/* antibug.doc.BuiltinStyles#dl */.E:last-child::before {
+/* antibug.doc.BuiltinStyles#dl */.F:last-child::before {
 	display: block;
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
@@ -64,7 +64,7 @@
 	left: -3px;
 }
 
-/* antibug.doc.BuiltinStyles#dl */.E:last-child dt {
+/* antibug.doc.BuiltinStyles#dl */.F:last-child dt {
 	display: block;
 	width: 70px;
 	float: left;
@@ -76,12 +76,12 @@
 	text-transform: capitalize;
 }
 
-/* antibug.doc.BuiltinStyles#dl */.E:last-child dd {
+/* antibug.doc.BuiltinStyles#dl */.F:last-child dd {
 	margin-bottom: 15px;
 	margin-left: 70px;
 }
 
-/* antibug.doc.BuiltinStyles#dl */.E:last-child b {
+/* antibug.doc.BuiltinStyles#dl */.F:last-child b {
 	display: block;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
@@ -92,7 +92,7 @@
 	text-transform: capitalize;
 }
 
-/* antibug.doc.BuiltinStyles#dt */.F:not([class]) {
+/* antibug.doc.BuiltinStyles#dt */.G {
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
 	border-bottom-color: hsl(0,0%,87%);
@@ -100,7 +100,7 @@
 	margin-bottom: 2px;
 }
 
-/* antibug.doc.BuiltinStyles#h */.L {
+/* antibug.doc.BuiltinStyles#h */.M {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
@@ -109,7 +109,7 @@
 	display: block;
 }
 
-/* antibug.doc.BuiltinStyles#h1 */.M {
+/* antibug.doc.BuiltinStyles#h1 */.N {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
@@ -118,7 +118,7 @@
 	display: block;
 }
 
-/* antibug.doc.BuiltinStyles#h2 */.N {
+/* antibug.doc.BuiltinStyles#h2 */.O {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
@@ -127,7 +127,7 @@
 	display: block;
 }
 
-/* antibug.doc.BuiltinStyles#h3 */.O {
+/* antibug.doc.BuiltinStyles#h3 */.P {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
@@ -136,7 +136,7 @@
 	display: block;
 }
 
-/* antibug.doc.BuiltinStyles#h4 */.P {
+/* antibug.doc.BuiltinStyles#h4 */.Q {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
@@ -145,11 +145,11 @@
 	display: block;
 }
 
-/* antibug.doc.BuiltinStyles#h5 */.Q:not([class]) {
+/* antibug.doc.BuiltinStyles#h5 */.R {
 	display: none;
 }
 
-/* antibug.doc.BuiltinStyles#heading */.A {
+/* antibug.doc.BuiltinStyles#heading */.B {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
@@ -158,7 +158,7 @@
 	display: block;
 }
 
-/* antibug.doc.BuiltinStyles#list */.D {
+/* antibug.doc.BuiltinStyles#list */.E {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -174,7 +174,7 @@
 	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
-/* antibug.doc.BuiltinStyles#ol */.I:not([class]) {
+/* antibug.doc.BuiltinStyles#ol */.J {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -190,7 +190,7 @@
 	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
-/* antibug.doc.BuiltinStyles#p */.C:not([class]) {
+/* antibug.doc.BuiltinStyles#p */.D:not([class]) {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -205,7 +205,7 @@
 	font-family: "Yu Gothic UI",sans-serif;
 }
 
-/* antibug.doc.BuiltinStyles#pre */.J:not([class]) {
+/* antibug.doc.BuiltinStyles#pre */.K {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -221,7 +221,7 @@
 	background-color: hsla(120,39%,55%,0.19999999999999996);
 }
 
-/* antibug.doc.BuiltinStyles#ul */.H:not([class]) {
+/* antibug.doc.BuiltinStyles#ul */.I {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -237,14 +237,14 @@
 	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
-/* antibug.doc.BuiltinStyles#ul */.H:not([class]) li {
+/* antibug.doc.BuiltinStyles#ul */.I li {
 	list-style-type: none;
 	padding-bottom: 10px;
 	padding-left: 1em;
 	text-indent: -1.5em;
 }
 
-/* antibug.doc.BuiltinStyles#ul */.H:not([class]) li::before {
+/* antibug.doc.BuiltinStyles#ul */.I li::before {
 	font-family: "Material Icons";
 	color: hsl(48,75%,59%);
 	content: '\e876';

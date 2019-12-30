@@ -6,12 +6,8 @@
 	</head>
 	<body>
 		<nav>
-			<div id='packageList'>
-				<span v-for='package in packages'>{{package}}</span>
-			</div>
-			<div id='typeList'>
-				<span v-for='type in types'>{{type}}</span>
-			</div>
+			<ul id='packageList' class='A'><li v-for='package in packages'>{{package}}</li></ul>
+			<ul id='typeList'><li v-for='type in types'>{{type}}</li></ul>
 		</nav>
 		<main id='app'>
 			<h1><em>{{message}}</em></h1>

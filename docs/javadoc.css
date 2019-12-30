@@ -1,7 +1,7 @@
 @import url("http://fonts.googleapis.com/css?family=Material+Icons");
 @import url("http://fonts.googleapis.com/css?family=Oswald");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-a:not([class]) {
+a {
 	font-family: "Yu Gothic UI";
 	text-decoration: none;
 }
@@ -16,11 +16,11 @@ body {
 	font-family: "Yu Gothic UI","Noto Sans",sans-serif;
 }
 
-dd:not([class]) {
+dd {
 	margin-bottom: 20px;
 }
 
-dl:not([class]) {
+dl {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -92,7 +92,7 @@ dl:last-child b {
 	text-transform: capitalize;
 }
 
-dt:not([class]) {
+dt {
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
 	border-bottom-color: hsl(0,0%,87%);
@@ -145,7 +145,7 @@ h4 {
 	display: block;
 }
 
-h5:not([class]) {
+h5 {
 	display: none;
 }
 
@@ -174,7 +174,7 @@ list {
 	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
-ol:not([class]) {
+ol {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -205,7 +205,7 @@ p:not([class]) {
 	font-family: "Yu Gothic UI",sans-serif;
 }
 
-pre:not([class]) {
+pre {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -221,7 +221,7 @@ pre:not([class]) {
 	background-color: hsla(120,39%,55%,0.19999999999999996);
 }
 
-ul:not([class]) {
+ul {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -237,15 +237,22 @@ ul:not([class]) {
 	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
-ul:not([class]) li {
+ul li {
 	list-style-type: none;
 	padding-bottom: 10px;
 	padding-left: 1em;
 	text-indent: -1.5em;
 }
 
-ul:not([class]) li::before {
+ul li::before {
 	font-family: "Material Icons";
+	color: hsl(48,75%,59%);
+	content: '\e876';
+	vertical-align: bottom;
+	padding-right: 0.5em;
+}
+
+t-family: "Material Icons";
 	color: hsl(48,75%,59%);
 	content: '\e876';
 	vertical-align: bottom;

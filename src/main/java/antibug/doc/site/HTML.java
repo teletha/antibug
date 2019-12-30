@@ -15,7 +15,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 
+import kiss.I;
 import kiss.Tree;
+import stylist.Style;
 import stylist.StyleDSL;
 
 /**
@@ -27,7 +29,13 @@ public abstract class HTML extends Tree<String, HTML.ElementNode> {
      * 
      */
     public HTML() {
-        super(HTML.ElementNode::new, null);
+        super(HTML.ElementNode::new, null, (follower, current) -> {
+            if (follower instanceof Style) {
+                current.addClass(((Style) follower));
+            } else {
+                follower.accept(current);
+            }
+        });
     }
 
     /**
@@ -139,6 +147,27 @@ public abstract class HTML extends Tree<String, HTML.ElementNode> {
          */
         private ElementNode(String name, int id, Object context) {
             this.name = name;
+        }
+
+        /**
+         * Assign class.
+         * 
+         * @param style
+         */
+        private void addClass(Style style) {
+            String name = I.join(" ", I.list(style.names()));
+
+            for (AttributeNode attr : attrs) {
+                if (attr.name.equals("class")) {
+                    if (attr.value == null || attr.value.length() == 0) {
+                        attr.value = name;
+                    } else {
+                        attr.value = attr.value + " " + name;
+                    }
+                    return;
+                }
+            }
+            attrs.add(new AttributeNode("class", name));
         }
 
         /**

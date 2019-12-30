@@ -157,7 +157,7 @@ public interface BuiltinStyles extends StyleDSL {
      * @see String
      */
     Style dl = () -> {
-        $.not($.attr("class").exist(), list);
+        list.style();
 
         $.lastChild(() -> {
             block(SignatureColor, false);
@@ -196,17 +196,13 @@ public interface BuiltinStyles extends StyleDSL {
     };
 
     Style dt = () -> {
-        $.not($.attr("class").exist(), () -> {
-            border.bottom.width(1, px).solid().color("#ddd");
-            padding.bottom(SmallGap);
-            margin.bottom(SmallGap);
-        });
+        border.bottom.width(1, px).solid().color("#ddd");
+        padding.bottom(SmallGap);
+        margin.bottom(SmallGap);
     };
 
     Style dd = () -> {
-        $.not($.attr("class").exist(), () -> {
-            margin.bottom(20, px);
-        });
+        margin.bottom(20, px);
     };
 
     /**
@@ -223,39 +219,33 @@ public interface BuiltinStyles extends StyleDSL {
      * <link rel="stylesheet" href= "../../../../../docs/javadoc.css"/>
      */
     Style ul = () -> {
-        $.not($.attr("class").exist(), () -> {
-            list.style();
+        list.style();
 
-            $.select("li", () -> {
-                listStyle.none();
-                padding.bottom(BottomGap).left(1, em);
-                text.indent(Numeric.of(-1.5, em));
+        $.select("li", () -> {
+            listStyle.none();
+            padding.bottom(BottomGap).left(1, em);
+            text.indent(Numeric.of(-1.5, em));
 
-                $.before(() -> {
-                    font.family(IconFont).color(ListColor.saturate(-20));
-                    content.text("\\e876");
-                    text.verticalAlign.bottom();
-                    padding.right(0.5, em);
-                });
+            $.before(() -> {
+                font.family(IconFont).color(ListColor.saturate(-20));
+                content.text("\\e876");
+                text.verticalAlign.bottom();
+                padding.right(0.5, em);
             });
         });
     };
 
     Style ol = () -> {
-        $.not($.attr("class").exist(), list);
+        list.style();
     };
 
     Style pre = () -> {
-        $.not($.attr("class").exist(), () -> {
-            block(CodeColor, true);
-        });
+        block(CodeColor, true);
     };
 
     Style a = () -> {
-        $.not($.attr("class").exist(), () -> {
-            font.family(BodyFont);
-            text.decoration.none();
-        });
+        font.family(BodyFont);
+        text.decoration.none();
     };
 
     Style h = () -> {
@@ -279,9 +269,7 @@ public interface BuiltinStyles extends StyleDSL {
     };
 
     Style h5 = () -> {
-        $.not($.attr("class").exist(), () -> {
-            display.none();
-        });
+        display.none();
     };
 
     /**

@@ -25,7 +25,6 @@ const data = {
 		"antibug.doc.AntibugDocumentationTool",
 		"antibug.doc.AntibugDocumentationTool.Internal",
 		"antibug.doc.AntibugJavadoc",
-		"antibug.doc.AntibugJavadocStyles",
 		"antibug.doc.BuiltinStyles",
 		"antibug.doc.ClassInfo",
 		"antibug.doc.DocumentInfo",
