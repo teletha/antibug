@@ -33,7 +33,7 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
      */
     @Override
     protected void initialize() {
-        site = SiteBuilder.root(output());
+        site = SiteBuilder.root(output()).guard("index.html", "main.js");
     }
 
     /**
@@ -108,7 +108,7 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
                         });
                         script("https://cdn.jsdelivr.net/npm/vue/dist/vue.js");
                         script("data.js", data);
-                        script("main@js");
+                        script("main.js");
                     });
                 });
             }

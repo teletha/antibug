@@ -10,6 +10,7 @@
 package antibug.doc.site;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Objects;
 
 import kiss.I;
@@ -57,6 +58,12 @@ public class SiteBuilder {
     /** The root directory. */
     private final Directory root;
 
+    /** The initialize flag. */
+    private boolean initialized = false;
+
+    /** The initial protectable file pattern. */
+    private List<String> protectable = I.list("!**@.*");
+
     /**
      * 
      * @param rootDirectory
@@ -64,9 +71,41 @@ public class SiteBuilder {
     private SiteBuilder(Directory rootDirectory) {
         this.root = Objects.requireNonNull(rootDirectory);
         current = this;
+    }
 
-        // delete all existing files
-        root.create().delete("!**@.*");
+    /**
+     * Initialize only once.
+     */
+    private synchronized void initialize() {
+        if (initialized == false) {
+            initialized = true;
+
+            // delete all existing files
+            root.create().delete(protectable.toArray(String[]::new));
+
+            // There is a time lag until the OS releases the handle of the deleted file, so wait a
+            // little. AccessDeniedException may occur when going straight.
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                throw I.quiet(e);
+            }
+        }
+    }
+
+    /**
+     * Specify a pattern for files that you do not want to delete during initialization.
+     * 
+     * @param pattern
+     * @return
+     */
+    public final SiteBuilder guard(String... patterns) {
+        for (String pattern : patterns) {
+            if (pattern != null && pattern.length() != 0) {
+                protectable.add("!" + pattern);
+            }
+        }
+        return this;
     }
 
     /**
@@ -76,6 +115,8 @@ public class SiteBuilder {
      * @param html
      */
     public final void buildHTML(String path, HTML html) {
+        initialize();
+
         root.file(path).write(output -> {
             output.append("<!DOCTYPE html>").append(Formattable.EOL);
 
@@ -92,6 +133,8 @@ public class SiteBuilder {
      * @return A path to the generated file.
      */
     public final String buildCSS(String path, Class<? extends StyleDSL> styles) {
+        initialize();
+
         String formatted = Stylist.pretty().importNormalizeStyle().format(styles);
 
         File file = root.file(path);
@@ -106,6 +149,8 @@ public class SiteBuilder {
      * @param html
      */
     public final String buildJSONP(String path, Object object) {
+        initialize();
+
         File file = root.file(path);
         file.write(output -> {
             output.append("const " + file.base() + " = ");
