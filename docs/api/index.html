@@ -8,14 +8,8 @@
 	</head>
 	<body class='C'>
 		<header>HEADER</header>
-		<nav class='A'>
-			<el-select id='moduleList' v-model='selected' placeholder='Select Module'>
-				<el-option v-for='i in items' :key='i' :label='i' :value='i'/>
-			</el-select>
-			<el-select id='packageList' v-model='selected' placeholder='Select Package'>
-				<el-option v-for='i in items' :key='i' :label='i' :value='i'/>
-			</el-select>
-			<el-scrollbar id='typeList' :native='false'><a class='type' v-for='item in filteredItems'>{{item.name}}</a></el-scrollbar>
+		<nav id='typeNavigation' class='A'>
+			<el-scrollbar id='typeList' :native='false'/>
 		</nav>
 		<main>MAIN</main>
 		<aside>ASIDE</aside>

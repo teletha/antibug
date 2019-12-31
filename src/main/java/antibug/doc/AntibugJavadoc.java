@@ -111,18 +111,8 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
                     // =============================
                     // Left Side Navigation
                     // =============================
-                    $("nav", style.nav, () -> {
-                        $("el-select", id("moduleList"), attr("v-model", "selected"), attr("placeholder", "Select Module"), () -> {
-                            $("el-option", attr("v-for", "i in items"), attr(":key", "i"), attr(":label", "i"), attr(":value", "i"));
-                        });
-                        $("el-select", id("packageList"), attr("v-model", "selected"), attr("placeholder", "Select Package"), () -> {
-                            $("el-option", attr("v-for", "i in items"), attr(":key", "i"), attr(":label", "i"), attr(":value", "i"));
-                        });
-                        $("el-scrollbar", id("typeList"), attr(":native", false), () -> {
-                            $("a", style.type, attr("v-for", "item in filteredItems"), () -> {
-                                text("{{item.name}}");
-                            });
-                        });
+                    $("nav", id("typeNavigation"), style.nav, () -> {
+                        $("el-scrollbar", id("typeList"), attr(":native", false));
                     });
 
                     // =============================
