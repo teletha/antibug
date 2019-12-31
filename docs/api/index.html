@@ -1,54 +1,46 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset='UTF-8'/>
-		<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'/>
-		<link rel='stylesheet' href='main.css'/>
-		<link rel='stylesheet' href='javadoc.css'/>
+		<meta charset="UTF-8" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/uikit@3.2.6/dist/css/uikit.min.css"
+		/>
+		<link rel="stylesheet" href="main.css" />
+		<link rel="stylesheet" href="javadoc.css" />
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/uikit@3.2.6/dist/js/uikit.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/uikit@3.2.6/dist/js/uikit-icons.min.js"></script>
 	</head>
 	<body>
 		<nav>
-			<ul id='packageList' class='A'><li v-for='package in packages'>{{package}}</li></ul>
-			<ul id='typeList'><li v-for='type in types'>{{type}}</li></ul>
+			<ul id="packageList" class="A">
+				<li v-for="package in packages">{{package}}</li>
+			</ul>
+			<ul id="typeList">
+				<li v-for="type in types">{{type}}</li>
+			</ul>
 		</nav>
-		<div id="app">
-			  <el-container>
-				<el-aside>
-					<el-menu default-active="1">
-					  <el-menu-item>
-						<i class="el-icon-location"></i>
-						<span>Location</span>
-					  </el-menu-item>
-					  <el-menu-item>
-						<i class="el-icon-document"></i>
-						<span>Navigator Three</span>
-					  </el-menu-item>
-					  <el-menu-item>
-						<i class="el-icon-setting"></i>
-						<span>Navigator Four</span>
-					  </el-menu-item>
-					</el-menu>
-				</el-aside>
-			
-				<el-main>
-				  <el-table :data="location">
-					<el-table-column prop="id" label="id"></el-table-column>
-					<el-table-column prop="name" label="name"></el-table-column>
-					<el-table-column prop="country" label="country"></el-table-column>
-					<el-table-column prop="metro" label="metro" width="180"></el-table-column>
-					<el-table-column prop="market" label="market" width="180"></el-table-column>
-					<el-table-column prop="status" label="status" width="180"></el-table-column>
-				  </el-table>
-				</el-main>
-			  </el-container>
+		<div class="uk-inline">
+			<button class="uk-button uk-button-default" type="button">
+				Dropdown
+			</button>
+			<div uk-dropdown>
+				<ul class="uk-nav uk-dropdown-nav">
+					<li class="uk-active"><a href="#">Active</a></li>
+					<li><a href="#">Item</a></li>
+					<li class="uk-nav-header">Header</li>
+					<li><a href="#">Item</a></li>
+					<li><a href="#">Item</a></li>
+					<li class="uk-nav-divider"></li>
+					<li><a href="#">Item</a></li>
+				</ul>
 			</div>
-		<script src='https://unpkg.com/vue/dist/vue.js'>
-		</script>
-		<script src='https://unpkg.com/element-ui/lib/index.js'>
-		</script>
-		<script src='data.js'>
-		</script>
-		<script src='main.js'>
-		</script>
+		</div>
+		<main id="app">
+			<h1><em>{{message}}</em></h1>
+		</main>
+		<script src="data.js"></script>
+		<script src="main.js"></script>
 	</body>
 </html>

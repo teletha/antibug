@@ -2,7 +2,7 @@
 @import url("http://fonts.googleapis.com/css?family=Oswald");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
 a {
-	font-family: "Yu Gothic UI";
+	font-family: "Titillium Web";
 	text-decoration: none;
 }
 
@@ -13,7 +13,7 @@ body {
 	padding-right: 20px;
 	background-color: hsl(0,0%,100%);
 	font-size: 12px;
-	font-family: "Yu Gothic UI","Noto Sans",sans-serif;
+	font-family: "Titillium Web","Noto Sans",sans-serif;
 }
 
 dd {
@@ -32,7 +32,7 @@ dl {
 	border-left-style: solid;
 	border-left-color: hsl(48,95%,59%);
 	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
+	font-family: "Titillium Web",sans-serif;
 	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
@@ -48,7 +48,7 @@ dl:last-child {
 	border-left-style: solid;
 	border-left-color: hsl(2,68%,58%);
 	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
+	font-family: "Titillium Web",sans-serif;
 	background-color: hsla(0,0%,0%,0);
 	position: relative;
 }
@@ -170,7 +170,7 @@ list {
 	border-left-style: solid;
 	border-left-color: hsl(48,95%,59%);
 	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
+	font-family: "Titillium Web",sans-serif;
 	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
@@ -186,7 +186,7 @@ ol {
 	border-left-style: solid;
 	border-left-color: hsl(48,95%,59%);
 	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
+	font-family: "Titillium Web",sans-serif;
 	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
@@ -202,7 +202,7 @@ p:not([class]) {
 	border-left-style: solid;
 	border-left-color: hsl(204,75%,48%);
 	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
+	font-family: "Titillium Web",sans-serif;
 }
 
 pre {
@@ -217,7 +217,7 @@ pre {
 	border-left-style: solid;
 	border-left-color: hsl(120,39%,55%);
 	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
+	font-family: "Titillium Web",sans-serif;
 	background-color: hsla(120,39%,55%,0.19999999999999996);
 }
 
@@ -233,7 +233,7 @@ ul {
 	border-left-style: solid;
 	border-left-color: hsl(48,95%,59%);
 	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
+	font-family: "Titillium Web",sans-serif;
 	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
@@ -252,17 +252,29 @@ ul li::before {
 	padding-right: 0.5em;
 }
 
-t-family: "Material Icons";
+imaNova,sans-serif;
+	font-size: 15px;
+	color: hsl(0,0%,40%);
+	font-weight: 300;
+	background-color: hsla(48,95%,59%,0.19999999999999996);
+}
+
+ul li {
+	list-style-type: none;
+	padding-bottom: 10px;
+	padding-left: 1em;
+	text-indent: -1.5em;
+}
+
+ul li::before {
+	font-family: "Material Icons";
 	color: hsl(48,75%,59%);
 	content: '\e876';
 	vertical-align: bottom;
 	padding-right: 0.5em;
 }
 
-em;
-}
-
-ntent: '\e876';
+'\e876';
 	vertical-align: bottom;
 	padding-right: 0.5em;
 }

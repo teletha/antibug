@@ -86,7 +86,7 @@ public class SiteBuilder {
             // There is a time lag until the OS releases the handle of the deleted file, so wait a
             // little. AccessDeniedException may occur when going straight.
             try {
-                Thread.sleep(50);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 throw I.quiet(e);
             }
