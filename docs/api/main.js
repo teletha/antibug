@@ -1,26 +1,33 @@
-
 new Vue({
-  el: '#app',
-  data: function() {
-    return {
-      location: [{id: 1, name: 'Site1', country: 'USA', metro: 'San Jose', market: 'US', status: 'Active'},
-                  {id: 2, name: 'Site2', country: 'USA', metro: 'San Mateo', market: 'US', status: 'Active'},
-                  {id: 3, name: 'Site3', country: 'USA', metro: 'San Rafael', market: 'US', status: 'Active'}]
-    }
+  el: "#moduleList",
+  data: {
+    items: ["*"].concat(root.modules),
+    selected: ""
   }
 })
 
-
-new Vue({
+const packageList = new Vue({
   el: "#packageList",
   data: {
-    packages: data.packages
+    items: ["*"].concat(root.packages),
+    selected: ""
   }
 })
 
 new Vue({
   el: "#typeList",
   data: {
-    types: data.types
+    items: root.types
+  },
+  computed: {
+    filteredItems() {
+      return this.items.filter(item => {
+        if (packageList.selected === "" || packageList.selected === "*") {
+          return true;
+        } else {
+          return item.packageName === packageList.selected;
+        }
+      })
+    }
   }
 })

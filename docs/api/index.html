@@ -1,46 +1,31 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8" />
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/uikit@3.2.6/dist/css/uikit.min.css"
-		/>
-		<link rel="stylesheet" href="main.css" />
-		<link rel="stylesheet" href="javadoc.css" />
-		<script src="https://unpkg.com/vue/dist/vue.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/uikit@3.2.6/dist/js/uikit.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/uikit@3.2.6/dist/js/uikit-icons.min.js"></script>
+		<meta charset='UTF-8'/>
+		<link rel='stylesheet' href='https://unpkg.com/element-ui/lib/theme-chalk/index.css'/>
+		<link rel='stylesheet' href='main.css'/>
+		<link rel='stylesheet' href='javadoc.css'/>
 	</head>
-	<body>
-		<nav>
-			<ul id="packageList" class="A">
-				<li v-for="package in packages">{{package}}</li>
-			</ul>
-			<ul id="typeList">
-				<li v-for="type in types">{{type}}</li>
-			</ul>
+	<body class='C'>
+		<header>HEADER</header>
+		<nav class='A'>
+			<el-select id='moduleList' v-model='selected' placeholder='Select Module'>
+				<el-option v-for='i in items' :key='i' :label='i' :value='i'/>
+			</el-select>
+			<el-select id='packageList' v-model='selected' placeholder='Select Package'>
+				<el-option v-for='i in items' :key='i' :label='i' :value='i'/>
+			</el-select>
+			<el-scrollbar id='typeList' :native='false'><a class='type' v-for='item in filteredItems'>{{item.name}}</a></el-scrollbar>
 		</nav>
-		<div class="uk-inline">
-			<button class="uk-button uk-button-default" type="button">
-				Dropdown
-			</button>
-			<div uk-dropdown>
-				<ul class="uk-nav uk-dropdown-nav">
-					<li class="uk-active"><a href="#">Active</a></li>
-					<li><a href="#">Item</a></li>
-					<li class="uk-nav-header">Header</li>
-					<li><a href="#">Item</a></li>
-					<li><a href="#">Item</a></li>
-					<li class="uk-nav-divider"></li>
-					<li><a href="#">Item</a></li>
-				</ul>
-			</div>
-		</div>
-		<main id="app">
-			<h1><em>{{message}}</em></h1>
-		</main>
-		<script src="data.js"></script>
-		<script src="main.js"></script>
+		<main>MAIN</main>
+		<aside>ASIDE</aside>
+		<script src='https://unpkg.com/vue/dist/vue.js'>
+		</script>
+		<script src='https://unpkg.com/element-ui/lib/index.js'>
+		</script>
+		<script src='root.js'>
+		</script>
+		<script src='main.js'>
+		</script>
 	</body>
 </html>

@@ -56,13 +56,13 @@ public abstract class HTML extends Tree<String, HTML.ElementNode> {
      * 
      * @param name An attribute name.
      */
-    protected final Consumer<HTML.ElementNode> attr(Object name, String value) {
+    protected final Consumer<HTML.ElementNode> attr(Object name, Object value) {
         return parent -> {
             if (name != null) {
                 String n = String.valueOf(name);
 
                 if (!n.isEmpty()) {
-                    parent.attrs.add(new AttributeNode(n, value));
+                    parent.attrs.add(new AttributeNode(n, String.valueOf(value)));
                 }
             }
         };

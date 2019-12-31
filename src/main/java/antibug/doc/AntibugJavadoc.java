@@ -21,6 +21,9 @@ import antibug.doc.site.HTML;
 import antibug.doc.site.SiteBuilder;
 import stylist.Style;
 import stylist.StyleDSL;
+import stylist.value.Color;
+import stylist.value.Font;
+import stylist.value.Numeric;
 
 public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
 
@@ -46,7 +49,7 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
         ClassInfo info = new ClassInfo(root);
         data.add(info);
 
-        site.buildHTML("types/" + info.fqcn + ".html", new HTML() {
+        site.buildHTML("types/" + info.packageName + "." + info.name + ".html", new HTML() {
             {
                 $("html", () -> {
                     $("body", () -> {
@@ -77,7 +80,9 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
     @Override
     protected void complete() {
         // sort data
+        data.modules.sort(Comparator.naturalOrder());
         data.packages.sort(Comparator.naturalOrder());
+        data.types.sort(Comparator.naturalOrder());
 
         // build HTML
         site.buildHTML("index.html", new IndexHTML());
@@ -91,34 +96,52 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
             $("html", () -> {
                 $("head", () -> {
                     $("meta", attr("charset", "UTF-8"));
-                    stylesheet("https://cdn.jsdelivr.net/npm/uikit@3.2.6/dist/css/uikit.min.css");
+                    stylesheet("https://unpkg.com/element-ui/lib/theme-chalk/index.css");
                     stylesheet("main.css", style.class);
                     stylesheet("javadoc.css", BuiltinStyles.class);
                 });
-                $("body", () -> {
-                    $("nav", () -> {
-                        $("ul", id("packageList"), style.packageList, () -> {
-                            $("li", attr("v-for", "package in packages"), () -> {
-                                text("{{package}}");
-                            });
+                $("body", style.workbench, () -> {
+                    // =============================
+                    // Top Navigation
+                    // =============================
+                    $("header", () -> {
+                        text("HEADER");
+                    });
+
+                    // =============================
+                    // Left Side Navigation
+                    // =============================
+                    $("nav", style.nav, () -> {
+                        $("el-select", id("moduleList"), attr("v-model", "selected"), attr("placeholder", "Select Module"), () -> {
+                            $("el-option", attr("v-for", "i in items"), attr(":key", "i"), attr(":label", "i"), attr(":value", "i"));
                         });
-                        $("ul", id("typeList"), () -> {
-                            $("li", attr("v-for", "type in types"), () -> {
-                                text("{{type}}");
+                        $("el-select", id("packageList"), attr("v-model", "selected"), attr("placeholder", "Select Package"), () -> {
+                            $("el-option", attr("v-for", "i in items"), attr(":key", "i"), attr(":label", "i"), attr(":value", "i"));
+                        });
+                        $("el-scrollbar", id("typeList"), attr(":native", false), () -> {
+                            $("a", style.type, attr("v-for", "item in filteredItems"), () -> {
+                                text("{{item.name}}");
                             });
                         });
                     });
-                    $("main", attr("id", "app"), () -> {
-                        $("h1", () -> {
-                            $("em", () -> {
-                                text("{{message}}");
-                            });
-                        });
+
+                    // =============================
+                    // Main Contents
+                    // =============================
+                    $("main", () -> {
+                        text("MAIN");
                     });
+
+                    // =============================
+                    // Right Side Navigation
+                    // =============================
+                    $("aside", () -> {
+                        text("ASIDE");
+                    });
+
                     script("https://unpkg.com/vue/dist/vue.js");
-                    script("https://cdn.jsdelivr.net/npm/uikit@3.2.6/dist/js/uikit.min.js");
-                    script("https://cdn.jsdelivr.net/npm/uikit@3.2.6/dist/js/uikit-icons.min.js");
-                    script("data.js", data);
+                    script("https://unpkg.com/element-ui/lib/index.js");
+                    script("root.js", data);
                     script("main.js");
                 });
             });
@@ -130,8 +153,32 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
      */
     private static interface style extends StyleDSL {
 
-        Style packageList = () -> {
-            display.height(200, px);
+        Color FontColor = Color.rgb(94, 109, 130);
+
+        Font HeadFont = Font.fromGoogle("Oswald");
+
+        Numeric FontSize = Numeric.of(13, px);
+
+        Style type = Style.named("type", () -> {
+            cursor.pointer();
+        });
+
+        Style nav = () -> {
+            display.width(240, px).flex().direction.column();
+
+            $.select(type, () -> {
+                display.block();
+            });
+        };
+
+        Style selector = () -> {
+            display.block();
+        };
+
+        Style workbench = () -> {
+            font.size(FontSize).family("Segoe UI", Font.SansSerif).color(FontColor);
+            line.height(1.6);
+            display.grid().templateColumns.width(Numeric.of(180, px), Numeric.of(1, fr), Numeric.of(180, px));
         };
     }
 
@@ -141,16 +188,19 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
     private final class Data {
 
         /** Type repository. */
+        public List<String> modules = new ArrayList();
+
+        /** Type repository. */
         public List<String> packages = new ArrayList();
 
         /** Type repository. */
-        public List<String> types = new ArrayList();
+        public List<ClassInfo> types = new ArrayList();
 
         /**
          * Avoid duplication.
          */
         private void add(ClassInfo info) {
-            types.add(info.fqcn);
+            types.add(info);
 
             if (packages.indexOf(info.packageName) == -1) {
                 packages.add(info.packageName);

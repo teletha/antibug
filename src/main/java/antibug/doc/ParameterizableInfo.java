@@ -20,7 +20,7 @@ import kiss.Ⅱ;
 
 public class ParameterizableInfo extends DocumentInfo {
 
-    public final List<Ⅱ<String, XML>> typeParameters = new ArrayList();
+    protected final List<Ⅱ<String, XML>> typeParameters = new ArrayList();
 
     /**
      * @param e

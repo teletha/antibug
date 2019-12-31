@@ -64,19 +64,19 @@ import kiss.Ⅱ;
 
 public class DocumentInfo {
 
-    public final Variable<XML> comment = Variable.empty();
+    protected final Variable<XML> comment = Variable.empty();
 
     /** Tag info. */
-    public final List<Ⅱ<String, XML>> typeParameterTags = new ArrayList();
+    protected final List<Ⅱ<String, XML>> typeParameterTags = new ArrayList();
 
     /** Tag info. */
-    public final List<Ⅱ<String, XML>> paramTags = new ArrayList();
+    protected final List<Ⅱ<String, XML>> paramTags = new ArrayList();
 
     /** Tag info. */
-    public final List<XML> seeTags = new ArrayList();
+    protected final List<XML> seeTags = new ArrayList();
 
     /** Tag info. */
-    public final Variable<XML> returnTag = Variable.empty();
+    protected final Variable<XML> returnTag = Variable.empty();
 
     protected DocumentInfo(Element e) {
         try {

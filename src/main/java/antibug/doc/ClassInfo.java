@@ -23,25 +23,25 @@ import javax.lang.model.util.ElementScanner9;
 
 import kiss.Variable;
 
-public class ClassInfo extends ParameterizableInfo {
+public class ClassInfo extends ParameterizableInfo implements Comparable<ClassInfo> {
 
     /** The fully qualifed class name with type parameters. */
     public final String typeName;
 
     /** The fully qualifed class name. */
-    public final String fqcn;
+    public String packageName;
 
-    /** The fully qualifed class name. */
-    public final String packageName;
-
-    /** Info repository. */
-    public final List<FieldInfo> fields = new ArrayList();
+    /** The simple class name. */
+    public String name;
 
     /** Info repository. */
-    public final List<ExecutableInfo> constructors = new ArrayList();
+    protected final List<FieldInfo> fields = new ArrayList();
 
     /** Info repository. */
-    public final List<MethodInfo> methods = new ArrayList();
+    protected final List<ExecutableInfo> constructors = new ArrayList();
+
+    /** Info repository. */
+    protected final List<MethodInfo> methods = new ArrayList();
 
     /**
      * @param root
@@ -50,8 +50,8 @@ public class ClassInfo extends ParameterizableInfo {
         super(root);
 
         this.typeName = root.asType().toString();
-        this.fqcn = typeName.replaceAll("<.+>", "");
         this.packageName = AntibugDocumentationTool.ElementUtils.getPackageOf(root).toString();
+        this.name = typeName.replaceAll("<.+>", "").substring(packageName.length() + 1);
 
         root.accept(new Scanner(), this);
     }
@@ -68,6 +68,14 @@ public class ClassInfo extends ParameterizableInfo {
             }
         }
         return Variable.empty();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int compareTo(ClassInfo o) {
+        return name.compareTo(o.name);
     }
 
     /**
