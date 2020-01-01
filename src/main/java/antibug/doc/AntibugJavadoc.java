@@ -33,6 +33,22 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
     /** The site builder. */
     private SiteBuilder site;
 
+    /** Preference */
+    private String productName = "Your Product";
+
+    /**
+     * Configure the produc name.
+     * 
+     * @param productName
+     * @return
+     */
+    public AntibugJavadoc productName(String productName) {
+        if (productName != null && productName.length() != 0) {
+            this.productName = productName;
+        }
+        return this;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -104,8 +120,8 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
                     // =============================
                     // Top Navigation
                     // =============================
-                    $("header", () -> {
-                        text("HEADER");
+                    $("header", style.header, () -> {
+                        $("h1", style.productTitle, letter(productName));
                     });
 
                     // =============================
@@ -143,11 +159,51 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
      */
     private static interface style extends StyleDSL {
 
+        // color palette - https://coolors.co/e63946-f1faee-a8dadc-457b9d-1d3557
+        Color BackColor = Color.rgb(241, 250, 238);
+
+        Color SecondColor = Color.rgb(168, 218, 220);
+
+        Color AccentColor = Color.rgb(69, 123, 157);
+
+        Color DarkColor = Color.rgb(29, 53, 87);
+
         Color FontColor = Color.rgb(94, 109, 130);
+
+        Color ParagraphColor = Color.rgb(40, 165, 245);
+
+        Color ListColor = Color.rgb(250, 210, 50);
+
+        Color SignatureColor = Color.rgb(221, 81, 76);
+
+        Color CodeColor = Color.rgb(94, 185, 94);
 
         Font HeadFont = Font.fromGoogle("Oswald");
 
         Numeric FontSize = Numeric.of(13, px);
+
+        Numeric HeaderHeight = Numeric.of(80, px);
+
+        Numeric MaxWidth = Numeric.of(1200, px);
+
+        Style workbench = () -> {
+            font.size(FontSize).family("Segoe UI", Font.SansSerif).color(FontColor);
+            line.height(1.6);
+            display.maxWidth(MaxWidth);
+            margin.auto();
+        };
+
+        Style header = () -> {
+            background.color(Color.White);
+            position.sticky().top(0, rem);
+            display.maxWidth(MaxWidth).height(HeaderHeight).zIndex(10);
+            margin.auto();
+            border.bottom.color(ParagraphColor).width(1, px).solid();
+        };
+
+        Style productTitle = () -> {
+            font.size(1.5, rem).family(HeadFont).weight.normal().color(ParagraphColor);
+        };
 
         Style type = Style.named("type", () -> {
             cursor.pointer();
@@ -163,12 +219,6 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
 
         Style selector = () -> {
             display.block();
-        };
-
-        Style workbench = () -> {
-            font.size(FontSize).family("Segoe UI", Font.SansSerif).color(FontColor);
-            line.height(1.6);
-            display.grid().templateColumns.width(Numeric.of(180, px), Numeric.of(1, fr), Numeric.of(180, px));
         };
     }
 

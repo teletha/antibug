@@ -14,6 +14,6 @@ import java.io.IOException;
 public class DocumentUser {
 
     public static void main(String[] args) throws IOException {
-        new AntibugJavadoc().sources("src/main/java").output("docs/api").build();
+        new AntibugJavadoc().sources("src/main/java").output("docs/api").productName("Antibug").build();
     }
 }

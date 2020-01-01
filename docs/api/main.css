@@ -1,28 +1,51 @@
+@import url("http://fonts.googleapis.com/css?family=Oswald");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1797821749 */.type {
+/* 67795316 */.type {
 	cursor: pointer;
 }
 
-/* antibug.doc.AntibugJavadoc.style#nav */.A {
+/* antibug.doc.AntibugJavadoc.style#header */.B {
+	background-color: hsl(0,0%,100%);
+	position: sticky;
+	top: 0;
+	max-width: 1200px;
+	height: 80px;
+	z-index: 10;
+	margin-right: auto;
+	margin-left: auto;
+	border-bottom-color: hsl(203,91%,56%);
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+/* antibug.doc.AntibugJavadoc.style#nav */.D {
 	width: 240px;
 	display: flex;
 	flex-direction: column;
 }
 
-/* antibug.doc.AntibugJavadoc.style#nav */.A .type {
+/* antibug.doc.AntibugJavadoc.style#nav */.D .type {
 	display: block;
 }
 
-/* antibug.doc.AntibugJavadoc.style#selector */.B {
+/* antibug.doc.AntibugJavadoc.style#productTitle */.C {
+	font-size: 1.5rem;
+	font-family: Oswald;
+	font-weight: normal;
+	color: hsl(203,91%,56%);
+}
+
+/* antibug.doc.AntibugJavadoc.style#selector */.E {
 	display: block;
 }
 
-/* antibug.doc.AntibugJavadoc.style#workbench */.C {
+/* antibug.doc.AntibugJavadoc.style#workbench */.A {
 	font-size: 13px;
 	font-family: "Segoe UI",sans-serif;
 	color: hsl(215,16%,44%);
 	line-height: 1.6;
-	display: grid;
-	grid-template-columns: 180px 1fr 180px;
+	max-width: 1200px;
+	margin-right: auto;
+	margin-left: auto;
 }
 

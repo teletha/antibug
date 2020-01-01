@@ -75,6 +75,19 @@ public abstract class HTML extends Tree<String, HTML.ElementNode> {
      * 
      * @param text A text.
      */
+    protected final Consumer<HTML.ElementNode> letter(Object text) {
+        return parent -> {
+            parent.children.add(new TextNode(String.valueOf(text)));
+        };
+    }
+
+    /**
+     * <p>
+     * accept text node.
+     * </p>
+     * 
+     * @param text A text.
+     */
     protected final void text(Object text) {
         $(new TextNode(String.valueOf(text)));
     }
