@@ -18,31 +18,31 @@ public class ParameterizableInfoTest extends JavadocTestSupport {
     @Test
     <A> void single() {
         assert checkTypeParmeterName(currentMethod(), "A");
-        assert checkTypeParameter(currentMethod(), "<type>A</type>");
+        assert checkTypeParameter(currentMethod(), "<i class='type'>A</i>");
     }
 
     @Test
     <A, B> void multi() {
         assert checkTypeParmeterName(currentMethod(), "A", "B");
-        assert checkTypeParameter(currentMethod(), "<type>A</type>", "<type>B</type>");
+        assert checkTypeParameter(currentMethod(), "<i class='type'>A</i>", "<i class='type'>B</i>");
     }
 
     @Test
     <A extends Comparable> void bounded() {
         assert checkTypeParmeterName(currentMethod(), "A");
-        assert checkTypeParameter(currentMethod(), "<type>A</type><extends><type package='java.lang'>Comaprable</type></extends>");
+        assert checkTypeParameter(currentMethod(), "<i class='type'>A</i><extends><i class='type' package='java.lang'>Comaprable</i></extends>");
     }
 
     @Test
     <A extends Comparable<A>> void boundedVariable() {
         assert checkTypeParmeterName(currentMethod(), "A");
-        assert checkTypeParameter(currentMethod(), "<type>A</type><extends><type package='java.lang'>Comaprable</type><parameters><type>A</type></parameters></extends>");
+        assert checkTypeParameter(currentMethod(), "<i class='type'>A</i><extends><i class='type' package='java.lang'>Comaprable</i><i class='parameters'><i class='type'>A</i></i></extends>");
     }
 
     @Test
     <A extends Comparable & Serializable> void intersection() {
         assert checkTypeParmeterName(currentMethod(), "A");
-        assert checkTypeParameter(currentMethod(), "<type>A</type><extends><type package='java.lang'>Comaprable</type><type package='java.io'>Serializable</type></extends>");
+        assert checkTypeParameter(currentMethod(), "<i class='type'>A</i><extends><i class='type' package='java.lang'>Comaprable</i><i class='type' package='java.io'>Serializable</i></extends>");
     }
 
     /**

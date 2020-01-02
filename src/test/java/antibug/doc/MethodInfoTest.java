@@ -18,12 +18,12 @@ public class MethodInfoTest extends JavadocTestSupport {
 
     @Test
     void returnType() {
-        assert checkReturnType(currentMethod(), "<type>void</type>");
+        assert checkReturnType(currentMethod(), "<i class='type'>void</i>");
     }
 
     @Test
     void returnPrimitive() {
-        assert checkReturnType(method("integer"), "<type>int</type>");
+        assert checkReturnType(method("integer"), "<i class='type'>int</i>");
     }
 
     int integer() {
@@ -32,7 +32,7 @@ public class MethodInfoTest extends JavadocTestSupport {
 
     @Test
     void returnString() {
-        assert checkReturnType(method("string"), "<type package='java.lang'>String</type>");
+        assert checkReturnType(method("string"), "<i class='type' package='java.lang'>String</i>");
     }
 
     String string() {
@@ -41,7 +41,7 @@ public class MethodInfoTest extends JavadocTestSupport {
 
     @Test
     void returnGenerics() {
-        assert checkReturnType(method("generics"), "<type>T</type>");
+        assert checkReturnType(method("generics"), "<i class='type'>T</i>");
     }
 
     <T> T generics() {
@@ -50,7 +50,7 @@ public class MethodInfoTest extends JavadocTestSupport {
 
     @Test
     void returnBounded() {
-        assert checkReturnType(method("bounded"), "<type>T</type>");
+        assert checkReturnType(method("bounded"), "<i class='type'>T</i>");
     }
 
     <T extends Serializable> T bounded() {
@@ -59,7 +59,7 @@ public class MethodInfoTest extends JavadocTestSupport {
 
     @Test
     void returnParameterized() {
-        assert checkReturnType(method("parameterized"), "<type package='java.util'>List</type><parameters><type package='java.lang'>String</type></parameters>");
+        assert checkReturnType(method("parameterized"), "<i class='type' package='java.util'>List</i><i class='parameters'><i class='type' package='java.lang'>String</i></i>");
     }
 
     List<String> parameterized() {
