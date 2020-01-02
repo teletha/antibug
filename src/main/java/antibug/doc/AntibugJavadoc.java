@@ -76,10 +76,14 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
                         $("h3", Styles.heading, signature(constructor));
                         $(html(constructor.comment));
                         $("dl", Styles.dl, () -> {
-                            $("dt", text("Parameters"));
-                            for (Ⅱ<String, XML> param : constructor.paramTags) {
-                                $("b", text(param.ⅰ));
-                                $("dd", param.ⅱ);
+                            if (!constructor.paramTags.isEmpty()) {
+                                $("dt", text("Parameters"));
+                                for (Ⅱ<String, XML> param : constructor.paramTags) {
+                                    $("dd", () -> {
+                                        $("b", text(param.ⅰ));
+                                        $(param.ⅱ);
+                                    });
+                                }
                             }
                         });
                     }
@@ -89,20 +93,27 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
                 $("section", Styles.section, () -> {
                     for (MethodInfo method : info.methods) {
                         $("h3", Styles.heading, signature(method));
-                        $("p", html(method.comment));
+                        $(method.comment.v);
 
-                        $("dl", Styles.dl, () -> {
-                            $("dt", text("Parameters"));
-                            for (Ⅱ<String, XML> param : method.paramTags) {
-                                $("b", text(param.ⅰ));
-                                $("dd", param.ⅱ);
-                            }
+                        if (!method.paramTags.isEmpty() || method.returnTag.isPresent()) {
+                            $("dl", Styles.dl, () -> {
+                                if (!method.paramTags.isEmpty()) {
+                                    $("dt", text("Parameters"));
+                                    for (Ⅱ<String, XML> param : method.paramTags) {
+                                        $("dd", () -> {
+                                            $("b", text(param.ⅰ), () -> {
+                                            });
+                                            $(param.ⅱ);
+                                        });
+                                    }
+                                }
 
-                            method.returnTag.to(tag -> {
-                                $("dt", text("Return"));
-                                $("dd", tag);
+                                method.returnTag.to(tag -> {
+                                    $("dt", text("Return"));
+                                    $("dd", tag);
+                                });
                             });
-                        });
+                        }
                     }
                 });
             }

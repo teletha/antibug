@@ -106,7 +106,8 @@ public class DocumentInfo {
      * @return
      */
     private XML xml(List<? extends DocTree> docs) {
-        return new DocumentXMLBuilder().parse(docs).build();
+        XML x = new DocumentXMLBuilder().parse(docs).build();
+        return x;
     }
 
     /**
@@ -115,7 +116,7 @@ public class DocumentInfo {
      * @return
      */
     private XML emptyXML() {
-        return I.xml("<span/>");
+        return I.xml("<p>No description.</p>");
     }
 
     /**
@@ -187,7 +188,7 @@ public class DocumentInfo {
                 if (text.length() == 0) {
                     return emptyXML();
                 } else {
-                    if (text.charAt(0) != '<') text.insert(0, "<span>").append("</span>");
+                    if (text.charAt(0) != '<') text.insert(0, "<p>").append("</p>");
 
                     // Since Javadoc text is rarely correct HTML, switch by inserting dock type
                     // declarations to use the tag soup parser instead of the XML parser.

@@ -43,7 +43,7 @@ interface Styles extends StyleDSL {
 
     Font HeadFont = Font.fromGoogle("Oswald");
 
-    Numeric FontSize = Numeric.of(14, px);
+    Numeric FontSize = Numeric.of(13, px);
 
     Numeric HeaderHeight = Numeric.of(80, px);
 
@@ -145,9 +145,25 @@ interface Styles extends StyleDSL {
         display.block();
     };
 
-    Style section = () -> {
+    Style section = Style.named("section", () -> {
         margin.bottom(BlockVerticalGap);
-    };
+
+        $.select("> p", () -> {
+            block(ParagraphColor, false);
+        });
+
+        $.select("> pre", () -> {
+            block(CodeColor, false);
+        });
+
+        $.select("> ul", () -> {
+            block(ListColor, false);
+        });
+
+        $.select("> ol", () -> {
+            block(ListColor, false);
+        });
+    });
 
     /**
      * Define block-like.
@@ -178,20 +194,11 @@ interface Styles extends StyleDSL {
 
         block(SignatureColor, false);
         background.color(Color.Transparent);
-        margin.top(BlockInterval.add(HeadSize).add(HeadBottomGap).add(HeadTopGap));
-        position.relative();
-
-        $.before(() -> {
-            display.block();
-            font.family(HeadFont, Font.SansSerif).size(HeadSize).weight.normal();
-            content.text("Signature");
-            position.absolute().top(BlockVerticalGap.add(HeadSize).add(HeadBottomGap).negate()).left(BlockBorderWidth.negate());
-        });
 
         $.select("dt", () -> {
             display.block().width(70, px).floatLeft();
             font.size(9, px).weight.bold().color(SignatureColor);
-            padding.top(SmallGap);
+            padding.top(SmallGap.multiply(2));
             border.bottom.none();
             text.transform.capitalize();
         });
@@ -206,11 +213,6 @@ interface Styles extends StyleDSL {
             padding.bottom(SmallGap);
             margin.bottom(SmallGap);
             font.weight.bold();
-            text.transform.capitalize();
         });
-    });
-
-    Style p = Style.named("p", () -> {
-        block(ParagraphColor, false);
     });
 }
