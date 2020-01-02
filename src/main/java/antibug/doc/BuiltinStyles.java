@@ -10,12 +10,7 @@
 package antibug.doc;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 
-import kiss.I;
 import kiss.WiseFunction;
 import stylist.Style;
 import stylist.StyleDSL;
@@ -82,21 +77,21 @@ public interface BuiltinStyles extends StyleDSL {
         display.block();
     };
 
-    Style body = () -> {
+    Style body = Style.named("body", () -> {
         padding.vertical(5, px).horizontal(LeftGap);
         background.color(Color.White);
         font.size(12, px).family(BodyFont, "Noto Sans", Font.SansSerif);
-    };
+    });
 
-    Style p = () -> {
+    Style p = Style.named("p", () -> {
         $.not($.attr("class").exist(), () -> {
             block(ParagraphColor, false);
         });
-    };
+    });
 
-    Style list = () -> {
+    Style list = Style.named("list", () -> {
         block(ListColor, true);
-    };
+    });
 
     /**
      * <h2>OK Title is Good</h2>
@@ -156,7 +151,7 @@ public interface BuiltinStyles extends StyleDSL {
      * 
      * @see String
      */
-    Style dl = () -> {
+    Style dl = Style.named("dl", () -> {
         list.style();
 
         $.lastChild(() -> {
@@ -193,17 +188,17 @@ public interface BuiltinStyles extends StyleDSL {
                 text.transform.capitalize();
             });
         });
-    };
+    });
 
-    Style dt = () -> {
+    Style dt = Style.named("dt", () -> {
         border.bottom.width(1, px).solid().color("#ddd");
         padding.bottom(SmallGap);
         margin.bottom(SmallGap);
-    };
+    });
 
-    Style dd = () -> {
+    Style dd = Style.named("dd", () -> {
         margin.bottom(20, px);
-    };
+    });
 
     /**
      * <ul>
@@ -218,7 +213,7 @@ public interface BuiltinStyles extends StyleDSL {
      * </ul>
      * <link rel="stylesheet" href= "../../../../../docs/javadoc.css"/>
      */
-    Style ul = () -> {
+    Style ul = Style.named("ul", () -> {
         list.style();
 
         $.select("li", () -> {
@@ -233,44 +228,44 @@ public interface BuiltinStyles extends StyleDSL {
                 padding.right(0.5, em);
             });
         });
-    };
+    });
 
-    Style ol = () -> {
+    Style ol = Style.named("ol", () -> {
         list.style();
-    };
+    });
 
-    Style pre = () -> {
+    Style pre = Style.named("pre", () -> {
         block(CodeColor, true);
-    };
+    });
 
-    Style a = () -> {
+    Style a = Style.named("a", () -> {
         font.family(BodyFont);
         text.decoration.none();
-    };
+    });
 
     Style h = () -> {
         heading.style();
     };
 
-    Style h1 = () -> {
+    Style h1 = Style.named("h1", () -> {
         heading.style();
-    };
+    });
 
-    Style h2 = () -> {
+    Style h2 = Style.named("h2", () -> {
         heading.style();
-    };
+    });
 
-    Style h3 = () -> {
+    Style h3 = Style.named("h3", () -> {
         heading.style();
-    };
+    });
 
-    Style h4 = () -> {
+    Style h4 = Style.named("h4", () -> {
         heading.style();
-    };
+    });
 
-    Style h5 = () -> {
+    Style h5 = Style.named("h5", () -> {
         display.none();
-    };
+    });
 
     /**
      * a
@@ -332,18 +327,6 @@ public interface BuiltinStyles extends StyleDSL {
      * @see String
      */
     public static void main(String[] args) throws IOException {
-        writeTo(Path.of("docs/javadoc.css"));
-    }
-
-    static Path writeTo(Path file) {
-        String formatted = Stylist.pretty().importNormalizeStyle().format(BuiltinStyles.class);
-        formatted = formatted.replaceAll(".+#([^\\s\\*]+) \\*/\\.[a-zA-Z]+", "$1");
-
-        try {
-            Files.writeString(file, formatted, StandardCharsets.UTF_8, StandardOpenOption.CREATE);
-        } catch (IOException e) {
-            throw I.quiet(e);
-        }
-        return file;
+        Stylist.pretty().styles(BuiltinStyles.class).formatTo("docs/javadoc.css");
     }
 }

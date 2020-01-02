@@ -165,7 +165,6 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
                     $("title", text(productName));
                     $("base", attr("href", "/"));
                     stylesheet("main.css", Styles.class);
-                    stylesheet("javadoc.css", BuiltinStyles.class);
                     stylesheet("https://unpkg.com/element-ui/lib/theme-chalk/index.css");
                     script("https://unpkg.com/vue/dist/vue.js");
                     script("https://unpkg.com/element-ui/lib/index.js");

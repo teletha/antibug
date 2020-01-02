@@ -83,7 +83,7 @@ interface Styles extends StyleDSL {
         padding.horizontal(20, px);
     };
 
-    Style type = Style.named("type", () -> {
+    Style type = Style.named(".type", () -> {
         cursor.pointer();
         font.color(FontColor);
     });
@@ -101,7 +101,7 @@ interface Styles extends StyleDSL {
         display.block();
     };
 
-    Style parameters = Style.named("parameters", () -> {
+    Style parameters = Style.named(".parameters", () -> {
 
         $.before(() -> {
             content.text("<");
@@ -111,14 +111,14 @@ interface Styles extends StyleDSL {
         });
     });
 
-    Style lowerBound = Style.named("extends", () -> {
+    Style lowerBound = Style.named(".extends", () -> {
 
         $.before(() -> {
             content.text(" extends ");
         });
     });
 
-    Style upperBound = Style.named("super", () -> {
+    Style upperBound = Style.named(".super", () -> {
 
         $.before(() -> {
             content.text(" super ");
@@ -173,7 +173,7 @@ interface Styles extends StyleDSL {
 
     Numeric SmallGap = Numeric.of(2, px);
 
-    Style dl = () -> {
+    Style dl = Style.named("dl", () -> {
         list.style();
 
         block(SignatureColor, false);
@@ -208,9 +208,9 @@ interface Styles extends StyleDSL {
             font.weight.bold();
             text.transform.capitalize();
         });
-    };
+    });
 
-    Style p = () -> {
+    Style p = Style.named("p", () -> {
         block(ParagraphColor, false);
-    };
+    });
 }

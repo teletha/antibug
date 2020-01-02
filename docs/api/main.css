@@ -1,37 +1,15 @@
-@import url("http://fonts.googleapis.com/css?family=Material+Icons");
 @import url("http://fonts.googleapis.com/css?family=Oswald");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1454834922 */parameters::before {
-	content: '<';
-}
-
-/* 1454834922 */parameters::after {
-	content: '>';
-}
-
-/* 1711229836 */extends::before {
+/* 1413136929 */.extends::before {
 	content: ' extends ';
 }
 
-/* 208108926 */type {
+/* 1577428742 */.type {
 	cursor: pointer;
 	color: hsl(215,16%,44%);
 }
 
-/* 663531845 */super::before {
-	content: ' super ';
-}
-
-/* antibug.doc.Styles#article */.E {
-	flex-grow: 3;
-	-webkit-flex-grow: 3;
-	margin-right: auto;
-	margin-left: auto;
-	padding-left: 20px;
-	padding-right: 20px;
-}
-
-/* antibug.doc.Styles#dl */.K {
+/* 1931723660 */dl {
 	margin-top: 56px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -48,7 +26,7 @@
 	position: relative;
 }
 
-/* antibug.doc.Styles#dl */.K::before {
+/* 1931723660 */dl::before {
 	display: block;
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
@@ -59,7 +37,7 @@
 	left: -3px;
 }
 
-/* antibug.doc.Styles#dl */.K dt {
+/* 1931723660 */dl dt {
 	display: block;
 	width: 70px;
 	float: left;
@@ -71,12 +49,12 @@
 	text-transform: capitalize;
 }
 
-/* antibug.doc.Styles#dl */.K dd {
+/* 1931723660 */dl dd {
 	margin-bottom: 15px;
 	margin-left: 70px;
 }
 
-/* antibug.doc.Styles#dl */.K b {
+/* 1931723660 */dl b {
 	display: block;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
@@ -87,7 +65,43 @@
 	text-transform: capitalize;
 }
 
-/* antibug.doc.Styles#header */.B {
+/* 577828237 */.super::before {
+	content: ' super ';
+}
+
+/* 661941342 */.parameters::before {
+	content: '<';
+}
+
+/* 661941342 */.parameters::after {
+	content: '>';
+}
+
+/* 738369543 */p {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 0;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(203,91%,56%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* antibug.doc.Styles#article */.F {
+	flex-grow: 3;
+	-webkit-flex-grow: 3;
+	margin-right: auto;
+	margin-left: auto;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+/* antibug.doc.Styles#header */.A {
 	background-color: hsl(0,0%,100%);
 	position: sticky;
 	top: 0;
@@ -110,7 +124,7 @@
 	display: block;
 }
 
-/* antibug.doc.Styles#list */.J {
+/* antibug.doc.Styles#list */.I {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -134,30 +148,15 @@
 	margin-left: auto;
 }
 
-/* antibug.doc.Styles#nav */.F {
+/* antibug.doc.Styles#nav */.G {
 	width: 240px;
 	display: flex;
 	flex-direction: column;
 }
 
-/* antibug.doc.Styles#nav */.F .type {
+/* antibug.doc.Styles#nav */.G .type {
 	display: block;
 	text-decoration: none;
-}
-
-/* antibug.doc.Styles#p */.L {
-	margin-top: 2px;
-	margin-bottom: 2px;
-	margin-left: 0;
-	padding-top: 6px;
-	padding-bottom: 6px;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(203,91%,56%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
 }
 
 /* antibug.doc.Styles#productTitle */.C {
@@ -167,15 +166,15 @@
 	color: hsl(203,91%,56%);
 }
 
-/* antibug.doc.Styles#section */.I {
+/* antibug.doc.Styles#section */.E {
 	margin-bottom: 6px;
 }
 
-/* antibug.doc.Styles#selector */.G {
+/* antibug.doc.Styles#selector */.B {
 	display: block;
 }
 
-/* antibug.doc.Styles#workbench */A {
+/* antibug.doc.Styles#workbench */.J {
 	font-size: 14px;
 	font-family: "Segoe UI",sans-serif;
 	color: hsl(215,16%,44%);

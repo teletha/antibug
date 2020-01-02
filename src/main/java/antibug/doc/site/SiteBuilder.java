@@ -140,7 +140,7 @@ public class SiteBuilder {
     public final String buildCSS(String path, Class<? extends StyleDSL> styles) {
         initialize();
 
-        String formatted = Stylist.pretty().importNormalizeStyle().format(styles);
+        String formatted = Stylist.pretty().importNormalizeStyle().styles(styles).format();
 
         File file = root.file(path);
         file.write(output -> output.append(formatted));

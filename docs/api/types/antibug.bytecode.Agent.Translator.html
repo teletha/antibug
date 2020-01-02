@@ -5,50 +5,49 @@
 		<title>Antibug</title>
 		<base href="/"/>
 		<link href="main.css" rel="stylesheet"/>
-		<link href="javadoc.css" rel="stylesheet"/>
 		<link href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" rel="stylesheet"/>
 		<script src="https://unpkg.com/vue/dist/vue.js">
 		</script>
 		<script src="https://unpkg.com/element-ui/lib/index.js">
 		</script>
 	</head>
-	<body>
-		<header class="B">
+	<body class="J">
+		<header class="A">
 			<h1 class="C">Antibug</h1>
 		</header>
 		<main class="D">
-			<nav class="F" id="typeNavigation">
+			<nav class="G" id="typeNavigation">
 				<el-scrollbar :native="false" id="typeList"/>
 			</nav>
-			<article class="E">
+			<article class="F">
 				<section>
 					<h2 class="H">Agent.Translator</h2>
 					<span/>
 					<h2 class="H">Constructor</h2>
-					<section class="I">
+					<section class="E">
 						<h3 class="H">
 							<fragment>Agent.Translator()</fragment>
 						</h3>
 						<span/>
-						<dl class="K">
+						<dl>
 							<dt>Parameters</dt>
 						</dl>
 					</section>
 					<h2 class="H">Methods</h2>
-					<section class="I">
+					<section class="E">
 						<h3 class="H">
 							<fragment>set(<i class="type" package="antibug.bytecode">LocalVariableSorter</i> visitor, <i class="type" package="java.lang">String</i> className, <i class="type" package="java.lang">String</i> methodName, <i class="type" package="net.bytebuddy.jar.asm">Type</i> methodDescriptor, <i class="type" enclosing="Agent" package="antibug.bytecode">LocalVariableManager</i> manager)</fragment>
 						</h3><p><p>
  Lazy set up.
  </p></p>
-						<dl class="K">
+						<dl>
 							<dt>Parameters</dt>
 						</dl>
 						<h3 class="H">
 							<fragment>methodIdentifier(<i class="type" package="java.lang">String</i> className, <i class="type" package="java.lang">String</i> methodName, <i class="type" package="net.bytebuddy.jar.asm">Type</i> methodDescriptor)</fragment>
 						</h3><p><span>Calculate method identifier by its signature.</span>
 						</p>
-						<dl class="K">
+						<dl>
 							<dt>Parameters</dt><b>className</b>
 							<dd>
 								<span/>
@@ -69,7 +68,7 @@
 						</h3><p><p>
  Get local variable name.
  </p></p>
-						<dl class="K">
+						<dl>
 							<dt>Parameters</dt><b>position</b>
 							<dd>
 								<span/>
@@ -84,7 +83,7 @@
 						</h3><p><p>
  Get local variable type.
  </p></p>
-						<dl class="K">
+						<dl>
 							<dt>Parameters</dt><b>position</b>
 							<dd>
 								<span/>
@@ -98,7 +97,7 @@
 							<fragment>newLocal(<i class="type" package="net.bytebuddy.jar.asm">Type</i> type)</fragment>
 						</h3><p><span>Creates a new local variable of the given type.</span>
 						</p>
-						<dl class="K">
+						<dl>
 							<dt>Parameters</dt><b>type</b>
 							<dd>
 								<span>the type of the local variable to be created.</span>
@@ -113,7 +112,7 @@
 						</h3><p><p>
  Create a new insntance and store it into new local variable.
  </p></p>
-						<dl class="K">
+						<dl>
 							<dt>Parameters</dt><b>api</b>
 							<dd>
 								<span/>
@@ -131,7 +130,7 @@
 						</h3><p><p>
  Load the specified object as possible as we can.
  </p></p>
-						<dl class="K">
+						<dl>
 							<dt>Parameters</dt><b>object</b>
 							<dd>
 								<span/>
@@ -150,7 +149,7 @@
  local.store();
  </pre>
 							</p></p>
-						<dl class="K">
+						<dl>
 							<dt>Parameters</dt><b>type</b>
 							<dd>
 								<span/>
@@ -165,7 +164,7 @@
 						</h3><p><p>
  Write local variable code.
  </p></p>
-						<dl class="K">
+						<dl>
 							<dt>Parameters</dt><b>opcode</b>
 							<dd>
 								<span/>
@@ -183,7 +182,7 @@
 						</h3><p><p>
  Write instruction code.
  </p></p>
-						<dl class="K">
+						<dl>
 							<dt>Parameters</dt><b>opcode</b>
 							<dd>
 								<span/>
@@ -198,7 +197,7 @@
 						</h3><p><p>
  Write int value code.
  </p></p>
-						<dl class="K">
+						<dl>
 							<dt>Parameters</dt><b>opcode</b>
 							<dd>
 								<span/>
@@ -216,7 +215,7 @@
 						</h3><p><p>
  Write constant value code.
  </p></p>
-						<dl class="K">
+						<dl>
 							<dt>Parameters</dt><b>value</b>
 							<dd>
 								<span/>
@@ -231,7 +230,7 @@
 						</h3><p><p>
  Helper method to write bytecode which wrap the primitive value.
  </p></p>
-						<dl class="K">
+						<dl>
 							<dt>Parameters</dt><b>type</b>
 							<dd>
 								<span/>
@@ -242,7 +241,7 @@
 						</h3><p><p>
  Create API.
  </p></p>
-						<dl class="K">
+						<dl>
 							<dt>Parameters</dt><b>invoker</b>
 							<dd>
 								<span/>
