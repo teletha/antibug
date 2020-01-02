@@ -12,7 +12,7 @@
 		<script src="https://unpkg.com/element-ui/lib/index.js">
 		</script>
 	</head>
-	<body class="A">
+	<body>
 		<header class="B">
 			<h1 class="C">Antibug</h1>
 		</header>
@@ -28,8 +28,8 @@
 					<section class="I">
 						<h3 class="H">
 							<fragment>Agent.Translator()</fragment>
-						</h3><p class="L"><span/>
-						</p>
+						</h3>
+						<span/>
 						<dl class="K">
 							<dt>Parameters</dt>
 						</dl>
@@ -38,7 +38,7 @@
 					<section class="I">
 						<h3 class="H">
 							<fragment>set(<i class="type" package="antibug.bytecode">LocalVariableSorter</i> visitor, <i class="type" package="java.lang">String</i> className, <i class="type" package="java.lang">String</i> methodName, <i class="type" package="net.bytebuddy.jar.asm">Type</i> methodDescriptor, <i class="type" enclosing="Agent" package="antibug.bytecode">LocalVariableManager</i> manager)</fragment>
-						</h3><p class="L"><p>
+						</h3><p><p>
  Lazy set up.
  </p></p>
 						<dl class="K">
@@ -46,7 +46,7 @@
 						</dl>
 						<h3 class="H">
 							<fragment>methodIdentifier(<i class="type" package="java.lang">String</i> className, <i class="type" package="java.lang">String</i> methodName, <i class="type" package="net.bytebuddy.jar.asm">Type</i> methodDescriptor)</fragment>
-						</h3><p class="L"><span>Calculate method identifier by its signature.</span>
+						</h3><p><span>Calculate method identifier by its signature.</span>
 						</p>
 						<dl class="K">
 							<dt>Parameters</dt><b>className</b>
@@ -66,7 +66,7 @@
 						</dl>
 						<h3 class="H">
 							<fragment>getLocalName(<i class="type">int</i> position)</fragment>
-						</h3><p class="L"><p>
+						</h3><p><p>
  Get local variable name.
  </p></p>
 						<dl class="K">
@@ -81,7 +81,7 @@
 						</dl>
 						<h3 class="H">
 							<fragment>getLocalType(<i class="type">int</i> position)</fragment>
-						</h3><p class="L"><p>
+						</h3><p><p>
  Get local variable type.
  </p></p>
 						<dl class="K">
@@ -96,7 +96,7 @@
 						</dl>
 						<h3 class="H">
 							<fragment>newLocal(<i class="type" package="net.bytebuddy.jar.asm">Type</i> type)</fragment>
-						</h3><p class="L"><span>Creates a new local variable of the given type.</span>
+						</h3><p><span>Creates a new local variable of the given type.</span>
 						</p>
 						<dl class="K">
 							<dt>Parameters</dt><b>type</b>
@@ -110,7 +110,7 @@
 						</dl>
 						<h3 class="H">
 							<fragment>instantiate(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">S</i></i> api, <i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type">S</i></i></i> instantiator)</fragment>
-						</h3><p class="L"><p>
+						</h3><p><p>
  Create a new insntance and store it into new local variable.
  </p></p>
 						<dl class="K">
@@ -128,7 +128,7 @@
 						</dl>
 						<h3 class="H">
 							<fragment>load(<i class="type" package="java.lang">Object</i> object)</fragment>
-						</h3><p class="L"><p>
+						</h3><p><p>
  Load the specified object as possible as we can.
  </p></p>
 						<dl class="K">
@@ -139,7 +139,7 @@
 						</dl>
 						<h3 class="H">
 							<fragment>copy(<i class="type" package="net.bytebuddy.jar.asm">Type</i> type)</fragment>
-						</h3><p class="L"><p>
+						</h3><p><p>
  Helper method to write below code.
  
  <pre>
@@ -162,7 +162,7 @@
 						</dl>
 						<h3 class="H">
 							<fragment>local(<i class="type">int</i> opcode, <i class="type">int</i> index)</fragment>
-						</h3><p class="L"><p>
+						</h3><p><p>
  Write local variable code.
  </p></p>
 						<dl class="K">
@@ -180,7 +180,7 @@
 						</dl>
 						<h3 class="H">
 							<fragment>insn(<i class="type">int</i> opcode)</fragment>
-						</h3><p class="L"><p>
+						</h3><p><p>
  Write instruction code.
  </p></p>
 						<dl class="K">
@@ -195,7 +195,7 @@
 						</dl>
 						<h3 class="H">
 							<fragment>intInsn(<i class="type">int</i> opcode, <i class="type">int</i> operand)</fragment>
-						</h3><p class="L"><p>
+						</h3><p><p>
  Write int value code.
  </p></p>
 						<dl class="K">
@@ -213,7 +213,7 @@
 						</dl>
 						<h3 class="H">
 							<fragment>ldc(<i class="type" package="java.lang">Object</i> value)</fragment>
-						</h3><p class="L"><p>
+						</h3><p><p>
  Write constant value code.
  </p></p>
 						<dl class="K">
@@ -228,7 +228,7 @@
 						</dl>
 						<h3 class="H">
 							<fragment>wrap(<i class="type" package="net.bytebuddy.jar.asm">Type</i> type)</fragment>
-						</h3><p class="L"><p>
+						</h3><p><p>
  Helper method to write bytecode which wrap the primitive value.
  </p></p>
 						<dl class="K">
@@ -239,7 +239,7 @@
 						</dl>
 						<h3 class="H">
 							<fragment>createAPI(<i class="type" package="antibug.bytecode">LocalVariable</i> invoker, <i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">S</i></i> api)</fragment>
-						</h3><p class="L"><p>
+						</h3><p><p>
  Create API.
  </p></p>
 						<dl class="K">

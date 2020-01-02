@@ -12,7 +12,7 @@
 		<script src="https://unpkg.com/element-ui/lib/index.js">
 		</script>
 	</head>
-	<body class="A">
+	<body>
 		<header class="B">
 			<h1 class="C">Antibug</h1>
 		</header>
@@ -29,9 +29,9 @@
 					<section class="I">
 						<h3 class="H">
 							<fragment>Agent(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" enclosing="Agent" package="antibug.bytecode">Translator</i></i></i> translator)</fragment>
-						</h3><p class="L"><p>
+						</h3><p>
  Create dynamic Agent.
- </p></p>
+ </p>
 						<dl class="K">
 							<dt>Parameters</dt><b>translator</b>
 							<dd>
@@ -40,9 +40,9 @@
 						</dl>
 						<h3 class="H">
 							<fragment>Agent(<i class="type" package="java.lang.instrument">ClassFileTransformer</i> agent)</fragment>
-						</h3><p class="L"><p>
+						</h3><p>
  Create dynamic Agent.
- </p></p>
+ </p>
 						<dl class="K">
 							<dt>Parameters</dt><b>agent</b>
 							<dd>
@@ -54,7 +54,7 @@
 					<section class="I">
 						<h3 class="H">
 							<fragment>transform(<i class="type" package="java.lang">Class</i> target)</fragment>
-						</h3><p class="L"><p>
+						</h3><p><p>
  Force to transform the target class.
  </p></p>
 						<dl class="K">
@@ -65,7 +65,7 @@
 						</dl>
 						<h3 class="H">
 							<fragment>getTransformedCode(<i class="type" package="java.lang">Class</i> target)</fragment>
-						</h3><p class="L"><p>
+						</h3><p><p>
  Search the transformed code of the specified class. If the target class is not transformed,
  returns <code>null</code>.
  </p></p>
@@ -81,7 +81,7 @@
 						</dl>
 						<h3 class="H">
 							<fragment>createTool()</fragment>
-						</h3><p class="L"><p>
+						</h3><p><p>
  Create instrumentation tool.
  </p></p>
 						<dl class="K">
@@ -89,14 +89,14 @@
 						</dl>
 						<h3 class="H">
 							<fragment>premain(<i class="type" package="java.lang">String</i> args, <i class="type" package="java.lang.instrument">Instrumentation</i> instrumentation)</fragment>
-						</h3><p class="L"><span>Agent entry point.</span>
+						</h3><p><span>Agent entry point.</span>
 						</p>
 						<dl class="K">
 							<dt>Parameters</dt>
 						</dl>
 						<h3 class="H">
 							<fragment>agentmain(<i class="type" package="java.lang">String</i> args, <i class="type" package="java.lang.instrument">Instrumentation</i> instrumentation)</fragment>
-						</h3><p class="L"><span>Agent entry point.</span>
+						</h3><p><span>Agent entry point.</span>
 						</p>
 						<dl class="K">
 							<dt>Parameters</dt>

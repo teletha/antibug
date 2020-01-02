@@ -32,7 +32,7 @@ public abstract class HTML extends Tree<String, XML> {
         }, null, (follower, current) -> {
             if (follower instanceof Style) {
                 Style style = (Style) follower;
-                for (String className : style.names()) {
+                for (String className : style.className()) {
                     current.addClass(className);
                 }
             } else {

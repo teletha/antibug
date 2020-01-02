@@ -1,25 +1,25 @@
 @import url("http://fonts.googleapis.com/css?family=Material+Icons");
 @import url("http://fonts.googleapis.com/css?family=Oswald");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1883380232 */.super::before {
-	content: ' super ';
-}
-
-/* 193041293 */.parameters::before {
+/* 1454834922 */parameters::before {
 	content: '<';
 }
 
-/* 193041293 */.parameters::after {
+/* 1454834922 */parameters::after {
 	content: '>';
 }
 
-/* 655326029 */.type {
+/* 1711229836 */extends::before {
+	content: ' extends ';
+}
+
+/* 208108926 */type {
 	cursor: pointer;
 	color: hsl(215,16%,44%);
 }
 
-/* 891052865 */.extends::before {
-	content: ' extends ';
+/* 663531845 */super::before {
+	content: ' super ';
 }
 
 /* antibug.doc.Styles#article */.E {
@@ -175,7 +175,7 @@
 	display: block;
 }
 
-/* antibug.doc.Styles#workbench */.A {
+/* antibug.doc.Styles#workbench */A {
 	font-size: 14px;
 	font-family: "Segoe UI",sans-serif;
 	color: hsl(215,16%,44%);
