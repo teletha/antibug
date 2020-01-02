@@ -9,11 +9,14 @@
  */
 package antibug.doc.site;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Objects;
 
 import kiss.I;
+import kiss.XML;
 import psychopath.Directory;
 import psychopath.File;
 import psychopath.Locator;
@@ -120,11 +123,15 @@ public class SiteBuilder {
         root.file(path).write(output -> {
             output.append("<!DOCTYPE html>").append(Formattable.EOL);
 
-            for (HTML.ElementNode node : html.root) {
-                node.format(output, 0, false);
+            for (XML node : html.root) {
+                node.to(output, "\t", characterType);
             }
         });
     }
+
+    private static final String[] characterType = {"title", "dd", "dt", "figcaption", "figure", "li", "p", "a", "abbr", "b", "bdi", "bdo",
+            "cite", "code", "data", "dfn", "em", "i", "kbd", "mark", "q", "rb", "rp", "rt", "rtc", "s", "samp", "strong", "sub", "sup",
+            "time", "u", "var", "del", "ins", "&script"};
 
     /**
      * Build CSS file and return the path of the generated file.

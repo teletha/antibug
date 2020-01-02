@@ -69,12 +69,12 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
 
             @Override
             protected void contents() {
-                $("h2", letter(info.name));
+                $("h2", text(info.name));
 
-                $("h2", letter("Constructor"));
+                $("h2", text("Constructor"));
                 $("dl", () -> {
                     for (ExecutableInfo constructor : info.constructors) {
-                        $("dt", letter(constructor.name));
+                        $("dt", text(constructor.name));
                         $("dd", html(constructor.comment));
                     }
                 });
@@ -118,7 +118,7 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
             $("html", () -> {
                 $("head", () -> {
                     $("meta", attr("charset", "UTF-8"));
-                    $("title", letter(productName));
+                    $("title", text(productName));
                     $("base", attr("href", "/"));
                     stylesheet("main.css", style.class);
                     stylesheet("javadoc.css", BuiltinStyles.class);
@@ -131,7 +131,7 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
                     // Top Navigation
                     // =============================
                     $("header", style.header, () -> {
-                        $("h1", style.productTitle, letter(productName));
+                        $("h1", style.productTitle, text(productName));
                     });
 
                     $("main", style.main, () -> {
@@ -153,9 +153,7 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
                             // =============================
                             // Right Side Navigation
                             // =============================
-                            $("aside", () -> {
-                                text("ASIDE");
-                            });
+                            $("aside", text("ASIDE TEXT"));
                         });
                     });
 
