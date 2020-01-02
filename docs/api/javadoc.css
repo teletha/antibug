@@ -1,12 +1,12 @@
 @import url("http://fonts.googleapis.com/css?family=Material+Icons");
 @import url("http://fonts.googleapis.com/css?family=Oswald");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* antibug.doc.BuiltinStyles#a */.P {
+/* antibug.doc.BuiltinStyles#a */.R {
 	font-family: "Yu Gothic UI";
 	text-decoration: none;
 }
 
-/* antibug.doc.BuiltinStyles#body */.G {
+/* antibug.doc.BuiltinStyles#body */.I {
 	padding-top: 5px;
 	padding-bottom: 5px;
 	padding-left: 20px;
@@ -16,11 +16,11 @@
 	font-family: "Yu Gothic UI","Noto Sans",sans-serif;
 }
 
-/* antibug.doc.BuiltinStyles#dd */.L {
+/* antibug.doc.BuiltinStyles#dd */.N {
 	margin-bottom: 20px;
 }
 
-/* antibug.doc.BuiltinStyles#dl */.J {
+/* antibug.doc.BuiltinStyles#dl */.L {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -36,7 +36,7 @@
 	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
-/* antibug.doc.BuiltinStyles#dl */.J:last-child {
+/* antibug.doc.BuiltinStyles#dl */.L:last-child {
 	margin-top: 56px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -53,7 +53,7 @@
 	position: relative;
 }
 
-/* antibug.doc.BuiltinStyles#dl */.J:last-child::before {
+/* antibug.doc.BuiltinStyles#dl */.L:last-child::before {
 	display: block;
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
@@ -64,7 +64,7 @@
 	left: -3px;
 }
 
-/* antibug.doc.BuiltinStyles#dl */.J:last-child dt {
+/* antibug.doc.BuiltinStyles#dl */.L:last-child dt {
 	display: block;
 	width: 70px;
 	float: left;
@@ -76,12 +76,12 @@
 	text-transform: capitalize;
 }
 
-/* antibug.doc.BuiltinStyles#dl */.J:last-child dd {
+/* antibug.doc.BuiltinStyles#dl */.L:last-child dd {
 	margin-bottom: 15px;
 	margin-left: 70px;
 }
 
-/* antibug.doc.BuiltinStyles#dl */.J:last-child b {
+/* antibug.doc.BuiltinStyles#dl */.L:last-child b {
 	display: block;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
@@ -92,7 +92,7 @@
 	text-transform: capitalize;
 }
 
-/* antibug.doc.BuiltinStyles#dt */.K {
+/* antibug.doc.BuiltinStyles#dt */.M {
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
 	border-bottom-color: hsl(0,0%,87%);
@@ -100,7 +100,7 @@
 	margin-bottom: 2px;
 }
 
-/* antibug.doc.BuiltinStyles#h */.Q {
+/* antibug.doc.BuiltinStyles#h */.S {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
@@ -109,7 +109,7 @@
 	display: block;
 }
 
-/* antibug.doc.BuiltinStyles#h1 */.R {
+/* antibug.doc.BuiltinStyles#h1 */.T {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
@@ -118,7 +118,7 @@
 	display: block;
 }
 
-/* antibug.doc.BuiltinStyles#h2 */.S {
+/* antibug.doc.BuiltinStyles#h2 */.U {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
@@ -127,7 +127,7 @@
 	display: block;
 }
 
-/* antibug.doc.BuiltinStyles#h3 */.T {
+/* antibug.doc.BuiltinStyles#h3 */.V {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
@@ -136,7 +136,7 @@
 	display: block;
 }
 
-/* antibug.doc.BuiltinStyles#h4 */.U {
+/* antibug.doc.BuiltinStyles#h4 */.W {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
@@ -145,11 +145,11 @@
 	display: block;
 }
 
-/* antibug.doc.BuiltinStyles#h5 */.V {
+/* antibug.doc.BuiltinStyles#h5 */.X {
 	display: none;
 }
 
-/* antibug.doc.BuiltinStyles#heading */.F {
+/* antibug.doc.BuiltinStyles#heading */.H {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
@@ -158,7 +158,7 @@
 	display: block;
 }
 
-/* antibug.doc.BuiltinStyles#list */.I {
+/* antibug.doc.BuiltinStyles#list */.K {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -174,7 +174,7 @@
 	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
-/* antibug.doc.BuiltinStyles#ol */.N {
+/* antibug.doc.BuiltinStyles#ol */.P {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -190,7 +190,7 @@
 	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
-/* antibug.doc.BuiltinStyles#p */.H:not([class]) {
+/* antibug.doc.BuiltinStyles#p */.J:not([class]) {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -205,7 +205,7 @@
 	font-family: "Yu Gothic UI",sans-serif;
 }
 
-/* antibug.doc.BuiltinStyles#pre */.O {
+/* antibug.doc.BuiltinStyles#pre */.Q {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -221,7 +221,7 @@
 	background-color: hsla(120,39%,55%,0.19999999999999996);
 }
 
-/* antibug.doc.BuiltinStyles#ul */.M {
+/* antibug.doc.BuiltinStyles#ul */.O {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -237,14 +237,14 @@
 	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
-/* antibug.doc.BuiltinStyles#ul */.M li {
+/* antibug.doc.BuiltinStyles#ul */.O li {
 	list-style-type: none;
 	padding-bottom: 10px;
 	padding-left: 1em;
 	text-indent: -1.5em;
 }
 
-/* antibug.doc.BuiltinStyles#ul */.M li::before {
+/* antibug.doc.BuiltinStyles#ul */.O li::before {
 	font-family: "Material Icons";
 	color: hsl(48,75%,59%);
 	content: '\e876';

@@ -17,6 +17,8 @@ import java.util.function.Consumer;
 
 import kiss.I;
 import kiss.Tree;
+import kiss.Variable;
+import kiss.XML;
 import stylist.Style;
 import stylist.StyleDSL;
 
@@ -65,6 +67,18 @@ public abstract class HTML extends Tree<String, HTML.ElementNode> {
                     parent.attrs.add(new AttributeNode(n, String.valueOf(value)));
                 }
             }
+        };
+    }
+
+    /**
+     * Declare html.
+     * 
+     * @param html
+     * @return
+     */
+    protected final Consumer<HTML.ElementNode> html(Variable<XML> html) {
+        return parent -> {
+
         };
     }
 

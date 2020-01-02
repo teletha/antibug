@@ -65,12 +65,18 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
         ClassInfo info = new ClassInfo(root);
         data.add(info);
 
-        site.buildHTML("types/" + info.packageName + "." + info.name + ".html", new HTML() {
-            {
-                $("html", () -> {
-                    $("body", () -> {
+        site.buildHTML("types/" + info.packageName + "." + info.name + ".html", new BaseHTML() {
 
-                    });
+            @Override
+            protected void contents() {
+                $("h2", letter(info.name));
+
+                $("h2", letter("Constructor"));
+                $("dl", () -> {
+                    for (ExecutableInfo constructor : info.constructors) {
+                        $("dt", letter(constructor.name));
+                        $("dd", html(constructor.comment));
+                    }
                 });
             }
         });
@@ -101,20 +107,24 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
         data.types.sort(Comparator.naturalOrder());
 
         // build HTML
-        site.buildHTML("index.html", new IndexHTML());
+        site.buildHTML("index.html", new BaseHTML());
     }
 
     /**
      * 
      */
-    private final class IndexHTML extends HTML {
+    class BaseHTML extends HTML {
         {
             $("html", () -> {
                 $("head", () -> {
                     $("meta", attr("charset", "UTF-8"));
-                    stylesheet("https://unpkg.com/element-ui/lib/theme-chalk/index.css");
+                    $("title", letter(productName));
+                    $("base", attr("href", "/"));
                     stylesheet("main.css", style.class);
                     stylesheet("javadoc.css", BuiltinStyles.class);
+                    stylesheet("https://unpkg.com/element-ui/lib/theme-chalk/index.css");
+                    script("https://unpkg.com/vue/dist/vue.js");
+                    script("https://unpkg.com/element-ui/lib/index.js");
                 });
                 $("body", style.workbench, () -> {
                     // =============================
@@ -124,33 +134,39 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
                         $("h1", style.productTitle, letter(productName));
                     });
 
-                    // =============================
-                    // Left Side Navigation
-                    // =============================
-                    $("nav", id("typeNavigation"), style.nav, () -> {
-                        $("el-scrollbar", id("typeList"), attr(":native", false));
+                    $("main", style.main, () -> {
+                        // =============================
+                        // Left Side Navigation
+                        // =============================
+                        $("nav", id("typeNavigation"), style.nav, () -> {
+                            $("el-scrollbar", id("typeList"), attr(":native", false));
+                        });
+
+                        // =============================
+                        // Main Contents
+                        // =============================
+                        $("article", style.article, () -> {
+                            $("section", () -> {
+                                contents();
+                            });
+
+                            // =============================
+                            // Right Side Navigation
+                            // =============================
+                            $("aside", () -> {
+                                text("ASIDE");
+                            });
+                        });
                     });
 
-                    // =============================
-                    // Main Contents
-                    // =============================
-                    $("main", () -> {
-                        text("MAIN");
-                    });
-
-                    // =============================
-                    // Right Side Navigation
-                    // =============================
-                    $("aside", () -> {
-                        text("ASIDE");
-                    });
-
-                    script("https://unpkg.com/vue/dist/vue.js");
-                    script("https://unpkg.com/element-ui/lib/index.js");
                     script("root.js", data);
                     script("main.js");
                 });
             });
+        }
+
+        protected void contents() {
+
         }
     }
 
@@ -186,6 +202,8 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
 
         Numeric MaxWidth = Numeric.of(1200, px);
 
+        Numeric LeftNaviWidth = Numeric.of(240, px);
+
         Style workbench = () -> {
             font.size(FontSize).family("Segoe UI", Font.SansSerif).color(FontColor);
             line.height(1.6);
@@ -205,15 +223,28 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
             font.size(1.5, rem).family(HeadFont).weight.normal().color(ParagraphColor);
         };
 
+        Style main = () -> {
+            display.maxWidth(MaxWidth).flex().direction.row();
+            margin.auto();
+        };
+
+        Style article = () -> {
+            flexItem.grow(3);
+            margin.auto();
+            padding.horizontal(20, px);
+        };
+
         Style type = Style.named("type", () -> {
             cursor.pointer();
+            font.color(FontColor);
         });
 
         Style nav = () -> {
-            display.width(240, px).flex().direction.column();
+            display.width(LeftNaviWidth).flex().direction.column();
 
             $.select(type, () -> {
                 display.block();
+                text.decoration.none();
             });
         };
 

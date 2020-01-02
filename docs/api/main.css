@@ -1,7 +1,18 @@
+@import url("http://fonts.googleapis.com/css?family=Material+Icons");
 @import url("http://fonts.googleapis.com/css?family=Oswald");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 67795316 */.type {
+/* 1843272693 */.type {
 	cursor: pointer;
+	color: hsl(215,16%,44%);
+}
+
+/* antibug.doc.AntibugJavadoc.style#article */.E {
+	flex-grow: 3;
+	-webkit-flex-grow: 3;
+	margin-right: auto;
+	margin-left: auto;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 /* antibug.doc.AntibugJavadoc.style#header */.B {
@@ -18,14 +29,23 @@
 	border-bottom-style: solid;
 }
 
-/* antibug.doc.AntibugJavadoc.style#nav */.D {
+/* antibug.doc.AntibugJavadoc.style#main */.D {
+	max-width: 1200px;
+	display: flex;
+	flex-direction: row;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* antibug.doc.AntibugJavadoc.style#nav */.F {
 	width: 240px;
 	display: flex;
 	flex-direction: column;
 }
 
-/* antibug.doc.AntibugJavadoc.style#nav */.D .type {
+/* antibug.doc.AntibugJavadoc.style#nav */.F .type {
 	display: block;
+	text-decoration: none;
 }
 
 /* antibug.doc.AntibugJavadoc.style#productTitle */.C {
@@ -35,7 +55,7 @@
 	color: hsl(203,91%,56%);
 }
 
-/* antibug.doc.AntibugJavadoc.style#selector */.E {
+/* antibug.doc.AntibugJavadoc.style#selector */.G {
 	display: block;
 }
 

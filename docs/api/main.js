@@ -26,7 +26,7 @@ Vue.append("#typeNavigation", {
       <el-select size="mini" clearable v-model='selectedPackage' placeholder='Select Package' no-data-text="No Package">
         <el-option v-for='i in items.packages' :key='i' :label='i' :value='i'/>
       </el-select>
-      <a class='type' v-for='item in filteredItems'>{{item.name}}</a>
+      <a class='type' v-for='item in filteredItems' v-on:click='link(item)'>{{item.name}}</a>
     </div>`,
 	data: function() {
 		return {
@@ -44,6 +44,28 @@ Vue.append("#typeNavigation", {
 					return item.packageName === this.selectedPackage;
 				}
 			});
+		}
+	},
+	methods: {
+		link: function(e) {
+			var path =
+				"/types/" +
+				(e.packageName ? e.packageName + "." : "") +
+				e.name +
+				".html";
+
+			fetch(path)
+				.then(function(response) {
+					return response.text();
+				})
+				.then(function(html) {
+					var start = html.indexOf("<article");
+					var end = html.lastIndexOf("</article>") + 10;
+					html = html.substring(start, end);
+
+					var article = document.querySelector("article");
+					article.outerHTML = html;
+				});
 		}
 	}
 });
