@@ -19,11 +19,9 @@ import javax.lang.model.element.TypeElement;
 
 import antibug.doc.site.HTML;
 import antibug.doc.site.SiteBuilder;
-import stylist.Style;
-import stylist.StyleDSL;
-import stylist.value.Color;
-import stylist.value.Font;
-import stylist.value.Numeric;
+import kiss.I;
+import kiss.XML;
+import kiss.Ⅱ;
 
 public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
 
@@ -74,12 +72,29 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
                 $("h2", text("Constructor"));
                 $("dl", () -> {
                     for (ExecutableInfo constructor : info.constructors) {
-                        $("dt", text(constructor.name));
-                        $("dd", html(constructor.comment));
+                        $("dt", signature(constructor));
+                        $("dd", constructor.comment);
                     }
                 });
             }
         });
+    }
+
+    private XML signature(ExecutableInfo constructor) {
+        XML root = I.xml("fragment");
+        root.append(constructor.name + "(");
+        for (int i = 0, size = constructor.params.size(); i < size; i++) {
+            Ⅱ<String, XML> param = constructor.params.get(i);
+            root.append(param.ⅱ).append(" ").append(param.ⅰ);
+
+            if (i + 1 != size) {
+                root.append(", ");
+            }
+        }
+        root.append(")");
+
+        return root;
+
     }
 
     /**
@@ -120,32 +135,32 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
                     $("meta", attr("charset", "UTF-8"));
                     $("title", text(productName));
                     $("base", attr("href", "/"));
-                    stylesheet("main.css", style.class);
+                    stylesheet("main.css", Styles.class);
                     stylesheet("javadoc.css", BuiltinStyles.class);
                     stylesheet("https://unpkg.com/element-ui/lib/theme-chalk/index.css");
                     script("https://unpkg.com/vue/dist/vue.js");
                     script("https://unpkg.com/element-ui/lib/index.js");
                 });
-                $("body", style.workbench, () -> {
+                $("body", Styles.workbench, () -> {
                     // =============================
                     // Top Navigation
                     // =============================
-                    $("header", style.header, () -> {
-                        $("h1", style.productTitle, text(productName));
+                    $("header", Styles.header, () -> {
+                        $("h1", Styles.productTitle, text(productName));
                     });
 
-                    $("main", style.main, () -> {
+                    $("main", Styles.main, () -> {
                         // =============================
                         // Left Side Navigation
                         // =============================
-                        $("nav", id("typeNavigation"), style.nav, () -> {
+                        $("nav", id("typeNavigation"), Styles.nav, () -> {
                             $("el-scrollbar", id("typeList"), attr(":native", false));
                         });
 
                         // =============================
                         // Main Contents
                         // =============================
-                        $("article", style.article, () -> {
+                        $("article", Styles.article, () -> {
                             $("section", () -> {
                                 contents();
                             });
@@ -166,89 +181,6 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
         protected void contents() {
 
         }
-    }
-
-    /**
-     * 
-     */
-    private static interface style extends StyleDSL {
-
-        // color palette - https://coolors.co/e63946-f1faee-a8dadc-457b9d-1d3557
-        Color BackColor = Color.rgb(241, 250, 238);
-
-        Color SecondColor = Color.rgb(168, 218, 220);
-
-        Color AccentColor = Color.rgb(69, 123, 157);
-
-        Color DarkColor = Color.rgb(29, 53, 87);
-
-        Color FontColor = Color.rgb(94, 109, 130);
-
-        Color ParagraphColor = Color.rgb(40, 165, 245);
-
-        Color ListColor = Color.rgb(250, 210, 50);
-
-        Color SignatureColor = Color.rgb(221, 81, 76);
-
-        Color CodeColor = Color.rgb(94, 185, 94);
-
-        Font HeadFont = Font.fromGoogle("Oswald");
-
-        Numeric FontSize = Numeric.of(13, px);
-
-        Numeric HeaderHeight = Numeric.of(80, px);
-
-        Numeric MaxWidth = Numeric.of(1200, px);
-
-        Numeric LeftNaviWidth = Numeric.of(240, px);
-
-        Style workbench = () -> {
-            font.size(FontSize).family("Segoe UI", Font.SansSerif).color(FontColor);
-            line.height(1.6);
-            display.maxWidth(MaxWidth);
-            margin.auto();
-        };
-
-        Style header = () -> {
-            background.color(Color.White);
-            position.sticky().top(0, rem);
-            display.maxWidth(MaxWidth).height(HeaderHeight).zIndex(10);
-            margin.auto();
-            border.bottom.color(ParagraphColor).width(1, px).solid();
-        };
-
-        Style productTitle = () -> {
-            font.size(1.5, rem).family(HeadFont).weight.normal().color(ParagraphColor);
-        };
-
-        Style main = () -> {
-            display.maxWidth(MaxWidth).flex().direction.row();
-            margin.auto();
-        };
-
-        Style article = () -> {
-            flexItem.grow(3);
-            margin.auto();
-            padding.horizontal(20, px);
-        };
-
-        Style type = Style.named("type", () -> {
-            cursor.pointer();
-            font.color(FontColor);
-        });
-
-        Style nav = () -> {
-            display.width(LeftNaviWidth).flex().direction.column();
-
-            $.select(type, () -> {
-                display.block();
-                text.decoration.none();
-            });
-        };
-
-        Style selector = () -> {
-            display.block();
-        };
     }
 
     /**

@@ -19,7 +19,7 @@ import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.TypeParameterElement;
 import javax.lang.model.element.VariableElement;
-import javax.lang.model.util.ElementScanner9;
+import javax.lang.model.util.SimpleElementVisitor9;
 
 import kiss.Variable;
 
@@ -53,7 +53,10 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
         this.packageName = AntibugDocumentationTool.ElementUtils.getPackageOf(root).toString();
         this.name = typeName.replaceAll("<.+>", "").substring(packageName.length() + 1);
 
-        root.accept(new Scanner(), this);
+        Scanner scanner = new Scanner();
+        for (Element element : root.getEnclosedElements()) {
+            element.accept(scanner, this);
+        }
     }
 
     /**
@@ -81,7 +84,7 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
     /**
      * 
      */
-    private class Scanner extends ElementScanner9<ClassInfo, ClassInfo> {
+    private class Scanner extends SimpleElementVisitor9<ClassInfo, ClassInfo> {
 
         /**
          * {@inheritDoc}
@@ -107,7 +110,7 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
         @Override
         public ClassInfo visitExecutable(ExecutableElement e, ClassInfo p) {
             if (e.getKind() == ElementKind.CONSTRUCTOR) {
-                constructors.add(new ExecutableInfo(e));
+                constructors.add(new ExecutableInfo(name, e));
             } else {
                 methods.add(new MethodInfo(e));
             }

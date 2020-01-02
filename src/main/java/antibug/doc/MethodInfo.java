@@ -21,7 +21,7 @@ public class MethodInfo extends ExecutableInfo {
      * @param e
      */
     public MethodInfo(ExecutableElement e) {
-        super(e);
+        super(e.getSimpleName().toString(), e);
 
         this.returnType = parseTypeAsXML(e.getReturnType());
     }

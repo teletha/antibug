@@ -411,7 +411,7 @@ public class DocumentInfo {
          * @return
          */
         private XML parse(TypeMirror type) {
-            XML root = I.xml("<type/>");
+            XML root = I.xml("<i class='type'/>");
             type.accept(this, root);
             return root;
         }
@@ -483,7 +483,7 @@ public class DocumentInfo {
             // type parameter
             List<? extends TypeMirror> paramTypes = declared.getTypeArguments();
             if (paramTypes.isEmpty() == false) {
-                XML parameters = xml.after("<parameters/>").next();
+                XML parameters = xml.after("<i class='parameters'/>").next();
                 for (TypeMirror paramType : paramTypes) {
                     parameters.append(parseTypeAsXML(paramType));
                 }
@@ -517,14 +517,14 @@ public class DocumentInfo {
             TypeMirror bounded = wildcard.getExtendsBound();
             if (bounded != null) {
                 xml.text("?");
-                xml.after("<extends/>").next().append(parseTypeAsXML(bounded));
+                xml.after("<i class='extends'/>").next().append(parseTypeAsXML(bounded));
                 return xml;
             }
 
             bounded = wildcard.getSuperBound();
             if (bounded != null) {
                 xml.text("?");
-                xml.after("<supers/>").next().append(parseTypeAsXML(bounded));
+                xml.after("<i class='super'/>").next().append(parseTypeAsXML(bounded));
                 return xml;
             }
 

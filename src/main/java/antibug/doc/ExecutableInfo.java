@@ -28,10 +28,10 @@ public class ExecutableInfo extends ParameterizableInfo {
     /**
      * @param e
      */
-    ExecutableInfo(ExecutableElement e) {
+    ExecutableInfo(String name, ExecutableElement e) {
         super(e);
 
-        this.name = e.getSimpleName().toString();
+        this.name = name;
 
         List<? extends VariableElement> params = e.getParameters();
         for (int i = 0; i < params.size(); i++) {

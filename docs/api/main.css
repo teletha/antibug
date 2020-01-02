@@ -1,9 +1,25 @@
 @import url("http://fonts.googleapis.com/css?family=Material+Icons");
 @import url("http://fonts.googleapis.com/css?family=Oswald");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 312529481 */.type {
+/* 1175347198 */.parameters::before {
+	content: '<';
+}
+
+/* 1175347198 */.parameters::after {
+	content: '>';
+}
+
+/* 1447044674 */.extends::before {
+	content: ' extends ';
+}
+
+/* 1861495165 */.type {
 	cursor: pointer;
 	color: hsl(215,16%,44%);
+}
+
+/* 491800785 */.super::before {
+	content: ' super ';
 }
 
 /* antibug.doc.AntibugJavadoc.style#article */.E {
@@ -60,7 +76,7 @@
 }
 
 /* antibug.doc.AntibugJavadoc.style#workbench */.A {
-	font-size: 13px;
+	font-size: 14px;
 	font-family: "Segoe UI",sans-serif;
 	color: hsl(215,16%,44%);
 	line-height: 1.6;

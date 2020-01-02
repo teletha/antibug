@@ -111,6 +111,10 @@ public class SiteBuilder {
         return this;
     }
 
+    private static final String[] characterType = {"title", "dd", "dt", "figcaption", "figure", "li", "p", "a", "abbr", "b", "bdi", "bdo",
+    "cite", "code", "data", "dfn", "em", "i", "kbd", "mark", "q", "rb", "rp", "rt", "rtc", "s", "samp", "strong", "sub", "sup",
+    "time", "u", "var", "del", "ins", "&script"};
+
     /**
      * Build HTML file.
      * 
@@ -128,10 +132,6 @@ public class SiteBuilder {
             }
         });
     }
-
-    private static final String[] characterType = {"title", "dd", "dt", "figcaption", "figure", "li", "p", "a", "abbr", "b", "bdi", "bdo",
-            "cite", "code", "data", "dfn", "em", "i", "kbd", "mark", "q", "rb", "rp", "rt", "rtc", "s", "samp", "strong", "sub", "sup",
-            "time", "u", "var", "del", "ins", "&script"};
 
     /**
      * Build CSS file and return the path of the generated file.

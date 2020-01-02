@@ -36,7 +36,6 @@ public abstract class HTML extends Tree<String, XML> {
                     current.addClass(className);
                 }
             } else {
-                System.out.println(follower + "  " + current);
                 follower.accept(current);
             }
         });
@@ -80,7 +79,7 @@ public abstract class HTML extends Tree<String, XML> {
      */
     protected final Consumer<XML> html(Variable<XML> html) {
         return parent -> {
-
+            html.to(parent::append);
         };
     }
 
