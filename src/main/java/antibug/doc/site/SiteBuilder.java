@@ -9,10 +9,8 @@
  */
 package antibug.doc.site;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.Objects;
 
 import kiss.I;
@@ -111,9 +109,9 @@ public class SiteBuilder {
         return this;
     }
 
-    private static final String[] characterType = {"title", "dd", "dt", "figcaption", "figure", "li", "p", "a", "abbr", "b", "bdi", "bdo",
-    "cite", "code", "data", "dfn", "em", "i", "kbd", "mark", "q", "rb", "rp", "rt", "rtc", "s", "samp", "strong", "sub", "sup",
-    "time", "u", "var", "del", "ins", "&script"};
+    private static final String[] characterType = {"figcaption", "figure", "li", "p", "a", "abbr", "b", "bdi", "bdo", "cite", "code",
+            "data", "dfn", "em", "i", "kbd", "mark", "q", "rb", "rp", "rt", "rtc", "s", "samp", "strong", "sub", "sup", "time", "u", "var",
+            "del", "ins", "&script"};
 
     /**
      * Build HTML file.

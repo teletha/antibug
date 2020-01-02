@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8"/><title>Antibug</title>
+		<meta charset="UTF-8"/>
+		<title>Antibug</title>
 		<base href="/"/>
 		<link href="main.css" rel="stylesheet"/>
 		<link href="javadoc.css" rel="stylesheet"/>
@@ -21,10 +22,268 @@
 			</nav>
 			<article class="E">
 				<section>
-					<h2>PowerAssertContext</h2>
-					<h2>Constructor</h2>
-					<dl><dt><fragment>PowerAssertContext()</fragment>
-						</dt><dd/></dl>
+					<h2 class="H">PowerAssertContext</h2>
+					<span/>
+					<h2 class="H">Constructor</h2>
+					<section class="I">
+						<h3 class="H">
+							<fragment>PowerAssertContext()</fragment>
+						</h3><p class="L"/>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+					</section>
+					<h2 class="H">Methods</h2>
+					<section class="I">
+						<h3 class="H">
+							<fragment>getLocalVariable(<i class="type">int</i> methodId)</fragment>
+						</h3><p class="L"/>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>registerLocalVariable(<i class="type">int</i> methodId, <i class="type" package="java.lang">String</i> name, <i class="type" package="java.lang">String</i> description, <i class="type">int</i> index)</fragment>
+						</h3><p class="L"><p>
+ Register local variable.
+ </p></p>
+						<dl class="K">
+							<dt>Parameters</dt><b>methodId</b>
+							<dd>
+								<span/>
+							</dd><b>name</b>
+							<dd>
+								<span/>
+							</dd><b>description</b>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>registerLocalVariable(<i class="type">int</i> methodId, <i class="type">int</i> index, <i class="type" package="java.util.function">Supplier</i><i class="parameters"><i array="fix" class="type" package="java.lang">String</i></i> resolver)</fragment>
+						</h3><p class="L"><p>
+ Register local variable.
+ </p></p>
+						<dl class="K">
+							<dt>Parameters</dt><b>methodId</b>
+							<dd>
+								<span/>
+							</dd><b>name</b>
+							<dd>
+								<span/>
+							</dd><b>description</b>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>arrayIndex(<i class="type" package="java.lang">Object</i> value)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>arrayNew(<i class="type" package="java.lang">String</i> className, <i class="type" package="java.lang">Object</i> value)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>arrayStore()</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>constant(<i class="type" package="java.lang">Object</i> constant)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>condition(<i class="type" package="java.lang">String</i> contionalExpression)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>constructor(<i class="type" package="java.lang">String</i> name, <i class="type" package="java.lang">String</i> description, <i class="type" package="java.lang">Object</i> value)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>field(<i class="type" package="java.lang">String</i> expression, <i class="type" package="java.lang">String</i> description, <i class="type" package="java.lang">Object</i> variable, <i class="type">int</i> methodId)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>fieldStatic(<i class="type" package="java.lang">String</i> className, <i class="type" package="java.lang">String</i> fieldName, <i class="type" package="java.lang">String</i> description, <i class="type" package="java.lang">Object</i> variable)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>increment(<i class="type">int</i> methodId, <i class="type">int</i> index, <i class="type">int</i> increment)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>instanceOf(<i class="type" package="java.lang">String</i> className)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>local(<i class="type">int</i> methodId, <i class="type">int</i> index, <i class="type" package="java.lang">Object</i> variable)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>method(<i class="type" package="java.lang">String</i> name, <i class="type" package="java.lang">String</i> description, <i class="type" package="java.lang">Object</i> value)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>methodStatic(<i class="type" package="java.lang">String</i> className, <i class="type" package="java.lang">String</i> methodName, <i class="type" package="java.lang">String</i> description, <i class="type" package="java.lang">Object</i> value)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>negative()</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>operator(<i class="type" package="java.lang">String</i> operator)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>lambda(<i class="type" package="java.lang">String</i> name, <i class="type" package="java.lang">String</i> description, <i class="type">int</i> referenceSize)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>methodReference(<i class="type" package="java.lang">String</i> className, <i class="type" package="java.lang">String</i> methodName, <i class="type">int</i> referenceSize)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>toString()</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>render(<i class="type" package="java.lang">StringBuilder</i> builder, <i class="type" package="antibug.powerassert">Operand</i> operand)</fragment>
+						</h3><p class="L"><p>
+ Render the specified operand for human.
+ </p></p>
+						<dl class="K">
+							<dt>Parameters</dt><b>builder</b>
+							<dd>
+								<span/>
+							</dd><b>operand</b>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>hasLocal(<i class="type">int</i> methodId, <i class="type" package="java.lang">String</i> name)</fragment>
+						</h3><p class="L"><p>
+ Helper method to chech whether the specified method declare the spcified local variable or
+ not.
+ </p></p>
+						<dl class="K">
+							<dt>Parameters</dt><b>methodId</b>
+							<dd>
+								<span/>
+							</dd><b>name</b>
+							<dd>
+								<span/>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>isPrimitive(<i class="type" package="net.bytebuddy.jar.asm">Type</i> type)</fragment>
+						</h3><p class="L"><p>
+ Helper method to decide whether the specified type is primitive or not.
+ </p></p>
+						<dl class="K">
+							<dt>Parameters</dt><b>type</b>
+							<dd>
+								<span/>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>infer(<i class="type" package="antibug.powerassert">Operand</i> operand, <i class="type" package="antibug.powerassert">Operand</i> hint)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt><b>operand</b>
+							<dd>
+								<span/>
+							</dd><b>hint</b>
+							<dd>
+								<span/>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>infer(<i class="type" package="antibug.powerassert">Operand</i> operand, <i class="type" package="net.bytebuddy.jar.asm">Type</i> hint)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt><b>operand</b>
+							<dd>
+								<span/>
+							</dd><b>hint</b>
+							<dd>
+								<span/>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+					</section>
 				</section>
 				<aside>ASIDE TEXT</aside>
 			</article>

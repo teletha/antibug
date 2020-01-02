@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8"/><title>Antibug</title>
+		<meta charset="UTF-8"/>
+		<title>Antibug</title>
 		<base href="/"/>
 		<link href="main.css" rel="stylesheet"/>
 		<link href="javadoc.css" rel="stylesheet"/>
@@ -21,10 +22,126 @@
 			</nav>
 			<article class="E">
 				<section>
-					<h2>SiteBuilder</h2>
-					<h2>Constructor</h2>
-					<dl><dt><fragment>SiteBuilder(<i class="type" package="psychopath">Directory</i> rootDirectory)</fragment>
-						</dt><dd/></dl>
+					<h2 class="H">SiteBuilder</h2>
+					<h2 class="H">Constructor</h2>
+					<section class="I">
+						<h3 class="H">
+							<fragment>SiteBuilder(<i class="type" package="psychopath">Directory</i> rootDirectory)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt><b>rootDirectory</b>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+					</section>
+					<h2 class="H">Methods</h2>
+					<section class="I">
+						<h3 class="H">
+							<fragment>root(<i class="type" package="java.lang">String</i> pathToRootDirectory)</fragment>
+						</h3><p class="L"><span>Configure root directory.</span>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt><b>pathToRootDirectory</b>
+							<dd>
+								<span/>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>root(<i class="type" package="java.nio.file">Path</i> pathToRootDirectory)</fragment>
+						</h3><p class="L"><span>Configure root directory.</span>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt><b>pathToRootDirectory</b>
+							<dd>
+								<span/>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>root(<i class="type" package="psychopath">Directory</i> rootDirectory)</fragment>
+						</h3><p class="L"><span>Configure root directory.</span>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt><b>rootDirectory</b>
+							<dd>
+								<span/>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>initialize()</fragment>
+						</h3><p class="L"><span>Initialize only once.</span>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>guard(<i array="var" class="type" package="java.lang">String</i> patterns)</fragment>
+						</h3><p class="L"><span>Specify a pattern for files that you do not want to delete during initialization.</span>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt><b>pattern</b>
+							<dd>
+								<span/>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>buildHTML(<i class="type" package="java.lang">String</i> path, <i class="type" package="antibug.doc.site">HTML</i> html)</fragment>
+						</h3><p class="L"><span>Build HTML file.</span>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt><b>path</b>
+							<dd>
+								<span/>
+							</dd><b>html</b>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>buildCSS(<i class="type" package="java.lang">String</i> path, <i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="stylist">StyleDSL</i></i></i> styles)</fragment>
+						</h3><p class="L"><span>Build CSS file and return the path of the generated file.</span>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt><b>styles</b>
+							<dd>
+								<span>A style definition class to write.</span>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<span>A path to the generated file.</span>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>buildJSONP(<i class="type" package="java.lang">String</i> path, <i class="type" package="java.lang">Object</i> object)</fragment>
+						</h3><p class="L"><span>Build JSON file with padding.</span>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt><b>path</b>
+							<dd>
+								<span/>
+							</dd><b>html</b>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+					</section>
 				</section>
 				<aside>ASIDE TEXT</aside>
 			</article>

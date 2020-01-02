@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8"/><title>Antibug</title>
+		<meta charset="UTF-8"/>
+		<title>Antibug</title>
 		<base href="/"/>
 		<link href="main.css" rel="stylesheet"/>
 		<link href="javadoc.css" rel="stylesheet"/>
@@ -21,11 +22,263 @@
 			</nav>
 			<article class="E">
 				<section>
-					<h2>Chronus</h2>
-					<h2>Constructor</h2>
-					<dl><dt><fragment>Chronus()</fragment>
-						</dt><dd/><dt><fragment>Chronus(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type" package="java.util.concurrent">ScheduledExecutorService</i></i> builder)</fragment>
-						</dt><dd/></dl>
+					<h2 class="H">Chronus</h2>
+					<h2 class="H">Constructor</h2>
+					<section class="I">
+						<h3 class="H">
+							<fragment>Chronus()</fragment>
+						</h3><p class="L"><span>By .</span>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>Chronus(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type" package="java.util.concurrent">ScheduledExecutorService</i></i> builder)</fragment>
+						</h3><p class="L"><span>By your .</span>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt><b>builder</b>
+							<dd>
+								<span>Your .</span>
+							</dd>
+						</dl>
+					</section>
+					<h2 class="H">Methods</h2>
+					<section class="I">
+						<h3 class="H">
+							<fragment>executor()</fragment>
+						</h3><p class="L"><span>Retrieve  by lazy initialization.</span>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+							<dt>Return</dt>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>in(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3><p class="L"><span>Create delayed  in the specified duration.</span>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt><b>time</b>
+							<dd>
+								<span>A delay time.</span>
+							</dd><b>unit</b>
+							<dd>
+								<span>A time unit.</span>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<span>A delayed .</span>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>configExecutionLimit(<i class="type">int</i> size)</fragment>
+						</h3><p class="L"><span>Config the limit size of execution threads.</span>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt><b>size</b>
+							<dd>
+								<span/>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>execute(<i class="type" package="java.lang">Runnable</i> command)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>shutdown()</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>shutdownNow()</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>isShutdown()</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>isTerminated()</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>awaitTermination(<i class="type">long</i> timeout, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>submit(<i class="type" package="java.util.concurrent">Callable</i><i class="parameters"><i class="type">T</i></i> command)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>submit(<i class="type" package="java.lang">Runnable</i> command, <i class="type">T</i> result)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>submit(<i class="type" package="java.lang">Runnable</i> command)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>invokeAll(<i class="type" package="java.util">Collection</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.util.concurrent">Callable</i><i class="parameters"><i class="type">T</i></i></i></i> tasks)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>invokeAll(<i class="type" package="java.util">Collection</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.util.concurrent">Callable</i><i class="parameters"><i class="type">T</i></i></i></i> tasks, <i class="type">long</i> timeout, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>invokeAny(<i class="type" package="java.util">Collection</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.util.concurrent">Callable</i><i class="parameters"><i class="type">T</i></i></i></i> tasks)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>invokeAny(<i class="type" package="java.util">Collection</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.util.concurrent">Callable</i><i class="parameters"><i class="type">T</i></i></i></i> tasks, <i class="type">long</i> timeout, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>schedule(<i class="type" package="java.lang">Runnable</i> command, <i class="type">long</i> delay, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>schedule(<i class="type" package="java.util.concurrent">Callable</i><i class="parameters"><i class="type">V</i></i> callable, <i class="type">long</i> delay, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>scheduleAtFixedRate(<i class="type" package="java.lang">Runnable</i> command, <i class="type">long</i> initialDelay, <i class="type">long</i> period, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>scheduleWithFixedDelay(<i class="type" package="java.lang">Runnable</i> command, <i class="type">long</i> initialDelay, <i class="type">long</i> delay, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>mark()</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>elapse(<i class="type">int</i> start, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt><b>start</b>
+							<dd>
+								<span/>
+							</dd><b>end</b>
+							<dd>
+								<span/>
+							</dd><b>unit</b>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>within(<i class="type">int</i> end, <i class="type" package="java.util.concurrent">TimeUnit</i> unit, <i class="type" package="java.lang">Runnable</i> within)</fragment>
+						</h3><p class="L"><span/>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt><b>start</b>
+							<dd>
+								<span/>
+							</dd><b>end</b>
+							<dd>
+								<span/>
+							</dd><b>unit</b>
+							<dd>
+								<span/>
+							</dd><b>within</b>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>await()</fragment>
+						</h3><p class="L"><p>
+ Wait all task executions.
+ </p></p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>await(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3><p class="L"><p>
+ Freeze process.
+ </p></p>
+						<dl class="K">
+							<dt>Parameters</dt><b>millseconds</b>
+							<dd>
+								<span/>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>freezeNano(<i class="type">long</i> time)</fragment>
+						</h3><p class="L"><p>
+ Freeze process.
+ </p></p>
+						<dl class="K">
+							<dt>Parameters</dt><b>time</b>
+							<dd>
+								<span>A nano time to freeze.</span>
+							</dd>
+						</dl>
+					</section>
 				</section>
 				<aside>ASIDE TEXT</aside>
 			</article>

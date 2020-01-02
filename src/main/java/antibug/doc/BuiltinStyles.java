@@ -335,7 +335,7 @@ public interface BuiltinStyles extends StyleDSL {
         writeTo(Path.of("docs/javadoc.css"));
     }
 
-    static void writeTo(Path file) {
+    static Path writeTo(Path file) {
         String formatted = Stylist.pretty().importNormalizeStyle().format(BuiltinStyles.class);
         formatted = formatted.replaceAll(".+#([^\\s\\*]+) \\*/\\.[a-zA-Z]+", "$1");
 
@@ -344,5 +344,6 @@ public interface BuiltinStyles extends StyleDSL {
         } catch (IOException e) {
             throw I.quiet(e);
         }
+        return file;
     }
 }

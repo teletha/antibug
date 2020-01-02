@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8"/><title>Antibug</title>
+		<meta charset="UTF-8"/>
+		<title>Antibug</title>
 		<base href="/"/>
 		<link href="main.css" rel="stylesheet"/>
 		<link href="javadoc.css" rel="stylesheet"/>
@@ -21,11 +22,86 @@
 			</nav>
 			<article class="E">
 				<section>
-					<h2>Agent</h2>
-					<h2>Constructor</h2>
-					<dl><dt><fragment>Agent(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" enclosing="Agent" package="antibug.bytecode">Translator</i></i></i> translator)</fragment>
-						</dt><dd/><dt><fragment>Agent(<i class="type" package="java.lang.instrument">ClassFileTransformer</i> agent)</fragment>
-						</dt><dd/></dl>
+					<h2 class="H">Agent</h2><p>
+ Provide functionality to transform bytecode.
+ </p>
+					<h2 class="H">Constructor</h2>
+					<section class="I">
+						<h3 class="H">
+							<fragment>Agent(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" enclosing="Agent" package="antibug.bytecode">Translator</i></i></i> translator)</fragment>
+						</h3><p class="L"><p>
+ Create dynamic Agent.
+ </p></p>
+						<dl class="K">
+							<dt>Parameters</dt><b>translator</b>
+							<dd>
+								<span>Your bytecode translator.</span>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>Agent(<i class="type" package="java.lang.instrument">ClassFileTransformer</i> agent)</fragment>
+						</h3><p class="L"><p>
+ Create dynamic Agent.
+ </p></p>
+						<dl class="K">
+							<dt>Parameters</dt><b>agent</b>
+							<dd>
+								<span>Your bytecode translator.</span>
+							</dd>
+						</dl>
+					</section>
+					<h2 class="H">Methods</h2>
+					<section class="I">
+						<h3 class="H">
+							<fragment>transform(<i class="type" package="java.lang">Class</i> target)</fragment>
+						</h3><p class="L"><p>
+ Force to transform the target class.
+ </p></p>
+						<dl class="K">
+							<dt>Parameters</dt><b>target</b>
+							<dd>
+								<span>Specify the class to translate.</span>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>getTransformedCode(<i class="type" package="java.lang">Class</i> target)</fragment>
+						</h3><p class="L"><p>
+ Search the transformed code of the specified class. If the target class is not transformed,
+ returns <code>null</code>.
+ </p></p>
+						<dl class="K">
+							<dt>Parameters</dt><b>target</b>
+							<dd>
+								<span>Specify the class to translate.</span>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<span>Transformed byte code to load by .</span>
+							</dd>
+						</dl>
+						<h3 class="H">
+							<fragment>createTool()</fragment>
+						</h3><p class="L"><p>
+ Create instrumentation tool.
+ </p></p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>premain(<i class="type" package="java.lang">String</i> args, <i class="type" package="java.lang.instrument">Instrumentation</i> instrumentation)</fragment>
+						</h3><p class="L"><span>Agent entry point.</span>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+						<h3 class="H">
+							<fragment>agentmain(<i class="type" package="java.lang">String</i> args, <i class="type" package="java.lang.instrument">Instrumentation</i> instrumentation)</fragment>
+						</h3><p class="L"><span>Agent entry point.</span>
+						</p>
+						<dl class="K">
+							<dt>Parameters</dt>
+						</dl>
+					</section>
 				</section>
 				<aside>ASIDE TEXT</aside>
 			</article>

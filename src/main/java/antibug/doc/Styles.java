@@ -39,6 +39,8 @@ interface Styles extends StyleDSL {
 
     Color CodeColor = Color.rgb(94, 185, 94);
 
+    Font BodyFont = new Font("Yu Gothic UI", "");
+
     Font HeadFont = Font.fromGoogle("Oswald");
 
     Numeric FontSize = Numeric.of(14, px);
@@ -49,9 +51,11 @@ interface Styles extends StyleDSL {
 
     Numeric LeftNaviWidth = Numeric.of(240, px);
 
+    double LineHeight = 1.5;
+
     Style workbench = () -> {
         font.size(FontSize).family("Segoe UI", Font.SansSerif).color(FontColor);
-        line.height(1.6);
+        line.height(LineHeight);
         display.maxWidth(MaxWidth);
         margin.auto();
     };
@@ -120,4 +124,93 @@ interface Styles extends StyleDSL {
             content.text(" super ");
         });
     });
+
+    Numeric BlockBorderWidth = Numeric.of(3, px);
+
+    Numeric BlockVerticalGap = Numeric.of(6, px);
+
+    Numeric BlockHorizontalGap = Numeric.of(10, px);
+
+    Numeric BlockInterval = Numeric.of(2, px);
+
+    Numeric HeadSize = Numeric.of(18, px);
+
+    Numeric HeadTopGap = BlockVerticalGap.multiply(4);
+
+    Numeric HeadBottomGap = BlockVerticalGap.multiply(2);
+
+    Style heading = () -> {
+        font.family(HeadFont, Font.SansSerif).size(HeadSize).weight.normal();
+        margin.top(HeadTopGap).bottom(HeadBottomGap);
+        display.block();
+    };
+
+    Style section = () -> {
+        margin.bottom(BlockVerticalGap);
+    };
+
+    /**
+     * Define block-like.
+     * 
+     * @param color
+     */
+    private static void block(Color color, boolean paintBackground) {
+        margin.vertical(BlockInterval).left(0, px);
+        padding.vertical(BlockVerticalGap).horizontal(BlockHorizontalGap);
+        border.left.width(BlockBorderWidth).solid().color(color);
+        line.height(LineHeight);
+        font.family(BodyFont, Font.SansSerif);
+        if (paintBackground) background.color(color.opacify(-0.8d));
+    }
+
+    Style list = () -> {
+        block(ListColor, true);
+    };
+
+    Numeric LeftGap = Numeric.of(20, px);
+
+    Numeric BottomGap = Numeric.of(10, px);
+
+    Numeric SmallGap = Numeric.of(2, px);
+
+    Style dl = () -> {
+        list.style();
+
+        block(SignatureColor, false);
+        background.color(Color.Transparent);
+        margin.top(BlockInterval.add(HeadSize).add(HeadBottomGap).add(HeadTopGap));
+        position.relative();
+
+        $.before(() -> {
+            display.block();
+            font.family(HeadFont, Font.SansSerif).size(HeadSize).weight.normal();
+            content.text("Signature");
+            position.absolute().top(BlockVerticalGap.add(HeadSize).add(HeadBottomGap).negate()).left(BlockBorderWidth.negate());
+        });
+
+        $.select("dt", () -> {
+            display.block().width(70, px).floatLeft();
+            font.size(9, px).weight.bold().color(SignatureColor);
+            padding.top(SmallGap);
+            border.bottom.none();
+            text.transform.capitalize();
+        });
+
+        $.select("dd", () -> {
+            margin.bottom(15, px).left(70, px);
+        });
+
+        $.select("b", () -> {
+            display.block();
+            border.bottom.width(1, px).solid().color(Color.WhiteGray);
+            padding.bottom(SmallGap);
+            margin.bottom(SmallGap);
+            font.weight.bold();
+            text.transform.capitalize();
+        });
+    };
+
+    Style p = () -> {
+        block(ParagraphColor, false);
+    };
 }

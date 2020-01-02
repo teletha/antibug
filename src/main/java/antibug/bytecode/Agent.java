@@ -62,7 +62,7 @@ public class Agent {
      * Create dynamic Agent.
      * </p>
      * 
-     * @param translator
+     * @param translator Your bytecode translator.
      */
     public Agent(Class<? extends Translator> translator) {
         this(new TranslatorTransformer(translator));
@@ -73,7 +73,7 @@ public class Agent {
      * Create dynamic Agent.
      * </p>
      * 
-     * @param agent
+     * @param agent Your bytecode translator.
      */
     public Agent(ClassFileTransformer agent) {
         synchronized (Agent.class) {
@@ -91,7 +91,7 @@ public class Agent {
      * Force to transform the target class.
      * </p>
      * 
-     * @param target
+     * @param target Specify the class to translate.
      */
     public void transform(Class target) {
         try {
@@ -108,8 +108,8 @@ public class Agent {
      * returns <code>null</code>.
      * </p>
      * 
-     * @param target
-     * @return
+     * @param target Specify the class to translate.
+     * @return Transformed byte code to load by {@link ClassLoader}.
      */
     public static byte[] getTransformedCode(Class target) {
         return codes.get(target);

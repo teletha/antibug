@@ -1,28 +1,28 @@
 @import url("http://fonts.googleapis.com/css?family=Material+Icons");
 @import url("http://fonts.googleapis.com/css?family=Oswald");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1175347198 */.parameters::before {
+/* 1883380232 */.super::before {
+	content: ' super ';
+}
+
+/* 193041293 */.parameters::before {
 	content: '<';
 }
 
-/* 1175347198 */.parameters::after {
+/* 193041293 */.parameters::after {
 	content: '>';
 }
 
-/* 1447044674 */.extends::before {
-	content: ' extends ';
-}
-
-/* 1861495165 */.type {
+/* 655326029 */.type {
 	cursor: pointer;
 	color: hsl(215,16%,44%);
 }
 
-/* 491800785 */.super::before {
-	content: ' super ';
+/* 891052865 */.extends::before {
+	content: ' extends ';
 }
 
-/* antibug.doc.AntibugJavadoc.style#article */.E {
+/* antibug.doc.Styles#article */.E {
 	flex-grow: 3;
 	-webkit-flex-grow: 3;
 	margin-right: auto;
@@ -31,7 +31,63 @@
 	padding-right: 20px;
 }
 
-/* antibug.doc.AntibugJavadoc.style#header */.B {
+/* antibug.doc.Styles#dl */.K {
+	margin-top: 56px;
+	margin-bottom: 2px;
+	margin-left: 0;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(2,68%,58%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+	background-color: hsla(0,0%,0%,0);
+	position: relative;
+}
+
+/* antibug.doc.Styles#dl */.K::before {
+	display: block;
+	font-family: Oswald,sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	content: 'Signature';
+	position: absolute;
+	top: -36px;
+	left: -3px;
+}
+
+/* antibug.doc.Styles#dl */.K dt {
+	display: block;
+	width: 70px;
+	float: left;
+	font-size: 9px;
+	font-weight: bold;
+	color: hsl(2,68%,58%);
+	padding-top: 2px;
+	border-bottom-style: none;
+	text-transform: capitalize;
+}
+
+/* antibug.doc.Styles#dl */.K dd {
+	margin-bottom: 15px;
+	margin-left: 70px;
+}
+
+/* antibug.doc.Styles#dl */.K b {
+	display: block;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: hsl(0,0%,93%);
+	padding-bottom: 2px;
+	margin-bottom: 2px;
+	font-weight: bold;
+	text-transform: capitalize;
+}
+
+/* antibug.doc.Styles#header */.B {
 	background-color: hsl(0,0%,100%);
 	position: sticky;
 	top: 0;
@@ -45,7 +101,32 @@
 	border-bottom-style: solid;
 }
 
-/* antibug.doc.AntibugJavadoc.style#main */.D {
+/* antibug.doc.Styles#heading */.H {
+	font-family: Oswald,sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	margin-top: 24px;
+	margin-bottom: 12px;
+	display: block;
+}
+
+/* antibug.doc.Styles#list */.J {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 0;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+	background-color: hsla(48,95%,59%,0.19999999999999996);
+}
+
+/* antibug.doc.Styles#main */.D {
 	max-width: 1200px;
 	display: flex;
 	flex-direction: row;
@@ -53,33 +134,52 @@
 	margin-left: auto;
 }
 
-/* antibug.doc.AntibugJavadoc.style#nav */.F {
+/* antibug.doc.Styles#nav */.F {
 	width: 240px;
 	display: flex;
 	flex-direction: column;
 }
 
-/* antibug.doc.AntibugJavadoc.style#nav */.F .type {
+/* antibug.doc.Styles#nav */.F .type {
 	display: block;
 	text-decoration: none;
 }
 
-/* antibug.doc.AntibugJavadoc.style#productTitle */.C {
+/* antibug.doc.Styles#p */.L {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 0;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(203,91%,56%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* antibug.doc.Styles#productTitle */.C {
 	font-size: 1.5rem;
 	font-family: Oswald;
 	font-weight: normal;
 	color: hsl(203,91%,56%);
 }
 
-/* antibug.doc.AntibugJavadoc.style#selector */.G {
+/* antibug.doc.Styles#section */.I {
+	margin-bottom: 6px;
+}
+
+/* antibug.doc.Styles#selector */.G {
 	display: block;
 }
 
-/* antibug.doc.AntibugJavadoc.style#workbench */.A {
+/* antibug.doc.Styles#workbench */.A {
 	font-size: 14px;
 	font-family: "Segoe UI",sans-serif;
 	color: hsl(215,16%,44%);
-	line-height: 1.6;
+	line-height: 1.5;
 	max-width: 1200px;
 	margin-right: auto;
 	margin-left: auto;
