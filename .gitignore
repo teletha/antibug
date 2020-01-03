@@ -3,7 +3,7 @@
 
 .settings/
 target/
-docs/api/types
+docs/api/types/
 .*
 !/.gitignore
 
