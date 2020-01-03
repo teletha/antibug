@@ -11,17 +11,16 @@
 		<script src="https://unpkg.com/element-ui/lib/index.js">
 		</script>
 	</head>
-	<body class="F">
-		<header class="K">
-			<h1 class="A">Antibug</h1>
+	<body class="G">
+		<header class="E">
+			<h1 class="D">Antibug</h1>
 		</header>
-		<main class="G">
-			<nav class="D" id="typeNavigation">
-				<el-scrollbar :native="false" id="typeList"/>
+		<main>
+			<nav class="B" id="typeNavigation">
 			</nav>
-			<article class="J">
+			<article class="C">
 				<section>
-					<h2 class="B">Signal</h2>
+					<h2 class="F">Signal</h2>
 					<section>
  <p>
  The  class that implements the Reactive Pattern. This class provides methods for
@@ -73,9 +72,9 @@
  <code> </code> or <code> </code> are
  called notifications.
  </p></section>
-					<h2 class="B">Constructor</h2>
+					<h2 class="F">Constructor</h2>
 					<section>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>Signal(<i class="type" package="java.util">Collection</i><i class="parameters"><i class="type" package="kiss">Observer</i><i class="parameters"><i class="type">V</i></i></i> observers)</fragment>
 						</h3>
 						<section>
@@ -89,7 +88,7 @@
 								<section>A subscriber .</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>Signal(<i class="type" package="java.util.function">BiFunction</i><i class="parameters"><i class="type" package="kiss">Observer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i><i class="type" package="kiss">Disposable</i><i class="type" package="kiss">Disposable</i></i> subscriber)</fragment>
 						</h3>
 						<section>
@@ -104,13 +103,13 @@
 							</dd>
 						</dl>
 					</section>
-					<h2 class="B">Methods</h2>
+					<h2 class="F">Methods</h2>
 					<section>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>never()</fragment>
 						</h3>
 						<section>For reuse.</section>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>to(<i class="type" package="java.lang">Runnable</i> next)</fragment>
 						</h3>
 						<section>
@@ -127,7 +126,7 @@
 								<section>Calling  will dispose this subscription.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>to(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> next)</fragment>
 						</h3>
 						<section>
@@ -144,7 +143,7 @@
 								<section>Calling  will dispose this subscription.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>to(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> next, <i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type" package="java.lang">Throwable</i></i> error)</fragment>
 						</h3>
 						<section>
@@ -164,7 +163,7 @@
 								<section>Calling  will dispose this subscription.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>to(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> next, <i class="type" package="java.lang">Runnable</i> complete)</fragment>
 						</h3>
 						<section>
@@ -184,7 +183,7 @@
 								<section>Calling  will dispose this subscription.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>to(<i class="type" package="java.lang">Runnable</i> next, <i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type" package="java.lang">Throwable</i></i> error, <i class="type" package="java.lang">Runnable</i> complete)</fragment>
 						</h3>
 						<section>
@@ -207,7 +206,7 @@
 								<section>Calling  will dispose this subscription.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>to(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> next, <i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type" package="java.lang">Throwable</i></i> error, <i class="type" package="java.lang">Runnable</i> complete)</fragment>
 						</h3>
 						<section>
@@ -230,7 +229,7 @@
 								<section>Calling  will dispose this subscription.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>to(<i class="type" package="kiss">Observer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> observer)</fragment>
 						</h3>
 						<section>
@@ -247,7 +246,7 @@
 								<section>Calling  will dispose this subscription.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>to(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> next, <i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Throwable</i></i></i> error, <i class="type" package="java.lang">Runnable</i> complete, <i class="type" package="kiss">Disposable</i> disposer)</fragment>
 						</h3>
 						<section>
@@ -270,7 +269,7 @@
 								<section>Calling  will dispose this subscription.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>to(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> next, <i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Throwable</i></i></i> error, <i class="type" package="java.lang">Runnable</i> complete, <i class="type" package="kiss">Disposable</i> disposer, <i class="type">boolean</i> auto)</fragment>
 						</h3>
 						<section>
@@ -293,7 +292,7 @@
 								<section>Calling  will dispose this subscription.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>to(<i class="type" package="kiss">Observer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> observer, <i class="type" package="kiss">Disposable</i> disposer)</fragment>
 						</h3>
 						<section>
@@ -310,7 +309,7 @@
 								<section>Calling  will dispose this subscription.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>to()</fragment>
 						</h3>
 						<section>
@@ -323,7 +322,7 @@
 								<section>A  as value receiver.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>to(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">C</i></i> type)</fragment>
 						</h3>
 						<section>
@@ -336,7 +335,7 @@
 								<section>A  as value receiver.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>to(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">R</i></i> type, <i class="type" package="java.util.function">BiConsumer</i><i class="parameters"><i class="type">R</i><i class="type">V</i></i> assigner)</fragment>
 						</h3>
 						<section>
@@ -356,7 +355,7 @@
 								<section>A value receiver.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>toAlternate()</fragment>
 						</h3>
 						<section>
@@ -370,7 +369,7 @@
 								<section>A  as value receiver.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>toBinary()</fragment>
 						</h3>
 						<section>
@@ -384,7 +383,7 @@
 								<section>A boolean  as value receiver.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>toCollection(<i class="type">C</i> collection)</fragment>
 						</h3>
 						<section>
@@ -397,7 +396,7 @@
 								<section>A  as value receiver.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>toList()</fragment>
 						</h3>
 						<section>
@@ -410,7 +409,7 @@
 								<section>A  as value receiver.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>toMap(<i class="type" package="java.util.function">Function</i><i class="parameters"><i class="type">V</i><i class="type">Key</i></i> keyGenerator)</fragment>
 						</h3>
 						<section>
@@ -427,7 +426,7 @@
 								<section>A  as value receiver.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>toMap(<i class="type" package="java.util.function">Function</i><i class="parameters"><i class="type">V</i><i class="type">Key</i></i> keyGenerator, <i class="type" package="java.util.function">Function</i><i class="parameters"><i class="type">V</i><i class="type">Value</i></i> valueGenerator)</fragment>
 						</h3>
 						<section>
@@ -447,7 +446,7 @@
 								<section>A  as value receiver.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>toSet()</fragment>
 						</h3>
 						<section>
@@ -460,7 +459,7 @@
 								<section>A  as value receiver.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>all(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
 						</h3>
 						<section> Returns
@@ -477,7 +476,7 @@
          satisfy the predicate; otherwise, false.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>any(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
 						</h3>
 						<section> Returns a
@@ -495,7 +494,7 @@
          source  satisfies the predicate.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>as(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">R</i></i> type)</fragment>
 						</h3>
 						<section>
@@ -512,7 +511,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>buffer()</fragment>
 						</h3>
 						<section>
@@ -526,7 +525,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>buffer(<i class="type">int</i> size)</fragment>
 						</h3>
 						<section>
@@ -544,7 +543,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>buffer(<i class="type">int</i> size, <i class="type">int</i> interval)</fragment>
 						</h3>
 						<section>
@@ -567,7 +566,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>buffer(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
 						</h3>
 						<section>
@@ -589,7 +588,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>buffer(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit, <i class="type" package="java.util.concurrent">ScheduledExecutorService</i> scheduler)</fragment>
 						</h3>
 						<section>
@@ -614,7 +613,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>buffer(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i></i> boundary)</fragment>
 						</h3>
 						<section>
@@ -632,7 +631,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>buffer(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i></i> boundary, <i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">B</i></i> supplier)</fragment>
 						</h3>
 						<section>
@@ -654,7 +653,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>buffer(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i></i> boundary, <i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">B</i></i> supplier, <i class="type" package="java.util.function">BiConsumer</i><i class="parameters"><i class="type">B</i><i class="type">V</i></i> assigner)</fragment>
 						</h3>
 						<section>
@@ -679,7 +678,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>buffer(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i></i> boundary, <i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">B</i></i> supplier, <i class="type" package="java.util.function">BiConsumer</i><i class="parameters"><i class="type">B</i><i class="type">V</i></i> assigner, <i class="type">boolean</i> ignoreRemaining)</fragment>
 						</h3>
 						<section>
@@ -707,7 +706,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>combine(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">O</i></i> other)</fragment>
 						</h3>
 						<section>
@@ -727,7 +726,7 @@
          by source  by means of the given aggregation function.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>combine(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">O</i></i> other, <i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">A</i></i> another)</fragment>
 						</h3>
 						<section>
@@ -750,7 +749,7 @@
          by source  by means of the given aggregation function.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>combine(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">O</i></i> other, <i class="type" package="java.util.function">BiFunction</i><i class="parameters"><i class="type">V</i><i class="type">O</i><i class="type">R</i></i> combiner)</fragment>
 						</h3>
 						<section>
@@ -774,7 +773,7 @@
          by source  by means of the given aggregation function.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>combine(<i array="fix" class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i> others, <i class="type" package="java.util.function">BinaryOperator</i><i class="parameters"><i class="type">V</i></i> operator)</fragment>
 						</h3>
 						<section>
@@ -799,7 +798,7 @@
          by source  by means of the given aggregation function.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>combineLatest(<i class="type">O</i> other)</fragment>
 						</h3>
 						<section>
@@ -819,7 +818,7 @@
          by the source  by means of the given aggregation function</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>combineLatest(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">O</i></i> other)</fragment>
 						</h3>
 						<section>
@@ -839,7 +838,7 @@
          by the source  by means of the given aggregation function</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>combineLatest(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">O</i></i> other, <i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">A</i></i> another)</fragment>
 						</h3>
 						<section>
@@ -862,7 +861,7 @@
          by the source  by means of the given aggregation function</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>combineLatest(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">O</i></i> other, <i class="type" package="java.util.function">BiFunction</i><i class="parameters"><i class="type">V</i><i class="type">O</i><i class="type">R</i></i> function)</fragment>
 						</h3>
 						<section>
@@ -886,7 +885,7 @@
          by the source  by means of the given aggregation function</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>combineLatest(<i array="fix" class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i> others, <i class="type" package="java.util.function">BinaryOperator</i><i class="parameters"><i class="type">V</i></i> operator)</fragment>
 						</h3>
 						<section>
@@ -910,7 +909,7 @@
          by the source  by means of the given aggregation function</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>concat(<i array="var" class="type" package="kiss">Signal</i><i array="var" class="parameters"><i class="type">?</i><i class="extends"><i class="type">V</i></i></i> others)</fragment>
 						</h3>
 						<section>
@@ -928,7 +927,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>concat(<i class="type" package="java.lang">Iterable</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type">V</i></i></i></i> others)</fragment>
 						</h3>
 						<section>
@@ -946,7 +945,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>concatMap(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">R</i></i></i> function)</fragment>
 						</h3>
 						<section> Maps a sequence
@@ -966,7 +965,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>contains(<i class="type" package="java.lang">Object</i> value)</fragment>
 						</h3>
 						<section> Returns a
@@ -984,7 +983,7 @@
          that item.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>count()</fragment>
 						</h3>
 						<section> Returns a
@@ -997,7 +996,7 @@
           as a 64-bit Long item</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>debounce(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
 						</h3>
 						<section>
@@ -1018,7 +1017,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>debounce(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit, <i class="type" package="java.util.concurrent">ScheduledExecutorService</i> scheduler)</fragment>
 						</h3>
 						<section>
@@ -1040,7 +1039,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>delay(<i class="type">long</i> count)</fragment>
 						</h3>
 						<section>
@@ -1058,7 +1057,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>delay(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
 						</h3>
 						<section> Returns
@@ -1078,7 +1077,7 @@
 								<section>The source  shifted in time by the specified delay.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>delay(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit, <i class="type" package="java.util.concurrent">ScheduledExecutorService</i> scheduler)</fragment>
 						</h3>
 						<section> Returns
@@ -1101,7 +1100,7 @@
 								<section>The source  shifted in time by the specified delay.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>delay(<i class="type" package="java.time">Duration</i> time)</fragment>
 						</h3>
 						<section> Returns
@@ -1118,7 +1117,7 @@
 								<section>The source  shifted in time by the specified delay.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>delay(<i class="type" package="java.time">Duration</i> time, <i class="type" package="java.util.concurrent">ScheduledExecutorService</i> scheduler)</fragment>
 						</h3>
 						<section> Returns
@@ -1135,7 +1134,7 @@
 								<section>The source  shifted in time by the specified delay.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>delay(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type" package="java.time">Duration</i></i> time)</fragment>
 						</h3>
 						<section> Returns
@@ -1152,7 +1151,7 @@
 								<section>The source  shifted in time by the specified delay.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>delay(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type" package="java.time">Duration</i></i> time, <i class="type" package="java.util.concurrent">ScheduledExecutorService</i> scheduler)</fragment>
 						</h3>
 						<section> Returns
@@ -1169,7 +1168,7 @@
 								<section>The source  shifted in time by the specified delay.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>delay(<i class="type" package="java.util.function">Function</i><i class="parameters"><i class="type">V</i><i class="type" package="java.time">Duration</i></i> time, <i class="type" package="java.util.concurrent">ScheduledExecutorService</i> scheduler)</fragment>
 						</h3>
 						<section> Returns
@@ -1186,7 +1185,7 @@
 								<section>The source  shifted in time by the specified delay.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>diff()</fragment>
 						</h3>
 						<section>
@@ -1209,7 +1208,7 @@
          distinct from their immediate predecessors.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>diff(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type">K</i></i> keySelector)</fragment>
 						</h3>
 						<section>
@@ -1240,7 +1239,7 @@
          distinct from those of their immediate predecessors.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>diff(<i class="type" package="java.util.function">BiPredicate</i><i class="parameters"><i class="type">V</i><i class="type">V</i></i> comparer)</fragment>
 						</h3>
 						<section>
@@ -1261,7 +1260,7 @@
          distinct from their immediate predecessors.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>distinct()</fragment>
 						</h3>
 						<section>
@@ -1275,7 +1274,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>distinct(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type">K</i></i> keySelector)</fragment>
 						</h3>
 						<section>
@@ -1289,7 +1288,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>effect(<i class="type" package="kiss">WiseRunnable</i> effect)</fragment>
 						</h3>
 						<section> Modifies the
@@ -1306,7 +1305,7 @@
 								<section>The source  preassign the side-effecting behavior applied.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>effect(<i class="type" package="kiss">WiseConsumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> effect)</fragment>
 						</h3>
 						<section> Modifies the
@@ -1323,7 +1322,7 @@
 								<section>The source  preassign the side-effecting behavior applied.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>effectAfter(<i class="type" package="kiss">WiseRunnable</i> effect)</fragment>
 						</h3>
 						<section> Modifies the
@@ -1340,7 +1339,7 @@
 								<section>The source  preassign the side-effecting behavior applied.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>effectAfter(<i class="type" package="kiss">WiseConsumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> effect)</fragment>
 						</h3>
 						<section> Modifies the
@@ -1357,7 +1356,7 @@
 								<section>The source  preassign the side-effecting behavior applied.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>effectOnLifecycle(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type" package="kiss">Disposable</i><i class="type" package="kiss">WiseConsumer</i><i class="parameters"><i class="type">V</i></i></i> effect)</fragment>
 						</h3>
 						<section> Modifies the
@@ -1374,7 +1373,7 @@
 								<section>The source  preassign the side-effecting behavior applied.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>effectOnce(<i class="type" package="kiss">WiseRunnable</i> effect)</fragment>
 						</h3>
 						<section> Modifies the
@@ -1391,7 +1390,7 @@
 								<section>The source  preassign the side-effecting behavior applied.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>effectOnce(<i class="type" package="kiss">WiseConsumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> effect)</fragment>
 						</h3>
 						<section> Modifies the
@@ -1408,7 +1407,7 @@
 								<section>The source  preassign the side-effecting behavior applied.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>effectOnComplete(<i class="type" package="kiss">WiseRunnable</i> effect)</fragment>
 						</h3>
 						<section> Modifies the
@@ -1424,7 +1423,7 @@
 								<section>The source  preassign the side-effecting behavior applied.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>effectOnComplete(<i class="type" package="kiss">WiseConsumer</i><i class="parameters"><i class="type">V</i></i> effect)</fragment>
 						</h3>
 						<section> Modifies the
@@ -1440,7 +1439,7 @@
 								<section>The source  preassign the side-effecting behavior applied.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>effectOnDispose(<i class="type" package="kiss">WiseRunnable</i> effect)</fragment>
 						</h3>
 						<section> Modifies the
@@ -1457,7 +1456,7 @@
 								<section>The source  preassign the side-effecting behavior applied.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>effectOnError(<i class="type" package="kiss">WiseRunnable</i> effect)</fragment>
 						</h3>
 						<section> Modifies the
@@ -1474,7 +1473,7 @@
 								<section>The source  preassign the side-effecting behavior applied.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>effectOnError(<i class="type" package="kiss">WiseConsumer</i><i class="parameters"><i class="type" package="java.lang">Throwable</i></i> effect)</fragment>
 						</h3>
 						<section> Modifies the
@@ -1491,7 +1490,7 @@
 								<section>The source  preassign the side-effecting behavior applied.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>effectOnObserve(<i class="type" package="kiss">WiseRunnable</i> effect)</fragment>
 						</h3>
 						<section> Modifies the
@@ -1510,7 +1509,7 @@
 								<section>The source  preassign the side-effecting behavior applied.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>effectOnObserve(<i class="type" package="kiss">WiseConsumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type" package="kiss">Disposable</i></i></i> effect)</fragment>
 						</h3>
 						<section> Modifies the
@@ -1529,7 +1528,7 @@
 								<section>The source  preassign the side-effecting behavior applied.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>effectOnTerminate(<i class="type" package="kiss">WiseRunnable</i> effect)</fragment>
 						</h3>
 						<section> Modifies the
@@ -1546,7 +1545,7 @@
 								<section>The source  preassign the side-effecting behavior applied.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>errorResume(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type">V</i></i></i> resumer)</fragment>
 						</h3>
 						<section>
@@ -1562,7 +1561,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>errorResume(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type" package="java.lang">Throwable</i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type">V</i></i></i></i> resumer)</fragment>
 						</h3>
 						<section>
@@ -1578,7 +1577,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>first()</fragment>
 						</h3>
 						<section> Returns
@@ -1590,7 +1589,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>first(<i class="type">V</i> defaultValue)</fragment>
 						</h3>
 						<section> Returns
@@ -1602,7 +1601,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>flatArray(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i array="fix" class="type">R</i></i> function)</fragment>
 						</h3>
 						<section>
@@ -1624,7 +1623,7 @@
           obtained from this transformation.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>flatEnum(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type">?</i><i class="extends"><i class="type" package="java.util">Enumeration</i><i class="parameters"><i class="type">R</i></i></i></i> function)</fragment>
 						</h3>
 						<section>
@@ -1646,7 +1645,7 @@
           obtained from this transformation.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>flatIterable(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Iterable</i><i class="parameters"><i class="type">R</i></i></i></i> function)</fragment>
 						</h3>
 						<section>
@@ -1668,7 +1667,7 @@
           obtained from this transformation.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>flatMap(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">R</i></i></i> function)</fragment>
 						</h3>
 						<section>
@@ -1690,7 +1689,7 @@
           obtained from this transformation.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>flatVariable(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type" package="kiss">Variable</i><i class="parameters"><i class="type">R</i></i></i> function)</fragment>
 						</h3>
 						<section>
@@ -1712,7 +1711,7 @@
           obtained from this transformation.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>index()</fragment>
 						</h3>
 						<section> Append index
@@ -1723,7 +1722,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>index(<i class="type">long</i> start)</fragment>
 						</h3>
 						<section> Append index
@@ -1738,7 +1737,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>interval(<i class="type">long</i> interval, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
 						</h3>
 						<section>
@@ -1759,7 +1758,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>interval(<i class="type">long</i> interval, <i class="type" package="java.util.concurrent">TimeUnit</i> unit, <i class="type" package="java.util.concurrent">ScheduledExecutorService</i> scheduler)</fragment>
 						</h3>
 						<section>
@@ -1780,7 +1779,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>is(<i class="type">V</i> value)</fragment>
 						</h3>
 						<section>
@@ -1799,7 +1798,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>is(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
 						</h3>
 						<section>
@@ -1818,7 +1817,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>isNot(<i class="type">V</i> value)</fragment>
 						</h3>
 						<section>
@@ -1836,7 +1835,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>isNot(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
 						</h3>
 						<section>
@@ -1855,7 +1854,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>isCompleted()</fragment>
 						</h3>
 						<section> Returns
@@ -1868,7 +1867,7 @@
          completed.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>isEmitted()</fragment>
 						</h3>
 						<section> Returns
@@ -1881,7 +1880,7 @@
          any value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>isEmpty()</fragment>
 						</h3>
 						<section> Returns
@@ -1894,7 +1893,7 @@
          completed preassignout any value emitted.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>isErrored()</fragment>
 						</h3>
 						<section> Returns
@@ -1907,7 +1906,7 @@
          errored.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>isSignaled()</fragment>
 						</h3>
 						<section> Returns
@@ -1920,7 +1919,7 @@
          emitted, errored or completed.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>isTerminated()</fragment>
 						</h3>
 						<section> Returns
@@ -1933,7 +1932,7 @@
          errored or completed.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>joinAll(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type">R</i></i> mapper)</fragment>
 						</h3>
 						<section> Returns a new
@@ -1949,7 +1948,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>joinAny(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type">R</i></i> mapper)</fragment>
 						</h3>
 						<section> Returns a new
@@ -1965,7 +1964,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>last()</fragment>
 						</h3>
 						<section> Returns a
@@ -1977,7 +1976,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>last(<i class="type">V</i> defaultValue)</fragment>
 						</h3>
 						<section> Returns a
@@ -1989,7 +1988,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>map(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">R</i></i> converter)</fragment>
 						</h3>
 						<section>
@@ -2019,7 +2018,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>map(<i class="type" package="kiss">WiseSupplier</i><i class="parameters"><i class="type">C</i></i> contextSupplier, <i class="type" package="kiss">WiseBiFunction</i><i class="parameters"><i class="type">C</i><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">R</i></i> converter)</fragment>
 						</h3>
 						<section>
@@ -2051,7 +2050,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>maps(<i class="type" package="kiss">WiseBiFunction</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">R</i></i> converter)</fragment>
 						</h3>
 						<section>
@@ -2070,7 +2069,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>maps(<i class="type">V</i> init, <i class="type" package="kiss">WiseBiFunction</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">R</i></i> converter)</fragment>
 						</h3>
 						<section>
@@ -2089,7 +2088,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>mapTo(<i class="type">R</i> constant)</fragment>
 						</h3>
 						<section>
@@ -2107,7 +2106,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>merge(<i array="var" class="type" package="kiss">Signal</i><i array="var" class="parameters"><i class="type">?</i><i class="extends"><i class="type">V</i></i></i> others)</fragment>
 						</h3>
 						<section>
@@ -2138,7 +2137,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>merge(<i class="type" package="java.lang">Iterable</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type">V</i></i></i></i> others)</fragment>
 						</h3>
 						<section>
@@ -2156,7 +2155,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>none(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
 						</h3>
 						<section> Returns
@@ -2173,7 +2172,7 @@
          satisfy the predicate; otherwise, true.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>on(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type" package="java.lang">Runnable</i></i> scheduler)</fragment>
 						</h3>
 						<section>
@@ -2202,7 +2201,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>or(<i class="type">V</i> value)</fragment>
 						</h3>
 						<section>
@@ -2215,7 +2214,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>or(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
 						</h3>
 						<section>
@@ -2228,7 +2227,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>or(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i> values)</fragment>
 						</h3>
 						<section>
@@ -2241,7 +2240,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>plug(<i class="type" package="java.util.function">Function</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">O</i></i></i> plug)</fragment>
 						</h3>
 						<section> Helps to insert
@@ -2256,7 +2255,7 @@
 								<section>A chained .</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>recurse(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type">V</i></i> recurse)</fragment>
 						</h3>
 						<section>
@@ -2275,7 +2274,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>recurse(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type">V</i></i> recurse, <i class="type" package="java.util.concurrent">Executor</i> executor)</fragment>
 						</h3>
 						<section>
@@ -2297,7 +2296,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>recurseMap(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i></i> recurse)</fragment>
 						</h3>
 						<section>
@@ -2316,7 +2315,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>recurseMap(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i></i> recurse, <i class="type" package="java.util.concurrent">Executor</i> executor)</fragment>
 						</h3>
 						<section>
@@ -2338,7 +2337,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>repeat()</fragment>
 						</h3>
 						<section>
@@ -2351,7 +2350,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>repeat(<i class="type">int</i> count)</fragment>
 						</h3>
 						<section>
@@ -2368,7 +2367,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>repeatUntil(<i class="type" package="kiss">Signal</i> stopper)</fragment>
 						</h3>
 						<section>
@@ -2386,7 +2385,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>repeatWhen(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Object</i></i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i></i></i> notifier)</fragment>
 						</h3>
 						<section> Returns an
@@ -2408,7 +2407,7 @@
 								<section>Chainable API</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>repeatWhen(<i class="type" package="java.util.function">Function</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Object</i></i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i></i></i> notifier, <i class="type">boolean</i> immediate)</fragment>
 						</h3>
 						<section> Returns an
@@ -2430,7 +2429,7 @@
 								<section>Chainable API</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>recover(<i class="type">V</i> value)</fragment>
 						</h3>
 						<section>
@@ -2447,7 +2446,7 @@
 								<section>Chainable API</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>recover(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
 						</h3>
 						<section>
@@ -2464,7 +2463,7 @@
 								<section>Chainable API</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>recover(<i class="type">int</i> count, <i class="type">V</i> value)</fragment>
 						</h3>
 						<section>
@@ -2484,7 +2483,7 @@
 								<section>Chainable API</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>recover(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Throwable</i></i></i> type, <i class="type">V</i> value)</fragment>
 						</h3>
 						<section>
@@ -2505,7 +2504,7 @@
 								<section>Chainable API</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>recover(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Throwable</i></i></i> type, <i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
 						</h3>
 						<section>
@@ -2526,7 +2525,7 @@
 								<section>Chainable API</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>recoverWhen(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Throwable</i></i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i></i> notifier)</fragment>
 						</h3>
 						<section>
@@ -2552,7 +2551,7 @@
 								<section>Chainable API</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>recoverWhen(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">E</i></i> type, <i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type">E</i></i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i></i> notifier)</fragment>
 						</h3>
 						<section>
@@ -2582,7 +2581,7 @@
 								<section>Chainable API</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>retry()</fragment>
 						</h3>
 						<section>
@@ -2595,7 +2594,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>retry(<i class="type">int</i> count)</fragment>
 						</h3>
 						<section>
@@ -2612,7 +2611,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>retry(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Throwable</i></i></i> type)</fragment>
 						</h3>
 						<section>
@@ -2629,7 +2628,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>retryUntil(<i class="type" package="kiss">Signal</i> stopper)</fragment>
 						</h3>
 						<section>
@@ -2646,7 +2645,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>retryUntil(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">E</i></i> type, <i class="type" package="kiss">Signal</i> stopper)</fragment>
 						</h3>
 						<section>
@@ -2667,7 +2666,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>retryWhen(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">E</i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i></i></i> notifier)</fragment>
 						</h3>
 						<section>
@@ -2693,7 +2692,7 @@
 								<section>Chainable API</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>retryWhen(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">E</i></i> type, <i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">E</i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i></i></i> flow)</fragment>
 						</h3>
 						<section>
@@ -2723,7 +2722,7 @@
 								<section>Chainable API</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>reverse()</fragment>
 						</h3>
 						<section>
@@ -2736,7 +2735,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>sample(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i></i> sampler)</fragment>
 						</h3>
 						<section>
@@ -2755,7 +2754,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>scan(<i class="type" package="java.util.stream">Collector</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">A</i><i class="type">R</i></i> collector)</fragment>
 						</h3>
 						<section>
@@ -2779,7 +2778,7 @@
          the accumulator function.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>scan(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type">R</i></i> first, <i class="type" package="kiss">WiseBiFunction</i><i class="parameters"><i class="type">R</i><i class="type">V</i><i class="type">R</i></i> others)</fragment>
 						</h3>
 						<section>
@@ -2806,7 +2805,7 @@
          the accumulator function.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>scanWith(<i class="type">R</i> init, <i class="type" package="kiss">WiseBiFunction</i><i class="parameters"><i class="type">R</i><i class="type">V</i><i class="type">R</i></i> function)</fragment>
 						</h3>
 						<section>
@@ -2833,7 +2832,7 @@
          the accumulator function.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>share()</fragment>
 						</h3>
 						<section>
@@ -2848,7 +2847,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>single()</fragment>
 						</h3>
 						<section> Returns
@@ -2861,7 +2860,7 @@
          emitted, errored or completed.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>size(<i class="type">int</i> size)</fragment>
 						</h3>
 						<section> Returns a
@@ -2874,7 +2873,7 @@
           as a 32-bit Integer item</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>skip(<i class="type">long</i> count)</fragment>
 						</h3>
 						<section>
@@ -2893,7 +2892,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>skip(<i array="var" class="type">V</i> excludes)</fragment>
 						</h3>
 						<section>
@@ -2910,7 +2909,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>skip(<i class="type" package="java.util">Collection</i><i class="parameters"><i class="type">V</i></i> excludes)</fragment>
 						</h3>
 						<section>
@@ -2927,7 +2926,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>skip(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
 						</h3>
 						<section>
@@ -2944,7 +2943,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>skip(<i class="type">V</i> init, <i class="type" package="java.util.function">BiPredicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
 						</h3>
 						<section>
@@ -2961,7 +2960,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>skip(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">C</i></i> contextSupplier, <i class="type" package="java.util.function">BiPredicate</i><i class="parameters"><i class="type">C</i><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
 						</h3>
 						<section>
@@ -2980,7 +2979,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>skip(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type" package="java.lang">Boolean</i></i> condition)</fragment>
 						</h3>
 						<section>
@@ -2999,7 +2998,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>skip(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
 						</h3>
 						<section>
@@ -3021,7 +3020,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>skipAll()</fragment>
 						</h3>
 						<section> Skip all items
@@ -3035,7 +3034,7 @@
          . Observable</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>skipAt(<i class="type" package="java.util.function">LongPredicate</i> condition)</fragment>
 						</h3>
 						<section>
@@ -3052,7 +3051,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>skipError()</fragment>
 						</h3>
 						<section> Return the
@@ -3063,7 +3062,7 @@
 								<section> which ignores all errors.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>skipError(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Throwable</i></i></i> type)</fragment>
 						</h3>
 						<section> Return the
@@ -3078,7 +3077,7 @@
 								<section> which ignores the specified error.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>skipComplete()</fragment>
 						</h3>
 						<section> Return the
@@ -3089,7 +3088,7 @@
 								<section> which ignores complete event.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>skipNull()</fragment>
 						</h3>
 						<section>
@@ -3102,7 +3101,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>skipUntil(<i class="type">V</i> value)</fragment>
 						</h3>
 						<section>
@@ -3125,7 +3124,7 @@
          when the specified value is coming.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>skipUntil(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> predicate)</fragment>
 						</h3>
 						<section>
@@ -3145,7 +3144,7 @@
          when the specified predicate becomes false.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>skipUntil(<i class="type" package="kiss">Signal</i> timing)</fragment>
 						</h3>
 						<section>
@@ -3165,7 +3164,7 @@
           emits an item, then emits the remaining items.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>skipWhile(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> predicate)</fragment>
 						</h3>
 						<section>
@@ -3185,7 +3184,7 @@
          when the specified predicate becomes false.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>sort(<i class="type" package="java.util">Comparator</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> comparator)</fragment>
 						</h3>
 						<section> Buffer all
@@ -3198,7 +3197,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>startWith(<i array="var" class="type">V</i> values)</fragment>
 						</h3>
 						<section>
@@ -3224,7 +3223,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>startWith(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
 						</h3>
 						<section>
@@ -3250,7 +3249,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>startWith(<i class="type" package="java.util">Enumeration</i><i class="parameters"><i class="type">V</i></i> values)</fragment>
 						</h3>
 						<section>
@@ -3276,7 +3275,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>startWith(<i class="type" package="java.lang">Iterable</i><i class="parameters"><i class="type">V</i></i> values)</fragment>
 						</h3>
 						<section>
@@ -3302,7 +3301,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>startWith(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i> values)</fragment>
 						</h3>
 						<section>
@@ -3320,7 +3319,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>startWithNull()</fragment>
 						</h3>
 						<section>
@@ -3334,7 +3333,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>subscribeOn(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type" package="java.lang">Runnable</i></i> scheduler)</fragment>
 						</h3>
 						<section> Asynchronously
@@ -3349,7 +3348,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>switchMap(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">R</i></i></i> function)</fragment>
 						</h3>
 						<section>
@@ -3372,7 +3371,7 @@
           obtained from this transformation.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>switchVariable(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type" package="kiss">Variable</i><i class="parameters"><i class="type">R</i></i></i> function)</fragment>
 						</h3>
 						<section>
@@ -3395,7 +3394,7 @@
           obtained from this transformation.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>switchOn(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type" package="java.lang">Boolean</i></i> timing)</fragment>
 						</h3>
 						<section> Return an
@@ -3412,7 +3411,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>take(<i class="type">long</i> count)</fragment>
 						</h3>
 						<section>
@@ -3430,7 +3429,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>take(<i array="var" class="type">V</i> includes)</fragment>
 						</h3>
 						<section>
@@ -3447,7 +3446,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>take(<i class="type" package="java.util">Collection</i><i class="parameters"><i class="type">V</i></i> includes)</fragment>
 						</h3>
 						<section>
@@ -3464,7 +3463,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>take(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
 						</h3>
 						<section>
@@ -3484,7 +3483,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>take(<i class="type">V</i> init, <i class="type" package="java.util.function">BiPredicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
 						</h3>
 						<section>
@@ -3504,7 +3503,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>take(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">C</i></i> contextSupplier, <i class="type" package="java.util.function">BiPredicate</i><i class="parameters"><i class="type">C</i><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
 						</h3>
 						<section>
@@ -3523,13 +3522,13 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>take(<i class="type" package="java.util.function">BooleanSupplier</i> condition)</fragment>
 						</h3>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>take(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type" package="java.lang">Boolean</i></i> condition)</fragment>
 						</h3>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>take(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type" package="java.lang">Boolean</i></i> condition)</fragment>
 						</h3>
 						<section>
@@ -3548,7 +3547,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>take(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
 						</h3>
 						<section>
@@ -3569,7 +3568,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>take(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type" package="java.lang">Boolean</i></i> condition, <i class="type">boolean</i> init)</fragment>
 						</h3>
 						<section>
@@ -3588,7 +3587,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>takeAt(<i class="type" package="java.util.function">LongPredicate</i> condition)</fragment>
 						</h3>
 						<section>
@@ -3605,7 +3604,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>takeUntil(<i class="type">V</i> value)</fragment>
 						</h3>
 						<section>
@@ -3629,7 +3628,7 @@
          satisfied.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>takeUntil(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
 						</h3>
 						<section>
@@ -3650,7 +3649,7 @@
          satisfied.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>takeUntil(<i class="type" package="kiss">Signal</i> timing)</fragment>
 						</h3>
 						<section> Returns
@@ -3669,7 +3668,7 @@
          time as other emits its first item.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>takeWhile(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
 						</h3>
 						<section>
@@ -3690,7 +3689,7 @@
          satisfied.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>take(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">C</i></i> contextSupplier, <i class="type" package="java.util.function">BiPredicate</i><i class="parameters"><i class="type">C</i><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition, <i class="type">boolean</i> expected, <i class="type">boolean</i> stopOnFail, <i class="type">boolean</i> includeOnStop)</fragment>
 						</h3>
 						<section> Take operator
@@ -3704,7 +3703,7 @@
 							<dt>Return</dt>
 							<dd><p>No description.</p></dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>timeout(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
 						</h3>
 						<section> Returns an
@@ -3726,7 +3725,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>timeout(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit, <i class="type" package="java.util.concurrent">ScheduledExecutorService</i> scheduler)</fragment>
 						</h3>
 						<section> Returns an
@@ -3751,7 +3750,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>toggle()</fragment>
 						</h3>
 						<section>
@@ -3765,7 +3764,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>toggle(<i class="type">boolean</i> initial)</fragment>
 						</h3>
 						<section>
@@ -3783,7 +3782,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>toggle(<i array="var" class="type">E</i> values)</fragment>
 						</h3>
 						<section>
@@ -3801,7 +3800,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>throttle(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
 						</h3>
 						<section>
@@ -3828,7 +3827,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>wait(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
 						</h3>
 						<section> Returns
@@ -3848,7 +3847,7 @@
 								<section>The source  shifted in time by the specified delay.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>countable(<i class="type" package="kiss">Observer</i> delgator, <i class="type">int</i> count)</fragment>
 						</h3>
 						<section> Create
@@ -3866,7 +3865,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>signal(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> emitCondition, <i class="type">T</i> emitOutput, <i class="type">boolean</i> acceptError, <i class="type">T</i> errorOutput, <i class="type">boolean</i> acceptComplete, <i class="type">T</i> completeOuput)</fragment>
 						</h3>
 						<section> Signal
@@ -3891,7 +3890,9 @@
 					</section>
 				</section>
 			</article>
-			<aside class="H">ASIDE TEXT</aside>
+			<aside class="A">
+				<div>ToC</div>
+			</aside>
 		</main>
 		<script src="root.js">
 		</script>

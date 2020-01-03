@@ -177,7 +177,7 @@ class JavadocTestSupport {
     /**
      * 
      */
-    private static class TestableJavadoc extends AntibugDocumentationTool<TestableJavadoc> {
+    private static class TestableJavadoc extends DocTool<TestableJavadoc> {
 
         private final List<ClassInfo> infos = new ArrayList();
 

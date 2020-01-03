@@ -44,7 +44,7 @@ import jdk.javadoc.doclet.Doclet;
 import jdk.javadoc.doclet.DocletEnvironment;
 import jdk.javadoc.doclet.Reporter;
 
-public abstract class AntibugDocumentationTool<Self extends AntibugDocumentationTool> implements DiagnosticListener<JavaFileObject> {
+public abstract class DocTool<Self extends DocTool> implements DiagnosticListener<JavaFileObject> {
 
     /** Guilty Accessor. */
     public static DocTrees DocUtils;
@@ -64,7 +64,7 @@ public abstract class AntibugDocumentationTool<Self extends AntibugDocumentation
     /**
      * Hide constructor.
      */
-    protected AntibugDocumentationTool() {
+    protected DocTool() {
     }
 
     /**
@@ -149,7 +149,7 @@ public abstract class AntibugDocumentationTool<Self extends AntibugDocumentation
      * Build documents.
      */
     public final void build() {
-        synchronized (AntibugDocumentationTool.class) {
+        synchronized (DocTool.class) {
             self = this;
             DocumentationTool tool = ToolProvider.getSystemDocumentationTool();
 
@@ -210,7 +210,7 @@ public abstract class AntibugDocumentationTool<Self extends AntibugDocumentation
     protected abstract void complete();
 
     /** Dirty Access */
-    private static AntibugDocumentationTool self;
+    private static DocTool self;
 
     /**
      * <h>DONT USE THIS CLASS</h>

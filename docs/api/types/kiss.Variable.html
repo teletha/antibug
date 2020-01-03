@@ -11,31 +11,30 @@
 		<script src="https://unpkg.com/element-ui/lib/index.js">
 		</script>
 	</head>
-	<body class="F">
-		<header class="K">
-			<h1 class="A">Antibug</h1>
+	<body class="G">
+		<header class="E">
+			<h1 class="D">Antibug</h1>
 		</header>
-		<main class="G">
-			<nav class="D" id="typeNavigation">
-				<el-scrollbar :native="false" id="typeList"/>
+		<main>
+			<nav class="B" id="typeNavigation">
 			</nav>
-			<article class="J">
+			<article class="C">
 				<section>
-					<h2 class="B">Variable</h2>
-					<h2 class="B">Constructor</h2>
+					<h2 class="F">Variable</h2>
+					<h2 class="F">Constructor</h2>
 					<section>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>Variable(<i class="type">V</i> value)</fragment>
 						</h3>
 						<section>Hide constructor.</section>
 						<dl/>
 					</section>
-					<h2 class="B">Methods</h2>
+					<h2 class="F">Methods</h2>
 					<section>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>accept(<i class="type">V</i> value)</fragment>
 						</h3><p>No description.</p>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>get()</fragment>
 						</h3>
 						<section><p>
@@ -52,7 +51,7 @@
 								<section>The current value or the specified default value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>exact()</fragment>
 						</h3>
 						<section>Exact value. If this  is empty, throw .</section>
@@ -62,7 +61,7 @@
 								<section>A current value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>is(<i class="type">V</i> value)</fragment>
 						</h3>
 						<section><p>
@@ -78,7 +77,7 @@
 								<section>A result of equality.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>is(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition)</fragment>
 						</h3>
 						<section><p>
@@ -94,7 +93,7 @@
 								<section>A result of equality.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>isNot(<i class="type">V</i> value)</fragment>
 						</h3>
 						<section><p>
@@ -110,7 +109,7 @@
 								<section>A result of equality.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>isNot(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition)</fragment>
 						</h3>
 						<section><p>
@@ -126,7 +125,7 @@
 								<section>A result of equality.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>isAbsent()</fragment>
 						</h3>
 						<section>Check whether the value is absent or not.</section>
@@ -136,7 +135,7 @@
 								<section>A result.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>isPresent()</fragment>
 						</h3>
 						<section>Check whether the value is present or not.</section>
@@ -146,7 +145,7 @@
 								<section>A result.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>isFixed()</fragment>
 						</h3>
 						<section>Chech whether the value is fiexed or not.</section>
@@ -156,7 +155,7 @@
 								<section>A result.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>map(<i class="type" package="java.util.function">Function</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">?</i><i class="extends"><i class="type">R</i></i></i> then)</fragment>
 						</h3>
 						<section><p>
@@ -172,7 +171,7 @@
 								<section>The computed .</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>flatMap(<i class="type" package="java.util.function">Function</i><i class="parameters"><i class="type">V</i><i class="type" package="kiss">Variable</i><i class="parameters"><i class="type">R</i></i></i> converter)</fragment>
 						</h3>
 						<section><p>
@@ -188,7 +187,7 @@
 								<section>The computed .</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>observe()</fragment>
 						</h3>
 						<section>Observe this .</section>
@@ -198,7 +197,7 @@
 								<section>The  which notifies value modification.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>observing()</fragment>
 						</h3>
 						<section>Observe this  with the current value.</section>
@@ -208,7 +207,7 @@
 								<section>The  which notifies value modification.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>or(<i class="type">V</i> other)</fragment>
 						</h3>
 						<section>Return the value if present, otherwise return other.</section>
@@ -222,7 +221,7 @@
 								<section>A value, if present, otherwise other.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>or(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">V</i></i> other)</fragment>
 						</h3>
 						<section>Return the value if present, otherwise return other.</section>
@@ -236,7 +235,7 @@
 								<section>A value, if present, otherwise other.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>set(<i class="type">V</i> value)</fragment>
 						</h3>
 						<section><p>
@@ -252,7 +251,7 @@
 								<section>A previous value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>set(<i class="type" package="java.util">Optional</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
 						</h3>
 						<section><p>
@@ -268,7 +267,7 @@
 								<section>A previous value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>set(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
 						</h3>
 						<section><p>
@@ -284,7 +283,7 @@
 								<section>A previous value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>set(<i class="type" package="java.util.function">UnaryOperator</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
 						</h3>
 						<section><p>
@@ -300,7 +299,7 @@
 								<section>A previous value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>setIf(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition, <i class="type">V</i> value)</fragment>
 						</h3>
 						<section><p>
@@ -319,7 +318,7 @@
 								<section>A previous value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>setIf(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition, <i class="type" package="java.util">Optional</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
 						</h3>
 						<section><p>
@@ -338,7 +337,7 @@
 								<section>A previous value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>setIf(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition, <i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
 						</h3>
 						<section><p>
@@ -357,7 +356,7 @@
 								<section>A previous value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>setIf(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition, <i class="type" package="java.util.function">UnaryOperator</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
 						</h3>
 						<section><p>
@@ -376,7 +375,7 @@
 								<section>A previous value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>let(<i class="type">V</i> value)</fragment>
 						</h3>
 						<section><p>
@@ -392,7 +391,7 @@
 								<section>A previous value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>let(<i class="type" package="java.util">Optional</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
 						</h3>
 						<section><p>
@@ -408,7 +407,7 @@
 								<section>A previous value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>let(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
 						</h3>
 						<section><p>
@@ -424,7 +423,7 @@
 								<section>A previous value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>let(<i class="type" package="java.util.function">UnaryOperator</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
 						</h3>
 						<section><p>
@@ -440,7 +439,7 @@
 								<section>A previous value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>letIf(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition, <i class="type">V</i> value)</fragment>
 						</h3>
 						<section><p>
@@ -459,7 +458,7 @@
 								<section>A previous value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>letIf(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition, <i class="type" package="java.util">Optional</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
 						</h3>
 						<section><p>
@@ -478,7 +477,7 @@
 								<section>A previous value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>letIf(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition, <i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
 						</h3>
 						<section><p>
@@ -497,7 +496,7 @@
 								<section>A previous value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>letIf(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition, <i class="type" package="java.util.function">UnaryOperator</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
 						</h3>
 						<section><p>
@@ -516,7 +515,7 @@
 								<section>A previous value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>assign(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition, <i class="type">V</i> value, <i class="type">boolean</i> let)</fragment>
 						</h3>
 						<section><p>
@@ -538,7 +537,7 @@
 								<section>A previous value.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>adjust(<i class="type" package="java.util.function">Function</i><i class="parameters"><i class="type">V</i><i class="type">V</i></i> adjuster)</fragment>
 						</h3>
 						<section>Set requirment of this .</section>
@@ -550,7 +549,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>require(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> requirement)</fragment>
 						</h3>
 						<section>Set requirment of this .</section>
@@ -562,7 +561,7 @@
 								<section>Chainable API.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>to(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">V</i></i> some)</fragment>
 						</h3>
 						<section><p>
@@ -574,7 +573,7 @@
 								<section>A user action.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>to(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">V</i></i> some, <i class="type" package="java.lang">Runnable</i> none)</fragment>
 						</h3>
 						<section>Execute the specified action.</section>
@@ -584,16 +583,16 @@
 								<section>A user action.</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>hashCode()</fragment>
 						</h3><p>No description.</p>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>equals(<i class="type" package="java.lang">Object</i> obj)</fragment>
 						</h3><p>No description.</p>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>toString()</fragment>
 						</h3><p>No description.</p>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>of(<i class="type">T</i> value)</fragment>
 						</h3>
 						<section><p>
@@ -609,7 +608,7 @@
 								<section>A created .</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>of(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">T</i></i> value)</fragment>
 						</h3>
 						<section><p>
@@ -625,7 +624,7 @@
 								<section>A created .</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>of(<i class="type" package="java.util">Optional</i><i class="parameters"><i class="type">T</i></i> value)</fragment>
 						</h3>
 						<section><p>
@@ -641,7 +640,7 @@
 								<section>A created .</section>
 							</dd>
 						</dl>
-						<h3 class="B">
+						<h3 class="F">
 							<fragment>empty()</fragment>
 						</h3>
 						<section><p>
@@ -656,7 +655,9 @@
 					</section>
 				</section>
 			</article>
-			<aside class="H">ASIDE TEXT</aside>
+			<aside class="A">
+				<div>ToC</div>
+			</aside>
 		</main>
 		<script src="root.js">
 		</script>

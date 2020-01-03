@@ -19,11 +19,12 @@ import javax.lang.model.element.TypeElement;
 
 import antibug.doc.site.HTML;
 import antibug.doc.site.SiteBuilder;
+import antibug.doc.style.Styles;
 import kiss.I;
 import kiss.XML;
 import kiss.Ⅱ;
 
-public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
+public class Javadoc extends DocTool<Javadoc> {
 
     /** The scanned data. */
     private final Data data = new Data();
@@ -40,7 +41,7 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
      * @param productName
      * @return
      */
-    public AntibugJavadoc productName(String productName) {
+    public Javadoc productName(String productName) {
         if (productName != null && productName.length() != 0) {
             this.productName = productName;
         }
@@ -71,11 +72,11 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
                 $(html(info.comment));
 
                 $("h2", styles.heading, text("Constructor"));
-                $("section", styles.section, () -> {
+                $("section", () -> {
                     for (ExecutableInfo constructor : info.constructors) {
                         $("h3", styles.heading, signature(constructor));
                         $(html(constructor.comment));
-                        $("dl", styles.dl, () -> {
+                        $("dl", () -> {
                             if (!constructor.paramTags.isEmpty()) {
                                 $("dt", text("Parameters"));
                                 for (Ⅱ<String, XML> param : constructor.paramTags) {
@@ -90,13 +91,13 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
                 });
 
                 $("h2", styles.heading, text("Methods"));
-                $("section", styles.section, () -> {
+                $("section", () -> {
                     for (MethodInfo method : info.methods) {
                         $("h3", styles.heading, signature(method));
                         $(method.comment.v);
 
                         if (!method.paramTags.isEmpty() || method.returnTag.isPresent()) {
-                            $("dl", styles.dl, () -> {
+                            $("dl", () -> {
                                 if (!method.paramTags.isEmpty()) {
                                     $("dt", text("Parameters"));
                                     for (Ⅱ<String, XML> param : method.paramTags) {
@@ -187,22 +188,20 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
                     // =============================
                     // Top Navigation
                     // =============================
-                    $("header", styles.header, () -> {
+                    $("header", styles.HeaderArea, () -> {
                         $("h1", styles.productTitle, text(productName));
                     });
 
-                    $("main", styles.main, () -> {
+                    $("main", styles.MainArea, () -> {
                         // =============================
                         // Left Side Navigation
                         // =============================
-                        $("nav", id("typeNavigation"), styles.nav, () -> {
-                            $("el-scrollbar", id("typeList"), attr(":native", false));
-                        });
+                        $("nav", id("typeNavigation"), styles.NavigationLeft);
 
                         // =============================
                         // Main Contents
                         // =============================
-                        $("article", styles.article, () -> {
+                        $("article", styles.contents, () -> {
                             $("section", () -> {
                                 contents();
                             });
@@ -211,7 +210,9 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
                         // =============================
                         // Right Side Navigation
                         // =============================
-                        $("aside", styles.toc, text("ASIDE TEXT"));
+                        $("aside", styles.navigationRight, () -> {
+                            $("div", text("ToC"));
+                        });
                     });
 
                     script("root.js", data);

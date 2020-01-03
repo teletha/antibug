@@ -50,7 +50,7 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
         super(root);
 
         this.typeName = root.asType().toString();
-        this.packageName = AntibugDocumentationTool.ElementUtils.getPackageOf(root).toString();
+        this.packageName = DocTool.ElementUtils.getPackageOf(root).toString();
         this.name = typeName.replaceAll("<.+>", "").substring(packageName.length() + 1);
 
         Scanner scanner = new Scanner();
