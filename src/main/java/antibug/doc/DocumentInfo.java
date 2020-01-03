@@ -188,13 +188,15 @@ public class DocumentInfo {
                 if (text.length() == 0) {
                     return emptyXML();
                 } else {
-                    if (text.charAt(0) != '<') text.insert(0, "<p>").append("</p>");
-
                     // Since Javadoc text is rarely correct HTML, switch by inserting dock type
                     // declarations to use the tag soup parser instead of the XML parser.
-                    text.insert(0, "<!DOCTYPE html>");
+                    text.insert(0, "<!DOCTYPE section><section>").append("</section>");
 
-                    return I.xml(text);
+                    // sanitize script and css
+                    XML xml = I.xml(text);
+                    xml.find("link").remove();
+
+                    return xml;
                 }
             } catch (Exception e) {
                 throw new Error(e.getMessage() + " [" + text.toString() + "]", e);
