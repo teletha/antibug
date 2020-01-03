@@ -1,0 +1,3901 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Antibug</title>
+		<base href="/"/>
+		<link href="main.css" rel="stylesheet"/>
+		<link href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" rel="stylesheet"/>
+		<script src="https://unpkg.com/vue/dist/vue.js">
+		</script>
+		<script src="https://unpkg.com/element-ui/lib/index.js">
+		</script>
+	</head>
+	<body class="F">
+		<header class="K">
+			<h1 class="A">Antibug</h1>
+		</header>
+		<main class="G">
+			<nav class="D" id="typeNavigation">
+				<el-scrollbar :native="false" id="typeList"/>
+			</nav>
+			<article class="J">
+				<section>
+					<h2 class="B">Signal</h2>
+					<section>
+ <p>
+ The  class that implements the Reactive Pattern. This class provides methods for
+ subscribing to the  as well as delegate methods to the various observers.
+ </p>
+ 
+ <p>
+ In Reactive Pattern an observer subscribes to a . Then that observer reacts to
+ whatever item or sequence of items the  emits. This pattern facilitates concurrent
+ operations because it does not need to block while waiting for the  to emit
+ objects, but instead it creates a sentry in the form of an observer that stands ready to react
+ appropriately at whatever future time the  does so.
+ </p>
+ 
+ <p>
+ The subscribe method is how you connect an  to a . Your
+  implements some subset of the following methods:
+ </p>
+ 
+ 
+						<dl>
+ 
+							<dt/>
+ 
+							<dd>A  calls this method whenever the  emits an item. This method
+ takes as a parameter the item emitted by the .</dd>
+ 
+							<dt/>
+ 
+							<dd>A  calls this method to indicate that it has failed to generate the expected
+ data or has encountered some other error. It will not make further calls to
+ <code>  </code> or <code>  </code>.
+ The <code>  </code> method takes as its parameter an indication
+ of what caused the error.</dd>
+ 
+							<dt/>
+ 
+							<dd>A  calls this method after it has called
+ <code> </code> for the final time, if it has not encountered any
+ errors.</dd>
+ </dl>
+ <p>
+ By the terms of the  contract, it may call
+ <code>  </code> zero or more times, and then may follow those
+ calls with a call to either <code> </code> or
+ <code> </code> but not both, which will be its last call. By
+ convention, in this document, calls to <code> </code> are usually
+ called emissions of items, whereas calls to
+ <code> </code> or <code> </code> are
+ called notifications.
+ </p></section>
+					<h2 class="B">Constructor</h2>
+					<section>
+						<h3 class="B">
+							<fragment>Signal(<i class="type" package="java.util">Collection</i><i class="parameters"><i class="type" package="kiss">Observer</i><i class="parameters"><i class="type">V</i></i></i> observers)</fragment>
+						</h3>
+						<section>
+ <p>
+ Create  preassign the specified subscriber  which will be
+ invoked whenever you calls  related methods.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>observers</b>
+								<section>A subscriber .</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>Signal(<i class="type" package="java.util.function">BiFunction</i><i class="parameters"><i class="type" package="kiss">Observer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i><i class="type" package="kiss">Disposable</i><i class="type" package="kiss">Disposable</i></i> subscriber)</fragment>
+						</h3>
+						<section>
+ <p>
+ Create  preassign the specified subscriber  which will be
+ invoked whenever you calls  related methods.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>subscriber</b>
+								<section>A subscriber .</section>
+							</dd>
+						</dl>
+					</section>
+					<h2 class="B">Methods</h2>
+					<section>
+						<h3 class="B">
+							<fragment>never()</fragment>
+						</h3>
+						<section>For reuse.</section>
+						<h3 class="B">
+							<fragment>to(<i class="type" package="java.lang">Runnable</i> next)</fragment>
+						</h3>
+						<section>
+ <p>
+ An  must call an Observable&#39;s subscribe method in order to receive
+ items and notifications from the Observable.</p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>next</b>
+								<section>A delegator method of .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Calling  will dispose this subscription.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>to(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> next)</fragment>
+						</h3>
+						<section>
+ <p>
+ An  must call an Observable&#39;s subscribe method in order to receive
+ items and notifications from the Observable.</p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>next</b>
+								<section>A delegator method of .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Calling  will dispose this subscription.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>to(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> next, <i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type" package="java.lang">Throwable</i></i> error)</fragment>
+						</h3>
+						<section>
+ <p>
+ An  must call an Observable&#39;s subscribe method in order to receive
+ items and notifications from the Observable.</p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>next</b>
+								<section>A delegator method of .</section>
+							</dd>
+							<dd><b>error</b>
+								<section>A delegator method of .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Calling  will dispose this subscription.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>to(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> next, <i class="type" package="java.lang">Runnable</i> complete)</fragment>
+						</h3>
+						<section>
+ <p>
+ An  must call an Observable&#39;s subscribe method in order to receive
+ items and notifications from the Observable.</p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>next</b>
+								<section>A delegator method of .</section>
+							</dd>
+							<dd><b>complete</b>
+								<section>A delegator method of .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Calling  will dispose this subscription.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>to(<i class="type" package="java.lang">Runnable</i> next, <i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type" package="java.lang">Throwable</i></i> error, <i class="type" package="java.lang">Runnable</i> complete)</fragment>
+						</h3>
+						<section>
+ <p>
+ Receive values from this .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>next</b>
+								<section>A delegator method of .</section>
+							</dd>
+							<dd><b>error</b>
+								<section>A delegator method of .</section>
+							</dd>
+							<dd><b>complete</b>
+								<section>A delegator method of .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Calling  will dispose this subscription.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>to(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> next, <i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type" package="java.lang">Throwable</i></i> error, <i class="type" package="java.lang">Runnable</i> complete)</fragment>
+						</h3>
+						<section>
+ <p>
+ Receive values from this .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>next</b>
+								<section>A delegator method of .</section>
+							</dd>
+							<dd><b>error</b>
+								<section>A delegator method of .</section>
+							</dd>
+							<dd><b>complete</b>
+								<section>A delegator method of .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Calling  will dispose this subscription.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>to(<i class="type" package="kiss">Observer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> observer)</fragment>
+						</h3>
+						<section>
+ <p>
+ Receive values from this .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>observer</b>
+								<section>A value observer of this .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Calling  will dispose this subscription.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>to(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> next, <i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Throwable</i></i></i> error, <i class="type" package="java.lang">Runnable</i> complete, <i class="type" package="kiss">Disposable</i> disposer)</fragment>
+						</h3>
+						<section>
+ <p>
+ Receive values from this .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>next</b>
+								<section>A delegator method of .</section>
+							</dd>
+							<dd><b>error</b>
+								<section>A delegator method of .</section>
+							</dd>
+							<dd><b>complete</b>
+								<section>A delegator method of .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Calling  will dispose this subscription.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>to(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> next, <i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Throwable</i></i></i> error, <i class="type" package="java.lang">Runnable</i> complete, <i class="type" package="kiss">Disposable</i> disposer, <i class="type">boolean</i> auto)</fragment>
+						</h3>
+						<section>
+ <p>
+ Receive values from this .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>next</b>
+								<section>A delegator method of .</section>
+							</dd>
+							<dd><b>error</b>
+								<section>A delegator method of .</section>
+							</dd>
+							<dd><b>complete</b>
+								<section>A delegator method of .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Calling  will dispose this subscription.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>to(<i class="type" package="kiss">Observer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> observer, <i class="type" package="kiss">Disposable</i> disposer)</fragment>
+						</h3>
+						<section>
+ <p>
+ Receive values from this .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>observer</b>
+								<section>A value observer of this .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Calling  will dispose this subscription.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>to()</fragment>
+						</h3>
+						<section>
+ <p>
+ Receive values as  from this .
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A  as value receiver.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>to(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">C</i></i> type)</fragment>
+						</h3>
+						<section>
+ <p>
+ Receive values as  type from this .
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A  as value receiver.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>to(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">R</i></i> type, <i class="type" package="java.util.function">BiConsumer</i><i class="parameters"><i class="type">R</i><i class="type">V</i></i> assigner)</fragment>
+						</h3>
+						<section>
+ <p>
+ Receive values from this .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>type</b>
+								<section>A value receiver type.</section>
+							</dd>
+							<dd><b>assigner</b>
+								<section>A value assigner.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A value receiver.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>toAlternate()</fragment>
+						</h3>
+						<section>
+ <p>
+ Receive values as  from this . Each value alternates between In and
+ Out.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A  as value receiver.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>toBinary()</fragment>
+						</h3>
+						<section>
+ <p>
+ Receive values as boolean  from this . Each value alternates
+ between true and false.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A boolean  as value receiver.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>toCollection(<i class="type">C</i> collection)</fragment>
+						</h3>
+						<section>
+ <p>
+ Receive values as  from this .
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A  as value receiver.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>toList()</fragment>
+						</h3>
+						<section>
+ <p>
+ Receive values as  from this .
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A  as value receiver.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>toMap(<i class="type" package="java.util.function">Function</i><i class="parameters"><i class="type">V</i><i class="type">Key</i></i> keyGenerator)</fragment>
+						</h3>
+						<section>
+ <p>
+ Receive values as  from this .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>keyGenerator</b>
+								<section>A  key generator.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A  as value receiver.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>toMap(<i class="type" package="java.util.function">Function</i><i class="parameters"><i class="type">V</i><i class="type">Key</i></i> keyGenerator, <i class="type" package="java.util.function">Function</i><i class="parameters"><i class="type">V</i><i class="type">Value</i></i> valueGenerator)</fragment>
+						</h3>
+						<section>
+ <p>
+ Receive values as  from this .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>keyGenerator</b>
+								<section>A  key generator.</section>
+							</dd>
+							<dd><b>valueGenerator</b>
+								<section>A  value generator.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A  as value receiver.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>toSet()</fragment>
+						</h3>
+						<section>
+ <p>
+ Receive values as  from this .
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A  as value receiver.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>all(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
+						</h3>
+						<section> Returns
+  that emits a Boolean that indicates whether all of the items emitted by the
+ source  satisfy a condition.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A condition that evaluates an item and returns a Boolean.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A  that emits true if all items emitted by the source 
+         satisfy the predicate; otherwise, false.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>any(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
+						</h3>
+						<section> Returns a
+  that emits true if any item emitted by the source  satisfies a
+ specified condition, otherwise false. Note: this always emits false if the source
+  is empty.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A condition to test items emitted by the source .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A  that emits a Boolean that indicates whether any item emitted by the
+         source  satisfies the predicate.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>as(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">R</i></i> type)</fragment>
+						</h3>
+						<section>
+ <p>
+ Filters the values of an  sequence based on the specified type.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>type</b>
+								<section>The type of result. <code>null</code> throws .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>buffer()</fragment>
+						</h3>
+						<section>
+ <p>
+ Indicates each value of an  sequence into consecutive non-overlapping buffers
+ which are produced based on value count information.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>buffer(<i class="type">int</i> size)</fragment>
+						</h3>
+						<section>
+ <p>
+ Indicates each value of an  sequence into consecutive non-overlapping buffers
+ which are produced based on value count information.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>size</b>
+								<section>A length of each buffer.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>buffer(<i class="type">int</i> size, <i class="type">int</i> interval)</fragment>
+						</h3>
+						<section>
+ <p>
+ Indicates each values of an  sequence into zero or more buffers which are
+ produced based on value count information.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>size</b>
+								<section>A length of each buffer. Zero or negative number are treated exactly the same way
+            as 1.</section>
+							</dd>
+							<dd><b>interval</b>
+								<section>A number of values to skip between creation of consecutive buffers. Zero or
+            negative number are treated exactly the same way as 1.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>buffer(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3>
+						<section>
+ <p>
+ Indicates each values of an  sequence into zero or more buffers which are
+ produced based on time count information.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>time</b>
+								<section>Time to collect values. Zero or negative number will ignore this instruction.</section>
+							</dd>
+							<dd><b>unit</b>
+								<section>A unit of time for the specified timeout. <code>null</code> will ignore this
+            instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>buffer(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit, <i class="type" package="java.util.concurrent">ScheduledExecutorService</i> scheduler)</fragment>
+						</h3>
+						<section>
+ <p>
+ Indicates each values of an  sequence into zero or more buffers which are
+ produced based on time count information.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>time</b>
+								<section>Time to collect values. Zero or negative number will ignore this instruction.</section>
+							</dd>
+							<dd><b>unit</b>
+								<section>A unit of time for the specified timeout. <code>null</code> will ignore this
+            instruction.</section>
+							</dd>
+							<dd><b>scheduler</b>
+								<section>An event scheduler.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>buffer(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i></i> boundary)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits non-overlapping buffered items from the source
+  each time the specified boundary  emits an item.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>boundary</b>
+								<section>A boundary .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>buffer(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i></i> boundary, <i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">B</i></i> supplier)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits non-overlapping buffered items from the source
+  each time the specified boundary  emits an item.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>boundary</b>
+								<section>A boundary .</section>
+							</dd>
+							<dd><b>supplier</b>
+								<section>A factory function that returns an instance of the collection subclass to be
+            used and returned as the buffer.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>buffer(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i></i> boundary, <i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">B</i></i> supplier, <i class="type" package="java.util.function">BiConsumer</i><i class="parameters"><i class="type">B</i><i class="type">V</i></i> assigner)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits non-overlapping buffered items from the source
+  each time the specified boundary  emits an item.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>boundary</b>
+								<section>A boundary .</section>
+							</dd>
+							<dd><b>supplier</b>
+								<section>A factory function that returns an instance of the collection subclass to be
+            used and returned as the buffer.</section>
+							</dd>
+							<dd><b>assigner</b>
+								<section>A operation function that assigns a value to the buffer.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>buffer(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i></i> boundary, <i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">B</i></i> supplier, <i class="type" package="java.util.function">BiConsumer</i><i class="parameters"><i class="type">B</i><i class="type">V</i></i> assigner, <i class="type">boolean</i> ignoreRemaining)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits non-overlapping buffered items from the source
+  each time the specified boundary  emits an item.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>boundary</b>
+								<section>A boundary .</section>
+							</dd>
+							<dd><b>supplier</b>
+								<section>A factory function that returns an instance of the collection subclass to be
+            used and returned as the buffer.</section>
+							</dd>
+							<dd><b>assigner</b>
+								<section>A operation function that assigns a value to the buffer.</section>
+							</dd>
+							<dd><b>ignoreRemaining</b>
+								<section>A flag whether completion event emits the remaining values or not.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>combine(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">O</i></i> other)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits the results of a function of your choosing applied to
+ combinations of two items emitted, in sequence, by this  and the other
+ specified .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>other</b>
+								<section>An other  to combine.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A  that emits items that are the result of combining the items emitted
+         by source  by means of the given aggregation function.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>combine(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">O</i></i> other, <i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">A</i></i> another)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits the results of a function of your choosing applied to
+ combinations of two items emitted, in sequence, by this  and the other
+ specified .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>other</b>
+								<section>An other  to combine.</section>
+							</dd>
+							<dd><b>another</b>
+								<section>An another  to combine.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A  that emits items that are the result of combining the items emitted
+         by source  by means of the given aggregation function.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>combine(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">O</i></i> other, <i class="type" package="java.util.function">BiFunction</i><i class="parameters"><i class="type">V</i><i class="type">O</i><i class="type">R</i></i> combiner)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits the results of a function of your choosing applied to
+ combinations of two items emitted, in sequence, by this  and the other
+ specified .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>other</b>
+								<section>An other  to combine.</section>
+							</dd>
+							<dd><b>combiner</b>
+								<section>An aggregation function used to combine the items emitted by the source
+            .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A  that emits items that are the result of combining the items emitted
+         by source  by means of the given aggregation function.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>combine(<i array="fix" class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i> others, <i class="type" package="java.util.function">BinaryOperator</i><i class="parameters"><i class="type">V</i></i> operator)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits the results of a function of your choosing applied to
+ combinations of several items emitted, in sequence, by this  and the other
+ specified .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>others</b>
+								<section>Other  to combine.</section>
+							</dd>
+							<dd><b>operator</b>
+								<section>A function that, when applied to an item emitted by each of the source
+            , results in an item that will be emitted by the resulting
+            .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A  that emits items that are the result of combining the items emitted
+         by source  by means of the given aggregation function.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>combineLatest(<i class="type">O</i> other)</fragment>
+						</h3>
+						<section>
+ <p>
+ Combines two source  by emitting an item that aggregates the latest values of
+ each of the source  each time an item is received from either of the source
+ , where this aggregation is defined by a specified function.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>other</b>
+								<section>An other constant  to combine.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that emits items that are the result of combining the items emitted
+         by the source  by means of the given aggregation function</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>combineLatest(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">O</i></i> other)</fragment>
+						</h3>
+						<section>
+ <p>
+ Combines two source  by emitting an item that aggregates the latest values of
+ each of the source  each time an item is received from either of the source
+ , where this aggregation is defined by a specified function.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>other</b>
+								<section>An other  to combine.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that emits items that are the result of combining the items emitted
+         by the source  by means of the given aggregation function</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>combineLatest(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">O</i></i> other, <i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">A</i></i> another)</fragment>
+						</h3>
+						<section>
+ <p>
+ Combines two source  by emitting an item that aggregates the latest values of
+ each of the source  each time an item is received from either of the source
+ , where this aggregation is defined by a specified function.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>other</b>
+								<section>An other  to combine.</section>
+							</dd>
+							<dd><b>another</b>
+								<section>An another  to combine.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that emits items that are the result of combining the items emitted
+         by the source  by means of the given aggregation function</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>combineLatest(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">O</i></i> other, <i class="type" package="java.util.function">BiFunction</i><i class="parameters"><i class="type">V</i><i class="type">O</i><i class="type">R</i></i> function)</fragment>
+						</h3>
+						<section>
+ <p>
+ Combines two source  by emitting an item that aggregates the latest values of
+ each of the source  each time an item is received from either of the source
+ , where this aggregation is defined by a specified function.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>other</b>
+								<section>An other  to combine.</section>
+							</dd>
+							<dd><b>function</b>
+								<section>An aggregation function used to combine the items emitted by the source
+            .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that emits items that are the result of combining the items emitted
+         by the source  by means of the given aggregation function</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>combineLatest(<i array="fix" class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i> others, <i class="type" package="java.util.function">BinaryOperator</i><i class="parameters"><i class="type">V</i></i> operator)</fragment>
+						</h3>
+						<section>
+ <p>
+ Combines several source  by emitting an item that aggregates the latest values
+ of each of the source  each time an item is received from either of the source
+ , where this aggregation is defined by a specified function.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>others</b>
+								<section>Other  to combine.</section>
+							</dd>
+							<dd><b>operator</b>
+								<section>An aggregation function used to combine the items emitted by the source
+            .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that emits items that are the result of combining the items emitted
+         by the source  by means of the given aggregation function</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>concat(<i array="var" class="type" package="kiss">Signal</i><i array="var" class="parameters"><i class="type">?</i><i class="extends"><i class="type">V</i></i></i> others)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits the items emitted by s, one after the
+ other, preassignout interleaving them.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>others</b>
+								<section>A sequence of s to concat.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>concat(<i class="type" package="java.lang">Iterable</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type">V</i></i></i></i> others)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits the items emitted by s, one after the
+ other, preassignout interleaving them.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>others</b>
+								<section>A sequence of s to concat.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>concatMap(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">R</i></i></i> function)</fragment>
+						</h3>
+						<section> Maps a sequence
+ of values into  and concatenates these  eagerly into a single
+ . Eager concatenation means that once a subscriber subscribes, this operator
+ subscribes to all of the source . The operator buffers the values emitted by
+ these  and then drains them in order, each one after the previous one
+ completes.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>function</b>
+								<section>A function that maps a sequence of values into a sequence of 
+            that will be eagerly concatenated.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>contains(<i class="type" package="java.lang">Object</i> value)</fragment>
+						</h3>
+						<section> Returns a
+  that emits a Boolean that indicates whether the source  emitted
+ a specified item.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>An item to search for in the emissions from the source .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A  that emits true if the specified item is emitted by the source
+         , or false if the source  completes preassignout emitting
+         that item.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>count()</fragment>
+						</h3>
+						<section> Returns a
+  that counts the total number of items emitted by the source  and
+ emits this count as a 64-bit Long.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section> that emits a single item: the number of items emitted by the source
+          as a 64-bit Long item</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>debounce(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3>
+						<section>
+ <p>
+ Drops values that are followed by newer values before a timeout. The timer resets on each
+ value emission.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>time</b>
+								<section>A time value. Zero or negative number will ignore this instruction.</section>
+							</dd>
+							<dd><b>unit</b>
+								<section>A time unit. <code>null</code> will ignore this instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>debounce(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit, <i class="type" package="java.util.concurrent">ScheduledExecutorService</i> scheduler)</fragment>
+						</h3>
+						<section>
+ <p>
+ Drops values that are followed by newer values before a timeout. The timer resets on each
+ value emission.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>time</b>
+								<section>A time value. Zero or negative number will ignore this instruction.</section>
+							</dd>
+							<dd><b>unit</b>
+								<section>A time unit. <code>null</code> will ignore this instruction.</section>
+							</dd>
+							<dd><b>scheduler</b><p>No description.</p></dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>delay(<i class="type">long</i> count)</fragment>
+						</h3>
+						<section>
+ <p>
+ Indicates the  sequence by item count preassign the specified source and time.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>count</b>
+								<section>The positive time used to shift the  sequence. Zero or negative
+            number will ignore this instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>delay(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3>
+						<section> Returns
+  that emits the items emitted by the source  shifted forward in
+ time by a specified delay at parallel thread. Error notifications from the source
+  are not delayed.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>time</b>
+								<section>The delay to shift the source by.</section>
+							</dd>
+							<dd><b>unit</b>
+								<section>The  in which period is defined.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  shifted in time by the specified delay.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>delay(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit, <i class="type" package="java.util.concurrent">ScheduledExecutorService</i> scheduler)</fragment>
+						</h3>
+						<section> Returns
+  that emits the items emitted by the source  shifted forward in
+ time by a specified delay at parallel thread. Error notifications from the source
+  are not delayed.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>time</b>
+								<section>The delay to shift the source by.</section>
+							</dd>
+							<dd><b>unit</b>
+								<section>The  in which period is defined.</section>
+							</dd>
+							<dd><b>scheduler</b>
+								<section>An event scheduler.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  shifted in time by the specified delay.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>delay(<i class="type" package="java.time">Duration</i> time)</fragment>
+						</h3>
+						<section> Returns
+  that emits the items emitted by the source  shifted forward in
+ time by a specified delay at parallel thread. Error notifications from the source
+  are not delayed.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>time</b>
+								<section>The delay to shift the source by.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  shifted in time by the specified delay.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>delay(<i class="type" package="java.time">Duration</i> time, <i class="type" package="java.util.concurrent">ScheduledExecutorService</i> scheduler)</fragment>
+						</h3>
+						<section> Returns
+  that emits the items emitted by the source  shifted forward in
+ time by a specified delay at parallel thread. Error notifications from the source
+  are not delayed.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>time</b>
+								<section>The delay to shift the source by.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  shifted in time by the specified delay.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>delay(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type" package="java.time">Duration</i></i> time)</fragment>
+						</h3>
+						<section> Returns
+  that emits the items emitted by the source  shifted forward in
+ time by a specified delay at parallel thread. Error notifications from the source
+  are not delayed.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>time</b>
+								<section>The delay to shift the source by.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  shifted in time by the specified delay.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>delay(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type" package="java.time">Duration</i></i> time, <i class="type" package="java.util.concurrent">ScheduledExecutorService</i> scheduler)</fragment>
+						</h3>
+						<section> Returns
+  that emits the items emitted by the source  shifted forward in
+ time by a specified delay at parallel thread. Error notifications from the source
+  are not delayed.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>time</b>
+								<section>The delay to shift the source by.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  shifted in time by the specified delay.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>delay(<i class="type" package="java.util.function">Function</i><i class="parameters"><i class="type">V</i><i class="type" package="java.time">Duration</i></i> time, <i class="type" package="java.util.concurrent">ScheduledExecutorService</i> scheduler)</fragment>
+						</h3>
+						<section> Returns
+  that emits the items emitted by the source  shifted forward in
+ time by a specified delay at parallel thread. Error notifications from the source
+  are not delayed.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>time</b>
+								<section>The delay to shift the source by.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  shifted in time by the specified delay.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>diff()</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits all items emitted by the source  that are
+ distinct from their immediate predecessors based on  comparison.
+ </p>
+ <p>
+ It is recommended the elements&#39; class V in the flow overrides the default
+ Object.equals() to provide meaningful comparison between items as the default Java
+ implementation only considers reference equivalence. Alternatively, use the
+  overload and provide a comparison function in case the class
+ V can&#39;t be overridden preassign custom equals() or the comparison itself
+ should happen on different terms or properties of the class V.
+ <p/></p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section> that emits those items from the source  that are
+         distinct from their immediate predecessors.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>diff(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type">K</i></i> keySelector)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits all items emitted by the source  that are
+ distinct from their immediate predecessors, according to a key selector function and based on
+  comparison of those objects returned by the key selector
+ function.
+ </p>
+ <p>
+ It is recommended the keys&#39; class K overrides the default Object.equals() to
+ provide meaningful comparison between the key objects as the default Java implementation only
+ considers reference equivalence. Alternatively, use the  overload
+ and provide a comparison function in case the class K can&#39;t be overridden preassign
+ custom equals() or the comparison itself should happen on different terms or
+ properties of the item class V (for which the keys can be derived via a similar
+ selector).
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>keySelector</b>
+								<section>A function that projects an emitted item to a key value that is used to
+            decide whether an item is distinct from another one or not.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section> that emits those items from the source  whose keys are
+         distinct from those of their immediate predecessors.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>diff(<i class="type" package="java.util.function">BiPredicate</i><i class="parameters"><i class="type">V</i><i class="type">V</i></i> comparer)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits all items emitted by the source  that are
+ distinct from their immediate predecessors when compared preassign each other via the
+ provided comparator function.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>comparer</b>
+								<section>The function that receives the previous item and the current item and is
+            expected to return true if the two are equal, thus skipping the current value.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section> that emits those items from the source  that are
+         distinct from their immediate predecessors.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>distinct()</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  consisting of the distinct values (according to
+ ) of this stream.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>distinct(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type">K</i></i> keySelector)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  consisting of the distinct values (according to
+ ) of this stream.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>effect(<i class="type" package="kiss">WiseRunnable</i> effect)</fragment>
+						</h3>
+						<section> Modifies the
+ source  so that it invokes an effect when it calls
+ .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>effect</b>
+								<section>The action to invoke when the source  calls
+            </section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  preassign the side-effecting behavior applied.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>effect(<i class="type" package="kiss">WiseConsumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> effect)</fragment>
+						</h3>
+						<section> Modifies the
+ source  so that it invokes an effect when it calls
+ .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>effect</b>
+								<section>The action to invoke when the source  calls
+            </section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  preassign the side-effecting behavior applied.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>effectAfter(<i class="type" package="kiss">WiseRunnable</i> effect)</fragment>
+						</h3>
+						<section> Modifies the
+ source  so that it invokes an effect when it calls
+ .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>effect</b>
+								<section>The action to invoke when the source  calls
+            </section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  preassign the side-effecting behavior applied.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>effectAfter(<i class="type" package="kiss">WiseConsumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> effect)</fragment>
+						</h3>
+						<section> Modifies the
+ source  so that it invokes an effect when it calls
+ .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>effect</b>
+								<section>The action to invoke when the source  calls
+            </section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  preassign the side-effecting behavior applied.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>effectOnLifecycle(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type" package="kiss">Disposable</i><i class="type" package="kiss">WiseConsumer</i><i class="parameters"><i class="type">V</i></i></i> effect)</fragment>
+						</h3>
+						<section> Modifies the
+ source  so that it invokes an effect when it calls
+ .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>effect</b>
+								<section>The action to invoke when the source  calls
+            </section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  preassign the side-effecting behavior applied.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>effectOnce(<i class="type" package="kiss">WiseRunnable</i> effect)</fragment>
+						</h3>
+						<section> Modifies the
+ source  so that it invokes an effect only once when it calls
+ .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>effect</b>
+								<section>The action to invoke only once when the source  calls
+            </section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  preassign the side-effecting behavior applied.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>effectOnce(<i class="type" package="kiss">WiseConsumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> effect)</fragment>
+						</h3>
+						<section> Modifies the
+ source  so that it invokes an effect only once when it calls
+ .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>effect</b>
+								<section>The action to invoke only once when the source  calls
+            </section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  preassign the side-effecting behavior applied.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>effectOnComplete(<i class="type" package="kiss">WiseRunnable</i> effect)</fragment>
+						</h3>
+						<section> Modifies the
+ source  so that it invokes an effect when it calls .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>effect</b>
+								<section>The action to invoke when the source  calls
+            </section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  preassign the side-effecting behavior applied.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>effectOnComplete(<i class="type" package="kiss">WiseConsumer</i><i class="parameters"><i class="type">V</i></i> effect)</fragment>
+						</h3>
+						<section> Modifies the
+ source  so that it invokes an effect when it calls .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>effect</b>
+								<section>The action to invoke when the source  calls
+            </section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  preassign the side-effecting behavior applied.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>effectOnDispose(<i class="type" package="kiss">WiseRunnable</i> effect)</fragment>
+						</h3>
+						<section> Modifies the
+ source  so that it invokes an effect when it calls
+ .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>effect</b>
+								<section>The action to invoke when the source  calls
+            </section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  preassign the side-effecting behavior applied.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>effectOnError(<i class="type" package="kiss">WiseRunnable</i> effect)</fragment>
+						</h3>
+						<section> Modifies the
+ source  so that it invokes an effect when it calls
+ .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>effect</b>
+								<section>The action to invoke when the source  calls
+            </section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  preassign the side-effecting behavior applied.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>effectOnError(<i class="type" package="kiss">WiseConsumer</i><i class="parameters"><i class="type" package="java.lang">Throwable</i></i> effect)</fragment>
+						</h3>
+						<section> Modifies the
+ source  so that it invokes an effect when it calls
+ .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>effect</b>
+								<section>The action to invoke when the source  calls
+            </section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  preassign the side-effecting behavior applied.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>effectOnObserve(<i class="type" package="kiss">WiseRunnable</i> effect)</fragment>
+						</h3>
+						<section> Modifies the
+ source  so that it invokes the given effect when it is observed from its
+ observers. Each observation will result in an invocation of the given action except when the
+ source  is reference counted, in which case the source  will
+ invoke the given action for the first observation.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>effect</b>
+								<section>The  that gets called when an  subscribes to
+            the current .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  preassign the side-effecting behavior applied.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>effectOnObserve(<i class="type" package="kiss">WiseConsumer</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type" package="kiss">Disposable</i></i></i> effect)</fragment>
+						</h3>
+						<section> Modifies the
+ source  so that it invokes the given effect when it is observed from its
+ observers. Each observation will result in an invocation of the given action except when the
+ source  is reference counted, in which case the source  will
+ invoke the given action for the first observation.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>effect</b>
+								<section>The  that gets called when an  subscribes to
+            the current .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  preassign the side-effecting behavior applied.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>effectOnTerminate(<i class="type" package="kiss">WiseRunnable</i> effect)</fragment>
+						</h3>
+						<section> Modifies the
+ source  so that it invokes an effect when it calls
+  or .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>effect</b>
+								<section>The action to invoke when the source  calls
+             or .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  preassign the side-effecting behavior applied.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>errorResume(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type">V</i></i></i> resumer)</fragment>
+						</h3>
+						<section>
+ <p>
+ Instructs an  to emit an item (returned by a specified function) rather than
+ invoking onError if it encounters an error.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>resumer</b><p>No description.</p></dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>errorResume(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type" package="java.lang">Throwable</i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type">V</i></i></i></i> resumer)</fragment>
+						</h3>
+						<section>
+ <p>
+ Instructs an  to emit an item (returned by a specified function) rather than
+ invoking onError if it encounters an error.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>resumer</b><p>No description.</p></dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>first()</fragment>
+						</h3>
+						<section> Returns
+  that emits only the very first item emitted by the source , or
+ completes if the source  is empty.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>first(<i class="type">V</i> defaultValue)</fragment>
+						</h3>
+						<section> Returns
+  that emits only the very first item emitted by the source , or
+ completes if the source  is empty.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>flatArray(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i array="fix" class="type">R</i></i> function)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits items based on applying a function that you supply to
+ each item emitted by the source , where that function returns an 
+ , and then merging those resulting  and emitting the results of this merger.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>function</b>
+								<section>A function that, when applied to an item emitted by the source 
+            , returns an .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that emits the result of applying the transformation function to
+         each item emitted by the source  and merging the results of the
+          obtained from this transformation.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>flatEnum(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type">?</i><i class="extends"><i class="type" package="java.util">Enumeration</i><i class="parameters"><i class="type">R</i></i></i></i> function)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits items based on applying a function that you supply to
+ each item emitted by the source , where that function returns an 
+ , and then merging those resulting  and emitting the results of this merger.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>function</b>
+								<section>A function that, when applied to an item emitted by the source 
+            , returns an .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that emits the result of applying the transformation function to
+         each item emitted by the source  and merging the results of the
+          obtained from this transformation.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>flatIterable(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Iterable</i><i class="parameters"><i class="type">R</i></i></i></i> function)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits items based on applying a function that you supply to
+ each item emitted by the source , where that function returns an 
+ , and then merging those resulting  and emitting the results of this merger.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>function</b>
+								<section>A function that, when applied to an item emitted by the source 
+            , returns an .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that emits the result of applying the transformation function to
+         each item emitted by the source  and merging the results of the
+          obtained from this transformation.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>flatMap(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">R</i></i></i> function)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits items based on applying a function that you supply to
+ each item emitted by the source , where that function returns an 
+ , and then merging those resulting  and emitting the results of this merger.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>function</b>
+								<section>A function that, when applied to an item emitted by the source 
+            , returns an .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that emits the result of applying the transformation function to
+         each item emitted by the source  and merging the results of the
+          obtained from this transformation.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>flatVariable(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type" package="kiss">Variable</i><i class="parameters"><i class="type">R</i></i></i> function)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits items based on applying a function that you supply to
+ each item emitted by the source , where that function returns an 
+ , and then merging those resulting  and emitting the results of this merger.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>function</b>
+								<section>A function that, when applied to an item emitted by the source 
+            , returns an .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that emits the result of applying the transformation function to
+         each item emitted by the source  and merging the results of the
+          obtained from this transformation.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>index()</fragment>
+						</h3>
+						<section> Append index
+ (starting from 0).</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>index(<i class="type">long</i> start)</fragment>
+						</h3>
+						<section> Append index
+ (starting from the specified value).</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>start</b>
+								<section>A starting index number.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>interval(<i class="type">long</i> interval, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3>
+						<section>
+ <p>
+ Ensure the interval time for each values in  sequence.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>interval</b>
+								<section>Time to emit values. Zero or negative number will ignore this instruction.</section>
+							</dd>
+							<dd><b>unit</b>
+								<section>A unit of time for the specified interval. <code>null</code> will ignore this
+            instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>interval(<i class="type">long</i> interval, <i class="type" package="java.util.concurrent">TimeUnit</i> unit, <i class="type" package="java.util.concurrent">ScheduledExecutorService</i> scheduler)</fragment>
+						</h3>
+						<section>
+ <p>
+ Ensure the interval time for each values in  sequence.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>interval</b>
+								<section>Time to emit values. Zero or negative number will ignore this instruction.</section>
+							</dd>
+							<dd><b>unit</b>
+								<section>A unit of time for the specified interval. <code>null</code> will ignore this
+            instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>is(<i class="type">V</i> value)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that applies the given  function to each value
+ emitted by an  and emits the result.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A conditional function to apply to each value emitted by this
+            .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>is(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that applies the given  function to each value
+ emitted by an  and emits the result.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A conditional function to apply to each value emitted by this
+            .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>isNot(<i class="type">V</i> value)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that applies the given  function to each value
+ emitted by an  and emits the result.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>An expected value.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>isNot(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that applies the given  function to each value
+ emitted by an  and emits the result.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A conditional function to apply to each value emitted by this
+            .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>isCompleted()</fragment>
+						</h3>
+						<section> Returns
+  that emits <code>true</code> that indicates whether the source 
+ is completed.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A  that emits <code>true</code> when the source  is
+         completed.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>isEmitted()</fragment>
+						</h3>
+						<section> Returns
+  that emits <code>true</code> that indicates whether the source 
+ emits any value.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A  that emits <code>true</code> when the source  emits
+         any value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>isEmpty()</fragment>
+						</h3>
+						<section> Returns
+  that emits <code>true</code> that indicates whether the source 
+ is completed preassignout any value emitted.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A  that emits <code>true</code> when the source  is
+         completed preassignout any value emitted.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>isErrored()</fragment>
+						</h3>
+						<section> Returns
+  that emits <code>true</code> that indicates whether the source 
+ is errored.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A  that emits <code>true</code> when the source  is
+         errored.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>isSignaled()</fragment>
+						</h3>
+						<section> Returns
+  that emits <code>true</code> that indicates whether the source 
+ is emitted, errored or completed.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A  that emits <code>true</code> when the source  is
+         emitted, errored or completed.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>isTerminated()</fragment>
+						</h3>
+						<section> Returns
+  that emits <code>true</code> that indicates whether the source 
+ is errored or completed.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A  that emits <code>true</code> when the source  is
+         errored or completed.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>joinAll(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type">R</i></i> mapper)</fragment>
+						</h3>
+						<section> Returns a new
+  that invokes the mapper action in parallel thread and waits all of them until
+ all actions are completed.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>mapper</b>
+								<section>A mapper function.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>joinAny(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type">R</i></i> mapper)</fragment>
+						</h3>
+						<section> Returns a new
+  that invokes the mapper action in parallel thread and waits until any single
+ action is completed. All other actions will be cancelled.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>mapper</b>
+								<section>A mapper function.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>last()</fragment>
+						</h3>
+						<section> Returns a
+  that emits the last item emitted by this  or completes if this
+  is empty.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>last(<i class="type">V</i> defaultValue)</fragment>
+						</h3>
+						<section> Returns a
+  that emits only the last item emitted by this , or a default
+ item if this  completes preassignout emitting any items.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>map(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">R</i></i> converter)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that applies the given function to each value emitted by an
+  and emits the result.
+ </p>
+ 
+							<pre class="marble-diagram">
+ ───①───②───③───④───⑤──┼
+    ↓   ↓   ↓   ↓   ↓
+  ┌────────────────────┐
+   map ○→●
+  └────────────────────┘
+    ↓   ↓   ↓   ↓   ↓  ↓
+ ───❶───❷───❸───❹───❺──┼
+ </pre>
+						</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>converter</b>
+								<section>A converter function to apply to each value emitted by this  .
+            <code>null</code> will ignore this instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>map(<i class="type" package="kiss">WiseSupplier</i><i class="parameters"><i class="type">C</i></i> contextSupplier, <i class="type" package="kiss">WiseBiFunction</i><i class="parameters"><i class="type">C</i><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">R</i></i> converter)</fragment>
+						</h3>
+						<section>
+ <p>
+  preassign context.
+ </p>
+ 
+							<pre class="marble-diagram">
+ ───①───②───③───④───⑤──┼
+    ↓   ↓   ↓   ↓   ↓
+  ┌────────────────────┐
+   map ○→●
+  └────────────────────┘
+    ↓   ↓   ↓   ↓   ↓  ↓
+ ───❶───❷───❸───❹───❺──┼
+ </pre>
+						</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>contextSupplier</b>
+								<section>A  of  specific context.</section>
+							</dd>
+							<dd><b>converter</b>
+								<section>A converter function to apply to each value emitted by this  .
+            <code>null</code> will ignore this instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>maps(<i class="type" package="kiss">WiseBiFunction</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">R</i></i> converter)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that applies the given function to each value emitted by an
+  and emits the result.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>converter</b>
+								<section>A converter function to apply to each value emitted by this  .
+            <code>null</code> will ignore this instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>maps(<i class="type">V</i> init, <i class="type" package="kiss">WiseBiFunction</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">R</i></i> converter)</fragment>
+						</h3>
+						<section>
+  preassign previuos value.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>init</b>
+								<section>A initial previous value.</section>
+							</dd>
+							<dd><b>converter</b>
+								<section>A converter function to apply to each value emitted by this  .
+            <code>null</code> will ignore this instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>mapTo(<i class="type">R</i> constant)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that applies the given constant to each item emitted by an
+  and emits the result.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>constant</b>
+								<section>A constant to apply to each value emitted by this .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>merge(<i array="var" class="type" package="kiss">Signal</i><i array="var" class="parameters"><i class="type">?</i><i class="extends"><i class="type">V</i></i></i> others)</fragment>
+						</h3>
+						<section>
+ <p>
+ Flattens a sequence of  emitted by an  into one ,
+ preassignout any transformation.
+ </p>
+ 
+							<pre class="marble-diagram">
+ ───①───②───③───④───⑤──┼
+    ↓   ↓   ↓   ↓   ↓
+ ─────❶────❷────❸────┼
+      ↓    ↓    ↓
+  ┌────────────────────┐
+   merge
+  └────────────────────┘
+    ↓ ↓ ↓  ↓↓   ↓   ↓  ↓
+ ───①─❶─②──❷③───④❸──⑤──┼
+ </pre>
+						</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>others</b>
+								<section>A target  to merge. <code>null</code> will be ignored.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>merge(<i class="type" package="java.lang">Iterable</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type">V</i></i></i></i> others)</fragment>
+						</h3>
+						<section>
+ <p>
+ Flattens a sequence of  emitted by an  into one ,
+ preassignout any transformation.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>others</b>
+								<section>A target  set to merge. <code>null</code> will be ignored.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>none(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
+						</h3>
+						<section> Returns
+  that emits a Boolean that indicates whether all of the items emitted by the
+ source  unsatisfy a condition.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A condition that evaluates an item and returns a Boolean.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A  that emits false if all items emitted by the source 
+         satisfy the predicate; otherwise, true.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>on(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type" package="java.lang">Runnable</i></i> scheduler)</fragment>
+						</h3>
+						<section>
+ 
+ <p>
+ Switch event stream context.
+ </p>
+ 
+							<pre class="marble">
+ ───①───②───③───④───⑤──┼
+    ↓   ↓   ↓   ↓   ↓
+  ┌────────────────────┐
+   on ━
+  └────────────────────┘
+    ↓   ↓   ↓   ↓   ↓  ↓
+ ━━━❶━━━❷━━━❸━━━❹━━━❺━━╋
+ </pre>
+						</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>scheduler</b>
+								<section>A new context</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>or(<i class="type">V</i> value)</fragment>
+						</h3>
+						<section>
+ <p>
+ Generates an  sequence that guarantee one item at least.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>or(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
+						</h3>
+						<section>
+ <p>
+ Generates an  sequence that guarantee one item at least.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>or(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i> values)</fragment>
+						</h3>
+						<section>
+ <p>
+ Generates an  sequence that guarantee one item at least.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>plug(<i class="type" package="java.util.function">Function</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">O</i></i></i> plug)</fragment>
+						</h3>
+						<section> Helps to insert
+  chain from outside.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>plug</b>
+								<section>A chain builder to insert.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A chained .</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>recurse(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type">V</i></i> recurse)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits items based on applying a function that you supply to
+ each item emitted by the source , where that function returns an 
+ , and then merging those resulting  and emitting the results of this merger.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>recurse</b>
+								<section>A mapper function to enumerate values recursively.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>recurse(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type">V</i></i> recurse, <i class="type" package="java.util.concurrent">Executor</i> executor)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits items based on applying a function that you supply to
+ each item emitted by the source , where that function returns an 
+ , and then merging those resulting  and emitting the results of this merger.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>recurse</b>
+								<section>A mapper function to enumerate values recursively.</section>
+							</dd>
+							<dd><b>executor</b>
+								<section>An execution context.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>recurseMap(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i></i> recurse)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits items based on applying a function that you supply to
+ each item emitted by the source , where that function returns an 
+ , and then merging those resulting  and emitting the results of this merger.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>recurse</b>
+								<section>A mapper function to enumerate values recursively.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>recurseMap(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i></i> recurse, <i class="type" package="java.util.concurrent">Executor</i> executor)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits items based on applying a function that you supply to
+ each item emitted by the source , where that function returns an 
+ , and then merging those resulting  and emitting the results of this merger.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>recurse</b>
+								<section>A mapper function to enumerate values recursively.</section>
+							</dd>
+							<dd><b>executor</b>
+								<section>An execution context.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>repeat()</fragment>
+						</h3>
+						<section>
+ <p>
+ Generates an  sequence that repeats the given value infinitely.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>repeat(<i class="type">int</i> count)</fragment>
+						</h3>
+						<section>
+ <p>
+ Generates an  sequence that repeats the given value finitely.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>count</b>
+								<section>A number of repeat. Zero or negative number will ignore this instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>repeatUntil(<i class="type" package="kiss">Signal</i> stopper)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that repeats the sequence of items emitted by the source
+  until a stopper  emits an item.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>stopper</b>
+								<section>A  whose first emitted item will stop repeating.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>repeatWhen(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Object</i></i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i></i></i> notifier)</fragment>
+						</h3>
+						<section> Returns an
+  that emits the same values as the source signal preassign the exception of an
+ . An error notification from the source will result in the
+ emission of a Throwable item to the  provided as an argument to the
+ notificationHandler function. If that  calls  or
+  then retry will call  or
+  on the child subscription. Otherwise, this 
+ will resubscribe to the source .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>notifier</b>
+								<section>A receives an  of notifications preassign which a user can
+            complete or error, aborting the retry.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>repeatWhen(<i class="type" package="java.util.function">Function</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Object</i></i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i></i></i> notifier, <i class="type">boolean</i> immediate)</fragment>
+						</h3>
+						<section> Returns an
+  that emits the same values as the source signal preassign the exception of an
+ . An error notification from the source will result in the
+ emission of a Throwable item to the  provided as an argument to the
+ notificationHandler function. If that  calls  or
+  then retry will call  or
+  on the child subscription. Otherwise, this 
+ will resubscribe to the source .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>notifier</b>
+								<section>A receives an  of notifications preassign which a user can
+            complete or error, aborting the retry.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>recover(<i class="type">V</i> value)</fragment>
+						</h3>
+						<section>
+ <p>
+ Recover the source  infinitly on any error by the specified value.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>A value to replace error.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>recover(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
+						</h3>
+						<section>
+ <p>
+ Recover the source  infinitly on any error by the specified value.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>A value to replace error.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>recover(<i class="type">int</i> count, <i class="type">V</i> value)</fragment>
+						</h3>
+						<section>
+ <p>
+ Recover the source  finitly on any error by the specified value.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>count</b>
+								<section>A number of recovery. Zero or negative number will ignore this instruction.</section>
+							</dd>
+							<dd><b>value</b>
+								<section>A value to replace error.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>recover(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Throwable</i></i></i> type, <i class="type">V</i> value)</fragment>
+						</h3>
+						<section>
+ <p>
+ Recover the source  on the specified error by the specified value. Unspecified
+ error types will pass through the source .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>type</b>
+								<section>An error type that you want to recover.</section>
+							</dd>
+							<dd><b>value</b>
+								<section>A value to replace error.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>recover(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Throwable</i></i></i> type, <i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
+						</h3>
+						<section>
+ <p>
+ Recover the source  on the specified error by the specified value. Unspecified
+ error types will pass through the source .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>type</b>
+								<section>An error type that you want to recover.</section>
+							</dd>
+							<dd><b>value</b>
+								<section>A value to replace error.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>recoverWhen(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Throwable</i></i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i></i> notifier)</fragment>
+						</h3>
+						<section>
+ <p>
+ Recover the source  on any error by the notifier emitting values.
+ </p>
+ 
+							<h>When the notifier signal emits event</h>
+ 
+							<ul>
+ <li>Next - Replace source error and propagate values to source signal.</li>
+ <li>Error - Propagate to source error and dispose them.</li>
+ <li>Complete - Terminate notifier signal. Souce signal will never recover errors.</li>
+ </ul>
+						</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>notifier</b>
+								<section>An error notifier to define recovering flow.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>recoverWhen(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">E</i></i> type, <i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type">E</i></i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i></i> notifier)</fragment>
+						</h3>
+						<section>
+ <p>
+ Recover the source  on the specified error by the notifier emitting values.
+ Unspecified errors will pass through the source .
+ </p>
+ 
+							<h>When the notifier signal emits event</h>
+ 
+							<ul>
+ <li>Next - Replace source error and propagate values to source signal.</li>
+ <li>Error - Propagate to source error and dispose them.</li>
+ <li>Complete - Terminate notifier signal. Souce signal will never recover errors.</li>
+ </ul>
+						</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>type</b>
+								<section>An error type that you want to recover.</section>
+							</dd>
+							<dd><b>notifier</b>
+								<section>An error notifier to define recovering flow.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>retry()</fragment>
+						</h3>
+						<section>
+ <p>
+ Retry the source  infinitely whenever any error is occured.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>retry(<i class="type">int</i> count)</fragment>
+						</h3>
+						<section>
+ <p>
+ Retry the source  finitely whenever any error is occured.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>count</b>
+								<section>A number of retry. Zero or negative number will ignore this instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>retry(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Throwable</i></i></i> type)</fragment>
+						</h3>
+						<section>
+ <p>
+ Retry the source  whenever the specified error type is occured.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>type</b>
+								<section>An error type that you want to retry. The null value accepts any types.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>retryUntil(<i class="type" package="kiss">Signal</i> stopper)</fragment>
+						</h3>
+						<section>
+ <p>
+ Retry the source  whenever any error is occured until the stopper is signaled.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>stopper</b>
+								<section>A  whose first emitted item will stop retrying.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>retryUntil(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">E</i></i> type, <i class="type" package="kiss">Signal</i> stopper)</fragment>
+						</h3>
+						<section>
+ <p>
+ Retry the source  whenever the specified error is occured until the stopper is
+ signaled.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>type</b>
+								<section>An error type that you want to retry. The null value accepts any types.</section>
+							</dd>
+							<dd><b>stopper</b>
+								<section>A  whose first emitted item will stop retrying.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>retryWhen(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">E</i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i></i></i> notifier)</fragment>
+						</h3>
+						<section>
+ <p>
+ Retry the source  whenever any error is occured.
+ </p>
+ 
+							<h>When the notifier signal emits event</h>
+ 
+							<ul>
+ <li>Next - Retry source .</li>
+ <li>Error - Propagate to source error and dispose them.</li>
+ <li>Complete - Terminate notifier signal. Souce signal will never retry errors.</li>
+ </ul>
+						</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>notifier</b>
+								<section>An error notifier to define retrying flow.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>retryWhen(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">E</i></i> type, <i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">E</i></i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i></i></i> flow)</fragment>
+						</h3>
+						<section>
+ <p>
+ Retry the source  when the specified error is occured. Unspecified errors will
+ pass through the source .
+ </p>
+ 
+							<h>When the notifier signal emits event</h>
+ 
+							<ul>
+ <li>Next - Retry source .</li>
+ <li>Error - Propagate to source error and dispose them.</li>
+ <li>Complete - Terminate notifier signal. Souce signal will never retry errors.</li>
+ </ul>
+						</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>type</b>
+								<section>An error type that you want to retry. The null value accepts any types.</section>
+							</dd>
+							<dd><b>flow</b>
+								<section>An error notifier to define retrying flow.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>reverse()</fragment>
+						</h3>
+						<section>
+ <p>
+ Buffer all values until complete, then all buffered values are emitted in descending order.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>sample(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">?</i></i> sampler)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that, when the specified sampler  emits an item,
+ emits the most recently emitted item (if any) emitted by the source  since the
+ previous emission from the sampler .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>sampler</b>
+								<section>An  to use for sampling the source .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>scan(<i class="type" package="java.util.stream">Collector</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">A</i><i class="type">R</i></i> collector)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that applies a function of your choosing to the first item emitted
+ by a source  and a seed value, then feeds the result of that function along
+ preassign the second item emitted by the source  into the same function, and so
+ on until all items have been emitted by the source , emitting the result of
+ each of these iterations.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>collector</b>
+								<section>An accumulator function to be invoked on each item emitted by the source
+            , whose result will be emitted to  via
+             and used in the next accumulator call.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that emits initial value followed by the results of each call to
+         the accumulator function.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>scan(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type">R</i></i> first, <i class="type" package="kiss">WiseBiFunction</i><i class="parameters"><i class="type">R</i><i class="type">V</i><i class="type">R</i></i> others)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that applies a function of your choosing to the first item emitted
+ by a source  and a seed value, then feeds the result of that function along
+ preassign the second item emitted by the source  into the same function, and so
+ on until all items have been emitted by the source , emitting the result of
+ each of these iterations.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>first</b>
+								<section>An accumulator which process only first value.</section>
+							</dd>
+							<dd><b>others</b>
+								<section>An accumulator function to be invoked on each item emitted by the source
+            , whose result will be emitted to  via
+             and used in the next accumulator call.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that emits initial value followed by the results of each call to
+         the accumulator function.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>scanWith(<i class="type">R</i> init, <i class="type" package="kiss">WiseBiFunction</i><i class="parameters"><i class="type">R</i><i class="type">V</i><i class="type">R</i></i> function)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that applies a function of your choosing to the first item emitted
+ by a source  and a seed value, then feeds the result of that function along
+ preassign the second item emitted by the source  into the same function, and so
+ on until all items have been emitted by the source , emitting the result of
+ each of these iterations.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>init</b>
+								<section>An initial (seed) accumulator item.</section>
+							</dd>
+							<dd><b>function</b>
+								<section>An accumulator function to be invoked on each item emitted by the source
+            , whose result will be emitted to  via
+             and used in the next accumulator call.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that emits initial value followed by the results of each call to
+         the accumulator function.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>share()</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns a new  that multicasts (shares) the original . As long as
+ there is at least one  this  will be subscribed and emitting
+ data. When all observers have disposed it will disposes from the source .
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>single()</fragment>
+						</h3>
+						<section> Returns
+  that emits the single element only. If this  has no element or
+ too many elements, signal will complete immediately.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A  that emits <code>true</code> when the source  is
+         emitted, errored or completed.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>size(<i class="type">int</i> size)</fragment>
+						</h3>
+						<section> Returns a
+  that counts the total number of items emitted by the source  and
+ emits this count as a 32-bit Integer.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section> that emits a single item: the number of items emitted by the source
+          as a 32-bit Integer item</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>skip(<i class="type">long</i> count)</fragment>
+						</h3>
+						<section>
+ <p>
+ Bypasses a specified number of values in an  sequence and then returns the
+ remaining values.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>count</b>
+								<section>A number of values to skip. Zero or negative number will ignore this
+            instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>skip(<i array="var" class="type">V</i> excludes)</fragment>
+						</h3>
+						<section>
+ <p>
+ Alias for skip(I.set(excludes)).
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>excludes</b>
+								<section>A collection of skip items.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>skip(<i class="type" package="java.util">Collection</i><i class="parameters"><i class="type">V</i></i> excludes)</fragment>
+						</h3>
+						<section>
+ <p>
+ Alias for skip(v - excludes.contains(v)).
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>excludes</b>
+								<section>A collection of skip items.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>skip(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
+						</h3>
+						<section>
+ <p>
+ Alias for take(condition.negate()).
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A skip condition.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>skip(<i class="type">V</i> init, <i class="type" package="java.util.function">BiPredicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
+						</h3>
+						<section>
+ <p>
+ Alias for take(init, condition.negate()).
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A skip condition.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>skip(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">C</i></i> contextSupplier, <i class="type" package="java.util.function">BiPredicate</i><i class="parameters"><i class="type">C</i><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
+						</h3>
+						<section>
+  preassign context.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>contextSupplier</b>
+								<section>A  of  specific context.</section>
+							</dd>
+							<dd><b>condition</b>
+								<section>A condition function to apply to each value emitted by this  .
+            <code>null</code> will ignore this instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>skip(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type" package="java.lang">Boolean</i></i> condition)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  consisting of the values of this  that match the
+ given predicate.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>An external boolean . <code>null</code> will ignore this
+            instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>skip(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3>
+						<section>
+ <p>
+ Bypasses a specified duration in an  sequence and then returns the remaining
+ values.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>time</b>
+								<section>Time to skip values. Zero or negative number will ignore this instruction.</section>
+							</dd>
+							<dd><b>unit</b>
+								<section>A unit of time for the specified timeout. <code>null</code> will ignore this
+            instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>skipAll()</fragment>
+						</h3>
+						<section> Skip all items
+ emitted by the source  and only calls  or
+ .</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>An empty  that only calls  or
+         , based on which one is called by the
+         . Observable</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>skipAt(<i class="type" package="java.util.function">LongPredicate</i> condition)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns a specified index values from the start of an  sequence.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A index condition of values to emit.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>skipError()</fragment>
+						</h3>
+						<section> Return the
+  which ignores all errors.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section> which ignores all errors.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>skipError(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">?</i><i class="extends"><i class="type" package="java.lang">Throwable</i></i></i> type)</fragment>
+						</h3>
+						<section> Return the
+  which ignores the specified error.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>type</b>
+								<section>A error type to ignore.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section> which ignores the specified error.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>skipComplete()</fragment>
+						</h3>
+						<section> Return the
+  which ignores complete event.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section> which ignores complete event.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>skipNull()</fragment>
+						</h3>
+						<section>
+ <p>
+ Alias for skip(Objects::isNull).
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>skipUntil(<i class="type">V</i> value)</fragment>
+						</h3>
+						<section>
+ <p>
+ This method is equivalent to the following code.
+ </p>
+ 
+							<pre>
+ skipUntil(v - Objects.equals(v, value));
+ </pre>
+						</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>A value to test each item emitted from the source .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that begins emitting items emitted by the source 
+         when the specified value is coming.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>skipUntil(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> predicate)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that skips all items emitted by the source  as long
+ as a specified condition holds true, but emits all further source items as soon as the
+ condition becomes false.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>predicate</b>
+								<section>A function to test each item emitted from the source .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that begins emitting items emitted by the source 
+         when the specified predicate becomes false.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>skipUntil(<i class="type" package="kiss">Signal</i> timing)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns the values from the source  sequence only after the other
+  sequence produces a value.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>timing</b>
+								<section>The second  that has to emit an item before the source
+             elements begin to be mirrored by the resulting .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that skips items from the source  until the second
+          emits an item, then emits the remaining items.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>skipWhile(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> predicate)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that skips all items emitted by the source  as long
+ as a specified condition holds true, but emits all further source items as soon as the
+ condition becomes false.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>predicate</b>
+								<section>A function to test each item emitted from the source .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that begins emitting items emitted by the source 
+         when the specified predicate becomes false.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>sort(<i class="type" package="java.util">Comparator</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> comparator)</fragment>
+						</h3>
+						<section> Buffer all
+ items until complete event and then soted items will be emitted sequentially.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>comparator</b><p>No description.</p></dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>startWith(<i array="var" class="type">V</i> values)</fragment>
+						</h3>
+						<section>
+ <p>
+ Emit a specified sequence of items before beginning to emit the items from the source
+ .
+ </p>
+ <p>
+ If you want an  to emit a specific sequence of items before it begins emitting
+ the items normally expected from it, apply the StartWith operator to it.
+ </p>
+ <p>
+ If, on the other hand, you want to append a sequence of items to the end of those normally
+ emitted by an , you want the  operator.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>values</b>
+								<section>The values that contains the items you want to emit first.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>startWith(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
+						</h3>
+						<section>
+ <p>
+ Emit a specified sequence of items before beginning to emit the items from the source
+ .
+ </p>
+ <p>
+ If you want an  to emit a specific sequence of items before it begins emitting
+ the items normally expected from it, apply the StartWith operator to it.
+ </p>
+ <p>
+ If, on the other hand, you want to append a sequence of items to the end of those normally
+ emitted by an , you want the  operator.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>The values that contains the items you want to emit first.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>startWith(<i class="type" package="java.util">Enumeration</i><i class="parameters"><i class="type">V</i></i> values)</fragment>
+						</h3>
+						<section>
+ <p>
+ Emit a specified sequence of items before beginning to emit the items from the source
+ .
+ </p>
+ <p>
+ If you want an  to emit a specific sequence of items before it begins emitting
+ the items normally expected from it, apply the StartWith operator to it.
+ </p>
+ <p>
+ If, on the other hand, you want to append a sequence of items to the end of those normally
+ emitted by an , you want the  operator.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>values</b>
+								<section>The values that contains the items you want to emit first.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>startWith(<i class="type" package="java.lang">Iterable</i><i class="parameters"><i class="type">V</i></i> values)</fragment>
+						</h3>
+						<section>
+ <p>
+ Emit a specified sequence of items before beginning to emit the items from the source
+ .
+ </p>
+ <p>
+ If you want an  to emit a specific sequence of items before it begins emitting
+ the items normally expected from it, apply the StartWith operator to it.
+ </p>
+ <p>
+ If, on the other hand, you want to append a sequence of items to the end of those normally
+ emitted by an , you want the  operator.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>values</b>
+								<section>The values that contains the items you want to emit first.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>startWith(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">V</i></i> values)</fragment>
+						</h3>
+						<section>
+ <p>
+ Emit a specified sequence of items before beginning to emit the items from the source
+ .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>values</b>
+								<section>The initial values.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>startWithNull()</fragment>
+						</h3>
+						<section>
+ <p>
+ Emit <code>null</code> item before beginning to emit the items from the source
+ .
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>subscribeOn(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type" package="java.lang">Runnable</i></i> scheduler)</fragment>
+						</h3>
+						<section> Asynchronously
+ subscribes  to this  on the specified scheduler.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>scheduler</b>
+								<section>You specify which scheduler this operator will use.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>switchMap(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type" package="kiss">Signal</i><i class="parameters"><i class="type">R</i></i></i> function)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits items based on applying a function that you supply to
+ each item emitted by the source , where that function returns an 
+ , and then merging the latest resulting  and emitting the results of this
+ merger.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>function</b>
+								<section>A function that, when applied to an item emitted by the source 
+            , returns an .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that emits the result of applying the transformation function to
+         each item emitted by the source  and merging the results of the
+          obtained from this transformation.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>switchVariable(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type">V</i><i class="type" package="kiss">Variable</i><i class="parameters"><i class="type">R</i></i></i> function)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits items based on applying a function that you supply to
+ each item emitted by the source , where that function returns an 
+ , and then merging the latest resulting  and emitting the results of this
+ merger.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>function</b>
+								<section>A function that, when applied to an item emitted by the source 
+            , returns an .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that emits the result of applying the transformation function to
+         each item emitted by the source  and merging the results of the
+          obtained from this transformation.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>switchOn(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type" package="java.lang">Boolean</i></i> timing)</fragment>
+						</h3>
+						<section> Return an
+  that is observed as long as the specified timing  indicates
+ true. When the timing  returns false, the currently subscribed 
+ is immediately disposed.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>timing</b>
+								<section>A timing whether the  is observed or not.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>take(<i class="type">long</i> count)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns a specified number of contiguous values from the start of an  sequence.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>count</b>
+								<section>A number of values to emit. Zero or negative number will ignore this
+            instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>take(<i array="var" class="type">V</i> includes)</fragment>
+						</h3>
+						<section>
+ <p>
+ Alias for take(I.set(includes)).
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>includes</b>
+								<section>A collection of take items.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>take(<i class="type" package="java.util">Collection</i><i class="parameters"><i class="type">V</i></i> includes)</fragment>
+						</h3>
+						<section>
+ <p>
+ Alias for take(v - includes.contains(v)).
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>includes</b>
+								<section>A collection of take items.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>take(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  consisting of the values of this  that match the
+ given predicate.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A function that evaluates the values emitted by the source ,
+            returning true if they pass the filter. <code>null</code> will ignore this
+            instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>take(<i class="type">V</i> init, <i class="type" package="java.util.function">BiPredicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  consisting of the values of this  that match the
+ given predicate.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A function that evaluates the values emitted by the source ,
+            returning true if they pass the filter. <code>null</code> will ignore this
+            instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>take(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">C</i></i> contextSupplier, <i class="type" package="java.util.function">BiPredicate</i><i class="parameters"><i class="type">C</i><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
+						</h3>
+						<section>
+  preassign context.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>contextSupplier</b>
+								<section>A  of  specific context.</section>
+							</dd>
+							<dd><b>condition</b>
+								<section>A condition function to apply to each value emitted by this  .
+            <code>null</code> will ignore this instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>take(<i class="type" package="java.util.function">BooleanSupplier</i> condition)</fragment>
+						</h3>
+						<h3 class="B">
+							<fragment>take(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type" package="java.lang">Boolean</i></i> condition)</fragment>
+						</h3>
+						<h3 class="B">
+							<fragment>take(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type" package="java.lang">Boolean</i></i> condition)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  consisting of the values of this  that match the
+ given predicate.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>An external boolean . <code>null</code> will ignore this
+            instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>take(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  sequence while the specified duration.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>time</b>
+								<section>Time to take values. Zero or negative number will ignore this instruction.</section>
+							</dd>
+							<dd><b>unit</b>
+								<section>A unit of time for the specified timeout. <code>null</code> will ignore this
+            instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>take(<i class="type" package="kiss">Signal</i><i class="parameters"><i class="type" package="java.lang">Boolean</i></i> condition, <i class="type">boolean</i> init)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  consisting of the values of this  that match the
+ given predicate.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>An external boolean . <code>null</code> will ignore this
+            instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>takeAt(<i class="type" package="java.util.function">LongPredicate</i> condition)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns a specified index values from the start of an  sequence.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A index condition of values to emit.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>takeUntil(<i class="type">V</i> value)</fragment>
+						</h3>
+						<section>
+ <p>
+ This method is equivalent to the following code.
+ </p>
+ 
+							<pre>
+ takeUntil(v - Objects.equals(v, value));
+ </pre>
+						</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>A value to test each item emitted from the source .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that first emits items emitted by the source , checks
+         the specified condition after each item, and then completes if the condition is
+         satisfied.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>takeUntil(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits items emitted by the source , checks the
+ specified predicate for each item, and then completes if the condition is satisfied.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A function that evaluates an item emitted by the source  and
+            returns a Boolean.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that first emits items emitted by the source , checks
+         the specified condition after each item, and then completes if the condition is
+         satisfied.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>takeUntil(<i class="type" package="kiss">Signal</i> timing)</fragment>
+						</h3>
+						<section> Returns
+  that emits the items emitted by the source  until a second
+  emits an item.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>timing</b>
+								<section>A  whose first emitted item will cause takeUntil to stop emitting
+            items from the source . <code>null</code> will ignore this.
+            instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A  that emits the items emitted by the source  until such
+         time as other emits its first item.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>takeWhile(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that emits items emitted by the source , checks the
+ specified predicate for each item, and then completes if the condition is satisfied.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A function that evaluates an item emitted by the source  and
+            returns a Boolean.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>An  that first emits items emitted by the source , checks
+         the specified condition after each item, and then completes if the condition is
+         satisfied.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>take(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">C</i></i> contextSupplier, <i class="type" package="java.util.function">BiPredicate</i><i class="parameters"><i class="type">C</i><i class="type">?</i><i class="super"><i class="type">V</i></i></i> condition, <i class="type">boolean</i> expected, <i class="type">boolean</i> stopOnFail, <i class="type">boolean</i> includeOnStop)</fragment>
+						</h3>
+						<section> Take operator
+ helper.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>contextSupplier</b><p>No description.</p></dd>
+							<dd><b>condition</b><p>No description.</p></dd>
+							<dd><b>stopOnFail</b><p>No description.</p></dd>
+							<dd><b>includeOnStop</b><p>No description.</p></dd>
+							<dt>Return</dt>
+							<dd><p>No description.</p></dd>
+						</dl>
+						<h3 class="B">
+							<fragment>timeout(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3>
+						<section> Returns an
+ Signal that mirrors the source Signal but applies a timeout policy for each emitted item. If
+ the next item isn&#39;t emitted preassignin the specified timeout duration starting from its
+ predecessor, the resulting Signal terminates and notifies observers of a
+ .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>time</b>
+								<section>Time to take values. Zero or negative number will ignore this instruction.</section>
+							</dd>
+							<dd><b>unit</b>
+								<section>A unit of time for the specified timeout. <code>null</code> will ignore this
+            instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>timeout(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit, <i class="type" package="java.util.concurrent">ScheduledExecutorService</i> scheduler)</fragment>
+						</h3>
+						<section> Returns an
+ Signal that mirrors the source Signal but applies a timeout policy for each emitted item. If
+ the next item isn&#39;t emitted preassignin the specified timeout duration starting from its
+ predecessor, the resulting Signal terminates and notifies observers of a
+ .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>time</b>
+								<section>Time to take values. Zero or negative number will ignore this instruction.</section>
+							</dd>
+							<dd><b>unit</b>
+								<section>A unit of time for the specified timeout. <code>null</code> will ignore this
+            instruction.</section>
+							</dd>
+							<dd><b>scheduler</b>
+								<section>An event scheduler.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>toggle()</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that applies the boolean values alternately to each item emitted by
+ an  and emits the result. Initial value is true.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>toggle(<i class="type">boolean</i> initial)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that applies the boolean values alternately to each item emitted by
+ an  and emits the result.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>initial</b>
+								<section>A initial boolean value to apply to each value emitted by this .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>toggle(<i array="var" class="type">E</i> values)</fragment>
+						</h3>
+						<section>
+ <p>
+ Returns an  that applies the given two constants alternately to each item
+ emitted by an  and emits the result.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>values</b>
+								<section>A list of constants to apply to each value emitted by this .</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>throttle(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3>
+						<section>
+ <p>
+ Throttles by skipping values until &#34;skipDuration&#34; passes and then emits the next received
+ value.
+ </p>
+ <p>
+ Ignores the values from an  sequence which are followed by another value before
+ due time preassign the specified source and time.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>time</b>
+								<section>Time to wait before sending another item after emitting the last item. Zero or
+            negative number will ignore this instruction.</section>
+							</dd>
+							<dd><b>unit</b>
+								<section>A unit of time for the specified timeout. <code>null</code> will ignore this
+            instruction.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>wait(<i class="type">long</i> time, <i class="type" package="java.util.concurrent">TimeUnit</i> unit)</fragment>
+						</h3>
+						<section> Returns
+  that emits the items emitted by the source  shifted forward in
+ time by a specified delay at current thread. Error notifications from the source
+  are not delayed.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>time</b>
+								<section>The delay to shift the source by.</section>
+							</dd>
+							<dd><b>unit</b>
+								<section>The  in which period is defined.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The source  shifted in time by the specified delay.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>countable(<i class="type" package="kiss">Observer</i> delgator, <i class="type">int</i> count)</fragment>
+						</h3>
+						<section> Create
+ countable completer.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>delgator</b>
+								<section>A complete action.</section>
+							</dd>
+							<dd><b>count</b>
+								<section>A complete count.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>signal(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i></i> emitCondition, <i class="type">T</i> emitOutput, <i class="type">boolean</i> acceptError, <i class="type">T</i> errorOutput, <i class="type">boolean</i> acceptComplete, <i class="type">T</i> completeOuput)</fragment>
+						</h3>
+						<section> Signal
+ detection operator helper.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>emitCondition</b>
+								<section>A value condition.</section>
+							</dd>
+							<dd><b>emitOutput</b>
+								<section>A required condition output.</section>
+							</dd>
+							<dd><b>acceptError</b><p>No description.</p></dd>
+							<dd><b>errorOutput</b><p>No description.</p></dd>
+							<dd><b>acceptComplete</b><p>No description.</p></dd>
+							<dd><b>completeOuput</b><p>No description.</p></dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+					</section>
+				</section>
+			</article>
+			<aside class="H">ASIDE TEXT</aside>
+		</main>
+		<script src="root.js">
+		</script>
+		<script src="main.js">
+		</script>
+	</body>
+</html>

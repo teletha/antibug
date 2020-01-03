@@ -19,6 +19,7 @@ import psychopath.Directory;
 import psychopath.File;
 import psychopath.Locator;
 import stylist.StyleDSL;
+import stylist.StyleDeclarable;
 import stylist.Stylist;
 
 public class SiteBuilder {
@@ -66,7 +67,6 @@ public class SiteBuilder {
     private List<String> protectable = I.list("!**@.*");
 
     /**
-     * 
      * @param rootDirectory
      */
     private SiteBuilder(Directory rootDirectory) {
@@ -138,6 +138,22 @@ public class SiteBuilder {
      * @return A path to the generated file.
      */
     public final String buildCSS(String path, Class<? extends StyleDSL> styles) {
+        initialize();
+
+        String formatted = Stylist.pretty().importNormalizeStyle().styles(styles).format();
+
+        File file = root.file(path);
+        file.write(output -> output.append(formatted));
+        return root.relativize(file).path();
+    }
+
+    /**
+     * Build CSS file and return the path of the generated file.
+     * 
+     * @param styles A style definition class to write.
+     * @return A path to the generated file.
+     */
+    public final String buildCSS(String path, StyleDeclarable styles) {
         initialize();
 
         String formatted = Stylist.pretty().importNormalizeStyle().styles(styles).format();

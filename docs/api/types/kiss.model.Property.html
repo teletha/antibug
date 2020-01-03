@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Antibug</title>
+		<base href="/"/>
+		<link href="main.css" rel="stylesheet"/>
+		<link href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" rel="stylesheet"/>
+		<script src="https://unpkg.com/vue/dist/vue.js">
+		</script>
+		<script src="https://unpkg.com/element-ui/lib/index.js">
+		</script>
+	</head>
+	<body class="F">
+		<header class="K">
+			<h1 class="A">Antibug</h1>
+		</header>
+		<main class="G">
+			<nav class="D" id="typeNavigation">
+				<el-scrollbar :native="false" id="typeList"/>
+			</nav>
+			<article class="J">
+				<section>
+					<h2 class="B">Property</h2>
+					<section><p>
+ This class represents a property of object model.
+ </p>
+ <p>
+ Note: Care should be exercised if  objects are used as keys in a
+  or elements in a  since Property&#39;s natural
+ ordering is inconsistent with equals. See ,  or
+  for more information.
+ </p></section>
+					<h2 class="B">Constructor</h2>
+					<section>
+						<h3 class="B">
+							<fragment>Property(<i class="type" package="kiss.model">Model</i> model, <i class="type" package="java.lang">String</i> name, <i array="var" class="type">T</i> elements)</fragment>
+						</h3>
+						<section>Create a property.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>T</b>
+								<section>The type which can treat as . (i.e.  or )</section>
+							</dd>
+							<dd><b>model</b>
+								<section>A model that this property belongs to.</section>
+							</dd>
+							<dd><b>name</b>
+								<section>A property name.</section>
+							</dd>
+						</dl>
+					</section>
+					<h2 class="B">Methods</h2>
+					<section>
+						<h3 class="B">
+							<fragment>compareTo(<i class="type" package="kiss.model">Property</i> o)</fragment>
+						</h3><p>No description.</p>
+						<h3 class="B">
+							<fragment>isAttribute()</fragment>
+						</h3>
+						<section>Decide whether this object model can be Attribute or not.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A result.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>getAnnotation(<i class="type" package="java.lang">Class</i><i class="parameters"><i class="type">A</i></i> annotationClass)</fragment>
+						</h3>
+						<section><p>
+ Returns this property&#39;s annotation for the specified type if such an annotation is present,
+ else null.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>annotationClass</b>
+								<section>A Class object corresponding to the annotation type</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>This property&#39;s annotation for the specified annotation type if present on this
+         element, else null</section>
+							</dd>
+						</dl>
+					</section>
+				</section>
+			</article>
+			<aside class="H">ASIDE TEXT</aside>
+		</main>
+		<script src="root.js">
+		</script>
+		<script src="main.js">
+		</script>
+	</body>
+</html>

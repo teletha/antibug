@@ -1,19 +1,91 @@
 @import url("http://fonts.googleapis.com/css?family=Oswald");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 121286266 */.super::before {
-	content: ' super ';
-}
-
-/* 1255983489 */.extends::before {
+/* 1089558406 */.extends::before {
 	content: ' extends ';
 }
 
-/* 1325322464 */.type {
+/* 1096084691 */section {
+	margin-bottom: 6px;
+}
+
+/* 1096084691 */section > p {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 0;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(203,91%,56%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* 1096084691 */section > pre {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 0;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* 1096084691 */section > ul {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 0;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* 1096084691 */section > ol {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 0;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* 1927966667 */.super::before {
+	content: ' super ';
+}
+
+/* 1977178983 */.parameters::before {
+	content: '<';
+}
+
+/* 1977178983 */.parameters::after {
+	content: '>';
+}
+
+/* 313142474 */.type {
 	cursor: pointer;
 	color: hsl(215,16%,44%);
 }
 
-/* 1602363550 */dl {
+/* 711355534 */dl {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -29,7 +101,7 @@
 	background-color: hsla(0,0%,0%,0);
 }
 
-/* 1602363550 */dl dt {
+/* 711355534 */dl dt {
 	display: block;
 	width: 70px;
 	float: left;
@@ -41,12 +113,12 @@
 	text-transform: capitalize;
 }
 
-/* 1602363550 */dl dd {
+/* 711355534 */dl dd {
 	margin-bottom: 15px;
 	margin-left: 70px;
 }
 
-/* 1602363550 */dl b {
+/* 711355534 */dl b {
 	display: block;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
@@ -56,92 +128,19 @@
 	font-weight: bold;
 }
 
-/* 1922920162 */.parameters::before {
-	content: '<';
-}
-
-/* 1922920162 */.parameters::after {
-	content: '>';
-}
-
-/* 556094301 */section {
-	margin-bottom: 6px;
-}
-
-/* 556094301 */section > p {
-	margin-top: 2px;
-	margin-bottom: 2px;
-	margin-left: 0;
-	padding-top: 6px;
-	padding-bottom: 6px;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(203,91%,56%);
+/* antibug.doc.Styles#lambda$0 */.F {
+	font-size: 13px;
+	font-family: "Segoe UI",sans-serif;
+	color: hsl(215,16%,44%);
 	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
+	width: 100vw;
 }
 
-/* 556094301 */section > pre {
-	margin-top: 2px;
-	margin-bottom: 2px;
-	margin-left: 0;
-	padding-top: 6px;
-	padding-bottom: 6px;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(120,39%,55%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
-}
-
-/* 556094301 */section > ul {
-	margin-top: 2px;
-	margin-bottom: 2px;
-	margin-left: 0;
-	padding-top: 6px;
-	padding-bottom: 6px;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
-}
-
-/* 556094301 */section > ol {
-	margin-top: 2px;
-	margin-bottom: 2px;
-	margin-left: 0;
-	padding-top: 6px;
-	padding-bottom: 6px;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
-}
-
-/* antibug.doc.Styles#article */.H {
-	flex-grow: 3;
-	-webkit-flex-grow: 3;
-	margin-right: auto;
-	margin-left: auto;
-	padding-left: 20px;
-	padding-right: 20px;
-}
-
-/* antibug.doc.Styles#header */.G {
+/* antibug.doc.Styles#lambda$1 */.K {
 	background-color: hsl(0,0%,100%);
 	position: sticky;
 	top: 0;
-	max-width: 1200px;
+	width: 85vw;
 	height: 80px;
 	z-index: 10;
 	margin-right: auto;
@@ -151,7 +150,11 @@
 	border-bottom-style: solid;
 }
 
-/* antibug.doc.Styles#heading */.I {
+/* antibug.doc.Styles#lambda$10 */.I {
+	display: block;
+}
+
+/* antibug.doc.Styles#lambda$18 */.B {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
@@ -160,7 +163,14 @@
 	display: block;
 }
 
-/* antibug.doc.Styles#list */.A {
+/* antibug.doc.Styles#lambda$2 */.A {
+	font-size: 1.5rem;
+	font-family: Oswald;
+	font-weight: normal;
+	color: hsl(203,91%,56%);
+}
+
+/* antibug.doc.Styles#lambda$24 */.E {
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 0;
@@ -176,43 +186,44 @@
 	background-color: hsla(48,95%,59%,0.19999999999999996);
 }
 
-/* antibug.doc.Styles#main */.E {
-	max-width: 1200px;
+/* antibug.doc.Styles#lambda$3 */.G {
+	width: 85vw;
 	display: flex;
 	flex-direction: row;
 	margin-right: auto;
 	margin-left: auto;
 }
 
-/* antibug.doc.Styles#nav */.B {
-	width: 240px;
-	display: flex;
-	flex-direction: column;
+/* antibug.doc.Styles#lambda$4 */.J {
+	flex-grow: 1;
+	-webkit-flex-grow: 1;
 }
 
-/* antibug.doc.Styles#nav */.B .type {
+/* antibug.doc.Styles#lambda$6 */.D {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 190px;
+	-webkit-flex-basis: 190px;
+	flex-shrink: 0;
+	-webkit-flex-shrink: 0;
+}
+
+/* antibug.doc.Styles#lambda$6 */.D .type {
 	display: block;
 	text-decoration: none;
 }
 
-/* antibug.doc.Styles#productTitle */.D {
-	font-size: 1.5rem;
-	font-family: Oswald;
-	font-weight: normal;
-	color: hsl(203,91%,56%);
+/* antibug.doc.Styles#lambda$8 */.C {
+	flex-basis: 640px;
+	-webkit-flex-basis: 640px;
+	flex-shrink: 1;
+	-webkit-flex-shrink: 1;
 }
 
-/* antibug.doc.Styles#selector */.C {
-	display: block;
-}
-
-/* antibug.doc.Styles#workbench */.F {
-	font-size: 13px;
-	font-family: "Segoe UI",sans-serif;
-	color: hsl(215,16%,44%);
-	line-height: 1.5;
-	max-width: 1200px;
-	margin-right: auto;
-	margin-left: auto;
+/* antibug.doc.Styles#lambda$9 */.H {
+	flex-basis: 240px;
+	-webkit-flex-basis: 240px;
+	flex-shrink: 0;
+	-webkit-flex-shrink: 0;
 }
 

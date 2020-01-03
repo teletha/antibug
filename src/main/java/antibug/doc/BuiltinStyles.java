@@ -12,16 +12,18 @@ package antibug.doc;
 import java.io.IOException;
 
 import kiss.WiseFunction;
+import stylist.AbstractStyleDSL;
 import stylist.Style;
-import stylist.StyleDSL;
 import stylist.Stylist;
 import stylist.value.Color;
 import stylist.value.Font;
 import stylist.value.Numeric;
 
-public interface BuiltinStyles extends StyleDSL {
+public class BuiltinStyles extends AbstractStyleDSL {
 
-    Font IconFont = Font.fromGoogle("Material Icons");
+    Color paragraph = Color.rgb(31, 141, 214);
+
+    private final Font IconFont = Font.fromGoogle("Material Icons");
 
     Font HeadFont = Font.fromGoogle("Oswald");
 
@@ -43,8 +45,6 @@ public interface BuiltinStyles extends StyleDSL {
 
     double LineHeight = 1.5;
 
-    Color ParagraphColor = Color.rgb(31, 141, 214);
-
     Color ListColor = Color.rgb(250, 210, 50);
 
     Color SignatureColor = Color.rgb(221, 81, 76);
@@ -56,7 +56,7 @@ public interface BuiltinStyles extends StyleDSL {
      * 
      * @param color
      */
-    private static void block(Color color, boolean paintBackground) {
+    private void block(Color color, boolean paintBackground) {
         margin.vertical(BlockInterval).left(0, px);
         padding.vertical(BlockVerticalGap).horizontal(BlockHorizontalGap);
         border.left.width(BlockBorderWidth).solid().color(color);
@@ -85,7 +85,7 @@ public interface BuiltinStyles extends StyleDSL {
 
     Style p = Style.named("p", () -> {
         $.not($.attr("class").exist(), () -> {
-            block(ParagraphColor, false);
+            block(paragraph, false);
         });
     });
 
@@ -148,7 +148,6 @@ public interface BuiltinStyles extends StyleDSL {
      *            iayiudaidydsiu uh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu iayiudaidydsiu
      * @return A located present file. uh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu uh
      *         ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu iayiudaidydsiu iayiudaidydsiu
-     * 
      * @see String
      */
     Style dl = Style.named("dl", () -> {
@@ -323,7 +322,6 @@ public interface BuiltinStyles extends StyleDSL {
      *            iayiudaidydsiu uh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu iayiudaidydsiu
      * @return A located present file. uh ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu uh
      *         ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu iayiudaidydsiu iayiudaidydsiu
-     * 
      * @see String
      */
     public static void main(String[] args) throws IOException {

@@ -67,15 +67,15 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
 
             @Override
             protected void contents() {
-                $("h2", Styles.heading, text(info.name));
+                $("h2", styles.heading, text(info.name));
                 $(html(info.comment));
 
-                $("h2", Styles.heading, text("Constructor"));
-                $("section", Styles.section, () -> {
+                $("h2", styles.heading, text("Constructor"));
+                $("section", styles.section, () -> {
                     for (ExecutableInfo constructor : info.constructors) {
-                        $("h3", Styles.heading, signature(constructor));
+                        $("h3", styles.heading, signature(constructor));
                         $(html(constructor.comment));
-                        $("dl", Styles.dl, () -> {
+                        $("dl", styles.dl, () -> {
                             if (!constructor.paramTags.isEmpty()) {
                                 $("dt", text("Parameters"));
                                 for (Ⅱ<String, XML> param : constructor.paramTags) {
@@ -89,14 +89,14 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
                     }
                 });
 
-                $("h2", Styles.heading, text("Methods"));
-                $("section", Styles.section, () -> {
+                $("h2", styles.heading, text("Methods"));
+                $("section", styles.section, () -> {
                     for (MethodInfo method : info.methods) {
-                        $("h3", Styles.heading, signature(method));
+                        $("h3", styles.heading, signature(method));
                         $(method.comment.v);
 
                         if (!method.paramTags.isEmpty() || method.returnTag.isPresent()) {
-                            $("dl", Styles.dl, () -> {
+                            $("dl", styles.dl, () -> {
                                 if (!method.paramTags.isEmpty()) {
                                     $("dt", text("Parameters"));
                                     for (Ⅱ<String, XML> param : method.paramTags) {
@@ -169,46 +169,49 @@ public class AntibugJavadoc extends AntibugDocumentationTool<AntibugJavadoc> {
      * 
      */
     class BaseHTML extends HTML {
+
+        protected final Styles styles = I.make(Styles.class);
+
         {
             $("html", () -> {
                 $("head", () -> {
                     $("meta", attr("charset", "UTF-8"));
                     $("title", text(productName));
                     $("base", attr("href", "/"));
-                    stylesheet("main.css", Styles.class);
+                    stylesheet("main.css", styles);
                     stylesheet("https://unpkg.com/element-ui/lib/theme-chalk/index.css");
                     script("https://unpkg.com/vue/dist/vue.js");
                     script("https://unpkg.com/element-ui/lib/index.js");
                 });
-                $("body", Styles.workbench, () -> {
+                $("body", styles.workbench, () -> {
                     // =============================
                     // Top Navigation
                     // =============================
-                    $("header", Styles.header, () -> {
-                        $("h1", Styles.productTitle, text(productName));
+                    $("header", styles.header, () -> {
+                        $("h1", styles.productTitle, text(productName));
                     });
 
-                    $("main", Styles.main, () -> {
+                    $("main", styles.main, () -> {
                         // =============================
                         // Left Side Navigation
                         // =============================
-                        $("nav", id("typeNavigation"), Styles.nav, () -> {
+                        $("nav", id("typeNavigation"), styles.nav, () -> {
                             $("el-scrollbar", id("typeList"), attr(":native", false));
                         });
 
                         // =============================
                         // Main Contents
                         // =============================
-                        $("article", Styles.article, () -> {
+                        $("article", styles.article, () -> {
                             $("section", () -> {
                                 contents();
                             });
-
-                            // =============================
-                            // Right Side Navigation
-                            // =============================
-                            $("aside", text("ASIDE TEXT"));
                         });
+
+                        // =============================
+                        // Right Side Navigation
+                        // =============================
+                        $("aside", styles.toc, text("ASIDE TEXT"));
                     });
 
                     script("root.js", data);

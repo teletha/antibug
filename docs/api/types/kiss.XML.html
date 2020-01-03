@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Antibug</title>
+		<base href="/"/>
+		<link href="main.css" rel="stylesheet"/>
+		<link href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" rel="stylesheet"/>
+		<script src="https://unpkg.com/vue/dist/vue.js">
+		</script>
+		<script src="https://unpkg.com/element-ui/lib/index.js">
+		</script>
+	</head>
+	<body class="F">
+		<header class="K">
+			<h1 class="A">Antibug</h1>
+		</header>
+		<main class="G">
+			<nav class="D" id="typeNavigation">
+				<el-scrollbar :native="false" id="typeList"/>
+			</nav>
+			<article class="J">
+				<section>
+					<h2 class="B">XML</h2>
+					<h2 class="B">Constructor</h2>
+					<section>
+						<h3 class="B">
+							<fragment>XML(<i class="type" package="org.w3c.dom">Document</i> doc, <i class="type" package="java.util">List</i> nodes)</fragment>
+						</h3>
+						<section><p>
+ From node set.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>doc</b>
+								<section>A parent document.</section>
+							</dd>
+							<dd><b>nodes</b>
+								<section>A current node set.</section>
+							</dd>
+						</dl>
+					</section>
+					<h2 class="B">Methods</h2>
+					<section>
+						<h3 class="B">
+							<fragment>accept(<i class="type" package="kiss">XML</i> parent)</fragment>
+						</h3>
+						<section>Inserts this XML as a child element for the specified parent element.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>parent</b>
+								<section>A parent element.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>append(<i class="type" package="java.lang">Object</i> xml)</fragment>
+						</h3>
+						<section><p>
+ Insert content, specified by the parameter, to the end of each element in the set of matched
+ elements.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>xml</b>
+								<section>A element set to append.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>prepend(<i class="type" package="java.lang">Object</i> xml)</fragment>
+						</h3>
+						<section><p>
+ Insert content, specified by the parameter, to the beginning of each element in the set of
+ matched elements.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>xml</b>
+								<section>A element set to prepend.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>before(<i class="type" package="java.lang">Object</i> xml)</fragment>
+						</h3>
+						<section><p>
+ Insert content, specified by the parameter, before each element in the set of matched
+ elements.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>xml</b>
+								<section>A element set to add.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>after(<i class="type" package="java.lang">Object</i> xml)</fragment>
+						</h3>
+						<section><p>
+ Insert content, specified by the parameter, after each element in the set of matched
+ elements.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>xml</b>
+								<section>A element set to add</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>empty()</fragment>
+						</h3>
+						<section><p>
+ Remove all child nodes of the set of matched elements from the DOM.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>remove()</fragment>
+						</h3>
+						<section><p>
+ Remove the set of matched elements from the DOM.
+ </p>
+ <p>
+ Similar to , the  method takes elements out of the DOM. Use
+  when you want to remove the element itself, as well as everything inside
+ it.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>wrap(<i class="type" package="java.lang">Object</i> xml)</fragment>
+						</h3>
+						<section><p>
+ Wrap an HTML structure around each element in the set of matched elements.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>xml</b>
+								<section>A element set to wrap.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>wrapAll(<i class="type" package="java.lang">Object</i> xml)</fragment>
+						</h3>
+						<section><p>
+ Wrap an HTML structure around all elements in the set of matched elements.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>xml</b>
+								<section>A element set to wrap.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>clone()</fragment>
+						</h3>
+						<section><p>
+ Create a deep copy of the set of matched elements.
+ </p>
+ <p>
+ The .clone() method performs a deep copy of the set of matched elements, meaning that it
+ copies the matched elements as well as all of their descendant elements and text nodes. When
+ used in conjunction with one of the insertion methods, .clone() is a convenient way to
+ duplicate elements on a page.
+ </p>
+ </section>
+						<h3 class="B">
+							<fragment>text()</fragment>
+						</h3>
+						<section><p>
+ Get the combined text contents of each element in the set of matched elements, including
+ their descendants.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>text(<i class="type" package="java.lang">String</i> text)</fragment>
+						</h3>
+						<section><p>
+ Set the content of each element in the set of matched elements to the specified text.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>text</b>
+								<section>A text to set.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>name()</fragment>
+						</h3>
+						<section><p>
+ Get the element name for the first element in the set of matched elements.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>An element name.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>attr(<i class="type" package="java.lang">String</i> name)</fragment>
+						</h3>
+						<section><p>
+ Get the value of an attribute for the first element in the set of matched elements.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>name</b>
+								<section>An attribute name.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>attr(<i class="type" package="java.lang">String</i> name, <i class="type" package="java.lang">Object</i> value)</fragment>
+						</h3>
+						<section><p>
+ Set one or more attributes for the set of matched elements.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>name</b>
+								<section>An attribute name.</section>
+							</dd>
+							<dd><b>value</b>
+								<section>An attribute value.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>addClass(<i class="type" package="java.lang">String</i> names)</fragment>
+						</h3>
+						<section><p>
+ Adds the specified class(es) to each of the set of matched elements.
+ </p>
+ <p>
+ It&#39;s important to note that this method does not replace a class. It simply adds the class,
+ appending it to any which may already be assigned to the elements. More than one class may be
+ added at a time, separated by a space, to the set of matched elements.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>names</b>
+								<section>Space separated class name list.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>removeClass(<i class="type" package="java.lang">String</i> names)</fragment>
+						</h3>
+						<section><p>
+ Remove a single class, multiple classes, or all classes from each element in the set of
+ matched elements.
+ </p>
+ <p>
+ If a class name is included as a parameter, then only that class will be removed from the set
+ of matched elements. If no class names are specified in the parameter, all classes will be
+ removed. More than one class may be removed at a time, separated by a space, from the set of
+ matched elements.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>names</b>
+								<section>Space separated class name list.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>toggleClass(<i class="type" package="java.lang">String</i> name)</fragment>
+						</h3>
+						<section><p>
+ Add or remove one class from each element in the set of matched elements, depending on either
+ the class&#39;s presence or the value of the switch argument.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>name</b>
+								<section>A class name.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>hasClass(<i class="type" package="java.lang">String</i> name)</fragment>
+						</h3>
+						<section><p>
+ Determine whether any of the matched elements are assigned the given class.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>name</b>
+								<section>A class name.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>first()</fragment>
+						</h3>
+						<section><p>
+ Reduce the set of matched elements to the first in the set.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>last()</fragment>
+						</h3>
+						<section><p>
+ Reduce the set of matched elements to the final one in the set.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>child(<i class="type" package="java.lang">String</i> name)</fragment>
+						</h3>
+						<section><p>
+ Append new child element with the specified name and traverse into them.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>name</b>
+								<section>A child element name.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A created child elements.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>children()</fragment>
+						</h3>
+						<section><p>
+ Get the children of each element in the current set of matched elements.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A set of children elements.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>firstChild()</fragment>
+						</h3>
+						<section><p>
+ Get the last child element of each element in the current set of matched elements.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A set of fisrt elements.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>lastChild()</fragment>
+						</h3>
+						<section><p>
+ Get the last child element of each element in the current set of matched elements.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A set of last elements.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>parent()</fragment>
+						</h3>
+						<section><p>
+ Get the parent of each element in the current set of matched elements.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A set of parent elements.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>prev()</fragment>
+						</h3>
+						<section><p>
+ Get the previous sibling element of each element in the current set of matched elements.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A set of previous elements.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>next()</fragment>
+						</h3>
+						<section><p>
+ Get the next sibling element of each element in the current set of matched elements.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A set of next elements.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>find(<i class="type" package="java.util.function">UnaryOperator</i><i class="parameters"><i class="type" package="org.w3c.dom">Node</i></i> selector)</fragment>
+						</h3>
+						<section><p>
+ Get the descendants of each element in the current set of matched elements, filtered by
+  selector.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>selector</b><p>No description.</p></dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>find(<i class="type" package="java.lang">String</i> selector)</fragment>
+						</h3>
+						<section><p>
+ Get the descendants of each element in the current set of matched elements, filtered by a css
+ selector.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>selector</b>
+								<section>A string containing a css selector expression to match elements against.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>size()</fragment>
+						</h3>
+						<section><p>
+ Return size of the current node set.
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A size of current node set.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>effect(<i class="type" package="kiss">WiseFunction</i><i class="parameters"><i class="type" package="kiss">XML</i><i class="type">R</i></i> process)</fragment>
+						</h3>
+						<section>Apply the specified process to this . This is helpful for fluent method chain to
+ intercept your own operation.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>process</b><p>No description.</p></dd>
+							<dt>Return</dt>
+							<dd><p>No description.</p></dd>
+						</dl>
+						<h3 class="B">
+							<fragment>iterator()</fragment>
+						</h3><p>No description.</p>
+						<h3 class="B">
+							<fragment>to()</fragment>
+						</h3>
+						<section><p>
+ Convert the first element to .
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A first  or <code>null</code>.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>to(<i class="type" package="java.lang">Appendable</i> output)</fragment>
+						</h3>
+						<section><p>
+ Write this element to the specified output with the simple format option.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>output</b>
+								<section>An output channel.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>to(<i class="type" package="java.lang">Appendable</i> output, <i class="type" package="java.lang">String</i> indent, <i array="var" class="type" package="java.lang">String</i> inlineAndNonEmpty)</fragment>
+						</h3>
+						<section><p>
+ Write this element to the specified output with your format settings.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>output</b>
+								<section>An output channel.</section>
+							</dd>
+							<dd><b>indent</b>
+								<section>Specify the indentation string to use when formatting. If null is specified,
+            formatting will not be performed.</section>
+							</dd>
+							<dd><b>inlineAndNonEmpty</b>
+								<section>At the time of formatting, the element with the specified name is
+            regarded as an inline element, and line breaks and indentation are not performed
+            on the surrounding elements. Also, if an element whose name starts with &#34;&#34; is
+            specified, it will not be treated as an empty element and will always have a start
+            tag and end tag.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>to(<i class="type" package="org.w3c.dom">Node</i> node, <i class="type" package="java.lang">Appendable</i> output, <i class="type" package="java.lang">String</i> indent, <i class="type">int</i> level, <i class="type">boolean</i> block, <i class="type" package="java.util">Set</i><i class="parameters"><i class="type" package="java.lang">String</i></i> inlines)</fragment>
+						</h3>
+						<section>Serialize DOM with your pretty format.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>node</b>
+								<section>A target  to serialize.</section>
+							</dd>
+							<dd><b>output</b>
+								<section>An output channel.</section>
+							</dd>
+							<dd><b>indent</b>
+								<section>Specify the indentation string to use when formatting. If null is specified,
+            formatting will not be performed.</section>
+							</dd>
+							<dd><b>level</b>
+								<section>A current indent level.</section>
+							</dd>
+							<dd><b>block</b>
+								<section>Indicates whether the previous element is a block element.</section>
+							</dd>
+							<dd><b>inlines</b>
+								<section>At the time of formatting, the element with the specified name is regarded as
+            an inline element, and line breaks and indentation are not performed on the
+            surrounding elements. Also, if an element whose name starts with &#34;&#34; is specified,
+            it will not be treated as an empty element and will always have a start tag and
+            end tag.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Indicates whether the current element is a block element.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>escape(<i class="type" package="java.lang">String</i> s)</fragment>
+						</h3>
+						<section>Escape XML special characters.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>s</b>
+								<section>A target literal.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd><p>No description.</p></dd>
+						</dl>
+						<h3 class="B">
+							<fragment>toString()</fragment>
+						</h3><p>No description.</p>
+						<h3 class="B">
+							<fragment>convert(<i class="type" package="kiss">XML</i> xml)</fragment>
+						</h3>
+						<section><p>
+ Helper method to convert  to single .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>xml</b><p>No description.</p></dd>
+							<dt>Return</dt>
+							<dd><p>No description.</p></dd>
+						</dl>
+						<h3 class="B">
+							<fragment>convert(<i class="type" package="org.w3c.dom">NodeList</i> list)</fragment>
+						</h3>
+						<section><p>
+ Helper method to convert  to single .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>list</b>
+								<section>A  to convert.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd><p>No description.</p></dd>
+						</dl>
+						<h3 class="B">
+							<fragment>compile(<i class="type" package="java.lang">String</i> selector)</fragment>
+						</h3>
+						<section><p>
+ Compile and cache the specified selector.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>selector</b>
+								<section>A css selector.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A compiled xpath expression.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>convert(<i class="type" package="java.lang">String</i> selector)</fragment>
+						</h3>
+						<section><p>
+ Helper method to convert css selector to xpath.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>selector</b>
+								<section>A css selector.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A xpath.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>parse(<i array="fix" class="type">byte</i> raw, <i class="type" package="java.nio.charset">Charset</i> encoding)</fragment>
+						</h3>
+						<section><p>
+ Parse HTML and build .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>raw</b>
+								<section>The raw date of HTML.</section>
+							</dd>
+							<dd><b>encoding</b>
+								<section>The charset to parse.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>test(<i class="type" package="java.lang">String</i> until)</fragment>
+						</h3>
+						<section><p>
+ Check whether the current sequence is started with the specified characters or not. If it is
+ matched, cursor positioning step into it.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>until</b>
+								<section>A condition.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A result.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>next(<i class="type" package="java.lang">String</i> until)</fragment>
+						</h3>
+						<section><p>
+ Consume the next run of characters until the specified sequence will be appered.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>until</b>
+								<section>A target character sequence. (include this sequence)</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A consumed character sequence. (exclude the specified sequence)</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>nextName()</fragment>
+						</h3>
+						<section><p>
+ Consume an identical name. (word or :, _, -)
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>An identical name for XML.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>nextSpace()</fragment>
+						</h3>
+						<section><p>
+ Consume the next run of whitespace characters.
+ </p></section>
+					</section>
+				</section>
+			</article>
+			<aside class="H">ASIDE TEXT</aside>
+		</main>
+		<script src="root.js">
+		</script>
+		<script src="main.js">
+		</script>
+	</body>
+</html>

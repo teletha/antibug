@@ -1,146 +1,149 @@
 const root = {
 	"modules": [],
 	"packages": [
-		"antibug",
-		"antibug.bytecode",
-		"antibug.doc",
-		"antibug.doc.site",
-		"antibug.powerassert",
-		"antibug.profiler",
-		"org.junit.jupiter.engine.descriptor"
+		"kiss",
+		"kiss.model"
 	],
 	"types": [
 		{
-			"name": "Agent",
-			"packageName": "antibug.bytecode"
+			"name": "Accessor",
+			"packageName": "kiss"
 		},
 		{
-			"name": "Agent.Translator",
-			"packageName": "antibug.bytecode"
+			"name": "Decoder",
+			"packageName": "kiss"
 		},
 		{
-			"name": "AntibugDocumentationTool",
-			"packageName": "antibug.doc"
+			"name": "Disposable",
+			"packageName": "kiss"
 		},
 		{
-			"name": "AntibugDocumentationTool.Internal",
-			"packageName": "antibug.doc"
+			"name": "Encoder",
+			"packageName": "kiss"
 		},
 		{
-			"name": "AntibugJavadoc",
-			"packageName": "antibug.doc"
+			"name": "Extensible",
+			"packageName": "kiss"
 		},
 		{
-			"name": "BuiltinStyles",
-			"packageName": "antibug.doc"
+			"name": "ExtensionFactory",
+			"packageName": "kiss"
 		},
 		{
-			"name": "Bytecode",
-			"packageName": "antibug.bytecode"
+			"name": "I",
+			"packageName": "kiss"
 		},
 		{
-			"name": "Chronus",
-			"packageName": "antibug"
+			"name": "JSON",
+			"packageName": "kiss"
 		},
 		{
-			"name": "Chronus.Task",
-			"packageName": "antibug"
+			"name": "Lifestyle",
+			"packageName": "kiss"
 		},
 		{
-			"name": "ClassInfo",
-			"packageName": "antibug.doc"
+			"name": "Managed",
+			"packageName": "kiss"
 		},
 		{
-			"name": "CleanRoom",
-			"packageName": "antibug"
+			"name": "Model",
+			"packageName": "kiss.model"
 		},
 		{
-			"name": "CleanRoom.FileSystemDSL",
-			"packageName": "antibug"
+			"name": "Narrow",
+			"packageName": "kiss"
 		},
 		{
-			"name": "CommandLineUser",
-			"packageName": "antibug"
+			"name": "Observer",
+			"packageName": "kiss"
 		},
 		{
-			"name": "Constant",
-			"packageName": "antibug.bytecode"
+			"name": "Property",
+			"packageName": "kiss.model"
 		},
 		{
-			"name": "DocumentInfo",
-			"packageName": "antibug.doc"
+			"name": "Prototype",
+			"packageName": "kiss"
 		},
 		{
-			"name": "ExecutableInfo",
-			"packageName": "antibug.doc"
+			"name": "Signal",
+			"packageName": "kiss"
 		},
 		{
-			"name": "FieldInfo",
-			"packageName": "antibug.doc"
+			"name": "Signaling",
+			"packageName": "kiss"
 		},
 		{
-			"name": "HTML",
-			"packageName": "antibug.doc.site"
+			"name": "Singleton",
+			"packageName": "kiss"
 		},
 		{
-			"name": "Instruction",
-			"packageName": "antibug.bytecode"
+			"name": "Storable",
+			"packageName": "kiss"
 		},
 		{
-			"name": "IntValue",
-			"packageName": "antibug.bytecode"
+			"name": "ThreadSpecific",
+			"packageName": "kiss"
 		},
 		{
-			"name": "LocalVariable",
-			"packageName": "antibug.bytecode"
+			"name": "Tree",
+			"packageName": "kiss"
 		},
 		{
-			"name": "MethodCall",
-			"packageName": "antibug.bytecode"
+			"name": "TreeNode",
+			"packageName": "kiss"
 		},
 		{
-			"name": "MethodInfo",
-			"packageName": "antibug.doc"
+			"name": "Variable",
+			"packageName": "kiss"
 		},
 		{
-			"name": "ParameterizableInfo",
-			"packageName": "antibug.doc"
+			"name": "Wise",
+			"packageName": "kiss"
 		},
 		{
-			"name": "PowerAssert",
-			"packageName": "antibug.powerassert"
+			"name": "WiseBiConsumer",
+			"packageName": "kiss"
 		},
 		{
-			"name": "PowerAssertContext",
-			"packageName": "antibug.powerassert"
+			"name": "WiseBiFunction",
+			"packageName": "kiss"
 		},
 		{
-			"name": "PowerAssertOff",
-			"packageName": "antibug.powerassert"
+			"name": "WiseConsumer",
+			"packageName": "kiss"
 		},
 		{
-			"name": "PowerAssertRenderer",
-			"packageName": "antibug.powerassert"
+			"name": "WiseFunction",
+			"packageName": "kiss"
 		},
 		{
-			"name": "PowerAssertionError",
-			"packageName": "antibug.powerassert"
+			"name": "WiseRunnable",
+			"packageName": "kiss"
 		},
 		{
-			"name": "Profiler",
-			"packageName": "antibug.profiler"
+			"name": "WiseSupplier",
+			"packageName": "kiss"
 		},
 		{
-			"name": "Profiler.Result",
-			"packageName": "antibug.profiler"
+			"name": "WiseTriConsumer",
+			"packageName": "kiss"
 		},
 		{
-			"name": "SiteBuilder",
-			"packageName": "antibug.doc.site"
+			"name": "WiseTriFunction",
+			"packageName": "kiss"
 		},
 		{
-			"name": "TestMethodTestDescriptor",
-			"packageName": "org.junit.jupiter.engine.descriptor"
+			"name": "XML",
+			"packageName": "kiss"
+		},
+		{
+			"name": "Ⅱ",
+			"packageName": "kiss"
+		},
+		{
+			"name": "Ⅲ",
+			"packageName": "kiss"
 		}
 	]
 }

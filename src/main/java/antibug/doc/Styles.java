@@ -9,92 +9,87 @@
  */
 package antibug.doc;
 
+import stylist.AbstractStyleDSL;
 import stylist.Style;
-import stylist.StyleDSL;
 import stylist.value.Color;
+import stylist.value.ColorPalette;
 import stylist.value.Font;
+import stylist.value.FontPalette;
 import stylist.value.Numeric;
 
 /**
  * 
  */
-interface Styles extends StyleDSL {
+class Styles extends AbstractStyleDSL {
+
+    private static final ColorPalette palette = ColorPalette.with.primary($.rgb(40, 165, 245))
+            .secondary($.rgb(250, 210, 50))
+            .accent($.rgb(221, 81, 76))
+            .background($.rgb(241, 250, 238))
+            .font($.rgb(94, 109, 130));
+
+    private static final FontPalette fonts = FontPalette.with.base(new Font("Yu Gothic UI", "")).title(Font.fromGoogle("Oswald"));
 
     // color palette - https://coolors.co/e63946-f1faee-a8dadc-457b9d-1d3557
-    Color BackColor = Color.rgb(241, 250, 238);
-
-    Color SecondColor = Color.rgb(168, 218, 220);
-
-    Color AccentColor = Color.rgb(69, 123, 157);
-
-    Color DarkColor = Color.rgb(29, 53, 87);
-
-    Color FontColor = Color.rgb(94, 109, 130);
-
-    Color ParagraphColor = Color.rgb(40, 165, 245);
-
-    Color ListColor = Color.rgb(250, 210, 50);
-
-    Color SignatureColor = Color.rgb(221, 81, 76);
-
-    Color CodeColor = Color.rgb(94, 185, 94);
-
-    Font BodyFont = new Font("Yu Gothic UI", "");
-
-    Font HeadFont = Font.fromGoogle("Oswald");
 
     Numeric FontSize = Numeric.of(13, px);
 
     Numeric HeaderHeight = Numeric.of(80, px);
 
-    Numeric MaxWidth = Numeric.of(1200, px);
+    Numeric MaxWidth = Numeric.of(85, vw);
 
-    Numeric LeftNaviWidth = Numeric.of(240, px);
+    Numeric LeftNaviWidth = Numeric.of(190, px);
 
     double LineHeight = 1.5;
 
     Style workbench = () -> {
-        font.size(FontSize).family("Segoe UI", Font.SansSerif).color(FontColor);
+        font.size(FontSize).family("Segoe UI", Font.SansSerif).color(palette.font);
         line.height(LineHeight);
-        display.maxWidth(MaxWidth);
-        margin.auto();
+        display.width(100, vw);
     };
 
     Style header = () -> {
         background.color(Color.White);
         position.sticky().top(0, rem);
-        display.maxWidth(MaxWidth).height(HeaderHeight).zIndex(10);
+        display.width(MaxWidth).height(HeaderHeight).zIndex(10);
         margin.auto();
-        border.bottom.color(ParagraphColor).width(1, px).solid();
+        border.bottom.color(palette.primary).width(1, px).solid();
     };
 
     Style productTitle = () -> {
-        font.size(1.5, rem).family(HeadFont).weight.normal().color(ParagraphColor);
+        font.size(1.5, rem).family(fonts.title).weight.normal().color(palette.primary);
     };
 
     Style main = () -> {
-        display.maxWidth(MaxWidth).flex().direction.row();
+        display.width(MaxWidth).flex().direction.row();
         margin.auto();
     };
 
     Style article = () -> {
-        flexItem.grow(3);
-        margin.auto();
-        padding.horizontal(20, px);
+        flexItem.grow(1);
     };
 
     Style type = Style.named(".type", () -> {
         cursor.pointer();
-        font.color(FontColor);
+        font.color(palette.font);
     });
 
     Style nav = () -> {
-        display.width(LeftNaviWidth).flex().direction.column();
+        display.flex().direction.column();
+        flexItem.basis(LeftNaviWidth).shrink(0);
 
         $.select(type, () -> {
             display.block();
             text.decoration.none();
         });
+    };
+
+    Style contents = () -> {
+        flexItem.basis(640, px).shrink(1);
+    };
+
+    Style toc = () -> {
+        flexItem.basis(240, px).shrink(0);
     };
 
     Style selector = () -> {
@@ -140,7 +135,7 @@ interface Styles extends StyleDSL {
     Numeric HeadBottomGap = BlockVerticalGap.multiply(2);
 
     Style heading = () -> {
-        font.family(HeadFont, Font.SansSerif).size(HeadSize).weight.normal();
+        font.family(fonts.title, Font.SansSerif).size(HeadSize).weight.normal();
         margin.top(HeadTopGap).bottom(HeadBottomGap);
         display.block();
     };
@@ -149,19 +144,19 @@ interface Styles extends StyleDSL {
         margin.bottom(BlockVerticalGap);
 
         $.select("> p", () -> {
-            block(ParagraphColor, false);
+            block(palette.primary, false);
         });
 
         $.select("> pre", () -> {
-            block(CodeColor, false);
+            block(palette.secondary, false);
         });
 
         $.select("> ul", () -> {
-            block(ListColor, false);
+            block(palette.secondary, false);
         });
 
         $.select("> ol", () -> {
-            block(ListColor, false);
+            block(palette.secondary, false);
         });
     });
 
@@ -170,17 +165,17 @@ interface Styles extends StyleDSL {
      * 
      * @param color
      */
-    private static void block(Color color, boolean paintBackground) {
+    private void block(Color color, boolean paintBackground) {
         margin.vertical(BlockInterval).left(0, px);
         padding.vertical(BlockVerticalGap).horizontal(BlockHorizontalGap);
         border.left.width(BlockBorderWidth).solid().color(color);
         line.height(LineHeight);
-        font.family(BodyFont, Font.SansSerif);
+        font.family(fonts.base, Font.SansSerif);
         if (paintBackground) background.color(color.opacify(-0.8d));
     }
 
     Style list = () -> {
-        block(ListColor, true);
+        block(palette.secondary, true);
     };
 
     Numeric LeftGap = Numeric.of(20, px);
@@ -192,12 +187,12 @@ interface Styles extends StyleDSL {
     Style dl = Style.named("dl", () -> {
         list.style();
 
-        block(SignatureColor, false);
+        block(palette.accent, false);
         background.color(Color.Transparent);
 
         $.select("dt", () -> {
             display.block().width(70, px).floatLeft();
-            font.size(9, px).weight.bold().color(SignatureColor);
+            font.size(9, px).weight.bold().color(palette.accent);
             padding.top(SmallGap.multiply(2));
             border.bottom.none();
             text.transform.capitalize();

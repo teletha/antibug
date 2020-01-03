@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Antibug</title>
+		<base href="/"/>
+		<link href="main.css" rel="stylesheet"/>
+		<link href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" rel="stylesheet"/>
+		<script src="https://unpkg.com/vue/dist/vue.js">
+		</script>
+		<script src="https://unpkg.com/element-ui/lib/index.js">
+		</script>
+	</head>
+	<body class="F">
+		<header class="K">
+			<h1 class="A">Antibug</h1>
+		</header>
+		<main class="G">
+			<nav class="D" id="typeNavigation">
+				<el-scrollbar :native="false" id="typeList"/>
+			</nav>
+			<article class="J">
+				<section>
+					<h2 class="B">Variable</h2>
+					<h2 class="B">Constructor</h2>
+					<section>
+						<h3 class="B">
+							<fragment>Variable(<i class="type">V</i> value)</fragment>
+						</h3>
+						<section>Hide constructor.</section>
+						<dl/>
+					</section>
+					<h2 class="B">Methods</h2>
+					<section>
+						<h3 class="B">
+							<fragment>accept(<i class="type">V</i> value)</fragment>
+						</h3><p>No description.</p>
+						<h3 class="B">
+							<fragment>get()</fragment>
+						</h3>
+						<section><p>
+ Compute the current value. If it is <code>null</code>, this method returns the specified
+ default value.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>The default value.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The current value or the specified default value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>exact()</fragment>
+						</h3>
+						<section>Exact value. If this  is empty, throw .</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A current value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>is(<i class="type">V</i> value)</fragment>
+						</h3>
+						<section><p>
+ Test whether the current value is equal to the specified value or not.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>A value to check the equality.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A result of equality.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>is(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition)</fragment>
+						</h3>
+						<section><p>
+ Test whether the current value fulfills the specified condition or not.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>A value to check the equality.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A result of equality.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>isNot(<i class="type">V</i> value)</fragment>
+						</h3>
+						<section><p>
+ Test whether the current value is NOT equal to the specified value or not.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>A value to check the equality.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A result of equality.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>isNot(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition)</fragment>
+						</h3>
+						<section><p>
+ Test whether the current value does NOT fulfill the specified condition or not.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>A value to check the equality.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A result of equality.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>isAbsent()</fragment>
+						</h3>
+						<section>Check whether the value is absent or not.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A result.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>isPresent()</fragment>
+						</h3>
+						<section>Check whether the value is present or not.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A result.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>isFixed()</fragment>
+						</h3>
+						<section>Chech whether the value is fiexed or not.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A result.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>map(<i class="type" package="java.util.function">Function</i><i class="parameters"><i class="type">?</i><i class="super"><i class="type">V</i></i><i class="type">?</i><i class="extends"><i class="type">R</i></i></i> then)</fragment>
+						</h3>
+						<section><p>
+ Perform the specified action if the value is present.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>then</b>
+								<section>An action to perform.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The computed .</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>flatMap(<i class="type" package="java.util.function">Function</i><i class="parameters"><i class="type">V</i><i class="type" package="kiss">Variable</i><i class="parameters"><i class="type">R</i></i></i> converter)</fragment>
+						</h3>
+						<section><p>
+ Perform the specified action if the value is present.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>action</b>
+								<section>An action to perform.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>The computed .</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>observe()</fragment>
+						</h3>
+						<section>Observe this .</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>The  which notifies value modification.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>observing()</fragment>
+						</h3>
+						<section>Observe this  with the current value.</section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>The  which notifies value modification.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>or(<i class="type">V</i> other)</fragment>
+						</h3>
+						<section>Return the value if present, otherwise return other.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>other</b>
+								<section>A value to be returned if there is no value present, may be null.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A value, if present, otherwise other.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>or(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">V</i></i> other)</fragment>
+						</h3>
+						<section>Return the value if present, otherwise return other.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>other</b>
+								<section>A value to be returned if there is no value present, may be null.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A value, if present, otherwise other.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>set(<i class="type">V</i> value)</fragment>
+						</h3>
+						<section><p>
+ Assign the new value.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>A value to assign.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A previous value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>set(<i class="type" package="java.util">Optional</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
+						</h3>
+						<section><p>
+ Assign the new value.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>A value to assign.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A previous value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>set(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
+						</h3>
+						<section><p>
+ Assign the new value.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>A value generator.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A previous value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>set(<i class="type" package="java.util.function">UnaryOperator</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
+						</h3>
+						<section><p>
+ Assign the new value.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>A value generator.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A previous value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>setIf(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition, <i class="type">V</i> value)</fragment>
+						</h3>
+						<section><p>
+ Assign the new value when the specified condition is valid.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A condition for value assign.</section>
+							</dd>
+							<dd><b>value</b>
+								<section>A value to assign.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A previous value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>setIf(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition, <i class="type" package="java.util">Optional</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
+						</h3>
+						<section><p>
+ Assign the new value when the specified condition is valid.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A condition for value assign.</section>
+							</dd>
+							<dd><b>value</b>
+								<section>A value to assign.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A previous value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>setIf(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition, <i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
+						</h3>
+						<section><p>
+ Assign the new value when the specified condition is valid.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A condition for value assign.</section>
+							</dd>
+							<dd><b>value</b>
+								<section>A value to assign.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A previous value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>setIf(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition, <i class="type" package="java.util.function">UnaryOperator</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
+						</h3>
+						<section><p>
+ Assign the new value when the specified condition is valid.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A condition for value assign.</section>
+							</dd>
+							<dd><b>value</b>
+								<section>A value to assign.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A previous value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>let(<i class="type">V</i> value)</fragment>
+						</h3>
+						<section><p>
+ Assign the new immutable value.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>A value to assign.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A previous value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>let(<i class="type" package="java.util">Optional</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
+						</h3>
+						<section><p>
+ Assign the new immutable value.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>A value to assign.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A previous value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>let(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
+						</h3>
+						<section><p>
+ Assign the new immutable value.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>A value generator.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A previous value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>let(<i class="type" package="java.util.function">UnaryOperator</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
+						</h3>
+						<section><p>
+ Assign the new immutable value.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>A value generator.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A previous value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>letIf(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition, <i class="type">V</i> value)</fragment>
+						</h3>
+						<section><p>
+ Assign the new immutable value when the specified condition is valid.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A condition for value assign.</section>
+							</dd>
+							<dd><b>value</b>
+								<section>A value to assign.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A previous value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>letIf(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition, <i class="type" package="java.util">Optional</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
+						</h3>
+						<section><p>
+ Assign the new immutable value when the specified condition is valid.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A condition for value assign.</section>
+							</dd>
+							<dd><b>value</b>
+								<section>A value to assign.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A previous value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>letIf(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition, <i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
+						</h3>
+						<section><p>
+ Assign the new immutable value when the specified condition is valid.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A condition for value assign.</section>
+							</dd>
+							<dd><b>value</b>
+								<section>A value to assign.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A previous value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>letIf(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition, <i class="type" package="java.util.function">UnaryOperator</i><i class="parameters"><i class="type">V</i></i> value)</fragment>
+						</h3>
+						<section><p>
+ Assign the new immutable value when the specified condition is valid.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A condition for value assign.</section>
+							</dd>
+							<dd><b>value</b>
+								<section>A value to assign.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A previous value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>assign(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> condition, <i class="type">V</i> value, <i class="type">boolean</i> let)</fragment>
+						</h3>
+						<section><p>
+ Assign the new value if we can.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>condition</b>
+								<section>A condition for value assign.</section>
+							</dd>
+							<dd><b>value</b>
+								<section>A value to assign.</section>
+							</dd>
+							<dd><b>let</b>
+								<section>A state of let or set.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A previous value.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>adjust(<i class="type" package="java.util.function">Function</i><i class="parameters"><i class="type">V</i><i class="type">V</i></i> adjuster)</fragment>
+						</h3>
+						<section>Set requirment of this .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>adjuster</b><p>No description.</p></dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>require(<i class="type" package="java.util.function">Predicate</i><i class="parameters"><i class="type">V</i></i> requirement)</fragment>
+						</h3>
+						<section>Set requirment of this .</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>requirement</b><p>No description.</p></dd>
+							<dt>Return</dt>
+							<dd>
+								<section>Chainable API.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>to(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">V</i></i> some)</fragment>
+						</h3>
+						<section><p>
+ Execute the specified action if the value is present.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>some</b>
+								<section>A user action.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>to(<i class="type" package="java.util.function">Consumer</i><i class="parameters"><i class="type">V</i></i> some, <i class="type" package="java.lang">Runnable</i> none)</fragment>
+						</h3>
+						<section>Execute the specified action.</section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>some</b>
+								<section>A user action.</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>hashCode()</fragment>
+						</h3><p>No description.</p>
+						<h3 class="B">
+							<fragment>equals(<i class="type" package="java.lang">Object</i> obj)</fragment>
+						</h3><p>No description.</p>
+						<h3 class="B">
+							<fragment>toString()</fragment>
+						</h3><p>No description.</p>
+						<h3 class="B">
+							<fragment>of(<i class="type">T</i> value)</fragment>
+						</h3>
+						<section><p>
+ Create  with the specified value.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>An actual value, <code>null</code> will be acceptable.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A created .</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>of(<i class="type" package="java.util.function">Supplier</i><i class="parameters"><i class="type">T</i></i> value)</fragment>
+						</h3>
+						<section><p>
+ Create  with the specified value.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>An actual value, <code>null</code> will be acceptable.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A created .</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>of(<i class="type" package="java.util">Optional</i><i class="parameters"><i class="type">T</i></i> value)</fragment>
+						</h3>
+						<section><p>
+ Create  with the specified value.
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>value</b>
+								<section>An actual value, <code>null</code> will be acceptable.</section>
+							</dd>
+							<dt>Return</dt>
+							<dd>
+								<section>A created .</section>
+							</dd>
+						</dl>
+						<h3 class="B">
+							<fragment>empty()</fragment>
+						</h3>
+						<section><p>
+ Create empty .
+ </p></section>
+						<dl>
+							<dt>Return</dt>
+							<dd>
+								<section>A new empty .</section>
+							</dd>
+						</dl>
+					</section>
+				</section>
+			</article>
+			<aside class="H">ASIDE TEXT</aside>
+		</main>
+		<script src="root.js">
+		</script>
+		<script src="main.js">
+		</script>
+	</body>
+</html>

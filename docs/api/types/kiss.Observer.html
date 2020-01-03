@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Antibug</title>
+		<base href="/"/>
+		<link href="main.css" rel="stylesheet"/>
+		<link href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" rel="stylesheet"/>
+		<script src="https://unpkg.com/vue/dist/vue.js">
+		</script>
+		<script src="https://unpkg.com/element-ui/lib/index.js">
+		</script>
+	</head>
+	<body class="F">
+		<header class="K">
+			<h1 class="A">Antibug</h1>
+		</header>
+		<main class="G">
+			<nav class="D" id="typeNavigation">
+				<el-scrollbar :native="false" id="typeList"/>
+			</nav>
+			<article class="J">
+				<section>
+					<h2 class="B">Observer</h2>
+					<section><p>
+ Provides a mechanism for receiving push-based notifications.
+ </p>
+ <p>
+ After an  calls an  method, the  calls
+ the  method to provide notifications. A well-behaved  will
+ call an  closure exactly once or the Observer&#39;s 
+ closure exactly once.
+ </p></section>
+					<h2 class="B">Constructor</h2>
+					<section/>
+					<h2 class="B">Methods</h2>
+					<section>
+						<h3 class="B">
+							<fragment>complete()</fragment>
+						</h3>
+						<section><p>
+ Notifies the observer that the provider has finished sending push-based notifications.
+ </p>
+ <p>
+ The  will not call this closure if it calls .
+ </p></section>
+						<h3 class="B">
+							<fragment>error(<i class="type" package="java.lang">Throwable</i> e)</fragment>
+						</h3>
+						<section><p>
+ Notifies the observer that the provider has experienced an error condition.
+ </p>
+ <p>
+ If the  calls this closure, it will not thereafter call 
+ or .
+ </p></section>
+						<dl>
+							<dt>Parameters</dt>
+							<dd><b>e</b>
+								<section>An object that provides additional information about the error.</section>
+							</dd>
+						</dl>
+					</section>
+				</section>
+			</article>
+			<aside class="H">ASIDE TEXT</aside>
+		</main>
+		<script src="root.js">
+		</script>
+		<script src="main.js">
+		</script>
+	</body>
+</html>
