@@ -1,74 +1,14 @@
 @import url("http://fonts.googleapis.com/css?family=Oswald");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1735835886 */section {
-	margin-bottom: 0.5rem;
+/* 1084936573 */main {
+	width: 85vw;
+	display: flex;
+	flex-direction: row;
+	margin-right: auto;
+	margin-left: auto;
 }
 
-/* 1735835886 */section > p {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(203,91%,56%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
-}
-
-/* 1735835886 */section > pre {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
-}
-
-/* 1735835886 */section > ul {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
-}
-
-/* 1735835886 */section > ol {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
-}
-
-/* 1756370271 */.super::before {
-	content: ' super ';
-}
-
-/* 1756967428 */.parameters::before {
-	content: '<';
-}
-
-/* 1756967428 */.parameters::after {
-	content: '>';
-}
-
-/* 479833141 */dl {
+/* 1217784054 */dl {
 	margin-left: 0;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
@@ -82,7 +22,7 @@
 	background-color: hsla(0,0%,0%,0);
 }
 
-/* 479833141 */dl dt {
+/* 1217784054 */dl dt {
 	display: block;
 	width: 70px;
 	float: left;
@@ -94,12 +34,12 @@
 	text-transform: capitalize;
 }
 
-/* 479833141 */dl dd {
+/* 1217784054 */dl dd {
 	margin-bottom: 15px;
 	margin-left: 70px;
 }
 
-/* 479833141 */dl b {
+/* 1217784054 */dl b {
 	display: block;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
@@ -109,33 +49,93 @@
 	font-weight: bold;
 }
 
-/* 759044288 */a {
+/* 1402852048 */.extends::before {
+	content: ' extends ';
+}
+
+/* 1487941673 */.parameters::before {
+	content: '<';
+}
+
+/* 1487941673 */.parameters::after {
+	content: '>';
+}
+
+/* 1652592286 */.type {
+	cursor: pointer;
+	color: hsl(215,16%,44%);
+}
+
+/* 1910464304 */section {
+	margin-bottom: 0.5rem;
+}
+
+/* 1910464304 */section > p {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(203,91%,56%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* 1910464304 */section > pre {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* 1910464304 */section > ul {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* 1910464304 */section > ol {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* 2089341007 */a {
 	color: hsl(215,16%,44%);
 	text-decoration: none;
 }
 
-/* 759044288 */a:hover {
+/* 2089341007 */a:hover {
 	text-decoration: underline;
 	text-decoration-color: hsla(215,16%,44%,0.5);
 	text-underline-offset: 2px;
 	text-underline-position: under;
 }
 
-/* 79373261 */main {
-	width: 85vw;
-	display: flex;
-	flex-direction: row;
-	margin-right: auto;
-	margin-left: auto;
-}
-
-/* 891081855 */.type {
-	cursor: pointer;
-	color: hsl(215,16%,44%);
-}
-
-/* 958004813 */.extends::before {
-	content: ' extends ';
+/* 875053581 */.super::before {
+	content: ' super ';
 }
 
 /* antibug.doc.style.Styles#lambda$0 */.C {
@@ -146,7 +146,7 @@
 	width: 100vw;
 }
 
-/* antibug.doc.style.Styles#lambda$1 */.E {
+/* antibug.doc.style.Styles#lambda$1 */.D {
 	background-color: hsl(0,0%,100%);
 	position: sticky;
 	top: 0;
@@ -160,21 +160,21 @@
 	border-bottom-style: solid;
 }
 
-/* antibug.doc.style.Styles#lambda$13 */.G {
+/* antibug.doc.style.Styles#lambda$13 */.B {
 	flex-grow: 1;
 	-webkit-flex-grow: 1;
 	margin-left: 5rem;
 	margin-right: 1.5rem;
 }
 
-/* antibug.doc.style.Styles#lambda$14 */.A {
+/* antibug.doc.style.Styles#lambda$14 */.E {
 	flex-basis: 15vw;
 	-webkit-flex-basis: 15vw;
 	flex-shrink: 0;
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.style.Styles#lambda$14 */.A>* {
+/* antibug.doc.style.Styles#lambda$14 */.E>* {
 	position: sticky;
 	top: 80px;
 }
@@ -188,50 +188,50 @@
 	display: block;
 }
 
-/* antibug.doc.style.Styles#lambda$2 */.B {
+/* antibug.doc.style.Styles#lambda$2 */.A {
 	font-size: 1.5rem;
 	font-family: Oswald;
 	font-weight: normal;
 	color: hsl(203,91%,56%);
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.D {
+/* antibug.doc.style.Styles#lambda$4 */.G {
 	flex-basis: 15vw;
 	-webkit-flex-basis: 15vw;
 	flex-shrink: 0;
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.D>* {
+/* antibug.doc.style.Styles#lambda$4 */.G>* {
 	position: sticky;
 	top: 80px;
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.D>*>* {
+/* antibug.doc.style.Styles#lambda$4 */.G>*>* {
 	margin-top: 0.5rem;
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.D .type {
+/* antibug.doc.style.Styles#lambda$4 */.G .type {
 	display: block;
 	height: 1.5rem;
 	white-space: nowrap;
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.D .el-select {
+/* antibug.doc.style.Styles#lambda$4 */.G .el-select {
 	width: 100%;
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.D .el-checkbox {
+/* antibug.doc.style.Styles#lambda$4 */.G .el-checkbox {
 	display: block;
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.D #AllTypes {
+/* antibug.doc.style.Styles#lambda$4 */.G #AllTypes {
 	overflow: hidden;
 	scrollbar-width: thin;
 	height: 60vh;
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.D #AllTypes:hover {
+/* antibug.doc.style.Styles#lambda$4 */.G #AllTypes:hover {
 	overflow-y: auto;
 }
 

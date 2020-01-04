@@ -14,20 +14,6 @@ Vue.append = function(selecter, componentDefinition) {
 };
 
 // =====================================================
-// Utility
-// =====================================================
-const groupBy = (array, getKey) =>
-    Array.from(
-        array.reduce((map, cur, idx, src) => {
-            const key = getKey(cur, idx, src);
-            const list = map.get(key);
-            if (list) list.push(cur);
-            else map.set(key, [cur]);
-            return map;
-        }, new Map())
-    );
-
-// =====================================================
 // Define Components
 // =====================================================
 
@@ -50,39 +36,65 @@ Vue.append("#typeNavigation", {
 		<el-checkbox label="Exception"></el-checkbox>
 	  </el-checkbox-group>
 	  <el-input size="mini" clearable placeholder="Search" v-model="selectedName"></el-input>
-	  <div id="AllTypes">
-		<a class='type' :title="item.packageName" v-for='item in filteredItems' v-on:click='link(item)'>{{item.name}}</a>
-	  </div>
+	  <el-tree id="AllTypes" empty-text="Not Found" :indent="12" :data="sortedItems" :props="{label:'name'}" :filter-node-method="filter" @node-click="link" ref="tree"></el-tree>
     </div>`,
 	data: function() {
 		return {
 			items: root,
+			sortedItems: this.sortAndGroup(root),
 			selectedName: "",
 			selectedPackage: "",
 			selectedModule: "",
 			selectedType: ["Interface", "Functional Interface", "Abstract Class", "Class", "Enum", "Annotation", "Exception"]
 		};
 	},
-	computed: {
-		filteredItems() {
-			return this.items.types.filter(item => {
-				if (!this.selectedType.includes(item.type)) {
-					return false;
-				}
-
-				if (this.selectedPackage !== "" && this.selectedPackage !== item.packageName) {
-					return false;
-				}
-				
-				if (this.selectedName !== "" && item.name.toLowerCase().indexOf(this.selectedName.toLowerCase()) === -1) {
-					return false;
-				}
-				return true;
-			});
+	watch: {
+		selectedName(val) {
+			this.$refs.tree.filter(val);
+		},
+		selectedType(val) {
+			this.$refs.tree.filter(val);
+		},
+		selectedPackage(val) {
+			this.$refs.tree.filter(val);
+		},
+		selectedModule(val) {
+			this.$refs.tree.filter(val);
 		}
 	},
 	methods: {
+		sortAndGroup: function(items) {
+			let map = new Map;
+			items.packages.forEach(item => {
+				map.set(item, {
+					name: item,
+					children: []
+				});
+			});
+
+			items.types.forEach(item => {
+				map.get(item.packageName).children.push(item);
+			});
+
+			return Array.from(map.values());
+		},
+		filter: function(query, item) {
+			if (!this.selectedType.includes(item.type)) {
+				return false;
+			}
+
+			if (this.selectedPackage !== "" && this.selectedPackage !== item.packageName) {
+				return false;
+			}
+			
+			if (this.selectedName !== "" && item.name.toLowerCase().indexOf(this.selectedName.toLowerCase()) === -1) {
+				return false;
+			}
+			return true;
+		},
 		link: function(e) {
+			if (!e.packageName) return; // ignore package node
+
 			var path =
 				"/types/" +
 				(e.packageName ? e.packageName + "." : "") +
