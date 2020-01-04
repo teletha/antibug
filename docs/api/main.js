@@ -36,7 +36,7 @@ Vue.append("#typeNavigation", {
 		<el-checkbox label="Exception"></el-checkbox>
 	  </el-checkbox-group>
 	  <el-input size="mini" clearable placeholder="Search" v-model="selectedName"></el-input>
-	  <el-tree id="AllTypes" empty-text="Not Found" :indent="12" :data="sortedItems" :props="{label:'name'}" :filter-node-method="filter" @node-click="link" ref="tree"></el-tree>
+	  <el-tree id="AllTypes" empty-text="Not Found" :indent="0" :data="sortedItems" :render-content="renderTree" :props="{label:'name'}" :filter-node-method="filter" @node-click="link" ref="tree"></el-tree>
     </div>`,
 	data: function() {
 		return {
@@ -91,6 +91,9 @@ Vue.append("#typeNavigation", {
 				return false;
 			}
 			return true;
+		},
+		renderTree: function(h, o) {
+			return h("span", {class:o.data.type ? o.data.type.replace(" ", ""): ""}, [o.data.name]);
 		},
 		link: function(e) {
 			if (!e.packageName) return; // ignore package node

@@ -155,6 +155,51 @@ public class Styles extends AbstractStyleDSL {
         });
     });
 
+    @SuppressWarnings("unused")
+    private final Style HTMLClassTypeInterface = Style.named(".Interface", () -> {
+        buidlMark("\\e88f", Color.rgb(128, 88, 165));
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassTypeFunctionalInterface = Style.named(".FunctionalInterface", () -> {
+        buidlMark("\\e88e", Color.rgb(128, 88, 165));
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassTypeAbstractClass = Style.named(".AbstractClass", () -> {
+        buidlMark("\\e90c", Color.of("#5eb95e").saturate(-30));
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassTypeClass = Style.named(".Class", () -> {
+        buidlMark("\\e90c", Color.of("#5eb95e"));
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassTypeEnum = Style.named(".Enum", () -> {
+        buidlMark("\\e01e", Color.of("#5eb95e").saturate(-35));
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassTypeAnnotation = Style.named(".Annotation", () -> {
+        buidlMark("\\e167", Color.of("#5eb95e").saturate(-35));
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassTypeException = Style.named(".Exception", () -> {
+        buidlMark("\\e031", Color.rgb(243, 123, 29));
+    });
+
+    private void buidlMark(String mark, Color color) {
+        text.verticalAlign.middle();
+
+        $.before(() -> {
+            font.family(fonts.icon).color(color);
+            content.text(mark);
+            padding.right(0.6, rem);
+        });
+    }
+
     public final Style workbench = () -> {
         font.size(FontSize).family("Segoe UI", Font.SansSerif).color(palette.font);
         line.height(LineHeight);

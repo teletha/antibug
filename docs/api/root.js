@@ -22,6 +22,11 @@ const root = {
 			"type": "Abstract Class"
 		},
 		{
+			"name": "Anti",
+			"packageName": "antibug.powerassert",
+			"type": "Functional Interface"
+		},
+		{
 			"name": "BuiltinStyles",
 			"packageName": "antibug.doc",
 			"type": "Class"
@@ -112,6 +117,11 @@ const root = {
 			"type": "Class"
 		},
 		{
+			"name": "Journal",
+			"packageName": "antibug.powerassert",
+			"type": "Interface"
+		},
+		{
 			"name": "LocalVariable",
 			"packageName": "antibug.bytecode",
 			"type": "Class"
@@ -180,6 +190,11 @@ const root = {
 			"name": "TestMethodTestDescriptor",
 			"packageName": "org.junit.jupiter.engine.descriptor",
 			"type": "Class"
+		},
+		{
+			"name": "Zax",
+			"packageName": "antibug.powerassert",
+			"type": "Enum"
 		}
 	]
 }
