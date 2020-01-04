@@ -41,15 +41,26 @@ public class Styles extends AbstractStyleDSL {
     // =====================================================
     // HTML Elements
     // =====================================================
-    private final Numeric SmallGap = Numeric.of(2, px);
+    private final Numeric SmallGap = Numeric.of(1, px);
 
-    private Numeric BlockVerticalGap = Numeric.of(6, px);
+    private Numeric BlockVerticalGap = Numeric.of(0.5, rem);
 
     private Numeric BlockBorderWidth = Numeric.of(3, px);
 
     private Numeric BlockHorizontalGap = Numeric.of(10, px);
 
-    private Numeric BlockInterval = Numeric.of(2, px);
+    @SuppressWarnings("unused")
+    private Style HTMLAnchor = Style.named("a", () -> {
+        font.color(palette.font);
+        text.decoration.none();
+
+        $.hover(() -> {
+            text.decoration.underline();
+            text.decorationColor.color(palette.font.opacify(-0.5));
+            text.underlineOffset.length(2, px);
+            text.underlinePosition.under();
+        });
+    });
 
     @SuppressWarnings("unused")
     private Style HTMLSection = Style.named("section", () -> {
@@ -80,7 +91,7 @@ public class Styles extends AbstractStyleDSL {
         $.select("dt", () -> {
             display.block().width(70, px).floatLeft();
             font.size(9, px).weight.bold().color(palette.accent);
-            padding.top(SmallGap.multiply(2));
+            padding.top(SmallGap);
             border.bottom.none();
             text.transform.capitalize();
         });
@@ -104,7 +115,7 @@ public class Styles extends AbstractStyleDSL {
      * @param color
      */
     private void block(Color color, boolean paintBackground) {
-        margin.vertical(BlockInterval).left(0, px);
+        margin.left(0, px);
         padding.vertical(BlockVerticalGap).horizontal(BlockHorizontalGap);
         border.left.width(BlockBorderWidth).solid().color(color);
         line.height(LineHeight);
@@ -156,7 +167,7 @@ public class Styles extends AbstractStyleDSL {
 
     private final Numeric HeaderHeight = Numeric.of(80, px);
 
-    private final Numeric NavigationWidth = Numeric.of(190, px);
+    private final Numeric NavigationWidth = Numeric.of(15, vw);
 
     /** Header Area */
     public final Style HeaderArea = () -> {
@@ -173,22 +184,43 @@ public class Styles extends AbstractStyleDSL {
     });
 
     /** Left Side Navigation */
-    public final Style NavigationLeft = () -> {
+    public final Style TypeNavigation = () -> {
         flexItem.basis(NavigationWidth).shrink(0);
 
         $.child(() -> {
             position.sticky().top(HeaderHeight);
+
+            $.child(() -> {
+                margin.top(BlockVerticalGap);
+            });
         });
 
         $.select(HTMLClassType, () -> {
+            display.block().height(1.3, rem);
+        });
+
+        $.select(".el-select", () -> {
+            display.width(100, percent);
+        });
+
+        $.select(".el-checkbox", () -> {
             display.block();
-            text.decoration.none();
+        });
+
+        $.select("#AllTypes", () -> {
+            overflow.y.hidden().scrollbar.thin();
+            display.height(60, vh);
+
+            $.hover(() -> {
+                overflow.y.auto();
+            });
         });
     };
 
     /** Main Contents */
     public final Style contents = () -> {
         flexItem.grow(1);
+        margin.left(5, rem).right(1.5, rem);
     };
 
     /** Right Side Navigation */

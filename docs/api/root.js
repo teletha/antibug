@@ -7,143 +7,178 @@ const root = {
 	"types": [
 		{
 			"name": "Accessor",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Interface"
 		},
 		{
 			"name": "Decoder",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Functional Interface"
 		},
 		{
 			"name": "Disposable",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Functional Interface"
 		},
 		{
 			"name": "Encoder",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Functional Interface"
 		},
 		{
 			"name": "Extensible",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Interface"
 		},
 		{
 			"name": "ExtensionFactory",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Functional Interface"
 		},
 		{
 			"name": "I",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Class"
 		},
 		{
 			"name": "JSON",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Class"
 		},
 		{
 			"name": "Lifestyle",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Functional Interface"
 		},
 		{
 			"name": "Managed",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Annotation"
 		},
 		{
 			"name": "Model",
-			"packageName": "kiss.model"
+			"packageName": "kiss.model",
+			"type": "Class"
 		},
 		{
 			"name": "Narrow",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Functional Interface"
 		},
 		{
 			"name": "Observer",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Functional Interface"
 		},
 		{
 			"name": "Property",
-			"packageName": "kiss.model"
+			"packageName": "kiss.model",
+			"type": "Class"
 		},
 		{
 			"name": "Prototype",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Class"
 		},
 		{
 			"name": "Signal",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Class"
 		},
 		{
 			"name": "Signaling",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Class"
 		},
 		{
 			"name": "Singleton",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Class"
 		},
 		{
 			"name": "Storable",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Interface"
 		},
 		{
 			"name": "ThreadSpecific",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Class"
 		},
 		{
 			"name": "Tree",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Abstract Class"
 		},
 		{
 			"name": "TreeNode",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Abstract Class"
 		},
 		{
 			"name": "Variable",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Class"
 		},
 		{
 			"name": "Wise",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Functional Interface"
 		},
 		{
 			"name": "WiseBiConsumer",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Functional Interface"
 		},
 		{
 			"name": "WiseBiFunction",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Functional Interface"
 		},
 		{
 			"name": "WiseConsumer",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Functional Interface"
 		},
 		{
 			"name": "WiseFunction",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Functional Interface"
 		},
 		{
 			"name": "WiseRunnable",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Functional Interface"
 		},
 		{
 			"name": "WiseSupplier",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Functional Interface"
 		},
 		{
 			"name": "WiseTriConsumer",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Functional Interface"
 		},
 		{
 			"name": "WiseTriFunction",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Functional Interface"
 		},
 		{
 			"name": "XML",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Class"
 		},
 		{
 			"name": "Ⅱ",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Class"
 		},
 		{
 			"name": "Ⅲ",
-			"packageName": "kiss"
+			"packageName": "kiss",
+			"type": "Class"
 		}
 	]
 }

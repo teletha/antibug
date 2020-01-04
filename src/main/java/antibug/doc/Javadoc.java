@@ -196,7 +196,7 @@ public class Javadoc extends DocTool<Javadoc> {
                         // =============================
                         // Left Side Navigation
                         // =============================
-                        $("nav", id("typeNavigation"), styles.NavigationLeft);
+                        $("nav", id("typeNavigation"), styles.TypeNavigation);
 
                         // =============================
                         // Main Contents

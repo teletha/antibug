@@ -14,35 +14,70 @@ Vue.append = function(selecter, componentDefinition) {
 };
 
 // =====================================================
+// Utility
+// =====================================================
+const groupBy = (array, getKey) =>
+    Array.from(
+        array.reduce((map, cur, idx, src) => {
+            const key = getKey(cur, idx, src);
+            const list = map.get(key);
+            if (list) list.push(cur);
+            else map.set(key, [cur]);
+            return map;
+        }, new Map())
+    );
+
+// =====================================================
 // Define Components
 // =====================================================
 
 Vue.append("#typeNavigation", {
 	template: `
-    <div>
+	<div>
       <el-select size="mini" clearable v-model='selectedModule' placeholder='Select Package' no-data-text="No Module">
         <el-option v-for='i in items.modules' :key='i' :label='i' :value='i'/>
       </el-select>
       <el-select size="mini" clearable v-model='selectedPackage' placeholder='Select Package' no-data-text="No Package">
         <el-option v-for='i in items.packages' :key='i' :label='i' :value='i'/>
-      </el-select>
-      <a class='type' v-for='item in filteredItems' v-on:click='link(item)'>{{item.name}}</a>
+	  </el-select>
+	  <el-checkbox-group v-model="selectedType">
+		<el-checkbox label="Interface"></el-checkbox>
+		<el-checkbox label="Functional Interface"></el-checkbox>
+		<el-checkbox label="Abstract Class"></el-checkbox>
+		<el-checkbox label="Class"></el-checkbox>
+		<el-checkbox label="Enum"></el-checkbox>
+		<el-checkbox label="Annotation"></el-checkbox>
+		<el-checkbox label="Exception"></el-checkbox>
+	  </el-checkbox-group>
+	  <el-input size="mini" clearable placeholder="Search" v-model="selectedName"></el-input>
+	  <div id="AllTypes">
+		<a class='type' :title="item.packageName" v-for='item in filteredItems' v-on:click='link(item)'>{{item.name}}</a>
+	  </div>
     </div>`,
 	data: function() {
 		return {
 			items: root,
+			selectedName: "",
 			selectedPackage: "",
-			selectedModule: ""
+			selectedModule: "",
+			selectedType: ["Interface", "Functional Interface", "Abstract Class", "Class", "Enum", "Annotation", "Exception"]
 		};
 	},
 	computed: {
 		filteredItems() {
 			return this.items.types.filter(item => {
-				if (this.selectedPackage === "") {
-					return true;
-				} else {
-					return item.packageName === this.selectedPackage;
+				if (!this.selectedType.includes(item.type)) {
+					return false;
 				}
+
+				if (this.selectedPackage !== "" && this.selectedPackage !== item.packageName) {
+					return false;
+				}
+				
+				if (this.selectedName !== "" && item.name.toLowerCase().indexOf(this.selectedName.toLowerCase()) === -1) {
+					return false;
+				}
+				return true;
 			});
 		}
 	},
@@ -69,3 +104,4 @@ Vue.append("#typeNavigation", {
 		}
 	}
 });
+

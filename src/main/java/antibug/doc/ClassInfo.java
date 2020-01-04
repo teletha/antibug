@@ -15,10 +15,15 @@ import java.util.List;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.Modifier;
+import javax.lang.model.element.Name;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.TypeParameterElement;
 import javax.lang.model.element.VariableElement;
+import javax.lang.model.type.DeclaredType;
+import javax.lang.model.type.TypeKind;
+import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.SimpleElementVisitor9;
 
 import kiss.Variable;
@@ -33,6 +38,9 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
 
     /** The simple class name. */
     public String name;
+
+    /** The kind of type (interface, abstract class, class etc) */
+    public String type;
 
     /** Info repository. */
     protected final List<FieldInfo> fields = new ArrayList();
@@ -52,11 +60,48 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
         this.typeName = root.asType().toString();
         this.packageName = DocTool.ElementUtils.getPackageOf(root).toString();
         this.name = typeName.replaceAll("<.+>", "").substring(packageName.length() + 1);
+        this.type = detectType(root);
 
         Scanner scanner = new Scanner();
         for (Element element : root.getEnclosedElements()) {
             element.accept(scanner, this);
         }
+    }
+
+    private String detectType(TypeElement root) {
+        switch (root.getKind()) {
+        case INTERFACE:
+            if (Javadoc.ElementUtils.isFunctionalInterface(root)) {
+                return "Functional Interface";
+            } else {
+                return "Interface";
+            }
+        case ANNOTATION_TYPE:
+            return "Annotation";
+        case ENUM:
+            return "Enum";
+        default: // CLASS
+            if (root.getModifiers().contains(Modifier.ABSTRACT)) {
+                return "Abstract Class";
+            } else if (isThrowable(root.asType())) {
+                return "Exception";
+            } else {
+                return "Class";
+            }
+        }
+    }
+
+    private boolean isThrowable(TypeMirror type) {
+        while (type != null && type.getKind() == TypeKind.DECLARED) {
+            DeclaredType dt = (DeclaredType) type;
+            TypeElement elem = (TypeElement) dt.asElement();
+            Name name = elem.getQualifiedName();
+            if ("java.lang.Throwable".contentEquals(name)) {
+                return true;
+            }
+            type = elem.getSuperclass();
+        }
+        return false;
     }
 
     /**
