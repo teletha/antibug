@@ -21,7 +21,7 @@ import kiss.Ⅱ;
 
 public class ExecutableInfo extends ParameterizableInfo {
 
-    public final String name;
+    public final XML name;
 
     public final List<Ⅱ<String, XML>> params = new ArrayList();
 
@@ -31,7 +31,8 @@ public class ExecutableInfo extends ParameterizableInfo {
     ExecutableInfo(String name, ExecutableElement e) {
         super(e);
 
-        this.name = name;
+        this.name = I.xml("executable").text(name);
+        e.getModifiers().forEach(m -> this.name.addClass(m.name()));
 
         List<? extends VariableElement> params = e.getParameters();
         for (int i = 0; i < params.size(); i++) {

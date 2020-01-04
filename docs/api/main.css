@@ -1,80 +1,23 @@
 @import url("http://fonts.googleapis.com/css?family=Material+Icons");
 @import url("http://fonts.googleapis.com/css?family=Oswald");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1111506374 */.extends::before {
+/* 1007775526 */a {
+	color: hsl(215,16%,44%);
+	text-decoration: none;
+}
+
+/* 1007775526 */a:hover {
+	text-decoration: underline;
+	text-decoration-color: hsla(215,16%,44%,0.5);
+	text-underline-offset: 2px;
+	text-underline-position: under;
+}
+
+/* 1013657610 */.extends::before {
 	content: ' extends ';
 }
 
-/* 1553141699 */.Enum::before {
-	font-family: "Material Icons";
-	color: hsl(120,4%,55%);
-	font-size: smaller;
-	content: '\e01e';
-	padding-right: 0.6rem;
-}
-
-/* 161074456 */h2 {
-	font-size: 1.8rem;
-	font-family: Oswald;
-}
-
-/* 1631904921 */section {
-	margin-bottom: 0.5rem;
-}
-
-/* 1631904921 */section > p {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(203,91%,56%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
-}
-
-/* 1631904921 */section > pre {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
-}
-
-/* 1631904921 */section > ul {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
-}
-
-/* 1631904921 */section > ol {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
-}
-
-/* 1660124157 */.Functional::before {
+/* 1045819065 */.Functional::before {
 	font-family: "Material Icons";
 	color: hsl(271,30%,50%);
 	font-size: smaller;
@@ -82,55 +25,35 @@
 	padding-right: 0.6rem;
 }
 
-/* 188384341 */.Class::before {
+/* 1055294327 */.ABSTRACT::before {
 	font-family: "Material Icons";
 	color: hsl(120,39%,55%);
 	font-size: smaller;
-	content: '\e90c';
+	content: '\e57b';
 	padding-right: 0.6rem;
 }
 
-/* 1956763150 */.super::before {
+/* 1077398960 */.DEFAULT::before {
+	font-family: "Material Icons";
+	color: hsl(120,39%,55%);
+	font-size: smaller;
+	content: '\e57b';
+	padding-right: 0.6rem;
+}
+
+/* 1099556456 */.PUBLIC::before {
+	font-family: "Material Icons";
+	color: hsl(120,39%,55%);
+	font-size: smaller;
+	content: '\e57b';
+	padding-right: 0.6rem;
+}
+
+/* 1111951675 */.super::before {
 	content: ' super ';
 }
 
-/* 2072030980 */.Exception::before {
-	font-family: "Material Icons";
-	color: hsl(26,90%,53%);
-	font-size: smaller;
-	content: '\e031';
-	padding-right: 0.6rem;
-}
-
-/* 231760062 */i {
-	font-style: normal;
-}
-
-/* 234107628 */a {
-	color: hsl(215,16%,44%);
-	text-decoration: none;
-}
-
-/* 234107628 */a:hover {
-	text-decoration: underline;
-	text-decoration-color: hsla(215,16%,44%,0.5);
-	text-underline-offset: 2px;
-	text-underline-position: under;
-}
-
-/* 241685431 */main {
-	width: 85vw;
-	display: flex;
-	flex-direction: row;
-	margin-right: auto;
-	margin-left: auto;
-}
-
-/* 381730363 */.package {
-	font-weight: bold;
-}
-
-/* 404279307 */.AbstractClass::before {
+/* 1151415961 */.AbstractClass::before {
 	font-family: "Material Icons";
 	color: hsl(120,9%,55%);
 	font-size: smaller;
@@ -138,7 +61,31 @@
 	padding-right: 0.6rem;
 }
 
-/* 564059141 */.Interface::before {
+/* 1309988128 */.Exception::before {
+	font-family: "Material Icons";
+	color: hsl(26,90%,53%);
+	font-size: smaller;
+	content: '\e031';
+	padding-right: 0.6rem;
+}
+
+/* 1321604822 */.STRICTFP::before {
+	font-family: "Material Icons";
+	color: hsl(120,39%,55%);
+	font-size: smaller;
+	content: '\e57b';
+	padding-right: 0.6rem;
+}
+
+/* 1476913734 */.PACKAGEPRIVATE::before {
+	font-family: "Material Icons";
+	color: hsl(203,91%,56%);
+	font-size: smaller;
+	content: '\e8fb';
+	padding-right: 0.6rem;
+}
+
+/* 1541107368 */.Interface::before {
 	font-family: "Material Icons";
 	color: hsl(271,30%,50%);
 	font-size: smaller;
@@ -146,15 +93,63 @@
 	padding-right: 0.6rem;
 }
 
-/* 633776959 */.Annotation::before {
+/* 155817539 */.SYNCHRONIZED::before {
 	font-family: "Material Icons";
-	color: hsl(120,4%,55%);
+	color: hsl(120,39%,55%);
 	font-size: smaller;
-	content: '\e167';
+	content: '\e57b';
 	padding-right: 0.6rem;
 }
 
-/* 653395108 */dl {
+/* 1748949019 */i {
+	font-style: normal;
+}
+
+/* 187958805 */.parameters::before {
+	content: '<';
+}
+
+/* 187958805 */.parameters::after {
+	content: '>';
+}
+
+/* 187958805 */.parameters>*:not(:last-child)::after {
+	content: ', ';
+}
+
+/* 1886706205 */.package {
+	font-weight: bold;
+}
+
+/* 192442996 */.VOLATILE::before {
+	font-family: "Material Icons";
+	color: hsl(120,39%,55%);
+	font-size: smaller;
+	content: '\e57b';
+	padding-right: 0.6rem;
+}
+
+/* 2003665047 */.NATIVE::before {
+	font-family: "Material Icons";
+	color: hsl(120,39%,55%);
+	font-size: smaller;
+	content: '\e57b';
+	padding-right: 0.6rem;
+}
+
+/* 2050248794 */.TRANSIENT::before {
+	font-family: "Material Icons";
+	color: hsl(120,39%,55%);
+	font-size: smaller;
+	content: '\e57b';
+	padding-right: 0.6rem;
+}
+
+/* 2108714064 */section {
+	margin-bottom: 0.5rem;
+}
+
+/* 2108714064 */section > pre {
 	margin-left: 0;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
@@ -162,13 +157,81 @@
 	padding-right: 10px;
 	border-left-width: 3px;
 	border-left-style: solid;
-	border-left-color: hsl(2,68%,58%);
+	border-left-color: hsl(48,95%,59%);
 	line-height: 1.5;
 	font-family: "Yu Gothic UI",sans-serif;
-	background-color: hsla(0,0%,0%,0);
 }
 
-/* 653395108 */dl dt {
+/* 2108714064 */section > ul {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* 2108714064 */section > ol {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* 2112011719 */h2 {
+	font-size: 1.8rem;
+	font-family: Oswald;
+}
+
+/* 307476514 */.Class::before {
+	font-family: "Material Icons";
+	color: hsl(120,39%,55%);
+	font-size: smaller;
+	content: '\e90c';
+	padding-right: 0.6rem;
+}
+
+/* 310192878 */.Enum::before {
+	font-family: "Material Icons";
+	color: hsl(120,4%,55%);
+	font-size: smaller;
+	content: '\e01e';
+	padding-right: 0.6rem;
+}
+
+/* 357886628 */dl {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(2,68%,58%);
+	border-radius: 2px;
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+	position: relative;
+	background-color: hsla(2,68%,58%,0.19999999999999996);
+}
+
+/* 357886628 */dl::before {
+	position: absolute;
+	content: 'Signature';
+	color: hsla(2,68%,58%,0.09999999999999998);
+	font-size: 1.6rem;
+}
+
+/* 357886628 */dl dt {
 	display: block;
 	width: 70px;
 	float: left;
@@ -180,12 +243,12 @@
 	text-transform: capitalize;
 }
 
-/* 653395108 */dl dd {
+/* 357886628 */dl dd {
 	margin-bottom: 15px;
 	margin-left: 70px;
 }
 
-/* 653395108 */dl b {
+/* 357886628 */dl b {
 	display: block;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
@@ -195,24 +258,55 @@
 	font-weight: bold;
 }
 
-/* 673797460 */.type {
-	cursor: pointer;
-	color: hsl(215,16%,44%);
+/* 54411368 */.FINAL::before {
+	font-family: "Material Icons";
+	color: hsl(120,39%,55%);
+	font-size: smaller;
+	content: '\e57b';
+	padding-right: 0.6rem;
 }
 
-/* 82211311 */.parameters::before {
-	content: '<';
+/* 63712830 */.Annotation::before {
+	font-family: "Material Icons";
+	color: hsl(120,4%,55%);
+	font-size: smaller;
+	content: '\e167';
+	padding-right: 0.6rem;
 }
 
-/* 82211311 */.parameters::after {
-	content: '>';
+/* 654662186 */.STATIC::before {
+	font-family: "Material Icons";
+	color: hsl(120,39%,55%);
+	font-size: smaller;
+	content: '\e57b';
+	padding-right: 0.6rem;
 }
 
-/* 82211311 */.parameters>*:not(:last-child)::after {
-	content: ', ';
+/* 810715571 */.PRIVATE::before {
+	font-family: "Material Icons";
+	color: hsl(2,68%,58%);
+	font-size: smaller;
+	content: '\e3c6';
+	padding-right: 0.6rem;
 }
 
-/* antibug.doc.style.Styles#lambda$31 */.B {
+/* 978886381 */.PROTECTED::before {
+	font-family: "Material Icons";
+	color: hsl(48,95%,59%);
+	font-size: smaller;
+	content: '\e57b';
+	padding-right: 0.6rem;
+}
+
+/* 997692431 */main {
+	width: 85vw;
+	display: flex;
+	flex-direction: row;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* antibug.doc.style.Styles#lambda$42 */.A {
 	font-size: 13px;
 	font-family: "Segoe UI",sans-serif;
 	color: hsl(215,16%,44%);
@@ -220,14 +314,14 @@
 	width: 100vw;
 }
 
-/* antibug.doc.style.Styles#lambda$32 */.G {
+/* antibug.doc.style.Styles#lambda$43 */.B {
 	font-size: 1.5rem;
 	font-family: Oswald;
 	font-weight: normal;
 	color: hsl(203,91%,56%);
 }
 
-/* antibug.doc.style.Styles#lambda$33 */.A {
+/* antibug.doc.style.Styles#lambda$44 */.F {
 	background-color: hsl(0,0%,100%);
 	position: sticky;
 	top: 0;
@@ -241,60 +335,60 @@
 	border-bottom-style: solid;
 }
 
-/* antibug.doc.style.Styles#lambda$35 */.C {
+/* antibug.doc.style.Styles#lambda$46 */.C {
 	flex-basis: 15vw;
 	-webkit-flex-basis: 15vw;
 	flex-shrink: 0;
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.style.Styles#lambda$35 */.C>* {
+/* antibug.doc.style.Styles#lambda$46 */.C>* {
 	position: sticky;
 	top: 80px;
 }
 
-/* antibug.doc.style.Styles#lambda$35 */.C>*>* {
+/* antibug.doc.style.Styles#lambda$46 */.C>*>* {
 	margin-top: 0.5rem;
 }
 
-/* antibug.doc.style.Styles#lambda$35 */.C .el-select {
+/* antibug.doc.style.Styles#lambda$46 */.C .el-select {
 	width: 100%;
 }
 
-/* antibug.doc.style.Styles#lambda$35 */.C .el-checkbox {
+/* antibug.doc.style.Styles#lambda$46 */.C .el-checkbox {
 	display: block;
 }
 
-/* antibug.doc.style.Styles#lambda$35 */.C #AllTypes {
+/* antibug.doc.style.Styles#lambda$46 */.C #AllTypes {
 	overflow: hidden;
 	scrollbar-width: thin;
 	height: 60vh;
 }
 
-/* antibug.doc.style.Styles#lambda$35 */.C #AllTypes:hover {
+/* antibug.doc.style.Styles#lambda$46 */.C #AllTypes:hover {
 	overflow-y: auto;
 }
 
-/* antibug.doc.style.Styles#lambda$42 */.D {
+/* antibug.doc.style.Styles#lambda$53 */.D {
 	flex-grow: 1;
 	-webkit-flex-grow: 1;
 	margin-left: 5rem;
 	margin-right: 1.5rem;
 }
 
-/* antibug.doc.style.Styles#lambda$43 */.E {
+/* antibug.doc.style.Styles#lambda$54 */.G {
 	flex-basis: 15vw;
 	-webkit-flex-basis: 15vw;
 	flex-shrink: 0;
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.style.Styles#lambda$43 */.E>* {
+/* antibug.doc.style.Styles#lambda$54 */.G>* {
 	position: sticky;
 	top: 80px;
 }
 
-/* antibug.doc.style.Styles#lambda$45 */.F {
+/* antibug.doc.style.Styles#lambda$56 */.E {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;

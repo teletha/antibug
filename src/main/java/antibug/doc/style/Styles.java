@@ -76,10 +76,6 @@ public class Styles extends AbstractStyleDSL {
     private Style HTMLSection = Style.named("section", () -> {
         margin.bottom(BlockVerticalGap);
 
-        $.select("> p", () -> {
-            block(palette.primary, false);
-        });
-
         $.select("> pre", () -> {
             block(palette.secondary, false);
         });
@@ -95,8 +91,7 @@ public class Styles extends AbstractStyleDSL {
 
     @SuppressWarnings("unused")
     private Style HTMLDifinitionList = Style.named("dl", () -> {
-        block(palette.accent, false);
-        background.color(Color.Transparent);
+        block2(palette.accent, true);
 
         $.select("dt", () -> {
             display.block().width(70, px).floatLeft();
@@ -133,10 +128,26 @@ public class Styles extends AbstractStyleDSL {
         if (paintBackground) background.color(color.opacify(-0.8d));
     }
 
-    private final Style HTMLClassType = Style.named(".type", () -> {
-        cursor.pointer();
-        font.color(palette.font);
-    });
+    /**
+     * Define block-like.
+     * 
+     * @param color
+     */
+    private void block2(Color color, boolean paintBackground) {
+        padding.vertical(BlockVerticalGap).horizontal(BlockHorizontalGap);
+        border.left.width(BlockBorderWidth).solid().color(color);
+        border.radius(2, px);
+        line.height(LineHeight);
+        font.family(fonts.base, Font.SansSerif);
+        position.relative();
+        if (paintBackground) background.color(color.opacify(-0.8d));
+
+        $.before(() -> {
+            position.absolute();
+            content.text("Signature");
+            font.color(color.opacify(-0.9d)).size(1.6, rem);
+        });
+    }
 
     @SuppressWarnings("unused")
     private final Style HTMLClassParameters = Style.named(".parameters", () -> {
@@ -208,6 +219,71 @@ public class Styles extends AbstractStyleDSL {
     @SuppressWarnings("unused")
     private final Style HTMLClassTypeException = Style.named(".Exception", () -> {
         buidlMark("\\e031", Color.rgb(243, 123, 29));
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassModifierPublic = Style.named(".PUBLIC", () -> {
+        buidlMark("\\e57b", Color.of("#5eb95e"));
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassModifierProtected = Style.named(".PROTECTED", () -> {
+        buidlMark("\\e57b", palette.secondary);
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassModifierPackagePrivate = Style.named(".PACKAGEPRIVATE", () -> {
+        buidlMark("\\e8fb", palette.primary);
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassModifierPrivate = Style.named(".PRIVATE", () -> {
+        buidlMark("\\e3c6", palette.accent);
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassModifierAbstract = Style.named(".ABSTRACT", () -> {
+        buidlMark("\\e57b", Color.of("#5eb95e"));
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassModifierDefault = Style.named(".DEFAULT", () -> {
+        buidlMark("\\e57b", Color.of("#5eb95e"));
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassModifierSTATIC = Style.named(".STATIC", () -> {
+        buidlMark("\\e57b", Color.of("#5eb95e"));
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassModifierFinal = Style.named(".FINAL", () -> {
+        buidlMark("\\e57b", Color.of("#5eb95e"));
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassModifierSynchronized = Style.named(".SYNCHRONIZED", () -> {
+        buidlMark("\\e57b", Color.of("#5eb95e"));
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassModifierNative = Style.named(".NATIVE", () -> {
+        buidlMark("\\e57b", Color.of("#5eb95e"));
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassModifierTransient = Style.named(".TRANSIENT", () -> {
+        buidlMark("\\e57b", Color.of("#5eb95e"));
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassModifierVolatile = Style.named(".VOLATILE", () -> {
+        buidlMark("\\e57b", Color.of("#5eb95e"));
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassModifierStrict = Style.named(".STRICTFP", () -> {
+        buidlMark("\\e57b", Color.of("#5eb95e"));
     });
 
     private void buidlMark(String mark, Color color) {

@@ -126,7 +126,7 @@ public class Javadoc extends DocTool<Javadoc> {
 
     private XML signature(ExecutableInfo constructor) {
         XML root = I.xml("fragment");
-        root.append(constructor.name + "(");
+        root.append(constructor.name).append("(");
         for (int i = 0, size = constructor.params.size(); i < size; i++) {
             Ⅱ<String, XML> param = constructor.params.get(i);
             root.append(param.ⅱ).append(" ").append(param.ⅰ);

@@ -45,7 +45,7 @@ Vue.append("#typeNavigation", {
 			selectedName: "",
 			selectedPackage: "",
 			selectedModule: "",
-			selectedType: ["Interface", "Functional", "AbstractClass", "Class", "Enum", "Annotation", "Exception"]
+			selectedType: []
 		};
 	},
 	watch: {
@@ -79,7 +79,7 @@ Vue.append("#typeNavigation", {
 			return Array.from(map.values());
 		},
 		filter: function(query, item) {
-			if (!this.selectedType.includes(item.type)) {
+			if (this.selectedType.length != 0 && !this.selectedType.includes(item.type)) {
 				return false;
 			}
 

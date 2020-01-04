@@ -32,7 +32,7 @@ import kiss.XML;
 public class ClassInfo extends ParameterizableInfo implements Comparable<ClassInfo> {
 
     /** The fully qualifed class name with type parameters. */
-    public final XML fqcn;
+    public final transient XML fqcn;
 
     /** The package name. */
     public String packageName;
@@ -62,6 +62,9 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
         this.type = detectType(root);
         this.fqcn = parseTypeAsXML(root.asType());
         this.fqcn.first().addClass(type);
+        root.getModifiers().forEach(m -> {
+            this.fqcn.first().addClass(m.name());
+        });
 
         Scanner scanner = new Scanner();
         for (Element element : root.getEnclosedElements()) {
