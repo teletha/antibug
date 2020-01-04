@@ -1,14 +1,74 @@
 @import url("http://fonts.googleapis.com/css?family=Oswald");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1136085369 */main {
-	width: 85vw;
-	display: flex;
-	flex-direction: row;
-	margin-right: auto;
-	margin-left: auto;
+/* 1735835886 */section {
+	margin-bottom: 0.5rem;
 }
 
-/* 1502551983 */dl {
+/* 1735835886 */section > p {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(203,91%,56%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* 1735835886 */section > pre {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* 1735835886 */section > ul {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* 1735835886 */section > ol {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* 1756370271 */.super::before {
+	content: ' super ';
+}
+
+/* 1756967428 */.parameters::before {
+	content: '<';
+}
+
+/* 1756967428 */.parameters::after {
+	content: '>';
+}
+
+/* 479833141 */dl {
 	margin-left: 0;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
@@ -22,7 +82,7 @@
 	background-color: hsla(0,0%,0%,0);
 }
 
-/* 1502551983 */dl dt {
+/* 479833141 */dl dt {
 	display: block;
 	width: 70px;
 	float: left;
@@ -34,12 +94,12 @@
 	text-transform: capitalize;
 }
 
-/* 1502551983 */dl dd {
+/* 479833141 */dl dd {
 	margin-bottom: 15px;
 	margin-left: 70px;
 }
 
-/* 1502551983 */dl b {
+/* 479833141 */dl b {
 	display: block;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
@@ -49,96 +109,36 @@
 	font-weight: bold;
 }
 
-/* 1548134743 */.extends::before {
-	content: ' extends ';
-}
-
-/* 1817069678 */a {
+/* 759044288 */a {
 	color: hsl(215,16%,44%);
 	text-decoration: none;
 }
 
-/* 1817069678 */a:hover {
+/* 759044288 */a:hover {
 	text-decoration: underline;
 	text-decoration-color: hsla(215,16%,44%,0.5);
 	text-underline-offset: 2px;
 	text-underline-position: under;
 }
 
-/* 2106959639 */.super::before {
-	content: ' super ';
+/* 79373261 */main {
+	width: 85vw;
+	display: flex;
+	flex-direction: row;
+	margin-right: auto;
+	margin-left: auto;
 }
 
-/* 452431415 */.parameters::before {
-	content: '<';
-}
-
-/* 452431415 */.parameters::after {
-	content: '>';
-}
-
-/* 665598829 */section {
-	margin-bottom: 0.5rem;
-}
-
-/* 665598829 */section > p {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(203,91%,56%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
-}
-
-/* 665598829 */section > pre {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
-}
-
-/* 665598829 */section > ul {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
-}
-
-/* 665598829 */section > ol {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
-}
-
-/* 73706477 */.type {
+/* 891081855 */.type {
 	cursor: pointer;
 	color: hsl(215,16%,44%);
 }
 
-/* antibug.doc.style.Styles#lambda$19 */.B {
+/* 958004813 */.extends::before {
+	content: ' extends ';
+}
+
+/* antibug.doc.style.Styles#lambda$0 */.C {
 	font-size: 13px;
 	font-family: "Segoe UI",sans-serif;
 	color: hsl(215,16%,44%);
@@ -146,14 +146,7 @@
 	width: 100vw;
 }
 
-/* antibug.doc.style.Styles#lambda$20 */.C {
-	font-size: 1.5rem;
-	font-family: Oswald;
-	font-weight: normal;
-	color: hsl(203,91%,56%);
-}
-
-/* antibug.doc.style.Styles#lambda$21 */.A {
+/* antibug.doc.style.Styles#lambda$1 */.E {
 	background-color: hsl(0,0%,100%);
 	position: sticky;
 	top: 0;
@@ -167,70 +160,78 @@
 	border-bottom-style: solid;
 }
 
-/* antibug.doc.style.Styles#lambda$23 */.F {
-	flex-basis: 15vw;
-	-webkit-flex-basis: 15vw;
-	flex-shrink: 0;
-	-webkit-flex-shrink: 0;
-}
-
-/* antibug.doc.style.Styles#lambda$23 */.F>* {
-	position: sticky;
-	top: 80px;
-}
-
-/* antibug.doc.style.Styles#lambda$23 */.F>*>* {
-	margin-top: 0.5rem;
-}
-
-/* antibug.doc.style.Styles#lambda$23 */.F .type {
-	display: block;
-	height: 1.3rem;
-}
-
-/* antibug.doc.style.Styles#lambda$23 */.F .el-select {
-	width: 100%;
-}
-
-/* antibug.doc.style.Styles#lambda$23 */.F .el-checkbox {
-	display: block;
-}
-
-/* antibug.doc.style.Styles#lambda$23 */.F #AllTypes {
-	overflow-y: hidden;
-	scrollbar-width: thin;
-	height: 60vh;
-}
-
-/* antibug.doc.style.Styles#lambda$23 */.F #AllTypes:hover {
-	overflow-y: auto;
-}
-
-/* antibug.doc.style.Styles#lambda$31 */.G {
+/* antibug.doc.style.Styles#lambda$13 */.G {
 	flex-grow: 1;
 	-webkit-flex-grow: 1;
 	margin-left: 5rem;
 	margin-right: 1.5rem;
 }
 
-/* antibug.doc.style.Styles#lambda$32 */.E {
+/* antibug.doc.style.Styles#lambda$14 */.A {
 	flex-basis: 15vw;
 	-webkit-flex-basis: 15vw;
 	flex-shrink: 0;
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.style.Styles#lambda$32 */.E>* {
+/* antibug.doc.style.Styles#lambda$14 */.A>* {
 	position: sticky;
 	top: 80px;
 }
 
-/* antibug.doc.style.Styles#lambda$34 */.D {
+/* antibug.doc.style.Styles#lambda$16 */.F {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
 	margin-top: 2rem;
 	margin-bottom: 1rem;
 	display: block;
+}
+
+/* antibug.doc.style.Styles#lambda$2 */.B {
+	font-size: 1.5rem;
+	font-family: Oswald;
+	font-weight: normal;
+	color: hsl(203,91%,56%);
+}
+
+/* antibug.doc.style.Styles#lambda$4 */.D {
+	flex-basis: 15vw;
+	-webkit-flex-basis: 15vw;
+	flex-shrink: 0;
+	-webkit-flex-shrink: 0;
+}
+
+/* antibug.doc.style.Styles#lambda$4 */.D>* {
+	position: sticky;
+	top: 80px;
+}
+
+/* antibug.doc.style.Styles#lambda$4 */.D>*>* {
+	margin-top: 0.5rem;
+}
+
+/* antibug.doc.style.Styles#lambda$4 */.D .type {
+	display: block;
+	height: 1.5rem;
+	white-space: nowrap;
+}
+
+/* antibug.doc.style.Styles#lambda$4 */.D .el-select {
+	width: 100%;
+}
+
+/* antibug.doc.style.Styles#lambda$4 */.D .el-checkbox {
+	display: block;
+}
+
+/* antibug.doc.style.Styles#lambda$4 */.D #AllTypes {
+	overflow: hidden;
+	scrollbar-width: thin;
+	height: 60vh;
+}
+
+/* antibug.doc.style.Styles#lambda$4 */.D #AllTypes:hover {
+	overflow-y: auto;
 }
 

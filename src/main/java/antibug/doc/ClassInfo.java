@@ -56,7 +56,7 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
      */
     ClassInfo(TypeElement root) {
         super(root);
-
+        System.out.println(root);
         this.typeName = root.asType().toString();
         this.packageName = DocTool.ElementUtils.getPackageOf(root).toString();
         this.name = typeName.replaceAll("<.+>", "").substring(packageName.length() + 1);

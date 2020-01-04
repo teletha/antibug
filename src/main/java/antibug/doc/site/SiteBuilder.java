@@ -123,7 +123,7 @@ public class SiteBuilder {
         initialize();
 
         root.file(path).write(output -> {
-            output.append("<!DOCTYPE html>").append(Formattable.EOL);
+            output.append("<!DOCTYPE html>\r\n");
 
             for (XML node : html.root) {
                 node.to(output, "\t", characterType);

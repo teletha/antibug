@@ -196,7 +196,8 @@ public class Styles extends AbstractStyleDSL {
         });
 
         $.select(HTMLClassType, () -> {
-            display.block().height(1.3, rem);
+            display.block().height(1.5, rem);
+            text.whiteSpace.nowrap();
         });
 
         $.select(".el-select", () -> {
@@ -208,7 +209,7 @@ public class Styles extends AbstractStyleDSL {
         });
 
         $.select("#AllTypes", () -> {
-            overflow.y.hidden().scrollbar.thin();
+            overflow.hidden().scrollbar.thin();
             display.height(60, vh);
 
             $.hover(() -> {

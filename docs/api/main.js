@@ -34,7 +34,7 @@ const groupBy = (array, getKey) =>
 Vue.append("#typeNavigation", {
 	template: `
 	<div>
-      <el-select size="mini" clearable v-model='selectedModule' placeholder='Select Package' no-data-text="No Module">
+      <el-select size="mini" clearable v-model='selectedModule' placeholder='Select Module' no-data-text="No Module">
         <el-option v-for='i in items.modules' :key='i' :label='i' :value='i'/>
       </el-select>
       <el-select size="mini" clearable v-model='selectedPackage' placeholder='Select Package' no-data-text="No Package">

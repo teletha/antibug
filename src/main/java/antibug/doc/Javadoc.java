@@ -119,6 +119,7 @@ public class Javadoc extends DocTool<Javadoc> {
                 });
             }
         });
+
     }
 
     private XML signature(ExecutableInfo constructor) {

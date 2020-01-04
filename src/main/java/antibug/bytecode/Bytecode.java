@@ -9,7 +9,7 @@
  */
 package antibug.bytecode;
 
-import static net.bytebuddy.jar.asm.Opcodes.*;
+import static net.bytebuddy.jar.asm.Opcodes.INVOKESTATIC;
 
 import net.bytebuddy.jar.asm.MethodVisitor;
 import net.bytebuddy.jar.asm.Type;
