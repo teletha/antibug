@@ -50,6 +50,16 @@ public class Styles extends AbstractStyleDSL {
     private Numeric BlockHorizontalGap = Numeric.of(10, px);
 
     @SuppressWarnings("unused")
+    private Style HTMLLevel2 = Style.named("h2", () -> {
+        font.size(1.8, rem).family(fonts.title);
+    });
+
+    @SuppressWarnings("unused")
+    private Style HTMLItalic = Style.named("i", () -> {
+        font.style.normal();
+    });
+
+    @SuppressWarnings("unused")
     private Style HTMLAnchor = Style.named("a", () -> {
         font.color(palette.font);
         text.decoration.none();
@@ -130,12 +140,17 @@ public class Styles extends AbstractStyleDSL {
 
     @SuppressWarnings("unused")
     private final Style HTMLClassParameters = Style.named(".parameters", () -> {
-
         $.before(() -> {
             content.text("<");
         });
         $.after(() -> {
             content.text(">");
+        });
+
+        $.child().not($.lastChild(), () -> {
+            $.after(() -> {
+                content.text(", ");
+            });
         });
     });
 
@@ -156,12 +171,17 @@ public class Styles extends AbstractStyleDSL {
     });
 
     @SuppressWarnings("unused")
+    private final Style HTMLClassPackage = Style.named(".package", () -> {
+        font.weight.bold();
+    });
+
+    @SuppressWarnings("unused")
     private final Style HTMLClassTypeInterface = Style.named(".Interface", () -> {
         buidlMark("\\e88f", Color.rgb(128, 88, 165));
     });
 
     @SuppressWarnings("unused")
-    private final Style HTMLClassTypeFunctionalInterface = Style.named(".FunctionalInterface", () -> {
+    private final Style HTMLClassTypeFunctionalInterface = Style.named(".Functional", () -> {
         buidlMark("\\e88e", Color.rgb(128, 88, 165));
     });
 
@@ -191,10 +211,8 @@ public class Styles extends AbstractStyleDSL {
     });
 
     private void buidlMark(String mark, Color color) {
-        text.verticalAlign.middle();
-
         $.before(() -> {
-            font.family(fonts.icon).color(color);
+            font.family(fonts.icon).color(color).size.smaller();
             content.text(mark);
             padding.right(0.6, rem);
         });
@@ -238,11 +256,6 @@ public class Styles extends AbstractStyleDSL {
             $.child(() -> {
                 margin.top(BlockVerticalGap);
             });
-        });
-
-        $.select(HTMLClassType, () -> {
-            display.block().height(1.5, rem);
-            text.whiteSpace.nowrap();
         });
 
         $.select(".el-select", () -> {

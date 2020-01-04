@@ -27,13 +27,14 @@ import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.SimpleElementVisitor9;
 
 import kiss.Variable;
+import kiss.XML;
 
 public class ClassInfo extends ParameterizableInfo implements Comparable<ClassInfo> {
 
     /** The fully qualifed class name with type parameters. */
-    public final String typeName;
+    public final XML fqcn;
 
-    /** The fully qualifed class name. */
+    /** The package name. */
     public String packageName;
 
     /** The simple class name. */
@@ -56,11 +57,11 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
      */
     ClassInfo(TypeElement root) {
         super(root);
-        System.out.println(root);
-        this.typeName = root.asType().toString();
         this.packageName = DocTool.ElementUtils.getPackageOf(root).toString();
-        this.name = typeName.replaceAll("<.+>", "").substring(packageName.length() + 1);
+        this.name = root.asType().toString().replaceAll("<.+>", "").substring(packageName.length() + 1);
         this.type = detectType(root);
+        this.fqcn = parseTypeAsXML(root.asType());
+        this.fqcn.first().addClass(type);
 
         Scanner scanner = new Scanner();
         for (Element element : root.getEnclosedElements()) {
@@ -68,11 +69,11 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
         }
     }
 
-    private String detectType(TypeElement root) {
+    private static String detectType(TypeElement root) {
         switch (root.getKind()) {
         case INTERFACE:
             if (Javadoc.ElementUtils.isFunctionalInterface(root)) {
-                return "Functional Interface";
+                return "Functional";
             } else {
                 return "Interface";
             }
@@ -82,7 +83,7 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
             return "Enum";
         default: // CLASS
             if (root.getModifiers().contains(Modifier.ABSTRACT)) {
-                return "Abstract Class";
+                return "AbstractClass";
             } else if (isThrowable(root.asType())) {
                 return "Exception";
             } else {
@@ -91,7 +92,7 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
         }
     }
 
-    private boolean isThrowable(TypeMirror type) {
+    private static boolean isThrowable(TypeMirror type) {
         while (type != null && type.getKind() == TypeKind.DECLARED) {
             DeclaredType dt = (DeclaredType) type;
             TypeElement elem = (TypeElement) dt.asElement();

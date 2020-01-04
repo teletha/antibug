@@ -14,187 +14,206 @@ const root = {
 		{
 			"name": "Agent",
 			"packageName": "antibug.bytecode",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "Agent.Translator",
 			"packageName": "antibug.bytecode",
-			"type": "Abstract Class"
-		},
-		{
-			"name": "Anti",
-			"packageName": "antibug.powerassert",
-			"type": "Functional Interface"
+			"type": "AbstractClass",
+			"fqcn": {}
 		},
 		{
 			"name": "BuiltinStyles",
 			"packageName": "antibug.doc",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "Bytecode",
 			"packageName": "antibug.bytecode",
-			"type": "Abstract Class"
+			"type": "AbstractClass",
+			"fqcn": {}
 		},
 		{
 			"name": "Chronus",
 			"packageName": "antibug",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "Chronus.Task",
 			"packageName": "antibug",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "ClassInfo",
 			"packageName": "antibug.doc",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "CleanRoom",
 			"packageName": "antibug",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "CleanRoom.FileSystemDSL",
 			"packageName": "antibug",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "CommandLineUser",
 			"packageName": "antibug",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "Constant",
 			"packageName": "antibug.bytecode",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "DocTool",
 			"packageName": "antibug.doc",
-			"type": "Abstract Class"
+			"type": "AbstractClass",
+			"fqcn": {}
 		},
 		{
 			"name": "DocTool.Internal",
 			"packageName": "antibug.doc",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "DocumentInfo",
 			"packageName": "antibug.doc",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "ExecutableInfo",
 			"packageName": "antibug.doc",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "FieldInfo",
 			"packageName": "antibug.doc",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "HTML",
 			"packageName": "antibug.doc.site",
-			"type": "Abstract Class"
+			"type": "AbstractClass",
+			"fqcn": {}
 		},
 		{
 			"name": "Instruction",
 			"packageName": "antibug.bytecode",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "IntValue",
 			"packageName": "antibug.bytecode",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "Javadoc",
 			"packageName": "antibug.doc",
-			"type": "Class"
-		},
-		{
-			"name": "Journal",
-			"packageName": "antibug.powerassert",
-			"type": "Interface"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "LocalVariable",
 			"packageName": "antibug.bytecode",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "MethodCall",
 			"packageName": "antibug.bytecode",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "MethodInfo",
 			"packageName": "antibug.doc",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "ParameterizableInfo",
 			"packageName": "antibug.doc",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "PowerAssert",
 			"packageName": "antibug.powerassert",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "PowerAssertContext",
 			"packageName": "antibug.powerassert",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "PowerAssertOff",
 			"packageName": "antibug.powerassert",
-			"type": "Annotation"
+			"type": "Annotation",
+			"fqcn": {}
 		},
 		{
 			"name": "PowerAssertRenderer",
 			"packageName": "antibug.powerassert",
-			"type": "Abstract Class"
+			"type": "AbstractClass",
+			"fqcn": {}
 		},
 		{
 			"name": "PowerAssertionError",
 			"packageName": "antibug.powerassert",
-			"type": "Exception"
+			"type": "Exception",
+			"fqcn": {}
 		},
 		{
 			"name": "Profiler",
 			"packageName": "antibug.profiler",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "Profiler.Result",
 			"packageName": "antibug.profiler",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "SiteBuilder",
 			"packageName": "antibug.doc.site",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "Styles",
 			"packageName": "antibug.doc.style",
-			"type": "Class"
+			"type": "Class",
+			"fqcn": {}
 		},
 		{
 			"name": "TestMethodTestDescriptor",
 			"packageName": "org.junit.jupiter.engine.descriptor",
-			"type": "Class"
-		},
-		{
-			"name": "Zax",
-			"packageName": "antibug.powerassert",
-			"type": "Enum"
+			"type": "Class",
+			"fqcn": {}
 		}
 	]
 }

@@ -28,8 +28,8 @@ Vue.append("#typeNavigation", {
 	  </el-select>
 	  <el-checkbox-group v-model="selectedType">
 		<el-checkbox label="Interface"></el-checkbox>
-		<el-checkbox label="Functional Interface"></el-checkbox>
-		<el-checkbox label="Abstract Class"></el-checkbox>
+		<el-checkbox label="Functional"></el-checkbox>
+		<el-checkbox label="AbstractClass" value="AbstractClass"></el-checkbox>
 		<el-checkbox label="Class"></el-checkbox>
 		<el-checkbox label="Enum"></el-checkbox>
 		<el-checkbox label="Annotation"></el-checkbox>
@@ -45,7 +45,7 @@ Vue.append("#typeNavigation", {
 			selectedName: "",
 			selectedPackage: "",
 			selectedModule: "",
-			selectedType: ["Interface", "Functional Interface", "Abstract Class", "Class", "Enum", "Annotation", "Exception"]
+			selectedType: ["Interface", "Functional", "AbstractClass", "Class", "Enum", "Annotation", "Exception"]
 		};
 	},
 	watch: {
@@ -93,7 +93,7 @@ Vue.append("#typeNavigation", {
 			return true;
 		},
 		renderTree: function(h, o) {
-			return h("span", {class:o.data.type ? o.data.type.replace(" ", ""): ""}, [o.data.name]);
+			return h("span", {class:o.data.type ? o.data.type : "package"}, [o.data.name]);
 		},
 		link: function(e) {
 			if (!e.packageName) return; // ignore package node

@@ -172,7 +172,7 @@ public abstract class DocTool<Self extends DocTool> implements DiagnosticListene
      */
     @Override
     public void report(Diagnostic<? extends JavaFileObject> diagnostic) {
-        System.out.println(diagnostic + "@@");
+        System.out.println(diagnostic);
     }
 
     /**

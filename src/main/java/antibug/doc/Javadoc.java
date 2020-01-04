@@ -68,7 +68,9 @@ public class Javadoc extends DocTool<Javadoc> {
 
             @Override
             protected void contents() {
-                $("h2", styles.heading, text(info.name));
+                $("h2", () -> {
+                    $(info.fqcn);
+                });
                 $(html(info.comment));
 
                 $("h2", styles.heading, text("Constructor"));
