@@ -34,6 +34,7 @@ import javax.tools.DiagnosticListener;
 import javax.tools.DocumentationTool;
 import javax.tools.DocumentationTool.Location;
 import javax.tools.JavaFileObject;
+import javax.tools.JavaFileObject.Kind;
 import javax.tools.StandardJavaFileManager;
 import javax.tools.ToolProvider;
 
@@ -156,7 +157,9 @@ public abstract class DocTool<Self extends DocTool> implements DiagnosticListene
                 manager.setLocationFromPaths(SOURCE_PATH, sources);
                 manager.setLocationFromPaths(Location.DOCUMENTATION_OUTPUT, List.of(output()));
 
-                if (tool.getTask(null, manager, this, Internal.class, List.of(), null).call()) {
+                Iterable<? extends JavaFileObject> units = manager.list(SOURCE_PATH, "", Set.of(Kind.SOURCE), true);
+
+                if (tool.getTask(null, manager, this, Internal.class, List.of(), units).call()) {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
