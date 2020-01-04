@@ -31,7 +31,7 @@ public class ExecutableInfo extends ParameterizableInfo {
     ExecutableInfo(String name, ExecutableElement e) {
         super(e);
 
-        this.name = I.xml("executable").text(name);
+        this.name = I.xml("i").text(name);
         e.getModifiers().forEach(m -> this.name.addClass(m.name()));
 
         List<? extends VariableElement> params = e.getParameters();

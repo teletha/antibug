@@ -62,9 +62,7 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
         this.type = detectType(root);
         this.fqcn = parseTypeAsXML(root.asType());
         this.fqcn.first().addClass(type);
-        root.getModifiers().forEach(m -> {
-            this.fqcn.first().addClass(m.name());
-        });
+        root.getModifiers().forEach(m -> this.fqcn.first().addClass(m.name()));
 
         Scanner scanner = new Scanner();
         for (Element element : root.getEnclosedElements()) {

@@ -22,7 +22,7 @@ public class ExecutableInfoTest extends JavadocTestSupport {
     @Test
     void parameter0() {
         ExecutableInfo info = currentMethod();
-        assert info.name.equals("parameter0");
+        assert info.name.text().equals("parameter0");
         assert info.params.size() == 0;
     }
 

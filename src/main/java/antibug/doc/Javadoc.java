@@ -120,6 +120,33 @@ public class Javadoc extends DocTool<Javadoc> {
                     }
                 });
             }
+
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            protected void toc() {
+                if (info.fields.size() != 0) {
+                    $("h5", text("Fields"));
+                    $("ul", foŕ(info.fields, field -> {
+                        $("li", text(field.name));
+                    }));
+                }
+
+                if (info.constructors.size() != 0) {
+                    $("h5", text("Constructors"));
+                    $("ul", foŕ(info.constructors, constructor -> {
+                        $("li", constructor.name);
+                    }));
+                }
+
+                if (info.methods.size() != 0) {
+                    $("h5", text("Methods"));
+                    $("ul", foŕ(info.methods, method -> {
+                        $("li", method.name);
+                    }));
+                }
+            }
         });
 
     }
@@ -205,16 +232,14 @@ public class Javadoc extends DocTool<Javadoc> {
                         // Main Contents
                         // =============================
                         $("article", styles.contents, () -> {
-                            $("section", () -> {
-                                contents();
-                            });
+                            contents();
                         });
 
                         // =============================
                         // Right Side Navigation
                         // =============================
                         $("aside", styles.navigationRight, () -> {
-                            $("div", text("ToC"));
+                            toc();
                         });
                     });
 
@@ -225,6 +250,10 @@ public class Javadoc extends DocTool<Javadoc> {
         }
 
         protected void contents() {
+
+        }
+
+        protected void toc() {
 
         }
     }

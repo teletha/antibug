@@ -109,12 +109,15 @@ Vue.append("#typeNavigation", {
 					return response.text();
 				})
 				.then(function(html) {
-					var start = html.indexOf("<article");
-					var end = html.lastIndexOf("</article>") + 10;
-					html = html.substring(start, end);
+					var start = html.indexOf(">", html.indexOf("<article")) + 1;
+					var end = html.lastIndexOf("</article>");
+					var article = html.substring(start, end);
+					document.querySelector("article").innerHTML = article;
 
-					var article = document.querySelector("article");
-					article.outerHTML = html;
+					var start = html.indexOf(">", html.indexOf("<aside")) + 1;
+					var end = html.lastIndexOf("</aside>");
+					var aside = html.substring(start, end);
+					document.querySelector("aside").innerHTML = aside;
 				});
 		}
 	}

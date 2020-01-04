@@ -222,7 +222,8 @@ class JavadocTestSupport {
          */
         private Variable<ClassInfo> findByClassName(String className) {
             for (ClassInfo info : infos) {
-                if (info.fqcn.equals(className)) {
+                System.out.println(info.packageName + " " + info.name + "  " + className);
+                if ((info.packageName + "." + info.name).equals(className)) {
                     return Variable.of(info);
                 }
             }
