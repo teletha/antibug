@@ -64,7 +64,110 @@ public class Javadoc extends DocTool<Javadoc> {
         ClassInfo info = new ClassInfo(root);
         data.add(info);
 
-        site.buildHTML("types/" + info.packageName + "." + info.name + ".html", new TypeHTML(info));
+        site.buildHTML("types/" + info.packageName + "." + info.name + ".html", new BaseHTML() {
+
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            protected void main() {
+                $("h2", () -> {
+                    $(info.createNameWithModifier());
+                });
+                $(html(info.comment));
+
+                $("h2", styles.heading, text("Constructor"));
+                $("section", () -> {
+                    for (ExecutableInfo constructor : info.constructors) {
+                        $("h3", styles.heading, signature(constructor));
+                        $(html(constructor.comment));
+                        $("dl", () -> {
+                            if (!constructor.paramTags.isEmpty()) {
+                                $("dt", text("Parameters"));
+                                for (Ⅱ<String, XML> param : constructor.paramTags) {
+                                    $("dd", () -> {
+                                        $("b", text(param.ⅰ));
+                                        $(param.ⅱ);
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
+
+                $("h2", styles.heading, text("Methods"));
+                $("section", () -> {
+                    for (MethodInfo method : info.methods) {
+                        $("h3", styles.heading, signature(method));
+                        $(method.comment.v);
+
+                        if (!method.paramTags.isEmpty() || method.returnTag.isPresent()) {
+                            $("dl", () -> {
+                                if (!method.paramTags.isEmpty()) {
+                                    $("dt", text("Parameters"));
+                                    for (Ⅱ<String, XML> param : method.paramTags) {
+                                        $("dd", () -> {
+                                            $("b", text(param.ⅰ), () -> {
+                                            });
+                                            $(param.ⅱ);
+                                        });
+                                    }
+                                }
+
+                                method.returnTag.to(tag -> {
+                                    $("dt", text("Return"));
+                                    $("dd", tag);
+                                });
+                            });
+                        }
+                    }
+                });
+            }
+
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            protected void aside() {
+                if (info.fields.size() != 0) {
+                    $("h5", text("Fields"));
+                    $("ul", foŕ(info.fields, field -> {
+                        $("li", text(field.name));
+                    }));
+                }
+
+                if (info.constructors.size() != 0) {
+                    $("h5", text("Constructors"));
+                    $("ul", foŕ(info.constructors, constructor -> {
+                        $("li", constructor.createNameWithModifier());
+                    }));
+                }
+
+                if (info.methods.size() != 0) {
+                    $("h5", text("Methods"));
+                    $("ul", foŕ(info.methods, method -> {
+                        $("li", method.createNameWithModifier());
+                    }));
+                }
+            }
+
+            private XML signature(ExecutableInfo constructor) {
+                XML root = I.xml("fragment");
+                root.append(constructor.name).append("(");
+                for (int i = 0, size = constructor.params.size(); i < size; i++) {
+                    Ⅱ<String, XML> param = constructor.params.get(i);
+                    root.append(param.ⅱ).append(" ").append(param.ⅰ);
+
+                    if (i + 1 != size) {
+                        root.append(", ");
+                    }
+                }
+                root.append(")");
+
+                return root;
+
+            }
+        });
 
     }
 
@@ -161,119 +264,6 @@ public class Javadoc extends DocTool<Javadoc> {
          * Write your aside contents.
          */
         protected void aside() {
-        }
-    }
-
-    private final class TypeHTML extends BaseHTML {
-        /**
-         * 
-         */
-        private final ClassInfo info;
-
-        /**
-         * @param info
-         */
-        private TypeHTML(ClassInfo info) {
-            this.info = info;
-        }
-
-        @Override
-        protected void main() {
-            $("h2", () -> {
-                $(info.fqcn);
-            });
-            $(html(info.comment));
-
-            $("h2", styles.heading, text("Constructor"));
-            $("section", () -> {
-                for (ExecutableInfo constructor : info.constructors) {
-                    $("h3", styles.heading, signature(constructor));
-                    $(html(constructor.comment));
-                    $("dl", () -> {
-                        if (!constructor.paramTags.isEmpty()) {
-                            $("dt", text("Parameters"));
-                            for (Ⅱ<String, XML> param : constructor.paramTags) {
-                                $("dd", () -> {
-                                    $("b", text(param.ⅰ));
-                                    $(param.ⅱ);
-                                });
-                            }
-                        }
-                    });
-                }
-            });
-
-            $("h2", styles.heading, text("Methods"));
-            $("section", () -> {
-                for (MethodInfo method : info.methods) {
-                    $("h3", styles.heading, signature(method));
-                    $(method.comment.v);
-
-                    if (!method.paramTags.isEmpty() || method.returnTag.isPresent()) {
-                        $("dl", () -> {
-                            if (!method.paramTags.isEmpty()) {
-                                $("dt", text("Parameters"));
-                                for (Ⅱ<String, XML> param : method.paramTags) {
-                                    $("dd", () -> {
-                                        $("b", text(param.ⅰ), () -> {
-                                        });
-                                        $(param.ⅱ);
-                                    });
-                                }
-                            }
-
-                            method.returnTag.to(tag -> {
-                                $("dt", text("Return"));
-                                $("dd", tag);
-                            });
-                        });
-                    }
-                }
-            });
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        protected void aside() {
-            if (info.fields.size() != 0) {
-                $("h5", text("Fields"));
-                $("ul", foŕ(info.fields, field -> {
-                    $("li", text(field.name));
-                }));
-            }
-
-            if (info.constructors.size() != 0) {
-                $("h5", text("Constructors"));
-                $("ul", foŕ(info.constructors, constructor -> {
-                    $("li", constructor.nameWithModifier());
-                }));
-            }
-
-            if (info.methods.size() != 0) {
-                $("h5", text("Methods"));
-                $("ul", foŕ(info.methods, method -> {
-                    $("li", method.nameWithModifier());
-                }));
-            }
-        }
-
-        private XML signature(ExecutableInfo constructor) {
-            XML root = I.xml("fragment");
-            root.append(constructor.name).append("(");
-            for (int i = 0, size = constructor.params.size(); i < size; i++) {
-                Ⅱ<String, XML> param = constructor.params.get(i);
-                root.append(param.ⅱ).append(" ").append(param.ⅰ);
-
-                if (i + 1 != size) {
-                    root.append(", ");
-                }
-            }
-            root.append(")");
-
-            return root;
-
         }
     }
 

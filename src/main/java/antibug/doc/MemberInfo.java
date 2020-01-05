@@ -46,7 +46,7 @@ public abstract class MemberInfo extends DocumentInfo {
      * @param info
      * @return
      */
-    public final XML nameWithModifier() {
+    public final XML createNameWithModifier() {
         XML xml = I.xml("i").text(name);
 
         for (Modifier modifier : modifiers) {

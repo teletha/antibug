@@ -65,7 +65,7 @@ import kiss.Ⅱ;
 public class DocumentInfo {
 
     /** The associated element. */
-    public final Element e;
+    protected final Element e;
 
     protected final Variable<XML> comment = Variable.empty();
 
