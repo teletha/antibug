@@ -129,23 +129,17 @@ public class Javadoc extends DocTool<Javadoc> {
              */
             @Override
             protected void aside() {
-                if (info.fields.size() != 0) {
-                    $("h5", text("Fields"));
-                    $("ul", foŕ(info.fields, field -> {
-                        $("li", text(field.name));
-                    }));
-                }
+                members("Constructors", info.constructors);
+                members("Static Fields", info.staticFields());
+                members("Fields", info.nonStaticFields());
+                members("Static Methods", info.staticMethods());
+                members("Methods", info.nonStaticMethods());
+            }
 
-                if (info.constructors.size() != 0) {
-                    $("h5", text("Constructors"));
-                    $("ul", foŕ(info.constructors, constructor -> {
-                        $("li", constructor.createNameWithModifier());
-                    }));
-                }
-
-                if (info.methods.size() != 0) {
-                    $("h5", text("Methods"));
-                    $("ul", foŕ(info.methods, method -> {
+            private void members(String title, List<? extends MemberInfo> members) {
+                if (members.size() != 0) {
+                    $("h5", styles.RNaviTitle, text(title));
+                    $("ul", foŕ(members, method -> {
                         $("li", method.createNameWithModifier());
                     }));
                 }

@@ -258,11 +258,11 @@ public class BuiltinStyles extends AbstractStyleDSL {
         heading.style();
     });
 
-    Style h4 = Style.named("h4", () -> {
+    volatile transient Style h4 = Style.named("h4", () -> {
         heading.style();
     });
 
-    Style h5 = Style.named("h5", () -> {
+    final transient Style h5 = Style.named("h5", () -> {
         display.none();
     });
 
@@ -324,7 +324,9 @@ public class BuiltinStyles extends AbstractStyleDSL {
      *         ara@8shou:psdus: iha@daiagp9i 0qaeiaoudalsdaasu iayiudaidydsiu iayiudaidydsiu
      * @see String
      */
-    public static void main(String[] args) throws IOException {
+    public static final synchronized void main(String[] args) throws IOException {
         Stylist.pretty().styles(BuiltinStyles.class).formatTo("docs/javadoc.css");
     }
+
+    public final static synchronized native void test();
 }

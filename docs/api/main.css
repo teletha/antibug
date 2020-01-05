@@ -1,20 +1,92 @@
 @import url("http://fonts.googleapis.com/css?family=Material+Icons");
 @import url("http://fonts.googleapis.com/css?family=Oswald");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1026471930 */h2 {
-	font-size: 1.8rem;
-	font-family: Oswald;
+/* 107095723 */.NATIVE {
+	position: relative;
 }
 
-/* 1046246792 */.PUBLIC::before {
+/* 107095723 */.NATIVE::before {
 	font-family: "Material Icons";
 	color: hsl(120,39%,55%);
-	font-size: smaller;
+	font-size: 0.7em;
 	content: '\e57b';
 	padding-right: 0.6rem;
 }
 
-/* 1156725031 */main {
+/* 1192474161 */.TRANSIENT {
+	position: relative;
+}
+
+/* 1192474161 */.TRANSIENT::after {
+	color: hsl(120,39%,55%);
+	font-size: 0.6em;
+	content: 'T';
+	position: absolute;
+	top: 1.2em;
+	left: 1.1em;
+}
+
+/* 1195525742 */.Enum {
+	position: relative;
+}
+
+/* 1195525742 */.Enum::before {
+	font-family: "Material Icons";
+	color: hsl(120,4%,55%);
+	font-size: 0.7em;
+	content: '\e01e';
+	padding-right: 0.6rem;
+}
+
+/* 1246087708 */.Class {
+	position: relative;
+}
+
+/* 1246087708 */.Class::before {
+	font-family: "Material Icons";
+	color: hsl(120,39%,55%);
+	font-size: 0.7em;
+	content: '\e90c';
+	padding-right: 0.6rem;
+}
+
+/* 1284612104 */.PACKAGEPRIVATE {
+	position: relative;
+}
+
+/* 1284612104 */.PACKAGEPRIVATE::before {
+	font-family: "Material Icons";
+	color: hsl(203,91%,56%);
+	font-size: 0.7em;
+	content: '\e8fb';
+	padding-right: 0.6rem;
+}
+
+/* 130326586 */.Exception {
+	position: relative;
+}
+
+/* 130326586 */.Exception::before {
+	font-family: "Material Icons";
+	color: hsl(26,90%,53%);
+	font-size: 0.7em;
+	content: '\e031';
+	padding-right: 0.6rem;
+}
+
+/* 1314997104 */a {
+	color: hsl(215,16%,44%);
+	text-decoration: none;
+}
+
+/* 1314997104 */a:hover {
+	text-decoration: underline;
+	text-decoration-color: hsla(215,16%,44%,0.5);
+	text-underline-offset: 2px;
+	text-underline-position: under;
+}
+
+/* 1355829607 */main {
 	width: 85vw;
 	display: flex;
 	flex-direction: row;
@@ -22,222 +94,60 @@
 	margin-left: auto;
 }
 
-/* 1193797116 */.Annotation::before {
+/* 138303640 */.Annotation {
+	position: relative;
+}
+
+/* 138303640 */.Annotation::before {
 	font-family: "Material Icons";
 	color: hsl(120,4%,55%);
-	font-size: smaller;
+	font-size: 0.7em;
 	content: '\e167';
 	padding-right: 0.6rem;
 }
 
-/* 1257637609 */.PRIVATE::before {
-	font-family: "Material Icons";
-	color: hsl(2,68%,58%);
-	font-size: smaller;
-	content: '\e3c6';
-	padding-right: 0.6rem;
+/* 1479320034 */.STATIC {
+	position: relative;
 }
 
-/* 1385623564 */.Enum::before {
-	font-family: "Material Icons";
-	color: hsl(120,4%,55%);
-	font-size: smaller;
-	content: '\e01e';
-	padding-right: 0.6rem;
-}
-
-/* 1386693416 */.parameters::before {
-	content: '<';
-}
-
-/* 1386693416 */.parameters::after {
-	content: '>';
-}
-
-/* 1386693416 */.parameters>*:not(:last-child)::after {
-	content: ', ';
-}
-
-/* 1418176753 */.Exception::before {
-	font-family: "Material Icons";
-	color: hsl(26,90%,53%);
-	font-size: smaller;
-	content: '\e031';
-	padding-right: 0.6rem;
-}
-
-/* 1423111635 */.STRICTFP::before {
+/* 1479320034 */.STATIC::before {
 	font-family: "Material Icons";
 	color: hsl(120,39%,55%);
-	font-size: smaller;
+	font-size: 0.7em;
 	content: '\e57b';
 	padding-right: 0.6rem;
 }
 
-/* 1529869535 */.PROTECTED::before {
+/* 1672843252 */.PUBLIC {
+	position: relative;
+}
+
+/* 1672843252 */.PUBLIC::before {
 	font-family: "Material Icons";
-	color: hsl(48,95%,59%);
-	font-size: smaller;
+	color: hsl(120,39%,55%);
+	font-size: 0.7em;
 	content: '\e57b';
 	padding-right: 0.6rem;
 }
 
-/* 1553886613 */.SYNCHRONIZED::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: smaller;
-	content: '\e57b';
-	padding-right: 0.6rem;
+/* 1709778181 */.extends::before {
+	content: ' extends ';
 }
 
-/* 1560327273 */.NATIVE::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: smaller;
-	content: '\e57b';
-	padding-right: 0.6rem;
+/* 1833765396 */.VOLATILE {
+	position: relative;
 }
 
-/* 1579650597 */a {
-	color: hsl(215,16%,44%);
-	text-decoration: none;
-}
-
-/* 1579650597 */a:hover {
-	text-decoration: underline;
-	text-decoration-color: hsla(215,16%,44%,0.5);
-	text-underline-offset: 2px;
-	text-underline-position: under;
-}
-
-/* 1598944606 */.Interface::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: smaller;
-	content: '\e88f';
-	padding-right: 0.6rem;
-}
-
-/* 1648430623 */.Class::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: smaller;
-	content: '\e90c';
-	padding-right: 0.6rem;
-}
-
-/* 1659772041 */section {
-	margin-bottom: 0.5rem;
-}
-
-/* 1659772041 */section > pre {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
-}
-
-/* 1659772041 */section > ul {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
-}
-
-/* 1659772041 */section > ol {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
-}
-
-/* 1869081829 */.STATIC::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: smaller;
-	content: '\e57b';
-	padding-right: 0.6rem;
-}
-
-/* 1924981513 */.Functional::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: smaller;
-	content: '\e88e';
-	padding-right: 0.6rem;
-}
-
-/* 2073021938 */.VOLATILE::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: smaller;
-	content: '\e57b';
-	padding-right: 0.6rem;
-}
-
-/* 231767016 */.TRANSIENT::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: smaller;
-	content: '\e57b';
-	padding-right: 0.6rem;
-}
-
-/* 256089615 */.AbstractClass::before {
-	font-family: "Material Icons";
-	color: hsl(120,9%,55%);
-	font-size: smaller;
-	content: '\e90c';
-	padding-right: 0.6rem;
-}
-
-/* 358383278 */.FINAL::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: smaller;
-	content: '\e57b';
-	padding-right: 0.6rem;
-}
-
-/* 400280074 */.ABSTRACT::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: smaller;
-	content: '\e57b';
-	padding-right: 0.6rem;
-}
-
-/* 571203888 */.super::before {
-	content: ' super ';
-}
-
-/* 601879107 */.PACKAGEPRIVATE::before {
-	font-family: "Material Icons";
+/* 1833765396 */.VOLATILE::before {
 	color: hsl(203,91%,56%);
-	font-size: smaller;
-	content: '\e8fb';
-	padding-right: 0.6rem;
+	font-size: 0.6em;
+	content: 'V';
+	position: absolute;
+	top: 0;
+	left: 1.1em;
 }
 
-/* 716699209 */dl {
+/* 1839813660 */dl {
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
 	padding-left: 10px;
@@ -252,14 +162,14 @@
 	background-color: hsla(2,68%,58%,0.19999999999999996);
 }
 
-/* 716699209 */dl::before {
+/* 1839813660 */dl::before {
 	position: absolute;
 	content: 'Signature';
 	color: hsla(2,68%,58%,0.09999999999999998);
 	font-size: 1.6rem;
 }
 
-/* 716699209 */dl dt {
+/* 1839813660 */dl dt {
 	display: block;
 	width: 70px;
 	float: left;
@@ -271,12 +181,12 @@
 	text-transform: capitalize;
 }
 
-/* 716699209 */dl dd {
+/* 1839813660 */dl dd {
 	margin-bottom: 15px;
 	margin-left: 70px;
 }
 
-/* 716699209 */dl b {
+/* 1839813660 */dl b {
 	display: block;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
@@ -286,27 +196,189 @@
 	font-weight: bold;
 }
 
-/* 814987775 */.extends::before {
-	content: ' extends ';
+/* 1861622992 */.PRIVATE {
+	position: relative;
 }
 
-/* 863395106 */.DEFAULT::before {
+/* 1861622992 */.PRIVATE::before {
+	font-family: "Material Icons";
+	color: hsl(2,68%,58%);
+	font-size: 0.7em;
+	content: '\e3c6';
+	padding-right: 0.6rem;
+}
+
+/* 1993384592 */h2 {
+	font-size: 1.8rem;
+	font-family: Oswald;
+}
+
+/* 2047683712 */.FINAL {
+	position: relative;
+}
+
+/* 2047683712 */.FINAL::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	content: 'F';
+	position: absolute;
+	top: 0;
+	left: 1.1em;
+}
+
+/* 244839708 */.super::before {
+	content: ' super ';
+}
+
+/* 245908294 */i {
+	font-style: normal;
+}
+
+/* 417004859 */.Functional {
+	position: relative;
+}
+
+/* 417004859 */.Functional::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 0.7em;
+	content: '\e88e';
+	padding-right: 0.6rem;
+}
+
+/* 427606821 */.DEFAULT {
+	position: relative;
+}
+
+/* 427606821 */.DEFAULT::before {
 	font-family: "Material Icons";
 	color: hsl(120,39%,55%);
-	font-size: smaller;
+	font-size: 0.7em;
 	content: '\e57b';
 	padding-right: 0.6rem;
 }
 
-/* 91201775 */i {
-	font-style: normal;
+/* 505323885 */section {
+	margin-bottom: 0.5rem;
 }
 
-/* 932925062 */.package {
+/* 505323885 */section > pre {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* 505323885 */section > ul {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* 505323885 */section > ol {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Yu Gothic UI",sans-serif;
+}
+
+/* 559384732 */.parameters::before {
+	content: '<';
+}
+
+/* 559384732 */.parameters::after {
+	content: '>';
+}
+
+/* 559384732 */.parameters>*:not(:last-child)::after {
+	content: ', ';
+}
+
+/* 561243349 */.ABSTRACT {
+	position: relative;
+}
+
+/* 561243349 */.ABSTRACT::before {
+	font-family: "Material Icons";
+	color: hsl(120,39%,55%);
+	font-size: 0.7em;
+	content: '\e57b';
+	padding-right: 0.6rem;
+}
+
+/* 691620198 */.package {
 	font-weight: bold;
 }
 
-/* antibug.doc.style.Styles#lambda$0 */.F {
+/* 693421097 */.AbstractClass {
+	position: relative;
+}
+
+/* 693421097 */.AbstractClass::before {
+	font-family: "Material Icons";
+	color: hsl(120,9%,55%);
+	font-size: 0.7em;
+	content: '\e90c';
+	padding-right: 0.6rem;
+}
+
+/* 876029877 */.Interface {
+	position: relative;
+}
+
+/* 876029877 */.Interface::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 0.7em;
+	content: '\e88f';
+	padding-right: 0.6rem;
+}
+
+/* 915526874 */.PROTECTED {
+	position: relative;
+}
+
+/* 915526874 */.PROTECTED::before {
+	font-family: "Material Icons";
+	color: hsl(48,95%,59%);
+	font-size: 0.7em;
+	content: '\e57b';
+	padding-right: 0.6rem;
+}
+
+/* 940130302 */.SYNCHRONIZED {
+	position: relative;
+}
+
+/* 940130302 */.SYNCHRONIZED::after {
+	color: hsl(120,39%,55%);
+	font-size: 0.6em;
+	content: '@';
+	position: absolute;
+	top: 1.2em;
+	left: 1.1em;
+}
+
+/* antibug.doc.style.Styles#lambda$41 */.A {
 	font-size: 13px;
 	font-family: "Segoe UI",sans-serif;
 	color: hsl(215,16%,44%);
@@ -314,7 +386,14 @@
 	width: 100vw;
 }
 
-/* antibug.doc.style.Styles#lambda$1 */.E {
+/* antibug.doc.style.Styles#lambda$42 */.G {
+	font-size: 1.5rem;
+	font-family: Oswald;
+	font-weight: normal;
+	color: hsl(203,91%,56%);
+}
+
+/* antibug.doc.style.Styles#lambda$43 */.H {
 	background-color: hsl(0,0%,100%);
 	position: sticky;
 	top: 0;
@@ -328,21 +407,55 @@
 	border-bottom-style: solid;
 }
 
-/* antibug.doc.style.Styles#lambda$11 */.B {
-	flex-grow: 1;
-	-webkit-flex-grow: 1;
-	margin-left: 5rem;
-	margin-right: 1.5rem;
-}
-
-/* antibug.doc.style.Styles#lambda$12 */.A {
+/* antibug.doc.style.Styles#lambda$45 */.B {
 	flex-basis: 15vw;
 	-webkit-flex-basis: 15vw;
 	flex-shrink: 0;
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.style.Styles#lambda$13 */.G {
+/* antibug.doc.style.Styles#lambda$45 */.B>* {
+	position: sticky;
+	top: 80px;
+}
+
+/* antibug.doc.style.Styles#lambda$45 */.B>*>* {
+	margin-top: 0.5rem;
+}
+
+/* antibug.doc.style.Styles#lambda$45 */.B .el-select {
+	width: 100%;
+}
+
+/* antibug.doc.style.Styles#lambda$45 */.B .el-checkbox {
+	display: block;
+}
+
+/* antibug.doc.style.Styles#lambda$45 */.B #AllTypes {
+	overflow: hidden;
+	scrollbar-width: thin;
+	height: 60vh;
+}
+
+/* antibug.doc.style.Styles#lambda$45 */.B #AllTypes:hover {
+	overflow-y: auto;
+}
+
+/* antibug.doc.style.Styles#lambda$52 */.I {
+	flex-grow: 1;
+	-webkit-flex-grow: 1;
+	margin-left: 5rem;
+	margin-right: 1.5rem;
+}
+
+/* antibug.doc.style.Styles#lambda$53 */.E {
+	flex-basis: 15vw;
+	-webkit-flex-basis: 15vw;
+	flex-shrink: 0;
+	-webkit-flex-shrink: 0;
+}
+
+/* antibug.doc.style.Styles#lambda$54 */.D {
 	position: sticky;
 	top: 80px;
 	display: block;
@@ -351,57 +464,22 @@
 	scrollbar-width: thin;
 }
 
-/* antibug.doc.style.Styles#lambda$13 */.G:hover {
+/* antibug.doc.style.Styles#lambda$54 */.D:hover {
 	overflow-y: auto;
 }
 
-/* antibug.doc.style.Styles#lambda$15 */.H {
+/* antibug.doc.style.Styles#lambda$56 */.F {
+	margin-top: 0.8rem;
+	font-size: 0.7rem;
+	font-weight: bold;
+}
+
+/* antibug.doc.style.Styles#lambda$57 */.C {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
 	margin-top: 2rem;
 	margin-bottom: 1rem;
 	display: block;
-}
-
-/* antibug.doc.style.Styles#lambda$2 */.C {
-	font-size: 1.5rem;
-	font-family: Oswald;
-	font-weight: normal;
-	color: hsl(203,91%,56%);
-}
-
-/* antibug.doc.style.Styles#lambda$4 */.D {
-	flex-basis: 15vw;
-	-webkit-flex-basis: 15vw;
-	flex-shrink: 0;
-	-webkit-flex-shrink: 0;
-}
-
-/* antibug.doc.style.Styles#lambda$4 */.D>* {
-	position: sticky;
-	top: 80px;
-}
-
-/* antibug.doc.style.Styles#lambda$4 */.D>*>* {
-	margin-top: 0.5rem;
-}
-
-/* antibug.doc.style.Styles#lambda$4 */.D .el-select {
-	width: 100%;
-}
-
-/* antibug.doc.style.Styles#lambda$4 */.D .el-checkbox {
-	display: block;
-}
-
-/* antibug.doc.style.Styles#lambda$4 */.D #AllTypes {
-	overflow: hidden;
-	scrollbar-width: thin;
-	height: 60vh;
-}
-
-/* antibug.doc.style.Styles#lambda$4 */.D #AllTypes:hover {
-	overflow-y: auto;
 }
 

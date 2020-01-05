@@ -26,6 +26,7 @@ import javax.lang.model.type.TypeKind;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.SimpleElementVisitor9;
 
+import kiss.I;
 import kiss.Variable;
 
 public class ClassInfo extends ParameterizableInfo implements Comparable<ClassInfo> {
@@ -97,6 +98,42 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
             type = elem.getSuperclass();
         }
         return false;
+    }
+
+    /**
+     * List up all static fields.
+     * 
+     * @return A filtered fields.
+     */
+    public List<FieldInfo> staticFields() {
+        return I.signal(fields).take(MemberInfo::isStatic).toList();
+    }
+
+    /**
+     * List up all non-static fields.
+     * 
+     * @return A filtered fields.
+     */
+    public List<FieldInfo> nonStaticFields() {
+        return I.signal(fields).skip(MemberInfo::isStatic).toList();
+    }
+
+    /**
+     * List up all static methods.
+     * 
+     * @return A filtered methods.
+     */
+    public List<MethodInfo> staticMethods() {
+        return I.signal(methods).take(MemberInfo::isStatic).toList();
+    }
+
+    /**
+     * List up all non-static methods.
+     * 
+     * @return A filtered methods.
+     */
+    public List<MethodInfo> nonStaticMethods() {
+        return I.signal(methods).skip(MemberInfo::isStatic).toList();
     }
 
     /**

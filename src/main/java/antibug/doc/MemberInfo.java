@@ -9,6 +9,7 @@
  */
 package antibug.doc;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.lang.model.element.Element;
@@ -41,18 +42,50 @@ public abstract class MemberInfo extends DocumentInfo {
     }
 
     /**
+     * Check whether this member has static modifier or not.
+     * 
+     * @return Result.
+     */
+    public final boolean isStatic() {
+        return modifiers.contains(Modifier.STATIC);
+    }
+
+    /**
      * Build name element with modifier infomation.
      * 
      * @param info
      * @return
      */
     public final XML createNameWithModifier() {
-        XML xml = I.xml("i").text(name);
+        Set<Modifier> visibility = new HashSet();
+        Set<Modifier> nonvisibility = new HashSet();
 
         for (Modifier modifier : modifiers) {
+            switch (modifier) {
+            case FINAL:
+            case VOLATILE:
+            case SYNCHRONIZED:
+            case TRANSIENT:
+                nonvisibility.add(modifier);
+                break;
+
+            default:
+                visibility.add(modifier);
+                break;
+            }
+        }
+
+        XML xml = I.xml("i").text(name);
+        for (Modifier modifier : visibility) {
             xml.addClass(modifier.name());
         }
 
+        if (!nonvisibility.isEmpty()) {
+            xml = I.xml("i").append(xml);
+            for (Modifier modifier : nonvisibility) {
+                xml.addClass(modifier.name());
+            }
+        }
         return xml;
     }
 }

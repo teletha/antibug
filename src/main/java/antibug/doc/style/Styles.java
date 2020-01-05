@@ -188,110 +188,129 @@ public class Styles extends AbstractStyleDSL {
 
     @SuppressWarnings("unused")
     private final Style HTMLClassTypeInterface = Style.named(".Interface", () -> {
-        buidlMark("\\e88f", Color.rgb(128, 88, 165));
+        buidlMark("\\e88f", Color.rgb(128, 88, 165), false);
     });
 
     @SuppressWarnings("unused")
     private final Style HTMLClassTypeFunctionalInterface = Style.named(".Functional", () -> {
-        buidlMark("\\e88e", Color.rgb(128, 88, 165));
+        buidlMark("\\e88e", Color.rgb(128, 88, 165), false);
     });
 
     @SuppressWarnings("unused")
     private final Style HTMLClassTypeAbstractClass = Style.named(".AbstractClass", () -> {
-        buidlMark("\\e90c", Color.of("#5eb95e").saturate(-30));
+        buidlMark("\\e90c", Color.of("#5eb95e").saturate(-30), false);
     });
 
     @SuppressWarnings("unused")
     private final Style HTMLClassTypeClass = Style.named(".Class", () -> {
-        buidlMark("\\e90c", Color.of("#5eb95e"));
+        buidlMark("\\e90c", Color.of("#5eb95e"), false);
     });
 
     @SuppressWarnings("unused")
     private final Style HTMLClassTypeEnum = Style.named(".Enum", () -> {
-        buidlMark("\\e01e", Color.of("#5eb95e").saturate(-35));
+        buidlMark("\\e01e", Color.of("#5eb95e").saturate(-35), false);
     });
 
     @SuppressWarnings("unused")
     private final Style HTMLClassTypeAnnotation = Style.named(".Annotation", () -> {
-        buidlMark("\\e167", Color.of("#5eb95e").saturate(-35));
+        buidlMark("\\e167", Color.of("#5eb95e").saturate(-35), false);
     });
 
     @SuppressWarnings("unused")
     private final Style HTMLClassTypeException = Style.named(".Exception", () -> {
-        buidlMark("\\e031", Color.rgb(243, 123, 29));
+        buidlMark("\\e031", Color.rgb(243, 123, 29), false);
     });
 
     @SuppressWarnings("unused")
     private final Style HTMLClassModifierPublic = Style.named(".PUBLIC", () -> {
-        buidlMark("\\e57b", Color.of("#5eb95e"));
+        buidlMark("\\e57b", Color.of("#5eb95e"), false);
     });
 
     @SuppressWarnings("unused")
     private final Style HTMLClassModifierProtected = Style.named(".PROTECTED", () -> {
-        buidlMark("\\e57b", palette.secondary);
+        buidlMark("\\e57b", palette.secondary, false);
     });
 
     @SuppressWarnings("unused")
     private final Style HTMLClassModifierPackagePrivate = Style.named(".PACKAGEPRIVATE", () -> {
-        buidlMark("\\e8fb", palette.primary);
+        buidlMark("\\e8fb", palette.primary, false);
     });
 
     @SuppressWarnings("unused")
     private final Style HTMLClassModifierPrivate = Style.named(".PRIVATE", () -> {
-        buidlMark("\\e3c6", palette.accent);
+        buidlMark("\\e3c6", palette.accent, false);
     });
 
     @SuppressWarnings("unused")
     private final Style HTMLClassModifierAbstract = Style.named(".ABSTRACT", () -> {
-        buidlMark("\\e57b", Color.of("#5eb95e"));
+        buidlMark("\\e57b", Color.of("#5eb95e"), false);
     });
 
     @SuppressWarnings("unused")
     private final Style HTMLClassModifierDefault = Style.named(".DEFAULT", () -> {
-        buidlMark("\\e57b", Color.of("#5eb95e"));
+        buidlMark("\\e57b", Color.of("#5eb95e"), false);
     });
 
     @SuppressWarnings("unused")
     private final Style HTMLClassModifierSTATIC = Style.named(".STATIC", () -> {
-        buidlMark("\\e57b", Color.of("#5eb95e"));
-    });
-
-    @SuppressWarnings("unused")
-    private final Style HTMLClassModifierFinal = Style.named(".FINAL", () -> {
-        buidlMark("\\e57b", Color.of("#5eb95e"));
-    });
-
-    @SuppressWarnings("unused")
-    private final Style HTMLClassModifierSynchronized = Style.named(".SYNCHRONIZED", () -> {
-        buidlMark("\\e57b", Color.of("#5eb95e"));
+        buidlMark("\\e57b", Color.of("#5eb95e"), false);
     });
 
     @SuppressWarnings("unused")
     private final Style HTMLClassModifierNative = Style.named(".NATIVE", () -> {
-        buidlMark("\\e57b", Color.of("#5eb95e"));
+        buidlMark("\\e57b", Color.of("#5eb95e"), false);
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassModifierSynchronized = Style.named(".SYNCHRONIZED", () -> {
+        buidlMarkSecondLayer("@", Color.of("#5eb95e"), false);
     });
 
     @SuppressWarnings("unused")
     private final Style HTMLClassModifierTransient = Style.named(".TRANSIENT", () -> {
-        buidlMark("\\e57b", Color.of("#5eb95e"));
+        buidlMarkSecondLayer("T", Color.of("#5eb95e"), false);
+    });
+
+    @SuppressWarnings("unused")
+    private final Style HTMLClassModifierFinal = Style.named(".FINAL", () -> {
+        buidlMarkSecondLayer("F", palette.primary, true);
     });
 
     @SuppressWarnings("unused")
     private final Style HTMLClassModifierVolatile = Style.named(".VOLATILE", () -> {
-        buidlMark("\\e57b", Color.of("#5eb95e"));
+        buidlMarkSecondLayer("V", palette.primary, true);
     });
 
-    @SuppressWarnings("unused")
-    private final Style HTMLClassModifierStrict = Style.named(".STRICTFP", () -> {
-        buidlMark("\\e57b", Color.of("#5eb95e"));
-    });
+    private void buidlMark(String mark, Color color, boolean outside) {
+        position.relative();
 
-    private void buidlMark(String mark, Color color) {
         $.before(() -> {
-            font.family(fonts.icon).color(color).size.smaller();
+            font.family(fonts.icon).color(color).size(0.7, em);
             content.text(mark);
             padding.right(0.6, rem);
+
+            if (outside) {
+                position.absolute().top(0, px).left(1.1, em);
+            }
         });
+    }
+
+    private void buidlMarkSecondLayer(String mark, Color color, boolean before) {
+        position.relative();
+
+        if (before) {
+            $.before(() -> {
+                font.color(color).size(0.6, em);
+                content.text(mark);
+                position.absolute().top(0, px).left(1.1, em);
+            });
+        } else {
+            $.after(() -> {
+                font.color(color).size(0.6, em);
+                content.text(mark);
+                position.absolute().top(1.2, em).left(1.1, em);
+            });
+        }
     }
 
     public final Style workbench = () -> {
@@ -373,6 +392,11 @@ public class Styles extends AbstractStyleDSL {
         $.hover(() -> {
             overflow.y.auto();
         });
+    };
+
+    public final Style RNaviTitle = () -> {
+        margin.top(0.8, rem);
+        font.size(0.7, rem).weight.bold();
     };
 
     public final Style heading = () -> {
