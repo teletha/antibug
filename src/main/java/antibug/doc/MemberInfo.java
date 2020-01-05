@@ -51,6 +51,24 @@ public abstract class MemberInfo extends DocumentInfo {
     }
 
     /**
+     * Check whether this member is deprecated or not.
+     * 
+     * @return Result.
+     */
+    public final boolean isDeprecated() {
+        return DocTool.ElementUtils.isDeprecated(e);
+    }
+
+    /**
+     * Check whether this member is overridden or not.
+     * 
+     * @return Result.
+     */
+    public final boolean isOverridden() {
+        return e.getAnnotation(Override.class) != null;
+    }
+
+    /**
      * Build name element with modifier infomation.
      * 
      * @param info
@@ -84,6 +102,7 @@ public abstract class MemberInfo extends DocumentInfo {
 
         XML xml = I.xml("i").text(name);
         if (isPackagePrivate) xml.addClass("PACKAGEPRIVATE");
+        if (isOverridden()) xml.addClass("OVERRIDE");
         for (Modifier modifier : visibility) {
             xml.addClass(modifier.name());
         }

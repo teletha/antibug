@@ -35,8 +35,10 @@ import java.util.stream.Collectors;
 
 public class Chronus implements ScheduledExecutorService {
 
+    private static final int OK = 1;
+
     /** The flag for task manager. */
-    private volatile AtomicBoolean awaiting = new AtomicBoolean();
+    private transient volatile AtomicBoolean awaiting = new AtomicBoolean();
 
     /** The non-executed tasks. */
     private volatile CopyOnWriteArraySet remaining = new CopyOnWriteArraySet();

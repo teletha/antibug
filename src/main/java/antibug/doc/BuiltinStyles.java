@@ -258,6 +258,7 @@ public class BuiltinStyles extends AbstractStyleDSL {
         heading.style();
     });
 
+    @Deprecated
     volatile transient Style h4 = Style.named("h4", () -> {
         heading.style();
     });
@@ -328,5 +329,6 @@ public class BuiltinStyles extends AbstractStyleDSL {
         Stylist.pretty().styles(BuiltinStyles.class).formatTo("docs/javadoc.css");
     }
 
+    @Deprecated
     public final static synchronized native void test();
 }
