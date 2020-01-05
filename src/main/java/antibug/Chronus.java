@@ -104,7 +104,7 @@ public class Chronus implements ScheduledExecutorService {
      * {@inheritDoc}
      */
     @Override
-    public void execute(Runnable command) {
+    public final synchronized void execute(Runnable command) {
         executor().execute(new Task(command));
     }
 

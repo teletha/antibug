@@ -81,6 +81,7 @@ public abstract class MemberInfo extends DocumentInfo {
 
         for (Modifier modifier : modifiers) {
             switch (modifier) {
+            case ABSTRACT:
             case FINAL:
             case VOLATILE:
             case SYNCHRONIZED:
