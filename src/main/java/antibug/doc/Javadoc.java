@@ -238,8 +238,10 @@ public class Javadoc extends DocTool<Javadoc> {
                         // =============================
                         // Right Side Navigation
                         // =============================
-                        $("aside", styles.navigationRight, () -> {
-                            toc();
+                        $("aside", styles.RNavi, () -> {
+                            $("div", styles.RNaviStickyBlock, () -> {
+                                toc();
+                            });
                         });
                     });
 

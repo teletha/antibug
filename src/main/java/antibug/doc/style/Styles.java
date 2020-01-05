@@ -358,12 +358,20 @@ public class Styles extends AbstractStyleDSL {
         margin.left(5, rem).right(1.5, rem);
     };
 
-    /** Right Side Navigation */
-    public final Style navigationRight = () -> {
+    // ==================================================================
+    // Right Side Navigation
+    // ==================================================================
+    public final Style RNavi = () -> {
         flexItem.basis(NavigationWidth).shrink(0);
+    };
 
-        $.child(() -> {
-            position.sticky().top(HeaderHeight);
+    public final Style RNaviStickyBlock = () -> {
+        position.sticky().top(HeaderHeight);
+        display.block().height(Numeric.of(100, vh).subtract(HeaderHeight));
+        overflow.hidden().scrollbar.thin();
+
+        $.hover(() -> {
+            overflow.y.auto();
         });
     };
 
