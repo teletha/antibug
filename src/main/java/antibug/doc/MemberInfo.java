@@ -59,6 +59,7 @@ public abstract class MemberInfo extends DocumentInfo {
     public final XML createNameWithModifier() {
         Set<Modifier> visibility = new HashSet();
         Set<Modifier> nonvisibility = new HashSet();
+        boolean isPackagePrivate = true;
 
         for (Modifier modifier : modifiers) {
             switch (modifier) {
@@ -69,6 +70,12 @@ public abstract class MemberInfo extends DocumentInfo {
                 nonvisibility.add(modifier);
                 break;
 
+            case PUBLIC:
+            case PROTECTED:
+            case PRIVATE:
+                isPackagePrivate = false;
+                // fall-throgh
+
             default:
                 visibility.add(modifier);
                 break;
@@ -76,6 +83,7 @@ public abstract class MemberInfo extends DocumentInfo {
         }
 
         XML xml = I.xml("i").text(name);
+        if (isPackagePrivate) xml.addClass("PACKAGEPRIVATE");
         for (Modifier modifier : visibility) {
             xml.addClass(modifier.name());
         }
