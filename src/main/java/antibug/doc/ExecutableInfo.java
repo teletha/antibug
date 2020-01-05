@@ -21,17 +21,13 @@ import kiss.Ⅱ;
 
 public class ExecutableInfo extends ParameterizableInfo {
 
-    public final String name;
-
     public final List<Ⅱ<String, XML>> params = new ArrayList();
 
     /**
      * @param e
      */
-    ExecutableInfo(String name, ExecutableElement e) {
+    ExecutableInfo(ExecutableElement e) {
         super(e);
-
-        this.name = name;
 
         List<? extends VariableElement> params = e.getParameters();
         for (int i = 0; i < params.size(); i++) {

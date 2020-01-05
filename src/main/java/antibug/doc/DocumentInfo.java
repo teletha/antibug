@@ -64,6 +64,9 @@ import kiss.Ⅱ;
 
 public class DocumentInfo {
 
+    /** The associated element. */
+    public final Element e;
+
     protected final Variable<XML> comment = Variable.empty();
 
     /** Tag info. */
@@ -79,6 +82,8 @@ public class DocumentInfo {
     protected final Variable<XML> returnTag = Variable.empty();
 
     protected DocumentInfo(Element e) {
+        this.e = e;
+
         try {
             DocCommentTree docs = DocTool.DocUtils.getDocCommentTree(e);
             if (docs != null) {

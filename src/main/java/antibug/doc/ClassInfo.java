@@ -157,7 +157,7 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
         @Override
         public ClassInfo visitExecutable(ExecutableElement e, ClassInfo p) {
             if (e.getKind() == ElementKind.CONSTRUCTOR) {
-                constructors.add(new ExecutableInfo(name, e));
+                constructors.add(new ExecutableInfo(e));
             } else {
                 methods.add(new MethodInfo(e));
             }

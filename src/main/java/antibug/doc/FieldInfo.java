@@ -11,16 +11,12 @@ package antibug.doc;
 
 import javax.lang.model.element.VariableElement;
 
-public class FieldInfo extends DocumentInfo {
-
-    public final String name;
+public class FieldInfo extends MemberInfo {
 
     /**
      * @param e
      */
     FieldInfo(VariableElement e) {
         super(e);
-
-        this.name = e.getSimpleName().toString();
     }
 }
