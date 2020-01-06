@@ -28,7 +28,9 @@ public class Styles extends AbstractStyleDSL {
             .background($.rgb(241, 250, 238))
             .font($.rgb(94, 109, 130));
 
-    private final FontPalette fonts = FontPalette.with.base(Font.of("Yu Gothic UI")).title(Font.fromGoogle("Oswald"));
+    private final FontPalette fonts = FontPalette.with.baseBySystem().title(Font.fromGoogle("Oswald")).monoBySystem();
+
+    private final Font RobotoMono = Font.fromGoogle("Roboto Mono");
 
     // color palette - https://coolors.co/e63946-f1faee-a8dadc-457b9d-1d3557
 
@@ -133,7 +135,7 @@ public class Styles extends AbstractStyleDSL {
         padding.vertical(BlockVerticalGap).horizontal(BlockHorizontalGap);
         border.left.width(BlockBorderWidth).solid().color(color);
         line.height(LineHeight);
-        font.family(fonts.base, Font.SansSerif);
+        font.family(fonts.base);
         if (paintBackground) background.color(color.opacify(-0.8d));
     }
 
@@ -147,7 +149,7 @@ public class Styles extends AbstractStyleDSL {
         border.left.width(BlockBorderWidth).solid().color(color);
         border.radius(2, px);
         line.height(LineHeight);
-        font.family(fonts.base, Font.SansSerif);
+        font.family(fonts.base);
         position.relative();
         if (paintBackground) background.color(color.opacify(-0.8d));
 
@@ -332,9 +334,9 @@ public class Styles extends AbstractStyleDSL {
     private void overlayAlphabetRightTop(String mark) {
         position.relative();
         $.before(() -> {
-            font.color(palette.primary).size(0.6, em).family(fonts.mono);
+            font.color(palette.primary).size(0.6, em).family(RobotoMono);
             content.text(mark);
-            position.absolute().top(0.2, em).left(1.4, em);
+            position.absolute().top(0, em).left(1.4, em);
         });
     }
 
@@ -348,12 +350,12 @@ public class Styles extends AbstractStyleDSL {
         $.after(() -> {
             font.color(palette.primary).size(0.8, em).family(fonts.icon);
             content.text(mark);
-            position.absolute().top(0.9, em).left(0.8, em);
+            position.absolute().top(0.8, em).left(0.8, em);
         });
     }
 
     public final Style workbench = () -> {
-        font.size(FontSize).family(fonts.base, Font.SansSerif).color(palette.font);
+        font.size(FontSize).family(fonts.base).color(palette.font);
         line.height(LineHeight);
         display.width(100, vw);
     };

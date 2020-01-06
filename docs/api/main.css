@@ -32,7 +32,7 @@
 	font-family: "Material Icons";
 	content: '\e14c';
 	position: absolute;
-	top: 0.9em;
+	top: 0.8em;
 	left: 0.8em;
 }
 
@@ -50,7 +50,7 @@
 	font-family: "Roboto Mono";
 	content: 'A';
 	position: absolute;
-	top: 0.2em;
+	top: 0;
 	left: 1.4em;
 }
 
@@ -68,7 +68,7 @@
 	border-left-style: solid;
 	border-left-color: hsl(48,95%,59%);
 	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
 }
 
 /* 1212708513 */section > ul {
@@ -81,7 +81,7 @@
 	border-left-style: solid;
 	border-left-color: hsl(48,95%,59%);
 	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
 }
 
 /* 1212708513 */section > ol {
@@ -94,7 +94,7 @@
 	border-left-style: solid;
 	border-left-color: hsl(48,95%,59%);
 	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
 }
 
 /* 1299829127 */.SYNCHRONIZED {
@@ -107,7 +107,7 @@
 	font-family: "Material Icons";
 	content: '\e8ae';
 	position: absolute;
-	top: 0.9em;
+	top: 0.8em;
 	left: 0.8em;
 }
 
@@ -201,7 +201,7 @@
 	font-family: "Roboto Mono";
 	content: 'V';
 	position: absolute;
-	top: 0.2em;
+	top: 0;
 	left: 1.4em;
 }
 
@@ -215,7 +215,7 @@
 	font-family: "Roboto Mono";
 	content: 'F';
 	position: absolute;
-	top: 0.2em;
+	top: 0;
 	left: 1.4em;
 }
 
@@ -290,7 +290,7 @@
 	border-left-color: hsl(2,68%,58%);
 	border-radius: 2px;
 	line-height: 1.5;
-	font-family: "Yu Gothic UI",sans-serif;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
 	position: relative;
 	background-color: hsla(2,68%,58%,0.19999999999999996);
 }
@@ -391,7 +391,7 @@
 
 /* antibug.doc.style.Styles#lambda$42 */.D {
 	font-size: 13px;
-	font-family: "Yu Gothic UI",sans-serif;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
 	color: hsl(215,16%,44%);
 	line-height: 1.5;
 	width: 100vw;
