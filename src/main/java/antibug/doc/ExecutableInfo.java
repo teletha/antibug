@@ -39,4 +39,27 @@ public class ExecutableInfo extends ParameterizableInfo {
             this.params.add(I.pair(param.toString(), xml));
         }
     }
+
+    /**
+     * Build parameter element.
+     * 
+     * @return
+     */
+    public final XML createParameter() {
+        XML xml = I.xml("span");
+        xml.append("(");
+        for (int i = 0, size = params.size(); i < size; i++) {
+            Ⅱ<String, XML> param = params.get(i);
+            xml.append(param.ⅱ);
+            xml.append(" ");
+            xml.append(I.xml("span").addClass("parameterName").text(param.ⅰ));
+
+            if (i + 1 != size) {
+                xml.append(", ");
+            }
+        }
+        xml.append(")");
+
+        return xml;
+    }
 }

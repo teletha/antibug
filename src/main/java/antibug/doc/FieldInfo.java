@@ -11,12 +11,18 @@ package antibug.doc;
 
 import javax.lang.model.element.VariableElement;
 
+import kiss.XML;
+
 public class FieldInfo extends MemberInfo {
+
+    public final XML type;
 
     /**
      * @param e
      */
     FieldInfo(VariableElement e) {
         super(e);
+
+        this.type = parseTypeAsXML(e.asType());
     }
 }

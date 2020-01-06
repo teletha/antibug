@@ -79,7 +79,7 @@ public class Javadoc extends DocTool<Javadoc> {
                 $("h2", styles.heading, text("Constructor"));
                 $("section", () -> {
                     for (ExecutableInfo constructor : info.constructors) {
-                        $("h3", styles.heading, signature(constructor));
+                        $("h3", styles.heading, text(constructor.name), constructor.createParameter());
                         $(html(constructor.comment));
                         $("dl", () -> {
                             if (!constructor.paramTags.isEmpty()) {
@@ -98,7 +98,7 @@ public class Javadoc extends DocTool<Javadoc> {
                 $("h2", styles.heading, text("Methods"));
                 $("section", () -> {
                     for (MethodInfo method : info.methods) {
-                        $("h3", styles.heading, signature(method));
+                        $("h3", styles.heading, text(method.name), method.createParameter());
                         $(method.comment.v);
 
                         if (!method.paramTags.isEmpty() || method.returnTag.isPresent()) {
@@ -139,27 +139,25 @@ public class Javadoc extends DocTool<Javadoc> {
             private void members(String title, List<? extends MemberInfo> members) {
                 if (members.size() != 0) {
                     $("h5", styles.RNaviTitle, text(title));
-                    $("ul", foŕ(members, method -> {
-                        $("li", method.createNameWithModifier());
+                    $("ul", foŕ(members, m -> {
+                        $("li", () -> {
+                            $(m.createNameWithModifier());
+
+                            if (m instanceof ExecutableInfo) {
+                                ExecutableInfo e = (ExecutableInfo) m;
+                                $(e.createParameter());
+                            }
+
+                            if (m instanceof MethodInfo) {
+                                $("span", styles.RNaviReturnType, ((MethodInfo) m).returnType);
+                            }
+
+                            if (m instanceof FieldInfo) {
+                                $("span", styles.RNaviReturnType, ((FieldInfo) m).type);
+                            }
+                        });
                     }));
                 }
-            }
-
-            private XML signature(ExecutableInfo constructor) {
-                XML root = I.xml("fragment");
-                root.append(constructor.name).append("(");
-                for (int i = 0, size = constructor.params.size(); i < size; i++) {
-                    Ⅱ<String, XML> param = constructor.params.get(i);
-                    root.append(param.ⅱ).append(" ").append(param.ⅰ);
-
-                    if (i + 1 != size) {
-                        root.append(", ");
-                    }
-                }
-                root.append(")");
-
-                return root;
-
             }
         });
 

@@ -366,7 +366,9 @@ public class Styles extends AbstractStyleDSL {
 
     private final Numeric HeaderHeight = Numeric.of(80, px);
 
-    private final Numeric NavigationWidth = Numeric.of(15, vw);
+    private final Numeric LeftNavigationWidth = Numeric.of(15, vw);
+
+    private final Numeric RightNavigationWidth = Numeric.of(20, vw);
 
     /** Header Area */
     public final Style HeaderArea = () -> {
@@ -384,7 +386,7 @@ public class Styles extends AbstractStyleDSL {
 
     /** Left Side Navigation */
     public final Style TypeNavigation = () -> {
-        flexItem.basis(NavigationWidth).shrink(0);
+        flexItem.basis(LeftNavigationWidth).shrink(0);
 
         $.child(() -> {
             position.sticky().top(HeaderHeight);
@@ -422,13 +424,14 @@ public class Styles extends AbstractStyleDSL {
     // Right Side Navigation
     // ==================================================================
     public final Style RNavi = () -> {
-        flexItem.basis(NavigationWidth).shrink(0);
+        flexItem.basis(RightNavigationWidth).shrink(0);
     };
 
     public final Style RNaviStickyBlock = () -> {
         position.sticky().top(HeaderHeight);
-        display.block().height(Numeric.of(80, vh).subtract(HeaderHeight));
-        overflow.hidden().scrollbar.thin();
+        display.block().height(Numeric.of(80, vh).subtract(HeaderHeight)).maxWidth(RightNavigationWidth);
+        overflow.auto().scrollbar.thin();
+        text.whiteSpace.nowrap();
 
         $.hover(() -> {
             overflow.y.auto();
@@ -438,6 +441,15 @@ public class Styles extends AbstractStyleDSL {
     public final Style RNaviTitle = () -> {
         margin.top(0.8, rem);
         font.weight.bold();
+    };
+
+    public final Style RNaviReturnType = () -> {
+        font.color(palette.secondary.saturate(-40));
+
+        $.before(() -> {
+            content.text(":");
+            padding.horizontal(0.3, em);
+        });
     };
 
     public final Style heading = () -> {
