@@ -477,7 +477,6 @@ public class DocumentInfo {
         public XML visitDeclared(DeclaredType declared, XML xml) {
             // type
             TypeElement e = (TypeElement) declared.asElement();
-            xml.text(e.getSimpleName().toString());
 
             // enclosing
             Deque<String> enclosings = new LinkedList();
@@ -490,6 +489,11 @@ public class DocumentInfo {
 
             // pacakage
             xml.attr("package", enclosing.toString());
+
+            //
+            xml.append(I.xml("a")
+                    .attr("href", "/types/" + enclosing + "." + e.getSimpleName() + ".html")
+                    .text(e.getSimpleName().toString()));
 
             // type parameter
             List<? extends TypeMirror> paramTypes = declared.getTypeArguments();

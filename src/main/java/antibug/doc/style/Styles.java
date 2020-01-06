@@ -79,7 +79,7 @@ public class Styles extends AbstractStyleDSL {
 
     @SuppressWarnings("unused")
     private Style HTMLAnchor = Style.named("a", () -> {
-        font.color(palette.font);
+        font.color(Color.Inherit);
         text.decoration.none();
         cursor.pointer();
 
