@@ -25,4 +25,12 @@ public class FieldInfo extends MemberInfo {
 
         this.type = parseTypeAsXML(e.asType());
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected String id() {
+        return name;
+    }
 }

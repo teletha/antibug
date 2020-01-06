@@ -11,6 +11,7 @@ package antibug.doc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.VariableElement;
@@ -23,21 +24,27 @@ public class ExecutableInfo extends ParameterizableInfo {
 
     public final List<Ⅱ<String, XML>> params = new ArrayList();
 
+    private final String id;
+
     /**
      * @param e
      */
     ExecutableInfo(ExecutableElement e) {
         super(e);
 
+        StringJoiner joiner = new StringJoiner(",");
         List<? extends VariableElement> params = e.getParameters();
         for (int i = 0; i < params.size(); i++) {
             VariableElement param = params.get(i);
+            joiner.add(param.asType().toString());
+
             XML xml = parseTypeAsXML(param.asType());
             if (e.isVarArgs() && i + 1 == params.size()) {
                 xml.attr("array", "var");
             }
             this.params.add(I.pair(param.toString(), xml));
         }
+        this.id = name + "(" + joiner + ")";
     }
 
     /**
@@ -46,7 +53,7 @@ public class ExecutableInfo extends ParameterizableInfo {
      * @return
      */
     public final XML createParameter() {
-        XML xml = I.xml("span");
+        XML xml = I.xml("span").addClass(styles.SignatureParameterPart.className()[0]);
         xml.append("(");
         for (int i = 0, size = params.size(); i < size; i++) {
             Ⅱ<String, XML> param = params.get(i);
@@ -61,5 +68,13 @@ public class ExecutableInfo extends ParameterizableInfo {
         xml.append(")");
 
         return xml;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected String id() {
+        return id;
     }
 }

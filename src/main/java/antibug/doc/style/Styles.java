@@ -40,6 +40,12 @@ public class Styles extends AbstractStyleDSL {
 
     private final double LineHeight = 1.5;
 
+    private final Numeric HeaderHeight = Numeric.of(80, px);
+
+    private final Numeric LeftNavigationWidth = Numeric.of(15, vw);
+
+    private final Numeric RightNavigationWidth = Numeric.of(20, vw);
+
     // =====================================================
     // HTML Elements
     // =====================================================
@@ -54,6 +60,7 @@ public class Styles extends AbstractStyleDSL {
     @SuppressWarnings("unused")
     private Style HTML = Style.named("html", () -> {
         font.size(13, px);
+        scrollPadding.top(HeaderHeight);
 
         $.select("*[class|=el]", () -> {
             font.size(1, rem);
@@ -74,11 +81,12 @@ public class Styles extends AbstractStyleDSL {
     private Style HTMLAnchor = Style.named("a", () -> {
         font.color(palette.font);
         text.decoration.none();
+        cursor.pointer();
 
         $.hover(() -> {
             text.decoration.underline();
             text.decorationColor.color(palette.font.opacify(-0.5));
-            text.underlineOffset.length(2, px);
+            text.underlineOffset.length(4, px);
             text.underlinePosition.under();
         });
     });
@@ -160,6 +168,11 @@ public class Styles extends AbstractStyleDSL {
         });
     }
 
+    public final Style SignatureParameterPart = () -> {
+        display.opacity(0.8);
+        padding.left(0.08, em);
+    };
+
     @SuppressWarnings("unused")
     private final Style HTMLClassParameters = Style.named(".parameters", () -> {
         $.before(() -> {
@@ -169,7 +182,7 @@ public class Styles extends AbstractStyleDSL {
             content.text(">");
         });
 
-        $.child().not($.lastChild(), () -> {
+        $.child().not($.select(".type").lastChild(), () -> {
             $.after(() -> {
                 content.text(", ");
             });
@@ -364,12 +377,6 @@ public class Styles extends AbstractStyleDSL {
         font.size(1.5, rem).family(fonts.title).weight.normal().color(palette.primary);
     };
 
-    private final Numeric HeaderHeight = Numeric.of(80, px);
-
-    private final Numeric LeftNavigationWidth = Numeric.of(15, vw);
-
-    private final Numeric RightNavigationWidth = Numeric.of(20, vw);
-
     /** Header Area */
     public final Style HeaderArea = () -> {
         background.color(Color.White);
@@ -436,11 +443,15 @@ public class Styles extends AbstractStyleDSL {
         $.hover(() -> {
             overflow.y.auto();
         });
+
+        $.child().child(() -> {
+            padding.vertical(0.15, em);
+        });
     };
 
     public final Style RNaviTitle = () -> {
-        margin.top(0.8, rem);
-        font.weight.bold();
+        margin.top(0.9, rem);
+        font.weight.bold().size(1, rem);
     };
 
     public final Style RNaviReturnType = () -> {

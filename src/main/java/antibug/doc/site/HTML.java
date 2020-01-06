@@ -137,7 +137,7 @@ public abstract class HTML extends Tree<String, XML> {
      * @return A path to the generated file.
      */
     protected final void stylesheet(String path, Class<? extends StyleDSL> styles) {
-        $("link", attr("rel", "stylesheet"), attr("href", SiteBuilder.current.buildCSS(path, styles)));
+        $("link", attr("rel", "stylesheet"), attr("href", "/" + SiteBuilder.current.buildCSS(path, styles)));
     }
 
     /**
@@ -147,7 +147,7 @@ public abstract class HTML extends Tree<String, XML> {
      * @return A path to the generated file.
      */
     protected final void stylesheet(String path, StyleDeclarable styles) {
-        $("link", attr("rel", "stylesheet"), attr("href", SiteBuilder.current.buildCSS(path, styles)));
+        $("link", attr("rel", "stylesheet"), attr("href", "/" + SiteBuilder.current.buildCSS(path, styles)));
     }
 
     /**
@@ -156,7 +156,7 @@ public abstract class HTML extends Tree<String, XML> {
      * @param uri URI to script.
      */
     protected final void script(String uri) {
-        $("script", attr("src", uri));
+        $("script", attr("src", uri.startsWith("http") ? uri : "/" + uri));
     }
 
     /**
@@ -166,6 +166,6 @@ public abstract class HTML extends Tree<String, XML> {
      * @return A path to the generated file.
      */
     protected final void script(String path, Object model) {
-        $("script", attr("src", SiteBuilder.current.buildJSONP(path, model)));
+        $("script", attr("src", "/" + SiteBuilder.current.buildJSONP(path, model)));
     }
 }

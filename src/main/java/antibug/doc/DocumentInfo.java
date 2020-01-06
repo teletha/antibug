@@ -57,12 +57,15 @@ import com.sun.source.doctree.UnknownInlineTagTree;
 import com.sun.source.doctree.ValueTree;
 import com.sun.source.util.SimpleDocTreeVisitor;
 
+import antibug.doc.style.Styles;
 import kiss.I;
 import kiss.Variable;
 import kiss.XML;
 import kiss.Ⅱ;
 
 public class DocumentInfo {
+
+    protected static final Styles styles = I.make(Styles.class);
 
     /** The associated element. */
     protected final Element e;

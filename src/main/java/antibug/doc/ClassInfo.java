@@ -159,6 +159,14 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected String id() {
+        return packageName + "." + name;
+    }
+
+    /**
      * 
      */
     private class Scanner extends SimpleElementVisitor9<ClassInfo, ClassInfo> {

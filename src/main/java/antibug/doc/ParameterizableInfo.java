@@ -18,7 +18,7 @@ import kiss.I;
 import kiss.XML;
 import kiss.Ⅱ;
 
-public class ParameterizableInfo extends MemberInfo {
+public abstract class ParameterizableInfo extends MemberInfo {
 
     protected final List<Ⅱ<String, XML>> typeParameters = new ArrayList();
 

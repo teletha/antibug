@@ -182,7 +182,7 @@ const root = {
 		{
 			"name": "ParameterizableInfo",
 			"packageName": "antibug.doc",
-			"type": "Class",
+			"type": "AbstractClass",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},

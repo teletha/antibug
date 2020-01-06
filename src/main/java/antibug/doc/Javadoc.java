@@ -79,7 +79,7 @@ public class Javadoc extends DocTool<Javadoc> {
                 $("h2", styles.heading, text("Constructor"));
                 $("section", () -> {
                     for (ExecutableInfo constructor : info.constructors) {
-                        $("h3", styles.heading, text(constructor.name), constructor.createParameter());
+                        $("h3", id(constructor.id()), styles.heading, text(constructor.name), constructor.createParameter());
                         $(html(constructor.comment));
                         $("dl", () -> {
                             if (!constructor.paramTags.isEmpty()) {
@@ -98,7 +98,7 @@ public class Javadoc extends DocTool<Javadoc> {
                 $("h2", styles.heading, text("Methods"));
                 $("section", () -> {
                     for (MethodInfo method : info.methods) {
-                        $("h3", styles.heading, text(method.name), method.createParameter());
+                        $("h3", id(method.id()), styles.heading, text(method.name), method.createParameter());
                         $(method.comment.v);
 
                         if (!method.paramTags.isEmpty() || method.returnTag.isPresent()) {
@@ -203,7 +203,6 @@ public class Javadoc extends DocTool<Javadoc> {
                 $("head", () -> {
                     $("meta", attr("charset", "UTF-8"));
                     $("title", text(productName));
-                    $("base", attr("href", "/"));
                     stylesheet("main.css", styles);
                     stylesheet("https://unpkg.com/element-ui/lib/theme-chalk/index.css");
                     script("https://unpkg.com/vue/dist/vue.js");
