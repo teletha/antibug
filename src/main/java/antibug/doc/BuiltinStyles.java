@@ -27,7 +27,7 @@ public class BuiltinStyles extends AbstractStyleDSL {
 
     Font HeadFont = Font.fromGoogle("Oswald");
 
-    Font BodyFont = new Font("Yu Gothic UI", "");
+    Font BodyFont = Font.of("Yu Gothic UI");
 
     Numeric BlockBorderWidth = Numeric.of(3, px);
 

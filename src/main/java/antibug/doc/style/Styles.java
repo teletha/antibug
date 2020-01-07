@@ -373,25 +373,33 @@ public class Styles extends AbstractStyleDSL {
         display.width(100, vw);
     };
 
-    public final Style productTitle = () -> {
-        font.size(1.5, rem).family(fonts.title).weight.normal().color(palette.primary);
-    };
-
-    /** Header Area */
+    // ==================================================================
+    // Header
+    // ==================================================================
     public final Style HeaderArea = () -> {
         background.color(Color.White);
         position.sticky().top(0, rem);
-        display.width(MaxWidth).height(HeaderHeight).zIndex(10);
+        display.width(MaxWidth).height(HeaderHeight).zIndex(10).flex();
         margin.auto();
         border.bottom.color(palette.primary).width(1, px).solid();
     };
 
+    public final Style HeaderTitle = () -> {
+        font.size(2.5, rem).family(fonts.title).weight.normal().color(palette.primary);
+        flexItem.alignSelf.center();
+    };
+
+    // ==================================================================
+    // Main
+    // ==================================================================
     public final Style MainArea = Style.named("main", () -> {
         display.width(MaxWidth).flex().direction.row();
         margin.auto();
     });
 
-    /** Left Side Navigation */
+    // ==================================================================
+    // Left Side Navigation
+    // ==================================================================
     public final Style TypeNavigation = () -> {
         flexItem.basis(LeftNavigationWidth).shrink(0);
 

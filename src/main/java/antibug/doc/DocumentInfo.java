@@ -16,6 +16,7 @@ import java.util.List;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.ModuleElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.ArrayType;
 import javax.lang.model.type.DeclaredType;
@@ -477,6 +478,7 @@ public class DocumentInfo {
         public XML visitDeclared(DeclaredType declared, XML xml) {
             // type
             TypeElement e = (TypeElement) declared.asElement();
+            String typeName = e.getSimpleName().toString();
 
             // enclosing
             Deque<String> enclosings = new LinkedList();
@@ -485,15 +487,26 @@ public class DocumentInfo {
                 enclosings.addFirst(((TypeElement) enclosing).getSimpleName().toString());
                 enclosing = enclosing.getEnclosingElement();
             }
-            if (enclosings.isEmpty() == false) xml.attr("enclosing", I.join(".", enclosings));
+            String enclosingName = I.join(".", enclosings);
+            if (enclosingName.length() != 0) xml.attr("enclosing", enclosingName);
 
             // pacakage
-            xml.attr("package", enclosing.toString());
+            String packageName = enclosing.toString();
+            xml.attr("package", packageName);
 
-            //
+            // module
+            String moduleName = "";
+            enclosing = enclosing.getEnclosingElement();
+
+            if (enclosing instanceof ModuleElement) {
+                ModuleElement module = (ModuleElement) enclosing;
+                moduleName = module.getQualifiedName().toString();
+            }
+
+            // link to type
             xml.append(I.xml("a")
-                    .attr("href", "/types/" + enclosing + "." + e.getSimpleName() + ".html")
-                    .text(e.getSimpleName().toString()));
+                    .attr("href", Javadoc.resolveDocumentLocation(moduleName, packageName, enclosingName, typeName))
+                    .text(typeName));
 
             // type parameter
             List<? extends TypeMirror> paramTypes = declared.getTypeArguments();

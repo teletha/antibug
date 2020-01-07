@@ -9,9 +9,13 @@
  */
 package antibug.doc;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.lang.model.element.ModuleElement;
 import javax.lang.model.element.PackageElement;
@@ -26,6 +30,41 @@ import kiss.Ⅱ;
 
 public class Javadoc extends DocTool<Javadoc> {
 
+    /** PackageName-URL pair. */
+    private static final Map<String, String> externalDocumentLocations = new HashMap();
+
+    /**
+     * Returns the URL of the document with the specified type name.
+     * 
+     * @param moduleName Module name. Null or empty string is ignored.
+     * @param packageName Package name. Null or empty string is ignored.
+     * @param enclosingName Enclosing type name. Null or empty string is ignored.
+     * @param typeName Target type's simple name.
+     * @return Resoleved URL.
+     */
+    public static final String resolveDocumentLocation(String moduleName, String packageName, String enclosingName, String typeName) {
+        String url = externalDocumentLocations.get(packageName);
+
+        if (url != null) {
+            StringBuilder builder = new StringBuilder(url);
+            if (moduleName != null && moduleName.length() != 0) builder.append(moduleName).append('/');
+            if (packageName != null && packageName.length() != 0) builder.append(packageName.replace('.', '/')).append('/');
+            if (enclosingName != null && enclosingName.length() != 0) builder.append(enclosingName).append('.');
+            builder.append(typeName).append(".html");
+
+            return builder.toString();
+        } else {
+            StringBuilder builder = new StringBuilder("/types/");
+            if (packageName != null && packageName.length() != 0) builder.append(packageName).append('.');
+            if (enclosingName != null && enclosingName.length() != 0) builder.append(enclosingName).append('.');
+            builder.append(typeName).append(".html");
+
+            return builder.toString();
+        }
+    }
+    // https://docs.oracle.com/en/java/javase/13/docs/api/java/util/concurrent/ScheduledExecutorService.html
+    // https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/concurrent/ScheduledExecutorService.html
+
     /** The scanned data. */
     private final Data data = new Data();
 
@@ -35,15 +74,43 @@ public class Javadoc extends DocTool<Javadoc> {
     /** Preference */
     private String productName = "Your Product";
 
+    {
+        // built-in external API
+        externalDoc("https://docs.oracle.com/en/java/javase/13/docs/api/");
+    }
+
     /**
      * Configure the produc name.
      * 
      * @param productName
-     * @return
+     * @return Chainable API.
      */
     public Javadoc productName(String productName) {
         if (productName != null && productName.length() != 0) {
             this.productName = productName;
+        }
+        return this;
+    }
+
+    /**
+     * Specifies the URL of the resolvable external document.
+     * 
+     * @param urls A list of document URL．
+     * @return Chainable API.
+     */
+    public Javadoc externalDoc(String... urls) {
+        if (urls != null) {
+            for (String url : urls) {
+                if (url != null && url.startsWith("http") && url.endsWith("/api/")) {
+                    try {
+                        for (XML a : I.xml(new URL(url + "overview-tree.html")).find(".horizontal a")) {
+                            externalDocumentLocations.put(a.text(), url);
+                        }
+                    } catch (MalformedURLException e) {
+                        throw I.quiet(e);
+                    }
+                }
+            }
         }
         return this;
     }
@@ -188,7 +255,7 @@ public class Javadoc extends DocTool<Javadoc> {
         data.types.sort(Comparator.naturalOrder());
 
         // build HTML
-        site.buildHTML("index.html", new BaseHTML());
+        site.buildHTML("javadoc.html", new BaseHTML());
     }
 
     /**
@@ -202,7 +269,7 @@ public class Javadoc extends DocTool<Javadoc> {
             $("html", () -> {
                 $("head", () -> {
                     $("meta", attr("charset", "UTF-8"));
-                    $("title", text(productName));
+                    $("title", text(productName + " API"));
                     stylesheet("main.css", styles);
                     stylesheet("https://unpkg.com/element-ui/lib/theme-chalk/index.css");
                     script("https://unpkg.com/vue/dist/vue.js");
@@ -213,7 +280,7 @@ public class Javadoc extends DocTool<Javadoc> {
                     // Top Navigation
                     // =============================
                     $("header", styles.HeaderArea, () -> {
-                        $("h1", styles.productTitle, text(productName));
+                        $("h1", styles.HeaderTitle, text(productName + " API"));
                     });
 
                     $("main", styles.MainArea, () -> {
