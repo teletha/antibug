@@ -159,7 +159,7 @@ public abstract class DocTool<Self extends DocTool> implements DiagnosticListene
 
                 Iterable<? extends JavaFileObject> units = manager.list(SOURCE_PATH, "", Set.of(Kind.SOURCE), true);
 
-                if (tool.getTask(null, manager, this, Internal.class, List.of(), units).call()) {
+                if (tool.getTask(null, manager, this, Internal.class, List.of("-verbose"), units).call()) {
                 }
             } catch (Exception e) {
                 e.printStackTrace();

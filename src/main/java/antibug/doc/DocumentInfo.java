@@ -13,9 +13,11 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.ModuleElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.ArrayType;
@@ -108,6 +110,17 @@ public class DocumentInfo {
      */
     protected final XML parseTypeAsXML(TypeMirror type) {
         return new TypeXMLBuilder().parse(type).parent().children();
+    }
+
+    /**
+     * Test visibility of the specified {@link Element}.
+     * 
+     * @param e
+     * @return
+     */
+    protected final boolean isVisible(Element e) {
+        Set<Modifier> modifiers = e.getModifiers();
+        return modifiers.contains(Modifier.PUBLIC) || modifiers.contains(Modifier.PROTECTED);
     }
 
     /**
@@ -301,6 +314,10 @@ public class DocumentInfo {
          */
         @Override
         public DocumentXMLBuilder visitLink(LinkTree node, DocumentXMLBuilder p) {
+            System.err.println(node + "  " + node.getLabel() + "   " + node.getReference());
+            ReferenceTree reference = node.getReference();
+            String signature = reference.getSignature();
+            System.out.println(signature);
             return super.visitLink(node, p);
         }
 
@@ -517,7 +534,7 @@ public class DocumentInfo {
                 XML parameters = xml.after("<i class='parameters'/>").next();
                 for (int i = 0, size = paramTypes.size(); i < size; i++) {
                     parameters.append(parseTypeAsXML(paramTypes.get(i)));
-                    
+
                     if (i + 1 != size) {
                         parameters.append(", ");
                     }

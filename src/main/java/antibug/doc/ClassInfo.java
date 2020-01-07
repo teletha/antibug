@@ -176,7 +176,9 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
          */
         @Override
         public ClassInfo visitVariable(VariableElement e, ClassInfo p) {
-            fields.add(new FieldInfo(e));
+            if (isVisible(e)) {
+                fields.add(new FieldInfo(e));
+            }
             return p;
         }
 
@@ -194,10 +196,12 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
          */
         @Override
         public ClassInfo visitExecutable(ExecutableElement e, ClassInfo p) {
-            if (e.getKind() == ElementKind.CONSTRUCTOR) {
-                constructors.add(new ExecutableInfo(e));
-            } else {
-                methods.add(new MethodInfo(e));
+            if (isVisible(e)) {
+                if (e.getKind() == ElementKind.CONSTRUCTOR) {
+                    constructors.add(new ExecutableInfo(e));
+                } else {
+                    methods.add(new MethodInfo(e));
+                }
             }
             return p;
         }

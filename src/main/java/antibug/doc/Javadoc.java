@@ -143,15 +143,15 @@ public class Javadoc extends DocTool<Javadoc> {
                 });
                 $(html(info.comment));
 
-                $("h2", styles.heading, text("Constructor"));
-                $("section", () -> {
-                    for (ExecutableInfo constructor : info.constructors) {
-                        $("h3", id(constructor.id()), styles.heading, text(constructor.name), constructor.createParameter());
-                        $(html(constructor.comment));
+                I.signal(info.constructors).effectOnce(() -> {
+                }).to(c -> {
+                    $("section", styles.MainSection, () -> {
+                        $("h2", id(c.id()), styles.MainTitle, c.createNameWithModifier(), c.createParameter());
+                        $(html(c.comment));
                         $("dl", () -> {
-                            if (!constructor.paramTags.isEmpty()) {
+                            if (!c.paramTags.isEmpty()) {
                                 $("dt", text("Parameters"));
-                                for (Ⅱ<String, XML> param : constructor.paramTags) {
+                                for (Ⅱ<String, XML> param : c.paramTags) {
                                     $("dd", () -> {
                                         $("b", text(param.ⅰ));
                                         $(param.ⅱ);
@@ -159,20 +159,20 @@ public class Javadoc extends DocTool<Javadoc> {
                                 }
                             }
                         });
-                    }
+                    });
                 });
 
-                $("h2", styles.heading, text("Methods"));
-                $("section", () -> {
-                    for (MethodInfo method : info.methods) {
-                        $("h3", id(method.id()), styles.heading, text(method.name), method.createParameter());
-                        $(method.comment.v);
+                I.signal(info.methods).effectOnce(() -> {
+                }).to(m -> {
+                    $("section", styles.MainSection, () -> {
+                        $("h2", id(m.id()), styles.MainTitle, m.createNameWithModifier(), m.createParameter(), m.returnType);
+                        $(m.comment.v);
 
-                        if (!method.paramTags.isEmpty() || method.returnTag.isPresent()) {
+                        if (!m.paramTags.isEmpty() || m.returnTag.isPresent()) {
                             $("dl", () -> {
-                                if (!method.paramTags.isEmpty()) {
+                                if (!m.paramTags.isEmpty()) {
                                     $("dt", text("Parameters"));
-                                    for (Ⅱ<String, XML> param : method.paramTags) {
+                                    for (Ⅱ<String, XML> param : m.paramTags) {
                                         $("dd", () -> {
                                             $("b", text(param.ⅰ), () -> {
                                             });
@@ -181,13 +181,13 @@ public class Javadoc extends DocTool<Javadoc> {
                                     }
                                 }
 
-                                method.returnTag.to(tag -> {
+                                m.returnTag.to(tag -> {
                                     $("dt", text("Return"));
                                     $("dd", tag);
                                 });
                             });
                         }
-                    }
+                    });
                 });
             }
 

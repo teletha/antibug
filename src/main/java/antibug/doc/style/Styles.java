@@ -11,6 +11,7 @@ package antibug.doc.style;
 
 import stylist.AbstractStyleDSL;
 import stylist.Style;
+import stylist.property.Background.BackgroundImage;
 import stylist.value.Color;
 import stylist.value.ColorPalette;
 import stylist.value.Font;
@@ -28,7 +29,7 @@ public class Styles extends AbstractStyleDSL {
             .background($.rgb(241, 250, 238))
             .font($.rgb(94, 109, 130));
 
-    private final FontPalette fonts = FontPalette.with.baseBySystem().title(Font.fromGoogle("Oswald")).monoBySystem();
+    private final FontPalette fonts = FontPalette.with.baseBySystem().title(Font.fromGoogle("Ubuntu")).monoBySystem();
 
     private final Font RobotoMono = Font.fromGoogle("Roboto Mono");
 
@@ -60,7 +61,7 @@ public class Styles extends AbstractStyleDSL {
     @SuppressWarnings("unused")
     private Style HTML = Style.named("html", () -> {
         font.size(13, px);
-        scrollPadding.top(HeaderHeight);
+        scroll.smooth().padding.top(HeaderHeight);
 
         $.select("*[class|=el]", () -> {
             font.size(1, rem);
@@ -110,8 +111,6 @@ public class Styles extends AbstractStyleDSL {
 
     @SuppressWarnings("unused")
     private Style HTMLDifinitionList = Style.named("dl", () -> {
-        block2(palette.accent, true);
-
         $.select("dt", () -> {
             display.block().width(70, px).floatLeft();
             font.size(9, px).weight.bold().color(palette.accent);
@@ -242,9 +241,10 @@ public class Styles extends AbstractStyleDSL {
     private void buidlMark(String mark, Color color) {
         position.relative();
         $.before(() -> {
-            font.family(fonts.icon).color(color).size(0.7, em);
+            font.family(fonts.icon).color(color).size(1, rem);
             content.text(mark);
             padding.right(0.6, rem);
+            text.verticalAlign.middle();
         });
     }
 
@@ -391,6 +391,26 @@ public class Styles extends AbstractStyleDSL {
         margin.auto();
     });
 
+    public final Style MainSection = () -> {
+        margin.top(BlockVerticalGap.multiply(4));
+        padding.vertical(BlockVerticalGap).horizontal(BlockHorizontalGap);
+        border.radius(5, px);
+        background.image(BackgroundImage.Absurdity).repeat();
+
+        $.nthChild("even", () -> {
+            background.color(Color.Whity);
+        });
+
+        $.nthChild("odd", () -> {
+            background.color(Color.Whity);
+        });
+    };
+
+    public final Style MainTitle = () -> {
+        font.family(fonts.title, Font.SansSerif).size(1, rem).weight.normal();
+        display.block();
+    };
+
     // ==================================================================
     // Left Side Navigation
     // ==================================================================
@@ -463,11 +483,5 @@ public class Styles extends AbstractStyleDSL {
             content.text(":");
             padding.horizontal(0.3, em);
         });
-    };
-
-    public final Style heading = () -> {
-        font.family(fonts.title, Font.SansSerif).size(18, px).weight.normal();
-        margin.top(BlockVerticalGap.multiply(4)).bottom(BlockVerticalGap.multiply(2));
-        display.block();
     };
 }
