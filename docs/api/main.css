@@ -2,11 +2,54 @@
 @import url("http://fonts.googleapis.com/css?family=Oswald");
 @import url("http://fonts.googleapis.com/css?family=Roboto+Mono");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1237586315 */.Class {
+/* 1148038393 */section {
+	margin-bottom: 0.5rem;
+}
+
+/* 1148038393 */section > pre {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+}
+
+/* 1148038393 */section > ul {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+}
+
+/* 1148038393 */section > ol {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+}
+
+/* 1151964959 */.Class {
 	position: relative;
 }
 
-/* 1237586315 */.Class::before {
+/* 1151964959 */.Class::before {
 	font-family: "Material Icons";
 	color: hsl(120,39%,55%);
 	font-size: 0.7em;
@@ -14,103 +57,82 @@
 	padding-right: 0.6rem;
 }
 
-/* 1279095549 */.Exception {
+/* 129831064 */.extends::before {
+	content: ' extends ';
+}
+
+/* 134815104 */.PRIVATE {
 	position: relative;
 }
 
-/* 1279095549 */.Exception::before {
-	font-family: "Material Icons";
-	color: hsl(26,90%,53%);
-	font-size: 0.7em;
-	content: '\e031';
+/* 134815104 */.PRIVATE::before {
 	padding-right: 0.6rem;
-}
-
-/* 129831064 */.FINAL {
-	position: relative;
-}
-
-/* 129831064 */.FINAL::before {
-	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Mono";
-	content: 'F';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 1357984916 */a {
-	color: inherit;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-/* 1357984916 */a:hover {
-	text-decoration: underline;
-	text-decoration-color: hsla(215,16%,44%,0.5);
-	text-underline-offset: 4px;
-	text-underline-position: under;
-}
-
-/* 148679921 */i {
-	font-style: normal;
-}
-
-/* 1542567208 */.parameters::before {
-	content: '<';
-}
-
-/* 1542567208 */.parameters::after {
-	content: '>';
-}
-
-/* 1542567208 */.parameters>*:not( .type:last-child)::after {
-	content: ', ';
-}
-
-/* 1572937899 */.AbstractClass {
-	position: relative;
-}
-
-/* 1572937899 */.AbstractClass::before {
-	font-family: "Material Icons";
-	color: hsl(120,9%,55%);
-	font-size: 0.7em;
-	content: '\e90c';
-	padding-right: 0.6rem;
-}
-
-/* 1678404939 */.PROTECTED {
-	position: relative;
-}
-
-/* 1678404939 */.PROTECTED::before {
-	padding-right: 0.6rem;
-	color: hsl(48,95%,59%);
+	color: hsl(2,68%,58%);
 	font-family: "Material Icons";
 	font-size: 0.8em;
 	content: '\e061';
 }
 
-/* 1678404939 */.PROTECTED.OVERRIDE::before {
+/* 134815104 */.PRIVATE.OVERRIDE::before {
 	content: '\e837';
 }
 
-/* 1678404939 */.PROTECTED.FIELD::before {
+/* 134815104 */.PRIVATE.FIELD::before {
 	content: '\e836';
 }
 
-/* 1759413538 */h2 {
-	font-size: 1.8rem;
-	font-family: Oswald;
-}
-
-/* 180295702 */.TRANSIENT {
+/* 1355475787 */.VOLATILE {
 	position: relative;
 }
 
-/* 180295702 */.TRANSIENT::after {
+/* 1355475787 */.VOLATILE::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Mono";
+	content: 'V';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
+}
+
+/* 1478318899 */.Functional {
+	position: relative;
+}
+
+/* 1478318899 */.Functional::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 0.7em;
+	content: '\e88e';
+	padding-right: 0.6rem;
+}
+
+/* 1678404939 */html {
+	font-size: 13px;
+	scroll-padding-top: 80px;
+}
+
+/* 1678404939 */html *[class|=el] {
+	font-size: 1rem;
+}
+
+/* 170929968 */main {
+	width: 85vw;
+	display: flex;
+	flex-direction: row;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* 1784029781 */.package {
+	font-weight: bold;
+}
+
+/* 1902761576 */.TRANSIENT {
+	position: relative;
+}
+
+/* 1902761576 */.TRANSIENT::after {
 	color: hsl(203,91%,56%);
 	font-size: 0.8em;
 	font-family: "Material Icons";
@@ -120,7 +142,45 @@
 	left: 0.8em;
 }
 
-/* 1865152087 */dl {
+/* 1909198389 */.PROTECTED {
+	position: relative;
+}
+
+/* 1909198389 */.PROTECTED::before {
+	padding-right: 0.6rem;
+	color: hsl(48,95%,59%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1909198389 */.PROTECTED.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1909198389 */.PROTECTED.FIELD::before {
+	content: '\e836';
+}
+
+/* 1941633008 */a {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* 1941633008 */a:hover {
+	text-decoration: underline;
+	text-decoration-color: hsla(215,16%,44%,0.5);
+	text-underline-offset: 4px;
+	text-underline-position: under;
+}
+
+/* 305700980 */h2 {
+	font-size: 1.8rem;
+	font-family: Oswald;
+}
+
+/* 318869248 */dl {
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
 	padding-left: 10px;
@@ -135,14 +195,14 @@
 	background-color: hsla(2,68%,58%,0.19999999999999996);
 }
 
-/* 1865152087 */dl::before {
+/* 318869248 */dl::before {
 	position: absolute;
 	content: 'Signature';
 	color: hsla(2,68%,58%,0.09999999999999998);
 	font-size: 1.6rem;
 }
 
-/* 1865152087 */dl dt {
+/* 318869248 */dl dt {
 	display: block;
 	width: 70px;
 	float: left;
@@ -154,12 +214,12 @@
 	text-transform: capitalize;
 }
 
-/* 1865152087 */dl dd {
+/* 318869248 */dl dd {
 	margin-bottom: 15px;
 	margin-left: 70px;
 }
 
-/* 1865152087 */dl b {
+/* 318869248 */dl b {
 	display: block;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
@@ -169,104 +229,15 @@
 	font-weight: bold;
 }
 
-/* 1942002328 */section {
-	margin-bottom: 0.5rem;
+/* 408680160 */.super::before {
+	content: ' super ';
 }
 
-/* 1942002328 */section > pre {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 1942002328 */section > ul {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 1942002328 */section > ol {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 1963729827 */.package {
-	font-weight: bold;
-}
-
-/* 2130179092 */.Enum {
+/* 484103705 */.Annotation {
 	position: relative;
 }
 
-/* 2130179092 */.Enum::before {
-	font-family: "Material Icons";
-	color: hsl(120,4%,55%);
-	font-size: 0.7em;
-	content: '\e01e';
-	padding-right: 0.6rem;
-}
-
-/* 305700980 */.PACKAGEPRIVATE {
-	position: relative;
-}
-
-/* 305700980 */.PACKAGEPRIVATE::before {
-	padding-right: 0.6rem;
-	color: hsl(203,91%,56%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 305700980 */.PACKAGEPRIVATE.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 305700980 */.PACKAGEPRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 318869248 */.SYNCHRONIZED {
-	position: relative;
-}
-
-/* 318869248 */.SYNCHRONIZED::after {
-	color: hsl(203,91%,56%);
-	font-size: 0.8em;
-	font-family: "Material Icons";
-	content: '\e8ae';
-	position: absolute;
-	top: 0.8em;
-	left: 0.8em;
-}
-
-/* 405654827 */.Annotation {
-	position: relative;
-}
-
-/* 405654827 */.Annotation::before {
+/* 484103705 */.Annotation::before {
 	font-family: "Material Icons";
 	color: hsl(120,4%,55%);
 	font-size: 0.7em;
@@ -274,94 +245,47 @@
 	padding-right: 0.6rem;
 }
 
-/* 405787243 */.Functional {
+/* 523655718 */.AbstractClass {
 	position: relative;
 }
 
-/* 405787243 */.Functional::before {
+/* 523655718 */.AbstractClass::before {
 	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
+	color: hsl(120,9%,55%);
 	font-size: 0.7em;
-	content: '\e88e';
+	content: '\e90c';
 	padding-right: 0.6rem;
 }
 
-/* 408680160 */.VOLATILE {
+/* 773749702 */.parameters::before {
+	content: '<';
+}
+
+/* 773749702 */.parameters::after {
+	content: '>';
+}
+
+/* 773749702 */.parameters>*:not( .type:last-child)::after {
+	content: ', ';
+}
+
+/* 774689836 */.Enum {
 	position: relative;
 }
 
-/* 408680160 */.VOLATILE::before {
-	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Mono";
-	content: 'V';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 473637407 */.super::before {
-	content: ' super ';
-}
-
-/* 523655718 */main {
-	width: 85vw;
-	display: flex;
-	flex-direction: row;
-	margin-right: auto;
-	margin-left: auto;
-}
-
-/* 531076772 */html {
-	font-size: 13px;
-	scroll-padding-top: 80px;
-}
-
-/* 531076772 */html *[class|=el] {
-	font-size: 1rem;
-}
-
-/* 595755231 */.Interface {
-	position: relative;
-}
-
-/* 595755231 */.Interface::before {
+/* 774689836 */.Enum::before {
 	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
+	color: hsl(120,4%,55%);
 	font-size: 0.7em;
-	content: '\e88f';
+	content: '\e01e';
 	padding-right: 0.6rem;
 }
 
-/* 631007928 */.PUBLIC {
+/* 793349921 */.ABSTRACT {
 	position: relative;
 }
 
-/* 631007928 */.PUBLIC::before {
-	padding-right: 0.6rem;
-	color: hsl(120,39%,55%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 631007928 */.PUBLIC.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 631007928 */.PUBLIC.FIELD::before {
-	content: '\e836';
-}
-
-/* 747827348 */.extends::before {
-	content: ' extends ';
-}
-
-/* 773749702 */.ABSTRACT {
-	position: relative;
-}
-
-/* 773749702 */.ABSTRACT::before {
+/* 793349921 */.ABSTRACT::before {
 	color: hsl(203,91%,56%);
 	font-size: 0.6em;
 	font-family: "Roboto Mono";
@@ -371,51 +295,127 @@
 	left: 1.4em;
 }
 
-/* 901087828 */.PRIVATE {
+/* 827074780 */.SYNCHRONIZED {
 	position: relative;
 }
 
-/* 901087828 */.PRIVATE::before {
+/* 827074780 */.SYNCHRONIZED::after {
+	color: hsl(203,91%,56%);
+	font-size: 0.8em;
+	font-family: "Material Icons";
+	content: '\e8ae';
+	position: absolute;
+	top: 0.8em;
+	left: 0.8em;
+}
+
+/* 831543502 */.Exception {
+	position: relative;
+}
+
+/* 831543502 */.Exception::before {
+	font-family: "Material Icons";
+	color: hsl(26,90%,53%);
+	font-size: 0.7em;
+	content: '\e031';
 	padding-right: 0.6rem;
-	color: hsl(2,68%,58%);
+}
+
+/* 901087828 */i {
+	font-style: normal;
+}
+
+/* 927704210 */.Interface {
+	position: relative;
+}
+
+/* 927704210 */.Interface::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 0.7em;
+	content: '\e88f';
+	padding-right: 0.6rem;
+}
+
+/* 9451853 */.FINAL {
+	position: relative;
+}
+
+/* 9451853 */.FINAL::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Mono";
+	content: 'F';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
+}
+
+/* 956903564 */.PUBLIC {
+	position: relative;
+}
+
+/* 956903564 */.PUBLIC::before {
+	padding-right: 0.6rem;
+	color: hsl(120,39%,55%);
 	font-family: "Material Icons";
 	font-size: 0.8em;
 	content: '\e061';
 }
 
-/* 901087828 */.PRIVATE.OVERRIDE::before {
+/* 956903564 */.PUBLIC.OVERRIDE::before {
 	content: '\e837';
 }
 
-/* 901087828 */.PRIVATE.FIELD::before {
+/* 956903564 */.PUBLIC.FIELD::before {
 	content: '\e836';
 }
 
-/* antibug.doc.style.Styles#lambda$0 */.K {
+/* 996963339 */.PACKAGEPRIVATE {
+	position: relative;
+}
+
+/* 996963339 */.PACKAGEPRIVATE::before {
+	padding-right: 0.6rem;
+	color: hsl(203,91%,56%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 996963339 */.PACKAGEPRIVATE.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 996963339 */.PACKAGEPRIVATE.FIELD::before {
+	content: '\e836';
+}
+
+/* antibug.doc.style.Styles#lambda$0 */.J {
 	color: hsl(48,55%,59%);
 }
 
-/* antibug.doc.style.Styles#lambda$0 */.K::before {
+/* antibug.doc.style.Styles#lambda$0 */.J::before {
 	content: ':';
 	padding-left: 0.3em;
 	padding-right: 0.3em;
 }
 
-/* antibug.doc.style.Styles#lambda$13 */.A {
+/* antibug.doc.style.Styles#lambda$13 */.C {
 	flex-grow: 1;
 	-webkit-flex-grow: 1;
 	margin-left: 5rem;
 	margin-right: 1.5rem;
 }
 
-/* antibug.doc.style.Styles#lambda$14 */.C {
+/* antibug.doc.style.Styles#lambda$14 */.F {
 	flex-basis: 20vw;
 	-webkit-flex-basis: 20vw;
 	flex-shrink: 0;
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.style.Styles#lambda$15 */.G {
+/* antibug.doc.style.Styles#lambda$15 */.E {
 	position: sticky;
 	top: 80px;
 	display: block;
@@ -426,11 +426,11 @@
 	white-space: nowrap;
 }
 
-/* antibug.doc.style.Styles#lambda$15 */.G:hover {
+/* antibug.doc.style.Styles#lambda$15 */.E:hover {
 	overflow-y: auto;
 }
 
-/* antibug.doc.style.Styles#lambda$15 */.G>*>* {
+/* antibug.doc.style.Styles#lambda$15 */.E>*>* {
 	padding-top: 0.15em;
 	padding-bottom: 0.15em;
 }
@@ -444,13 +444,13 @@
 	display: block;
 }
 
-/* antibug.doc.style.Styles#lambda$19 */.D {
+/* antibug.doc.style.Styles#lambda$19 */.K {
 	margin-top: 0.9rem;
 	font-weight: bold;
 	font-size: 1rem;
 }
 
-/* antibug.doc.style.Styles#lambda$2 */.B {
+/* antibug.doc.style.Styles#lambda$2 */.A {
 	font-size: 13px;
 	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
 	color: hsl(215,16%,44%);
@@ -458,7 +458,7 @@
 	width: 100vw;
 }
 
-/* antibug.doc.style.Styles#lambda$3 */.E {
+/* antibug.doc.style.Styles#lambda$3 */.B {
 	background-color: hsl(0,0%,100%);
 	position: sticky;
 	top: 0;
@@ -473,12 +473,12 @@
 	border-bottom-style: solid;
 }
 
-/* antibug.doc.style.Styles#lambda$34 */.F {
+/* antibug.doc.style.Styles#lambda$34 */.I {
 	opacity: 0.8;
 	padding-left: 0.08em;
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.I {
+/* antibug.doc.style.Styles#lambda$4 */.D {
 	font-size: 2.5rem;
 	font-family: Oswald;
 	font-weight: normal;
@@ -486,37 +486,37 @@
 	align-self: center;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.J {
+/* antibug.doc.style.Styles#lambda$6 */.G {
 	flex-basis: 15vw;
 	-webkit-flex-basis: 15vw;
 	flex-shrink: 0;
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.J>* {
+/* antibug.doc.style.Styles#lambda$6 */.G>* {
 	position: sticky;
 	top: 80px;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.J>*>* {
+/* antibug.doc.style.Styles#lambda$6 */.G>*>* {
 	margin-top: 0.5rem;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.J .el-select {
+/* antibug.doc.style.Styles#lambda$6 */.G .el-select {
 	width: 100%;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.J .el-checkbox {
+/* antibug.doc.style.Styles#lambda$6 */.G .el-checkbox {
 	display: block;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.J #AllTypes {
+/* antibug.doc.style.Styles#lambda$6 */.G #AllTypes {
 	overflow: hidden;
 	scrollbar-width: thin;
 	height: 60vh;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.J #AllTypes:hover {
+/* antibug.doc.style.Styles#lambda$6 */.G #AllTypes:hover {
 	overflow-y: auto;
 }
 

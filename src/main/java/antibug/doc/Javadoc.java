@@ -273,6 +273,7 @@ public class Javadoc extends DocTool<Javadoc> {
                     stylesheet("main.css", styles);
                     stylesheet("https://unpkg.com/element-ui/lib/theme-chalk/index.css");
                     script("https://unpkg.com/vue/dist/vue.js");
+                    script("https://unpkg.com/vue-router/dist/vue-router.js");
                     script("https://unpkg.com/element-ui/lib/index.js");
                 });
                 $("body", styles.workbench, () -> {
@@ -287,12 +288,15 @@ public class Javadoc extends DocTool<Javadoc> {
                         // =============================
                         // Left Side Navigation
                         // =============================
-                        $("nav", id("typeNavigation"), styles.TypeNavigation);
+                        $("nav", id("typeNavigation"), styles.TypeNavigation, () -> {
+                            $("div");
+                        });
 
                         // =============================
                         // Main Contents
                         // =============================
                         $("article", styles.contents, () -> {
+                            $("router-view");
                             main();
                         });
 

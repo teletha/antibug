@@ -1,23 +1,57 @@
 // =====================================================
-// Vue Extensions
+// Define Router
 // =====================================================
-Vue.append = function(selecter, componentDefinition) {
-	const component = Vue.extend(componentDefinition);
+const router = new VueRouter({
+	mode: "history",
+	routes: [
+		{
+			path: "*",
+			component: {
+				template: "<i/>",
+				created: function() {
+					this.href();
+				},
+				watch: {
+					$route: "href"
+				},
+				methods: {
+					// ===========================================================
+					// Extracts the contents and navigation from the HTML file at
+					// the specified path and imports them into the current HTML.
+					// ===========================================================
+					href: function() {
+						fetch(this.$route.params.pathMatch)
+							.then(function(response) {
+								return response.text();
+							})
+							.then(function(html) {
+								var start = html.indexOf(">", html.indexOf("<article")) + 1;
+								var end = html.lastIndexOf("</article>");
+								var article = html.substring(start, end);
+								document.querySelector("article").innerHTML = article;
 
-	document.querySelectorAll(selecter).forEach(e => {
-		new component().$mount(
-			e.lastElementChild
-				? e.lastElementChild
-				: e.appendChild(document.createElement("span"))
-		);
-	});
-};
+								var start = html.indexOf(">", html.indexOf("<aside")) + 1;
+								var end = html.lastIndexOf("</aside>");
+								var aside = html.substring(start, end);
+								document.querySelector("aside").innerHTML = aside;
+							});
+					}
+				}
+			}
+		}
+	]
+});
 
 // =====================================================
 // Define Components
 // =====================================================
+new Vue({
+	el: "main",
+	router
+});
 
-Vue.append("#typeNavigation", {
+new Vue({
+	el: "#typeNavigation > div",
 	template: `
 	<div>
       <el-select size="mini" clearable v-model='selectedModule' placeholder='Select Module' no-data-text="No Module">
@@ -64,7 +98,7 @@ Vue.append("#typeNavigation", {
 	},
 	methods: {
 		sortAndGroup: function(items) {
-			let map = new Map;
+			let map = new Map();
 			items.packages.forEach(item => {
 				map.set(item, {
 					name: item,
@@ -79,47 +113,37 @@ Vue.append("#typeNavigation", {
 			return Array.from(map.values());
 		},
 		filter: function(query, item) {
-			if (this.selectedType.length != 0 && !this.selectedType.includes(item.type)) {
+			if (
+				this.selectedType.length != 0 &&
+				!this.selectedType.includes(item.type)
+			) {
 				return false;
 			}
 
-			if (this.selectedPackage !== "" && this.selectedPackage !== item.packageName) {
+			if (
+				this.selectedPackage !== "" &&
+				this.selectedPackage !== item.packageName
+			) {
 				return false;
 			}
-			
-			if (this.selectedName !== "" && item.name.toLowerCase().indexOf(this.selectedName.toLowerCase()) === -1) {
+
+			if (
+				this.selectedName !== "" &&
+				item.name.toLowerCase().indexOf(this.selectedName.toLowerCase()) === -1
+			) {
 				return false;
 			}
 			return true;
 		},
 		renderTree: function(h, o) {
-			return h("span", {class:o.data.type ? o.data.type : "package"}, [o.data.name]);
+			return h("span", { class: o.data.type ? o.data.type : "package" }, [
+				o.data.name
+			]);
 		},
 		link: function(e) {
 			if (!e.packageName) return; // ignore package node
 
-			var path =
-				"/types/" +
-				(e.packageName ? e.packageName + "." : "") +
-				e.name +
-				".html";
-
-			fetch(path)
-				.then(function(response) {
-					return response.text();
-				})
-				.then(function(html) {
-					var start = html.indexOf(">", html.indexOf("<article")) + 1;
-					var end = html.lastIndexOf("</article>");
-					var article = html.substring(start, end);
-					document.querySelector("article").innerHTML = article;
-
-					var start = html.indexOf(">", html.indexOf("<aside")) + 1;
-					var end = html.lastIndexOf("</aside>");
-					var aside = html.substring(start, end);
-					document.querySelector("aside").innerHTML = aside;
-				});
+			router.push("/types/" + e.packageName + "." + e.name + ".html");
 		}
 	}
 });
-
