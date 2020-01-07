@@ -181,12 +181,6 @@ public class Styles extends AbstractStyleDSL {
         $.after(() -> {
             content.text(">");
         });
-
-        $.child().not($.select(".type").lastChild(), () -> {
-            $.after(() -> {
-                content.text(", ");
-            });
-        });
     });
 
     @SuppressWarnings("unused")

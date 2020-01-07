@@ -504,13 +504,10 @@ public class DocumentInfo {
             }
 
             // link to type
-            XML link;
             String path = Javadoc.resolveDocumentLocation(moduleName, packageName, enclosingName, typeName);
-
-            if (path.startsWith("http")) {
-                link = I.xml("a").attr("href", path);
-            } else {
-                link = I.xml("span").attr("onClick", "router.push('" + path + "')");
+            XML link = I.xml("a").attr("href", path).text(typeName);
+            if (!path.startsWith("http")) {
+                link.attr("onClick", "router.push('" + path + "');return false;");
             }
             xml.append(link.text(typeName));
 
@@ -518,8 +515,12 @@ public class DocumentInfo {
             List<? extends TypeMirror> paramTypes = declared.getTypeArguments();
             if (paramTypes.isEmpty() == false) {
                 XML parameters = xml.after("<i class='parameters'/>").next();
-                for (TypeMirror paramType : paramTypes) {
-                    parameters.append(parseTypeAsXML(paramType));
+                for (int i = 0, size = paramTypes.size(); i < size; i++) {
+                    parameters.append(parseTypeAsXML(paramTypes.get(i)));
+                    
+                    if (i + 1 != size) {
+                        parameters.append(", ");
+                    }
                 }
             }
 
