@@ -2,70 +2,11 @@
 @import url("http://fonts.googleapis.com/css?family=Oswald");
 @import url("http://fonts.googleapis.com/css?family=Roboto+Mono");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1148038393 */section {
-	margin-bottom: 0.5rem;
-}
-
-/* 1148038393 */section > pre {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 1148038393 */section > ul {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 1148038393 */section > ol {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 1151964959 */.Class {
+/* 1000927054 */.PRIVATE {
 	position: relative;
 }
 
-/* 1151964959 */.Class::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: 0.7em;
-	content: '\e90c';
-	padding-right: 0.6rem;
-}
-
-/* 129831064 */.extends::before {
-	content: ' extends ';
-}
-
-/* 134815104 */.PRIVATE {
-	position: relative;
-}
-
-/* 134815104 */.PRIVATE::before {
+/* 1000927054 */.PRIVATE::before {
 	padding-right: 0.6rem;
 	color: hsl(2,68%,58%);
 	font-family: "Material Icons";
@@ -73,50 +14,145 @@
 	content: '\e061';
 }
 
-/* 134815104 */.PRIVATE.OVERRIDE::before {
+/* 1000927054 */.PRIVATE.OVERRIDE::before {
 	content: '\e837';
 }
 
-/* 134815104 */.PRIVATE.FIELD::before {
+/* 1000927054 */.PRIVATE.FIELD::before {
 	content: '\e836';
 }
 
-/* 1355475787 */.VOLATILE {
+/* 1095122006 */a {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* 1095122006 */a:hover {
+	text-decoration: underline;
+	text-decoration-color: hsla(215,16%,44%,0.5);
+	text-underline-offset: 4px;
+	text-underline-position: under;
+}
+
+/* 1344333227 */html {
+	font-size: 13px;
+	scroll-padding-top: 80px;
+}
+
+/* 1344333227 */html *[class|=el] {
+	font-size: 1rem;
+}
+
+/* 1510452783 */.PROTECTED {
 	position: relative;
 }
 
-/* 1355475787 */.VOLATILE::before {
+/* 1510452783 */.PROTECTED::before {
+	padding-right: 0.6rem;
+	color: hsl(48,95%,59%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1510452783 */.PROTECTED.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1510452783 */.PROTECTED.FIELD::before {
+	content: '\e836';
+}
+
+/* 1531118913 */.Exception {
+	position: relative;
+}
+
+/* 1531118913 */.Exception::before {
+	font-family: "Material Icons";
+	color: hsl(26,90%,53%);
+	font-size: 0.7em;
+	content: '\e031';
+	padding-right: 0.6rem;
+}
+
+/* 1663801016 */.Enum {
+	position: relative;
+}
+
+/* 1663801016 */.Enum::before {
+	font-family: "Material Icons";
+	color: hsl(120,4%,55%);
+	font-size: 0.7em;
+	content: '\e01e';
+	padding-right: 0.6rem;
+}
+
+/* 1705405045 */.PUBLIC {
+	position: relative;
+}
+
+/* 1705405045 */.PUBLIC::before {
+	padding-right: 0.6rem;
+	color: hsl(120,39%,55%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1705405045 */.PUBLIC.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1705405045 */.PUBLIC.FIELD::before {
+	content: '\e836';
+}
+
+/* 1725187457 */.SYNCHRONIZED {
+	position: relative;
+}
+
+/* 1725187457 */.SYNCHRONIZED::after {
+	color: hsl(203,91%,56%);
+	font-size: 0.8em;
+	font-family: "Material Icons";
+	content: '\e8ae';
+	position: absolute;
+	top: 0.8em;
+	left: 0.8em;
+}
+
+/* 1772874516 */.extends::before {
+	content: ' extends ';
+}
+
+/* 1894487255 */.FINAL {
+	position: relative;
+}
+
+/* 1894487255 */.FINAL::before {
 	color: hsl(203,91%,56%);
 	font-size: 0.6em;
 	font-family: "Roboto Mono";
-	content: 'V';
+	content: 'F';
 	position: absolute;
 	top: 0;
 	left: 1.4em;
 }
 
-/* 1478318899 */.Functional {
+/* 1924480807 */.AbstractClass {
 	position: relative;
 }
 
-/* 1478318899 */.Functional::before {
+/* 1924480807 */.AbstractClass::before {
 	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
+	color: hsl(120,9%,55%);
 	font-size: 0.7em;
-	content: '\e88e';
+	content: '\e90c';
 	padding-right: 0.6rem;
 }
 
-/* 1678404939 */html {
-	font-size: 13px;
-	scroll-padding-top: 80px;
-}
-
-/* 1678404939 */html *[class|=el] {
-	font-size: 1rem;
-}
-
-/* 170929968 */main {
+/* 1984109 */main {
 	width: 85vw;
 	display: flex;
 	flex-direction: row;
@@ -124,15 +160,99 @@
 	margin-left: auto;
 }
 
-/* 1784029781 */.package {
-	font-weight: bold;
-}
-
-/* 1902761576 */.TRANSIENT {
+/* 2021823506 */.PACKAGEPRIVATE {
 	position: relative;
 }
 
-/* 1902761576 */.TRANSIENT::after {
+/* 2021823506 */.PACKAGEPRIVATE::before {
+	padding-right: 0.6rem;
+	color: hsl(203,91%,56%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 2021823506 */.PACKAGEPRIVATE.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 2021823506 */.PACKAGEPRIVATE.FIELD::before {
+	content: '\e836';
+}
+
+/* 2108864020 */.super::before {
+	content: ' super ';
+}
+
+/* 339730588 */i {
+	font-style: normal;
+}
+
+/* 370971752 */section {
+	margin-bottom: 0.5rem;
+}
+
+/* 370971752 */section > pre {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+}
+
+/* 370971752 */section > ul {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+}
+
+/* 370971752 */section > ol {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+}
+
+/* 435286832 */h2 {
+	font-size: 1.8rem;
+	font-family: Oswald;
+}
+
+/* 450836606 */.Functional {
+	position: relative;
+}
+
+/* 450836606 */.Functional::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 0.7em;
+	content: '\e88e';
+	padding-right: 0.6rem;
+}
+
+/* 452592778 */.TRANSIENT {
+	position: relative;
+}
+
+/* 452592778 */.TRANSIENT::after {
 	color: hsl(203,91%,56%);
 	font-size: 0.8em;
 	font-family: "Material Icons";
@@ -142,45 +262,47 @@
 	left: 0.8em;
 }
 
-/* 1909198389 */.PROTECTED {
+/* 459703236 */.parameters::before {
+	content: '<';
+}
+
+/* 459703236 */.parameters::after {
+	content: '>';
+}
+
+/* 459703236 */.parameters>*:not( .type:last-child)::after {
+	content: ', ';
+}
+
+/* 467970019 */.Class {
 	position: relative;
 }
 
-/* 1909198389 */.PROTECTED::before {
-	padding-right: 0.6rem;
-	color: hsl(48,95%,59%);
+/* 467970019 */.Class::before {
 	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
+	color: hsl(120,39%,55%);
+	font-size: 0.7em;
+	content: '\e90c';
+	padding-right: 0.6rem;
 }
 
-/* 1909198389 */.PROTECTED.OVERRIDE::before {
-	content: '\e837';
+/* 5525099 */.Annotation {
+	position: relative;
 }
 
-/* 1909198389 */.PROTECTED.FIELD::before {
-	content: '\e836';
+/* 5525099 */.Annotation::before {
+	font-family: "Material Icons";
+	color: hsl(120,4%,55%);
+	font-size: 0.7em;
+	content: '\e167';
+	padding-right: 0.6rem;
 }
 
-/* 1941633008 */a {
-	color: inherit;
-	text-decoration: none;
-	cursor: pointer;
+/* 55402156 */.package {
+	font-weight: bold;
 }
 
-/* 1941633008 */a:hover {
-	text-decoration: underline;
-	text-decoration-color: hsla(215,16%,44%,0.5);
-	text-underline-offset: 4px;
-	text-underline-position: under;
-}
-
-/* 305700980 */h2 {
-	font-size: 1.8rem;
-	font-family: Oswald;
-}
-
-/* 318869248 */dl {
+/* 6462952 */dl {
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
 	padding-left: 10px;
@@ -195,14 +317,14 @@
 	background-color: hsla(2,68%,58%,0.19999999999999996);
 }
 
-/* 318869248 */dl::before {
+/* 6462952 */dl::before {
 	position: absolute;
 	content: 'Signature';
 	color: hsla(2,68%,58%,0.09999999999999998);
 	font-size: 1.6rem;
 }
 
-/* 318869248 */dl dt {
+/* 6462952 */dl dt {
 	display: block;
 	width: 70px;
 	float: left;
@@ -214,12 +336,12 @@
 	text-transform: capitalize;
 }
 
-/* 318869248 */dl dd {
+/* 6462952 */dl dd {
 	margin-bottom: 15px;
 	margin-left: 70px;
 }
 
-/* 318869248 */dl b {
+/* 6462952 */dl b {
 	display: block;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
@@ -229,63 +351,11 @@
 	font-weight: bold;
 }
 
-/* 408680160 */.super::before {
-	content: ' super ';
-}
-
-/* 484103705 */.Annotation {
+/* 691982326 */.ABSTRACT {
 	position: relative;
 }
 
-/* 484103705 */.Annotation::before {
-	font-family: "Material Icons";
-	color: hsl(120,4%,55%);
-	font-size: 0.7em;
-	content: '\e167';
-	padding-right: 0.6rem;
-}
-
-/* 523655718 */.AbstractClass {
-	position: relative;
-}
-
-/* 523655718 */.AbstractClass::before {
-	font-family: "Material Icons";
-	color: hsl(120,9%,55%);
-	font-size: 0.7em;
-	content: '\e90c';
-	padding-right: 0.6rem;
-}
-
-/* 773749702 */.parameters::before {
-	content: '<';
-}
-
-/* 773749702 */.parameters::after {
-	content: '>';
-}
-
-/* 773749702 */.parameters>*:not( .type:last-child)::after {
-	content: ', ';
-}
-
-/* 774689836 */.Enum {
-	position: relative;
-}
-
-/* 774689836 */.Enum::before {
-	font-family: "Material Icons";
-	color: hsl(120,4%,55%);
-	font-size: 0.7em;
-	content: '\e01e';
-	padding-right: 0.6rem;
-}
-
-/* 793349921 */.ABSTRACT {
-	position: relative;
-}
-
-/* 793349921 */.ABSTRACT::before {
+/* 691982326 */.ABSTRACT::before {
 	color: hsl(203,91%,56%);
 	font-size: 0.6em;
 	font-family: "Roboto Mono";
@@ -295,41 +365,11 @@
 	left: 1.4em;
 }
 
-/* 827074780 */.SYNCHRONIZED {
+/* 739939746 */.Interface {
 	position: relative;
 }
 
-/* 827074780 */.SYNCHRONIZED::after {
-	color: hsl(203,91%,56%);
-	font-size: 0.8em;
-	font-family: "Material Icons";
-	content: '\e8ae';
-	position: absolute;
-	top: 0.8em;
-	left: 0.8em;
-}
-
-/* 831543502 */.Exception {
-	position: relative;
-}
-
-/* 831543502 */.Exception::before {
-	font-family: "Material Icons";
-	color: hsl(26,90%,53%);
-	font-size: 0.7em;
-	content: '\e031';
-	padding-right: 0.6rem;
-}
-
-/* 901087828 */i {
-	font-style: normal;
-}
-
-/* 927704210 */.Interface {
-	position: relative;
-}
-
-/* 927704210 */.Interface::before {
+/* 739939746 */.Interface::before {
 	font-family: "Material Icons";
 	color: hsl(271,30%,50%);
 	font-size: 0.7em;
@@ -337,65 +377,25 @@
 	padding-right: 0.6rem;
 }
 
-/* 9451853 */.FINAL {
+/* 886517510 */.VOLATILE {
 	position: relative;
 }
 
-/* 9451853 */.FINAL::before {
+/* 886517510 */.VOLATILE::before {
 	color: hsl(203,91%,56%);
 	font-size: 0.6em;
 	font-family: "Roboto Mono";
-	content: 'F';
+	content: 'V';
 	position: absolute;
 	top: 0;
 	left: 1.4em;
 }
 
-/* 956903564 */.PUBLIC {
-	position: relative;
-}
-
-/* 956903564 */.PUBLIC::before {
-	padding-right: 0.6rem;
-	color: hsl(120,39%,55%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 956903564 */.PUBLIC.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 956903564 */.PUBLIC.FIELD::before {
-	content: '\e836';
-}
-
-/* 996963339 */.PACKAGEPRIVATE {
-	position: relative;
-}
-
-/* 996963339 */.PACKAGEPRIVATE::before {
-	padding-right: 0.6rem;
-	color: hsl(203,91%,56%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 996963339 */.PACKAGEPRIVATE.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 996963339 */.PACKAGEPRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* antibug.doc.style.Styles#lambda$0 */.J {
+/* antibug.doc.style.Styles#lambda$0 */.D {
 	color: hsl(48,55%,59%);
 }
 
-/* antibug.doc.style.Styles#lambda$0 */.J::before {
+/* antibug.doc.style.Styles#lambda$0 */.D::before {
 	content: ':';
 	padding-left: 0.3em;
 	padding-right: 0.3em;
@@ -415,7 +415,7 @@
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.style.Styles#lambda$15 */.E {
+/* antibug.doc.style.Styles#lambda$15 */.B {
 	position: sticky;
 	top: 80px;
 	display: block;
@@ -426,16 +426,16 @@
 	white-space: nowrap;
 }
 
-/* antibug.doc.style.Styles#lambda$15 */.E:hover {
+/* antibug.doc.style.Styles#lambda$15 */.B:hover {
 	overflow-y: auto;
 }
 
-/* antibug.doc.style.Styles#lambda$15 */.E>*>* {
+/* antibug.doc.style.Styles#lambda$15 */.B>*>* {
 	padding-top: 0.15em;
 	padding-bottom: 0.15em;
 }
 
-/* antibug.doc.style.Styles#lambda$18 */.H {
+/* antibug.doc.style.Styles#lambda$18 */.J {
 	font-family: Oswald,sans-serif;
 	font-size: 18px;
 	font-weight: normal;
@@ -444,7 +444,7 @@
 	display: block;
 }
 
-/* antibug.doc.style.Styles#lambda$19 */.K {
+/* antibug.doc.style.Styles#lambda$19 */.G {
 	margin-top: 0.9rem;
 	font-weight: bold;
 	font-size: 1rem;
@@ -458,7 +458,7 @@
 	width: 100vw;
 }
 
-/* antibug.doc.style.Styles#lambda$3 */.B {
+/* antibug.doc.style.Styles#lambda$3 */.H {
 	background-color: hsl(0,0%,100%);
 	position: sticky;
 	top: 0;
@@ -473,12 +473,12 @@
 	border-bottom-style: solid;
 }
 
-/* antibug.doc.style.Styles#lambda$34 */.I {
+/* antibug.doc.style.Styles#lambda$34 */.E {
 	opacity: 0.8;
 	padding-left: 0.08em;
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.D {
+/* antibug.doc.style.Styles#lambda$4 */.K {
 	font-size: 2.5rem;
 	font-family: Oswald;
 	font-weight: normal;
@@ -486,37 +486,37 @@
 	align-self: center;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.G {
+/* antibug.doc.style.Styles#lambda$6 */.I {
 	flex-basis: 15vw;
 	-webkit-flex-basis: 15vw;
 	flex-shrink: 0;
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.G>* {
+/* antibug.doc.style.Styles#lambda$6 */.I>* {
 	position: sticky;
 	top: 80px;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.G>*>* {
+/* antibug.doc.style.Styles#lambda$6 */.I>*>* {
 	margin-top: 0.5rem;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.G .el-select {
+/* antibug.doc.style.Styles#lambda$6 */.I .el-select {
 	width: 100%;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.G .el-checkbox {
+/* antibug.doc.style.Styles#lambda$6 */.I .el-checkbox {
 	display: block;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.G #AllTypes {
+/* antibug.doc.style.Styles#lambda$6 */.I #AllTypes {
 	overflow: hidden;
 	scrollbar-width: thin;
 	height: 60vh;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.G #AllTypes:hover {
+/* antibug.doc.style.Styles#lambda$6 */.I #AllTypes:hover {
 	overflow-y: auto;
 }
 

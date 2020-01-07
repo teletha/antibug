@@ -504,9 +504,15 @@ public class DocumentInfo {
             }
 
             // link to type
-            xml.append(I.xml("a")
-                    .attr("href", Javadoc.resolveDocumentLocation(moduleName, packageName, enclosingName, typeName))
-                    .text(typeName));
+            XML link;
+            String path = Javadoc.resolveDocumentLocation(moduleName, packageName, enclosingName, typeName);
+
+            if (path.startsWith("http")) {
+                link = I.xml("a").attr("href", path);
+            } else {
+                link = I.xml("span").attr("onClick", "router.push('" + path + "')");
+            }
+            xml.append(link.text(typeName));
 
             // type parameter
             List<? extends TypeMirror> paramTypes = declared.getTypeArguments();
