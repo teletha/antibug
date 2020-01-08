@@ -87,8 +87,11 @@ public class DocumentInfo {
     /** Tag info. */
     protected final Variable<XML> returnTag = Variable.empty();
 
-    protected DocumentInfo(Element e) {
+    private final TypeResolver resolver;
+
+    protected DocumentInfo(Element e, TypeResolver resolver) {
         this.e = e;
+        this.resolver = resolver;
 
         try {
             DocCommentTree docs = DocTool.DocUtils.getDocCommentTree(e);
@@ -314,11 +317,18 @@ public class DocumentInfo {
          */
         @Override
         public DocumentXMLBuilder visitLink(LinkTree node, DocumentXMLBuilder p) {
-            System.err.println(node + "  " + node.getLabel() + "   " + node.getReference());
-            ReferenceTree reference = node.getReference();
-            String signature = reference.getSignature();
-            System.out.println(signature);
-            return super.visitLink(node, p);
+            String className = node.getReference().toString();
+            String memberName = "";
+
+            int index = className.indexOf("#");
+            if (index != -1) {
+                memberName = className.substring(index + 1);
+                className = className.substring(0, index);
+            }
+
+            String resolved = resolver.resolve(className);
+
+            return p;
         }
 
         /**

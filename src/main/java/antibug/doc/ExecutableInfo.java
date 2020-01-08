@@ -29,8 +29,8 @@ public class ExecutableInfo extends ParameterizableInfo {
     /**
      * @param e
      */
-    ExecutableInfo(ExecutableElement e) {
-        super(e);
+    ExecutableInfo(ExecutableElement e, TypeResolver resolver) {
+        super(e, resolver);
 
         StringJoiner joiner = new StringJoiner(",");
         List<? extends VariableElement> params = e.getParameters();

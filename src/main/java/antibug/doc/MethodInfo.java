@@ -20,8 +20,8 @@ public class MethodInfo extends ExecutableInfo {
     /**
      * @param e
      */
-    public MethodInfo(ExecutableElement e) {
-        super(e);
+    public MethodInfo(ExecutableElement e, TypeResolver resolver) {
+        super(e, resolver);
 
         this.returnType = parseTypeAsXML(e.getReturnType());
     }

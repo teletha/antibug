@@ -50,7 +50,7 @@ public class Chronus implements ScheduledExecutorService {
     private final AtomicReference<ScheduledExecutorService> holder = new AtomicReference();
 
     /**
-     * By {@link Executors#newCachedThreadPool()}.
+     * By {@link Executors#newCachedThreadPool()}. {@link Object} is
      */
     public Chronus() {
         this(() -> Executors.newScheduledThreadPool(ForkJoinPool.getCommonPoolParallelism()));

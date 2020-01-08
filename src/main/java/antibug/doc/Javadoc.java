@@ -128,7 +128,10 @@ public class Javadoc extends DocTool<Javadoc> {
      */
     @Override
     protected void process(TypeElement root) {
-        ClassInfo info = new ClassInfo(root);
+        TypeResolver resolver = new TypeResolver();
+        resolver.register(root);
+
+        ClassInfo info = new ClassInfo(root, resolver);
         data.add(info);
 
         site.buildHTML("types/" + info.packageName + "." + info.name + ".html", new BaseHTML() {

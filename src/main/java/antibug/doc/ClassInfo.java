@@ -49,11 +49,14 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
     /** Info repository. */
     protected final List<MethodInfo> methods = new ArrayList();
 
+    private final TypeResolver resolver;
+
     /**
      * @param root
      */
-    ClassInfo(TypeElement root) {
-        super(root);
+    ClassInfo(TypeElement root, TypeResolver resolver) {
+        super(root, resolver);
+        this.resolver = resolver;
         this.packageName = DocTool.ElementUtils.getPackageOf(root).toString();
         this.name = root.asType().toString().replaceAll("<.+>", "").substring(packageName.length() + 1);
         this.type = detectType(root);
@@ -177,7 +180,7 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
         @Override
         public ClassInfo visitVariable(VariableElement e, ClassInfo p) {
             if (isVisible(e)) {
-                fields.add(new FieldInfo(e));
+                fields.add(new FieldInfo(e, p.resolver));
             }
             return p;
         }
@@ -198,9 +201,9 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
         public ClassInfo visitExecutable(ExecutableElement e, ClassInfo p) {
             if (isVisible(e)) {
                 if (e.getKind() == ElementKind.CONSTRUCTOR) {
-                    constructors.add(new ExecutableInfo(e));
+                    constructors.add(new ExecutableInfo(e, p.resolver));
                 } else {
-                    methods.add(new MethodInfo(e));
+                    methods.add(new MethodInfo(e, p.resolver));
                 }
             }
             return p;

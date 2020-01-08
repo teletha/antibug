@@ -29,8 +29,8 @@ public abstract class MemberInfo extends DocumentInfo {
     /**
      * @param e
      */
-    public MemberInfo(Element e) {
-        super(e);
+    public MemberInfo(Element e, TypeResolver resolver) {
+        super(e, resolver);
 
         String name = e.getSimpleName().toString();
         if (name.equals("<init>")) {

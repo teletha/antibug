@@ -25,8 +25,8 @@ public abstract class ParameterizableInfo extends MemberInfo {
     /**
      * @param e
      */
-    public ParameterizableInfo(Parameterizable e) {
-        super(e);
+    public ParameterizableInfo(Parameterizable e, TypeResolver resolver) {
+        super(e, resolver);
 
         e.getTypeParameters().forEach(type -> {
             typeParameters.add(I.pair(type.getSimpleName().toString(), parseTypeAsXML(type.asType())));

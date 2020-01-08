@@ -255,6 +255,13 @@ const root = {
 			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "TypeResolver",
+			"packageName": "antibug.doc",
+			"type": "Class",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
 		}
 	]
 }
