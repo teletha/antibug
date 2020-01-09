@@ -20,7 +20,7 @@ import kiss.I;
 public class ExecutableInfoTest extends JavadocTestSupport {
 
     @Test
-    void parameter0() {
+    public void parameter0() {
         ExecutableInfo info = currentMethod();
         assert info.name.equals("parameter0");
         assert info.params.size() == 0;
@@ -28,19 +28,19 @@ public class ExecutableInfoTest extends JavadocTestSupport {
 
     @ParameterizedTest
     @ArgumentsSource(NullProvider.class)
-    void parameter1(String value) {
+    public void parameter1(String value) {
         assert checkParamName(currentMethod(), "value");
     }
 
     @ParameterizedTest
     @ArgumentsSource(NullProvider.class)
-    void parameter2(String value, String text) {
+    public void parameter2(String value, String text) {
         assert checkParamName(currentMethod(), "value", "text");
     }
 
     @ParameterizedTest
     @ArgumentsSource(NullProvider.class)
-    void parameter3(String value, String text, Object context) {
+    public void parameter3(String value, String text, Object context) {
         assert checkParamName(currentMethod(), "value", "text", "context");
     }
 

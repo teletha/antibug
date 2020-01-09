@@ -16,31 +16,31 @@ import org.junit.jupiter.api.Test;
 public class ParameterizableInfoTest extends JavadocTestSupport {
 
     @Test
-    <A> void single() {
+    public <A> void single() {
         assert checkTypeParmeterName(currentMethod(), "A");
         assert checkTypeParameter(currentMethod(), "<i class='type'>A</i>");
     }
 
     @Test
-    <A, B> void multi() {
+    public <A, B> void multi() {
         assert checkTypeParmeterName(currentMethod(), "A", "B");
         assert checkTypeParameter(currentMethod(), "<i class='type'>A</i>", "<i class='type'>B</i>");
     }
 
     @Test
-    <A extends Comparable> void bounded() {
+    public <A extends Comparable> void bounded() {
         assert checkTypeParmeterName(currentMethod(), "A");
         assert checkTypeParameter(currentMethod(), "<i class='type'>A</i><extends><i class='type' package='java.lang'>Comaprable</i></extends>");
     }
 
     @Test
-    <A extends Comparable<A>> void boundedVariable() {
+    public <A extends Comparable<A>> void boundedVariable() {
         assert checkTypeParmeterName(currentMethod(), "A");
         assert checkTypeParameter(currentMethod(), "<i class='type'>A</i><extends><i class='type' package='java.lang'>Comaprable</i><i class='parameters'><i class='type'>A</i></i></extends>");
     }
 
     @Test
-    <A extends Comparable & Serializable> void intersection() {
+    public <A extends Comparable & Serializable> void intersection() {
         assert checkTypeParmeterName(currentMethod(), "A");
         assert checkTypeParameter(currentMethod(), "<i class='type'>A</i><extends><i class='type' package='java.lang'>Comaprable</i><i class='type' package='java.io'>Serializable</i></extends>");
     }

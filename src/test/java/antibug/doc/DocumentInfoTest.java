@@ -20,7 +20,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
      * Text
      */
     @Test
-    void text() {
+    public void text() {
         ExecutableInfo info = currentMethod();
         assert sameXML(info.comment, "<section>Text</section>");
     }
@@ -31,7 +31,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
      * </p>
      */
     @Test
-    void element() {
+    public void element() {
         ExecutableInfo info = currentMethod();
         assert sameXML(info.comment, "<section><p>Text</p></section>");
     }
@@ -40,7 +40,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
      * <a type="stylesheet" href="test.css"/>
      */
     @Test
-    void attribute() {
+    public void attribute() {
         ExecutableInfo info = currentMethod();
         assert sameXML(info.comment, "<section><a href=\"test.css\" type=\"stylesheet\"/></section>");
     }
@@ -50,7 +50,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
      * @param name2 This is <em>NOT</em> error.
      */
     @Test
-    void paramTag() {
+    public void paramTag() {
         ExecutableInfo info = currentMethod();
         Ⅱ<String, XML> param = info.paramTags.get(0);
         assert param.ⅰ.equals("name1");
@@ -66,7 +66,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
      * @param <NEXT> This is <em>NOT</em> error.
      */
     @Test
-    void parameterTypeTag() {
+    public void parameterTypeTag() {
         ExecutableInfo info = currentMethod();
         Ⅱ<String, XML> param = info.typeParameterTags.get(0);
         assert param.ⅰ.equals("T");
@@ -81,7 +81,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
      * @return description
      */
     @Test
-    void returnTag() {
+    public void returnTag() {
         ExecutableInfo info = currentMethod();
         XML description = info.returnTag.exact();
         assert sameXML(description, "<section>description</section>");
@@ -91,7 +91,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
      * {@literal 0 < i}
      */
     @Test
-    void literalTag() {
+    public void literalTag() {
         ExecutableInfo info = currentMethod();
         assert sameXML(info.comment, "<section>0 &amp;lt; i</section>");
     }
@@ -100,7 +100,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
      * @see Text
      */
     @Test
-    void seeTagText() {
+    public void seeTagText() {
         ExecutableInfo info = currentMethod();
         assert sameXML(info.seeTags.get(0), "<section>Text</section>");
     }
