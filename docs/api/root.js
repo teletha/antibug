@@ -236,6 +236,13 @@ const root = {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
+			"name": "ResolvedType",
+			"packageName": "antibug.doc",
+			"type": "Class",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
 			"name": "SiteBuilder",
 			"packageName": "antibug.doc.site",
 			"type": "Class",

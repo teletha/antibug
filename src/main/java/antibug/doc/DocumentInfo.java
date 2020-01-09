@@ -18,7 +18,6 @@ import java.util.Set;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.Modifier;
-import javax.lang.model.element.ModuleElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.ArrayType;
 import javax.lang.model.type.DeclaredType;
@@ -317,17 +316,21 @@ public class DocumentInfo {
          */
         @Override
         public DocumentXMLBuilder visitLink(LinkTree node, DocumentXMLBuilder p) {
-            String className = node.getReference().toString();
+            String reference = node.getReference().toString();
             String memberName = "";
 
-            int index = className.indexOf("#");
-            if (index != -1) {
-                memberName = className.substring(index + 1);
-                className = className.substring(0, index);
+            int index = reference.indexOf("#");
+            if (index == 0) {
+                memberName = reference.substring(1);
+                System.out.println(e);
+                reference = "";
+            } else if (index != -1) {
+                memberName = reference.substring(index + 1);
+                reference = reference.substring(0, index);
             }
 
-            String resolved = resolver.computeFQCN(className);
-            System.out.println(resolved);
+            ResolvedType type = ResolvedType.resolve(resolver.resolveFQCN(reference));
+            System.out.println(type);
 
             return p;
         }
@@ -506,6 +509,8 @@ public class DocumentInfo {
         public XML visitDeclared(DeclaredType declared, XML xml) {
             // type
             TypeElement e = (TypeElement) declared.asElement();
+            ResolvedType resolved = ResolvedType.resolve(e);
+
             String typeName = e.getSimpleName().toString();
 
             // enclosing
@@ -515,29 +520,19 @@ public class DocumentInfo {
                 enclosings.addFirst(((TypeElement) enclosing).getSimpleName().toString());
                 enclosing = enclosing.getEnclosingElement();
             }
-            String enclosingName = I.join(".", enclosings);
-            if (enclosingName.length() != 0) xml.attr("enclosing", enclosingName);
-
-            // pacakage
-            String packageName = enclosing.toString();
-            xml.attr("package", packageName);
-
-            // module
-            String moduleName = "";
-            enclosing = enclosing.getEnclosingElement();
-
-            if (enclosing instanceof ModuleElement) {
-                ModuleElement module = (ModuleElement) enclosing;
-                moduleName = module.getQualifiedName().toString();
-            }
+            if (resolved.enclosingName.length() != 0) xml.attr("enclosing", resolved.enclosingName);
+            if (resolved.packageName.length() != 0) xml.attr("package", resolved.packageName);
 
             // link to type
-            String path = Javadoc.resolveDocumentLocation(moduleName, packageName, enclosingName, typeName);
-            XML link = I.xml("a").attr("href", path).text(typeName);
-            if (!path.startsWith("http")) {
-                link.attr("onClick", "router.push('" + path + "');return false;");
+            String uri = resolved.locateDocument();
+
+            if (uri != null) {
+                XML link = I.xml("a").attr("href", uri).text(typeName);
+                if (!uri.startsWith("http")) {
+                    link.attr("onClick", "router.push('" + uri + "');return false;");
+                }
+                xml.append(link.text(typeName));
             }
-            xml.append(link.text(typeName));
 
             // type parameter
             List<? extends TypeMirror> paramTypes = declared.getTypeArguments();

@@ -13,18 +13,77 @@ import java.io.IOException;
 import java.lang.module.ModuleFinder;
 import java.lang.module.ModuleReference;
 import java.lang.reflect.Modifier;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
 import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.TypeElement;
 
 import com.sun.source.tree.CompilationUnitTree;
 import com.sun.source.tree.Tree.Kind;
 
 import kiss.I;
+import kiss.XML;
 
 public class TypeResolver {
+
+    /** PackageName-URL pair. */
+    static final Map<String, String> ExternalDocumentLocations = new HashMap();
+
+    /**
+     * Returns the URL of the document with the specified type name.
+     * 
+     * @param moduleName Module name. Null or empty string is ignored.
+     * @param packageName Package name. Null or empty string is ignored.
+     * @param enclosingName Enclosing type name. Null or empty string is ignored.
+     * @param typeName Target type's simple name.
+     * @return Resoleved URL.
+     */
+    public static final String resolveDocumentLocation(String moduleName, String packageName, String enclosingName, String typeName) {
+        String url = ExternalDocumentLocations.get(packageName);
+
+        if (url != null) {
+            StringBuilder builder = new StringBuilder(url);
+            if (moduleName != null && moduleName.length() != 0) builder.append(moduleName).append('/');
+            if (packageName != null && packageName.length() != 0) builder.append(packageName.replace('.', '/')).append('/');
+            if (enclosingName != null && enclosingName.length() != 0) builder.append(enclosingName).append('.');
+            builder.append(typeName).append(".html");
+
+            return builder.toString();
+        } else {
+            StringBuilder builder = new StringBuilder("/types/");
+            if (packageName != null && packageName.length() != 0) builder.append(packageName).append('.');
+            if (enclosingName != null && enclosingName.length() != 0) builder.append(enclosingName).append('.');
+            builder.append(typeName).append(".html");
+
+            return builder.toString();
+        }
+    }
+
+    /**
+     * Collect package names from the specified external documents.
+     * 
+     * @param urls
+     */
+    public static final void collectPackage(String... urls) {
+        if (urls != null) {
+            for (String url : urls) {
+                if (url != null && url.startsWith("http") && url.endsWith("/api/")) {
+                    try {
+                        for (XML a : I.xml(new URL(url + "overview-tree.html")).find(".horizontal a")) {
+                            ExternalDocumentLocations.put(a.text(), url);
+                        }
+                    } catch (MalformedURLException e) {
+                        throw I.quiet(e);
+                    }
+                }
+            }
+        }
+    }
 
     /** java.lang types */
     private static final Map<String, String> JavaLangTypes = collectJavaLangTypes();
@@ -78,6 +137,22 @@ public class TypeResolver {
                         importedTypes.put(fqcn.substring(fqcn.lastIndexOf(".") + 1), fqcn);
                     }
                 });
+
+        collectMemberTypes(clazz);
+    }
+
+    /**
+     * Collect the member types.
+     * 
+     * @param clazz
+     */
+    private void collectMemberTypes(Element clazz) {
+        I.signal(clazz.getEnclosedElements()).take(e -> e.getKind() == ElementKind.CLASS).as(TypeElement.class).to(e -> {
+            String fqcn = e.getQualifiedName().toString();
+            importedTypes.put(fqcn.substring(fqcn.lastIndexOf(".") + 1), fqcn);
+
+            collectMemberTypes(e);
+        });
     }
 
     /**
@@ -85,7 +160,7 @@ public class TypeResolver {
      * 
      * @param className
      */
-    public String computeFQCN(String className) {
+    public String resolveFQCN(String className) {
         String fqcn = importedTypes.get(className);
         if (fqcn == null) fqcn = JavaLangTypes.get(className);
 

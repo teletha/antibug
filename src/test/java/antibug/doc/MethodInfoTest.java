@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 public class MethodInfoTest extends JavadocTestSupport {
 
     @Test
-    void returnType() {
+    protected void returnType() {
         assert checkReturnType(currentMethod(), "<i class='type'>void</i>");
     }
 
@@ -26,7 +26,7 @@ public class MethodInfoTest extends JavadocTestSupport {
         assert checkReturnType(method("integer"), "<i class='type'>int</i>");
     }
 
-    int integer() {
+    protected int integer() {
         return 1;
     }
 
@@ -35,7 +35,7 @@ public class MethodInfoTest extends JavadocTestSupport {
         assert checkReturnType(method("string"), "<i class='type' package='java.lang'>String</i>");
     }
 
-    String string() {
+    protected String string() {
         return "";
     }
 
@@ -44,7 +44,7 @@ public class MethodInfoTest extends JavadocTestSupport {
         assert checkReturnType(method("generics"), "<i class='type'>T</i>");
     }
 
-    <T> T generics() {
+    protected <T> T generics() {
         return null;
     }
 
@@ -53,7 +53,7 @@ public class MethodInfoTest extends JavadocTestSupport {
         assert checkReturnType(method("bounded"), "<i class='type'>T</i>");
     }
 
-    <T extends Serializable> T bounded() {
+    protected <T extends Serializable> T bounded() {
         return null;
     }
 
@@ -62,7 +62,7 @@ public class MethodInfoTest extends JavadocTestSupport {
         assert checkReturnType(method("parameterized"), "<i class='type' package='java.util'>List</i><i class='parameters'><i class='type' package='java.lang'>String</i></i>");
     }
 
-    List<String> parameterized() {
+    protected List<String> parameterized() {
         return null;
     }
 
