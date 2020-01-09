@@ -32,27 +32,6 @@ public class ResolvedType {
 
     public String moduleName = "";
 
-    public String locateDocument() {
-        String url = TypeResolver.ExternalDocumentLocations.get(packageName);
-
-        if (url != null) {
-            StringBuilder builder = new StringBuilder(url);
-            if (moduleName != null && moduleName.length() != 0) builder.append(moduleName).append('/');
-            if (packageName != null && packageName.length() != 0) builder.append(packageName.replace('.', '/')).append('/');
-            if (enclosingName != null && enclosingName.length() != 0) builder.append(enclosingName).append('.');
-            builder.append(typeName).append(".html");
-
-            return builder.toString();
-        } else {
-            StringBuilder builder = new StringBuilder("/types/");
-            if (packageName != null && packageName.length() != 0) builder.append(packageName).append('.');
-            if (enclosingName != null && enclosingName.length() != 0) builder.append(enclosingName).append('.');
-            builder.append(typeName).append(".html");
-
-            return builder.toString();
-        }
-    }
-
     /**
      * {@inheritDoc}
      */

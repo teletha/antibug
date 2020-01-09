@@ -524,7 +524,8 @@ public class DocumentInfo {
             if (resolved.packageName.length() != 0) xml.attr("package", resolved.packageName);
 
             // link to type
-            String uri = resolved.locateDocument();
+            String uri = Javadoc
+                    .resolveDocumentLocation(resolved.moduleName, resolved.packageName, resolved.enclosingName, resolved.typeName);
 
             if (uri != null) {
                 XML link = I.xml("a").attr("href", uri).text(typeName);

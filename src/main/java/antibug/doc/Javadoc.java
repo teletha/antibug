@@ -9,9 +9,13 @@
  */
 package antibug.doc;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.lang.model.element.ModuleElement;
 import javax.lang.model.element.PackageElement;
@@ -25,6 +29,39 @@ import kiss.XML;
 import kiss.Ⅱ;
 
 public class Javadoc extends DocTool<Javadoc> {
+
+    /** PackageName-URL pair. */
+    private static final Map<String, String> ExternalDocumentLocations = new HashMap();
+
+    /**
+     * Returns the URL of the document with the specified type name.
+     * 
+     * @param moduleName Module name. Null or empty string is ignored.
+     * @param packageName Package name. Null or empty string is ignored.
+     * @param enclosingName Enclosing type name. Null or empty string is ignored.
+     * @param typeName Target type's simple name.
+     * @return Resoleved URL.
+     */
+    public static final String resolveDocumentLocation(String moduleName, String packageName, String enclosingName, String typeName) {
+        String url = ExternalDocumentLocations.get(packageName);
+
+        if (url != null) {
+            StringBuilder builder = new StringBuilder(url);
+            if (moduleName != null && moduleName.length() != 0) builder.append(moduleName).append('/');
+            if (packageName != null && packageName.length() != 0) builder.append(packageName.replace('.', '/')).append('/');
+            if (enclosingName != null && enclosingName.length() != 0) builder.append(enclosingName).append('.');
+            builder.append(typeName).append(".html");
+
+            return builder.toString();
+        } else {
+            StringBuilder builder = new StringBuilder("/types/");
+            if (packageName != null && packageName.length() != 0) builder.append(packageName).append('.');
+            if (enclosingName != null && enclosingName.length() != 0) builder.append(enclosingName).append('.');
+            builder.append(typeName).append(".html");
+
+            return builder.toString();
+        }
+    }
 
     /** The scanned data. */
     private final Data data = new Data();
@@ -60,7 +97,19 @@ public class Javadoc extends DocTool<Javadoc> {
      * @return Chainable API.
      */
     public Javadoc externalDoc(String... urls) {
-        TypeResolver.collectPackage(urls);
+        if (urls != null) {
+            for (String url : urls) {
+                if (url != null && url.startsWith("http") && url.endsWith("/api/")) {
+                    try {
+                        for (XML a : I.xml(new URL(url + "overview-tree.html")).find(".horizontal a")) {
+                            ExternalDocumentLocations.put(a.text(), url);
+                        }
+                    } catch (MalformedURLException e) {
+                        throw I.quiet(e);
+                    }
+                }
+            }
+        }
         return this;
     }
 
