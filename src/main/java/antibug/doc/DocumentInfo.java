@@ -326,7 +326,8 @@ public class DocumentInfo {
                 className = className.substring(0, index);
             }
 
-            String resolved = resolver.resolve(className);
+            String resolved = resolver.computeFQCN(className);
+            System.out.println(resolved);
 
             return p;
         }

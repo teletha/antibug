@@ -129,7 +129,7 @@ public class Javadoc extends DocTool<Javadoc> {
     @Override
     protected void process(TypeElement root) {
         TypeResolver resolver = new TypeResolver();
-        resolver.register(root);
+        resolver.collectImportedTypes(root);
 
         ClassInfo info = new ClassInfo(root, resolver);
         data.add(info);
