@@ -147,3 +147,20 @@ new Vue({
 		}
 	}
 });
+
+// =====================================================
+// Global Event Listener
+// =====================================================
+document.addEventListener("click", event => {
+	var e = event.target;
+
+	if (e.tagName === "A") {
+		var path = e.getAttribute("href");
+
+		if (!path.startsWith("http") && !path.startsWith("#")) {
+			// handle internal link only
+			router.push(path);
+			event.preventDefault();
+		}
+	}
+});

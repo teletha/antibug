@@ -528,11 +528,7 @@ public class DocumentInfo {
                     .resolveDocumentLocation(resolved.moduleName, resolved.packageName, resolved.enclosingName, resolved.typeName);
 
             if (uri != null) {
-                XML link = I.xml("a").attr("href", uri).text(typeName);
-                if (!uri.startsWith("http")) {
-                    link.attr("onClick", "router.push('" + uri + "');return false;");
-                }
-                xml.append(link.text(typeName));
+                xml.append(I.xml("a").attr("href", uri).text(typeName));
             }
 
             // type parameter
