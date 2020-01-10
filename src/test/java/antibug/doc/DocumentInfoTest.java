@@ -78,6 +78,22 @@ public class DocumentInfoTest extends JavadocTestSupport {
     }
 
     /**
+     * @throws NullPointerException If param is null.
+     * @throws IllegalArgumentException If param is <code>0</code>.
+     */
+    @Test
+    public void throwsTag() {
+        ExecutableInfo info = currentMethod();
+        Ⅱ<String, XML> param = info.throwsTags.get(0);
+        assert param.ⅰ.equals("NullPointerException");
+        assert sameXML(param.ⅱ, "<section>If param is null.</section>");
+
+        param = info.throwsTags.get(1);
+        assert param.ⅰ.equals("IllegalArgumentException");
+        assert sameXML(param.ⅱ, "<section>If param is <code>0</code>.</section>");
+    }
+
+    /**
      * @return description
      */
     @Test
@@ -209,18 +225,13 @@ public class DocumentInfoTest extends JavadocTestSupport {
     }
 
     /**
-     * @throws NullPointerException If param is null.
-     * @throws IllegalArgumentException If param is <code>0</code>.
+     * @version 1.0
+     * @version <b>1.2</b>
      */
     @Test
-    public void throwsTag() {
+    public void versionTags() {
         ExecutableInfo info = currentMethod();
-        Ⅱ<String, XML> param = info.throwsTags.get(0);
-        assert param.ⅰ.equals("NullPointerException");
-        assert sameXML(param.ⅱ, "<section>If param is null.</section>");
-
-        param = info.throwsTags.get(1);
-        assert param.ⅰ.equals("IllegalArgumentException");
-        assert sameXML(param.ⅱ, "<section>If param is <code>0</code>.</section>");
+        assert sameXML(info.versionTags.get(0), "<section>1.0</section>");
+        assert sameXML(info.versionTags.get(1), "<section><b>1.2</b></section>");
     }
 }

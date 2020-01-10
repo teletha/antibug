@@ -56,6 +56,7 @@ import com.sun.source.doctree.TextTree;
 import com.sun.source.doctree.ThrowsTree;
 import com.sun.source.doctree.UnknownInlineTagTree;
 import com.sun.source.doctree.ValueTree;
+import com.sun.source.doctree.VersionTree;
 import com.sun.source.util.SimpleDocTreeVisitor;
 
 import antibug.doc.style.Styles;
@@ -87,6 +88,9 @@ public class DocumentInfo {
 
     /** Tag info. */
     protected final List<XML> sinceTags = new ArrayList();
+
+    /** Tag info. */
+    protected final List<XML> versionTags = new ArrayList();
 
     /** Tag info. */
     protected final Variable<XML> returnTag = Variable.empty();
@@ -201,6 +205,15 @@ public class DocumentInfo {
         @Override
         public DocumentInfo visitThrows(ThrowsTree node, DocumentInfo p) {
             throwsTags.add(I.pair(node.getExceptionName().toString(), xml(node.getDescription())));
+            return p;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public DocumentInfo visitVersion(VersionTree node, DocumentInfo p) {
+            versionTags.add(xml(node.getBody()));
             return p;
         }
     }
