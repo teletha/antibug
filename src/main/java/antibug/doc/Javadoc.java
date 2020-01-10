@@ -14,8 +14,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.lang.model.element.ModuleElement;
 import javax.lang.model.element.PackageElement;
@@ -41,6 +43,9 @@ public class Javadoc extends DocTool<Javadoc> {
 
     /** PackageName-URL pair. */
     private final Map<String, String> externals = new HashMap();
+
+    /** The internal pacakage names. */
+    private final Set<String> internals = new HashSet();
 
     {
         // built-in external API
@@ -96,7 +101,7 @@ public class Javadoc extends DocTool<Javadoc> {
      */
     @Override
     protected void process(TypeElement root) {
-        TypeResolver resolver = new TypeResolver(externals, root);
+        TypeResolver resolver = new TypeResolver(externals, internals, root);
         ClassInfo info = new ClassInfo(root, resolver);
         data.add(info);
 

@@ -17,6 +17,8 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import javax.lang.model.element.Element;
@@ -66,14 +68,18 @@ public class TypeResolver {
     /** PackageName-URL pair */
     private final Map<String, String> externals;
 
+    /** Internal paackage mames */
+    private final Set<String> internals;
+
     /** Imported types. */
     private final Map<String, String> importedTypes = new HashMap();
 
     /**
      * @param externals
      */
-    TypeResolver(Map<String, String> externals, Element clazz) {
+    TypeResolver(Map<String, String> externals, Set<String> internals, Element clazz) {
         this.externals = externals == null ? Map.of() : externals;
+        this.internals = internals == null ? Set.of() : internals;
 
         collectImportedTypes(clazz);
         collectMemberTypes(clazz);
@@ -155,17 +161,19 @@ public class TypeResolver {
      * @return Resoleved URL.
      */
     private final String resolveDocumentLocation(ResolvedType type) {
-        String url = externals.get(type.packageName);
+        String externalURL = externals.get(type.packageName);
 
-        if (url != null) {
-            StringBuilder builder = new StringBuilder(url);
+        if (externalURL != null) {
+            StringBuilder builder = new StringBuilder(externalURL);
             if (type.moduleName.length() != 0) builder.append(type.moduleName).append('/');
             if (type.packageName.length() != 0) builder.append(type.packageName.replace('.', '/')).append('/');
             if (type.enclosingName.length() != 0) builder.append(type.enclosingName).append('.');
             builder.append(type.typeName).append(".html");
 
             return builder.toString();
-        } else {
+        }
+
+        if (internals.contains(type.packageName)) {
             StringBuilder builder = new StringBuilder("/types/");
             if (type.packageName.length() != 0) builder.append(type.packageName).append('.');
             if (type.enclosingName.length() != 0) builder.append(type.enclosingName).append('.');
@@ -173,6 +181,7 @@ public class TypeResolver {
 
             return builder.toString();
         }
+        return null;
     }
 
     /**
@@ -231,6 +240,16 @@ public class TypeResolver {
         private String packageName = "";
 
         private String moduleName = "";
+
+        /**
+         * If this type can identify the source, it will be converted to {@link TypeElement}.
+         * Otherwise, empty is returned.
+         * 
+         * @return
+         */
+        private Optional<TypeElement> asElement() {
+            return Optional.ofNullable(DocTool.ElementUtils.getTypeElement(packageName + "." + enclosingName + "." + typeName));
+        }
 
         /**
          * {@inheritDoc}

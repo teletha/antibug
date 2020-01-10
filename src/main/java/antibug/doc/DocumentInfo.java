@@ -506,10 +506,13 @@ public class DocumentInfo {
         public XML visitDeclared(DeclaredType declared, XML xml) {
             // link to type
             TypeElement type = (TypeElement) declared.asElement();
+            String name = type.getSimpleName().toString();
             String uri = resolver.resolveDocumentLocation(type);
 
             if (uri != null) {
-                xml.append(I.xml("a").attr("href", uri).text(type.getSimpleName().toString()));
+                xml.append(I.xml("a").attr("href", uri).text(name));
+            } else {
+                xml.text(name);
             }
 
             // type parameter

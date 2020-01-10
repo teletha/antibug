@@ -193,7 +193,7 @@ class JavadocTestSupport {
          */
         @Override
         protected void process(TypeElement root) {
-            infos.add(new ClassInfo(root, new TypeResolver(null, root)));
+            infos.add(new ClassInfo(root, new TypeResolver(null, null, root)));
         }
 
         /**
