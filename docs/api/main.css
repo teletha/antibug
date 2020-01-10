@@ -2,68 +2,7 @@
 @import url("http://fonts.googleapis.com/css?family=Roboto+Mono");
 @import url("http://fonts.googleapis.com/css?family=Ubuntu");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1044788931 */.ABSTRACT {
-	position: relative;
-}
-
-/* 1044788931 */.ABSTRACT::before {
-	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Mono";
-	content: 'A';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 110041993 */.Annotation {
-	position: relative;
-}
-
-/* 110041993 */.Annotation::before {
-	font-family: "Material Icons";
-	color: hsl(120,4%,55%);
-	font-size: 1rem;
-	content: '\e167';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 1209166359 */i {
-	font-style: normal;
-}
-
-/* 1212077582 */.super::before {
-	content: ' super ';
-}
-
-/* 1301402330 */.Class {
-	position: relative;
-}
-
-/* 1301402330 */.Class::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: 1rem;
-	content: '\e90c';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 1417153600 */.Functional {
-	position: relative;
-}
-
-/* 1417153600 */.Functional::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: 1rem;
-	content: '\e88e';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 1529981411 */dl dt {
+/* 1044788931 */dl dt {
 	display: block;
 	width: 70px;
 	float: left;
@@ -75,12 +14,12 @@
 	text-transform: capitalize;
 }
 
-/* 1529981411 */dl dd {
+/* 1044788931 */dl dd {
 	margin-bottom: 15px;
 	margin-left: 70px;
 }
 
-/* 1529981411 */dl b {
+/* 1044788931 */dl b {
 	display: block;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
@@ -90,19 +29,11 @@
 	font-weight: bold;
 }
 
-/* 1534376821 */main {
-	width: 85vw;
-	display: flex;
-	flex-direction: row;
-	margin-right: auto;
-	margin-left: auto;
-}
-
-/* 1584119395 */.PRIVATE {
+/* 1137473873 */.PRIVATE {
 	position: relative;
 }
 
-/* 1584119395 */.PRIVATE::before {
+/* 1137473873 */.PRIVATE::before {
 	padding-right: 0.6rem;
 	color: hsl(2,68%,58%);
 	font-family: "Material Icons";
@@ -110,199 +41,19 @@
 	content: '\e061';
 }
 
-/* 1584119395 */.PRIVATE.OVERRIDE::before {
+/* 1137473873 */.PRIVATE.OVERRIDE::before {
 	content: '\e837';
 }
 
-/* 1584119395 */.PRIVATE.FIELD::before {
+/* 1137473873 */.PRIVATE.FIELD::before {
 	content: '\e836';
 }
 
-/* 163960683 */.package {
-	font-weight: bold;
-}
-
-/* 168947686 */.PACKAGEPRIVATE {
+/* 1147765156 */.SYNCHRONIZED {
 	position: relative;
 }
 
-/* 168947686 */.PACKAGEPRIVATE::before {
-	padding-right: 0.6rem;
-	color: hsl(203,91%,56%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 168947686 */.PACKAGEPRIVATE.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 168947686 */.PACKAGEPRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 1720078459 */.VOLATILE {
-	position: relative;
-}
-
-/* 1720078459 */.VOLATILE::before {
-	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Mono";
-	content: 'V';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 1791508071 */.AbstractClass {
-	position: relative;
-}
-
-/* 1791508071 */.AbstractClass::before {
-	font-family: "Material Icons";
-	color: hsl(120,9%,55%);
-	font-size: 1rem;
-	content: '\e90c';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 1818951921 */h2 {
-	font-size: 1.8rem;
-	font-family: Ubuntu;
-}
-
-/* 1851471426 */.PUBLIC {
-	position: relative;
-}
-
-/* 1851471426 */.PUBLIC::before {
-	padding-right: 0.6rem;
-	color: hsl(120,39%,55%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 1851471426 */.PUBLIC.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 1851471426 */.PUBLIC.FIELD::before {
-	content: '\e836';
-}
-
-/* 1869172855 */section {
-	margin-bottom: 0.5rem;
-}
-
-/* 1869172855 */section > pre {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 1869172855 */section > ul {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 1869172855 */section > ol {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 1958539691 */.PROTECTED {
-	position: relative;
-}
-
-/* 1958539691 */.PROTECTED::before {
-	padding-right: 0.6rem;
-	color: hsl(48,95%,59%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 1958539691 */.PROTECTED.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 1958539691 */.PROTECTED.FIELD::before {
-	content: '\e836';
-}
-
-/* 2048174950 */.Interface {
-	position: relative;
-}
-
-/* 2048174950 */.Interface::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: 1rem;
-	content: '\e88f';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 2070627946 */.FINAL {
-	position: relative;
-}
-
-/* 2070627946 */.FINAL::before {
-	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Mono";
-	content: 'F';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 2095538351 */.TRANSIENT {
-	position: relative;
-}
-
-/* 2095538351 */.TRANSIENT::after {
-	color: hsl(203,91%,56%);
-	font-size: 0.8em;
-	font-family: "Material Icons";
-	content: '\e14c';
-	position: absolute;
-	top: 0.8em;
-	left: 0.8em;
-}
-
-/* 2147238293 */.SYNCHRONIZED {
-	position: relative;
-}
-
-/* 2147238293 */.SYNCHRONIZED::after {
+/* 1147765156 */.SYNCHRONIZED::after {
 	color: hsl(203,91%,56%);
 	font-size: 0.8em;
 	font-family: "Material Icons";
@@ -312,11 +63,157 @@
 	left: 0.8em;
 }
 
-/* 310452117 */.Enum {
+/* 1242301611 */.Annotation {
 	position: relative;
 }
 
-/* 310452117 */.Enum::before {
+/* 1242301611 */.Annotation::before {
+	font-family: "Material Icons";
+	color: hsl(120,4%,55%);
+	font-size: 1rem;
+	content: '\e167';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 1534376821 */.Interface {
+	position: relative;
+}
+
+/* 1534376821 */.Interface::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 1rem;
+	content: '\e88f';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 1570606799 */.PACKAGEPRIVATE {
+	position: relative;
+}
+
+/* 1570606799 */.PACKAGEPRIVATE::before {
+	padding-right: 0.6rem;
+	color: hsl(203,91%,56%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1570606799 */.PACKAGEPRIVATE.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1570606799 */.PACKAGEPRIVATE.FIELD::before {
+	content: '\e836';
+}
+
+/* 1584119395 */html {
+	font-size: 13px;
+	scroll-behavior: smooth;
+	scroll-padding-top: 80px;
+}
+
+/* 1584119395 */html *[class|=el] {
+	font-size: 1rem;
+}
+
+/* 1619796034 */main {
+	width: 85vw;
+	display: flex;
+	flex-direction: row;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* 162400148 */.ABSTRACT {
+	position: relative;
+}
+
+/* 162400148 */.ABSTRACT::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Mono";
+	content: 'A';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
+}
+
+/* 1625681616 */.FINAL {
+	position: relative;
+}
+
+/* 1625681616 */.FINAL::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Mono";
+	content: 'F';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
+}
+
+/* 1682927241 */.TRANSIENT {
+	position: relative;
+}
+
+/* 1682927241 */.TRANSIENT::after {
+	color: hsl(203,91%,56%);
+	font-size: 0.8em;
+	font-family: "Material Icons";
+	content: '\e14c';
+	position: absolute;
+	top: 0.8em;
+	left: 0.8em;
+}
+
+/* 1720078459 */.parameters::before {
+	content: '<';
+}
+
+/* 1720078459 */.parameters::after {
+	content: '>';
+}
+
+/* 1734079809 */.Functional {
+	position: relative;
+}
+
+/* 1734079809 */.Functional::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 1rem;
+	content: '\e88e';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 1745434569 */.VOLATILE {
+	position: relative;
+}
+
+/* 1745434569 */.VOLATILE::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Mono";
+	content: 'V';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
+}
+
+/* 1765108426 */h2 {
+	font-size: 1.8rem;
+	font-family: Ubuntu;
+}
+
+/* 1925514831 */.Enum {
+	position: relative;
+}
+
+/* 1925514831 */.Enum::before {
 	font-family: "Material Icons";
 	color: hsl(120,4%,55%);
 	font-size: 1rem;
@@ -325,38 +222,125 @@
 	vertical-align: middle;
 }
 
-/* 443824088 */a {
+/* 2006906315 */.PROTECTED {
+	position: relative;
+}
+
+/* 2006906315 */.PROTECTED::before {
+	padding-right: 0.6rem;
+	color: hsl(48,95%,59%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 2006906315 */.PROTECTED.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 2006906315 */.PROTECTED.FIELD::before {
+	content: '\e836';
+}
+
+/* 202685355 */.Class {
+	position: relative;
+}
+
+/* 202685355 */.Class::before {
+	font-family: "Material Icons";
+	color: hsl(120,39%,55%);
+	font-size: 1rem;
+	content: '\e90c';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 2048393198 */i {
+	font-style: normal;
+}
+
+/* 2095538351 */section {
+	margin-bottom: 0.5rem;
+}
+
+/* 2095538351 */section > pre {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+}
+
+/* 2095538351 */section > ul {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+}
+
+/* 2095538351 */section > ol {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+}
+
+/* 2147238293 */a {
 	color: inherit;
 	text-decoration: none;
 	cursor: pointer;
 }
 
-/* 443824088 */a:hover {
+/* 2147238293 */a:hover {
 	text-decoration: underline;
 	text-decoration-color: hsla(215,16%,44%,0.5);
 	text-underline-offset: 4px;
 	text-underline-position: under;
 }
 
-/* 504760990 */.extends::before {
+/* 254093154 */.package {
+	font-weight: bold;
+}
+
+/* 555984412 */.extends::before {
 	content: ' extends ';
 }
 
-/* 718005357 */html {
-	font-size: 13px;
-	scroll-behavior: smooth;
-	scroll-padding-top: 80px;
-}
-
-/* 718005357 */html *[class|=el] {
-	font-size: 1rem;
-}
-
-/* 757020217 */.Exception {
+/* 715949995 */.AbstractClass {
 	position: relative;
 }
 
-/* 757020217 */.Exception::before {
+/* 715949995 */.AbstractClass::before {
+	font-family: "Material Icons";
+	color: hsl(120,9%,55%);
+	font-size: 1rem;
+	content: '\e90c';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 72565662 */.Exception {
+	position: relative;
+}
+
+/* 72565662 */.Exception::before {
 	font-family: "Material Icons";
 	color: hsl(26,90%,53%);
 	font-size: 1rem;
@@ -365,44 +349,60 @@
 	vertical-align: middle;
 }
 
-/* 995692394 */.parameters::before {
-	content: '<';
+/* 758348124 */.PUBLIC {
+	position: relative;
 }
 
-/* 995692394 */.parameters::after {
-	content: '>';
+/* 758348124 */.PUBLIC::before {
+	padding-right: 0.6rem;
+	color: hsl(120,39%,55%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
 }
 
-/* antibug.doc.style.Styles#lambda$0 */.I {
+/* 758348124 */.PUBLIC.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 758348124 */.PUBLIC.FIELD::before {
+	content: '\e836';
+}
+
+/* 777813205 */.super::before {
+	content: ' super ';
+}
+
+/* antibug.doc.style.Styles#lambda$0 */.A {
 	opacity: 0.8;
 	padding-left: 0.08em;
 }
 
-/* antibug.doc.style.Styles#lambda$1 */.F {
+/* antibug.doc.style.Styles#lambda$1 */.L {
 	color: hsl(48,55%,59%);
 }
 
-/* antibug.doc.style.Styles#lambda$1 */.F::before {
+/* antibug.doc.style.Styles#lambda$1 */.L::before {
 	content: ':';
 	padding-left: 0.3em;
 	padding-right: 0.3em;
 }
 
-/* antibug.doc.style.Styles#lambda$14 */.D {
+/* antibug.doc.style.Styles#lambda$14 */.J {
 	flex-grow: 1;
 	-webkit-flex-grow: 1;
 	margin-left: 5rem;
 	margin-right: 1.5rem;
 }
 
-/* antibug.doc.style.Styles#lambda$15 */.H {
+/* antibug.doc.style.Styles#lambda$15 */.I {
 	flex-basis: 20vw;
 	-webkit-flex-basis: 20vw;
 	flex-shrink: 0;
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.style.Styles#lambda$16 */.E {
+/* antibug.doc.style.Styles#lambda$16 */.H {
 	position: sticky;
 	top: 80px;
 	display: block;
@@ -413,16 +413,16 @@
 	white-space: nowrap;
 }
 
-/* antibug.doc.style.Styles#lambda$16 */.E:hover {
+/* antibug.doc.style.Styles#lambda$16 */.H:hover {
 	overflow-y: auto;
 }
 
-/* antibug.doc.style.Styles#lambda$16 */.E>*>* {
+/* antibug.doc.style.Styles#lambda$16 */.H>*>* {
 	padding-top: 0.15em;
 	padding-bottom: 0.15em;
 }
 
-/* antibug.doc.style.Styles#lambda$19 */.G {
+/* antibug.doc.style.Styles#lambda$19 */.K {
 	margin-top: 2rem;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
@@ -433,28 +433,28 @@
 	background-repeat: repeat;
 }
 
-/* antibug.doc.style.Styles#lambda$19 */.G:nth-child(even) {
+/* antibug.doc.style.Styles#lambda$19 */.K:nth-child(even) {
 	background-color: hsl(0,0%,97%);
 }
 
-/* antibug.doc.style.Styles#lambda$19 */.G:nth-child(odd) {
+/* antibug.doc.style.Styles#lambda$19 */.K:nth-child(odd) {
 	background-color: hsl(0,0%,97%);
 }
 
-/* antibug.doc.style.Styles#lambda$22 */.B {
+/* antibug.doc.style.Styles#lambda$22 */.C {
 	font-family: Ubuntu,sans-serif;
 	font-size: 1rem;
 	font-weight: normal;
 	display: block;
 }
 
-/* antibug.doc.style.Styles#lambda$23 */.J {
+/* antibug.doc.style.Styles#lambda$23 */.G {
 	margin-top: 0.9rem;
 	font-weight: bold;
 	font-size: 1rem;
 }
 
-/* antibug.doc.style.Styles#lambda$3 */.K {
+/* antibug.doc.style.Styles#lambda$3 */.D {
 	font-size: 13px;
 	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
 	color: hsl(215,16%,44%);
@@ -462,7 +462,7 @@
 	width: 100vw;
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.C {
+/* antibug.doc.style.Styles#lambda$4 */.F {
 	background-color: hsl(0,0%,100%);
 	position: sticky;
 	top: 0;
@@ -477,7 +477,7 @@
 	border-bottom-style: solid;
 }
 
-/* antibug.doc.style.Styles#lambda$5 */.A {
+/* antibug.doc.style.Styles#lambda$5 */.E {
 	font-size: 2.5rem;
 	font-family: Ubuntu;
 	font-weight: normal;
@@ -485,37 +485,37 @@
 	align-self: center;
 }
 
-/* antibug.doc.style.Styles#lambda$7 */.L {
+/* antibug.doc.style.Styles#lambda$7 */.B {
 	flex-basis: 15vw;
 	-webkit-flex-basis: 15vw;
 	flex-shrink: 0;
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.style.Styles#lambda$7 */.L>* {
+/* antibug.doc.style.Styles#lambda$7 */.B>* {
 	position: sticky;
 	top: 80px;
 }
 
-/* antibug.doc.style.Styles#lambda$7 */.L>*>* {
+/* antibug.doc.style.Styles#lambda$7 */.B>*>* {
 	margin-top: 0.5rem;
 }
 
-/* antibug.doc.style.Styles#lambda$7 */.L .el-select {
+/* antibug.doc.style.Styles#lambda$7 */.B .el-select {
 	width: 100%;
 }
 
-/* antibug.doc.style.Styles#lambda$7 */.L .el-checkbox {
+/* antibug.doc.style.Styles#lambda$7 */.B .el-checkbox {
 	display: block;
 }
 
-/* antibug.doc.style.Styles#lambda$7 */.L #AllTypes {
+/* antibug.doc.style.Styles#lambda$7 */.B #AllTypes {
 	overflow: hidden;
 	scrollbar-width: thin;
 	height: 60vh;
 }
 
-/* antibug.doc.style.Styles#lambda$7 */.L #AllTypes:hover {
+/* antibug.doc.style.Styles#lambda$7 */.B #AllTypes:hover {
 	overflow-y: auto;
 }
 

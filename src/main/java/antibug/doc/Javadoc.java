@@ -9,6 +9,7 @@
  */
 package antibug.doc;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -96,8 +97,9 @@ public class Javadoc extends DocTool<Javadoc> {
     protected void initialize() {
         site = SiteBuilder.root(output()).guard("index.html", "main.js");
 
-        I.signal(sources()).flatMap(source -> Locator.directory(source).walkDirectory(o -> o.strip())).to(dir -> {
-            System.out.println(dir);
+        // collect internal package names
+        I.signal(sources()).flatMap(source -> Locator.directory(source).walkDirectoryWithBase()).to(dir -> {
+            internals.add(dir.ⅰ.relativize(dir.ⅱ).toString().replace(File.separatorChar, '.'));
         });
     }
 
