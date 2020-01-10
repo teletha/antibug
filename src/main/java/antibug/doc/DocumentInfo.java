@@ -507,7 +507,7 @@ public class DocumentInfo {
          * @return
          */
         private XML parse(TypeMirror type) {
-            XML root = I.xml("<i class='type'/>");
+            XML root = I.xml("<i/>");
             type.accept(this, root);
             return root;
         }

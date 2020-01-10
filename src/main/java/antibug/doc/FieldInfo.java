@@ -15,7 +15,7 @@ import kiss.XML;
 
 public class FieldInfo extends MemberInfo {
 
-    public final XML type;
+    private final XML type;
 
     /**
      * @param e
@@ -23,7 +23,16 @@ public class FieldInfo extends MemberInfo {
     FieldInfo(VariableElement e, TypeResolver resolver) {
         super(e, resolver);
 
-        this.type = parseTypeAsXML(e.asType());
+        this.type = parseTypeAsXML(e.asType()).addClass("return");
+    }
+
+    /**
+     * Build type element.
+     * 
+     * @return
+     */
+    public XML createType() {
+        return type.clone();
     }
 
     /**

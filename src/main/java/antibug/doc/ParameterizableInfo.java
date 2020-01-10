@@ -32,4 +32,17 @@ public abstract class ParameterizableInfo extends MemberInfo {
             typeParameters.add(I.pair(type.getSimpleName().toString(), parseTypeAsXML(type.asType())));
         });
     }
+
+    /**
+     * Build paramter type element.
+     * 
+     * @return
+     */
+    public XML createPrameterType() {
+        XML root = I.xml("i").addClass("parameter");
+        for (Ⅱ<String, XML> type : typeParameters) {
+            root.append(type.ⅱ.clone());
+        }
+        return root;
+    }
 }

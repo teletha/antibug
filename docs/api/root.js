@@ -6,6 +6,7 @@ const root = {
 		"antibug.doc",
 		"antibug.doc.site",
 		"antibug.doc.style",
+		"antibug.dummy",
 		"antibug.powerassert",
 		"antibug.profiler",
 		"org.junit.jupiter.engine.descriptor"
@@ -190,6 +191,13 @@ const root = {
 			"name": "ParameterizableInfo",
 			"packageName": "antibug.doc",
 			"type": "AbstractClass",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "Parameterized",
+			"packageName": "antibug.dummy",
+			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},

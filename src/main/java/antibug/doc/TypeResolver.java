@@ -68,7 +68,7 @@ public class TypeResolver {
     /** PackageName-URL pair */
     private final Map<String, String> externals;
 
-    /** Internal paackage mames */
+    /** Internal package mames */
     private final Set<String> internals;
 
     /** Imported types. */

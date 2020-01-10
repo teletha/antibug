@@ -173,6 +173,9 @@ public class Styles extends AbstractStyleDSL {
         padding.left(0.08, em);
     };
 
+    private final Style HTMLClassReturn = Style.named(".return", () -> {
+    });
+
     @SuppressWarnings("unused")
     private final Style HTMLClassParameters = Style.named(".parameters", () -> {
         $.before(() -> {
@@ -405,6 +408,10 @@ public class Styles extends AbstractStyleDSL {
         $.nthChild("odd", () -> {
             background.color(Color.Whity);
         });
+
+        $.select(HTMLClassReturn, () -> {
+            margin.right(0.8, rem);
+        });
     };
 
     public final Style MainTitle = () -> {
@@ -470,19 +477,19 @@ public class Styles extends AbstractStyleDSL {
         $.child().child(() -> {
             padding.vertical(0.15, em);
         });
+
+        $.select(HTMLClassReturn, () -> {
+            font.color(palette.secondary.saturate(-40));
+
+            $.before(() -> {
+                content.text(":");
+                padding.horizontal(0.3, em);
+            });
+        });
     };
 
     public final Style RNaviTitle = () -> {
         margin.top(0.9, rem);
         font.weight.bold().size(1, rem);
-    };
-
-    public final Style RNaviReturnType = () -> {
-        font.color(palette.secondary.saturate(-40));
-
-        $.before(() -> {
-            content.text(":");
-            padding.horizontal(0.3, em);
-        });
     };
 }
