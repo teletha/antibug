@@ -14,10 +14,10 @@ public class Project extends bee.api.Project {
         producer("Nameless Production Committee");
         describe("Bug Detection Tool Set. (including PowerAssert");
 
-        require("org.junit.jupiter", "junit-jupiter-api", "5.5.2");
-        require("org.junit.jupiter", "junit-jupiter-engine", "5.5.2");
-        require("org.junit.jupiter", "junit-jupiter-params", "5.5.2");
-        require("org.junit.platform", "junit-platform-launcher", "1.5.2");
+        require("org.junit.jupiter", "junit-jupiter-api");
+        require("org.junit.jupiter", "junit-jupiter-engine");
+        require("org.junit.jupiter", "junit-jupiter-params");
+        require("org.junit.platform", "junit-platform-launcher");
         require("net.bytebuddy", "byte-buddy");
         require("net.bytebuddy", "byte-buddy-agent");
         require("com.github.teletha", "sinobu");
