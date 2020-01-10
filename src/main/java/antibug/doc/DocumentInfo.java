@@ -326,9 +326,6 @@ public class DocumentInfo {
                 reference = reference.substring(0, index);
             }
 
-            String fqnc = resolver.resolveFQCN(reference);
-            System.out.println(fqnc);
-
             return p;
         }
 

@@ -68,6 +68,15 @@ public abstract class DocTool<Self extends DocTool> implements DiagnosticListene
     }
 
     /**
+     * Exact the source directories.
+     * 
+     * @return
+     */
+    public final List<Path> sources() {
+        return sources;
+    }
+
+    /**
      * Set source directory.
      * 
      * @param sourceDirectories A list of paths to source directory.

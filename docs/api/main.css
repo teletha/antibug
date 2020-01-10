@@ -2,57 +2,11 @@
 @import url("http://fonts.googleapis.com/css?family=Roboto+Mono");
 @import url("http://fonts.googleapis.com/css?family=Ubuntu");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1071364078 */.AbstractClass {
+/* 1044788931 */.ABSTRACT {
 	position: relative;
 }
 
-/* 1071364078 */.AbstractClass::before {
-	font-family: "Material Icons";
-	color: hsl(120,9%,55%);
-	font-size: 1rem;
-	content: '\e90c';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 1156336184 */.Enum {
-	position: relative;
-}
-
-/* 1156336184 */.Enum::before {
-	font-family: "Material Icons";
-	color: hsl(120,4%,55%);
-	font-size: 1rem;
-	content: '\e01e';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 118186765 */.PROTECTED {
-	position: relative;
-}
-
-/* 118186765 */.PROTECTED::before {
-	padding-right: 0.6rem;
-	color: hsl(48,95%,59%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 118186765 */.PROTECTED.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 118186765 */.PROTECTED.FIELD::before {
-	content: '\e836';
-}
-
-/* 1214687061 */.ABSTRACT {
-	position: relative;
-}
-
-/* 1214687061 */.ABSTRACT::before {
+/* 1044788931 */.ABSTRACT::before {
 	color: hsl(203,91%,56%);
 	font-size: 0.6em;
 	font-family: "Roboto Mono";
@@ -62,53 +16,54 @@
 	left: 1.4em;
 }
 
-/* 1345757830 */.PRIVATE {
+/* 110041993 */.Annotation {
 	position: relative;
 }
 
-/* 1345757830 */.PRIVATE::before {
-	padding-right: 0.6rem;
-	color: hsl(2,68%,58%);
+/* 110041993 */.Annotation::before {
 	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
+	color: hsl(120,4%,55%);
+	font-size: 1rem;
+	content: '\e167';
+	padding-right: 0.6rem;
+	vertical-align: middle;
 }
 
-/* 1345757830 */.PRIVATE.OVERRIDE::before {
-	content: '\e837';
+/* 1209166359 */i {
+	font-style: normal;
 }
 
-/* 1345757830 */.PRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 1348632704 */.super::before {
+/* 1212077582 */.super::before {
 	content: ' super ';
 }
 
-/* 1392412640 */.SYNCHRONIZED {
+/* 1301402330 */.Class {
 	position: relative;
 }
 
-/* 1392412640 */.SYNCHRONIZED::after {
-	color: hsl(203,91%,56%);
-	font-size: 0.8em;
+/* 1301402330 */.Class::before {
 	font-family: "Material Icons";
-	content: '\e8ae';
-	position: absolute;
-	top: 0.8em;
-	left: 0.8em;
+	color: hsl(120,39%,55%);
+	font-size: 1rem;
+	content: '\e90c';
+	padding-right: 0.6rem;
+	vertical-align: middle;
 }
 
-/* 1582967668 */.parameters::before {
-	content: '<';
+/* 1417153600 */.Functional {
+	position: relative;
 }
 
-/* 1582967668 */.parameters::after {
-	content: '>';
+/* 1417153600 */.Functional::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 1rem;
+	content: '\e88e';
+	padding-right: 0.6rem;
+	vertical-align: middle;
 }
 
-/* 1603095377 */dl dt {
+/* 1529981411 */dl dt {
 	display: block;
 	width: 70px;
 	float: left;
@@ -120,12 +75,12 @@
 	text-transform: capitalize;
 }
 
-/* 1603095377 */dl dd {
+/* 1529981411 */dl dd {
 	margin-bottom: 15px;
 	margin-left: 70px;
 }
 
-/* 1603095377 */dl b {
+/* 1529981411 */dl b {
 	display: block;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
@@ -135,196 +90,7 @@
 	font-weight: bold;
 }
 
-/* 1613461828 */section {
-	margin-bottom: 0.5rem;
-}
-
-/* 1613461828 */section > pre {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 1613461828 */section > ul {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 1613461828 */section > ol {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 1702926498 */.extends::before {
-	content: ' extends ';
-}
-
-/* 1776057124 */i {
-	font-style: normal;
-}
-
-/* 1881617971 */html {
-	font-size: 13px;
-	scroll-behavior: smooth;
-	scroll-padding-top: 80px;
-}
-
-/* 1881617971 */html *[class|=el] {
-	font-size: 1rem;
-}
-
-/* 1927406983 */.PACKAGEPRIVATE {
-	position: relative;
-}
-
-/* 1927406983 */.PACKAGEPRIVATE::before {
-	padding-right: 0.6rem;
-	color: hsl(203,91%,56%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 1927406983 */.PACKAGEPRIVATE.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 1927406983 */.PACKAGEPRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 1968179698 */.Annotation {
-	position: relative;
-}
-
-/* 1968179698 */.Annotation::before {
-	font-family: "Material Icons";
-	color: hsl(120,4%,55%);
-	font-size: 1rem;
-	content: '\e167';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 2079936145 */.Functional {
-	position: relative;
-}
-
-/* 2079936145 */.Functional::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: 1rem;
-	content: '\e88e';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 325183616 */.FINAL {
-	position: relative;
-}
-
-/* 325183616 */.FINAL::before {
-	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Mono";
-	content: 'F';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 357767349 */.package {
-	font-weight: bold;
-}
-
-/* 391554161 */.Exception {
-	position: relative;
-}
-
-/* 391554161 */.Exception::before {
-	font-family: "Material Icons";
-	color: hsl(26,90%,53%);
-	font-size: 1rem;
-	content: '\e031';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 450728160 */.Interface {
-	position: relative;
-}
-
-/* 450728160 */.Interface::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: 1rem;
-	content: '\e88f';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 526655415 */h2 {
-	font-size: 1.8rem;
-	font-family: Ubuntu;
-}
-
-/* 563105933 */.PUBLIC {
-	position: relative;
-}
-
-/* 563105933 */.PUBLIC::before {
-	padding-right: 0.6rem;
-	color: hsl(120,39%,55%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 563105933 */.PUBLIC.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 563105933 */.PUBLIC.FIELD::before {
-	content: '\e836';
-}
-
-/* 695489783 */a {
-	color: inherit;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-/* 695489783 */a:hover {
-	text-decoration: underline;
-	text-decoration-color: hsla(215,16%,44%,0.5);
-	text-underline-offset: 4px;
-	text-underline-position: under;
-}
-
-/* 718702938 */main {
+/* 1534376821 */main {
 	width: 85vw;
 	display: flex;
 	flex-direction: row;
@@ -332,24 +98,55 @@
 	margin-left: auto;
 }
 
-/* 851478032 */.Class {
+/* 1584119395 */.PRIVATE {
 	position: relative;
 }
 
-/* 851478032 */.Class::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: 1rem;
-	content: '\e90c';
+/* 1584119395 */.PRIVATE::before {
 	padding-right: 0.6rem;
-	vertical-align: middle;
+	color: hsl(2,68%,58%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
 }
 
-/* 889633931 */.VOLATILE {
+/* 1584119395 */.PRIVATE.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1584119395 */.PRIVATE.FIELD::before {
+	content: '\e836';
+}
+
+/* 163960683 */.package {
+	font-weight: bold;
+}
+
+/* 168947686 */.PACKAGEPRIVATE {
 	position: relative;
 }
 
-/* 889633931 */.VOLATILE::before {
+/* 168947686 */.PACKAGEPRIVATE::before {
+	padding-right: 0.6rem;
+	color: hsl(203,91%,56%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 168947686 */.PACKAGEPRIVATE.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 168947686 */.PACKAGEPRIVATE.FIELD::before {
+	content: '\e836';
+}
+
+/* 1720078459 */.VOLATILE {
+	position: relative;
+}
+
+/* 1720078459 */.VOLATILE::before {
 	color: hsl(203,91%,56%);
 	font-size: 0.6em;
 	font-family: "Roboto Mono";
@@ -359,11 +156,139 @@
 	left: 1.4em;
 }
 
-/* 926498219 */.TRANSIENT {
+/* 1791508071 */.AbstractClass {
 	position: relative;
 }
 
-/* 926498219 */.TRANSIENT::after {
+/* 1791508071 */.AbstractClass::before {
+	font-family: "Material Icons";
+	color: hsl(120,9%,55%);
+	font-size: 1rem;
+	content: '\e90c';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 1818951921 */h2 {
+	font-size: 1.8rem;
+	font-family: Ubuntu;
+}
+
+/* 1851471426 */.PUBLIC {
+	position: relative;
+}
+
+/* 1851471426 */.PUBLIC::before {
+	padding-right: 0.6rem;
+	color: hsl(120,39%,55%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1851471426 */.PUBLIC.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1851471426 */.PUBLIC.FIELD::before {
+	content: '\e836';
+}
+
+/* 1869172855 */section {
+	margin-bottom: 0.5rem;
+}
+
+/* 1869172855 */section > pre {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+}
+
+/* 1869172855 */section > ul {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+}
+
+/* 1869172855 */section > ol {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+}
+
+/* 1958539691 */.PROTECTED {
+	position: relative;
+}
+
+/* 1958539691 */.PROTECTED::before {
+	padding-right: 0.6rem;
+	color: hsl(48,95%,59%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1958539691 */.PROTECTED.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1958539691 */.PROTECTED.FIELD::before {
+	content: '\e836';
+}
+
+/* 2048174950 */.Interface {
+	position: relative;
+}
+
+/* 2048174950 */.Interface::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 1rem;
+	content: '\e88f';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 2070627946 */.FINAL {
+	position: relative;
+}
+
+/* 2070627946 */.FINAL::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Mono";
+	content: 'F';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
+}
+
+/* 2095538351 */.TRANSIENT {
+	position: relative;
+}
+
+/* 2095538351 */.TRANSIENT::after {
 	color: hsl(203,91%,56%);
 	font-size: 0.8em;
 	font-family: "Material Icons";
@@ -373,29 +298,104 @@
 	left: 0.8em;
 }
 
-/* antibug.doc.style.Styles#lambda$0 */.G {
+/* 2147238293 */.SYNCHRONIZED {
+	position: relative;
+}
+
+/* 2147238293 */.SYNCHRONIZED::after {
+	color: hsl(203,91%,56%);
+	font-size: 0.8em;
+	font-family: "Material Icons";
+	content: '\e8ae';
+	position: absolute;
+	top: 0.8em;
+	left: 0.8em;
+}
+
+/* 310452117 */.Enum {
+	position: relative;
+}
+
+/* 310452117 */.Enum::before {
+	font-family: "Material Icons";
+	color: hsl(120,4%,55%);
+	font-size: 1rem;
+	content: '\e01e';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 443824088 */a {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* 443824088 */a:hover {
+	text-decoration: underline;
+	text-decoration-color: hsla(215,16%,44%,0.5);
+	text-underline-offset: 4px;
+	text-underline-position: under;
+}
+
+/* 504760990 */.extends::before {
+	content: ' extends ';
+}
+
+/* 718005357 */html {
+	font-size: 13px;
+	scroll-behavior: smooth;
+	scroll-padding-top: 80px;
+}
+
+/* 718005357 */html *[class|=el] {
+	font-size: 1rem;
+}
+
+/* 757020217 */.Exception {
+	position: relative;
+}
+
+/* 757020217 */.Exception::before {
+	font-family: "Material Icons";
+	color: hsl(26,90%,53%);
+	font-size: 1rem;
+	content: '\e031';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 995692394 */.parameters::before {
+	content: '<';
+}
+
+/* 995692394 */.parameters::after {
+	content: '>';
+}
+
+/* antibug.doc.style.Styles#lambda$0 */.I {
 	opacity: 0.8;
 	padding-left: 0.08em;
 }
 
-/* antibug.doc.style.Styles#lambda$1 */.H {
+/* antibug.doc.style.Styles#lambda$1 */.F {
 	color: hsl(48,55%,59%);
 }
 
-/* antibug.doc.style.Styles#lambda$1 */.H::before {
+/* antibug.doc.style.Styles#lambda$1 */.F::before {
 	content: ':';
 	padding-left: 0.3em;
 	padding-right: 0.3em;
 }
 
-/* antibug.doc.style.Styles#lambda$14 */.J {
+/* antibug.doc.style.Styles#lambda$14 */.D {
 	flex-grow: 1;
 	-webkit-flex-grow: 1;
 	margin-left: 5rem;
 	margin-right: 1.5rem;
 }
 
-/* antibug.doc.style.Styles#lambda$15 */.L {
+/* antibug.doc.style.Styles#lambda$15 */.H {
 	flex-basis: 20vw;
 	-webkit-flex-basis: 20vw;
 	flex-shrink: 0;
@@ -422,7 +422,7 @@
 	padding-bottom: 0.15em;
 }
 
-/* antibug.doc.style.Styles#lambda$19 */.C {
+/* antibug.doc.style.Styles#lambda$19 */.G {
 	margin-top: 2rem;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
@@ -433,28 +433,28 @@
 	background-repeat: repeat;
 }
 
-/* antibug.doc.style.Styles#lambda$19 */.C:nth-child(even) {
+/* antibug.doc.style.Styles#lambda$19 */.G:nth-child(even) {
 	background-color: hsl(0,0%,97%);
 }
 
-/* antibug.doc.style.Styles#lambda$19 */.C:nth-child(odd) {
+/* antibug.doc.style.Styles#lambda$19 */.G:nth-child(odd) {
 	background-color: hsl(0,0%,97%);
 }
 
-/* antibug.doc.style.Styles#lambda$22 */.K {
+/* antibug.doc.style.Styles#lambda$22 */.B {
 	font-family: Ubuntu,sans-serif;
 	font-size: 1rem;
 	font-weight: normal;
 	display: block;
 }
 
-/* antibug.doc.style.Styles#lambda$23 */.I {
+/* antibug.doc.style.Styles#lambda$23 */.J {
 	margin-top: 0.9rem;
 	font-weight: bold;
 	font-size: 1rem;
 }
 
-/* antibug.doc.style.Styles#lambda$3 */.D {
+/* antibug.doc.style.Styles#lambda$3 */.K {
 	font-size: 13px;
 	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
 	color: hsl(215,16%,44%);
@@ -462,7 +462,7 @@
 	width: 100vw;
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.A {
+/* antibug.doc.style.Styles#lambda$4 */.C {
 	background-color: hsl(0,0%,100%);
 	position: sticky;
 	top: 0;
@@ -477,7 +477,7 @@
 	border-bottom-style: solid;
 }
 
-/* antibug.doc.style.Styles#lambda$5 */.B {
+/* antibug.doc.style.Styles#lambda$5 */.A {
 	font-size: 2.5rem;
 	font-family: Ubuntu;
 	font-weight: normal;
@@ -485,37 +485,37 @@
 	align-self: center;
 }
 
-/* antibug.doc.style.Styles#lambda$7 */.F {
+/* antibug.doc.style.Styles#lambda$7 */.L {
 	flex-basis: 15vw;
 	-webkit-flex-basis: 15vw;
 	flex-shrink: 0;
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.style.Styles#lambda$7 */.F>* {
+/* antibug.doc.style.Styles#lambda$7 */.L>* {
 	position: sticky;
 	top: 80px;
 }
 
-/* antibug.doc.style.Styles#lambda$7 */.F>*>* {
+/* antibug.doc.style.Styles#lambda$7 */.L>*>* {
 	margin-top: 0.5rem;
 }
 
-/* antibug.doc.style.Styles#lambda$7 */.F .el-select {
+/* antibug.doc.style.Styles#lambda$7 */.L .el-select {
 	width: 100%;
 }
 
-/* antibug.doc.style.Styles#lambda$7 */.F .el-checkbox {
+/* antibug.doc.style.Styles#lambda$7 */.L .el-checkbox {
 	display: block;
 }
 
-/* antibug.doc.style.Styles#lambda$7 */.F #AllTypes {
+/* antibug.doc.style.Styles#lambda$7 */.L #AllTypes {
 	overflow: hidden;
 	scrollbar-width: thin;
 	height: 60vh;
 }
 
-/* antibug.doc.style.Styles#lambda$7 */.F #AllTypes:hover {
+/* antibug.doc.style.Styles#lambda$7 */.L #AllTypes:hover {
 	overflow-y: auto;
 }
 

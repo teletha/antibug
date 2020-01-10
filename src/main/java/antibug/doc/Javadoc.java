@@ -29,6 +29,7 @@ import antibug.doc.style.Styles;
 import kiss.I;
 import kiss.XML;
 import kiss.Ⅱ;
+import psychopath.Locator;
 
 public class Javadoc extends DocTool<Javadoc> {
 
@@ -94,6 +95,10 @@ public class Javadoc extends DocTool<Javadoc> {
     @Override
     protected void initialize() {
         site = SiteBuilder.root(output()).guard("index.html", "main.js");
+
+        I.signal(sources()).flatMap(source -> Locator.directory(source).walkDirectory(o -> o.strip())).to(dir -> {
+            System.out.println(dir);
+        });
     }
 
     /**
