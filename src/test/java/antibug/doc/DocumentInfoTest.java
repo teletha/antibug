@@ -188,10 +188,39 @@ public class DocumentInfoTest extends JavadocTestSupport {
 
     /**
      * @see Text
+     * @see <b>String</b>
      */
     @Test
-    public void seeTagText() {
+    public void seeTag() {
         ExecutableInfo info = currentMethod();
         assert sameXML(info.seeTags.get(0), "<section>Text</section>");
+        assert sameXML(info.seeTags.get(1), "<section><b>String</b></section>");
+    }
+
+    /**
+     * @since 1.0
+     * @since <b>1.2</b>
+     */
+    @Test
+    public void sinceTag() {
+        ExecutableInfo info = currentMethod();
+        assert sameXML(info.sinceTags.get(0), "<section>1.0</section>");
+        assert sameXML(info.sinceTags.get(1), "<section><b>1.2</b></section>");
+    }
+
+    /**
+     * @throws NullPointerException If param is null.
+     * @throws IllegalArgumentException If param is <code>0</code>.
+     */
+    @Test
+    public void throwsTag() {
+        ExecutableInfo info = currentMethod();
+        Ⅱ<String, XML> param = info.throwsTags.get(0);
+        assert param.ⅰ.equals("NullPointerException");
+        assert sameXML(param.ⅱ, "<section>If param is null.</section>");
+
+        param = info.throwsTags.get(1);
+        assert param.ⅰ.equals("IllegalArgumentException");
+        assert sameXML(param.ⅱ, "<section>If param is <code>0</code>.</section>");
     }
 }
