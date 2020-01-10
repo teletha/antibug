@@ -140,7 +140,8 @@ public class Javadoc extends DocTool<Javadoc> {
                 I.signal(info.methods).effectOnce(() -> {
                 }).to(m -> {
                     $("section", styles.MainSection, () -> {
-                        $("h2", id(m.id()), styles.MainTitle, m.createModifier(), m.createName(), m.createParameter(), m.returnType);
+                        $("h2", id(m.id()), styles.MainTitle, m.createModifier(), m.returnType.clone(), m.createName(), m
+                                .createParameter());
                         $(m.comment.v);
 
                         if (!m.paramTags.isEmpty() || m.returnTag.isPresent()) {
@@ -192,11 +193,11 @@ public class Javadoc extends DocTool<Javadoc> {
                             }
 
                             if (m instanceof MethodInfo) {
-                                $("span", styles.RNaviReturnType, ((MethodInfo) m).returnType);
+                                $("span", styles.RNaviReturnType, ((MethodInfo) m).returnType.clone());
                             }
 
                             if (m instanceof FieldInfo) {
-                                $("span", styles.RNaviReturnType, ((FieldInfo) m).type);
+                                $("span", styles.RNaviReturnType, ((FieldInfo) m).type.clone());
                             }
                         });
                     }));
