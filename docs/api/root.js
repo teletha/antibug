@@ -110,6 +110,13 @@ const root = {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
+			"name": "ElementUtil",
+			"packageName": "antibug.doc",
+			"type": "Class",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
 			"name": "ExecutableInfo",
 			"packageName": "antibug.doc",
 			"type": "Class",

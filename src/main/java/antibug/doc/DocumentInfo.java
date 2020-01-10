@@ -314,18 +314,25 @@ public class DocumentInfo {
         @Override
         public DocumentXMLBuilder visitLink(LinkTree node, DocumentXMLBuilder p) {
             String reference = node.getReference().toString();
+            String label = reference;
             String memberName = "";
 
             int index = reference.indexOf("#");
             if (index == 0) {
-                memberName = reference.substring(1);
-                System.out.println(e);
-                reference = "";
+                memberName = reference;
+                reference = resolver.resolveDocumentLocation(ElementUtil.getTopLevelTypeElement(e));
             } else if (index != -1) {
-                memberName = reference.substring(index + 1);
-                reference = reference.substring(0, index);
+                memberName = reference.substring(index);
+                reference = resolver.resolveDocumentLocation(reference.substring(0, index));
+            } else {
+                reference = resolver.resolveDocumentLocation(reference);
             }
 
+            if (reference == null) {
+                text.append(label);
+            } else {
+                text.append("<a href='").append(reference).append(memberName).append("'>").append(label).append("</a>");
+            }
             return p;
         }
 

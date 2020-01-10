@@ -137,6 +137,16 @@ public class TypeResolver {
      * @param type A target type to locate document.
      * @return
      */
+    public final String resolveDocumentLocation(String type) {
+        return resolveDocumentLocation(resolve(type));
+    }
+
+    /**
+     * Return the URL of the document for the specified type.
+     * 
+     * @param type A target type to locate document.
+     * @return
+     */
     public final String resolveDocumentLocation(DeclaredType type) {
         return resolveDocumentLocation((TypeElement) type.asElement());
     }
@@ -189,7 +199,7 @@ public class TypeResolver {
      * 
      * @return Resoleved type.
      */
-    private static final ResolvedType resolve(TypeElement e) {
+    private final ResolvedType resolve(TypeElement e) {
         ResolvedType resolved = new ResolvedType();
         resolved.typeName = e.getSimpleName().toString();
 
@@ -218,8 +228,12 @@ public class TypeResolver {
         return resolved;
     }
 
-    private static final ResolvedType resolve(String fqcn) {
-        TypeElement type = Javadoc.ElementUtils.getTypeElement(fqcn);
+    private final ResolvedType resolve(String typeName) {
+        if (typeName.indexOf('.') == -1) {
+            typeName = resolveFQCN(typeName);
+        }
+
+        TypeElement type = Javadoc.ElementUtils.getTypeElement(typeName);
 
         if (type == null) {
             return resolve(type);
