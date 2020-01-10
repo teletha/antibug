@@ -142,6 +142,51 @@ public class DocumentInfoTest extends JavadocTestSupport {
     }
 
     /**
+     * {@linkplain DocumentInfoTest}
+     */
+    @Test
+    public void linkplainTagInternalType() {
+        ExecutableInfo info = currentMethod();
+        assert sameXML(info.comment, "<section><a href='/types/antibug.doc.DocumentInfoTest.html'>DocumentInfoTest</a></section>");
+    }
+
+    /**
+     * {@linkplain #linkplainTagInternalMethod()}
+     */
+    @Test
+    public void linkplainTagInternalMethod() {
+        ExecutableInfo info = currentMethod();
+        assert sameXML(info.comment, "<section><a href='/types/antibug.doc.DocumentInfoTest.html#linkplainTagInternalMethod()'>#linkplainTagInternalMethod()</a></section>");
+    }
+
+    /**
+     * {@linkplain DocumentInfoTest#linkplainTagInternalTypeAndMethod()}
+     */
+    @Test
+    public void linkplainTagInternalTypeAndMethod() {
+        ExecutableInfo info = currentMethod();
+        assert sameXML(info.comment, "<section><a href='/types/antibug.doc.DocumentInfoTest.html#linkplainTagInternalTypeAndMethod()'>DocumentInfoTest#linkplainTagInternalTypeAndMethod()</a></section>");
+    }
+
+    /**
+     * {@linkplain String}
+     */
+    @Test
+    public void linkplainTagUnregisteredExternalType() {
+        ExecutableInfo info = currentMethod();
+        assert sameXML(info.comment, "<section>String</section>");
+    }
+
+    /**
+     * {@linkplain String#chars()}
+     */
+    @Test
+    public void linkplainTagUnregisteredExternalTypeAndMethod() {
+        ExecutableInfo info = currentMethod();
+        assert sameXML(info.comment, "<section>String#chars()</section>");
+    }
+
+    /**
      * @see Text
      */
     @Test

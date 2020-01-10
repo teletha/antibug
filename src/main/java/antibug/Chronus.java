@@ -13,6 +13,7 @@ import static java.util.concurrent.TimeUnit.*;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -50,7 +51,8 @@ public class Chronus implements ScheduledExecutorService {
     private final AtomicReference<ScheduledExecutorService> holder = new AtomicReference();
 
     /**
-     * By {@link Executors#newCachedThreadPool()}. {@link Object} is
+     * By {@link Executors#newCachedThreadPool()}. {@link Map#put(Object, Object)} is
+     * {@link #schedule(Callable, long, TimeUnit)}
      */
     public Chronus() {
         this(() -> Executors.newScheduledThreadPool(ForkJoinPool.getCommonPoolParallelism()));
