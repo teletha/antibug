@@ -77,7 +77,7 @@ public class TypeResolver {
     /**
      * @param externals
      */
-    TypeResolver(Map<String, String> externals, Set<String> internals, Element clazz) {
+    TypeResolver(Map<String, String> externals, Set<String> internals, TypeElement clazz) {
         this.externals = externals == null ? Map.of() : externals;
         this.internals = internals == null ? Set.of() : internals;
 
@@ -110,13 +110,14 @@ public class TypeResolver {
      * 
      * @param clazz
      */
-    private void collectMemberTypes(Element clazz) {
-        I.signal(clazz.getEnclosedElements()).take(e -> e.getKind() == ElementKind.CLASS).as(TypeElement.class).to(e -> {
-            String fqcn = e.getQualifiedName().toString();
-            importedTypes.put(fqcn.substring(fqcn.lastIndexOf(".") + 1), fqcn);
+    private void collectMemberTypes(TypeElement clazz) {
+        String fqcn = clazz.getQualifiedName().toString();
+        importedTypes.put(fqcn.substring(fqcn.lastIndexOf(".") + 1), fqcn);
 
-            collectMemberTypes(e);
-        });
+        I.signal(clazz.getEnclosedElements())
+                .take(e -> e.getKind() == ElementKind.CLASS)
+                .as(TypeElement.class)
+                .to(this::collectMemberTypes);
     }
 
     /**

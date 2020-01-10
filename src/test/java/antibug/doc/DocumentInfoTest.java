@@ -97,12 +97,48 @@ public class DocumentInfoTest extends JavadocTestSupport {
     }
 
     /**
+     * {@link DocumentInfoTest}
+     */
+    @Test
+    public void linkTagInternalType() {
+        ExecutableInfo info = currentMethod();
+        assert sameXML(info.comment, "<section><a href='/types/antibug.doc.DocumentInfoTest.html'>DocumentInfoTest</a></section>");
+    }
+
+    /**
      * {@link #linkTagInternalMethod()}
      */
     @Test
     public void linkTagInternalMethod() {
         ExecutableInfo info = currentMethod();
         assert sameXML(info.comment, "<section><a href='/types/antibug.doc.DocumentInfoTest.html#linkTagInternalMethod()'>#linkTagInternalMethod()</a></section>");
+    }
+
+    /**
+     * {@link DocumentInfoTest#linkTagInternalTypeAndMethod()}
+     */
+    @Test
+    public void linkTagInternalTypeAndMethod() {
+        ExecutableInfo info = currentMethod();
+        assert sameXML(info.comment, "<section><a href='/types/antibug.doc.DocumentInfoTest.html#linkTagInternalTypeAndMethod()'>DocumentInfoTest#linkTagInternalTypeAndMethod()</a></section>");
+    }
+
+    /**
+     * {@link String}
+     */
+    @Test
+    public void linkTagUnregisteredExternalType() {
+        ExecutableInfo info = currentMethod();
+        assert sameXML(info.comment, "<section>String</section>");
+    }
+
+    /**
+     * {@link String#chars()}
+     */
+    @Test
+    public void linkTagUnregisteredExternalTypeAndMethod() {
+        ExecutableInfo info = currentMethod();
+        assert sameXML(info.comment, "<section>String#chars()</section>");
     }
 
     /**
