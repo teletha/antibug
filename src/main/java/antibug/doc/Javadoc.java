@@ -114,14 +114,14 @@ public class Javadoc extends DocTool<Javadoc> {
             @Override
             protected void main() {
                 $("h2", () -> {
-                    $(info.createNameWithModifier());
+                    $(info.createModifier(), info.createName());
                 });
                 $(html(info.comment));
 
                 I.signal(info.constructors).effectOnce(() -> {
                 }).to(c -> {
                     $("section", styles.MainSection, () -> {
-                        $("h2", id(c.id()), styles.MainTitle, c.createNameWithModifier(), c.createParameter());
+                        $("h2", id(c.id()), styles.MainTitle, c.createModifier(), c.createName(), c.createParameter());
                         $(html(c.comment));
                         $("dl", () -> {
                             if (!c.paramTags.isEmpty()) {
@@ -140,7 +140,7 @@ public class Javadoc extends DocTool<Javadoc> {
                 I.signal(info.methods).effectOnce(() -> {
                 }).to(m -> {
                     $("section", styles.MainSection, () -> {
-                        $("h2", id(m.id()), styles.MainTitle, m.createNameWithModifier(), m.createParameter(), m.returnType);
+                        $("h2", id(m.id()), styles.MainTitle, m.createModifier(), m.createName(), m.createParameter(), m.returnType);
                         $(m.comment.v);
 
                         if (!m.paramTags.isEmpty() || m.returnTag.isPresent()) {
@@ -183,7 +183,8 @@ public class Javadoc extends DocTool<Javadoc> {
                     $("h5", styles.RNaviTitle, text(title));
                     $("ul", foŕ(members, m -> {
                         $("li", () -> {
-                            $(m.createNameWithModifier());
+                            $(m.createModifier());
+                            $(m.createName());
 
                             if (m instanceof ExecutableInfo) {
                                 ExecutableInfo e = (ExecutableInfo) m;

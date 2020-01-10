@@ -111,7 +111,7 @@ public class SiteBuilder {
 
     private static final String[] characterType = {"figcaption", "figure", "a", "abbr", "b", "bdi", "bdo", "cite", "code", "data", "dfn",
             "em", "i", "kbd", "mark", "q", "rb", "rp", "rt", "rtc", "s", "samp", "span", "strong", "sub", "sup", "time", "u", "var", "del",
-            "ins", "&script", "&nav", "&article", "&aside", "&dl"};
+            "ins", "&script", "&nav", "&article", "&aside", "&dl", "&i"};
 
     /**
      * Build HTML file.

@@ -69,21 +69,11 @@ public abstract class MemberInfo extends DocumentInfo {
     }
 
     /**
-     * Build full signature with modifier infomation.
+     * Build modifier element.
      * 
      * @return
      */
-    public final XML createSignature() {
-        return createNameWithModifier();
-    }
-
-    /**
-     * Build name element with modifier infomation.
-     * 
-     * @param info
-     * @return
-     */
-    public final XML createNameWithModifier() {
+    public final XML createModifier() {
         Set<Modifier> visibility = new HashSet();
         Set<Modifier> nonvisibility = new HashSet();
         boolean isPackagePrivate = true;
@@ -110,7 +100,7 @@ public abstract class MemberInfo extends DocumentInfo {
             }
         }
 
-        XML xml = I.xml("i").append(I.xml("a").attr("href", "#" + id()).text(name));
+        XML xml = I.xml("i");
         if (isPackagePrivate) xml.addClass("PACKAGEPRIVATE");
         if (isOverridden()) xml.addClass("OVERRIDE");
         for (Modifier modifier : visibility) {
@@ -124,6 +114,15 @@ public abstract class MemberInfo extends DocumentInfo {
             }
         }
         return xml;
+    }
+
+    /**
+     * Build name element.
+     * 
+     * @return
+     */
+    public final XML createName() {
+        return I.xml("a").attr("href", "#" + id()).text(name);
     }
 
     /**
