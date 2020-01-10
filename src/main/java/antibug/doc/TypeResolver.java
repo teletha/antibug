@@ -13,13 +13,17 @@ import java.io.IOException;
 import java.lang.module.ModuleFinder;
 import java.lang.module.ModuleReference;
 import java.lang.reflect.Modifier;
+import java.util.Deque;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.stream.Stream;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.ModuleElement;
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.type.DeclaredType;
 
 import com.sun.source.tree.CompilationUnitTree;
 import com.sun.source.tree.Tree.Kind;
@@ -28,7 +32,7 @@ import kiss.I;
 
 public class TypeResolver {
 
-    /** java.lang types */
+    /** built-in java.lang types */
     private static final Map<String, String> JavaLangTypes = collectJavaLangTypes();
 
     /**
@@ -59,15 +63,28 @@ public class TypeResolver {
         }
     }
 
+    /** PackageName-URL pair */
+    private final Map<String, String> externals;
+
     /** Imported types. */
     private final Map<String, String> importedTypes = new HashMap();
+
+    /**
+     * @param externals
+     */
+    TypeResolver(Map<String, String> externals, Element clazz) {
+        this.externals = externals == null ? Map.of() : externals;
+
+        collectImportedTypes(clazz);
+        collectMemberTypes(clazz);
+    }
 
     /**
      * Collect the imported types.
      * 
      * @param clazz
      */
-    public void collectImportedTypes(Element clazz) {
+    private void collectImportedTypes(Element clazz) {
         I.signal(DocTool.DocUtils.getPath(clazz))
                 .take(tree -> tree.getKind() == Kind.COMPILATION_UNIT)
                 .as(CompilationUnitTree.class)
@@ -80,8 +97,6 @@ public class TypeResolver {
                         importedTypes.put(fqcn.substring(fqcn.lastIndexOf(".") + 1), fqcn);
                     }
                 });
-
-        collectMemberTypes(clazz);
     }
 
     /**
@@ -108,5 +123,121 @@ public class TypeResolver {
         if (fqcn == null) fqcn = JavaLangTypes.get(className);
 
         return fqcn == null ? className : fqcn;
+    }
+
+    /**
+     * Return the URL of the document for the specified type.
+     * 
+     * @param type A target type to locate document.
+     * @return
+     */
+    public final String resolveDocumentLocation(DeclaredType type) {
+        return resolveDocumentLocation((TypeElement) type.asElement());
+    }
+
+    /**
+     * Return the URL of the document for the specified type.
+     * 
+     * @param type A target type to locate document.
+     * @return
+     */
+    public final String resolveDocumentLocation(TypeElement type) {
+        return resolveDocumentLocation(resolve(type));
+    }
+
+    /**
+     * Returns the URL of the document with the specified type name.
+     * 
+     * @param moduleName Module name. Null or empty string is ignored.
+     * @param packageName Package name. Null or empty string is ignored.
+     * @param enclosingName Enclosing type name. Null or empty string is ignored.
+     * @param typeName Target type's simple name.
+     * @return Resoleved URL.
+     */
+    private final String resolveDocumentLocation(ResolvedType type) {
+        String url = externals.get(type.packageName);
+
+        if (url != null) {
+            StringBuilder builder = new StringBuilder(url);
+            if (type.moduleName.length() != 0) builder.append(type.moduleName).append('/');
+            if (type.packageName.length() != 0) builder.append(type.packageName.replace('.', '/')).append('/');
+            if (type.enclosingName.length() != 0) builder.append(type.enclosingName).append('.');
+            builder.append(type.typeName).append(".html");
+
+            return builder.toString();
+        } else {
+            StringBuilder builder = new StringBuilder("/types/");
+            if (type.packageName.length() != 0) builder.append(type.packageName).append('.');
+            if (type.enclosingName.length() != 0) builder.append(type.enclosingName).append('.');
+            builder.append(type.typeName).append(".html");
+
+            return builder.toString();
+        }
+    }
+
+    /**
+     * Resolve from element.
+     * 
+     * @return Resoleved type.
+     */
+    private static final ResolvedType resolve(TypeElement e) {
+        ResolvedType resolved = new ResolvedType();
+        resolved.typeName = e.getSimpleName().toString();
+
+        // enclosing
+        Deque<String> enclosings = new LinkedList();
+        Element enclosing = e.getEnclosingElement();
+        while (enclosing.getKind() != ElementKind.PACKAGE) {
+            enclosings.addFirst(((TypeElement) enclosing).getSimpleName().toString());
+            enclosing = enclosing.getEnclosingElement();
+        }
+        resolved.enclosingName = I.join(".", enclosings);
+
+        // pacakage
+        resolved.packageName = enclosing.toString();
+
+        // module
+        enclosing = enclosing.getEnclosingElement();
+
+        if (enclosing instanceof ModuleElement) {
+            ModuleElement module = (ModuleElement) enclosing;
+            resolved.moduleName = module.getQualifiedName().toString();
+        } else {
+            resolved.moduleName = "";
+        }
+
+        return resolved;
+    }
+
+    private static final ResolvedType resolve(String fqcn) {
+        TypeElement type = Javadoc.ElementUtils.getTypeElement(fqcn);
+
+        if (type == null) {
+            return resolve(type);
+        } else {
+            return resolve(type);
+        }
+    }
+
+    /**
+     * Completed resolved type.
+     */
+    private static class ResolvedType {
+
+        private String typeName = "";
+
+        private String enclosingName = "";
+
+        private String packageName = "";
+
+        private String moduleName = "";
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString() {
+            return "ResolvedType [typeName=" + typeName + ", enclosingName=" + enclosingName + ", packageName=" + packageName + ", moduleName=" + moduleName + "]";
+        }
     }
 }

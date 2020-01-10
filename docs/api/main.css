@@ -2,113 +2,71 @@
 @import url("http://fonts.googleapis.com/css?family=Roboto+Mono");
 @import url("http://fonts.googleapis.com/css?family=Ubuntu");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1016921310 */.TRANSIENT {
+/* 1071364078 */.AbstractClass {
 	position: relative;
 }
 
-/* 1016921310 */.TRANSIENT::after {
-	color: hsl(203,91%,56%);
-	font-size: 0.8em;
+/* 1071364078 */.AbstractClass::before {
 	font-family: "Material Icons";
-	content: '\e14c';
-	position: absolute;
-	top: 0.8em;
-	left: 0.8em;
+	color: hsl(120,9%,55%);
+	font-size: 1rem;
+	content: '\e90c';
+	padding-right: 0.6rem;
+	vertical-align: middle;
 }
 
-/* 116901088 */section {
-	margin-bottom: 0.5rem;
-}
-
-/* 116901088 */section > pre {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 116901088 */section > ul {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 116901088 */section > ol {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 1267523139 */i {
-	font-style: normal;
-}
-
-/* 157226018 */.parameters::before {
-	content: '<';
-}
-
-/* 157226018 */.parameters::after {
-	content: '>';
-}
-
-/* 1585654158 */.PACKAGEPRIVATE {
+/* 1156336184 */.Enum {
 	position: relative;
 }
 
-/* 1585654158 */.PACKAGEPRIVATE::before {
+/* 1156336184 */.Enum::before {
+	font-family: "Material Icons";
+	color: hsl(120,4%,55%);
+	font-size: 1rem;
+	content: '\e01e';
 	padding-right: 0.6rem;
-	color: hsl(203,91%,56%);
+	vertical-align: middle;
+}
+
+/* 118186765 */.PROTECTED {
+	position: relative;
+}
+
+/* 118186765 */.PROTECTED::before {
+	padding-right: 0.6rem;
+	color: hsl(48,95%,59%);
 	font-family: "Material Icons";
 	font-size: 0.8em;
 	content: '\e061';
 }
 
-/* 1585654158 */.PACKAGEPRIVATE.OVERRIDE::before {
+/* 118186765 */.PROTECTED.OVERRIDE::before {
 	content: '\e837';
 }
 
-/* 1585654158 */.PACKAGEPRIVATE.FIELD::before {
+/* 118186765 */.PROTECTED.FIELD::before {
 	content: '\e836';
 }
 
-/* 1882860489 */.Interface {
+/* 1214687061 */.ABSTRACT {
 	position: relative;
 }
 
-/* 1882860489 */.Interface::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: 1rem;
-	content: '\e88f';
-	padding-right: 0.6rem;
-	vertical-align: middle;
+/* 1214687061 */.ABSTRACT::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Mono";
+	content: 'A';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
 }
 
-/* 1902630939 */.PRIVATE {
+/* 1345757830 */.PRIVATE {
 	position: relative;
 }
 
-/* 1902630939 */.PRIVATE::before {
+/* 1345757830 */.PRIVATE::before {
 	padding-right: 0.6rem;
 	color: hsl(2,68%,58%);
 	font-family: "Material Icons";
@@ -116,19 +74,23 @@
 	content: '\e061';
 }
 
-/* 1902630939 */.PRIVATE.OVERRIDE::before {
+/* 1345757830 */.PRIVATE.OVERRIDE::before {
 	content: '\e837';
 }
 
-/* 1902630939 */.PRIVATE.FIELD::before {
+/* 1345757830 */.PRIVATE.FIELD::before {
 	content: '\e836';
 }
 
-/* 1936999851 */.SYNCHRONIZED {
+/* 1348632704 */.super::before {
+	content: ' super ';
+}
+
+/* 1392412640 */.SYNCHRONIZED {
 	position: relative;
 }
 
-/* 1936999851 */.SYNCHRONIZED::after {
+/* 1392412640 */.SYNCHRONIZED::after {
 	color: hsl(203,91%,56%);
 	font-size: 0.8em;
 	font-family: "Material Icons";
@@ -138,132 +100,15 @@
 	left: 0.8em;
 }
 
-/* 2030920346 */.Functional {
-	position: relative;
+/* 1582967668 */.parameters::before {
+	content: '<';
 }
 
-/* 2030920346 */.Functional::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: 1rem;
-	content: '\e88e';
-	padding-right: 0.6rem;
-	vertical-align: middle;
+/* 1582967668 */.parameters::after {
+	content: '>';
 }
 
-/* 2109567229 */.FINAL {
-	position: relative;
-}
-
-/* 2109567229 */.FINAL::before {
-	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Mono";
-	content: 'F';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 2130422201 */h2 {
-	font-size: 1.8rem;
-	font-family: Ubuntu;
-}
-
-/* 219665748 */.Enum {
-	position: relative;
-}
-
-/* 219665748 */.Enum::before {
-	font-family: "Material Icons";
-	color: hsl(120,4%,55%);
-	font-size: 1rem;
-	content: '\e01e';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 28692953 */.package {
-	font-weight: bold;
-}
-
-/* 294886047 */.PUBLIC {
-	position: relative;
-}
-
-/* 294886047 */.PUBLIC::before {
-	padding-right: 0.6rem;
-	color: hsl(120,39%,55%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 294886047 */.PUBLIC.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 294886047 */.PUBLIC.FIELD::before {
-	content: '\e836';
-}
-
-/* 521961438 */.Annotation {
-	position: relative;
-}
-
-/* 521961438 */.Annotation::before {
-	font-family: "Material Icons";
-	color: hsl(120,4%,55%);
-	font-size: 1rem;
-	content: '\e167';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 54977996 */.AbstractClass {
-	position: relative;
-}
-
-/* 54977996 */.AbstractClass::before {
-	font-family: "Material Icons";
-	color: hsl(120,9%,55%);
-	font-size: 1rem;
-	content: '\e90c';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 580735116 */.PROTECTED {
-	position: relative;
-}
-
-/* 580735116 */.PROTECTED::before {
-	padding-right: 0.6rem;
-	color: hsl(48,95%,59%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 580735116 */.PROTECTED.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 580735116 */.PROTECTED.FIELD::before {
-	content: '\e836';
-}
-
-/* 631436338 */html {
-	font-size: 13px;
-	scroll-behavior: smooth;
-	scroll-padding-top: 80px;
-}
-
-/* 631436338 */html *[class|=el] {
-	font-size: 1rem;
-}
-
-/* 635569126 */dl dt {
+/* 1603095377 */dl dt {
 	display: block;
 	width: 70px;
 	float: left;
@@ -275,12 +120,12 @@
 	text-transform: capitalize;
 }
 
-/* 635569126 */dl dd {
+/* 1603095377 */dl dd {
 	margin-bottom: 15px;
 	margin-left: 70px;
 }
 
-/* 635569126 */dl b {
+/* 1603095377 */dl b {
 	display: block;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
@@ -290,19 +135,136 @@
 	font-weight: bold;
 }
 
-/* 687798690 */main {
-	width: 85vw;
-	display: flex;
-	flex-direction: row;
-	margin-right: auto;
-	margin-left: auto;
+/* 1613461828 */section {
+	margin-bottom: 0.5rem;
 }
 
-/* 725651828 */.Exception {
+/* 1613461828 */section > pre {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+}
+
+/* 1613461828 */section > ul {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+}
+
+/* 1613461828 */section > ol {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+}
+
+/* 1702926498 */.extends::before {
+	content: ' extends ';
+}
+
+/* 1776057124 */i {
+	font-style: normal;
+}
+
+/* 1881617971 */html {
+	font-size: 13px;
+	scroll-behavior: smooth;
+	scroll-padding-top: 80px;
+}
+
+/* 1881617971 */html *[class|=el] {
+	font-size: 1rem;
+}
+
+/* 1927406983 */.PACKAGEPRIVATE {
 	position: relative;
 }
 
-/* 725651828 */.Exception::before {
+/* 1927406983 */.PACKAGEPRIVATE::before {
+	padding-right: 0.6rem;
+	color: hsl(203,91%,56%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1927406983 */.PACKAGEPRIVATE.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1927406983 */.PACKAGEPRIVATE.FIELD::before {
+	content: '\e836';
+}
+
+/* 1968179698 */.Annotation {
+	position: relative;
+}
+
+/* 1968179698 */.Annotation::before {
+	font-family: "Material Icons";
+	color: hsl(120,4%,55%);
+	font-size: 1rem;
+	content: '\e167';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 2079936145 */.Functional {
+	position: relative;
+}
+
+/* 2079936145 */.Functional::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 1rem;
+	content: '\e88e';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 325183616 */.FINAL {
+	position: relative;
+}
+
+/* 325183616 */.FINAL::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Mono";
+	content: 'F';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
+}
+
+/* 357767349 */.package {
+	font-weight: bold;
+}
+
+/* 391554161 */.Exception {
+	position: relative;
+}
+
+/* 391554161 */.Exception::before {
 	font-family: "Material Icons";
 	color: hsl(26,90%,53%);
 	font-size: 1rem;
@@ -311,11 +273,83 @@
 	vertical-align: middle;
 }
 
-/* 750074876 */.VOLATILE {
+/* 450728160 */.Interface {
 	position: relative;
 }
 
-/* 750074876 */.VOLATILE::before {
+/* 450728160 */.Interface::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 1rem;
+	content: '\e88f';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 526655415 */h2 {
+	font-size: 1.8rem;
+	font-family: Ubuntu;
+}
+
+/* 563105933 */.PUBLIC {
+	position: relative;
+}
+
+/* 563105933 */.PUBLIC::before {
+	padding-right: 0.6rem;
+	color: hsl(120,39%,55%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 563105933 */.PUBLIC.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 563105933 */.PUBLIC.FIELD::before {
+	content: '\e836';
+}
+
+/* 695489783 */a {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* 695489783 */a:hover {
+	text-decoration: underline;
+	text-decoration-color: hsla(215,16%,44%,0.5);
+	text-underline-offset: 4px;
+	text-underline-position: under;
+}
+
+/* 718702938 */main {
+	width: 85vw;
+	display: flex;
+	flex-direction: row;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* 851478032 */.Class {
+	position: relative;
+}
+
+/* 851478032 */.Class::before {
+	font-family: "Material Icons";
+	color: hsl(120,39%,55%);
+	font-size: 1rem;
+	content: '\e90c';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 889633931 */.VOLATILE {
+	position: relative;
+}
+
+/* 889633931 */.VOLATILE::before {
 	color: hsl(203,91%,56%);
 	font-size: 0.6em;
 	font-family: "Roboto Mono";
@@ -325,79 +359,50 @@
 	left: 1.4em;
 }
 
-/* 752011108 */.Class {
+/* 926498219 */.TRANSIENT {
 	position: relative;
 }
 
-/* 752011108 */.Class::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: 1rem;
-	content: '\e90c';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 75483598 */.super::before {
-	content: ' super ';
-}
-
-/* 792492836 */.ABSTRACT {
-	position: relative;
-}
-
-/* 792492836 */.ABSTRACT::before {
+/* 926498219 */.TRANSIENT::after {
 	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Mono";
-	content: 'A';
+	font-size: 0.8em;
+	font-family: "Material Icons";
+	content: '\e14c';
 	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 834081069 */.extends::before {
-	content: ' extends ';
-}
-
-/* 885437742 */a {
-	color: inherit;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-/* 885437742 */a:hover {
-	text-decoration: underline;
-	text-decoration-color: hsla(215,16%,44%,0.5);
-	text-underline-offset: 4px;
-	text-underline-position: under;
+	top: 0.8em;
+	left: 0.8em;
 }
 
 /* antibug.doc.style.Styles#lambda$0 */.G {
+	opacity: 0.8;
+	padding-left: 0.08em;
+}
+
+/* antibug.doc.style.Styles#lambda$1 */.H {
 	color: hsl(48,55%,59%);
 }
 
-/* antibug.doc.style.Styles#lambda$0 */.G::before {
+/* antibug.doc.style.Styles#lambda$1 */.H::before {
 	content: ':';
 	padding-left: 0.3em;
 	padding-right: 0.3em;
 }
 
-/* antibug.doc.style.Styles#lambda$13 */.E {
+/* antibug.doc.style.Styles#lambda$14 */.J {
 	flex-grow: 1;
 	-webkit-flex-grow: 1;
 	margin-left: 5rem;
 	margin-right: 1.5rem;
 }
 
-/* antibug.doc.style.Styles#lambda$14 */.F {
+/* antibug.doc.style.Styles#lambda$15 */.L {
 	flex-basis: 20vw;
 	-webkit-flex-basis: 20vw;
 	flex-shrink: 0;
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.style.Styles#lambda$15 */.A {
+/* antibug.doc.style.Styles#lambda$16 */.E {
 	position: sticky;
 	top: 80px;
 	display: block;
@@ -408,16 +413,16 @@
 	white-space: nowrap;
 }
 
-/* antibug.doc.style.Styles#lambda$15 */.A:hover {
+/* antibug.doc.style.Styles#lambda$16 */.E:hover {
 	overflow-y: auto;
 }
 
-/* antibug.doc.style.Styles#lambda$15 */.A>*>* {
+/* antibug.doc.style.Styles#lambda$16 */.E>*>* {
 	padding-top: 0.15em;
 	padding-bottom: 0.15em;
 }
 
-/* antibug.doc.style.Styles#lambda$18 */.L {
+/* antibug.doc.style.Styles#lambda$19 */.C {
 	margin-top: 2rem;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
@@ -428,15 +433,28 @@
 	background-repeat: repeat;
 }
 
-/* antibug.doc.style.Styles#lambda$18 */.L:nth-child(even) {
+/* antibug.doc.style.Styles#lambda$19 */.C:nth-child(even) {
 	background-color: hsl(0,0%,97%);
 }
 
-/* antibug.doc.style.Styles#lambda$18 */.L:nth-child(odd) {
+/* antibug.doc.style.Styles#lambda$19 */.C:nth-child(odd) {
 	background-color: hsl(0,0%,97%);
 }
 
-/* antibug.doc.style.Styles#lambda$2 */.H {
+/* antibug.doc.style.Styles#lambda$22 */.K {
+	font-family: Ubuntu,sans-serif;
+	font-size: 1rem;
+	font-weight: normal;
+	display: block;
+}
+
+/* antibug.doc.style.Styles#lambda$23 */.I {
+	margin-top: 0.9rem;
+	font-weight: bold;
+	font-size: 1rem;
+}
+
+/* antibug.doc.style.Styles#lambda$3 */.D {
 	font-size: 13px;
 	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
 	color: hsl(215,16%,44%);
@@ -444,20 +462,7 @@
 	width: 100vw;
 }
 
-/* antibug.doc.style.Styles#lambda$21 */.B {
-	font-family: Ubuntu,sans-serif;
-	font-size: 1rem;
-	font-weight: normal;
-	display: block;
-}
-
-/* antibug.doc.style.Styles#lambda$22 */.D {
-	margin-top: 0.9rem;
-	font-weight: bold;
-	font-size: 1rem;
-}
-
-/* antibug.doc.style.Styles#lambda$3 */.C {
+/* antibug.doc.style.Styles#lambda$4 */.A {
 	background-color: hsl(0,0%,100%);
 	position: sticky;
 	top: 0;
@@ -472,12 +477,7 @@
 	border-bottom-style: solid;
 }
 
-/* antibug.doc.style.Styles#lambda$37 */.I {
-	opacity: 0.8;
-	padding-left: 0.08em;
-}
-
-/* antibug.doc.style.Styles#lambda$4 */.K {
+/* antibug.doc.style.Styles#lambda$5 */.B {
 	font-size: 2.5rem;
 	font-family: Ubuntu;
 	font-weight: normal;
@@ -485,37 +485,37 @@
 	align-self: center;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.J {
+/* antibug.doc.style.Styles#lambda$7 */.F {
 	flex-basis: 15vw;
 	-webkit-flex-basis: 15vw;
 	flex-shrink: 0;
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.J>* {
+/* antibug.doc.style.Styles#lambda$7 */.F>* {
 	position: sticky;
 	top: 80px;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.J>*>* {
+/* antibug.doc.style.Styles#lambda$7 */.F>*>* {
 	margin-top: 0.5rem;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.J .el-select {
+/* antibug.doc.style.Styles#lambda$7 */.F .el-select {
 	width: 100%;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.J .el-checkbox {
+/* antibug.doc.style.Styles#lambda$7 */.F .el-checkbox {
 	display: block;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.J #AllTypes {
+/* antibug.doc.style.Styles#lambda$7 */.F #AllTypes {
 	overflow: hidden;
 	scrollbar-width: thin;
 	height: 60vh;
 }
 
-/* antibug.doc.style.Styles#lambda$6 */.J #AllTypes:hover {
+/* antibug.doc.style.Styles#lambda$7 */.F #AllTypes:hover {
 	overflow-y: auto;
 }
 

@@ -10,13 +10,10 @@
 package antibug.doc;
 
 import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
 import javax.lang.model.element.Element;
-import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.ArrayType;
@@ -329,8 +326,8 @@ public class DocumentInfo {
                 reference = reference.substring(0, index);
             }
 
-            ResolvedType type = ResolvedType.resolve(resolver.resolveFQCN(reference));
-            System.out.println(type);
+            String fqnc = resolver.resolveFQCN(reference);
+            System.out.println(fqnc);
 
             return p;
         }
@@ -507,28 +504,12 @@ public class DocumentInfo {
          */
         @Override
         public XML visitDeclared(DeclaredType declared, XML xml) {
-            // type
-            TypeElement e = (TypeElement) declared.asElement();
-            ResolvedType resolved = ResolvedType.resolve(e);
-
-            String typeName = e.getSimpleName().toString();
-
-            // enclosing
-            Deque<String> enclosings = new LinkedList();
-            Element enclosing = e.getEnclosingElement();
-            while (enclosing.getKind() != ElementKind.PACKAGE) {
-                enclosings.addFirst(((TypeElement) enclosing).getSimpleName().toString());
-                enclosing = enclosing.getEnclosingElement();
-            }
-            if (resolved.enclosingName.length() != 0) xml.attr("enclosing", resolved.enclosingName);
-            if (resolved.packageName.length() != 0) xml.attr("package", resolved.packageName);
-
             // link to type
-            String uri = Javadoc
-                    .resolveDocumentLocation(resolved.moduleName, resolved.packageName, resolved.enclosingName, resolved.typeName);
+            TypeElement type = (TypeElement) declared.asElement();
+            String uri = resolver.resolveDocumentLocation(type);
 
             if (uri != null) {
-                xml.append(I.xml("a").attr("href", uri).text(typeName));
+                xml.append(I.xml("a").attr("href", uri).text(type.getSimpleName().toString()));
             }
 
             // type parameter
