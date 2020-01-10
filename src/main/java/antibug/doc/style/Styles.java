@@ -62,6 +62,7 @@ public class Styles extends AbstractStyleDSL {
     private Style HTML = Style.named("html", () -> {
         font.size(13, px);
         scroll.smooth().padding.top(HeaderHeight);
+        text.wordBreak.breakAll();
 
         $.select("*[class|=el]", () -> {
             font.size(1, rem);
