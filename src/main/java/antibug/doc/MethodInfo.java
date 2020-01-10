@@ -24,7 +24,8 @@ public class MethodInfo extends ExecutableInfo {
     public MethodInfo(ExecutableElement e, TypeResolver resolver) {
         super(e, resolver);
 
-        this.returnType = parseTypeAsXML(e.getReturnType()).addClass("return");
+        this.returnType = parseTypeAsXML(e.getReturnType());
+        this.returnType.first().addClass("return");
     }
 
     public XML createReturnType() {

@@ -110,6 +110,7 @@ class JavadocTestSupport {
         assert actual != null;
         assert expected != null;
         assert Objects.equals(actual.getLocalName(), expected.getLocalName()) : error(actualXML, expectedXML);
+        assert actual.getNodeType() == expected.getNodeType() : error(actualXML, expectedXML);
         assert actual.getTextContent().trim().equals(expected.getTextContent().trim()) : error(actualXML, expectedXML);
 
         // attributes
@@ -145,7 +146,11 @@ class JavadocTestSupport {
         // next
         Node actualNext = actual.getNextSibling();
         Node expectedNext = expected.getNextSibling();
-        if (actualNext != null && expectedNext != null) {
+
+        if (actualNext == null) {
+            System.out.println(actual + "  " + expected + "      " + actualNext + "   " + expectedNext + "    " + (expected == expectedNext));
+            assert actualNext == expectedNext : error(actualXML, expectedXML);
+        } else if (actualNext != null && expectedNext != null) {
             assert sameXML(actualXML, actualNext, expectedXML, expectedNext);
         }
         return true;

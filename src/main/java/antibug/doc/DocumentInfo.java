@@ -568,13 +568,13 @@ public class DocumentInfo {
             if (uri != null) {
                 xml.append(I.xml("a").attr("href", uri).text(name));
             } else {
-                xml.text(name);
+                xml.text(type.getQualifiedName().toString());
             }
 
             // type parameter
             List<? extends TypeMirror> paramTypes = declared.getTypeArguments();
             if (paramTypes.isEmpty() == false) {
-                XML parameters = xml.after("<i class='parameters'/>").next();
+                XML parameters = I.xml("<i class='parameters'/>");
                 for (int i = 0, size = paramTypes.size(); i < size; i++) {
                     parameters.append(parseTypeAsXML(paramTypes.get(i)));
 
@@ -582,6 +582,7 @@ public class DocumentInfo {
                         parameters.append(", ");
                     }
                 }
+                xml.after(parameters);
             }
 
             return xml;

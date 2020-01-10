@@ -32,7 +32,7 @@ public class MethodInfoTest extends JavadocTestSupport {
 
     @Test
     void returnString() {
-        assert checkReturnType(method("string"), "<i class='return'>String</i>");
+        assert checkReturnType(method("string"), "<i class='return'>java.lang.String</i>");
     }
 
     protected String string() {
@@ -59,7 +59,7 @@ public class MethodInfoTest extends JavadocTestSupport {
 
     @Test
     void returnParameterized() {
-        assert checkReturnType(method("parameterized"), "<i class='return'>List</i><i class='parameters'><i class='type'>String</i></i>");
+        assert checkReturnType(method("parameterized"), "<i class='return'>java.util.List</i><i class='parameters'><i>java.lang.String</i></i>");
     }
 
     protected List<String> parameterized() {
