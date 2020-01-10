@@ -203,6 +203,17 @@ public class DocumentInfoTest extends JavadocTestSupport {
     }
 
     /**
+     * @author Me
+     * @author <b>You</b>
+     */
+    @Test
+    public void authorTag() {
+        ExecutableInfo info = currentMethod();
+        assert sameXML(info.authorTags.get(0), "<section>Me</section>");
+        assert sameXML(info.authorTags.get(1), "<section><b>You</b></section>");
+    }
+
+    /**
      * @see Text
      * @see <b>String</b>
      */

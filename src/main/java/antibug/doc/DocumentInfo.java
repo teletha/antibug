@@ -31,6 +31,7 @@ import javax.lang.model.type.WildcardType;
 import javax.lang.model.util.SimpleTypeVisitor9;
 
 import com.sun.source.doctree.AttributeTree;
+import com.sun.source.doctree.AuthorTree;
 import com.sun.source.doctree.CommentTree;
 import com.sun.source.doctree.DocCommentTree;
 import com.sun.source.doctree.DocRootTree;
@@ -82,6 +83,9 @@ public class DocumentInfo {
 
     /** Tag info. */
     protected final List<Ⅱ<String, XML>> throwsTags = new ArrayList();
+
+    /** Tag info. */
+    protected final List<XML> authorTags = new ArrayList();
 
     /** Tag info. */
     protected final List<XML> seeTags = new ArrayList();
@@ -156,6 +160,15 @@ public class DocumentInfo {
      * 
      */
     private class TagScanner extends SimpleDocTreeVisitor<DocumentInfo, DocumentInfo> {
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public DocumentInfo visitAuthor(AuthorTree node, DocumentInfo p) {
+            authorTags.add(xml(node.getName()));
+            return p;
+        }
 
         /**
          * {@inheritDoc}
