@@ -97,6 +97,15 @@ public class DocumentInfoTest extends JavadocTestSupport {
     }
 
     /**
+     * {@link #linkTagInternalMethod()}
+     */
+    @Test
+    public void linkTagInternalMethod() {
+        ExecutableInfo info = currentMethod();
+        assert sameXML(info.comment, "<section><a href='/types/antibug.doc.DocumentInfoTest.html#linkTagInternalMethod()'>#linkTagInternalMethod()</a></section>");
+    }
+
+    /**
      * @see Text
      */
     @Test

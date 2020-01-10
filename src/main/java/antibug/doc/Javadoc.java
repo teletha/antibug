@@ -9,7 +9,6 @@
  */
 package antibug.doc;
 
-import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -30,7 +29,6 @@ import antibug.doc.style.Styles;
 import kiss.I;
 import kiss.XML;
 import kiss.Ⅱ;
-import psychopath.Locator;
 
 public class Javadoc extends DocTool<Javadoc> {
 
@@ -96,11 +94,7 @@ public class Javadoc extends DocTool<Javadoc> {
     @Override
     protected void initialize() {
         site = SiteBuilder.root(output()).guard("index.html", "main.js");
-
-        // collect internal package names
-        I.signal(sources()).flatMap(source -> Locator.directory(source).walkDirectoryWithBase()).to(dir -> {
-            internals.add(dir.ⅰ.relativize(dir.ⅱ).toString().replace(File.separatorChar, '.'));
-        });
+        internals.addAll(findSourcePackages());
     }
 
     /**

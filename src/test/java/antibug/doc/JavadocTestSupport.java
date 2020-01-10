@@ -181,11 +181,14 @@ class JavadocTestSupport {
 
         private final List<ClassInfo> infos = new ArrayList();
 
+        private Set<String> internals;
+
         /**
          * {@inheritDoc}
          */
         @Override
         protected void initialize() {
+            internals = findSourcePackages();
         }
 
         /**
@@ -193,7 +196,7 @@ class JavadocTestSupport {
          */
         @Override
         protected void process(TypeElement root) {
-            infos.add(new ClassInfo(root, new TypeResolver(null, null, root)));
+            infos.add(new ClassInfo(root, new TypeResolver(null, internals, root)));
         }
 
         /**

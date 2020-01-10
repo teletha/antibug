@@ -11,16 +11,19 @@ package antibug.doc;
 
 import static javax.tools.StandardLocation.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
@@ -182,6 +185,28 @@ public abstract class DocTool<Self extends DocTool> implements DiagnosticListene
     @Override
     public void report(Diagnostic<? extends JavaFileObject> diagnostic) {
         System.out.println(diagnostic);
+    }
+
+    /**
+     * Find all package names in the source directory.
+     * 
+     * @return
+     */
+    protected final Set<String> findSourcePackages() {
+        // collect internal package names
+        Set<String> packages = new HashSet();
+
+        for (Path source : sources) {
+            try (Stream<Path> paths = Files.walk(source)) {
+                paths.filter(path -> Files.isDirectory(path)).forEach(path -> {
+                    packages.add(source.relativize(path).toString().replace(File.separatorChar, '.'));
+                });
+            } catch (Exception e) {
+                // though
+            }
+        }
+
+        return packages;
     }
 
     /**
