@@ -95,7 +95,9 @@ class JavadocTestSupport {
      * @return
      */
     protected final boolean sameXML(XML actual, XML expected) {
-        return sameXML(actual, actual.to(), expected, expected.to());
+        XML root = I.xml("<r/>").append(actual).children();
+
+        return sameXML(root, root.to(), expected, expected.to());
     }
 
     /**
@@ -148,9 +150,8 @@ class JavadocTestSupport {
         Node expectedNext = expected.getNextSibling();
 
         if (actualNext == null) {
-            System.out.println(actual + "  " + expected + "      " + actualNext + "   " + expectedNext + "    " + (expected == expectedNext));
             assert actualNext == expectedNext : error(actualXML, expectedXML);
-        } else if (actualNext != null && expectedNext != null) {
+        } else if (expectedNext != null) {
             assert sameXML(actualXML, actualNext, expectedXML, expectedNext);
         }
         return true;
