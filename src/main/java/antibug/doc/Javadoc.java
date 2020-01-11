@@ -144,16 +144,16 @@ public class Javadoc extends DocTool<Javadoc> {
                             $(m.createModifier(), m.createReturnType(), m.createName(), m.createParameter());
                         });
                         if (!m.paramTags.isEmpty() || m.returnTag.isPresent()) {
-                            $("dl", styles.MainSignature, () -> {
-                                for (Ⅱ<String, XML> variable : m.typeParameters) {
-                                    $("dt", styles.SignatureVariable, variable.ⅱ);
+                            $("section", styles.MainSignature, () -> {
+                                for (int i = 0, size = m.numberOfTypeVariables(); i < size; i++) {
+                                    $("p", styles.SignatureTypeVariable, m.createTypeVariable(i));
                                 }
 
-                                for (Ⅱ<String, XML> param : m.params) {
-                                    $("dt", styles.SignatureParameter, text(param.ⅰ), param.ⅱ);
+                                for (int i = 0, size = m.numberOfParameters(); i < size; i++) {
+                                    $("p", styles.SignatureParameter, m.createParameter(i), m.createParameterName(i));
                                 }
 
-                                $("dt", styles.SignatureReturn, m.createReturnType());
+                                $(styles.SignatureReturn.selector(), m.createReturnType());
                             });
                         }
                     });

@@ -200,6 +200,6 @@ public class StructuredTypeTest extends JavadocTestSupport {
      * @return
      */
     private boolean checkParamType(ExecutableInfo info, String expected) {
-        return sameXML(info.params.get(0).ⅱ, expected);
+        return sameXML(info.createParameter(0), expected);
     }
 }

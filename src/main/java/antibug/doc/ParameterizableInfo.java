@@ -17,11 +17,17 @@ import javax.lang.model.type.TypeMirror;
 
 import kiss.I;
 import kiss.XML;
-import kiss.Ⅱ;
 
 public abstract class ParameterizableInfo extends MemberInfo {
 
-    protected final List<Ⅱ<String, XML>> typeParameters = new ArrayList();
+    /** The type variable name manager. */
+    private final List<String> names = new ArrayList();
+
+    /** The type variable signature manager. */
+    private final List<XML> signatures = new ArrayList();
+
+    /** The type variable comment manager. */
+    private final List<XML> comments = new ArrayList();
 
     /**
      * @param e
@@ -45,26 +51,60 @@ public abstract class ParameterizableInfo extends MemberInfo {
                     param.after(extend);
                 }
             }
-            typeParameters.add(I.pair(type.getSimpleName().toString(), param.parent().children()));
 
+            names.add(type.getSimpleName().toString());
+            signatures.add(param.parent().children());
         });
-
     }
 
     /**
-     * Build paramter type element.
+     * Compute the number of type variable declarations.
+     */
+    public final int numberOfTypeVariables() {
+        return names.size();
+    }
+
+    /**
+     * Build type variable element.
      * 
      * @return
      */
-    public XML createPrameterType() {
-        if (typeParameters.isEmpty()) {
+    public final XML createTypeVariables() {
+        if (names.isEmpty()) {
             return null;
         }
 
         XML root = I.xml("i").addClass("parameters");
-        for (Ⅱ<String, XML> type : typeParameters) {
-            root.append(type.ⅱ.clone());
+        for (int i = 0, size = names.size(); i < size; i++) {
+            root.accept(createTypeVariable(i));
         }
         return root;
+    }
+
+    /**
+     * Build type variable element.
+     * 
+     * @return
+     */
+    public final XML createTypeVariable(int index) {
+        return signatures.get(index).clone();
+    }
+
+    /**
+     * Build type variable element.
+     * 
+     * @return
+     */
+    public final XML createTypeVariableName(int index) {
+        return I.xml("<i/>").text(names.get(index));
+    }
+
+    /**
+     * Build type variable element.
+     * 
+     * @return
+     */
+    public final XML createTypeVariableComment(int index) {
+        return comments.get(index).clone();
     }
 }

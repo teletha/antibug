@@ -18,11 +18,17 @@ import javax.lang.model.element.VariableElement;
 
 import kiss.I;
 import kiss.XML;
-import kiss.Ⅱ;
 
 public class ExecutableInfo extends ParameterizableInfo {
 
-    public final List<Ⅱ<String, XML>> params = new ArrayList();
+    /** The parameter name manager. */
+    private final List<String> names = new ArrayList();
+
+    /** The parameter signature manager. */
+    private final List<XML> signatures = new ArrayList();
+
+    /** The parameter comment manager. */
+    private final List<XML> comments = new ArrayList();
 
     private final String id;
 
@@ -42,9 +48,17 @@ public class ExecutableInfo extends ParameterizableInfo {
             if (e.isVarArgs() && i + 1 == params.size()) {
                 xml.attr("array", "var");
             }
-            this.params.add(I.pair(param.toString(), xml));
+            names.add(param.toString());
+            signatures.add(xml);
         }
         this.id = name + "(" + joiner + ")";
+    }
+
+    /**
+     * Compute the number of parameters.
+     */
+    public final int numberOfParameters() {
+        return names.size();
     }
 
     /**
@@ -55,11 +69,10 @@ public class ExecutableInfo extends ParameterizableInfo {
     public final XML createParameter() {
         XML xml = I.xml("span").addClass(styles.SignatureParameterPart.className()[0]);
         xml.append("(");
-        for (int i = 0, size = params.size(); i < size; i++) {
-            Ⅱ<String, XML> param = params.get(i);
-            xml.append(param.ⅱ);
+        for (int i = 0, size = names.size(); i < size; i++) {
+            xml.append(createParameter(i));
             xml.append(" ");
-            xml.append(I.xml("span").addClass("parameterName").text(param.ⅰ));
+            xml.append(I.xml("span").addClass("parameterName").text(names.get(i)));
 
             if (i + 1 != size) {
                 xml.append(", ");
@@ -68,6 +81,33 @@ public class ExecutableInfo extends ParameterizableInfo {
         xml.append(")");
 
         return xml;
+    }
+
+    /**
+     * Build parameter element.
+     * 
+     * @return
+     */
+    public final XML createParameter(int index) {
+        return signatures.get(index).clone();
+    }
+
+    /**
+     * Build parameter element.
+     * 
+     * @return
+     */
+    public final XML createParameterName(int index) {
+        return I.xml("<i/>").text(names.get(index));
+    }
+
+    /**
+     * Build parameter element.
+     * 
+     * @return
+     */
+    public final XML createParameterComment(int index) {
+        return comments.get(index).clone();
     }
 
     /**

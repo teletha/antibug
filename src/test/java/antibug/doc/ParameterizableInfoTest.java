@@ -54,7 +54,7 @@ public class ParameterizableInfoTest extends JavadocTestSupport {
      */
     private boolean checkTypeParmeterName(ParameterizableInfo info, String... expected) {
         for (int i = 0; i < expected.length; i++) {
-            assert info.typeParameters.get(i).ⅰ.equals(expected[i]);
+            assert info.createTypeVariableName(i).text().equals(expected[i]);
         }
         return true;
     }
@@ -68,7 +68,7 @@ public class ParameterizableInfoTest extends JavadocTestSupport {
      */
     private boolean checkTypeParameter(ParameterizableInfo info, String... expected) {
         for (int i = 0; i < expected.length; i++) {
-            assert sameXML(info.typeParameters.get(i).ⅱ, expected[i]);
+            assert sameXML(info.createTypeVariable(i), expected[i]);
         }
         return true;
     }

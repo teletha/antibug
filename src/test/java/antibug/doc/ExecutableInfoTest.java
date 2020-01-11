@@ -9,13 +9,9 @@
  */
 package antibug.doc;
 
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
-
-import kiss.I;
 
 public class ExecutableInfoTest extends JavadocTestSupport {
 
@@ -23,7 +19,7 @@ public class ExecutableInfoTest extends JavadocTestSupport {
     public void parameter0() {
         ExecutableInfo info = currentMethod();
         assert info.name.equals("parameter0");
-        assert info.params.size() == 0;
+        assert info.numberOfParameters() == 0;
     }
 
     @ParameterizedTest
@@ -52,7 +48,9 @@ public class ExecutableInfoTest extends JavadocTestSupport {
      * @return
      */
     private boolean checkParamName(ExecutableInfo info, String... expected) {
-        assert info.params.stream().map(v -> v.ⅰ).collect(Collectors.toList()).containsAll(I.set(expected));
+        for (int i = 0; i < expected.length; i++) {
+            assert info.createParameterName(i).text().equals(expected[i]);
+        }
         return true;
     }
 }

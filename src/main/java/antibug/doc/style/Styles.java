@@ -31,7 +31,7 @@ public class Styles extends AbstractStyleDSL {
 
     private final FontPalette fonts = FontPalette.with.baseBySystem().title(Font.fromGoogle("Ubuntu")).monoBySystem();
 
-    private final Font RobotoMono = Font.fromGoogle("Roboto Mono");
+    private final Font RobotoMono = Font.fromGoogle("Roboto Condensed");
 
     // color palette - https://coolors.co/e63946-f1faee-a8dadc-457b9d-1d3557
 
@@ -396,37 +396,49 @@ public class Styles extends AbstractStyleDSL {
     };
 
     public final Style MainTitle = () -> {
-        font.family(fonts.title, Font.SansSerif).size(1, rem).weight.normal();
+        font.family(RobotoMono).size(1, rem).weight.normal();
         display.block();
     };
 
+    private final Numeric signatureLabelWidth = Numeric.of(4.5, rem);
+
     public final Style MainSignature = () -> {
-        padding.left(5, rem);
+        padding.left(signatureLabelWidth);
     };
 
     private final Style SignatureDefinition = () -> {
-        $.before(() -> {
-            font.size(0.8, rem).color(palette.accent).family(fonts.title);
+        display.block();
+
+        $.firstType().before(() -> {
+            display.inlineBlock().width(signatureLabelWidth);
+            margin.left(signatureLabelWidth.negate());
+            font.size(0.8, rem).color(palette.accent().opacify(-0.4)).family(RobotoMono);
         });
     };
 
-    public final Style SignatureVariable = SignatureDefinition.with(() -> {
-        $.before(() -> {
+    public final Style SignatureTypeVariable = Style.named("v", () -> {
+        SignatureDefinition.style();
+
+        $.firstType().before(() -> {
             content.text("TypeVariable");
         });
     });
 
-    public final Style SignatureParameter = () -> {
-        $.before(() -> {
+    public final Style SignatureParameter = Style.named("pa", () -> {
+        SignatureDefinition.style();
+
+        $.firstType().before(() -> {
             content.text("Parameter");
         });
-    };
+    });
 
-    public final Style SignatureReturn = () -> {
-        $.before(() -> {
+    public final Style SignatureReturn = Style.named("re", () -> {
+        SignatureDefinition.style();
+
+        $.firstType().before(() -> {
             content.text("Return");
         });
-    };
+    });
 
     // ==================================================================
     // Left Side Navigation
