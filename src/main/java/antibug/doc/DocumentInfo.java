@@ -139,6 +139,21 @@ public class DocumentInfo {
     }
 
     /**
+     * Find comment.
+     * 
+     * @param name
+     * @return
+     */
+    protected final XML findParamTagBy(String name) {
+        for (Ⅱ<String, XML> param : paramTags) {
+            if (param.ⅰ.equals(name)) {
+                return param.ⅱ;
+            }
+        }
+        return null;
+    }
+
+    /**
      * @param docs Documents.
      * @return
      */
@@ -263,7 +278,7 @@ public class DocumentInfo {
                 } else {
                     // Since Javadoc text is rarely correct HTML, switch by inserting dock type
                     // declarations to use the tag soup parser instead of the XML parser.
-                    text.insert(0, "<!DOCTYPE section><section>").append("</section>");
+                    text.insert(0, "<!DOCTYPE span><span>").append("</span>");
 
                     // sanitize script and css
                     XML xml = I.xml(text);

@@ -143,17 +143,36 @@ public class Javadoc extends DocTool<Javadoc> {
                         $("h2", id(m.id()), styles.MainTitle, () -> {
                             $(m.createModifier(), m.createReturnType(), m.createName(), m.createParameter());
                         });
-                        if (!m.paramTags.isEmpty() || m.returnTag.isPresent()) {
+
+                        int types = m.numberOfTypeVariables();
+                        int params = m.numberOfParameters();
+                        int returns = m.returnVoid() ? 0 : 1;
+
+                        if (0 < types + params + returns) {
                             $("section", styles.MainSignature, () -> {
-                                for (int i = 0, size = m.numberOfTypeVariables(); i < size; i++) {
-                                    $("p", styles.SignatureTypeVariable, m.createTypeVariable(i));
+                                if (0 < types) {
+                                    $("div", styles.SignatureTypeVariable, () -> {
+                                        for (int i = 0; i < types; i++) {
+                                            $("p", m.createTypeVariable(i));
+                                        }
+                                    });
                                 }
 
-                                for (int i = 0, size = m.numberOfParameters(); i < size; i++) {
-                                    $("p", styles.SignatureParameter, m.createParameter(i), m.createParameterName(i));
+                                if (0 < params) {
+                                    $("table", styles.SignatureTable, styles.SignatureParameter, foŕ(params, i -> {
+                                        $("tr", () -> {
+                                            $("td", m.createParameter(i));
+                                            $("td", m.createParameterName(i));
+                                            $("td", m.createParameterComment(i));
+                                        });
+                                    }));
                                 }
 
-                                $(styles.SignatureReturn.selector(), m.createReturnType());
+                                if (0 < returns) {
+                                    $("div", styles.SignatureReturn, () -> {
+                                        $("p", m.createReturnType());
+                                    });
+                                }
                             });
                         }
                     });

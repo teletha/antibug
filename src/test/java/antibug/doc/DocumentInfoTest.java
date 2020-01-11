@@ -22,7 +22,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     public void text() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.comment, "<section>Text</section>");
+        assert sameXML(info.comment, "<span>Text</span>");
     }
 
     /**
@@ -33,7 +33,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     public void element() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.comment, "<section><p>Text</p></section>");
+        assert sameXML(info.comment, "<span><p>Text</p></span>");
     }
 
     /**
@@ -42,7 +42,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     public void attribute() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.comment, "<section><a href=\"test.css\" type=\"stylesheet\"/></section>");
+        assert sameXML(info.comment, "<span><a href=\"test.css\" type=\"stylesheet\"/></span>");
     }
 
     /**
@@ -54,11 +54,11 @@ public class DocumentInfoTest extends JavadocTestSupport {
         ExecutableInfo info = currentMethod();
         Ⅱ<String, XML> param = info.paramTags.get(0);
         assert param.ⅰ.equals("name1");
-        assert sameXML(param.ⅱ, "<section>Description.</section>");
+        assert sameXML(param.ⅱ, "<span>Description.</span>");
 
         param = info.paramTags.get(1);
         assert param.ⅰ.equals("name2");
-        assert sameXML(param.ⅱ, "<section>This is <em>NOT</em> error.</section>");
+        assert sameXML(param.ⅱ, "<span>This is <em>NOT</em> error.</span>");
     }
 
     /**
@@ -70,11 +70,11 @@ public class DocumentInfoTest extends JavadocTestSupport {
         ExecutableInfo info = currentMethod();
         Ⅱ<String, XML> param = info.typeParameterTags.get(0);
         assert param.ⅰ.equals("T");
-        assert sameXML(param.ⅱ, "<section>Description.</section>");
+        assert sameXML(param.ⅱ, "<span>Description.</span>");
 
         param = info.typeParameterTags.get(1);
         assert param.ⅰ.equals("NEXT");
-        assert sameXML(param.ⅱ, "<section>This is <em>NOT</em> error.</section>");
+        assert sameXML(param.ⅱ, "<span>This is <em>NOT</em> error.</span>");
     }
 
     /**
@@ -86,11 +86,11 @@ public class DocumentInfoTest extends JavadocTestSupport {
         ExecutableInfo info = currentMethod();
         Ⅱ<String, XML> param = info.throwsTags.get(0);
         assert param.ⅰ.equals("NullPointerException");
-        assert sameXML(param.ⅱ, "<section>If param is null.</section>");
+        assert sameXML(param.ⅱ, "<span>If param is null.</span>");
 
         param = info.throwsTags.get(1);
         assert param.ⅰ.equals("IllegalArgumentException");
-        assert sameXML(param.ⅱ, "<section>If param is <code>0</code>.</section>");
+        assert sameXML(param.ⅱ, "<span>If param is <code>0</code>.</span>");
     }
 
     /**
@@ -100,7 +100,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
     public void returnTag() {
         ExecutableInfo info = currentMethod();
         XML description = info.returnTag.exact();
-        assert sameXML(description, "<section>description</section>");
+        assert sameXML(description, "<span>description</span>");
     }
 
     /**
@@ -109,7 +109,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     public void literalTag() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.comment, "<section>0 &amp;lt; i</section>");
+        assert sameXML(info.comment, "<span>0 &amp;lt; i</span>");
     }
 
     /**
@@ -118,7 +118,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     public void linkTagInternalType() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.comment, "<section><a href='/types/antibug.doc.DocumentInfoTest.html'>DocumentInfoTest</a></section>");
+        assert sameXML(info.comment, "<span><a href='/types/antibug.doc.DocumentInfoTest.html'>DocumentInfoTest</a></span>");
     }
 
     /**
@@ -127,7 +127,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     public void linkTagInternalMethod() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.comment, "<section><a href='/types/antibug.doc.DocumentInfoTest.html#linkTagInternalMethod()'>#linkTagInternalMethod()</a></section>");
+        assert sameXML(info.comment, "<span><a href='/types/antibug.doc.DocumentInfoTest.html#linkTagInternalMethod()'>#linkTagInternalMethod()</a></span>");
     }
 
     /**
@@ -136,7 +136,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     public void linkTagInternalTypeAndMethod() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.comment, "<section><a href='/types/antibug.doc.DocumentInfoTest.html#linkTagInternalTypeAndMethod()'>DocumentInfoTest#linkTagInternalTypeAndMethod()</a></section>");
+        assert sameXML(info.comment, "<span><a href='/types/antibug.doc.DocumentInfoTest.html#linkTagInternalTypeAndMethod()'>DocumentInfoTest#linkTagInternalTypeAndMethod()</a></span>");
     }
 
     /**
@@ -145,7 +145,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     public void linkTagUnregisteredExternalType() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.comment, "<section>String</section>");
+        assert sameXML(info.comment, "<span>String</span>");
     }
 
     /**
@@ -154,7 +154,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     public void linkTagUnregisteredExternalTypeAndMethod() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.comment, "<section>String#chars()</section>");
+        assert sameXML(info.comment, "<span>String#chars()</span>");
     }
 
     /**
@@ -163,7 +163,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     public void linkplainTagInternalType() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.comment, "<section><a href='/types/antibug.doc.DocumentInfoTest.html'>DocumentInfoTest</a></section>");
+        assert sameXML(info.comment, "<span><a href='/types/antibug.doc.DocumentInfoTest.html'>DocumentInfoTest</a></span>");
     }
 
     /**
@@ -172,7 +172,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     public void linkplainTagInternalMethod() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.comment, "<section><a href='/types/antibug.doc.DocumentInfoTest.html#linkplainTagInternalMethod()'>#linkplainTagInternalMethod()</a></section>");
+        assert sameXML(info.comment, "<span><a href='/types/antibug.doc.DocumentInfoTest.html#linkplainTagInternalMethod()'>#linkplainTagInternalMethod()</a></span>");
     }
 
     /**
@@ -181,7 +181,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     public void linkplainTagInternalTypeAndMethod() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.comment, "<section><a href='/types/antibug.doc.DocumentInfoTest.html#linkplainTagInternalTypeAndMethod()'>DocumentInfoTest#linkplainTagInternalTypeAndMethod()</a></section>");
+        assert sameXML(info.comment, "<span><a href='/types/antibug.doc.DocumentInfoTest.html#linkplainTagInternalTypeAndMethod()'>DocumentInfoTest#linkplainTagInternalTypeAndMethod()</a></span>");
     }
 
     /**
@@ -190,7 +190,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     public void linkplainTagUnregisteredExternalType() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.comment, "<section>String</section>");
+        assert sameXML(info.comment, "<span>String</span>");
     }
 
     /**
@@ -199,7 +199,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     public void linkplainTagUnregisteredExternalTypeAndMethod() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.comment, "<section>String#chars()</section>");
+        assert sameXML(info.comment, "<span>String#chars()</span>");
     }
 
     /**
@@ -209,8 +209,8 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     public void authorTag() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.authorTags.get(0), "<section>Me</section>");
-        assert sameXML(info.authorTags.get(1), "<section><b>You</b></section>");
+        assert sameXML(info.authorTags.get(0), "<span>Me</span>");
+        assert sameXML(info.authorTags.get(1), "<span><b>You</b></span>");
     }
 
     /**
@@ -220,8 +220,8 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     public void seeTag() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.seeTags.get(0), "<section>Text</section>");
-        assert sameXML(info.seeTags.get(1), "<section><b>String</b></section>");
+        assert sameXML(info.seeTags.get(0), "<span>Text</span>");
+        assert sameXML(info.seeTags.get(1), "<span><b>String</b></span>");
     }
 
     /**
@@ -231,8 +231,8 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     public void sinceTag() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.sinceTags.get(0), "<section>1.0</section>");
-        assert sameXML(info.sinceTags.get(1), "<section><b>1.2</b></section>");
+        assert sameXML(info.sinceTags.get(0), "<span>1.0</span>");
+        assert sameXML(info.sinceTags.get(1), "<span><b>1.2</b></span>");
     }
 
     /**
@@ -242,7 +242,7 @@ public class DocumentInfoTest extends JavadocTestSupport {
     @Test
     public void versionTags() {
         ExecutableInfo info = currentMethod();
-        assert sameXML(info.versionTags.get(0), "<section>1.0</section>");
-        assert sameXML(info.versionTags.get(1), "<section><b>1.2</b></section>");
+        assert sameXML(info.versionTags.get(0), "<span>1.0</span>");
+        assert sameXML(info.versionTags.get(1), "<span><b>1.2</b></span>");
     }
 }

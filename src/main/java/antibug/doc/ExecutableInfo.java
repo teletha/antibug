@@ -50,6 +50,7 @@ public class ExecutableInfo extends ParameterizableInfo {
             }
             names.add(param.toString());
             signatures.add(xml);
+            comments.add(findParamTagBy(param.toString()));
         }
         this.id = name + "(" + joiner + ")";
     }
@@ -98,7 +99,7 @@ public class ExecutableInfo extends ParameterizableInfo {
      * @return
      */
     public final XML createParameterName(int index) {
-        return I.xml("<i/>").text(names.get(index));
+        return I.xml("<i/>").addClass(styles.SignatureName.className()).text(names.get(index));
     }
 
     /**
@@ -107,7 +108,13 @@ public class ExecutableInfo extends ParameterizableInfo {
      * @return
      */
     public final XML createParameterComment(int index) {
-        return comments.get(index).clone();
+        XML comment = comments.get(index);
+
+        if (comment == null) {
+            return null;
+        } else {
+            return comment.clone();
+        }
     }
 
     /**

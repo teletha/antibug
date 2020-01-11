@@ -29,9 +29,9 @@ public class Styles extends AbstractStyleDSL {
             .background($.rgb(241, 250, 238))
             .font($.rgb(94, 109, 130));
 
-    private final FontPalette fonts = FontPalette.with.baseBySystem().title(Font.fromGoogle("Ubuntu")).monoBySystem();
-
     private final Font RobotoMono = Font.fromGoogle("Roboto Condensed");
+
+    private final FontPalette fonts = FontPalette.with.base(RobotoMono).title(Font.fromGoogle("Ubuntu")).monoBySystem();
 
     // color palette - https://coolors.co/e63946-f1faee-a8dadc-457b9d-1d3557
 
@@ -406,39 +406,54 @@ public class Styles extends AbstractStyleDSL {
         padding.left(signatureLabelWidth);
     };
 
-    private final Style SignatureDefinition = () -> {
-        display.block();
+    public final Style SignatureTable = () -> {
+        $.select("td", () -> {
+            padding.right(0.8, rem);
 
-        $.firstType().before(() -> {
+            $.empty().before(() -> {
+                content.text("No description.");
+            });
+        });
+    };
+
+    private final Style SignatureDefinition = () -> {
+        position.relative();
+        margin.bottom(0.5, rem);
+
+        $.before(() -> {
+            position.absolute().top(0.2, rem);
             display.inlineBlock().width(signatureLabelWidth);
             margin.left(signatureLabelWidth.negate());
             font.size(0.8, rem).color(palette.accent().opacify(-0.4)).family(RobotoMono);
         });
     };
 
-    public final Style SignatureTypeVariable = Style.named("v", () -> {
+    public final Style SignatureTypeVariable = () -> {
         SignatureDefinition.style();
 
-        $.firstType().before(() -> {
+        $.before(() -> {
             content.text("TypeVariable");
         });
-    });
+    };
 
-    public final Style SignatureParameter = Style.named("pa", () -> {
+    public final Style SignatureParameter = () -> {
         SignatureDefinition.style();
 
-        $.firstType().before(() -> {
+        $.before(() -> {
             content.text("Parameter");
         });
-    });
+    };
 
-    public final Style SignatureReturn = Style.named("re", () -> {
+    public final Style SignatureReturn = () -> {
         SignatureDefinition.style();
 
-        $.firstType().before(() -> {
+        $.before(() -> {
             content.text("Return");
         });
-    });
+    };
+
+    public final Style SignatureName = () -> {
+    };
 
     // ==================================================================
     // Left Side Navigation

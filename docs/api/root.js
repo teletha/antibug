@@ -1,287 +1,140 @@
 const root = {
 	"modules": [],
 	"packages": [
-		"antibug",
-		"antibug.bytecode",
-		"antibug.doc",
-		"antibug.doc.site",
-		"antibug.doc.style",
-		"antibug.dummy",
-		"antibug.powerassert",
-		"antibug.profiler",
-		"org.junit.jupiter.engine.descriptor"
+		"kiss",
+		"kiss.model"
 	],
 	"types": [
 		{
-			"name": "Agent",
-			"packageName": "antibug.bytecode",
+			"name": "Accessor",
+			"packageName": "kiss",
+			"type": "Interface",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "Decoder",
+			"packageName": "kiss",
+			"type": "Functional",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "Disposable",
+			"packageName": "kiss",
+			"type": "Functional",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "Encoder",
+			"packageName": "kiss",
+			"type": "Functional",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "Extensible",
+			"packageName": "kiss",
+			"type": "Interface",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "ExtensionFactory",
+			"packageName": "kiss",
+			"type": "Functional",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "I",
+			"packageName": "kiss",
 			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
-			"name": "Agent.Translator",
-			"packageName": "antibug.bytecode",
-			"type": "AbstractClass",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "BuiltinStyles",
-			"packageName": "antibug.doc",
+			"name": "JSON",
+			"packageName": "kiss",
 			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
-			"name": "Bytecode",
-			"packageName": "antibug.bytecode",
-			"type": "AbstractClass",
+			"name": "Lifestyle",
+			"packageName": "kiss",
+			"type": "Functional",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
-			"name": "Chronus",
-			"packageName": "antibug",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "Chronus.Task",
-			"packageName": "antibug",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "ClassInfo",
-			"packageName": "antibug.doc",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "CleanRoom",
-			"packageName": "antibug",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "CleanRoom.FileSystemDSL",
-			"packageName": "antibug",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "CommandLineUser",
-			"packageName": "antibug",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "Constant",
-			"packageName": "antibug.bytecode",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "DocTool",
-			"packageName": "antibug.doc",
-			"type": "AbstractClass",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "DocTool.Internal",
-			"packageName": "antibug.doc",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "DocumentInfo",
-			"packageName": "antibug.doc",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "ElementUtil",
-			"packageName": "antibug.doc",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "ExecutableInfo",
-			"packageName": "antibug.doc",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "FieldInfo",
-			"packageName": "antibug.doc",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "HTML",
-			"packageName": "antibug.doc.site",
-			"type": "AbstractClass",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "Instruction",
-			"packageName": "antibug.bytecode",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "IntValue",
-			"packageName": "antibug.bytecode",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "Javadoc",
-			"packageName": "antibug.doc",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "LocalVariable",
-			"packageName": "antibug.bytecode",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "MemberInfo",
-			"packageName": "antibug.doc",
-			"type": "AbstractClass",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "MethodCall",
-			"packageName": "antibug.bytecode",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "MethodInfo",
-			"packageName": "antibug.doc",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "ParameterizableInfo",
-			"packageName": "antibug.doc",
-			"type": "AbstractClass",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "Parameterized",
-			"packageName": "antibug.dummy",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "PowerAssert",
-			"packageName": "antibug.powerassert",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "PowerAssertContext",
-			"packageName": "antibug.powerassert",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "PowerAssertOff",
-			"packageName": "antibug.powerassert",
+			"name": "Managed",
+			"packageName": "kiss",
 			"type": "Annotation",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
-			"name": "PowerAssertRenderer",
-			"packageName": "antibug.powerassert",
-			"type": "AbstractClass",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "PowerAssertionError",
-			"packageName": "antibug.powerassert",
-			"type": "Exception",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "Profiler",
-			"packageName": "antibug.profiler",
+			"name": "Model",
+			"packageName": "kiss.model",
 			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
-			"name": "Profiler.Result",
-			"packageName": "antibug.profiler",
+			"name": "Property",
+			"packageName": "kiss.model",
 			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
-			"name": "ResolvedType",
-			"packageName": "antibug.doc",
+			"name": "Narrow",
+			"packageName": "kiss",
+			"type": "Functional",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "Observer",
+			"packageName": "kiss",
+			"type": "Functional",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "Prototype",
+			"packageName": "kiss",
 			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
-			"name": "SiteBuilder",
-			"packageName": "antibug.doc.site",
+			"name": "Signal",
+			"packageName": "kiss",
 			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
-			"name": "Styles",
-			"packageName": "antibug.doc.style",
+			"name": "Signaling",
+			"packageName": "kiss",
 			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
-			"name": "TestMethodTestDescriptor",
-			"packageName": "org.junit.jupiter.engine.descriptor",
+			"name": "Singleton",
+			"packageName": "kiss",
 			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
-			"name": "TypeResolver",
-			"packageName": "antibug.doc",
-			"type": "Class",
+			"name": "Storable",
+			"packageName": "kiss",
+			"type": "Interface",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		}

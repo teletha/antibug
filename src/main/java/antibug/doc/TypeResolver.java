@@ -202,6 +202,7 @@ public class TypeResolver {
      */
     private final ResolvedType resolve(TypeElement e) {
         ResolvedType resolved = new ResolvedType();
+        System.out.println(e);
         resolved.typeName = e.getSimpleName().toString();
 
         // enclosing

@@ -2,315 +2,11 @@
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed");
 @import url("http://fonts.googleapis.com/css?family=Ubuntu");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1010091153 */.PUBLIC {
+/* 1016602486 */.TRANSIENT {
 	position: relative;
 }
 
-/* 1010091153 */.PUBLIC::before {
-	padding-right: 0.6rem;
-	color: hsl(120,39%,55%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 1010091153 */.PUBLIC.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 1010091153 */.PUBLIC.FIELD::before {
-	content: '\e836';
-}
-
-/* 1091507282 */.package {
-	font-weight: bold;
-}
-
-/* 1178214215 */.Interface {
-	position: relative;
-}
-
-/* 1178214215 */.Interface::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: 1rem;
-	content: '\e88f';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 1193430365 */.AbstractClass {
-	position: relative;
-}
-
-/* 1193430365 */.AbstractClass::before {
-	font-family: "Material Icons";
-	color: hsl(120,9%,55%);
-	font-size: 1rem;
-	content: '\e90c';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 1193587393 */section {
-	margin-bottom: 0.5rem;
-}
-
-/* 1193587393 */section > pre {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 1193587393 */section > ul {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 1193587393 */section > ol {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 1240349581 */.ABSTRACT {
-	position: relative;
-}
-
-/* 1240349581 */.ABSTRACT::before {
-	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Condensed";
-	content: 'A';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 129730220 */i {
-	font-style: normal;
-}
-
-/* 1313605024 */main {
-	width: 85vw;
-	display: flex;
-	flex-direction: row;
-	margin-right: auto;
-	margin-left: auto;
-}
-
-/* 1352550658 */.PROTECTED {
-	position: relative;
-}
-
-/* 1352550658 */.PROTECTED::before {
-	padding-right: 0.6rem;
-	color: hsl(48,95%,59%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 1352550658 */.PROTECTED.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 1352550658 */.PROTECTED.FIELD::before {
-	content: '\e836';
-}
-
-/* 1400539413 */.parameters::before {
-	content: '<';
-}
-
-/* 1400539413 */.parameters::after {
-	content: '>';
-}
-
-/* 1507557910 */h2 {
-	font-size: 1.8rem;
-	font-family: Ubuntu;
-}
-
-/* 1759548617 */.Enum {
-	position: relative;
-}
-
-/* 1759548617 */.Enum::before {
-	font-family: "Material Icons";
-	color: hsl(120,4%,55%);
-	font-size: 1rem;
-	content: '\e01e';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 1788199670 */pa {
-	display: block;
-}
-
-/* 1788199670 */pa:first-of-type::before {
-	display: inline-block;
-	width: 4.5rem;
-	margin-left: -4.5rem;
-	font-size: 0.8rem;
-	color: hsla(2,68%,58%,0.6);
-	font-family: "Roboto Condensed";
-}
-
-/* 1788199670 */pa:first-of-type::before {
-	content: 'Parameter';
-}
-
-/* 1794282388 */.PRIVATE {
-	position: relative;
-}
-
-/* 1794282388 */.PRIVATE::before {
-	padding-right: 0.6rem;
-	color: hsl(2,68%,58%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 1794282388 */.PRIVATE.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 1794282388 */.PRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 1898748879 */.Exception {
-	position: relative;
-}
-
-/* 1898748879 */.Exception::before {
-	font-family: "Material Icons";
-	color: hsl(26,90%,53%);
-	font-size: 1rem;
-	content: '\e031';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 2031044915 */v {
-	display: block;
-}
-
-/* 2031044915 */v:first-of-type::before {
-	display: inline-block;
-	width: 4.5rem;
-	margin-left: -4.5rem;
-	font-size: 0.8rem;
-	color: hsla(2,68%,58%,0.6);
-	font-family: "Roboto Condensed";
-}
-
-/* 2031044915 */v:first-of-type::before {
-	content: 'TypeVariable';
-}
-
-/* 2034790200 */.FINAL {
-	position: relative;
-}
-
-/* 2034790200 */.FINAL::before {
-	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Condensed";
-	content: 'F';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 2067156807 */.VOLATILE {
-	position: relative;
-}
-
-/* 2067156807 */.VOLATILE::before {
-	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Condensed";
-	content: 'V';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 2101425609 */html {
-	font-size: 13px;
-	scroll-behavior: smooth;
-	scroll-padding-top: 80px;
-	word-break: break-all;
-}
-
-/* 2101425609 */html *[class|=el] {
-	font-size: 1rem;
-}
-
-/* 2117495919 */.Class {
-	position: relative;
-}
-
-/* 2117495919 */.Class::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: 1rem;
-	content: '\e90c';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 2140507466 */.PACKAGEPRIVATE {
-	position: relative;
-}
-
-/* 2140507466 */.PACKAGEPRIVATE::before {
-	padding-right: 0.6rem;
-	color: hsl(203,91%,56%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 2140507466 */.PACKAGEPRIVATE.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 2140507466 */.PACKAGEPRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 2142250502 */.TRANSIENT {
-	position: relative;
-}
-
-/* 2142250502 */.TRANSIENT::after {
+/* 1016602486 */.TRANSIENT::after {
 	color: hsl(203,91%,56%);
 	font-size: 0.8em;
 	font-family: "Material Icons";
@@ -320,11 +16,113 @@
 	left: 0.8em;
 }
 
-/* 27290517 */.SYNCHRONIZED {
+/* 1045836435 */a {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* 1045836435 */a:hover {
+	text-decoration: underline;
+	text-decoration-color: hsla(215,16%,44%,0.5);
+	text-underline-offset: 4px;
+	text-underline-position: under;
+}
+
+/* 1053392896 */i {
+	font-style: normal;
+}
+
+/* 1205094026 */html {
+	font-size: 13px;
+	scroll-behavior: smooth;
+	scroll-padding-top: 80px;
+	word-break: break-all;
+}
+
+/* 1205094026 */html *[class|=el] {
+	font-size: 1rem;
+}
+
+/* 1212473931 */.ABSTRACT {
 	position: relative;
 }
 
-/* 27290517 */.SYNCHRONIZED::after {
+/* 1212473931 */.ABSTRACT::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Condensed";
+	content: 'A';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
+}
+
+/* 126039047 */.Functional {
+	position: relative;
+}
+
+/* 126039047 */.Functional::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 1rem;
+	content: '\e88e';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 131084586 */.package {
+	font-weight: bold;
+}
+
+/* 1532216261 */section {
+	margin-bottom: 0.5rem;
+}
+
+/* 1532216261 */section > pre {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Roboto Condensed";
+}
+
+/* 1532216261 */section > ul {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Roboto Condensed";
+}
+
+/* 1532216261 */section > ol {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: "Roboto Condensed";
+}
+
+/* 1560243485 */.SYNCHRONIZED {
+	position: relative;
+}
+
+/* 1560243485 */.SYNCHRONIZED::after {
 	color: hsl(203,91%,56%);
 	font-size: 0.8em;
 	font-family: "Material Icons";
@@ -334,45 +132,147 @@
 	left: 0.8em;
 }
 
-/* 366144107 */re {
-	display: block;
-}
-
-/* 366144107 */re:first-of-type::before {
-	display: inline-block;
-	width: 4.5rem;
-	margin-left: -4.5rem;
-	font-size: 0.8rem;
-	color: hsla(2,68%,58%,0.6);
-	font-family: "Roboto Condensed";
-}
-
-/* 366144107 */re:first-of-type::before {
-	content: 'Return';
-}
-
-/* 558412926 */.super::before {
-	content: ' super ';
-}
-
-/* 598599186 */.Functional {
+/* 1576513034 */.PRIVATE {
 	position: relative;
 }
 
-/* 598599186 */.Functional::before {
+/* 1576513034 */.PRIVATE::before {
+	padding-right: 0.6rem;
+	color: hsl(2,68%,58%);
 	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1576513034 */.PRIVATE.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1576513034 */.PRIVATE.FIELD::before {
+	content: '\e836';
+}
+
+/* 1617265545 */h2 {
+	font-size: 1.8rem;
+	font-family: Ubuntu;
+}
+
+/* 1618190026 */.Class {
+	position: relative;
+}
+
+/* 1618190026 */.Class::before {
+	font-family: "Material Icons";
+	color: hsl(120,39%,55%);
 	font-size: 1rem;
-	content: '\e88e';
+	content: '\e90c';
 	padding-right: 0.6rem;
 	vertical-align: middle;
 }
 
-/* 607216305 */.Annotation {
+/* 163190398 */.Enum {
 	position: relative;
 }
 
-/* 607216305 */.Annotation::before {
+/* 163190398 */.Enum::before {
+	font-family: "Material Icons";
+	color: hsl(120,4%,55%);
+	font-size: 1rem;
+	content: '\e01e';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 1722591828 */.AbstractClass {
+	position: relative;
+}
+
+/* 1722591828 */.AbstractClass::before {
+	font-family: "Material Icons";
+	color: hsl(120,9%,55%);
+	font-size: 1rem;
+	content: '\e90c';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 1753450343 */.PUBLIC {
+	position: relative;
+}
+
+/* 1753450343 */.PUBLIC::before {
+	padding-right: 0.6rem;
+	color: hsl(120,39%,55%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1753450343 */.PUBLIC.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1753450343 */.PUBLIC.FIELD::before {
+	content: '\e836';
+}
+
+/* 1787843859 */.parameters::before {
+	content: '<';
+}
+
+/* 1787843859 */.parameters::after {
+	content: '>';
+}
+
+/* 185419891 */.super::before {
+	content: ' super ';
+}
+
+/* 1862321166 */.Interface {
+	position: relative;
+}
+
+/* 1862321166 */.Interface::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 1rem;
+	content: '\e88f';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 343592684 */.Exception {
+	position: relative;
+}
+
+/* 343592684 */.Exception::before {
+	font-family: "Material Icons";
+	color: hsl(26,90%,53%);
+	font-size: 1rem;
+	content: '\e031';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 37858242 */.VOLATILE {
+	position: relative;
+}
+
+/* 37858242 */.VOLATILE::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Condensed";
+	content: 'V';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
+}
+
+/* 394737730 */.Annotation {
+	position: relative;
+}
+
+/* 394737730 */.Annotation::before {
 	font-family: "Material Icons";
 	color: hsl(120,4%,55%);
 	font-size: 1rem;
@@ -381,32 +281,86 @@
 	vertical-align: middle;
 }
 
-/* 833264385 */.extends::before {
+/* 523771567 */.PACKAGEPRIVATE {
+	position: relative;
+}
+
+/* 523771567 */.PACKAGEPRIVATE::before {
+	padding-right: 0.6rem;
+	color: hsl(203,91%,56%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 523771567 */.PACKAGEPRIVATE.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 523771567 */.PACKAGEPRIVATE.FIELD::before {
+	content: '\e836';
+}
+
+/* 628211188 */.FINAL {
+	position: relative;
+}
+
+/* 628211188 */.FINAL::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Condensed";
+	content: 'F';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
+}
+
+/* 798555759 */.extends::before {
 	content: ' extends ';
 }
 
-/* 868165122 */a {
-	color: inherit;
-	text-decoration: none;
-	cursor: pointer;
+/* 827549167 */.PROTECTED {
+	position: relative;
 }
 
-/* 868165122 */a:hover {
-	text-decoration: underline;
-	text-decoration-color: hsla(215,16%,44%,0.5);
-	text-underline-offset: 4px;
-	text-underline-position: under;
+/* 827549167 */.PROTECTED::before {
+	padding-right: 0.6rem;
+	color: hsl(48,95%,59%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
 }
 
-/* antibug.doc.style.Styles#lambda$0 */.M {
+/* 827549167 */.PROTECTED.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 827549167 */.PROTECTED.FIELD::before {
+	content: '\e836';
+}
+
+/* 918664959 */main {
+	width: 85vw;
+	display: flex;
+	flex-direction: row;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* antibug.doc.style.Styles#lambda$10 */.B {
+	opacity: 0.8;
+	padding-left: 0.08em;
+}
+
+/* antibug.doc.style.Styles#lambda$38 */.C {
 	font-size: 13px;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+	font-family: "Roboto Condensed";
 	color: hsl(215,16%,44%);
 	line-height: 1.5;
 	width: 100vw;
 }
 
-/* antibug.doc.style.Styles#lambda$1 */.E {
+/* antibug.doc.style.Styles#lambda$39 */.D {
 	background-color: hsl(0,0%,100%);
 	position: sticky;
 	top: 0;
@@ -421,51 +375,15 @@
 	border-bottom-style: solid;
 }
 
-/* antibug.doc.style.Styles#lambda$11 */.G {
-	flex-grow: 1;
-	-webkit-flex-grow: 1;
-	margin-left: 5rem;
-	margin-right: 1.5rem;
+/* antibug.doc.style.Styles#lambda$40 */.Q {
+	font-size: 2.5rem;
+	font-family: Ubuntu;
+	font-weight: normal;
+	color: hsl(203,91%,56%);
+	align-self: center;
 }
 
-/* antibug.doc.style.Styles#lambda$12 */.F {
-	flex-basis: 20vw;
-	-webkit-flex-basis: 20vw;
-	flex-shrink: 0;
-	-webkit-flex-shrink: 0;
-}
-
-/* antibug.doc.style.Styles#lambda$13 */.H {
-	position: sticky;
-	top: 80px;
-	display: block;
-	height: calc(80vh - 80px);
-	max-width: 20vw;
-	overflow: auto;
-	scrollbar-width: thin;
-	white-space: nowrap;
-}
-
-/* antibug.doc.style.Styles#lambda$13 */.H:hover {
-	overflow-y: auto;
-}
-
-/* antibug.doc.style.Styles#lambda$13 */.H>*>* {
-	padding-top: 0.15em;
-	padding-bottom: 0.15em;
-}
-
-/* antibug.doc.style.Styles#lambda$13 */.H .return {
-	color: hsl(48,55%,59%);
-}
-
-/* antibug.doc.style.Styles#lambda$13 */.H .return::before {
-	content: ':';
-	padding-left: 0.3em;
-	padding-right: 0.3em;
-}
-
-/* antibug.doc.style.Styles#lambda$19 */.L {
+/* antibug.doc.style.Styles#lambda$42 */.P {
 	margin-top: 2rem;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
@@ -476,46 +394,49 @@
 	background-repeat: repeat;
 }
 
-/* antibug.doc.style.Styles#lambda$19 */.L:nth-child(even) {
+/* antibug.doc.style.Styles#lambda$42 */.P:nth-child(even) {
 	background-color: hsl(0,0%,97%);
 }
 
-/* antibug.doc.style.Styles#lambda$19 */.L:nth-child(odd) {
+/* antibug.doc.style.Styles#lambda$42 */.P:nth-child(odd) {
 	background-color: hsl(0,0%,97%);
 }
 
-/* antibug.doc.style.Styles#lambda$19 */.L .return {
+/* antibug.doc.style.Styles#lambda$42 */.P .return {
 	margin-right: 0.8rem;
 }
 
-/* antibug.doc.style.Styles#lambda$19 */.L .parameters + .return {
+/* antibug.doc.style.Styles#lambda$42 */.P .parameters + .return {
 	margin-left: 0.8rem;
 }
 
-/* antibug.doc.style.Styles#lambda$2 */.J {
-	font-size: 2.5rem;
-	font-family: Ubuntu;
-	font-weight: normal;
-	color: hsl(203,91%,56%);
-	align-self: center;
-}
-
-/* antibug.doc.style.Styles#lambda$24 */.I {
+/* antibug.doc.style.Styles#lambda$47 */.G {
 	font-family: "Roboto Condensed";
 	font-size: 1rem;
 	font-weight: normal;
 	display: block;
 }
 
-/* antibug.doc.style.Styles#lambda$25 */.B {
+/* antibug.doc.style.Styles#lambda$48 */.F {
 	padding-left: 4.5rem;
 }
 
-/* antibug.doc.style.Styles#lambda$27 */.C {
-	display: block;
+/* antibug.doc.style.Styles#lambda$49 */.I td {
+	padding-right: 0.8rem;
 }
 
-/* antibug.doc.style.Styles#lambda$27 */.C:first-of-type::before {
+/* antibug.doc.style.Styles#lambda$49 */.I td:empty::before {
+	content: 'No description.';
+}
+
+/* antibug.doc.style.Styles#lambda$52 */.O {
+	position: relative;
+	margin-bottom: 0.5rem;
+}
+
+/* antibug.doc.style.Styles#lambda$52 */.O::before {
+	position: absolute;
+	top: 0.2rem;
 	display: inline-block;
 	width: 4.5rem;
 	margin-left: -4.5rem;
@@ -524,48 +445,147 @@
 	font-family: "Roboto Condensed";
 }
 
-/* antibug.doc.style.Styles#lambda$34 */.D {
-	margin-top: 0.9rem;
-	font-weight: bold;
-	font-size: 1rem;
+/* antibug.doc.style.Styles#lambda$54 */.J {
+	position: relative;
+	margin-bottom: 0.5rem;
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.A {
+/* antibug.doc.style.Styles#lambda$54 */.J::before {
+	position: absolute;
+	top: 0.2rem;
+	display: inline-block;
+	width: 4.5rem;
+	margin-left: -4.5rem;
+	font-size: 0.8rem;
+	color: hsla(2,68%,58%,0.6);
+	font-family: "Roboto Condensed";
+}
+
+/* antibug.doc.style.Styles#lambda$54 */.J::before {
+	content: 'TypeVariable';
+}
+
+/* antibug.doc.style.Styles#lambda$56 */.E {
+	position: relative;
+	margin-bottom: 0.5rem;
+}
+
+/* antibug.doc.style.Styles#lambda$56 */.E::before {
+	position: absolute;
+	top: 0.2rem;
+	display: inline-block;
+	width: 4.5rem;
+	margin-left: -4.5rem;
+	font-size: 0.8rem;
+	color: hsla(2,68%,58%,0.6);
+	font-family: "Roboto Condensed";
+}
+
+/* antibug.doc.style.Styles#lambda$56 */.E::before {
+	content: 'Parameter';
+}
+
+/* antibug.doc.style.Styles#lambda$58 */.K {
+	position: relative;
+	margin-bottom: 0.5rem;
+}
+
+/* antibug.doc.style.Styles#lambda$58 */.K::before {
+	position: absolute;
+	top: 0.2rem;
+	display: inline-block;
+	width: 4.5rem;
+	margin-left: -4.5rem;
+	font-size: 0.8rem;
+	color: hsla(2,68%,58%,0.6);
+	font-family: "Roboto Condensed";
+}
+
+/* antibug.doc.style.Styles#lambda$58 */.K::before {
+	content: 'Return';
+}
+
+/* antibug.doc.style.Styles#lambda$61 */.L {
 	flex-basis: 15vw;
 	-webkit-flex-basis: 15vw;
 	flex-shrink: 0;
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.A>* {
+/* antibug.doc.style.Styles#lambda$61 */.L>* {
 	position: sticky;
 	top: 80px;
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.A>*>* {
+/* antibug.doc.style.Styles#lambda$61 */.L>*>* {
 	margin-top: 0.5rem;
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.A .el-select {
+/* antibug.doc.style.Styles#lambda$61 */.L .el-select {
 	width: 100%;
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.A .el-checkbox {
+/* antibug.doc.style.Styles#lambda$61 */.L .el-checkbox {
 	display: block;
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.A #AllTypes {
+/* antibug.doc.style.Styles#lambda$61 */.L #AllTypes {
 	overflow: hidden;
 	scrollbar-width: thin;
 	height: 60vh;
 }
 
-/* antibug.doc.style.Styles#lambda$4 */.A #AllTypes:hover {
+/* antibug.doc.style.Styles#lambda$61 */.L #AllTypes:hover {
 	overflow-y: auto;
 }
 
-/* antibug.doc.style.Styles#lambda$45 */.K {
-	opacity: 0.8;
-	padding-left: 0.08em;
+/* antibug.doc.style.Styles#lambda$68 */.M {
+	flex-grow: 1;
+	-webkit-flex-grow: 1;
+	margin-left: 5rem;
+	margin-right: 1.5rem;
+}
+
+/* antibug.doc.style.Styles#lambda$69 */.H {
+	flex-basis: 20vw;
+	-webkit-flex-basis: 20vw;
+	flex-shrink: 0;
+	-webkit-flex-shrink: 0;
+}
+
+/* antibug.doc.style.Styles#lambda$70 */.A {
+	position: sticky;
+	top: 80px;
+	display: block;
+	height: calc(80vh - 80px);
+	max-width: 20vw;
+	overflow: auto;
+	scrollbar-width: thin;
+	white-space: nowrap;
+}
+
+/* antibug.doc.style.Styles#lambda$70 */.A:hover {
+	overflow-y: auto;
+}
+
+/* antibug.doc.style.Styles#lambda$70 */.A>*>* {
+	padding-top: 0.15em;
+	padding-bottom: 0.15em;
+}
+
+/* antibug.doc.style.Styles#lambda$70 */.A .return {
+	color: hsl(48,55%,59%);
+}
+
+/* antibug.doc.style.Styles#lambda$70 */.A .return::before {
+	content: ':';
+	padding-left: 0.3em;
+	padding-right: 0.3em;
+}
+
+/* antibug.doc.style.Styles#lambda$75 */.R {
+	margin-top: 0.9rem;
+	font-weight: bold;
+	font-size: 1rem;
 }
 
