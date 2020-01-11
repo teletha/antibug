@@ -110,29 +110,6 @@ public class Styles extends AbstractStyleDSL {
         });
     });
 
-    @SuppressWarnings("unused")
-    private Style HTMLDifinitionList = Style.named("dl", () -> {
-        $.select("dt", () -> {
-            display.block().width(70, px).floatLeft();
-            font.size(9, px).weight.bold().color(palette.accent);
-            padding.top(SmallGap);
-            border.bottom.none();
-            text.transform.capitalize();
-        });
-
-        $.select("dd", () -> {
-            margin.bottom(15, px).left(70, px);
-        });
-
-        $.select("b", () -> {
-            display.block();
-            border.bottom.width(1, px).solid().color(Color.WhiteGray);
-            padding.bottom(SmallGap);
-            margin.bottom(SmallGap);
-            font.weight.bold();
-        });
-    });
-
     /**
      * Define block-like.
      * 
@@ -421,6 +398,34 @@ public class Styles extends AbstractStyleDSL {
     public final Style MainTitle = () -> {
         font.family(fonts.title, Font.SansSerif).size(1, rem).weight.normal();
         display.block();
+    };
+
+    public final Style MainSignature = () -> {
+        padding.left(5, rem);
+    };
+
+    private final Style SignatureDefinition = () -> {
+        $.before(() -> {
+            font.size(0.8, rem).color(palette.accent).family(fonts.title);
+        });
+    };
+
+    public final Style SignatureVariable = SignatureDefinition.with(() -> {
+        $.before(() -> {
+            content.text("TypeVariable");
+        });
+    });
+
+    public final Style SignatureParameter = () -> {
+        $.before(() -> {
+            content.text("Parameter");
+        });
+    };
+
+    public final Style SignatureReturn = () -> {
+        $.before(() -> {
+            content.text("Return");
+        });
     };
 
     // ==================================================================

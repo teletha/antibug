@@ -141,27 +141,19 @@ public class Javadoc extends DocTool<Javadoc> {
                 }).to(m -> {
                     $("section", styles.MainSection, () -> {
                         $("h2", id(m.id()), styles.MainTitle, () -> {
-                            $(m.createModifier(), m.createPrameterType(), m.createReturnType(), m.createName(), m.createParameter());
+                            $(m.createModifier(), m.createReturnType(), m.createName(), m.createParameter());
                         });
-                        $(m.comment.v);
-
                         if (!m.paramTags.isEmpty() || m.returnTag.isPresent()) {
-                            $("dl", () -> {
-                                if (!m.paramTags.isEmpty()) {
-                                    $("dt", text("Parameters"));
-                                    for (Ⅱ<String, XML> param : m.paramTags) {
-                                        $("dd", () -> {
-                                            $("b", text(param.ⅰ), () -> {
-                                            });
-                                            $(param.ⅱ);
-                                        });
-                                    }
+                            $("dl", styles.MainSignature, () -> {
+                                for (Ⅱ<String, XML> variable : m.typeParameters) {
+                                    $("dt", styles.SignatureVariable, variable.ⅱ);
                                 }
 
-                                m.returnTag.to(tag -> {
-                                    $("dt", text("Return"));
-                                    $("dd", tag);
-                                });
+                                for (Ⅱ<String, XML> param : m.params) {
+                                    $("dt", styles.SignatureParameter, text(param.ⅰ), param.ⅱ);
+                                }
+
+                                $("dt", styles.SignatureReturn, m.createReturnType());
                             });
                         }
                     });
@@ -204,6 +196,7 @@ public class Javadoc extends DocTool<Javadoc> {
                     }));
                 }
             }
+
         });
 
     }
