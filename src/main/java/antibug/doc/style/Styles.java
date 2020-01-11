@@ -412,6 +412,10 @@ public class Styles extends AbstractStyleDSL {
         $.select(HTMLClassReturn, () -> {
             margin.right(0.8, rem);
         });
+
+        $.select(".parameters + .return", () -> {
+            margin.left(0.8, rem);
+        });
     };
 
     public final Style MainTitle = () -> {

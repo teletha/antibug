@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.lang.model.element.Parameterizable;
+import javax.lang.model.type.TypeMirror;
 
 import kiss.I;
 import kiss.XML;
@@ -29,8 +30,25 @@ public abstract class ParameterizableInfo extends MemberInfo {
         super(e, resolver);
 
         e.getTypeParameters().forEach(type -> {
-            typeParameters.add(I.pair(type.getSimpleName().toString(), parseTypeAsXML(type.asType())));
+            XML param = parseTypeAsXML(type.asType());
+            List<? extends TypeMirror> bounds = type.getBounds();
+            int size = bounds.size();
+            if (size != 0) {
+                if (size != 1 || !bounds.get(0).toString().equals("java.lang.Object")) {
+                    XML extend = I.xml("<i/>").addClass("extends");
+                    for (int i = 0; i < size; i++) {
+                        if (i != 0) {
+                            extend.append(" & ");
+                        }
+                        extend.append(parseTypeAsXML(bounds.get(i)));
+                    }
+                    param.after(extend);
+                }
+            }
+            typeParameters.add(I.pair(type.getSimpleName().toString(), param.parent().children()));
+
         });
+
     }
 
     /**
@@ -39,7 +57,11 @@ public abstract class ParameterizableInfo extends MemberInfo {
      * @return
      */
     public XML createPrameterType() {
-        XML root = I.xml("i").addClass("parameter");
+        if (typeParameters.isEmpty()) {
+            return null;
+        }
+
+        XML root = I.xml("i").addClass("parameters");
         for (Ⅱ<String, XML> type : typeParameters) {
             root.append(type.ⅱ.clone());
         }

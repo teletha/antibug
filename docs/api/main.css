@@ -2,20 +2,136 @@
 @import url("http://fonts.googleapis.com/css?family=Roboto+Mono");
 @import url("http://fonts.googleapis.com/css?family=Ubuntu");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1155498828 */.super::before {
-	content: ' super ';
+/* 1074206864 */.SYNCHRONIZED {
+	position: relative;
 }
 
-/* 1232539385 */h2 {
+/* 1074206864 */.SYNCHRONIZED::after {
+	color: hsl(203,91%,56%);
+	font-size: 0.8em;
+	font-family: "Material Icons";
+	content: '\e8ae';
+	position: absolute;
+	top: 0.8em;
+	left: 0.8em;
+}
+
+/* 1189814880 */.Class {
+	position: relative;
+}
+
+/* 1189814880 */.Class::before {
+	font-family: "Material Icons";
+	color: hsl(120,39%,55%);
+	font-size: 1rem;
+	content: '\e90c';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 1374685679 */html {
+	font-size: 13px;
+	scroll-behavior: smooth;
+	scroll-padding-top: 80px;
+	word-break: break-all;
+}
+
+/* 1374685679 */html *[class|=el] {
+	font-size: 1rem;
+}
+
+/* 1432962253 */.Enum {
+	position: relative;
+}
+
+/* 1432962253 */.Enum::before {
+	font-family: "Material Icons";
+	color: hsl(120,4%,55%);
+	font-size: 1rem;
+	content: '\e01e';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 1486717726 */section {
+	margin-bottom: 0.5rem;
+}
+
+/* 1486717726 */section > pre {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+}
+
+/* 1486717726 */section > ul {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+}
+
+/* 1486717726 */section > ol {
+	margin-left: 0;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left-width: 3px;
+	border-left-style: solid;
+	border-left-color: hsl(48,95%,59%);
+	line-height: 1.5;
+	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
+}
+
+/* 1505756962 */h2 {
 	font-size: 1.8rem;
 	font-family: Ubuntu;
 }
 
-/* 1293635489 */.PUBLIC {
+/* 158551214 */a {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* 158551214 */a:hover {
+	text-decoration: underline;
+	text-decoration-color: hsla(215,16%,44%,0.5);
+	text-underline-offset: 4px;
+	text-underline-position: under;
+}
+
+/* 1604949791 */.Interface {
 	position: relative;
 }
 
-/* 1293635489 */.PUBLIC::before {
+/* 1604949791 */.Interface::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 1rem;
+	content: '\e88f';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 1634118341 */.PUBLIC {
+	position: relative;
+}
+
+/* 1634118341 */.PUBLIC::before {
 	padding-right: 0.6rem;
 	color: hsl(120,39%,55%);
 	font-family: "Material Icons";
@@ -23,28 +139,156 @@
 	content: '\e061';
 }
 
-/* 1293635489 */.PUBLIC.OVERRIDE::before {
+/* 1634118341 */.PUBLIC.OVERRIDE::before {
 	content: '\e837';
 }
 
-/* 1293635489 */.PUBLIC.FIELD::before {
+/* 1634118341 */.PUBLIC.FIELD::before {
 	content: '\e836';
 }
 
-/* 1326243087 */a {
-	color: inherit;
-	text-decoration: none;
-	cursor: pointer;
+/* 1692369954 */.super::before {
+	content: ' super ';
 }
 
-/* 1326243087 */a:hover {
-	text-decoration: underline;
-	text-decoration-color: hsla(215,16%,44%,0.5);
-	text-underline-offset: 4px;
-	text-underline-position: under;
+/* 1749299393 */.AbstractClass {
+	position: relative;
 }
 
-/* 1402712627 */dl dt {
+/* 1749299393 */.AbstractClass::before {
+	font-family: "Material Icons";
+	color: hsl(120,9%,55%);
+	font-size: 1rem;
+	content: '\e90c';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 1758170706 */.PRIVATE {
+	position: relative;
+}
+
+/* 1758170706 */.PRIVATE::before {
+	padding-right: 0.6rem;
+	color: hsl(2,68%,58%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1758170706 */.PRIVATE.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1758170706 */.PRIVATE.FIELD::before {
+	content: '\e836';
+}
+
+/* 1821783147 */i {
+	font-style: normal;
+}
+
+/* 1889682531 */.Functional {
+	position: relative;
+}
+
+/* 1889682531 */.Functional::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 1rem;
+	content: '\e88e';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 1954484020 */.VOLATILE {
+	position: relative;
+}
+
+/* 1954484020 */.VOLATILE::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Mono";
+	content: 'V';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
+}
+
+/* 1955243996 */.TRANSIENT {
+	position: relative;
+}
+
+/* 1955243996 */.TRANSIENT::after {
+	color: hsl(203,91%,56%);
+	font-size: 0.8em;
+	font-family: "Material Icons";
+	content: '\e14c';
+	position: absolute;
+	top: 0.8em;
+	left: 0.8em;
+}
+
+/* 205804980 */.FINAL {
+	position: relative;
+}
+
+/* 205804980 */.FINAL::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Mono";
+	content: 'F';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
+}
+
+/* 2078400903 */.parameters::before {
+	content: '<';
+}
+
+/* 2078400903 */.parameters::after {
+	content: '>';
+}
+
+/* 2114027335 */.Exception {
+	position: relative;
+}
+
+/* 2114027335 */.Exception::before {
+	font-family: "Material Icons";
+	color: hsl(26,90%,53%);
+	font-size: 1rem;
+	content: '\e031';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 2117522696 */.PROTECTED {
+	position: relative;
+}
+
+/* 2117522696 */.PROTECTED::before {
+	padding-right: 0.6rem;
+	color: hsl(48,95%,59%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 2117522696 */.PROTECTED.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 2117522696 */.PROTECTED.FIELD::before {
+	content: '\e836';
+}
+
+/* 285721701 */.extends::before {
+	content: ' extends ';
+}
+
+/* 29189688 */dl dt {
 	display: block;
 	width: 70px;
 	float: left;
@@ -56,12 +300,12 @@
 	text-transform: capitalize;
 }
 
-/* 1402712627 */dl dd {
+/* 29189688 */dl dd {
 	margin-bottom: 15px;
 	margin-left: 70px;
 }
 
-/* 1402712627 */dl b {
+/* 29189688 */dl b {
 	display: block;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
@@ -71,11 +315,11 @@
 	font-weight: bold;
 }
 
-/* 1596642261 */.PACKAGEPRIVATE {
+/* 491074042 */.PACKAGEPRIVATE {
 	position: relative;
 }
 
-/* 1596642261 */.PACKAGEPRIVATE::before {
+/* 491074042 */.PACKAGEPRIVATE::before {
 	padding-right: 0.6rem;
 	color: hsl(203,91%,56%);
 	font-family: "Material Icons";
@@ -83,19 +327,31 @@
 	content: '\e061';
 }
 
-/* 1596642261 */.PACKAGEPRIVATE.OVERRIDE::before {
+/* 491074042 */.PACKAGEPRIVATE.OVERRIDE::before {
 	content: '\e837';
 }
 
-/* 1596642261 */.PACKAGEPRIVATE.FIELD::before {
+/* 491074042 */.PACKAGEPRIVATE.FIELD::before {
 	content: '\e836';
 }
 
-/* 1761528378 */.ABSTRACT {
+/* 71567184 */main {
+	width: 85vw;
+	display: flex;
+	flex-direction: row;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* 724612647 */.package {
+	font-weight: bold;
+}
+
+/* 837308176 */.ABSTRACT {
 	position: relative;
 }
 
-/* 1761528378 */.ABSTRACT::before {
+/* 837308176 */.ABSTRACT::before {
 	color: hsl(203,91%,56%);
 	font-size: 0.6em;
 	font-family: "Roboto Mono";
@@ -105,70 +361,11 @@
 	left: 1.4em;
 }
 
-/* 181765627 */.FINAL {
+/* 923439967 */.Annotation {
 	position: relative;
 }
 
-/* 181765627 */.FINAL::before {
-	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Mono";
-	content: 'F';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 1883171536 */.PRIVATE {
-	position: relative;
-}
-
-/* 1883171536 */.PRIVATE::before {
-	padding-right: 0.6rem;
-	color: hsl(2,68%,58%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 1883171536 */.PRIVATE.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 1883171536 */.PRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 1895022336 */html {
-	font-size: 13px;
-	scroll-behavior: smooth;
-	scroll-padding-top: 80px;
-	word-break: break-all;
-}
-
-/* 1895022336 */html *[class|=el] {
-	font-size: 1rem;
-}
-
-/* 1904312166 */.TRANSIENT {
-	position: relative;
-}
-
-/* 1904312166 */.TRANSIENT::after {
-	color: hsl(203,91%,56%);
-	font-size: 0.8em;
-	font-family: "Material Icons";
-	content: '\e14c';
-	position: absolute;
-	top: 0.8em;
-	left: 0.8em;
-}
-
-/* 1933669524 */.Annotation {
-	position: relative;
-}
-
-/* 1933669524 */.Annotation::before {
+/* 923439967 */.Annotation::before {
 	font-family: "Material Icons";
 	color: hsl(120,4%,55%);
 	font-size: 1rem;
@@ -177,209 +374,12 @@
 	vertical-align: middle;
 }
 
-/* 1989676149 */main {
-	width: 85vw;
-	display: flex;
-	flex-direction: row;
-	margin-right: auto;
-	margin-left: auto;
-}
-
-/* 1995338497 */.SYNCHRONIZED {
-	position: relative;
-}
-
-/* 1995338497 */.SYNCHRONIZED::after {
-	color: hsl(203,91%,56%);
-	font-size: 0.8em;
-	font-family: "Material Icons";
-	content: '\e8ae';
-	position: absolute;
-	top: 0.8em;
-	left: 0.8em;
-}
-
-/* 2002922626 */.extends::before {
-	content: ' extends ';
-}
-
-/* 2016562839 */.Enum {
-	position: relative;
-}
-
-/* 2016562839 */.Enum::before {
-	font-family: "Material Icons";
-	color: hsl(120,4%,55%);
-	font-size: 1rem;
-	content: '\e01e';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 2036732855 */.parameters::before {
-	content: '<';
-}
-
-/* 2036732855 */.parameters::after {
-	content: '>';
-}
-
-/* 2113026120 */.Interface {
-	position: relative;
-}
-
-/* 2113026120 */.Interface::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: 1rem;
-	content: '\e88f';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 262572507 */.VOLATILE {
-	position: relative;
-}
-
-/* 262572507 */.VOLATILE::before {
-	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Mono";
-	content: 'V';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 351147066 */.Class {
-	position: relative;
-}
-
-/* 351147066 */.Class::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: 1rem;
-	content: '\e90c';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 364702969 */i {
-	font-style: normal;
-}
-
-/* 454167880 */.Functional {
-	position: relative;
-}
-
-/* 454167880 */.Functional::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: 1rem;
-	content: '\e88e';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 585785425 */section {
-	margin-bottom: 0.5rem;
-}
-
-/* 585785425 */section > pre {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 585785425 */section > ul {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 585785425 */section > ol {
-	margin-left: 0;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 10px;
-	padding-right: 10px;
-	border-left-width: 3px;
-	border-left-style: solid;
-	border-left-color: hsl(48,95%,59%);
-	line-height: 1.5;
-	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
-}
-
-/* 594491525 */.AbstractClass {
-	position: relative;
-}
-
-/* 594491525 */.AbstractClass::before {
-	font-family: "Material Icons";
-	color: hsl(120,9%,55%);
-	font-size: 1rem;
-	content: '\e90c';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 666363491 */.PROTECTED {
-	position: relative;
-}
-
-/* 666363491 */.PROTECTED::before {
-	padding-right: 0.6rem;
-	color: hsl(48,95%,59%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 666363491 */.PROTECTED.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 666363491 */.PROTECTED.FIELD::before {
-	content: '\e836';
-}
-
-/* 699449705 */.Exception {
-	position: relative;
-}
-
-/* 699449705 */.Exception::before {
-	font-family: "Material Icons";
-	color: hsl(26,90%,53%);
-	font-size: 1rem;
-	content: '\e031';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 885030604 */.package {
-	font-weight: bold;
-}
-
-/* antibug.doc.style.Styles#lambda$0 */.J {
+/* antibug.doc.style.Styles#lambda$14 */.H {
 	opacity: 0.8;
 	padding-left: 0.08em;
 }
 
-/* antibug.doc.style.Styles#lambda$1 */.H {
+/* antibug.doc.style.Styles#lambda$42 */.A {
 	font-size: 13px;
 	font-family: system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue","Yu Gothic UI",Verdana,Meiryo,sans-serif;
 	color: hsl(215,16%,44%);
@@ -387,51 +387,7 @@
 	width: 100vw;
 }
 
-/* antibug.doc.style.Styles#lambda$12 */.I {
-	flex-grow: 1;
-	-webkit-flex-grow: 1;
-	margin-left: 5rem;
-	margin-right: 1.5rem;
-}
-
-/* antibug.doc.style.Styles#lambda$13 */.C {
-	flex-basis: 20vw;
-	-webkit-flex-basis: 20vw;
-	flex-shrink: 0;
-	-webkit-flex-shrink: 0;
-}
-
-/* antibug.doc.style.Styles#lambda$14 */.E {
-	position: sticky;
-	top: 80px;
-	display: block;
-	height: calc(80vh - 80px);
-	max-width: 20vw;
-	overflow: auto;
-	scrollbar-width: thin;
-	white-space: nowrap;
-}
-
-/* antibug.doc.style.Styles#lambda$14 */.E:hover {
-	overflow-y: auto;
-}
-
-/* antibug.doc.style.Styles#lambda$14 */.E>*>* {
-	padding-top: 0.15em;
-	padding-bottom: 0.15em;
-}
-
-/* antibug.doc.style.Styles#lambda$14 */.E .return {
-	color: hsl(48,55%,59%);
-}
-
-/* antibug.doc.style.Styles#lambda$14 */.E .return::before {
-	content: ':';
-	padding-left: 0.3em;
-	padding-right: 0.3em;
-}
-
-/* antibug.doc.style.Styles#lambda$2 */.B {
+/* antibug.doc.style.Styles#lambda$43 */.F {
 	background-color: hsl(0,0%,100%);
 	position: sticky;
 	top: 0;
@@ -446,7 +402,15 @@
 	border-bottom-style: solid;
 }
 
-/* antibug.doc.style.Styles#lambda$20 */.K {
+/* antibug.doc.style.Styles#lambda$44 */.B {
+	font-size: 2.5rem;
+	font-family: Ubuntu;
+	font-weight: normal;
+	color: hsl(203,91%,56%);
+	align-self: center;
+}
+
+/* antibug.doc.style.Styles#lambda$46 */.J {
 	margin-top: 2rem;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
@@ -457,70 +421,110 @@
 	background-repeat: repeat;
 }
 
-/* antibug.doc.style.Styles#lambda$20 */.K:nth-child(even) {
+/* antibug.doc.style.Styles#lambda$46 */.J:nth-child(even) {
 	background-color: hsl(0,0%,97%);
 }
 
-/* antibug.doc.style.Styles#lambda$20 */.K:nth-child(odd) {
+/* antibug.doc.style.Styles#lambda$46 */.J:nth-child(odd) {
 	background-color: hsl(0,0%,97%);
 }
 
-/* antibug.doc.style.Styles#lambda$20 */.K .return {
+/* antibug.doc.style.Styles#lambda$46 */.J .return {
 	margin-right: 0.8rem;
 }
 
-/* antibug.doc.style.Styles#lambda$24 */.G {
+/* antibug.doc.style.Styles#lambda$46 */.J .parameters + .return {
+	margin-left: 0.8rem;
+}
+
+/* antibug.doc.style.Styles#lambda$51 */.C {
 	font-family: Ubuntu,sans-serif;
 	font-size: 1rem;
 	font-weight: normal;
 	display: block;
 }
 
-/* antibug.doc.style.Styles#lambda$25 */.D {
-	margin-top: 0.9rem;
-	font-weight: bold;
-	font-size: 1rem;
-}
-
-/* antibug.doc.style.Styles#lambda$3 */.F {
-	font-size: 2.5rem;
-	font-family: Ubuntu;
-	font-weight: normal;
-	color: hsl(203,91%,56%);
-	align-self: center;
-}
-
-/* antibug.doc.style.Styles#lambda$5 */.A {
+/* antibug.doc.style.Styles#lambda$52 */.D {
 	flex-basis: 15vw;
 	-webkit-flex-basis: 15vw;
 	flex-shrink: 0;
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.style.Styles#lambda$5 */.A>* {
+/* antibug.doc.style.Styles#lambda$52 */.D>* {
 	position: sticky;
 	top: 80px;
 }
 
-/* antibug.doc.style.Styles#lambda$5 */.A>*>* {
+/* antibug.doc.style.Styles#lambda$52 */.D>*>* {
 	margin-top: 0.5rem;
 }
 
-/* antibug.doc.style.Styles#lambda$5 */.A .el-select {
+/* antibug.doc.style.Styles#lambda$52 */.D .el-select {
 	width: 100%;
 }
 
-/* antibug.doc.style.Styles#lambda$5 */.A .el-checkbox {
+/* antibug.doc.style.Styles#lambda$52 */.D .el-checkbox {
 	display: block;
 }
 
-/* antibug.doc.style.Styles#lambda$5 */.A #AllTypes {
+/* antibug.doc.style.Styles#lambda$52 */.D #AllTypes {
 	overflow: hidden;
 	scrollbar-width: thin;
 	height: 60vh;
 }
 
-/* antibug.doc.style.Styles#lambda$5 */.A #AllTypes:hover {
+/* antibug.doc.style.Styles#lambda$52 */.D #AllTypes:hover {
 	overflow-y: auto;
+}
+
+/* antibug.doc.style.Styles#lambda$59 */.E {
+	flex-grow: 1;
+	-webkit-flex-grow: 1;
+	margin-left: 5rem;
+	margin-right: 1.5rem;
+}
+
+/* antibug.doc.style.Styles#lambda$60 */.I {
+	flex-basis: 20vw;
+	-webkit-flex-basis: 20vw;
+	flex-shrink: 0;
+	-webkit-flex-shrink: 0;
+}
+
+/* antibug.doc.style.Styles#lambda$61 */.K {
+	position: sticky;
+	top: 80px;
+	display: block;
+	height: calc(80vh - 80px);
+	max-width: 20vw;
+	overflow: auto;
+	scrollbar-width: thin;
+	white-space: nowrap;
+}
+
+/* antibug.doc.style.Styles#lambda$61 */.K:hover {
+	overflow-y: auto;
+}
+
+/* antibug.doc.style.Styles#lambda$61 */.K>*>* {
+	padding-top: 0.15em;
+	padding-bottom: 0.15em;
+}
+
+/* antibug.doc.style.Styles#lambda$61 */.K .return {
+	color: hsl(48,55%,59%);
+}
+
+/* antibug.doc.style.Styles#lambda$61 */.K .return::before {
+	content: ':';
+	padding-left: 0.3em;
+	padding-right: 0.3em;
+}
+
+/* antibug.doc.style.Styles#lambda$66 */.G {
+	margin-top: 0.9rem;
+	font-weight: bold;
+	font-size: 1rem;
 }
 

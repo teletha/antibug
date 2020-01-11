@@ -24,7 +24,7 @@ public class Parameterized<P, Q extends Parameterized> {
      * @param second A second type.
      * @return The calculated value.
      */
-    public <R extends List<Q> & Cloneable> R calculate(Class<? extends P> first, List<? super Q> second) {
+    public <R extends List<Q> & Cloneable> R calculate(Class<? extends List<P>> first, List<? super Q> second) {
         return null;
     }
 }
