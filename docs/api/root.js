@@ -83,13 +83,6 @@ const root = {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
-			"name": "Property",
-			"packageName": "kiss.model",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
 			"name": "Narrow",
 			"packageName": "kiss",
 			"type": "Functional",
@@ -100,6 +93,13 @@ const root = {
 			"name": "Observer",
 			"packageName": "kiss",
 			"type": "Functional",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "Property",
+			"packageName": "kiss.model",
+			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
@@ -135,6 +135,118 @@ const root = {
 			"name": "Storable",
 			"packageName": "kiss",
 			"type": "Interface",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "ThreadSpecific",
+			"packageName": "kiss",
+			"type": "Class",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "Tree",
+			"packageName": "kiss",
+			"type": "AbstractClass",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "TreeNode",
+			"packageName": "kiss",
+			"type": "AbstractClass",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "Variable",
+			"packageName": "kiss",
+			"type": "Class",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "Wise",
+			"packageName": "kiss",
+			"type": "Functional",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "WiseBiConsumer",
+			"packageName": "kiss",
+			"type": "Functional",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "WiseBiFunction",
+			"packageName": "kiss",
+			"type": "Functional",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "WiseConsumer",
+			"packageName": "kiss",
+			"type": "Functional",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "WiseFunction",
+			"packageName": "kiss",
+			"type": "Functional",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "WiseRunnable",
+			"packageName": "kiss",
+			"type": "Functional",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "WiseSupplier",
+			"packageName": "kiss",
+			"type": "Functional",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "WiseTriConsumer",
+			"packageName": "kiss",
+			"type": "Functional",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "WiseTriFunction",
+			"packageName": "kiss",
+			"type": "Functional",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "XML",
+			"packageName": "kiss",
+			"type": "Class",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "Ⅱ",
+			"packageName": "kiss",
+			"type": "Class",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "Ⅲ",
+			"packageName": "kiss",
+			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		}

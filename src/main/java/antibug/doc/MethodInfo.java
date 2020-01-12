@@ -33,8 +33,22 @@ public class MethodInfo extends ExecutableInfo {
         this.returnType.first().addClass("return");
     }
 
+    /**
+     * Build return type element.
+     * 
+     * @return
+     */
     public XML createReturnType() {
         return returnType.clone();
+    }
+
+    /**
+     * Build return comment.
+     * 
+     * @return
+     */
+    public XML createReturnComment() {
+        return returnTag.isPresent() ? returnTag.v.clone() : null;
     }
 
     /**

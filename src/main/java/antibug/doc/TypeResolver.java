@@ -202,7 +202,6 @@ public class TypeResolver {
      */
     private final ResolvedType resolve(TypeElement e) {
         ResolvedType resolved = new ResolvedType();
-        System.out.println(e);
         resolved.typeName = e.getSimpleName().toString();
 
         // enclosing
@@ -238,7 +237,16 @@ public class TypeResolver {
         TypeElement type = Javadoc.ElementUtils.getTypeElement(typeName);
 
         if (type == null) {
-            return resolve(type);
+            int index = typeName.lastIndexOf('.');
+
+            ResolvedType resolved = new ResolvedType();
+            if (index == -1) {
+                resolved.typeName = typeName;
+            } else {
+                resolved.packageName = typeName.substring(0, index);
+                resolved.typeName = typeName.substring(index + 1);
+            }
+            return resolved;
         } else {
             return resolve(type);
         }

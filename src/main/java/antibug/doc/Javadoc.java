@@ -18,6 +18,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 import javax.lang.model.element.ModuleElement;
 import javax.lang.model.element.PackageElement;
@@ -147,32 +148,39 @@ public class Javadoc extends DocTool<Javadoc> {
                         int types = m.numberOfTypeVariables();
                         int params = m.numberOfParameters();
                         int returns = m.returnVoid() ? 0 : 1;
+                        int exceptions = m.numberOfExceptions();
 
-                        if (0 < types + params + returns) {
+                        if (0 < types + params + returns + exceptions) {
                             $("section", styles.MainSignature, () -> {
-                                if (0 < types) {
-                                    $("div", styles.SignatureTypeVariable, () -> {
-                                        for (int i = 0; i < types; i++) {
-                                            $("p", m.createTypeVariable(i));
-                                        }
+                                $("table", styles.SignatureTable, () -> {
+                                    IntStream.range(0, types).forEach(i -> {
+                                        $("tr", styles.SignatureTypeVariable, () -> {
+                                            $("td", m.createTypeVariable(i));
+                                            $("td", m.createTypeVariableComment(i));
+                                        });
                                     });
-                                }
 
-                                if (0 < params) {
-                                    $("table", styles.SignatureTable, styles.SignatureParameter, foŕ(params, i -> {
-                                        $("tr", () -> {
-                                            $("td", m.createParameter(i));
-                                            $("td", m.createParameterName(i));
+                                    IntStream.range(0, params).forEach(i -> {
+                                        $("tr", styles.SignatureParameter, () -> {
+                                            $("td", m.createParameter(i), text(" "), m.createParameterName(i));
                                             $("td", m.createParameterComment(i));
                                         });
-                                    }));
-                                }
-
-                                if (0 < returns) {
-                                    $("div", styles.SignatureReturn, () -> {
-                                        $("p", m.createReturnType());
                                     });
-                                }
+
+                                    if (0 < returns) {
+                                        $("tr", styles.SignatureReturn, () -> {
+                                            $("td", m.createReturnType());
+                                            $("td", m.createReturnComment());
+                                        });
+                                    }
+
+                                    IntStream.range(0, exceptions).forEach(i -> {
+                                        $("tr", styles.SignatureException, () -> {
+                                            $("td", m.createException(i));
+                                            $("td", m.createExceptionComment(i));
+                                        });
+                                    });
+                                });
                             });
                         }
                     });

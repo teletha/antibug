@@ -387,7 +387,6 @@ public class Styles extends AbstractStyleDSL {
         });
 
         $.select(HTMLClassReturn, () -> {
-            margin.right(0.8, rem);
         });
 
         $.select(".parameters + .return", () -> {
@@ -400,25 +399,27 @@ public class Styles extends AbstractStyleDSL {
         display.block();
     };
 
-    private final Numeric signatureLabelWidth = Numeric.of(4.5, rem);
+    private final Numeric signatureLabelWidth = Numeric.of(2.5, rem);
 
     public final Style MainSignature = () -> {
         padding.left(signatureLabelWidth);
     };
 
     public final Style SignatureTable = () -> {
+        border.spacing(0, px, 0.6, rem);
+
         $.select("td", () -> {
             padding.right(0.8, rem);
+            text.verticalAlign.top().overflow.ellipsis();
 
-            $.empty().before(() -> {
-                content.text("No description.");
+            $.not($.lastChild(), () -> {
+                text.whiteSpace.nowrap();
             });
         });
     };
 
     private final Style SignatureDefinition = () -> {
         position.relative();
-        margin.bottom(0.5, rem);
 
         $.before(() -> {
             position.absolute().top(0.2, rem);
@@ -432,7 +433,7 @@ public class Styles extends AbstractStyleDSL {
         SignatureDefinition.style();
 
         $.before(() -> {
-            content.text("TypeVariable");
+            content.text("Type");
         });
     };
 
@@ -440,7 +441,7 @@ public class Styles extends AbstractStyleDSL {
         SignatureDefinition.style();
 
         $.before(() -> {
-            content.text("Parameter");
+            content.text("Param");
         });
     };
 
@@ -449,6 +450,14 @@ public class Styles extends AbstractStyleDSL {
 
         $.before(() -> {
             content.text("Return");
+        });
+    };
+
+    public final Style SignatureException = () -> {
+        SignatureDefinition.style();
+
+        $.before(() -> {
+            content.text("Throw");
         });
     };
 

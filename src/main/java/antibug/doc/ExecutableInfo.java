@@ -30,6 +30,12 @@ public class ExecutableInfo extends ParameterizableInfo {
     /** The parameter comment manager. */
     private final List<XML> comments = new ArrayList();
 
+    /** The exception signature manager. */
+    private final List<XML> exceptionSignatures = new ArrayList();
+
+    /** The exception comment manager. */
+    private final List<XML> exceptionComments = new ArrayList();
+
     private final String id;
 
     /**
@@ -52,6 +58,13 @@ public class ExecutableInfo extends ParameterizableInfo {
             signatures.add(xml);
             comments.add(findParamTagBy(param.toString()));
         }
+
+        for (int i = 0; i < throwsTags.size(); i++) {
+            String name = throwsTags.get(i).ⅰ;
+            exceptionSignatures.add(I.xml("<a/>").attr("href", resolver.resolveDocumentLocation(name)).text(name));
+            exceptionComments.add(throwsTags.get(i).ⅱ);
+        }
+
         this.id = name + "(" + joiner + ")";
     }
 
@@ -60,6 +73,13 @@ public class ExecutableInfo extends ParameterizableInfo {
      */
     public final int numberOfParameters() {
         return names.size();
+    }
+
+    /**
+     * Compute the number of exceptions.
+     */
+    public final int numberOfExceptions() {
+        return exceptionSignatures.size();
     }
 
     /**
@@ -109,6 +129,30 @@ public class ExecutableInfo extends ParameterizableInfo {
      */
     public final XML createParameterComment(int index) {
         XML comment = comments.get(index);
+
+        if (comment == null) {
+            return null;
+        } else {
+            return comment.clone();
+        }
+    }
+
+    /**
+     * Build exception element.
+     * 
+     * @return
+     */
+    public final XML createException(int index) {
+        return exceptionSignatures.get(index).clone();
+    }
+
+    /**
+     * Build exception element.
+     * 
+     * @return
+     */
+    public final XML createExceptionComment(int index) {
+        XML comment = exceptionComments.get(index);
 
         if (comment == null) {
             return null;

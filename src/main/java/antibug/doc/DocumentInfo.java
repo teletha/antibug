@@ -154,6 +154,36 @@ public class DocumentInfo {
     }
 
     /**
+     * Find comment.
+     * 
+     * @param name
+     * @return
+     */
+    protected final XML findThrowsTagBy(String name) {
+        for (Ⅱ<String, XML> param : throwsTags) {
+            if (param.ⅰ.equals(name)) {
+                return param.ⅱ;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Find comment.
+     * 
+     * @param name
+     * @return
+     */
+    protected final XML findTypeVariableTagBy(String name) {
+        for (Ⅱ<String, XML> param : typeParameterTags) {
+            if (param.ⅰ.equals(name)) {
+                return param.ⅱ;
+            }
+        }
+        return null;
+    }
+
+    /**
      * @param docs Documents.
      * @return
      */

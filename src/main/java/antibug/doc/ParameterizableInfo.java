@@ -52,8 +52,10 @@ public abstract class ParameterizableInfo extends MemberInfo {
                 }
             }
 
-            names.add(type.getSimpleName().toString());
+            String name = type.getSimpleName().toString();
+            names.add(name);
             signatures.add(param.parent().children());
+            comments.add(findTypeVariableTagBy(name));
         });
     }
 
@@ -105,6 +107,12 @@ public abstract class ParameterizableInfo extends MemberInfo {
      * @return
      */
     public final XML createTypeVariableComment(int index) {
-        return comments.get(index).clone();
+        XML comment = comments.get(index);
+
+        if (comment == null) {
+            return null;
+        } else {
+            return comment.clone();
+        }
     }
 }
