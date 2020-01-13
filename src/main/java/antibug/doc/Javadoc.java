@@ -18,23 +18,21 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.IntStream;
 
 import javax.lang.model.element.ModuleElement;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 
-import antibug.doc.builder.HTML;
 import antibug.doc.builder.SiteBuilder;
-import antibug.doc.style.Styles;
+import antibug.doc.site.BaseHTML;
+import antibug.doc.site.TypeHTML;
 import kiss.I;
 import kiss.XML;
-import kiss.Ⅱ;
 
 public class Javadoc extends DocTool<Javadoc> {
 
     /** The scanned data. */
-    private final Data data = new Data();
+    public final Data data = new Data();
 
     /** The site builder. */
     private SiteBuilder site;
@@ -51,6 +49,15 @@ public class Javadoc extends DocTool<Javadoc> {
     {
         // built-in external API
         externalDoc("https://docs.oracle.com/en/java/javase/13/docs/api/");
+    }
+
+    /**
+     * Get the product name.
+     * 
+     * @return
+     */
+    public String productName() {
+        return productName;
     }
 
     /**
@@ -137,214 +144,6 @@ public class Javadoc extends DocTool<Javadoc> {
 
         // build HTML
         site.buildHTML("javadoc.html", new BaseHTML(this, null));
-    }
-
-    private static final class TypeHTML extends BaseHTML {
-
-        /**
-         * @param info
-         */
-        public TypeHTML(Javadoc javadoc, ClassInfo info) {
-            super(javadoc, info);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        protected void main() {
-            $("h2", () -> {
-                $(info.createModifier(), info.createName());
-            });
-            $(html(info.comment));
-
-            I.signal(info.constructors).effectOnce(() -> {
-            }).to(c -> {
-                $("section", styles.MainSection, () -> {
-                    $("h2", id(c.id()), styles.MainTitle, c.createModifier(), c.createName(), c.createParameter());
-                    $(html(c.comment));
-                    $("dl", () -> {
-                        if (!c.paramTags.isEmpty()) {
-                            $("dt", text("Parameters"));
-                            for (Ⅱ<String, XML> param : c.paramTags) {
-                                $("dd", () -> {
-                                    $("b", text(param.ⅰ));
-                                    $(param.ⅱ);
-                                });
-                            }
-                        }
-                    });
-                });
-            });
-
-            I.signal(info.methods).effectOnce(() -> {
-            }).to(m -> {
-                $("section", styles.MainSection, () -> {
-                    $("h2", id(m.id()), styles.MainTitle, () -> {
-                        $(m.createModifier());
-                        $("i", styles.MainTitleReturn, m.createReturnType());
-                        $(m.createName());
-                        $(m.createParameter());
-                    });
-
-                    int types = m.numberOfTypeVariables();
-                    int params = m.numberOfParameters();
-                    int returns = m.returnVoid() ? 0 : 1;
-                    int exceptions = m.numberOfExceptions();
-
-                    if (0 < types + params + returns + exceptions) {
-                        $("section", styles.MainSignature, () -> {
-                            $("table", styles.SignatureTable, () -> {
-                                IntStream.range(0, types).forEach(i -> {
-                                    $("tr", styles.SignatureTypeVariable, () -> {
-                                        $("td", m.createTypeVariable(i));
-                                        $("td", m.createTypeVariableComment(i));
-                                    });
-                                });
-
-                                IntStream.range(0, params).forEach(i -> {
-                                    $("tr", styles.SignatureParameter, () -> {
-                                        $("td", m.createParameter(i), text(" "), m.createParameterName(i));
-                                        $("td", m.createParameterComment(i));
-                                    });
-                                });
-
-                                if (0 < returns) {
-                                    $("tr", styles.SignatureReturn, () -> {
-                                        $("td", m.createReturnType());
-                                        $("td", m.createReturnComment());
-                                    });
-                                }
-
-                                IntStream.range(0, exceptions).forEach(i -> {
-                                    $("tr", styles.SignatureException, () -> {
-                                        $("td", m.createException(i));
-                                        $("td", m.createExceptionComment(i));
-                                    });
-                                });
-                            });
-                        });
-                    }
-                });
-
-                $(m.comment.v);
-            });
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        protected void aside() {
-            members("Constructors", info.constructors);
-            members("Static Fields", info.staticFields());
-            members("Fields", info.nonStaticFields());
-            members("Static Methods", info.staticMethods());
-            members("Methods", info.nonStaticMethods());
-        }
-
-        private void members(String title, List<? extends MemberInfo> members) {
-            if (members.size() != 0) {
-                $("h5", styles.RNaviTitle, text(title));
-                $("ul", foŕ(members, m -> {
-                    $("li", () -> {
-                        $(m.createModifier());
-                        $(m.createName());
-
-                        if (m instanceof ExecutableInfo) {
-                            ExecutableInfo e = (ExecutableInfo) m;
-                            $(e.createParameter());
-                        }
-
-                        if (m instanceof MethodInfo) {
-                            $("i", styles.RNaviReturn, ((MethodInfo) m).createReturnType());
-                        }
-
-                        if (m instanceof FieldInfo) {
-                            $(((FieldInfo) m).createType());
-                        }
-                    });
-                }));
-            }
-        }
-    }
-
-    /**
-     * 
-     */
-    protected static class BaseHTML extends HTML {
-
-        protected final Styles styles = I.make(Styles.class);
-
-        protected final ClassInfo info;
-
-        /**
-         * @param info
-         */
-        protected BaseHTML(Javadoc javadoc, ClassInfo info) {
-            this.info = info;
-
-            $("html", () -> {
-                $("head", () -> {
-                    $("meta", attr("charset", "UTF-8"));
-                    $("title", text(javadoc.productName + " API"));
-                    stylesheet("main.css", styles);
-                    stylesheet("https://unpkg.com/element-ui/lib/theme-chalk/index.css");
-                    script("https://unpkg.com/vue/dist/vue.js");
-                    script("https://unpkg.com/vue-router/dist/vue-router.js");
-                    script("https://unpkg.com/element-ui/lib/index.js");
-                });
-                $("body", styles.workbench, () -> {
-                    // =============================
-                    // Top Navigation
-                    // =============================
-                    $("header", styles.HeaderArea, () -> {
-                        $("h1", styles.HeaderTitle, text(javadoc.productName + " API"));
-                    });
-
-                    $("main", styles.MainArea, () -> {
-                        // =============================
-                        // Left Side Navigation
-                        // =============================
-                        $("nav", id("typeNavigation"), styles.TypeNavigation, () -> {
-                            $("div");
-                        });
-
-                        // =============================
-                        // Main Contents
-                        // =============================
-                        $("article", styles.contents, () -> {
-                            $("router-view");
-                            main();
-                        });
-
-                        // =============================
-                        // Right Side Navigation
-                        // =============================
-                        $("aside", styles.RNavi, () -> {
-                            $("div", styles.RNaviStickyBlock, () -> {
-                                aside();
-                            });
-                        });
-                    });
-
-                    script("root.js", javadoc.data);
-                    script("main.js");
-                });
-            });
-        }
-
-        /**
-         * Write your main contents.
-         */
-        protected void main() {
-        }
-
-        /**
-         * Write your aside contents.
-         */
-        protected void aside() {
-        }
     }
 
     /**

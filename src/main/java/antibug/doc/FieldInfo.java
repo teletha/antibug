@@ -39,7 +39,7 @@ public class FieldInfo extends MemberInfo {
      * {@inheritDoc}
      */
     @Override
-    protected String id() {
+    public String id() {
         return name;
     }
 }

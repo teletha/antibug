@@ -165,7 +165,34 @@ public class ExecutableInfo extends ParameterizableInfo {
      * {@inheritDoc}
      */
     @Override
-    protected String id() {
+    public String id() {
         return id;
+    }
+
+    /**
+     * Build return type element.
+     * 
+     * @return
+     */
+    public XML createReturnType() {
+        return null;
+    }
+
+    /**
+     * Build return comment.
+     * 
+     * @return
+     */
+    public XML createReturnComment() {
+        return null;
+    }
+
+    /**
+     * Check the return type is void or not.
+     * 
+     * @return
+     */
+    public boolean returnVoid() {
+        return true;
     }
 }

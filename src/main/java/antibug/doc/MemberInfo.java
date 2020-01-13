@@ -130,5 +130,5 @@ public abstract class MemberInfo extends DocumentInfo {
      * 
      * @return
      */
-    protected abstract String id();
+    public abstract String id();
 }

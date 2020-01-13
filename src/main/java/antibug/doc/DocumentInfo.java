@@ -118,6 +118,15 @@ public class DocumentInfo {
     }
 
     /**
+     * Create comment element.
+     * 
+     * @return
+     */
+    public final XML createComment() {
+        return comment.isAbsent() ? null : comment.v.clone();
+    }
+
+    /**
      * Parse {@link TypeMirror} and build its XML expression.
      * 
      * @param type A target type.

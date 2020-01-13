@@ -41,13 +41,13 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
     public String type;
 
     /** Info repository. */
-    protected final List<FieldInfo> fields = new ArrayList();
+    private final List<FieldInfo> fields = new ArrayList();
 
     /** Info repository. */
-    protected final List<ExecutableInfo> constructors = new ArrayList();
+    private final List<ExecutableInfo> constructors = new ArrayList();
 
     /** Info repository. */
-    protected final List<MethodInfo> methods = new ArrayList();
+    private final List<MethodInfo> methods = new ArrayList();
 
     private final TypeResolver resolver;
 
@@ -101,6 +101,24 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
             type = elem.getSuperclass();
         }
         return false;
+    }
+
+    /**
+     * List up all constructors.
+     * 
+     * @return
+     */
+    public List<ExecutableInfo> constructors() {
+        return constructors;
+    }
+
+    /**
+     * List up all methods.
+     * 
+     * @return
+     */
+    public List<MethodInfo> methods() {
+        return methods;
     }
 
     /**
@@ -165,7 +183,7 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
      * {@inheritDoc}
      */
     @Override
-    protected String id() {
+    public String id() {
         return packageName + "." + name;
     }
 

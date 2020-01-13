@@ -33,29 +33,29 @@ public class MethodInfo extends ExecutableInfo {
     }
 
     /**
-     * Build return type element.
      * 
-     * @return
+     * {@inheritDoc}
      */
+    @Override
     public XML createReturnType() {
         return returnType.clone();
     }
 
     /**
-     * Build return comment.
      * 
-     * @return
+     * {@inheritDoc}
      */
+    @Override
     public XML createReturnComment() {
         return returnTag.isPresent() ? returnTag.v.clone() : null;
     }
 
     /**
-     * Check the return type is void or not.
      * 
-     * @return
+     * {@inheritDoc}
      */
-    public final boolean returnVoid() {
+    @Override
+    public boolean returnVoid() {
         return isVoid;
     }
 }
