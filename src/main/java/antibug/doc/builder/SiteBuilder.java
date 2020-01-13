@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.doc.site;
+package antibug.doc.builder;
 
 import java.nio.file.Path;
 import java.util.List;

@@ -7,7 +7,7 @@
  *
  *          https://opensource.org/licenses/MIT
  */
-package antibug.doc.site;
+package antibug.doc.builder;
 
 import java.util.function.Consumer;
 
