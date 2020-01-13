@@ -60,7 +60,7 @@ import com.sun.source.doctree.ValueTree;
 import com.sun.source.doctree.VersionTree;
 import com.sun.source.util.SimpleDocTreeVisitor;
 
-import antibug.doc.style.Styles;
+import antibug.doc.site.Styles;
 import kiss.I;
 import kiss.Variable;
 import kiss.XML;

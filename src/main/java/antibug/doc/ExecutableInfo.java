@@ -119,7 +119,7 @@ public class ExecutableInfo extends ParameterizableInfo {
      * @return
      */
     public final XML createParameterName(int index) {
-        return I.xml("<i/>").addClass(styles.SignatureName.className()).text(names.get(index));
+        return I.xml("<i/>").text(names.get(index));
     }
 
     /**

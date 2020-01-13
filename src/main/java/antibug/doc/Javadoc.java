@@ -28,6 +28,8 @@ import antibug.doc.site.BaseHTML;
 import antibug.doc.site.TypeHTML;
 import kiss.I;
 import kiss.XML;
+import stylist.StyleDeclarable;
+import stylist.Stylist;
 
 public class Javadoc extends DocTool<Javadoc> {
 
@@ -144,6 +146,10 @@ public class Javadoc extends DocTool<Javadoc> {
 
         // build HTML
         site.buildHTML("javadoc.html", new BaseHTML(this, null));
+
+        // build CSS
+        I.load(Javadoc.class);
+        Stylist.pretty().importNormalizeStyle().styles(I.findAs(StyleDeclarable.class)).formatTo(output().resolve("main.css"));
     }
 
     /**

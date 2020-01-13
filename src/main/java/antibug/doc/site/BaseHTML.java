@@ -12,15 +12,11 @@ package antibug.doc.site;
 import antibug.doc.ClassInfo;
 import antibug.doc.Javadoc;
 import antibug.doc.builder.HTML;
-import antibug.doc.style.Styles;
-import kiss.I;
 
 /**
  * 
  */
 public class BaseHTML extends HTML {
-
-    protected final Styles styles = I.make(Styles.class);
 
     protected final ClassInfo info;
 
@@ -34,32 +30,32 @@ public class BaseHTML extends HTML {
             $("head", () -> {
                 $("meta", attr("charset", "UTF-8"));
                 $("title", text(javadoc.productName() + " API"));
-                stylesheet("main.css", styles);
+                stylesheet("/main.css");
                 stylesheet("https://unpkg.com/element-ui/lib/theme-chalk/index.css");
                 script("https://unpkg.com/vue/dist/vue.js");
                 script("https://unpkg.com/vue-router/dist/vue-router.js");
                 script("https://unpkg.com/element-ui/lib/index.js");
             });
-            $("body", styles.workbench, () -> {
+            $("body", Styles.workbench, () -> {
                 // =============================
                 // Top Navigation
                 // =============================
-                $("header", styles.HeaderArea, () -> {
-                    $("h1", styles.HeaderTitle, text(javadoc.productName() + " API"));
+                $("header", Styles.HeaderArea, () -> {
+                    $("h1", Styles.HeaderTitle, text(javadoc.productName() + " API"));
                 });
 
-                $("main", styles.MainArea, () -> {
+                $("main", Styles.MainArea, () -> {
                     // =============================
                     // Left Side Navigation
                     // =============================
-                    $("nav", id("typeNavigation"), styles.TypeNavigation, () -> {
+                    $("nav", id("typeNavigation"), Styles.TypeNavigation, () -> {
                         $("div");
                     });
 
                     // =============================
                     // Main Contents
                     // =============================
-                    $("article", styles.contents, () -> {
+                    $("article", Styles.contents, () -> {
                         $("router-view");
                         main();
                     });
@@ -67,8 +63,8 @@ public class BaseHTML extends HTML {
                     // =============================
                     // Right Side Navigation
                     // =============================
-                    $("aside", styles.RNavi, () -> {
-                        $("div", styles.RNaviStickyBlock, () -> {
+                    $("aside", Styles.RNavi, () -> {
+                        $("div", Styles.RNaviStickyBlock, () -> {
                             aside();
                         });
                     });

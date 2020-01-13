@@ -137,6 +137,22 @@ public class SiteBuilder {
      * @param styles A style definition class to write.
      * @return A path to the generated file.
      */
+    public final String buildCSS(String path) {
+        initialize();
+
+        String formatted = Stylist.pretty().importNormalizeStyle().format();
+
+        File file = root.file(path);
+        file.write(output -> output.append(formatted));
+        return root.relativize(file).path();
+    }
+
+    /**
+     * Build CSS file and return the path of the generated file.
+     * 
+     * @param styles A style definition class to write.
+     * @return A path to the generated file.
+     */
     public final String buildCSS(String path, Class<? extends StyleDSL> styles) {
         initialize();
 
