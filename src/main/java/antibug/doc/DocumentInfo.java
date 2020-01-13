@@ -420,6 +420,7 @@ public class DocumentInfo {
                 reference = resolver.resolveDocumentLocation(ElementUtil.getTopLevelTypeElement(e));
             } else if (index != -1) {
                 memberName = reference.substring(index);
+                System.out.println(reference.substring(0, index) + "  " + reference);
                 reference = resolver.resolveDocumentLocation(reference.substring(0, index));
             } else {
                 reference = resolver.resolveDocumentLocation(reference);

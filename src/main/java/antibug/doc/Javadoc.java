@@ -142,7 +142,10 @@ public class Javadoc extends DocTool<Javadoc> {
                 }).to(m -> {
                     $("section", styles.MainSection, () -> {
                         $("h2", id(m.id()), styles.MainTitle, () -> {
-                            $(m.createModifier(), m.createReturnType(), m.createName(), m.createParameter());
+                            $(m.createModifier());
+                            $("i", styles.MainTitleReturn, m.createReturnType());
+                            $(m.createName());
+                            $(m.createParameter());
                         });
 
                         int types = m.numberOfTypeVariables();
@@ -184,6 +187,8 @@ public class Javadoc extends DocTool<Javadoc> {
                             });
                         }
                     });
+
+                    $(m.comment.v);
                 });
             }
 
@@ -213,7 +218,7 @@ public class Javadoc extends DocTool<Javadoc> {
                             }
 
                             if (m instanceof MethodInfo) {
-                                $(((MethodInfo) m).createReturnType());
+                                $("i", styles.RNaviReturn, ((MethodInfo) m).createReturnType());
                             }
 
                             if (m instanceof FieldInfo) {

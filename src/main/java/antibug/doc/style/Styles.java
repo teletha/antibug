@@ -11,7 +11,6 @@ package antibug.doc.style;
 
 import stylist.AbstractStyleDSL;
 import stylist.Style;
-import stylist.property.Background.BackgroundImage;
 import stylist.value.Color;
 import stylist.value.ColorPalette;
 import stylist.value.Font;
@@ -93,23 +92,6 @@ public class Styles extends AbstractStyleDSL {
         });
     });
 
-    @SuppressWarnings("unused")
-    private Style HTMLSection = Style.named("section", () -> {
-        margin.bottom(BlockVerticalGap);
-
-        $.select("> pre", () -> {
-            block(palette.secondary, false);
-        });
-
-        $.select("> ul", () -> {
-            block(palette.secondary, false);
-        });
-
-        $.select("> ol", () -> {
-            block(palette.secondary, false);
-        });
-    });
-
     /**
      * Define block-like.
      * 
@@ -149,9 +131,6 @@ public class Styles extends AbstractStyleDSL {
         display.opacity(0.8);
         padding.left(0.08, em);
     };
-
-    private final Style HTMLClassReturn = Style.named(".return", () -> {
-    });
 
     @SuppressWarnings("unused")
     private final Style HTMLClassParameters = Style.named(".parameters", () -> {
@@ -373,30 +352,16 @@ public class Styles extends AbstractStyleDSL {
     });
 
     public final Style MainSection = () -> {
-        margin.top(BlockVerticalGap.multiply(4));
-        padding.vertical(BlockVerticalGap).horizontal(BlockHorizontalGap);
-        border.radius(5, px);
-        background.image(BackgroundImage.Absurdity).repeat();
-
-        $.nthChild("even", () -> {
-            background.color(Color.Whity);
-        });
-
-        $.nthChild("odd", () -> {
-            background.color(Color.Whity);
-        });
-
-        $.select(HTMLClassReturn, () -> {
-        });
-
-        $.select(".parameters + .return", () -> {
-            margin.left(0.8, rem);
-        });
+        margin.top(BlockVerticalGap.multiply(8));
     };
 
     public final Style MainTitle = () -> {
         font.family(RobotoMono).size(1, rem).weight.normal();
         display.block();
+    };
+
+    public final Style MainTitleReturn = () -> {
+        margin.right(0.5, rem);
     };
 
     private final Numeric signatureLabelWidth = Numeric.of(2.5, rem);
@@ -406,8 +371,6 @@ public class Styles extends AbstractStyleDSL {
     };
 
     public final Style SignatureTable = () -> {
-        border.spacing(0, px, 0.6, rem);
-
         $.select("td", () -> {
             padding.right(0.8, rem);
             text.verticalAlign.top().overflow.ellipsis();
@@ -522,14 +485,14 @@ public class Styles extends AbstractStyleDSL {
         $.child().child(() -> {
             padding.vertical(0.15, em);
         });
+    };
 
-        $.select(HTMLClassReturn, () -> {
-            font.color(palette.secondary.saturate(-40));
+    public final Style RNaviReturn = () -> {
+        font.color(palette.secondary.saturate(-40));
 
-            $.before(() -> {
-                content.text(":");
-                padding.horizontal(0.3, em);
-            });
+        $.before(() -> {
+            content.text(":");
+            padding.horizontal(0.3, em);
         });
     };
 

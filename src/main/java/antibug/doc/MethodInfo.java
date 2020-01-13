@@ -30,7 +30,6 @@ public class MethodInfo extends ExecutableInfo {
 
         this.isVoid = e.getReturnType().getKind() == TypeKind.VOID;
         this.returnType = parseTypeAsXML(e.getReturnType());
-        this.returnType.first().addClass("return");
     }
 
     /**
