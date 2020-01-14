@@ -134,10 +134,12 @@ class ContentsView extends HTML {
 
         Style SignatureTable = () -> {
             padding.left(signatureLabelWidth);
+            margin.top(0.1, rem).bottom(0.6, rem);
 
             $.select("td", () -> {
                 padding.right(0.8, rem);
                 text.verticalAlign.top().overflow.ellipsis();
+                line.height(1.3);
 
                 $.not($.lastChild(), () -> {
                     text.whiteSpace.nowrap();
@@ -149,7 +151,7 @@ class ContentsView extends HTML {
             position.relative();
 
             $.before(() -> {
-                position.absolute().top(0.2, rem);
+                position.absolute().top(0.1, rem);
                 display.inlineBlock().width(signatureLabelWidth);
                 margin.left(signatureLabelWidth.negate());
                 font.size(0.8, rem).color(palette.accent().opacify(-0.4)).family(RobotoMono);

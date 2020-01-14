@@ -40,16 +40,18 @@ public abstract class ParameterizableInfo extends MemberInfo {
             List<? extends TypeMirror> bounds = type.getBounds();
             int size = bounds.size();
             if (size != 0) {
-                if (size != 1 || !bounds.get(0).toString().equals("java.lang.Object")) {
-                    XML extend = I.xml("<i/>").addClass("extends");
-                    for (int i = 0; i < size; i++) {
-                        if (i != 0) {
-                            extend.append(" & ");
-                        }
-                        extend.append(parseTypeAsXML(bounds.get(i)));
-                    }
-                    param.after(extend);
+                if (size == 1 && bounds.get(0).toString().equals("java.lang.Object")) {
+                    return;
                 }
+
+                XML extend = I.xml("<i/>").addClass("extends");
+                for (int i = 0; i < size; i++) {
+                    if (i != 0) {
+                        extend.append(" & ");
+                    }
+                    extend.append(parseTypeAsXML(bounds.get(i)));
+                }
+                param.after(extend);
             }
 
             String name = type.getSimpleName().toString();

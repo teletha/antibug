@@ -64,7 +64,7 @@ class SubNavigationView extends HTML {
                     }
 
                     if (m instanceof FieldInfo) {
-                        $(((FieldInfo) m).createType());
+                        $("i", Styles.Return, ((FieldInfo) m).createType());
                     }
                 });
             }));

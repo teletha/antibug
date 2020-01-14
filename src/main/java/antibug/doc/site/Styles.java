@@ -103,7 +103,6 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
     });
 
     public static final Style HTMLClassExtends = Style.named(".extends", () -> {
-
         $.before(() -> {
             content.text(" extends ");
         });
