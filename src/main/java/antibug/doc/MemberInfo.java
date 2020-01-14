@@ -100,7 +100,7 @@ public abstract class MemberInfo extends DocumentInfo {
             }
         }
 
-        XML xml = I.xml("i");
+        XML xml = I.xml("<i/>");
         if (isPackagePrivate) xml.addClass("PACKAGEPRIVATE");
         if (isOverridden()) xml.addClass("OVERRIDE");
         for (Modifier modifier : visibility) {
@@ -108,7 +108,7 @@ public abstract class MemberInfo extends DocumentInfo {
         }
 
         if (!nonvisibility.isEmpty()) {
-            xml = I.xml("i").append(xml);
+            xml = I.xml("<i/>").append(xml);
             for (Modifier modifier : nonvisibility) {
                 xml.addClass(modifier.name());
             }
