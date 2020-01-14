@@ -23,7 +23,7 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
     // =====================================================
 
     public static Style HTML = Style.named("html", () -> {
-        font.size(13, px);
+        font.size(14, px);
         scroll.smooth().padding.top(HeaderHeight);
         text.wordBreak.breakAll();
 
@@ -109,9 +109,20 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
     });
 
     public static final Style HTMLClassSuper = Style.named(".super", () -> {
-
         $.before(() -> {
             content.text(" super ");
+        });
+    });
+
+    public static final Style HTMLClassArray = Style.named("i[array=fix]", () -> {
+        $.after(() -> {
+            content.text("[]");
+        });
+    });
+
+    public static final Style HTMLClassVarParam = Style.named("i[array=var]", () -> {
+        $.after(() -> {
+            content.text("...");
         });
     });
 

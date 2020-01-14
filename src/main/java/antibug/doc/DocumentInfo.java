@@ -112,7 +112,6 @@ public class DocumentInfo {
                 docs.getBlockTags().forEach(tag -> tag.accept(new TagScanner(), this));
             }
         } catch (Throwable error) {
-            System.err.println(e);
             error.printStackTrace();
         }
     }
@@ -429,7 +428,6 @@ public class DocumentInfo {
                 reference = resolver.resolveDocumentLocation(ElementUtil.getTopLevelTypeElement(e));
             } else if (index != -1) {
                 memberName = reference.substring(index);
-                System.out.println(reference.substring(0, index) + "  " + reference);
                 reference = resolver.resolveDocumentLocation(reference.substring(0, index));
             } else {
                 reference = resolver.resolveDocumentLocation(reference);
@@ -605,8 +603,8 @@ public class DocumentInfo {
          */
         @Override
         public XML visitArray(ArrayType array, XML xml) {
+            xml.attr("array", "fix");
             array.getComponentType().accept(this, xml);
-            xml.append("<i>[]</i>");
             return xml;
         }
 
@@ -637,7 +635,7 @@ public class DocumentInfo {
                         parameters.append(", ");
                     }
                 }
-                xml.after(parameters);
+                xml.append(parameters);
             }
 
             return xml;

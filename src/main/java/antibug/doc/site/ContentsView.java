@@ -66,9 +66,9 @@ class ContentsView extends HTML {
                 XML type = member.createReturnType();
 
                 $(member.createModifier());
-                if (type != null) $("i", style.ReturnOnTitle, type);
-                $(member.createName());
+                $("i", style.Name, member.createName());
                 $(member.createParameter());
+                if (type != null) $("i", style.Return, type);
             });
 
             int types = member.numberOfTypeVariables();
@@ -128,8 +128,17 @@ class ContentsView extends HTML {
             display.block();
         };
 
-        Style ReturnOnTitle = () -> {
-            margin.right(0.5, rem);
+        Style Name = () -> {
+            font.weight.bold();
+        };
+
+        Style Return = () -> {
+            font.color(palette.secondary.saturate(-40));
+
+            $.before(() -> {
+                content.text(":");
+                padding.horizontal(0.3, em);
+            });
         };
 
         Style SignatureTable = () -> {

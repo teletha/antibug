@@ -102,7 +102,11 @@ public class Javadoc extends DocTool<Javadoc> {
      */
     @Override
     protected void initialize() {
-        site = SiteBuilder.root(output()).guard("index.html", "main.js");
+        // build CSS
+        I.load(Javadoc.class);
+        Stylist.pretty().importNormalizeStyle().styles(I.findAs(StyleDeclarable.class)).formatTo(output().resolve("main.css"));
+
+        site = SiteBuilder.root(output()).guard("index.html", "main.js", "main.css");
         internals.addAll(findSourcePackages());
     }
 
@@ -116,7 +120,6 @@ public class Javadoc extends DocTool<Javadoc> {
         data.add(info);
 
         site.buildHTML("types/" + info.packageName + "." + info.name + ".html", new MainPage(this, info));
-
     }
 
     /**
@@ -145,10 +148,6 @@ public class Javadoc extends DocTool<Javadoc> {
 
         // build HTML
         site.buildHTML("javadoc.html", new MainPage(this, null));
-
-        // build CSS
-        I.load(Javadoc.class);
-        Stylist.pretty().importNormalizeStyle().styles(I.findAs(StyleDeclarable.class)).formatTo(output().resolve("main.css"));
     }
 
     /**

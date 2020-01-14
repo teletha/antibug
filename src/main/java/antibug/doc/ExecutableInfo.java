@@ -52,7 +52,7 @@ public class ExecutableInfo extends ParameterizableInfo {
 
             XML xml = parseTypeAsXML(param.asType());
             if (e.isVarArgs() && i + 1 == params.size()) {
-                xml.lastChild().text("...");
+                xml.attr("array", "var");
             }
             names.add(param.toString());
             signatures.add(xml);
