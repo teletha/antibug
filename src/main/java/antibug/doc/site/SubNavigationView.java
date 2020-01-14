@@ -18,6 +18,7 @@ import antibug.doc.MemberInfo;
 import antibug.doc.MethodInfo;
 import antibug.doc.builder.HTML;
 import stylist.Style;
+import stylist.StyleDSL;
 
 /**
  * 
@@ -47,7 +48,7 @@ class SubNavigationView extends HTML {
 
     private void members(String title, List<? extends MemberInfo> members) {
         if (members.size() != 0) {
-            $("h5", style.RNaviTitle, text(title));
+            $("h5", Styles.Title, text(title));
             $("ul", foŕ(members, m -> {
                 $("li", () -> {
                     $(m.createModifier());
@@ -59,7 +60,7 @@ class SubNavigationView extends HTML {
                     }
 
                     if (m instanceof MethodInfo) {
-                        $("i", style.RNaviReturn, ((MethodInfo) m).createReturnType());
+                        $("i", Styles.Return, ((MethodInfo) m).createReturnType());
                     }
 
                     if (m instanceof FieldInfo) {
@@ -71,22 +72,22 @@ class SubNavigationView extends HTML {
     }
 
     /**
-     * 
+     * Style definition.
      */
-    private static class style extends BaseStyle {
+    private interface Styles extends StyleDSL, BaseStyle {
 
-        public static final Style RNaviReturn = () -> {
+        Style Title = () -> {
+            margin.top(0.9, rem);
+            font.weight.bold().size(1, rem);
+        };
+
+        Style Return = () -> {
             font.color(palette.secondary.saturate(-40));
 
             $.before(() -> {
                 content.text(":");
                 padding.horizontal(0.3, em);
             });
-        };
-
-        public static final Style RNaviTitle = () -> {
-            margin.top(0.9, rem);
-            font.weight.bold().size(1, rem);
         };
     }
 }

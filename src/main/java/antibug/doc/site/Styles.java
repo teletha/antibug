@@ -9,6 +9,7 @@
  */
 package antibug.doc.site;
 
+import stylist.AbstractStyleDSL;
 import stylist.Style;
 import stylist.value.Color;
 import stylist.value.Numeric;
@@ -16,7 +17,7 @@ import stylist.value.Numeric;
 /**
  * 
  */
-public class Styles extends BaseStyle {
+public class Styles extends AbstractStyleDSL implements BaseStyle {
 
     private static final double LineHeight = 1.5;
 

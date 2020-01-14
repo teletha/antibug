@@ -17,6 +17,7 @@ import antibug.doc.MethodInfo;
 import antibug.doc.builder.HTML;
 import kiss.XML;
 import stylist.Style;
+import stylist.StyleDSL;
 import stylist.value.Numeric;
 
 /**
@@ -60,12 +61,12 @@ class ContentsView extends HTML {
      * @param member
      */
     private void writeMember(ExecutableInfo member) {
-        $("section", style.MainSection, () -> {
-            $("h2", attr("id", member.id()), style.MainTitle, () -> {
+        $("section", style.Section, () -> {
+            $("h2", attr("id", member.id()), style.Title, () -> {
                 XML type = member.createReturnType();
 
                 $(member.createModifier());
-                if (type != null) $("i", style.MainTitleReturn, type);
+                if (type != null) $("i", style.ReturnOnTitle, type);
                 $(member.createName());
                 $(member.createParameter());
             });
@@ -76,34 +77,32 @@ class ContentsView extends HTML {
             int exceptions = member.numberOfExceptions();
 
             if (0 < types + params + returns + exceptions) {
-                $("section", style.MainSignature, () -> {
-                    $("table", style.SignatureTable, () -> {
-                        IntStream.range(0, types).forEach(i -> {
-                            $("tr", style.SignatureTypeVariable, () -> {
-                                $("td", member.createTypeVariable(i));
-                                $("td", member.createTypeVariableComment(i));
-                            });
+                $("table", style.SignatureTable, () -> {
+                    IntStream.range(0, types).forEach(i -> {
+                        $("tr", style.SignatureTypeVariable, () -> {
+                            $("td", member.createTypeVariable(i));
+                            $("td", member.createTypeVariableComment(i));
                         });
+                    });
 
-                        IntStream.range(0, params).forEach(i -> {
-                            $("tr", style.SignatureParameter, () -> {
-                                $("td", member.createParameter(i), text(" "), member.createParameterName(i));
-                                $("td", member.createParameterComment(i));
-                            });
+                    IntStream.range(0, params).forEach(i -> {
+                        $("tr", style.SignatureParameter, () -> {
+                            $("td", member.createParameter(i), text(" "), member.createParameterName(i));
+                            $("td", member.createParameterComment(i));
                         });
+                    });
 
-                        if (0 < returns) {
-                            $("tr", style.SignatureReturn, () -> {
-                                $("td", member.createReturnType());
-                                $("td", member.createReturnComment());
-                            });
-                        }
+                    if (0 < returns) {
+                        $("tr", style.SignatureReturn, () -> {
+                            $("td", member.createReturnType());
+                            $("td", member.createReturnComment());
+                        });
+                    }
 
-                        IntStream.range(0, exceptions).forEach(i -> {
-                            $("tr", style.SignatureException, () -> {
-                                $("td", member.createException(i));
-                                $("td", member.createExceptionComment(i));
-                            });
+                    IntStream.range(0, exceptions).forEach(i -> {
+                        $("tr", style.SignatureException, () -> {
+                            $("td", member.createException(i));
+                            $("td", member.createExceptionComment(i));
                         });
                     });
                 });
@@ -114,30 +113,28 @@ class ContentsView extends HTML {
     }
 
     /**
-     * 
+     * Style definition.
      */
-    private static class style extends BaseStyle {
+    private interface style extends StyleDSL, BaseStyle {
 
-        private static final Numeric signatureLabelWidth = Numeric.of(2.5, rem);
+        Numeric signatureLabelWidth = Numeric.of(2.5, rem);
 
-        public static Style MainSignature = () -> {
-            padding.left(signatureLabelWidth);
-        };
-
-        public static Style MainSection = () -> {
+        Style Section = () -> {
             margin.top(BlockVerticalGap.multiply(8));
         };
 
-        public static Style MainTitle = () -> {
+        Style Title = () -> {
             font.family(RobotoMono).size(1, rem).weight.normal();
             display.block();
         };
 
-        public static Style MainTitleReturn = () -> {
+        Style ReturnOnTitle = () -> {
             margin.right(0.5, rem);
         };
 
-        public static final Style SignatureTable = () -> {
+        Style SignatureTable = () -> {
+            padding.left(signatureLabelWidth);
+
             $.select("td", () -> {
                 padding.right(0.8, rem);
                 text.verticalAlign.top().overflow.ellipsis();
@@ -148,7 +145,7 @@ class ContentsView extends HTML {
             });
         };
 
-        public static final Style SignatureDefinition = () -> {
+        Style SignatureDefinition = () -> {
             position.relative();
 
             $.before(() -> {
@@ -159,7 +156,7 @@ class ContentsView extends HTML {
             });
         };
 
-        public static final Style SignatureTypeVariable = () -> {
+        Style SignatureTypeVariable = () -> {
             SignatureDefinition.style();
 
             $.before(() -> {
@@ -167,7 +164,7 @@ class ContentsView extends HTML {
             });
         };
 
-        public static final Style SignatureParameter = () -> {
+        Style SignatureParameter = () -> {
             SignatureDefinition.style();
 
             $.before(() -> {
@@ -175,7 +172,7 @@ class ContentsView extends HTML {
             });
         };
 
-        public static final Style SignatureReturn = () -> {
+        Style SignatureReturn = () -> {
             SignatureDefinition.style();
 
             $.before(() -> {
@@ -183,15 +180,12 @@ class ContentsView extends HTML {
             });
         };
 
-        public static final Style SignatureException = () -> {
+        Style SignatureException = () -> {
             SignatureDefinition.style();
 
             $.before(() -> {
                 content.text("Throw");
             });
-        };
-
-        public static final Style SignatureName = () -> {
         };
     }
 }
