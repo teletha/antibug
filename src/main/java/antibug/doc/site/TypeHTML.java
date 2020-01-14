@@ -18,6 +18,7 @@ import antibug.doc.FieldInfo;
 import antibug.doc.Javadoc;
 import antibug.doc.MemberInfo;
 import antibug.doc.MethodInfo;
+import antibug.doc.builder.HTML;
 import kiss.XML;
 import stylist.Style;
 import stylist.value.Numeric;
@@ -36,17 +37,33 @@ public final class TypeHTML extends BaseHTML {
      */
     @Override
     protected void main() {
-        $("h2", () -> {
-            $(info.createModifier(), info.createName());
-        });
-        $(info.createComment());
+        $(new MainHTML());
+    }
 
-        for (ExecutableInfo constructor : info.constructors()) {
-            writeMember(constructor);
-        }
+    /**
+     * 
+     */
+    private class MainHTML extends HTML {
 
-        for (MethodInfo method : info.methods()) {
-            writeMember(method);
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        protected void declare() {
+            $("section", () -> {
+                $("h2", () -> {
+                    $(info.createModifier(), info.createName());
+                });
+                $(info.createComment());
+
+                for (ExecutableInfo constructor : info.constructors()) {
+                    writeMember(constructor);
+                }
+
+                for (MethodInfo method : info.methods()) {
+                    writeMember(method);
+                }
+            });
         }
     }
 
