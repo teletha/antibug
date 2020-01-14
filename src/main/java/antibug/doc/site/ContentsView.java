@@ -151,7 +151,7 @@ class ContentsView extends HTML {
             position.relative();
 
             $.before(() -> {
-                position.absolute().top(0.1, rem);
+                position.absolute();
                 display.inlineBlock().width(signatureLabelWidth);
                 margin.left(signatureLabelWidth.negate());
                 font.size(0.8, rem).color(palette.accent().opacify(-0.4)).family(RobotoMono);

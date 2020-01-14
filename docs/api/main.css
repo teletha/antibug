@@ -2,151 +2,15 @@
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed");
 @import url("http://fonts.googleapis.com/css?family=Ubuntu");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1225653797 */a {
-	color: inherit;
-	text-decoration: none;
-	cursor: pointer;
+/* 1054132258 */.extends::before {
+	content: ' extends ';
 }
 
-/* 1225653797 */a:hover {
-	text-decoration: underline;
-	text-decoration-color: hsla(215,16%,44%,0.5);
-	text-underline-offset: 4px;
-	text-underline-position: under;
-}
-
-/* 1242621531 */.Class {
+/* 1232925466 */.Exception {
 	position: relative;
 }
 
-/* 1242621531 */.Class::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: 1rem;
-	content: '\e90c';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 1286661022 */.Functional {
-	position: relative;
-}
-
-/* 1286661022 */.Functional::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: 1rem;
-	content: '\e88e';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 1475998599 */.PACKAGEPRIVATE {
-	position: relative;
-}
-
-/* 1475998599 */.PACKAGEPRIVATE::before {
-	padding-right: 0.6rem;
-	color: hsl(203,91%,56%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 1475998599 */.PACKAGEPRIVATE.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 1475998599 */.PACKAGEPRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 1583389506 */.TRANSIENT {
-	position: relative;
-}
-
-/* 1583389506 */.TRANSIENT::after {
-	color: hsl(203,91%,56%);
-	font-size: 0.8em;
-	font-family: "Material Icons";
-	content: '\e14c';
-	position: absolute;
-	top: 0.8em;
-	left: 0.8em;
-}
-
-/* 1608621326 */.ABSTRACT {
-	position: relative;
-}
-
-/* 1608621326 */.ABSTRACT::before {
-	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Condensed";
-	content: 'A';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 1695442281 */.AbstractClass {
-	position: relative;
-}
-
-/* 1695442281 */.AbstractClass::before {
-	font-family: "Material Icons";
-	color: hsl(120,9%,55%);
-	font-size: 1rem;
-	content: '\e90c';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 1707488498 */.PROTECTED {
-	position: relative;
-}
-
-/* 1707488498 */.PROTECTED::before {
-	padding-right: 0.6rem;
-	color: hsl(48,95%,59%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 1707488498 */.PROTECTED.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 1707488498 */.PROTECTED.FIELD::before {
-	content: '\e836';
-}
-
-/* 1799583457 */.PRIVATE {
-	position: relative;
-}
-
-/* 1799583457 */.PRIVATE::before {
-	padding-right: 0.6rem;
-	color: hsl(2,68%,58%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 1799583457 */.PRIVATE.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 1799583457 */.PRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 1816795520 */.Exception {
-	position: relative;
-}
-
-/* 1816795520 */.Exception::before {
+/* 1232925466 */.Exception::before {
 	font-family: "Material Icons";
 	color: hsl(26,90%,53%);
 	font-size: 1rem;
@@ -155,129 +19,31 @@
 	vertical-align: middle;
 }
 
-/* 1859681052 */i {
-	font-style: normal;
-}
-
-/* 2031700764 */html {
-	font-size: 13px;
-	scroll-behavior: smooth;
-	scroll-padding-top: 80px;
-	word-break: break-all;
-}
-
-/* 2031700764 */html *[class|=el] {
-	font-size: 1rem;
-}
-
-/* 2054758027 */.Annotation {
+/* 1242207182 */.PACKAGEPRIVATE {
 	position: relative;
 }
 
-/* 2054758027 */.Annotation::before {
-	font-family: "Material Icons";
-	color: hsl(120,4%,55%);
-	font-size: 1rem;
-	content: '\e167';
+/* 1242207182 */.PACKAGEPRIVATE::before {
 	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 2063539635 */.parameters::before {
-	content: '<';
-}
-
-/* 2063539635 */.parameters::after {
-	content: '>';
-}
-
-/* 2126517312 */h2 {
-	font-size: 1.8rem;
-	font-family: Ubuntu;
-}
-
-/* 218388141 */.package {
-	font-weight: bold;
-}
-
-/* 253022329 */.super::before {
-	content: ' super ';
-}
-
-/* 316486913 */.Interface {
-	position: relative;
-}
-
-/* 316486913 */.Interface::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: 1rem;
-	content: '\e88f';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 556075116 */.PUBLIC {
-	position: relative;
-}
-
-/* 556075116 */.PUBLIC::before {
-	padding-right: 0.6rem;
-	color: hsl(120,39%,55%);
+	color: hsl(203,91%,56%);
 	font-family: "Material Icons";
 	font-size: 0.8em;
 	content: '\e061';
 }
 
-/* 556075116 */.PUBLIC.OVERRIDE::before {
+/* 1242207182 */.PACKAGEPRIVATE.OVERRIDE::before {
 	content: '\e837';
 }
 
-/* 556075116 */.PUBLIC.FIELD::before {
+/* 1242207182 */.PACKAGEPRIVATE.FIELD::before {
 	content: '\e836';
 }
 
-/* 610744096 */.FINAL {
+/* 1308354754 */.SYNCHRONIZED {
 	position: relative;
 }
 
-/* 610744096 */.FINAL::before {
-	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Condensed";
-	content: 'F';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 701427635 */.var::after {
-	content: '...';
-}
-
-/* 716041009 */.VOLATILE {
-	position: relative;
-}
-
-/* 716041009 */.VOLATILE::before {
-	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Condensed";
-	content: 'V';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 73626808 */.extends::before {
-	content: ' extends ';
-}
-
-/* 778306577 */.SYNCHRONIZED {
-	position: relative;
-}
-
-/* 778306577 */.SYNCHRONIZED::after {
+/* 1308354754 */.SYNCHRONIZED::after {
 	color: hsl(203,91%,56%);
 	font-size: 0.8em;
 	font-family: "Material Icons";
@@ -287,15 +53,245 @@
 	left: 0.8em;
 }
 
-/* 824096549 */.Enum {
+/* 1393207132 */.PUBLIC {
 	position: relative;
 }
 
-/* 824096549 */.Enum::before {
+/* 1393207132 */.PUBLIC::before {
+	padding-right: 0.6rem;
+	color: hsl(120,39%,55%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1393207132 */.PUBLIC.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1393207132 */.PUBLIC.FIELD::before {
+	content: '\e836';
+}
+
+/* 1497170291 */.PROTECTED {
+	position: relative;
+}
+
+/* 1497170291 */.PROTECTED::before {
+	padding-right: 0.6rem;
+	color: hsl(48,95%,59%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1497170291 */.PROTECTED.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1497170291 */.PROTECTED.FIELD::before {
+	content: '\e836';
+}
+
+/* 157446616 */.Class {
+	position: relative;
+}
+
+/* 157446616 */.Class::before {
+	font-family: "Material Icons";
+	color: hsl(120,39%,55%);
+	font-size: 1rem;
+	content: '\e90c';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 1608621326 */html {
+	font-size: 13px;
+	scroll-behavior: smooth;
+	scroll-padding-top: 80px;
+	word-break: break-all;
+}
+
+/* 1608621326 */html *[class|=el] {
+	font-size: 1rem;
+}
+
+/* 1681935798 */.PRIVATE {
+	position: relative;
+}
+
+/* 1681935798 */.PRIVATE::before {
+	padding-right: 0.6rem;
+	color: hsl(2,68%,58%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1681935798 */.PRIVATE.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1681935798 */.PRIVATE.FIELD::before {
+	content: '\e836';
+}
+
+/* 1707823324 */.package {
+	font-weight: bold;
+}
+
+/* 1742810664 */.Functional {
+	position: relative;
+}
+
+/* 1742810664 */.Functional::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 1rem;
+	content: '\e88e';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 1884151725 */a {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* 1884151725 */a:hover {
+	text-decoration: underline;
+	text-decoration-color: hsla(215,16%,44%,0.5);
+	text-underline-offset: 4px;
+	text-underline-position: under;
+}
+
+/* 2024041851 */.ABSTRACT {
+	position: relative;
+}
+
+/* 2024041851 */.ABSTRACT::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Condensed";
+	content: 'A';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
+}
+
+/* 2070239402 */.super::before {
+	content: ' super ';
+}
+
+/* 2072843575 */.Annotation {
+	position: relative;
+}
+
+/* 2072843575 */.Annotation::before {
+	font-family: "Material Icons";
+	color: hsl(120,4%,55%);
+	font-size: 1rem;
+	content: '\e167';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 2146200623 */.Interface {
+	position: relative;
+}
+
+/* 2146200623 */.Interface::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 1rem;
+	content: '\e88f';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 368310735 */.Enum {
+	position: relative;
+}
+
+/* 368310735 */.Enum::before {
 	font-family: "Material Icons";
 	color: hsl(120,4%,55%);
 	font-size: 1rem;
 	content: '\e01e';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 597112135 */.parameters::before {
+	content: '<';
+}
+
+/* 597112135 */.parameters::after {
+	content: '>';
+}
+
+/* 610744096 */h2 {
+	font-size: 1.8rem;
+	font-family: Ubuntu;
+}
+
+/* 656847603 */.FINAL {
+	position: relative;
+}
+
+/* 656847603 */.FINAL::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Condensed";
+	content: 'F';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
+}
+
+/* 716041009 */i {
+	font-style: normal;
+}
+
+/* 732967222 */.TRANSIENT {
+	position: relative;
+}
+
+/* 732967222 */.TRANSIENT::after {
+	color: hsl(203,91%,56%);
+	font-size: 0.8em;
+	font-family: "Material Icons";
+	content: '\e14c';
+	position: absolute;
+	top: 0.8em;
+	left: 0.8em;
+}
+
+/* 889844525 */.VOLATILE {
+	position: relative;
+}
+
+/* 889844525 */.VOLATILE::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Condensed";
+	content: 'V';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
+}
+
+/* 907057782 */.AbstractClass {
+	position: relative;
+}
+
+/* 907057782 */.AbstractClass::before {
+	font-family: "Material Icons";
+	color: hsl(120,9%,55%);
+	font-size: 1rem;
+	content: '\e90c';
 	padding-right: 0.6rem;
 	vertical-align: middle;
 }
@@ -314,7 +310,6 @@
 
 /* antibug.doc.site.ContentsView.style#SignatureDefinition */.T::before {
 	position: absolute;
-	top: 0.1rem;
 	display: inline-block;
 	width: 2.5rem;
 	margin-left: -2.5rem;
@@ -329,7 +324,6 @@
 
 /* antibug.doc.site.ContentsView.style#SignatureException */.R::before {
 	position: absolute;
-	top: 0.1rem;
 	display: inline-block;
 	width: 2.5rem;
 	margin-left: -2.5rem;
@@ -348,7 +342,6 @@
 
 /* antibug.doc.site.ContentsView.style#SignatureParameter */.L::before {
 	position: absolute;
-	top: 0.1rem;
 	display: inline-block;
 	width: 2.5rem;
 	margin-left: -2.5rem;
@@ -367,7 +360,6 @@
 
 /* antibug.doc.site.ContentsView.style#SignatureReturn */.M::before {
 	position: absolute;
-	top: 0.1rem;
 	display: inline-block;
 	width: 2.5rem;
 	margin-left: -2.5rem;
@@ -403,7 +395,6 @@
 
 /* antibug.doc.site.ContentsView.style#SignatureTypeVariable */.S::before {
 	position: absolute;
-	top: 0.1rem;
 	display: inline-block;
 	width: 2.5rem;
 	margin-left: -2.5rem;

@@ -605,8 +605,8 @@ public class DocumentInfo {
          */
         @Override
         public XML visitArray(ArrayType array, XML xml) {
-            xml.attr("array", "fix");
             array.getComponentType().accept(this, xml);
+            xml.append("<i>[]</i>");
             return xml;
         }
 
