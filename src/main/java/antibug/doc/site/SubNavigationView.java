@@ -22,14 +22,14 @@ import stylist.Style;
 /**
  * 
  */
-class RightNavigationArea extends HTML {
+class SubNavigationView extends HTML {
 
     private final ClassInfo info;
 
     /**
      * @param info
      */
-    public RightNavigationArea(ClassInfo info) {
+    public SubNavigationView(ClassInfo info) {
         this.info = info;
     }
 

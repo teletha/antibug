@@ -16,7 +16,7 @@ import antibug.doc.builder.HTML;
 /**
  * 
  */
-public class BaseHTML extends HTML {
+public class MainPage extends HTML {
 
     protected final ClassInfo info;
 
@@ -25,7 +25,7 @@ public class BaseHTML extends HTML {
     /**
      * @param info
      */
-    public BaseHTML(Javadoc javadoc, ClassInfo info) {
+    public MainPage(Javadoc javadoc, ClassInfo info) {
         this.info = info;
         this.javadoc = javadoc;
     }
@@ -66,7 +66,9 @@ public class BaseHTML extends HTML {
                     // =============================
                     $("article", Styles.contents, () -> {
                         $("router-view");
-                        main();
+                        if (info != null) {
+                            $(new ContentsView(info));
+                        }
                     });
 
                     // =============================
@@ -74,7 +76,9 @@ public class BaseHTML extends HTML {
                     // =============================
                     $("aside", Styles.RNavi, () -> {
                         $("div", Styles.RNaviStickyBlock, () -> {
-                            aside();
+                            if (info != null) {
+                                $(new SubNavigationView(info));
+                            }
                         });
                     });
                 });
@@ -83,17 +87,5 @@ public class BaseHTML extends HTML {
                 script("main.js");
             });
         });
-    }
-
-    /**
-     * Write your main contents.
-     */
-    protected void main() {
-    }
-
-    /**
-     * Write your aside contents.
-     */
-    protected void aside() {
     }
 }

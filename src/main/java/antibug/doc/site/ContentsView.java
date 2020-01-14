@@ -22,14 +22,14 @@ import stylist.value.Numeric;
 /**
  * 
  */
-class MainArea extends HTML {
+class ContentsView extends HTML {
 
     private final ClassInfo info;
 
     /**
      * @param info
      */
-    public MainArea(ClassInfo info) {
+    public ContentsView(ClassInfo info) {
         this.info = info;
     }
 

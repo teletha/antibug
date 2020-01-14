@@ -24,8 +24,7 @@ import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 
 import antibug.doc.builder.SiteBuilder;
-import antibug.doc.site.BaseHTML;
-import antibug.doc.site.TypeHTML;
+import antibug.doc.site.MainPage;
 import kiss.I;
 import kiss.XML;
 import stylist.StyleDeclarable;
@@ -116,7 +115,7 @@ public class Javadoc extends DocTool<Javadoc> {
         ClassInfo info = new ClassInfo(root, resolver);
         data.add(info);
 
-        site.buildHTML("types/" + info.packageName + "." + info.name + ".html", new TypeHTML(this, info));
+        site.buildHTML("types/" + info.packageName + "." + info.name + ".html", new MainPage(this, info));
 
     }
 
@@ -145,7 +144,7 @@ public class Javadoc extends DocTool<Javadoc> {
         data.types.sort(Comparator.naturalOrder());
 
         // build HTML
-        site.buildHTML("javadoc.html", new BaseHTML(this, null));
+        site.buildHTML("javadoc.html", new MainPage(this, null));
 
         // build CSS
         I.load(Javadoc.class);
