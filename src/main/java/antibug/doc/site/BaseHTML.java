@@ -20,12 +20,21 @@ public class BaseHTML extends HTML {
 
     protected final ClassInfo info;
 
+    protected final Javadoc javadoc;
+
     /**
      * @param info
      */
     public BaseHTML(Javadoc javadoc, ClassInfo info) {
         this.info = info;
+        this.javadoc = javadoc;
+    }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void declare() {
         $("html", () -> {
             $("head", () -> {
                 $("meta", attr("charset", "UTF-8"));

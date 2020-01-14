@@ -42,6 +42,11 @@ public abstract class HTML extends Tree<String, XML> {
     }
 
     /**
+     * Build HTML.
+     */
+    protected abstract void declare();
+
+    /**
      * <p>
      * accept node attribute with name.
      * </p>

@@ -122,6 +122,8 @@ public class SiteBuilder {
     public final void buildHTML(String path, HTML html) {
         initialize();
 
+        html.declare();
+
         root.file(path).write(output -> {
             output.append("<!DOCTYPE html>\r\n");
 
