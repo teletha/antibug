@@ -2,184 +2,24 @@
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed");
 @import url("http://fonts.googleapis.com/css?family=Ubuntu");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1049401729 */.TRANSIENT {
+/* 1003872245 */.Annotation {
 	position: relative;
 }
 
-/* 1049401729 */.TRANSIENT::after {
-	color: hsl(203,91%,56%);
-	font-size: 0.8em;
-	font-family: "Material Icons";
-	content: '\e14c';
-	position: absolute;
-	top: 0.8em;
-	left: 0.8em;
-}
-
-/* 1142697258 */.extends::before {
-	content: ' extends ';
-}
-
-/* 1213062781 */html {
-	font-size: 13px;
-	scroll-behavior: smooth;
-	scroll-padding-top: 80px;
-	word-break: break-all;
-}
-
-/* 1213062781 */html *[class|=el] {
-	font-size: 1rem;
-}
-
-/* 1274461229 */.PACKAGEPRIVATE {
-	position: relative;
-}
-
-/* 1274461229 */.PACKAGEPRIVATE::before {
-	padding-right: 0.6rem;
-	color: hsl(203,91%,56%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 1274461229 */.PACKAGEPRIVATE.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 1274461229 */.PACKAGEPRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 1372916575 */.Enum {
-	position: relative;
-}
-
-/* 1372916575 */.Enum::before {
+/* 1003872245 */.Annotation::before {
 	font-family: "Material Icons";
 	color: hsl(120,4%,55%);
 	font-size: 1rem;
-	content: '\e01e';
+	content: '\e167';
 	padding-right: 0.6rem;
 	vertical-align: middle;
 }
 
-/* 1567791862 */h2 {
-	font-size: 1.8rem;
-	font-family: Ubuntu;
-}
-
-/* 174337108 */.FINAL {
+/* 1142697258 */.SYNCHRONIZED {
 	position: relative;
 }
 
-/* 174337108 */.FINAL::before {
-	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Condensed";
-	content: 'F';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 1927053066 */.super::before {
-	content: ' super ';
-}
-
-/* 1953660481 */.Exception {
-	position: relative;
-}
-
-/* 1953660481 */.Exception::before {
-	font-family: "Material Icons";
-	color: hsl(26,90%,53%);
-	font-size: 1rem;
-	content: '\e031';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 2023193433 */.PROTECTED {
-	position: relative;
-}
-
-/* 2023193433 */.PROTECTED::before {
-	padding-right: 0.6rem;
-	color: hsl(48,95%,59%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 2023193433 */.PROTECTED.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 2023193433 */.PROTECTED.FIELD::before {
-	content: '\e836';
-}
-
-/* 23140313 */.PUBLIC {
-	position: relative;
-}
-
-/* 23140313 */.PUBLIC::before {
-	padding-right: 0.6rem;
-	color: hsl(120,39%,55%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 23140313 */.PUBLIC.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 23140313 */.PUBLIC.FIELD::before {
-	content: '\e836';
-}
-
-/* 233878344 */.parameters::before {
-	content: '<';
-}
-
-/* 233878344 */.parameters::after {
-	content: '>';
-}
-
-/* 282017359 */.Interface {
-	position: relative;
-}
-
-/* 282017359 */.Interface::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: 1rem;
-	content: '\e88f';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 298021609 */.VOLATILE {
-	position: relative;
-}
-
-/* 298021609 */.VOLATILE::before {
-	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Condensed";
-	content: 'V';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 404775810 */.SYNCHRONIZED {
-	position: relative;
-}
-
-/* 404775810 */.SYNCHRONIZED::after {
+/* 1142697258 */.SYNCHRONIZED::after {
 	color: hsl(203,91%,56%);
 	font-size: 0.8em;
 	font-family: "Material Icons";
@@ -189,19 +29,205 @@
 	left: 0.8em;
 }
 
-/* 414033121 */.package {
-	font-weight: bold;
-}
-
-/* 542295199 */i {
-	font-style: normal;
-}
-
-/* 568535158 */.ABSTRACT {
+/* 115302495 */.Exception {
 	position: relative;
 }
 
-/* 568535158 */.ABSTRACT::before {
+/* 115302495 */.Exception::before {
+	font-family: "Material Icons";
+	color: hsl(26,90%,53%);
+	font-size: 1rem;
+	content: '\e031';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 1213062781 */.PROTECTED {
+	position: relative;
+}
+
+/* 1213062781 */.PROTECTED::before {
+	padding-right: 0.6rem;
+	color: hsl(48,95%,59%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1213062781 */.PROTECTED.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1213062781 */.PROTECTED.FIELD::before {
+	content: '\e836';
+}
+
+/* 1567791862 */.PACKAGEPRIVATE {
+	position: relative;
+}
+
+/* 1567791862 */.PACKAGEPRIVATE::before {
+	padding-right: 0.6rem;
+	color: hsl(203,91%,56%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1567791862 */.PACKAGEPRIVATE.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1567791862 */.PACKAGEPRIVATE.FIELD::before {
+	content: '\e836';
+}
+
+/* 1582770902 */.super::before {
+	content: ' super ';
+}
+
+/* 1758228388 */.PUBLIC {
+	position: relative;
+}
+
+/* 1758228388 */.PUBLIC::before {
+	padding-right: 0.6rem;
+	color: hsl(120,39%,55%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1758228388 */.PUBLIC.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1758228388 */.PUBLIC.FIELD::before {
+	content: '\e836';
+}
+
+/* 1774533490 */.Interface {
+	position: relative;
+}
+
+/* 1774533490 */.Interface::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 1rem;
+	content: '\e88f';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 1888703417 */.package {
+	font-weight: bold;
+}
+
+/* 1927053066 */.TRANSIENT {
+	position: relative;
+}
+
+/* 1927053066 */.TRANSIENT::after {
+	color: hsl(203,91%,56%);
+	font-size: 0.8em;
+	font-family: "Material Icons";
+	content: '\e14c';
+	position: absolute;
+	top: 0.8em;
+	left: 0.8em;
+}
+
+/* 1969975357 */a {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* 1969975357 */a:hover {
+	text-decoration: underline;
+	text-decoration-color: hsla(215,16%,44%,0.5);
+	text-underline-offset: 4px;
+	text-underline-position: under;
+}
+
+/* 1988716495 */.Functional {
+	position: relative;
+}
+
+/* 1988716495 */.Functional::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 1rem;
+	content: '\e88e';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 2072737117 */.Enum {
+	position: relative;
+}
+
+/* 2072737117 */.Enum::before {
+	font-family: "Material Icons";
+	color: hsl(120,4%,55%);
+	font-size: 1rem;
+	content: '\e01e';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 208821754 */h2 {
+	font-size: 1.8rem;
+	font-family: Ubuntu;
+}
+
+/* 282017359 */.FINAL {
+	position: relative;
+}
+
+/* 282017359 */.FINAL::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Condensed";
+	content: 'F';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
+}
+
+/* 292545106 */.Class {
+	position: relative;
+}
+
+/* 292545106 */.Class::before {
+	font-family: "Material Icons";
+	color: hsl(120,39%,55%);
+	font-size: 1rem;
+	content: '\e90c';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 317685173 */html {
+	font-size: 13px;
+	scroll-behavior: smooth;
+	scroll-padding-top: 80px;
+	word-break: break-all;
+}
+
+/* 317685173 */html *[class|=el] {
+	font-size: 1rem;
+}
+
+/* 33798663 */.extends::before {
+	content: ' extends ';
+}
+
+/* 414033121 */.ABSTRACT {
+	position: relative;
+}
+
+/* 414033121 */.ABSTRACT::before {
 	color: hsl(203,91%,56%);
 	font-size: 0.6em;
 	font-family: "Roboto Condensed";
@@ -211,37 +237,19 @@
 	left: 1.4em;
 }
 
-/* 606747031 */.Class {
+/* 469805552 */.parameters::before {
+	content: '<';
+}
+
+/* 469805552 */.parameters::after {
+	content: '>';
+}
+
+/* 542295199 */.PRIVATE {
 	position: relative;
 }
 
-/* 606747031 */.Class::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: 1rem;
-	content: '\e90c';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 736640638 */a {
-	color: inherit;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-/* 736640638 */a:hover {
-	text-decoration: underline;
-	text-decoration-color: hsla(215,16%,44%,0.5);
-	text-underline-offset: 4px;
-	text-underline-position: under;
-}
-
-/* 747717476 */.PRIVATE {
-	position: relative;
-}
-
-/* 747717476 */.PRIVATE::before {
+/* 542295199 */.PRIVATE::before {
 	padding-right: 0.6rem;
 	color: hsl(2,68%,58%);
 	font-family: "Material Icons";
@@ -249,38 +257,166 @@
 	content: '\e061';
 }
 
-/* 747717476 */.PRIVATE.OVERRIDE::before {
+/* 542295199 */.PRIVATE.OVERRIDE::before {
 	content: '\e837';
 }
 
-/* 747717476 */.PRIVATE.FIELD::before {
+/* 542295199 */.PRIVATE.FIELD::before {
 	content: '\e836';
 }
 
-/* 899625985 */.Functional {
+/* 899625985 */.VOLATILE {
 	position: relative;
 }
 
-/* 899625985 */.Functional::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: 1rem;
-	content: '\e88e';
-	padding-right: 0.6rem;
-	vertical-align: middle;
+/* 899625985 */.VOLATILE::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Condensed";
+	content: 'V';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
 }
 
-/* 948005484 */.Annotation {
+/* 982302873 */i {
+	font-style: normal;
+}
+
+/* antibug.doc.site.MainArea.style#MainSection */.G {
+	margin-top: 4rem;
+}
+
+/* antibug.doc.site.MainArea.style#MainSignature */.K {
+	padding-left: 2.5rem;
+}
+
+/* antibug.doc.site.MainArea.style#MainTitle */.H {
+	font-family: "Roboto Condensed";
+	font-size: 1rem;
+	font-weight: normal;
+	display: block;
+}
+
+/* antibug.doc.site.MainArea.style#MainTitleReturn */.I {
+	margin-right: 0.5rem;
+}
+
+/* antibug.doc.site.MainArea.style#SignatureDefinition */.V {
 	position: relative;
 }
 
-/* 948005484 */.Annotation::before {
-	font-family: "Material Icons";
-	color: hsl(120,4%,55%);
+/* antibug.doc.site.MainArea.style#SignatureDefinition */.V::before {
+	position: absolute;
+	top: 0.2rem;
+	display: inline-block;
+	width: 2.5rem;
+	margin-left: -2.5rem;
+	font-size: 0.8rem;
+	color: hsla(2,68%,58%,0.6);
+	font-family: "Roboto Condensed";
+}
+
+/* antibug.doc.site.MainArea.style#SignatureException */.T {
+	position: relative;
+}
+
+/* antibug.doc.site.MainArea.style#SignatureException */.T::before {
+	position: absolute;
+	top: 0.2rem;
+	display: inline-block;
+	width: 2.5rem;
+	margin-left: -2.5rem;
+	font-size: 0.8rem;
+	color: hsla(2,68%,58%,0.6);
+	font-family: "Roboto Condensed";
+}
+
+/* antibug.doc.site.MainArea.style#SignatureException */.T::before {
+	content: 'Throw';
+}
+
+/* antibug.doc.site.MainArea.style#SignatureParameter */.M {
+	position: relative;
+}
+
+/* antibug.doc.site.MainArea.style#SignatureParameter */.M::before {
+	position: absolute;
+	top: 0.2rem;
+	display: inline-block;
+	width: 2.5rem;
+	margin-left: -2.5rem;
+	font-size: 0.8rem;
+	color: hsla(2,68%,58%,0.6);
+	font-family: "Roboto Condensed";
+}
+
+/* antibug.doc.site.MainArea.style#SignatureParameter */.M::before {
+	content: 'Param';
+}
+
+/* antibug.doc.site.MainArea.style#SignatureReturn */.N {
+	position: relative;
+}
+
+/* antibug.doc.site.MainArea.style#SignatureReturn */.N::before {
+	position: absolute;
+	top: 0.2rem;
+	display: inline-block;
+	width: 2.5rem;
+	margin-left: -2.5rem;
+	font-size: 0.8rem;
+	color: hsla(2,68%,58%,0.6);
+	font-family: "Roboto Condensed";
+}
+
+/* antibug.doc.site.MainArea.style#SignatureReturn */.N::before {
+	content: 'Return';
+}
+
+/* antibug.doc.site.MainArea.style#SignatureTable */.L td {
+	padding-right: 0.8rem;
+	vertical-align: top;
+	text-overflow: ellipsis;
+}
+
+/* antibug.doc.site.MainArea.style#SignatureTable */.L td:not(:last-child) {
+	white-space: nowrap;
+}
+
+/* antibug.doc.site.MainArea.style#SignatureTypeVariable */.O {
+	position: relative;
+}
+
+/* antibug.doc.site.MainArea.style#SignatureTypeVariable */.O::before {
+	position: absolute;
+	top: 0.2rem;
+	display: inline-block;
+	width: 2.5rem;
+	margin-left: -2.5rem;
+	font-size: 0.8rem;
+	color: hsla(2,68%,58%,0.6);
+	font-family: "Roboto Condensed";
+}
+
+/* antibug.doc.site.MainArea.style#SignatureTypeVariable */.O::before {
+	content: 'Type';
+}
+
+/* antibug.doc.site.RightNavigationArea.navi#RNaviReturn */.S {
+	color: hsl(48,55%,59%);
+}
+
+/* antibug.doc.site.RightNavigationArea.navi#RNaviReturn */.S::before {
+	content: ':';
+	padding-left: 0.3em;
+	padding-right: 0.3em;
+}
+
+/* antibug.doc.site.RightNavigationArea.navi#RNaviTitle */.R {
+	margin-top: 0.9rem;
+	font-weight: bold;
 	font-size: 1rem;
-	content: '\e167';
-	padding-right: 0.6rem;
-	vertical-align: middle;
 }
 
 /* antibug.doc.site.Styles#HeaderArea */.B {
@@ -393,141 +529,5 @@
 	color: hsl(215,16%,44%);
 	line-height: 1.5;
 	width: 100vw;
-}
-
-/* antibug.doc.site.TypeHTML.main#MainSection */.G {
-	margin-top: 4rem;
-}
-
-/* antibug.doc.site.TypeHTML.main#MainSignature */.K {
-	padding-left: 2.5rem;
-}
-
-/* antibug.doc.site.TypeHTML.main#MainTitle */.H {
-	font-family: "Roboto Condensed";
-	font-size: 1rem;
-	font-weight: normal;
-	display: block;
-}
-
-/* antibug.doc.site.TypeHTML.main#MainTitleReturn */.I {
-	margin-right: 0.5rem;
-}
-
-/* antibug.doc.site.TypeHTML.main#SignatureDefinition */.U {
-	position: relative;
-}
-
-/* antibug.doc.site.TypeHTML.main#SignatureDefinition */.U::before {
-	position: absolute;
-	top: 0.2rem;
-	display: inline-block;
-	width: 2.5rem;
-	margin-left: -2.5rem;
-	font-size: 0.8rem;
-	color: hsla(2,68%,58%,0.6);
-	font-family: "Roboto Condensed";
-}
-
-/* antibug.doc.site.TypeHTML.main#SignatureException */.T {
-	position: relative;
-}
-
-/* antibug.doc.site.TypeHTML.main#SignatureException */.T::before {
-	position: absolute;
-	top: 0.2rem;
-	display: inline-block;
-	width: 2.5rem;
-	margin-left: -2.5rem;
-	font-size: 0.8rem;
-	color: hsla(2,68%,58%,0.6);
-	font-family: "Roboto Condensed";
-}
-
-/* antibug.doc.site.TypeHTML.main#SignatureException */.T::before {
-	content: 'Throw';
-}
-
-/* antibug.doc.site.TypeHTML.main#SignatureParameter */.M {
-	position: relative;
-}
-
-/* antibug.doc.site.TypeHTML.main#SignatureParameter */.M::before {
-	position: absolute;
-	top: 0.2rem;
-	display: inline-block;
-	width: 2.5rem;
-	margin-left: -2.5rem;
-	font-size: 0.8rem;
-	color: hsla(2,68%,58%,0.6);
-	font-family: "Roboto Condensed";
-}
-
-/* antibug.doc.site.TypeHTML.main#SignatureParameter */.M::before {
-	content: 'Param';
-}
-
-/* antibug.doc.site.TypeHTML.main#SignatureReturn */.N {
-	position: relative;
-}
-
-/* antibug.doc.site.TypeHTML.main#SignatureReturn */.N::before {
-	position: absolute;
-	top: 0.2rem;
-	display: inline-block;
-	width: 2.5rem;
-	margin-left: -2.5rem;
-	font-size: 0.8rem;
-	color: hsla(2,68%,58%,0.6);
-	font-family: "Roboto Condensed";
-}
-
-/* antibug.doc.site.TypeHTML.main#SignatureReturn */.N::before {
-	content: 'Return';
-}
-
-/* antibug.doc.site.TypeHTML.main#SignatureTable */.L td {
-	padding-right: 0.8rem;
-	vertical-align: top;
-	text-overflow: ellipsis;
-}
-
-/* antibug.doc.site.TypeHTML.main#SignatureTable */.L td:not(:last-child) {
-	white-space: nowrap;
-}
-
-/* antibug.doc.site.TypeHTML.main#SignatureTypeVariable */.O {
-	position: relative;
-}
-
-/* antibug.doc.site.TypeHTML.main#SignatureTypeVariable */.O::before {
-	position: absolute;
-	top: 0.2rem;
-	display: inline-block;
-	width: 2.5rem;
-	margin-left: -2.5rem;
-	font-size: 0.8rem;
-	color: hsla(2,68%,58%,0.6);
-	font-family: "Roboto Condensed";
-}
-
-/* antibug.doc.site.TypeHTML.main#SignatureTypeVariable */.O::before {
-	content: 'Type';
-}
-
-/* antibug.doc.site.TypeHTML.navi#RNaviReturn */.S {
-	color: hsl(48,55%,59%);
-}
-
-/* antibug.doc.site.TypeHTML.navi#RNaviReturn */.S::before {
-	content: ':';
-	padding-left: 0.3em;
-	padding-right: 0.3em;
-}
-
-/* antibug.doc.site.TypeHTML.navi#RNaviTitle */.R {
-	margin-top: 0.9rem;
-	font-weight: bold;
-	font-size: 1rem;
 }
 
