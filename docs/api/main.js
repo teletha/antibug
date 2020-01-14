@@ -51,7 +51,7 @@ new Vue({
 });
 
 new Vue({
-	el: "#typeNavigation > div",
+	el: "nav > div",
 	template: `
 	<div>
       <el-select size="mini" clearable v-model='selectedModule' placeholder='Select Module' no-data-text="No Module">

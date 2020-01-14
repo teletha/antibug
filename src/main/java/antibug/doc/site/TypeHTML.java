@@ -57,7 +57,7 @@ public final class TypeHTML extends BaseHTML {
      */
     private void writeMember(ExecutableInfo member) {
         $("section", main.MainSection, () -> {
-            $("h2", id(member.id()), main.MainTitle, () -> {
+            $("h2", attr("id", member.id()), main.MainTitle, () -> {
                 XML type = member.createReturnType();
 
                 $(member.createModifier());

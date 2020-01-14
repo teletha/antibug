@@ -48,7 +48,7 @@ public class BaseHTML extends HTML {
                     // =============================
                     // Left Side Navigation
                     // =============================
-                    $("nav", id("typeNavigation"), Styles.TypeNavigation, () -> {
+                    $("nav", Styles.TypeNavigation, () -> {
                         $("div");
                     });
 
