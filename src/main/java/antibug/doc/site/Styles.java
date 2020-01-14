@@ -12,16 +12,11 @@ package antibug.doc.site;
 import stylist.AbstractStyleDSL;
 import stylist.Style;
 import stylist.value.Color;
-import stylist.value.Numeric;
 
 /**
  * 
  */
 public class Styles extends AbstractStyleDSL implements BaseStyle {
-
-    private static final double LineHeight = 1.5;
-
-    private static final Numeric LeftNavigationWidth = Numeric.of(15, vw);
 
     // =====================================================
     // HTML Elements
@@ -133,7 +128,7 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
         buidlMark("\\e88e", Color.rgb(128, 88, 165));
     });
 
-    private static final Style HTMLClassTypeAbstractClass = Style.named(".AbstractClass", () -> {
+    public static final Style HTMLClassTypeAbstractClass = Style.named(".AbstractClass", () -> {
         buidlMark("\\e90c", Color.of("#5eb95e").saturate(-30));
     });
 
@@ -265,91 +260,4 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
         });
     }
 
-    public static final Style workbench = () -> {
-        font.size(FontSize).family(fonts.base).color(palette.font);
-        line.height(LineHeight);
-        display.width(100, vw);
-    };
-
-    // ==================================================================
-    // Header
-    // ==================================================================
-    public static final Style HeaderArea = () -> {
-        background.color(Color.White);
-        position.sticky().top(0, rem);
-        display.width(MaxWidth).height(HeaderHeight).zIndex(10).flex();
-        margin.auto();
-        border.bottom.color(palette.primary).width(1, px).solid();
-    };
-
-    public static final Style HeaderTitle = () -> {
-        font.size(2.5, rem).family(fonts.title).weight.normal().color(palette.primary);
-        flexItem.alignSelf.center();
-    };
-
-    // ==================================================================
-    // Main
-    // ==================================================================
-
-    // ==================================================================
-    // Left Side Navigation
-    // ==================================================================
-    public static final Style TypeNavigation = () -> {
-        flexItem.basis(LeftNavigationWidth).shrink(0);
-
-        $.child(() -> {
-            position.sticky().top(HeaderHeight);
-
-            $.child(() -> {
-                margin.top(BaseStyle.BlockVerticalGap);
-            });
-        });
-
-        $.select(".el-select", () -> {
-            display.width(100, percent);
-        });
-
-        $.select(".el-checkbox", () -> {
-            display.block();
-        });
-
-        $.select("#AllTypes", () -> {
-            overflow.hidden().scrollbar.thin();
-            display.height(60, vh);
-
-            $.hover(() -> {
-                overflow.y.auto();
-            });
-        });
-    };
-
-    /** Main Contents */
-    public static final Style contents = () -> {
-        flexItem.grow(1);
-        margin.left(5, rem).right(1.5, rem);
-    };
-
-    public static final Style MainArea = () -> {
-        display.width(MaxWidth).flex().direction.row();
-        margin.auto();
-    };
-
-    public static final Style RNavi = () -> {
-        flexItem.basis(RightNavigationWidth).shrink(0);
-    };
-
-    public static final Style RNaviStickyBlock = () -> {
-        position.sticky().top(HeaderHeight);
-        display.block().height(Numeric.of(80, vh).subtract(HeaderHeight)).maxWidth(RightNavigationWidth);
-        overflow.auto().scrollbar.thin();
-        text.whiteSpace.nowrap();
-
-        $.hover(() -> {
-            overflow.y.auto();
-        });
-
-        $.child().child(() -> {
-            padding.vertical(0.15, em);
-        });
-    };
 }

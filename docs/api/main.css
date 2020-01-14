@@ -2,46 +2,19 @@
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed");
 @import url("http://fonts.googleapis.com/css?family=Ubuntu");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1212881020 */html {
-	font-size: 13px;
-	scroll-behavior: smooth;
-	scroll-padding-top: 80px;
-	word-break: break-all;
+/* 1054132258 */.parameters::before {
+	content: '<';
 }
 
-/* 1212881020 */html *[class|=el] {
-	font-size: 1rem;
+/* 1054132258 */.parameters::after {
+	content: '>';
 }
 
-/* 1225653797 */.extends::before {
-	content: ' extends ';
-}
-
-/* 1242621531 */.PUBLIC {
+/* 1232925466 */.Annotation {
 	position: relative;
 }
 
-/* 1242621531 */.PUBLIC::before {
-	padding-right: 0.6rem;
-	color: hsl(120,39%,55%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 1242621531 */.PUBLIC.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 1242621531 */.PUBLIC.FIELD::before {
-	content: '\e836';
-}
-
-/* 1286661022 */.Annotation {
-	position: relative;
-}
-
-/* 1286661022 */.Annotation::before {
+/* 1232925466 */.Annotation::before {
 	font-family: "Material Icons";
 	color: hsl(120,4%,55%);
 	font-size: 1rem;
@@ -50,39 +23,31 @@
 	vertical-align: middle;
 }
 
-/* 1475998599 */.SYNCHRONIZED {
+/* 1242207182 */.PROTECTED {
 	position: relative;
 }
 
-/* 1475998599 */.SYNCHRONIZED::after {
-	color: hsl(203,91%,56%);
-	font-size: 0.8em;
+/* 1242207182 */.PROTECTED::before {
+	padding-right: 0.6rem;
+	color: hsl(48,95%,59%);
 	font-family: "Material Icons";
-	content: '\e8ae';
-	position: absolute;
-	top: 0.8em;
-	left: 0.8em;
+	font-size: 0.8em;
+	content: '\e061';
 }
 
-/* 1647076749 */.ABSTRACT {
+/* 1242207182 */.PROTECTED.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1242207182 */.PROTECTED.FIELD::before {
+	content: '\e836';
+}
+
+/* 1393207132 */.Exception {
 	position: relative;
 }
 
-/* 1647076749 */.ABSTRACT::before {
-	color: hsl(203,91%,56%);
-	font-size: 0.6em;
-	font-family: "Roboto Condensed";
-	content: 'A';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 1695442281 */.Exception {
-	position: relative;
-}
-
-/* 1695442281 */.Exception::before {
+/* 1393207132 */.Exception::before {
 	font-family: "Material Icons";
 	color: hsl(26,90%,53%);
 	font-size: 1rem;
@@ -91,11 +56,105 @@
 	vertical-align: middle;
 }
 
-/* 1799583457 */.TRANSIENT {
+/* 1497170291 */.PUBLIC {
 	position: relative;
 }
 
-/* 1799583457 */.TRANSIENT::after {
+/* 1497170291 */.PUBLIC::before {
+	padding-right: 0.6rem;
+	color: hsl(120,39%,55%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1497170291 */.PUBLIC.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1497170291 */.PUBLIC.FIELD::before {
+	content: '\e836';
+}
+
+/* 157446616 */.AbstractClass {
+	position: relative;
+}
+
+/* 157446616 */.AbstractClass::before {
+	font-family: "Material Icons";
+	color: hsl(120,9%,55%);
+	font-size: 1rem;
+	content: '\e90c';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 1660302885 */.PRIVATE {
+	position: relative;
+}
+
+/* 1660302885 */.PRIVATE::before {
+	padding-right: 0.6rem;
+	color: hsl(2,68%,58%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1660302885 */.PRIVATE.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1660302885 */.PRIVATE.FIELD::before {
+	content: '\e836';
+}
+
+/* 1681935798 */.PACKAGEPRIVATE {
+	position: relative;
+}
+
+/* 1681935798 */.PACKAGEPRIVATE::before {
+	padding-right: 0.6rem;
+	color: hsl(203,91%,56%);
+	font-family: "Material Icons";
+	font-size: 0.8em;
+	content: '\e061';
+}
+
+/* 1681935798 */.PACKAGEPRIVATE.OVERRIDE::before {
+	content: '\e837';
+}
+
+/* 1681935798 */.PACKAGEPRIVATE.FIELD::before {
+	content: '\e836';
+}
+
+/* 1707823324 */.super::before {
+	content: ' super ';
+}
+
+/* 1742810664 */.Interface {
+	position: relative;
+}
+
+/* 1742810664 */.Interface::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 1rem;
+	content: '\e88f';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 1884151725 */i {
+	font-style: normal;
+}
+
+/* 2024041851 */.TRANSIENT {
+	position: relative;
+}
+
+/* 2024041851 */.TRANSIENT::after {
 	color: hsl(203,91%,56%);
 	font-size: 0.8em;
 	font-family: "Material Icons";
@@ -105,111 +164,15 @@
 	left: 0.8em;
 }
 
-/* 1816795520 */.PRIVATE {
+/* 2070239402 */.extends::before {
+	content: ' extends ';
+}
+
+/* 2072843575 */.Enum {
 	position: relative;
 }
 
-/* 1816795520 */.PRIVATE::before {
-	padding-right: 0.6rem;
-	color: hsl(2,68%,58%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 1816795520 */.PRIVATE.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 1816795520 */.PRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 1859681052 */.parameters::before {
-	content: '<';
-}
-
-/* 1859681052 */.parameters::after {
-	content: '>';
-}
-
-/* 2031700764 */i {
-	font-style: normal;
-}
-
-/* 2054758027 */.PACKAGEPRIVATE {
-	position: relative;
-}
-
-/* 2054758027 */.PACKAGEPRIVATE::before {
-	padding-right: 0.6rem;
-	color: hsl(203,91%,56%);
-	font-family: "Material Icons";
-	font-size: 0.8em;
-	content: '\e061';
-}
-
-/* 2054758027 */.PACKAGEPRIVATE.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 2054758027 */.PACKAGEPRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 2063539635 */.super::before {
-	content: ' super ';
-}
-
-/* 2126517312 */a {
-	color: inherit;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-/* 2126517312 */a:hover {
-	text-decoration: underline;
-	text-decoration-color: hsla(215,16%,44%,0.5);
-	text-underline-offset: 4px;
-	text-underline-position: under;
-}
-
-/* 218388141 */.Class {
-	position: relative;
-}
-
-/* 218388141 */.Class::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: 1rem;
-	content: '\e90c';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 253022329 */.Functional {
-	position: relative;
-}
-
-/* 253022329 */.Functional::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: 1rem;
-	content: '\e88e';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 304528024 */h2 {
-	font-size: 1.8rem;
-	font-family: Ubuntu;
-}
-
-/* 316486913 */.Enum {
-	position: relative;
-}
-
-/* 316486913 */.Enum::before {
+/* 2072843575 */.Enum::before {
 	font-family: "Material Icons";
 	color: hsl(120,4%,55%);
 	font-size: 1rem;
@@ -218,28 +181,28 @@
 	vertical-align: middle;
 }
 
-/* 701427635 */.Interface {
+/* 2146200623 */.package {
+	font-weight: bold;
+}
+
+/* 368310735 */.Class {
 	position: relative;
 }
 
-/* 701427635 */.Interface::before {
+/* 368310735 */.Class::before {
 	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
+	color: hsl(120,39%,55%);
 	font-size: 1rem;
-	content: '\e88f';
+	content: '\e90c';
 	padding-right: 0.6rem;
 	vertical-align: middle;
 }
 
-/* 73626808 */.package {
-	font-weight: bold;
-}
-
-/* 778306577 */.VOLATILE {
+/* 530210107 */.VOLATILE {
 	position: relative;
 }
 
-/* 778306577 */.VOLATILE::before {
+/* 530210107 */.VOLATILE::before {
 	color: hsl(203,91%,56%);
 	font-size: 0.6em;
 	font-family: "Roboto Condensed";
@@ -249,31 +212,68 @@
 	left: 1.4em;
 }
 
-/* 824096549 */.PROTECTED {
+/* 597112135 */a {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* 597112135 */a:hover {
+	text-decoration: underline;
+	text-decoration-color: hsla(215,16%,44%,0.5);
+	text-underline-offset: 4px;
+	text-underline-position: under;
+}
+
+/* 610744096 */html {
+	font-size: 13px;
+	scroll-behavior: smooth;
+	scroll-padding-top: 80px;
+	word-break: break-all;
+}
+
+/* 610744096 */html *[class|=el] {
+	font-size: 1rem;
+}
+
+/* 656847603 */.ABSTRACT {
 	position: relative;
 }
 
-/* 824096549 */.PROTECTED::before {
-	padding-right: 0.6rem;
-	color: hsl(48,95%,59%);
-	font-family: "Material Icons";
+/* 656847603 */.ABSTRACT::before {
+	color: hsl(203,91%,56%);
+	font-size: 0.6em;
+	font-family: "Roboto Condensed";
+	content: 'A';
+	position: absolute;
+	top: 0;
+	left: 1.4em;
+}
+
+/* 716041009 */h2 {
+	font-size: 1.8rem;
+	font-family: Ubuntu;
+}
+
+/* 732967222 */.SYNCHRONIZED {
+	position: relative;
+}
+
+/* 732967222 */.SYNCHRONIZED::after {
+	color: hsl(203,91%,56%);
 	font-size: 0.8em;
-	content: '\e061';
+	font-family: "Material Icons";
+	content: '\e8ae';
+	position: absolute;
+	top: 0.8em;
+	left: 0.8em;
 }
 
-/* 824096549 */.PROTECTED.OVERRIDE::before {
-	content: '\e837';
-}
-
-/* 824096549 */.PROTECTED.FIELD::before {
-	content: '\e836';
-}
-
-/* 907656350 */.FINAL {
+/* 889844525 */.FINAL {
 	position: relative;
 }
 
-/* 907656350 */.FINAL::before {
+/* 889844525 */.FINAL::before {
 	color: hsl(203,91%,56%);
 	font-size: 0.6em;
 	font-family: "Roboto Condensed";
@@ -281,6 +281,19 @@
 	position: absolute;
 	top: 0;
 	left: 1.4em;
+}
+
+/* 907057782 */.Functional {
+	position: relative;
+}
+
+/* 907057782 */.Functional::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 1rem;
+	content: '\e88e';
+	padding-right: 0.6rem;
+	vertical-align: middle;
 }
 
 /* antibug.doc.site.ContentsView.style#ReturnOnTitle */.I {
@@ -403,7 +416,7 @@
 	display: block;
 }
 
-/* antibug.doc.site.Styles#HeaderArea */.B {
+/* antibug.doc.site.MainPage.Styles#HeaderArea */.B {
 	background-color: hsl(0,0%,100%);
 	position: sticky;
 	top: 0;
@@ -418,7 +431,7 @@
 	border-bottom-style: solid;
 }
 
-/* antibug.doc.site.Styles#HeaderTitle */.C {
+/* antibug.doc.site.MainPage.Styles#HeaderTitle */.C {
 	font-size: 2.5rem;
 	font-family: Ubuntu;
 	font-weight: normal;
@@ -426,7 +439,7 @@
 	align-self: center;
 }
 
-/* antibug.doc.site.Styles#MainArea */.D {
+/* antibug.doc.site.MainPage.Styles#MainArea */.D {
 	width: 85vw;
 	display: flex;
 	flex-direction: row;
@@ -434,14 +447,14 @@
 	margin-left: auto;
 }
 
-/* antibug.doc.site.Styles#RNavi */.O {
+/* antibug.doc.site.MainPage.Styles#RNavi */.O {
 	flex-basis: 20vw;
 	-webkit-flex-basis: 20vw;
 	flex-shrink: 0;
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.site.Styles#RNaviStickyBlock */.P {
+/* antibug.doc.site.MainPage.Styles#RNaviStickyBlock */.P {
 	position: sticky;
 	top: 80px;
 	display: block;
@@ -452,67 +465,67 @@
 	white-space: nowrap;
 }
 
-/* antibug.doc.site.Styles#RNaviStickyBlock */.P:hover {
+/* antibug.doc.site.MainPage.Styles#RNaviStickyBlock */.P:hover {
 	overflow-y: auto;
 }
 
-/* antibug.doc.site.Styles#RNaviStickyBlock */.P>*>* {
+/* antibug.doc.site.MainPage.Styles#RNaviStickyBlock */.P>*>* {
 	padding-top: 0.15em;
 	padding-bottom: 0.15em;
 }
 
-/* antibug.doc.site.Styles#SignatureParameterPart */.J {
-	opacity: 0.8;
-	padding-left: 0.08em;
-}
-
-/* antibug.doc.site.Styles#TypeNavigation */.E {
+/* antibug.doc.site.MainPage.Styles#TypeNavigation */.E {
 	flex-basis: 15vw;
 	-webkit-flex-basis: 15vw;
 	flex-shrink: 0;
 	-webkit-flex-shrink: 0;
 }
 
-/* antibug.doc.site.Styles#TypeNavigation */.E>* {
+/* antibug.doc.site.MainPage.Styles#TypeNavigation */.E>* {
 	position: sticky;
 	top: 80px;
 }
 
-/* antibug.doc.site.Styles#TypeNavigation */.E>*>* {
+/* antibug.doc.site.MainPage.Styles#TypeNavigation */.E>*>* {
 	margin-top: 0.5rem;
 }
 
-/* antibug.doc.site.Styles#TypeNavigation */.E .el-select {
+/* antibug.doc.site.MainPage.Styles#TypeNavigation */.E .el-select {
 	width: 100%;
 }
 
-/* antibug.doc.site.Styles#TypeNavigation */.E .el-checkbox {
+/* antibug.doc.site.MainPage.Styles#TypeNavigation */.E .el-checkbox {
 	display: block;
 }
 
-/* antibug.doc.site.Styles#TypeNavigation */.E #AllTypes {
+/* antibug.doc.site.MainPage.Styles#TypeNavigation */.E #AllTypes {
 	overflow: hidden;
 	scrollbar-width: thin;
 	height: 60vh;
 }
 
-/* antibug.doc.site.Styles#TypeNavigation */.E #AllTypes:hover {
+/* antibug.doc.site.MainPage.Styles#TypeNavigation */.E #AllTypes:hover {
 	overflow-y: auto;
 }
 
-/* antibug.doc.site.Styles#contents */.F {
+/* antibug.doc.site.MainPage.Styles#contents */.F {
 	flex-grow: 1;
 	-webkit-flex-grow: 1;
 	margin-left: 5rem;
 	margin-right: 1.5rem;
 }
 
-/* antibug.doc.site.Styles#workbench */.A {
+/* antibug.doc.site.MainPage.Styles#workbench */.A {
 	font-size: 13px;
 	font-family: "Roboto Condensed";
 	color: hsl(215,16%,44%);
 	line-height: 1.5;
 	width: 100vw;
+}
+
+/* antibug.doc.site.Styles#SignatureParameterPart */.J {
+	opacity: 0.8;
+	padding-left: 0.08em;
 }
 
 /* antibug.doc.site.SubNavigationView.Styles#Return */.R {

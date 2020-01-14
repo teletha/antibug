@@ -43,4 +43,7 @@ public interface BaseStyle {
     Numeric HeaderHeight = Numeric.of(80, px);
 
     Numeric RightNavigationWidth = Numeric.of(20, vw);
+
+    double LineHeight = 1.5;
+
 }

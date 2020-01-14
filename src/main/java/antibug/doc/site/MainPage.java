@@ -12,6 +12,10 @@ package antibug.doc.site;
 import antibug.doc.ClassInfo;
 import antibug.doc.Javadoc;
 import antibug.doc.builder.HTML;
+import stylist.Style;
+import stylist.StyleDSL;
+import stylist.value.Color;
+import stylist.value.Numeric;
 
 /**
  * 
@@ -64,7 +68,7 @@ public class MainPage extends HTML {
                     // =============================
                     // Main Contents
                     // =============================
-                    $("article", Styles.contents, () -> {
+                    $("article", Styles.Contents, () -> {
                         $("router-view");
                         if (info != null) {
                             $(new ContentsView(info));
@@ -74,8 +78,8 @@ public class MainPage extends HTML {
                     // =============================
                     // Right Side Navigation
                     // =============================
-                    $("aside", Styles.RNavi, () -> {
-                        $("div", Styles.RNaviStickyBlock, () -> {
+                    $("aside", Styles.SubNavigation, () -> {
+                        $("div", Styles.SubNavigationStickyBlock, () -> {
                             if (info != null) {
                                 $(new SubNavigationView(info));
                             }
@@ -87,5 +91,90 @@ public class MainPage extends HTML {
                 script("main.js");
             });
         });
+    }
+
+    /**
+     * Style definition.
+     */
+    private interface Styles extends StyleDSL, BaseStyle {
+
+        Numeric LeftNavigationWidth = Numeric.of(15, vw);
+
+        Style workbench = () -> {
+            font.size(FontSize).family(fonts.base).color(palette.font);
+            line.height(LineHeight);
+            display.width(100, vw);
+        };
+
+        Style HeaderArea = () -> {
+            background.color(Color.White);
+            position.sticky().top(0, rem);
+            display.width(MaxWidth).height(HeaderHeight).zIndex(10).flex();
+            margin.auto();
+            border.bottom.color(palette.primary).width(1, px).solid();
+        };
+
+        Style HeaderTitle = () -> {
+            font.size(2.5, rem).family(fonts.title).weight.normal().color(palette.primary);
+            flexItem.alignSelf.center();
+        };
+
+        Style MainArea = () -> {
+            display.width(MaxWidth).flex().direction.row();
+            margin.auto();
+        };
+
+        Style TypeNavigation = () -> {
+            flexItem.basis(LeftNavigationWidth).shrink(0);
+
+            $.child(() -> {
+                position.sticky().top(HeaderHeight);
+
+                $.child(() -> {
+                    margin.top(BaseStyle.BlockVerticalGap);
+                });
+            });
+
+            $.select(".el-select", () -> {
+                display.width(100, percent);
+            });
+
+            $.select(".el-checkbox", () -> {
+                display.block();
+            });
+
+            $.select("#AllTypes", () -> {
+                overflow.hidden().scrollbar.thin();
+                display.height(60, vh);
+
+                $.hover(() -> {
+                    overflow.y.auto();
+                });
+            });
+        };
+
+        Style Contents = () -> {
+            flexItem.grow(1);
+            margin.left(5, rem).right(1.5, rem);
+        };
+
+        Style SubNavigation = () -> {
+            flexItem.basis(RightNavigationWidth).shrink(0);
+        };
+
+        Style SubNavigationStickyBlock = () -> {
+            position.sticky().top(HeaderHeight);
+            display.block().height(Numeric.of(80, vh).subtract(HeaderHeight)).maxWidth(RightNavigationWidth);
+            overflow.auto().scrollbar.thin();
+            text.whiteSpace.nowrap();
+
+            $.hover(() -> {
+                overflow.y.auto();
+            });
+
+            $.child().child(() -> {
+                padding.vertical(0.15, em);
+            });
+        };
     }
 }
