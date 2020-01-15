@@ -89,8 +89,7 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
     }
 
     public static final Style SignatureParameterPart = () -> {
-        display.opacity(0.8);
-        padding.left(0.08, em);
+        font.color(palette.font.lighten(10));
     };
 
     public static final Style HTMLClassParameters = Style.named(".parameters", () -> {
@@ -169,7 +168,7 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
     }
 
     public static final Style HTMLClassModifierPublic = Style.named(".PUBLIC", () -> {
-        setMarkColor(Color.of("#5eb95e"));
+        setMarkColor(Color.rgb(50, 135, 92));
     });
 
     public static final Style HTMLClassModifierProtected = Style.named(".PROTECTED", () -> {
@@ -202,14 +201,16 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
         position.relative();
 
         $.before(() -> {
-            padding.right(0.6, rem);
-            font.color(color).family(fonts.icon).size(0.8, em);
-            content.text(circleFilled);
+            content.text("");
+            display.inlineBlock().width(0.6, rem).height(0.6, rem);
+            border.radius(50, percent);
+            background.color(color);
+            margin.right(0.5, rem);
 
             $.with(".OVERRIDE", () -> {
-                content.text(circlePointed);
+                // content.text("O");
             });
-
+            //
             $.with(".FIELD", () -> {
                 content.text(circleStroked);
             });
@@ -250,7 +251,7 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
     private static void overlayAlphabetRightTop(String mark) {
         position.relative();
         $.before(() -> {
-            font.color(palette.primary).size(0.6, em).family(RobotoMono);
+            font.color(palette.primary).size(0.6, em).family(Roboto);
             content.text(mark);
             position.absolute().top(0, em).left(1.4, em);
         });

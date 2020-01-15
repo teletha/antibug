@@ -124,7 +124,7 @@ class ContentsView extends HTML {
         };
 
         Style Title = () -> {
-            font.family(RobotoMono).size(1, rem).weight.normal();
+            font.family(Roboto).size(1, rem).weight.normal();
             display.block();
         };
 
@@ -133,7 +133,7 @@ class ContentsView extends HTML {
         };
 
         Style Return = () -> {
-            font.color(palette.secondary.saturate(-40));
+            font.color(palette.secondary.lighten(-30));
 
             $.before(() -> {
                 content.text(":");
@@ -153,6 +153,10 @@ class ContentsView extends HTML {
                 $.not($.lastChild(), () -> {
                     text.whiteSpace.nowrap();
                 });
+
+                $.empty().after(() -> {
+                    content.text("No description.");
+                });
             });
         };
 
@@ -163,7 +167,7 @@ class ContentsView extends HTML {
                 position.absolute();
                 display.inlineBlock().width(signatureLabelWidth);
                 margin.left(signatureLabelWidth.negate());
-                font.size(0.8, rem).color(palette.accent().opacify(-0.4)).family(RobotoMono);
+                font.size(0.8, rem).color(palette.font.lighten(50).saturate(50));
             });
         };
 

@@ -18,17 +18,17 @@ import stylist.value.Numeric;
 
 public interface BaseStyle {
 
-    ColorPalette palette = ColorPalette.with.primary($.rgb(40, 165, 245))
+    ColorPalette palette = ColorPalette.with.primary($.rgb(22, 94, 131))
             .secondary($.rgb(250, 210, 50))
             .accent($.rgb(221, 81, 76))
             .background($.rgb(241, 250, 238))
-            .font($.rgb(94, 109, 130));
+            .font($.rgb(69, 69, 79));
 
-    Font RobotoMono = Font.fromGoogle("Roboto Condensed");
+    Font Roboto = Font.fromGoogle("Roboto");
 
-    FontPalette fonts = FontPalette.with.base(RobotoMono).title(Font.fromGoogle("Ubuntu")).monoBySystem();
+    FontPalette fonts = FontPalette.with.base(Roboto).title(Font.fromGoogle("Ubuntu")).monoBySystem();
 
-    Numeric FontSize = Numeric.of(13, px);
+    Numeric FontSize = Numeric.of(12, px);
 
     Numeric MaxWidth = Numeric.of(85, vw);
 

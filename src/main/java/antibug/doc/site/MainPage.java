@@ -101,13 +101,14 @@ public class MainPage extends HTML {
         Numeric LeftNavigationWidth = Numeric.of(15, vw);
 
         Style workbench = () -> {
+            background.color(Color.rgb(235, 246, 247));
             font.size(FontSize).family(fonts.base).color(palette.font);
             line.height(LineHeight);
             display.width(100, vw);
         };
 
         Style HeaderArea = () -> {
-            background.color(Color.White);
+            background.color(Color.Inherit);
             position.sticky().top(0, rem);
             display.width(MaxWidth).height(HeaderHeight).zIndex(10).flex();
             margin.auto();

@@ -206,7 +206,7 @@ public class DocumentInfo {
      * @return
      */
     private XML emptyXML() {
-        return I.xml("<p>No description.</p>");
+        return null;
     }
 
     /**
