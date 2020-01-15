@@ -14,6 +14,7 @@ import antibug.doc.Javadoc;
 import antibug.doc.builder.HTML;
 import stylist.Style;
 import stylist.StyleDSL;
+import stylist.property.Background.BackgroundImage;
 import stylist.value.Color;
 import stylist.value.Numeric;
 
@@ -101,14 +102,14 @@ public class MainPage extends HTML {
         Numeric LeftNavigationWidth = Numeric.of(15, vw);
 
         Style workbench = () -> {
-            background.color(Color.rgb(235, 246, 247));
+            background.color(Color.rgb(235, 246, 247)).image(BackgroundImage.drawSlash(Color.rgb(220, 222, 225, 0.7), 3)).repeat();
             font.size(FontSize).family(fonts.base).color(palette.font);
             line.height(LineHeight);
             display.width(100, vw);
         };
 
         Style HeaderArea = () -> {
-            background.color(Color.Inherit);
+            background.color(Color.Inherit).image(BackgroundImage.inherit()).repeat();
             position.sticky().top(0, rem);
             display.width(MaxWidth).height(HeaderHeight).zIndex(10).flex();
             margin.auto();
@@ -147,6 +148,7 @@ public class MainPage extends HTML {
             $.select("#AllTypes", () -> {
                 overflow.hidden().scrollbar.thin();
                 display.height(60, vh);
+                background.color(Color.Inherit);
 
                 $.hover(() -> {
                     overflow.y.auto();

@@ -205,7 +205,7 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
             display.inlineBlock().width(0.6, rem).height(0.6, rem);
             border.radius(50, percent);
             background.color(color);
-            margin.right(0.5, rem);
+            margin.right(0.6, rem);
 
             $.with(".OVERRIDE", () -> {
                 // content.text("O");
@@ -251,9 +251,9 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
     private static void overlayAlphabetRightTop(String mark) {
         position.relative();
         $.before(() -> {
-            font.color(palette.primary).size(0.6, em).family(Roboto);
+            font.color(palette.primary).size(0.6, rem).family(Roboto);
             content.text(mark);
-            position.absolute().top(0, em).left(1.4, em);
+            position.absolute().top(-0.2, rem).left(0.7, rem);
         });
     }
 
@@ -265,9 +265,9 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
     private static void overlayIconRightBottom(String mark) {
         position.relative();
         $.after(() -> {
-            font.color(palette.primary).size(0.8, em).family(fonts.icon);
+            font.color(palette.primary).size(0.7, rem).family(fonts.icon);
             content.text(mark);
-            position.absolute().top(0.8, em).left(0.8, em);
+            position.absolute().top(0.5, rem).left(0.5, rem);
         });
     }
 

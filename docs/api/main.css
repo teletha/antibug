@@ -2,67 +2,41 @@
 @import url("http://fonts.googleapis.com/css?family=Roboto");
 @import url("http://fonts.googleapis.com/css?family=Ubuntu");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1044117371 */h2 {
-	font-size: 1.8rem;
-	font-family: Ubuntu;
+/* 1073640666 */.parameters::before {
+	content: '<';
 }
 
-/* 1105683026 */i {
-	font-style: normal;
+/* 1073640666 */.parameters::after {
+	content: '>';
 }
 
-/* 114743324 */.extends::before {
-	content: ' extends ';
-}
-
-/* 1228481110 */.ABSTRACT {
+/* 1074655923 */.PROTECTED {
 	position: relative;
 }
 
-/* 1228481110 */.ABSTRACT::before {
-	color: hsl(200,71%,30%);
-	font-size: 0.6em;
-	font-family: Roboto;
-	content: 'A';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
+/* 1074655923 */.PROTECTED::before {
+	content: '';
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
+	background-color: hsl(48,95%,59%);
+	margin-right: 0.6rem;
 }
 
-/* 1233589293 */html {
-	font-size: 14px;
-	scroll-behavior: smooth;
-	scroll-padding-top: 80px;
-	word-break: break-all;
+/* 1074655923 */.PROTECTED.FIELD::before {
+	content: '\e836';
 }
 
-/* 1233589293 */html *[class|=el] {
-	font-size: 1rem;
-}
-
-/* 128403058 */.package {
+/* 1207178960 */.package {
 	font-weight: bold;
 }
 
-/* 1512290769 */.FINAL {
+/* 1255012071 */.AbstractClass {
 	position: relative;
 }
 
-/* 1512290769 */.FINAL::before {
-	color: hsl(200,71%,30%);
-	font-size: 0.6em;
-	font-family: Roboto;
-	content: 'F';
-	position: absolute;
-	top: 0;
-	left: 1.4em;
-}
-
-/* 1518876102 */.AbstractClass {
-	position: relative;
-}
-
-/* 1518876102 */.AbstractClass::before {
+/* 1255012071 */.AbstractClass::before {
 	font-family: "Material Icons";
 	color: hsl(120,9%,55%);
 	font-size: 1rem;
@@ -71,120 +45,25 @@
 	vertical-align: middle;
 }
 
-/* 1547826848 */.PRIVATE {
+/* 1300208435 */.FINAL {
 	position: relative;
 }
 
-/* 1547826848 */.PRIVATE::before {
-	content: '';
-	display: inline-block;
-	width: 0.6rem;
-	height: 0.6rem;
-	border-radius: 50%;
-	background-color: hsl(2,68%,58%);
-	margin-right: 0.5rem;
+/* 1300208435 */.FINAL::before {
+	color: hsl(200,71%,30%);
+	font-size: 0.6rem;
+	font-family: Roboto;
+	content: 'F';
+	position: absolute;
+	top: -0.2rem;
+	left: 0.7rem;
 }
 
-/* 1547826848 */.PRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 1715504118 */.Functional {
+/* 1424788147 */.Annotation {
 	position: relative;
 }
 
-/* 1715504118 */.Functional::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: 1rem;
-	content: '\e88e';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 1730243635 */.Class {
-	position: relative;
-}
-
-/* 1730243635 */.Class::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: 1rem;
-	content: '\e90c';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 1731685294 */.parameters::before {
-	content: '<';
-}
-
-/* 1731685294 */.parameters::after {
-	content: '>';
-}
-
-/* 1807159909 */i[array=fix]::after {
-	content: '[]';
-}
-
-/* 1858567339 */.Enum {
-	position: relative;
-}
-
-/* 1858567339 */.Enum::before {
-	font-family: "Material Icons";
-	color: hsl(120,4%,55%);
-	font-size: 1rem;
-	content: '\e01e';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 1926737919 */.PACKAGEPRIVATE {
-	position: relative;
-}
-
-/* 1926737919 */.PACKAGEPRIVATE::before {
-	content: '';
-	display: inline-block;
-	width: 0.6rem;
-	height: 0.6rem;
-	border-radius: 50%;
-	background-color: hsl(200,71%,30%);
-	margin-right: 0.5rem;
-}
-
-/* 1926737919 */.PACKAGEPRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 2070649285 */.PUBLIC {
-	position: relative;
-}
-
-/* 2070649285 */.PUBLIC::before {
-	content: '';
-	display: inline-block;
-	width: 0.6rem;
-	height: 0.6rem;
-	border-radius: 50%;
-	background-color: hsl(150,46%,36%);
-	margin-right: 0.5rem;
-}
-
-/* 2070649285 */.PUBLIC.FIELD::before {
-	content: '\e836';
-}
-
-/* 2086260582 */.super::before {
-	content: ' super ';
-}
-
-/* 209329590 */.Annotation {
-	position: relative;
-}
-
-/* 209329590 */.Annotation::before {
+/* 1424788147 */.Annotation::before {
 	font-family: "Material Icons";
 	color: hsl(120,4%,55%);
 	font-size: 1rem;
@@ -193,38 +72,61 @@
 	vertical-align: middle;
 }
 
-/* 2129898017 */.SYNCHRONIZED {
+/* 1544770378 */.ABSTRACT {
 	position: relative;
 }
 
-/* 2129898017 */.SYNCHRONIZED::after {
+/* 1544770378 */.ABSTRACT::before {
 	color: hsl(200,71%,30%);
-	font-size: 0.8em;
-	font-family: "Material Icons";
-	content: '\e8ae';
+	font-size: 0.6rem;
+	font-family: Roboto;
+	content: 'A';
 	position: absolute;
-	top: 0.8em;
-	left: 0.8em;
+	top: -0.2rem;
+	left: 0.7rem;
 }
 
-/* 375399219 */a {
-	color: inherit;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-/* 375399219 */a:hover {
-	text-decoration: underline;
-	text-decoration-color: hsla(240,7%,29%,0.5);
-	text-underline-offset: 4px;
-	text-underline-position: under;
-}
-
-/* 398929914 */.Exception {
+/* 1560847964 */.TRANSIENT {
 	position: relative;
 }
 
-/* 398929914 */.Exception::before {
+/* 1560847964 */.TRANSIENT::after {
+	color: hsl(200,71%,30%);
+	font-size: 0.7rem;
+	font-family: "Material Icons";
+	content: '\e14c';
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+}
+
+/* 1878688038 */i[array=fix]::after {
+	content: '[]';
+}
+
+/* 1879326995 */.PACKAGEPRIVATE {
+	position: relative;
+}
+
+/* 1879326995 */.PACKAGEPRIVATE::before {
+	content: '';
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
+	background-color: hsl(200,71%,30%);
+	margin-right: 0.6rem;
+}
+
+/* 1879326995 */.PACKAGEPRIVATE.FIELD::before {
+	content: '\e836';
+}
+
+/* 1907565575 */.Exception {
+	position: relative;
+}
+
+/* 1907565575 */.Exception::before {
 	font-family: "Material Icons";
 	color: hsl(26,90%,53%);
 	font-size: 1rem;
@@ -233,43 +135,102 @@
 	vertical-align: middle;
 }
 
-/* 768911273 */.TRANSIENT {
+/* 2013570947 */.Enum {
 	position: relative;
 }
 
-/* 768911273 */.TRANSIENT::after {
-	color: hsl(200,71%,30%);
-	font-size: 0.8em;
+/* 2013570947 */.Enum::before {
 	font-family: "Material Icons";
-	content: '\e14c';
-	position: absolute;
-	top: 0.8em;
-	left: 0.8em;
+	color: hsl(120,4%,55%);
+	font-size: 1rem;
+	content: '\e01e';
+	padding-right: 0.6rem;
+	vertical-align: middle;
 }
 
-/* 773619751 */.PROTECTED {
+/* 2016282692 */.VOLATILE {
 	position: relative;
 }
 
-/* 773619751 */.PROTECTED::before {
+/* 2016282692 */.VOLATILE::before {
+	color: hsl(200,71%,30%);
+	font-size: 0.6rem;
+	font-family: Roboto;
+	content: 'V';
+	position: absolute;
+	top: -0.2rem;
+	left: 0.7rem;
+}
+
+/* 372366268 */html {
+	font-size: 14px;
+	scroll-behavior: smooth;
+	scroll-padding-top: 80px;
+	word-break: break-all;
+}
+
+/* 372366268 */html *[class|=el] {
+	font-size: 1rem;
+}
+
+/* 419414024 */.PRIVATE {
+	position: relative;
+}
+
+/* 419414024 */.PRIVATE::before {
 	content: '';
 	display: inline-block;
 	width: 0.6rem;
 	height: 0.6rem;
 	border-radius: 50%;
-	background-color: hsl(48,95%,59%);
-	margin-right: 0.5rem;
+	background-color: hsl(2,68%,58%);
+	margin-right: 0.6rem;
 }
 
-/* 773619751 */.PROTECTED.FIELD::before {
+/* 419414024 */.PRIVATE.FIELD::before {
 	content: '\e836';
 }
 
-/* 901225247 */.Interface {
+/* 452384342 */.Functional {
 	position: relative;
 }
 
-/* 901225247 */.Interface::before {
+/* 452384342 */.Functional::before {
+	font-family: "Material Icons";
+	color: hsl(271,30%,50%);
+	font-size: 1rem;
+	content: '\e88e';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 493381154 */.PUBLIC {
+	position: relative;
+}
+
+/* 493381154 */.PUBLIC::before {
+	content: '';
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
+	background-color: hsl(150,46%,36%);
+	margin-right: 0.6rem;
+}
+
+/* 493381154 */.PUBLIC.FIELD::before {
+	content: '\e836';
+}
+
+/* 499085946 */.super::before {
+	content: ' super ';
+}
+
+/* 566132982 */.Interface {
+	position: relative;
+}
+
+/* 566132982 */.Interface::before {
 	font-family: "Material Icons";
 	color: hsl(271,30%,50%);
 	font-size: 1rem;
@@ -278,26 +239,66 @@
 	vertical-align: middle;
 }
 
-/* 931229350 */i[array=var]::after {
+/* 602828967 */i[array=var]::after {
 	content: '...';
 }
 
-/* 962769430 */.VOLATILE {
+/* 614565258 */i {
+	font-style: normal;
+}
+
+/* 655013820 */a {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* 655013820 */a:hover {
+	text-decoration: underline;
+	text-decoration-color: hsla(240,7%,29%,0.5);
+	text-underline-offset: 4px;
+	text-underline-position: under;
+}
+
+/* 770190328 */.Class {
 	position: relative;
 }
 
-/* 962769430 */.VOLATILE::before {
+/* 770190328 */.Class::before {
+	font-family: "Material Icons";
+	color: hsl(120,39%,55%);
+	font-size: 1rem;
+	content: '\e90c';
+	padding-right: 0.6rem;
+	vertical-align: middle;
+}
+
+/* 899296406 */.extends::before {
+	content: ' extends ';
+}
+
+/* 991026870 */.SYNCHRONIZED {
+	position: relative;
+}
+
+/* 991026870 */.SYNCHRONIZED::after {
 	color: hsl(200,71%,30%);
-	font-size: 0.6em;
-	font-family: Roboto;
-	content: 'V';
+	font-size: 0.7rem;
+	font-family: "Material Icons";
+	content: '\e8ae';
 	position: absolute;
-	top: 0;
-	left: 1.4em;
+	top: 0.5rem;
+	left: 0.5rem;
+}
+
+/* 996552978 */h2 {
+	font-size: 1.8rem;
+	font-family: Ubuntu;
 }
 
 /* antibug.doc.site.ContentsView.style#Name */.N {
 	font-weight: bold;
+	margin-right: 0.175rem;
 }
 
 /* antibug.doc.site.ContentsView.style#Return */.O {
@@ -311,7 +312,14 @@
 }
 
 /* antibug.doc.site.ContentsView.style#Section */.L {
-	margin-top: 4rem;
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+	padding-left: 0.7rem;
+	padding-right: 0.7rem;
+	padding-top: 0.7rem;
+	padding-bottom: 0.7rem;
+	border-radius: 4px;
+	background-color: hsl(0,0%,100%);
 }
 
 /* antibug.doc.site.ContentsView.style#SignatureDefinition */.Q {
@@ -324,7 +332,7 @@
 	width: 2.5rem;
 	margin-left: -2.5rem;
 	font-size: 0.8rem;
-	color: hsl(240,57%,79%);
+	color: hsl(0,29%,49%);
 }
 
 /* antibug.doc.site.ContentsView.style#SignatureException */.U {
@@ -337,7 +345,7 @@
 	width: 2.5rem;
 	margin-left: -2.5rem;
 	font-size: 0.8rem;
-	color: hsl(240,57%,79%);
+	color: hsl(0,29%,49%);
 }
 
 /* antibug.doc.site.ContentsView.style#SignatureException */.U::before {
@@ -354,7 +362,7 @@
 	width: 2.5rem;
 	margin-left: -2.5rem;
 	font-size: 0.8rem;
-	color: hsl(240,57%,79%);
+	color: hsl(0,29%,49%);
 }
 
 /* antibug.doc.site.ContentsView.style#SignatureParameter */.S::before {
@@ -371,11 +379,12 @@
 	width: 2.5rem;
 	margin-left: -2.5rem;
 	font-size: 0.8rem;
-	color: hsl(240,57%,79%);
+	color: hsl(0,29%,49%);
 }
 
 /* antibug.doc.site.ContentsView.style#SignatureReturn */.T::before {
 	content: 'Return';
+	color: hsl(48,95%,29%);
 }
 
 /* antibug.doc.site.ContentsView.style#SignatureTable */.P {
@@ -409,7 +418,7 @@
 	width: 2.5rem;
 	margin-left: -2.5rem;
 	font-size: 0.8rem;
-	color: hsl(240,57%,79%);
+	color: hsl(0,29%,49%);
 }
 
 /* antibug.doc.site.ContentsView.style#SignatureTypeVariable */.R::before {
@@ -432,6 +441,8 @@
 
 /* antibug.doc.site.MainPage.Styles#HeaderArea */.B {
 	background-color: inherit;
+	background-image: inherit;
+	background-repeat: repeat;
 	position: sticky;
 	top: 0;
 	width: 85vw;
@@ -516,6 +527,7 @@
 	overflow: hidden;
 	scrollbar-width: thin;
 	height: 60vh;
+	background-color: inherit;
 }
 
 /* antibug.doc.site.MainPage.Styles#TypeNavigation */.E #AllTypes:hover {
@@ -524,6 +536,8 @@
 
 /* antibug.doc.site.MainPage.Styles#workbench */.A {
 	background-color: hsl(185,43%,95%);
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAE0lEQVR4XmNggILbdx9uwsEAAgDBfQniz1+UngAAAABJRU5ErkJggg==);
+	background-repeat: repeat;
 	font-size: 12px;
 	font-family: Roboto;
 	color: hsl(240,7%,29%);
@@ -551,7 +565,25 @@
 	font-size: 1rem;
 }
 
-site.SubNavigationView.Styles#Return */.K::before {
+
+
+ 1rem;
+}
+
+top: 0.9rem;
+	font-weight: bold;
+	font-size: 1rem;
+}
+
+/* antibug.doc.site.Styles#SignatureParameterPart */.I {
+	color: hsl(240,7%,39%);
+}
+
+/* antibug.doc.site.SubNavigationView.Styles#Return */.K {
+	color: hsl(48,95%,29%);
+}
+
+/* antibug.doc.site.SubNavigationView.Styles#Return */.K::before {
 	content: ':';
 	padding-left: 0.3em;
 	padding-right: 0.3em;
@@ -561,14 +593,5 @@ site.SubNavigationView.Styles#Return */.K::before {
 	margin-top: 0.9rem;
 	font-weight: bold;
 	font-size: 1rem;
-}
-
-SubNavigationView.Styles#Title */.J {
-	margin-top: 0.9rem;
-	font-weight: bold;
-	font-size: 1rem;
-}
-
-e: 1rem;
 }
 

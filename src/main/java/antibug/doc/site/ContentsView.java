@@ -18,6 +18,7 @@ import antibug.doc.builder.HTML;
 import kiss.XML;
 import stylist.Style;
 import stylist.StyleDSL;
+import stylist.value.Color;
 import stylist.value.Numeric;
 
 /**
@@ -107,9 +108,8 @@ class ContentsView extends HTML {
                     });
                 });
             }
+            $(member.createComment());
         });
-
-        $(member.createComment());
     }
 
     /**
@@ -120,7 +120,10 @@ class ContentsView extends HTML {
         Numeric signatureLabelWidth = Numeric.of(2.5, rem);
 
         Style Section = () -> {
-            margin.top(BlockVerticalGap.multiply(8));
+            margin.vertical(1.5, rem);
+            padding.size(0.7, rem);
+            border.radius(4, px);
+            background.color(Color.White);
         };
 
         Style Title = () -> {
@@ -130,6 +133,7 @@ class ContentsView extends HTML {
 
         Style Name = () -> {
             font.weight.bold();
+            margin.right(0.175, rem);
         };
 
         Style Return = () -> {
@@ -167,7 +171,7 @@ class ContentsView extends HTML {
                 position.absolute();
                 display.inlineBlock().width(signatureLabelWidth);
                 margin.left(signatureLabelWidth.negate());
-                font.size(0.8, rem).color(palette.font.lighten(50).saturate(50));
+                font.size(0.8, rem).color(Color.hsl(0, 29, 49));
             });
         };
 
@@ -192,6 +196,7 @@ class ContentsView extends HTML {
 
             $.before(() -> {
                 content.text("Return");
+                font.color(palette.secondary.lighten(-30));
             });
         };
 
