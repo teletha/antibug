@@ -16,18 +16,6 @@ import org.junit.jupiter.api.Test;
 public class ParameterizableInfoTest extends JavadocTestSupport {
 
     @Test
-    public <A> void single() {
-        assert checkTypeParmeterName(currentMethod(), "A");
-        assert checkTypeParameter(currentMethod(), "<i>A</i>");
-    }
-
-    @Test
-    public <A, B> void multi() {
-        assert checkTypeParmeterName(currentMethod(), "A", "B");
-        assert checkTypeParameter(currentMethod(), "<i>A</i>", "<i>B</i>");
-    }
-
-    @Test
     public <A extends Comparable> void bounded() {
         assert checkTypeParmeterName(currentMethod(), "A");
         assert checkTypeParameter(currentMethod(), "<i>A</i><i class='extends'><i>java.lang.Comparable</i></i>");
@@ -36,7 +24,7 @@ public class ParameterizableInfoTest extends JavadocTestSupport {
     @Test
     public <A extends Comparable<A>> void boundedVariable() {
         assert checkTypeParmeterName(currentMethod(), "A");
-        assert checkTypeParameter(currentMethod(), "<i>A</i><i class='extends'><i>java.lang.Comparable</i><i class='parameters'><i>A</i></i></i>");
+        assert checkTypeParameter(currentMethod(), "<i>A</i><i class='extends'><i>java.lang.Comparable<i class='parameters'><i>A</i></i></i></i>");
     }
 
     @Test

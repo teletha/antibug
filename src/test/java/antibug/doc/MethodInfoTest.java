@@ -59,7 +59,7 @@ public class MethodInfoTest extends JavadocTestSupport {
 
     @Test
     void returnParameterized() {
-        assert checkReturnType(method("parameterized"), "<i>java.util.List</i><i class='parameters'><i>java.lang.String</i></i>");
+        assert checkReturnType(method("parameterized"), "<i>java.util.List<i class='parameters'><i>java.lang.String</i></i></i>");
     }
 
     protected List<String> parameterized() {
