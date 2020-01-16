@@ -45,6 +45,10 @@ public class MainPage extends HTML {
                 $("meta", attr("charset", "UTF-8"));
                 $("title", text(javadoc.productName() + " API"));
                 stylesheet("/main.css");
+                stylesheet("https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css");
+                script("https://cdn.jsdelivr.net/npm/pretty-checkbox-vue@1.1/dist/pretty-checkbox-vue.min.js");
+                stylesheet("https://unpkg.com/vue-select@3.4.0/dist/vue-select.css");
+                script("https://unpkg.com/vue-select@3.4.0");
                 stylesheet("https://unpkg.com/element-ui/lib/theme-chalk/index.css");
                 script("https://unpkg.com/vue/dist/vue.js");
                 script("https://unpkg.com/vue-router/dist/vue-router.js");
