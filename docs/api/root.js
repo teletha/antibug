@@ -125,6 +125,13 @@ const root = {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
+			"name": "Enn",
+			"packageName": "antibug.dummy",
+			"type": "Enum",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
 			"name": "ExecutableInfo",
 			"packageName": "antibug.doc",
 			"type": "Class",

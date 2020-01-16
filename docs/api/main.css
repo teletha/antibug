@@ -2,104 +2,28 @@
 @import url("http://fonts.googleapis.com/css?family=Roboto");
 @import url("http://fonts.googleapis.com/css?family=Ubuntu");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1008751193 */.package {
-	font-weight: bold;
-}
-
-/* 1010361023 */i[array=fix]::after {
-	content: '[]';
-}
-
-/* 1040847151 */.ABSTRACT {
-	position: relative;
-}
-
-/* 1040847151 */.ABSTRACT::before {
-	color: hsl(200,71%,30%);
-	font-size: 0.6rem;
-	font-family: Roboto;
-	content: 'A';
-	position: absolute;
-	top: -0.2rem;
-	left: 0.7rem;
-}
-
-/* 1207755460 */.PROTECTED {
-	position: relative;
-}
-
-/* 1207755460 */.PROTECTED::before {
-	content: '';
+/* 1011254112 */.Exception::before {
 	display: inline-block;
-	width: 0.6rem;
-	height: 0.6rem;
-	border-radius: 50%;
-	background-color: hsl(48,95%,59%);
-	margin-right: 0.6rem;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(2,68%,58%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'T';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 3px;
+	color: hsl(0,0%,100%);
+	background-color: hsl(2,68%,58%);
 }
 
-/* 1207755460 */.PROTECTED.FIELD::before {
-	content: '\e836';
-}
-
-/* 1529627129 */.AbstractClass {
+/* 1129435221 */.FINAL {
 	position: relative;
 }
 
-/* 1529627129 */.AbstractClass::before {
-	font-family: "Material Icons";
-	color: hsl(120,9%,55%);
-	font-size: 1rem;
-	content: '\e90c';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 1539575645 */.Interface {
-	position: relative;
-}
-
-/* 1539575645 */.Interface::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: 1rem;
-	content: '\e88f';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 1696621151 */.Class {
-	position: relative;
-}
-
-/* 1696621151 */.Class::before {
-	font-family: "Material Icons";
-	color: hsl(120,39%,55%);
-	font-size: 1rem;
-	content: '\e90c';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 1739721548 */.SYNCHRONIZED {
-	position: relative;
-}
-
-/* 1739721548 */.SYNCHRONIZED::after {
-	color: hsl(200,71%,30%);
-	font-size: 0.7rem;
-	font-family: "Material Icons";
-	content: '\e8ae';
-	position: absolute;
-	top: 0.5rem;
-	left: 0.5rem;
-}
-
-/* 180256054 */.FINAL {
-	position: relative;
-}
-
-/* 180256054 */.FINAL::before {
+/* 1129435221 */.FINAL::before {
 	color: hsl(200,71%,30%);
 	font-size: 0.6rem;
 	font-family: Roboto;
@@ -109,11 +33,115 @@
 	left: 0.7rem;
 }
 
-/* 1888750776 */.PUBLIC {
+/* 1160785510 */.Class::before {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(150,46%,36%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'C';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 50%;
+	color: hsl(0,0%,100%);
+	background-color: hsl(150,46%,36%);
+}
+
+/* 1204036307 */.Enum::before {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(0,29%,49%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'E';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 3px;
+	color: hsl(0,0%,100%);
+	background-color: hsl(0,29%,49%);
+}
+
+/* 1206325076 */.Functional::before {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(271,30%,50%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'F';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 50%;
+	color: hsl(271,30%,50%);
+}
+
+/* 1220163548 */.super::before {
+	content: ' super ';
+}
+
+/* 1546315735 */.vs__dropdown-toggle {
+	background-color: hsl(0,0%,100%);
+}
+
+/* 161573617 */.Interface::before {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(271,30%,50%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'I';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 50%;
+	color: hsl(271,30%,50%);
+}
+
+/* 1705558790 */.parameters::before {
+	content: '<';
+}
+
+/* 1705558790 */.parameters::after {
+	content: '>';
+}
+
+/* 1853665306 */.pretty {
+	display: block;
+}
+
+/* 187115616 */.ABSTRACT {
 	position: relative;
 }
 
-/* 1888750776 */.PUBLIC::before {
+/* 187115616 */.ABSTRACT::before {
+	color: hsl(200,71%,30%);
+	font-size: 0.6rem;
+	font-family: Roboto;
+	content: 'A';
+	position: absolute;
+	top: -0.2rem;
+	left: 0.7rem;
+}
+
+/* 1909332462 */.extends::before {
+	content: ' extends ';
+}
+
+/* 2017577360 */.PUBLIC {
+	position: relative;
+}
+
+/* 2017577360 */.PUBLIC::before {
 	content: '';
 	display: inline-block;
 	width: 0.6rem;
@@ -123,15 +151,28 @@
 	margin-right: 0.6rem;
 }
 
-/* 1888750776 */.PUBLIC.FIELD::before {
+/* 2017577360 */.PUBLIC.FIELD::before {
 	content: '\e836';
 }
 
-/* 2076070699 */.TRANSIENT {
+/* 2021678579 */a {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* 2021678579 */a:hover {
+	text-decoration: underline;
+	text-decoration-color: hsla(240,7%,29%,0.5);
+	text-underline-offset: 4px;
+	text-underline-position: under;
+}
+
+/* 2098233443 */.TRANSIENT {
 	position: relative;
 }
 
-/* 2076070699 */.TRANSIENT::after {
+/* 2098233443 */.TRANSIENT::after {
 	color: hsl(200,71%,30%);
 	font-size: 0.7rem;
 	font-family: "Material Icons";
@@ -141,148 +182,23 @@
 	left: 0.5rem;
 }
 
-/* 2107764550 */.VOLATILE {
-	position: relative;
-}
-
-/* 2107764550 */.VOLATILE::before {
-	color: hsl(200,71%,30%);
-	font-size: 0.6rem;
-	font-family: Roboto;
-	content: 'V';
-	position: absolute;
-	top: -0.2rem;
-	left: 0.7rem;
-}
-
-/* 252510665 */.super::before {
-	content: ' super ';
-}
-
-/* 284267224 */.extends::before {
-	content: ' extends ';
-}
-
-/* 373335733 */.Exception {
-	position: relative;
-}
-
-/* 373335733 */.Exception::before {
-	font-family: "Material Icons";
-	color: hsl(26,90%,53%);
-	font-size: 1rem;
-	content: '\e031';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 399793403 */h2 {
-	font-size: 1.8rem;
-	font-family: Ubuntu;
-}
-
-/* 476441699 */a {
-	color: inherit;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-/* 476441699 */a:hover {
-	text-decoration: underline;
-	text-decoration-color: hsla(240,7%,29%,0.5);
-	text-underline-offset: 4px;
-	text-underline-position: under;
-}
-
-/* 518334273 */.Enum {
-	position: relative;
-}
-
-/* 518334273 */.Enum::before {
-	font-family: "Material Icons";
-	color: hsl(120,4%,55%);
-	font-size: 1rem;
-	content: '\e01e';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 531630701 */i {
+/* 254201206 */i {
 	font-style: normal;
 }
 
-/* 542864344 */i[array=var]::after {
+/* 280804333 */.package {
+	font-weight: bold;
+}
+
+/* 289194317 */i[array=var]::after {
 	content: '...';
 }
 
-/* 546452352 */.Functional {
+/* 379409767 */.PACKAGEPRIVATE {
 	position: relative;
 }
 
-/* 546452352 */.Functional::before {
-	font-family: "Material Icons";
-	color: hsl(271,30%,50%);
-	font-size: 1rem;
-	content: '\e88e';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 636956953 */.parameters::before {
-	content: '<';
-}
-
-/* 636956953 */.parameters::after {
-	content: '>';
-}
-
-/* 641985795 */html {
-	font-size: 14px;
-	scroll-behavior: smooth;
-	scroll-padding-top: 80px;
-	word-break: break-all;
-}
-
-/* 641985795 */html *[class|=el] {
-	font-size: 1rem;
-}
-
-/* 729214165 */.PRIVATE {
-	position: relative;
-}
-
-/* 729214165 */.PRIVATE::before {
-	content: '';
-	display: inline-block;
-	width: 0.6rem;
-	height: 0.6rem;
-	border-radius: 50%;
-	background-color: hsl(2,68%,58%);
-	margin-right: 0.6rem;
-}
-
-/* 729214165 */.PRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 794429742 */.Annotation {
-	position: relative;
-}
-
-/* 794429742 */.Annotation::before {
-	font-family: "Material Icons";
-	color: hsl(120,4%,55%);
-	font-size: 1rem;
-	content: '\e167';
-	padding-right: 0.6rem;
-	vertical-align: middle;
-}
-
-/* 940605548 */.PACKAGEPRIVATE {
-	position: relative;
-}
-
-/* 940605548 */.PACKAGEPRIVATE::before {
+/* 379409767 */.PACKAGEPRIVATE::before {
 	content: '';
 	display: inline-block;
 	width: 0.6rem;
@@ -292,8 +208,182 @@
 	margin-right: 0.6rem;
 }
 
-/* 940605548 */.PACKAGEPRIVATE.FIELD::before {
+/* 379409767 */.PACKAGEPRIVATE.FIELD::before {
 	content: '\e836';
+}
+
+/* 508074327 */.PRIVATE {
+	position: relative;
+}
+
+/* 508074327 */.PRIVATE::before {
+	content: '';
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
+	background-color: hsl(2,68%,58%);
+	margin-right: 0.6rem;
+}
+
+/* 508074327 */.PRIVATE.FIELD::before {
+	content: '\e836';
+}
+
+/* 511033073 */.PROTECTED {
+	position: relative;
+}
+
+/* 511033073 */.PROTECTED::before {
+	content: '';
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
+	background-color: hsl(48,95%,59%);
+	margin-right: 0.6rem;
+}
+
+/* 511033073 */.PROTECTED.FIELD::before {
+	content: '\e836';
+}
+
+/* 593626872 */#SearchByName {
+	display: block;
+	width: 100%;
+	background-color: hsl(0,0%,100%);
+	margin-top: 8px;
+	margin-bottom: 8px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 8px;
+	padding-right: 8px;
+	border-color: hsla(0,0%,24%,0.26);
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 4px;
+}
+
+/* 618085457 */html {
+	font-size: 14px;
+	scroll-behavior: smooth;
+	scroll-padding-top: 80px;
+	word-break: break-all;
+}
+
+/* 618085457 */html *[class|=el] {
+	font-size: 1rem;
+}
+
+/* 633366676 */.VOLATILE {
+	position: relative;
+}
+
+/* 633366676 */.VOLATILE::before {
+	color: hsl(200,71%,30%);
+	font-size: 0.6rem;
+	font-family: Roboto;
+	content: 'V';
+	position: absolute;
+	top: -0.2rem;
+	left: 0.7rem;
+}
+
+/* 667428844 */.SYNCHRONIZED {
+	position: relative;
+}
+
+/* 667428844 */.SYNCHRONIZED::after {
+	color: hsl(200,71%,30%);
+	font-size: 0.7rem;
+	font-family: "Material Icons";
+	content: '\e8ae';
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+}
+
+/* 816224332 */.AbstractClass::before {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(150,46%,36%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'C';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 50%;
+	color: hsl(150,46%,36%);
+}
+
+/* 841975037 */i[array=fix]::after {
+	content: '[]';
+}
+
+/* 942016720 */.Annotation::before {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(200,71%,30%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'A';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 3px;
+	color: hsl(0,0%,100%);
+	background-color: hsl(200,71%,30%);
+}
+
+/* 96489160 */.tree {
+	overflow: hidden;
+	scrollbar-width: thin;
+	height: 60vh;
+	background-color: inherit;
+}
+
+/* 96489160 */.tree:hover {
+	overflow-y: auto;
+}
+
+/* 96489160 */.tree dt {
+	font-weight: bold;
+	cursor: pointer;
+	padding-top: 0.2rem;
+	padding-bottom: 0.2rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	border-radius: 2px;
+}
+
+/* 96489160 */.tree dt:hover {
+	background-color: hsl(0,0%,100%);
+	background-image: inherit;
+	background-repeat: repeat;
+}
+
+/* 96489160 */.tree dd {
+	padding-top: 0.1rem;
+	padding-bottom: 0.1rem;
+	padding-left: 1rem;
+	cursor: pointer;
+	border-radius: 2px;
+}
+
+/* 96489160 */.tree dd:hover {
+	background-color: hsl(0,0%,100%);
+	background-image: inherit;
+	background-repeat: repeat;
+}
+
+/* 999685353 */h2 {
+	font-size: 1.8rem;
+	font-family: Ubuntu;
 }
 
 /* antibug.doc.site.ContentsView.style#Name */.N {
@@ -523,17 +613,6 @@
 	display: block;
 }
 
-/* antibug.doc.site.MainPage.Styles#TypeNavigation */.E #AllTypes {
-	overflow: hidden;
-	scrollbar-width: thin;
-	height: 60vh;
-	background-color: inherit;
-}
-
-/* antibug.doc.site.MainPage.Styles#TypeNavigation */.E #AllTypes:hover {
-	overflow-y: auto;
-}
-
 /* antibug.doc.site.MainPage.Styles#workbench */.A {
 	background-color: hsl(185,43%,95%);
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAE0lEQVR4XmNggILbdx9uwsEAAgDBfQniz1+UngAAAABJRU5ErkJggg==);
@@ -565,17 +644,28 @@
 	font-size: 1rem;
 }
 
-
-
-
-
-
-1rem;
+em;
 }
 
-top: 0.9rem;
+ntibug.doc.site.SubNavigationView.Styles#Return */.K::before {
+	content: ':';
+	padding-left: 0.3em;
+	padding-right: 0.3em;
+}
+
+/* antibug.doc.site.SubNavigationView.Styles#Title */.J {
+	margin-top: 0.9rem;
 	font-weight: bold;
 	font-size: 1rem;
+}
+
+ng;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAE0lEQVR4XmNggILbdx9uwsEAAgDBfQniz1+UngAAAABJRU5ErkJggg==);
+	background-repeat: repeat;
+	font-size: 12px;
+	font-family: Roboto;
+	color: hsl(240,7%,29%);
+	line-height: 1.5;
+	width: 100vw;
 }
 
 /* antibug.doc.site.Styles#SignatureParameterPart */.I {

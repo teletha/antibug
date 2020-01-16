@@ -44,15 +44,13 @@ public class MainPage extends HTML {
             $("head", () -> {
                 $("meta", attr("charset", "UTF-8"));
                 $("title", text(javadoc.productName() + " API"));
-                stylesheet("/main.css");
+                script("https://unpkg.com/vue/dist/vue.js");
+                script("https://unpkg.com/vue-router/dist/vue-router.js");
                 stylesheet("https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css");
                 script("https://cdn.jsdelivr.net/npm/pretty-checkbox-vue@1.1/dist/pretty-checkbox-vue.min.js");
                 stylesheet("https://unpkg.com/vue-select@3.4.0/dist/vue-select.css");
                 script("https://unpkg.com/vue-select@3.4.0");
-                stylesheet("https://unpkg.com/element-ui/lib/theme-chalk/index.css");
-                script("https://unpkg.com/vue/dist/vue.js");
-                script("https://unpkg.com/vue-router/dist/vue-router.js");
-                script("https://unpkg.com/element-ui/lib/index.js");
+                stylesheet("/main.css");
             });
             $("body", Styles.workbench, () -> {
                 // =============================
@@ -147,16 +145,6 @@ public class MainPage extends HTML {
 
             $.select(".el-checkbox", () -> {
                 display.block();
-            });
-
-            $.select("#AllTypes", () -> {
-                overflow.hidden().scrollbar.thin();
-                display.height(60, vh);
-                background.color(Color.Inherit);
-
-                $.hover(() -> {
-                    overflow.y.auto();
-                });
             });
         };
 

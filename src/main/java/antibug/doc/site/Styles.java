@@ -11,6 +11,7 @@ package antibug.doc.site;
 
 import stylist.AbstractStyleDSL;
 import stylist.Style;
+import stylist.property.Background.BackgroundImage;
 import stylist.value.Color;
 
 /**
@@ -130,40 +131,55 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
     });
 
     public static final Style HTMLClassTypeInterface = Style.named(".Interface", () -> {
-        buidlMark("\\e88f", Color.rgb(128, 88, 165));
+        buildMark("I", Color.rgb(128, 88, 165), false, true);
     });
 
     public static final Style HTMLClassTypeFunctionalInterface = Style.named(".Functional", () -> {
-        buidlMark("\\e88e", Color.rgb(128, 88, 165));
+        buildMark("F", Color.rgb(128, 88, 165), false, true);
     });
 
     public static final Style HTMLClassTypeAbstractClass = Style.named(".AbstractClass", () -> {
-        buidlMark("\\e90c", Color.of("#5eb95e").saturate(-30));
+        buildMark("C", Color.rgb(50, 135, 92), false, true);
     });
 
     public static final Style HTMLClassTypeClass = Style.named(".Class", () -> {
-        buidlMark("\\e90c", Color.of("#5eb95e"));
+        buildMark("C", Color.rgb(50, 135, 92), true, true);
     });
 
     public static final Style HTMLClassTypeEnum = Style.named(".Enum", () -> {
-        buidlMark("\\e01e", Color.of("#5eb95e").saturate(-35));
+        buildMark("E", Color.hsl(0, 29, 49), true, false);
     });
 
     public static final Style HTMLClassTypeAnnotation = Style.named(".Annotation", () -> {
-        buidlMark("\\e167", Color.of("#5eb95e").saturate(-35));
+        buildMark("A", palette.primary, true, false);
     });
 
     public static final Style HTMLClassTypeException = Style.named(".Exception", () -> {
-        buidlMark("\\e031", Color.rgb(243, 123, 29));
+        buildMark("T", palette.accent, true, false);
     });
 
-    private static void buidlMark(String mark, Color color) {
-        position.relative();
+    private static void buildMark(String mark, Color color, boolean fill, boolean circle) {
         $.before(() -> {
-            font.family(fonts.icon).color(color).size(1, rem);
+            display.inlineBlock().width(15, px).height(15, px);
+            border.color(color).solid().width(1, px);
+            margin.right(6, px);
             content.text(mark);
-            padding.right(0.6, rem);
-            text.verticalAlign.middle();
+            text.align.center();
+            line.height(13, px);
+            font.size(10, px);
+
+            if (circle) {
+                border.radius(50, percent);
+            } else {
+                border.radius(3, px);
+            }
+
+            if (fill) {
+                font.color(Color.White);
+                background.color(color);
+            } else {
+                font.color(color);
+            }
         });
     }
 
@@ -271,4 +287,50 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
         });
     }
 
+    public static final Style SelectBox = Style.named(".vs__dropdown-toggle", () -> {
+        background.color(Color.White);
+    });
+
+    public static final Style CheckBox = Style.named(".pretty", () -> {
+        display.block();
+    });
+
+    public static final Style InputBox = Style.named("#SearchByName", () -> {
+        display.block().width(100, percent);
+        background.color(Color.White);
+        margin.vertical(8, px);
+        padding.vertical(6, px).horizontal(8, px);
+        border.color(Color.rgb(60, 60, 60, 0.26)).width(1, px).solid().radius(4, px);
+    });
+
+    public static final Style Tree = Style.named(".tree", () -> {
+        overflow.hidden().scrollbar.thin();
+        display.height(60, vh);
+        background.color(Color.Inherit);
+
+        $.hover(() -> {
+            overflow.y.auto();
+        });
+
+        $.select("dt", () -> {
+            font.weight.bold();
+            cursor.pointer();
+            padding.vertical(0.2, rem).horizontal(0.5, rem);
+            border.radius(2, px);
+
+            $.hover(() -> {
+                background.color(Color.White).image(BackgroundImage.inherit()).repeat();
+            });
+        });
+
+        $.select("dd", () -> {
+            padding.vertical(0.1, rem).left(1, rem);
+            cursor.pointer();
+            border.radius(2, px);
+
+            $.hover(() -> {
+                background.color(Color.White).image(BackgroundImage.inherit()).repeat();
+            });
+        });
+    });
 }
