@@ -119,7 +119,7 @@ new Vue({
           return false;
         }
 
-        if (this.selectedName !== "" && item.name.toLowerCase().indexOf(this.selectedName.toLowerCase()) === -1) {
+        if (this.selectedName !== "" && (item.packageName + "." + item.name).toLowerCase().indexOf(this.selectedName.toLowerCase()) === -1) {
           return false;
         }
         return true;
