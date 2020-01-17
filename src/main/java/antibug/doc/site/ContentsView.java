@@ -9,6 +9,7 @@
  */
 package antibug.doc.site;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 import antibug.doc.ClassInfo;
@@ -44,6 +45,24 @@ class ContentsView extends HTML {
             $("h2", () -> {
                 $(info.createModifier(), info.createName());
             });
+
+            // super types
+            $("ul", style.extend, () -> {
+                for (XML sup : info.createSuperTypes()) {
+                    $("li", sup);
+                }
+            });
+
+            // implemented types
+            List<XML> interfaces = info.createInterfaceTypes();
+            if (!interfaces.isEmpty()) {
+                $("ul", style.implement, () -> {
+                    for (XML xml : interfaces) {
+                        $("li", xml);
+                    }
+                });
+            }
+
             $(info.createComment());
 
             for (ExecutableInfo constructor : info.constructors()) {
@@ -117,6 +136,8 @@ class ContentsView extends HTML {
      */
     private interface style extends StyleDSL, BaseStyle {
 
+        Color keyword = Color.hsl(0, 29, 49);
+
         Numeric signatureLabelWidth = Numeric.of(2.5, rem);
 
         Style Section = () -> {
@@ -171,7 +192,7 @@ class ContentsView extends HTML {
                 position.absolute();
                 display.inlineBlock().width(signatureLabelWidth);
                 margin.left(signatureLabelWidth.negate());
-                font.size(0.8, rem).color(Color.hsl(0, 29, 49));
+                font.size(0.8, rem).color(keyword);
             });
         };
 
@@ -207,5 +228,31 @@ class ContentsView extends HTML {
                 content.text("Throw");
             });
         };
+
+        Style traits = () -> {
+            listStyle.none();
+
+            $.before(() -> {
+                display.inlineBlock();
+                padding.right(0.3, rem).left(2.5, rem);
+                font.color(keyword);
+            });
+
+            $.select("li", () -> {
+                display.inlineBlock();
+            });
+        };
+
+        Style extend = traits.with(() -> {
+            $.before(() -> {
+                content.text("extends");
+            });
+        });
+
+        Style implement = traits.with(() -> {
+            $.before(() -> {
+                content.text("implements");
+            });
+        });
     }
 }

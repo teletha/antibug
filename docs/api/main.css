@@ -2,29 +2,25 @@
 @import url("http://fonts.googleapis.com/css?family=Roboto");
 @import url("http://fonts.googleapis.com/css?family=Ubuntu");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 101272276 */.SYNCHRONIZED {
+/* 1154939343 */.ABSTRACT {
 	position: relative;
 }
 
-/* 101272276 */.SYNCHRONIZED::after {
+/* 1154939343 */.ABSTRACT::before {
 	color: hsl(200,71%,30%);
-	font-size: 0.7rem;
-	font-family: "Material Icons";
-	content: '\e8ae';
+	font-size: 0.6rem;
+	font-family: Roboto;
+	content: 'A';
 	position: absolute;
-	top: 0.5rem;
-	left: 0.5rem;
+	top: -0.2rem;
+	left: 0.7rem;
 }
 
-/* 1040916227 */.super::before {
-	content: ' super ';
+/* 1340744662 */i[array=fix]::after {
+	content: '[]';
 }
 
-/* 1059245610 */.pretty {
-	display: block;
-}
-
-/* 1162358658 */.Annotation::before {
+/* 1382446710 */.Annotation::before {
 	display: inline-block;
 	width: 15px;
 	height: 15px;
@@ -41,25 +37,82 @@
 	background-color: hsl(200,71%,30%);
 }
 
-/* 1218677266 */.PUBLIC {
+/* 1411531045 */.VOLATILE {
 	position: relative;
 }
 
-/* 1218677266 */.PUBLIC::before {
+/* 1411531045 */.VOLATILE::before {
+	color: hsl(200,71%,30%);
+	font-size: 0.6rem;
+	font-family: Roboto;
+	content: 'V';
+	position: absolute;
+	top: -0.2rem;
+	left: 0.7rem;
+}
+
+/* 145214844 */.Functional::before {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(271,30%,50%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'F';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 50%;
+	color: hsl(271,30%,50%);
+}
+
+/* 1523475985 */i[array=var]::after {
+	content: '...';
+}
+
+/* 159792853 */.Z {
+	list-style-type: none;
+}
+
+/* 159792853 */.Z::before {
+	display: inline-block;
+	padding-right: 0.3rem;
+	padding-left: 2.5rem;
+	color: hsl(0,29%,49%);
+}
+
+/* 159792853 */.Z li {
+	display: inline-block;
+}
+
+/* 159792853 */.L::before {
+	content: 'implements';
+}
+
+/* 1629827491 */i {
+	font-style: normal;
+}
+
+/* 1651503223 */.PACKAGEPRIVATE {
+	position: relative;
+}
+
+/* 1651503223 */.PACKAGEPRIVATE::before {
 	content: '';
 	display: inline-block;
 	width: 0.6rem;
 	height: 0.6rem;
 	border-radius: 50%;
-	background-color: hsl(150,46%,36%);
+	background-color: hsl(200,71%,30%);
 	margin-right: 0.6rem;
 }
 
-/* 1218677266 */.PUBLIC.FIELD::before {
+/* 1651503223 */.PACKAGEPRIVATE.FIELD::before {
 	content: '\e836';
 }
 
-/* 1257570886 */.Enum::before {
+/* 1679592356 */.Enum::before {
 	display: inline-block;
 	width: 15px;
 	height: 15px;
@@ -76,84 +129,18 @@
 	background-color: hsl(0,29%,49%);
 }
 
-/* 1331862180 */.FINAL {
-	position: relative;
-}
-
-/* 1331862180 */.FINAL::before {
-	color: hsl(200,71%,30%);
-	font-size: 0.6rem;
-	font-family: Roboto;
-	content: 'F';
-	position: absolute;
-	top: -0.2rem;
-	left: 0.7rem;
-}
-
-/* 1373194140 */i[array=var]::after {
-	content: '...';
-}
-
-/* 1458383791 */.PRIVATE {
-	position: relative;
-}
-
-/* 1458383791 */.PRIVATE::before {
-	content: '';
-	display: inline-block;
-	width: 0.6rem;
-	height: 0.6rem;
-	border-radius: 50%;
-	background-color: hsl(2,68%,58%);
-	margin-right: 0.6rem;
-}
-
-/* 1458383791 */.PRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 1691272400 */#SearchByName {
-	display: block;
-	width: 100%;
-	background-color: hsl(0,0%,100%);
-	margin-top: 8px;
-	margin-bottom: 8px;
-	padding-top: 6px;
-	padding-bottom: 6px;
-	padding-left: 8px;
-	padding-right: 8px;
-	border-color: hsla(0,0%,24%,0.26);
-	border-width: 1px;
-	border-style: solid;
-	border-radius: 4px;
-}
-
-/* 1843118011 */.ABSTRACT {
-	position: relative;
-}
-
-/* 1843118011 */.ABSTRACT::before {
-	color: hsl(200,71%,30%);
-	font-size: 0.6rem;
-	font-family: Roboto;
-	content: 'A';
-	position: absolute;
-	top: -0.2rem;
-	left: 0.7rem;
-}
-
-/* 1845927081 */.tree {
+/* 1693626804 */.tree {
 	overflow: hidden;
 	scrollbar-width: thin;
 	height: 60vh;
 	background-color: inherit;
 }
 
-/* 1845927081 */.tree:hover {
+/* 1693626804 */.tree:hover {
 	overflow-y: auto;
 }
 
-/* 1845927081 */.tree dt {
+/* 1693626804 */.tree dt {
 	font-weight: bold;
 	cursor: pointer;
 	padding-top: 0.2rem;
@@ -163,13 +150,13 @@
 	border-radius: 2px;
 }
 
-/* 1845927081 */.tree dt:hover {
+/* 1693626804 */.tree dt:hover {
 	background-color: hsl(0,0%,100%);
 	background-image: inherit;
 	background-repeat: repeat;
 }
 
-/* 1845927081 */.tree dd {
+/* 1693626804 */.tree dd {
 	padding-top: 0.1rem;
 	padding-bottom: 0.1rem;
 	padding-left: 1rem;
@@ -177,91 +164,30 @@
 	border-radius: 2px;
 }
 
-/* 1845927081 */.tree dd:hover {
+/* 1693626804 */.tree dd:hover {
 	background-color: hsl(0,0%,100%);
 	background-image: inherit;
 	background-repeat: repeat;
 }
 
-/* 1852194933 */.parameters::before {
+/* 1798373155 */.super::before {
+	content: ' super ';
+}
+
+/* 1805632967 */.parameters::before {
 	content: '<';
 }
 
-/* 1852194933 */.parameters::after {
+/* 1805632967 */.parameters::after {
 	content: '>';
 }
 
-/* 1965129924 */.package {
-	font-weight: bold;
-}
-
-/* 2049060908 */.Class::before {
-	display: inline-block;
-	width: 15px;
-	height: 15px;
-	border-color: hsl(150,46%,36%);
-	border-style: solid;
-	border-width: 1px;
-	margin-right: 6px;
-	content: 'C';
-	text-align: center;
-	line-height: 13px;
-	font-size: 10px;
-	border-radius: 50%;
-	color: hsl(0,0%,100%);
-	background-color: hsl(150,46%,36%);
-}
-
-/* 224447405 */i[array=fix]::after {
-	content: '[]';
-}
-
-/* 255102480 */.vs__dropdown-toggle {
-	background-color: hsl(0,0%,100%);
-}
-
-/* 322202212 */.Interface::before {
-	display: inline-block;
-	width: 15px;
-	height: 15px;
-	border-color: hsl(271,30%,50%);
-	border-style: solid;
-	border-width: 1px;
-	margin-right: 6px;
-	content: 'I';
-	text-align: center;
-	line-height: 13px;
-	font-size: 10px;
-	border-radius: 50%;
-	color: hsl(271,30%,50%);
-}
-
-/* 402847244 */.Functional::before {
-	display: inline-block;
-	width: 15px;
-	height: 15px;
-	border-color: hsl(271,30%,50%);
-	border-style: solid;
-	border-width: 1px;
-	margin-right: 6px;
-	content: 'F';
-	text-align: center;
-	line-height: 13px;
-	font-size: 10px;
-	border-radius: 50%;
-	color: hsl(271,30%,50%);
-}
-
-/* 475468130 */.extends::before {
-	content: ' extends ';
-}
-
-/* 524136404 */h2 {
+/* 19473874 */h2 {
 	font-size: 1.8rem;
 	font-family: Ubuntu;
 }
 
-/* 602631443 */.Exception::before {
+/* 1968544985 */.Exception::before {
 	display: inline-block;
 	width: 15px;
 	height: 15px;
@@ -278,21 +204,82 @@
 	background-color: hsl(2,68%,58%);
 }
 
-/* 66135670 */.VOLATILE {
-	position: relative;
+/* 2014583896 */.Y {
+	list-style-type: none;
 }
 
-/* 66135670 */.VOLATILE::before {
-	color: hsl(200,71%,30%);
-	font-size: 0.6rem;
-	font-family: Roboto;
-	content: 'V';
-	position: absolute;
-	top: -0.2rem;
-	left: 0.7rem;
+/* 2014583896 */.Y::before {
+	display: inline-block;
+	padding-right: 0.3rem;
+	padding-left: 2.5rem;
+	color: hsl(0,29%,49%);
 }
 
-/* 66893623 */.AbstractClass::before {
+/* 2014583896 */.Y li {
+	display: inline-block;
+}
+
+/* 2014583896 */.Y::before {
+	content: 'extends';
+}
+
+/* 2053675385 */.package {
+	font-weight: bold;
+}
+
+/* 2080453984 */.vs__dropdown-toggle {
+	background-color: hsl(0,0%,100%);
+}
+
+/* 267039662 */.pretty {
+	display: block;
+}
+
+/* 374192368 */.Interface::before {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(271,30%,50%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'I';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 50%;
+	color: hsl(271,30%,50%);
+}
+
+/* 527252097 */.Class::before {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(150,46%,36%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'C';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 50%;
+	color: hsl(0,0%,100%);
+	background-color: hsl(150,46%,36%);
+}
+
+/* 562960491 */html {
+	font-size: 14px;
+	scroll-behavior: smooth;
+	scroll-padding-top: 80px;
+	word-break: break-all;
+}
+
+/* 562960491 */html *[class|=el] {
+	font-size: 1rem;
+}
+
+/* 569429143 */.AbstractClass::before {
 	display: inline-block;
 	width: 15px;
 	height: 15px;
@@ -308,11 +295,49 @@
 	color: hsl(150,46%,36%);
 }
 
-/* 715544178 */.PROTECTED {
+/* 580904875 */#SearchByName {
+	display: block;
+	width: 100%;
+	background-color: hsl(0,0%,100%);
+	margin-top: 8px;
+	margin-bottom: 8px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 8px;
+	padding-right: 8px;
+	border-color: hsla(0,0%,24%,0.26);
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 4px;
+}
+
+/* 600865491 */.extends::before {
+	content: ' extends ';
+}
+
+/* 60426688 */.PUBLIC {
 	position: relative;
 }
 
-/* 715544178 */.PROTECTED::before {
+/* 60426688 */.PUBLIC::before {
+	content: '';
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
+	background-color: hsl(150,46%,36%);
+	margin-right: 0.6rem;
+}
+
+/* 60426688 */.PUBLIC.FIELD::before {
+	content: '\e836';
+}
+
+/* 64746428 */.PROTECTED {
+	position: relative;
+}
+
+/* 64746428 */.PROTECTED::before {
 	content: '';
 	display: inline-block;
 	width: 0.6rem;
@@ -322,61 +347,43 @@
 	margin-right: 0.6rem;
 }
 
-/* 715544178 */.PROTECTED.FIELD::before {
+/* 64746428 */.PROTECTED.FIELD::before {
 	content: '\e836';
 }
 
-/* 754817802 */html {
-	font-size: 14px;
-	scroll-behavior: smooth;
-	scroll-padding-top: 80px;
-	word-break: break-all;
-}
-
-/* 754817802 */html *[class|=el] {
-	font-size: 1rem;
-}
-
-/* 771996532 */a {
-	color: inherit;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-/* 771996532 */a:hover {
-	text-decoration: underline;
-	text-decoration-color: hsla(240,7%,29%,0.5);
-	text-underline-offset: 4px;
-	text-underline-position: under;
-}
-
-/* 781600923 */.PACKAGEPRIVATE {
+/* 694762269 */.SYNCHRONIZED {
 	position: relative;
 }
 
-/* 781600923 */.PACKAGEPRIVATE::before {
-	content: '';
-	display: inline-block;
-	width: 0.6rem;
-	height: 0.6rem;
-	border-radius: 50%;
-	background-color: hsl(200,71%,30%);
-	margin-right: 0.6rem;
+/* 694762269 */.SYNCHRONIZED::after {
+	color: hsl(200,71%,30%);
+	font-size: 0.7rem;
+	font-family: "Material Icons";
+	content: '\e8ae';
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
 }
 
-/* 781600923 */.PACKAGEPRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 862069640 */i {
-	font-style: normal;
-}
-
-/* 965130729 */.TRANSIENT {
+/* 888350069 */.FINAL {
 	position: relative;
 }
 
-/* 965130729 */.TRANSIENT::after {
+/* 888350069 */.FINAL::before {
+	color: hsl(200,71%,30%);
+	font-size: 0.6rem;
+	font-family: Roboto;
+	content: 'F';
+	position: absolute;
+	top: -0.2rem;
+	left: 0.7rem;
+}
+
+/* 975328564 */.TRANSIENT {
+	position: relative;
+}
+
+/* 975328564 */.TRANSIENT::after {
 	color: hsl(200,71%,30%);
 	font-size: 0.7rem;
 	font-family: "Material Icons";
@@ -386,22 +393,53 @@
 	left: 0.5rem;
 }
 
-/* antibug.doc.site.ContentsView.style#Name */.N {
+/* 981716924 */a {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* 981716924 */a:hover {
+	text-decoration: underline;
+	text-decoration-color: hsla(240,7%,29%,0.5);
+	text-underline-offset: 4px;
+	text-underline-position: under;
+}
+
+/* 998575031 */.PRIVATE {
+	position: relative;
+}
+
+/* 998575031 */.PRIVATE::before {
+	content: '';
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
+	background-color: hsl(2,68%,58%);
+	margin-right: 0.6rem;
+}
+
+/* 998575031 */.PRIVATE.FIELD::before {
+	content: '\e836';
+}
+
+/* antibug.doc.site.ContentsView.style#Name */.Q {
 	font-weight: bold;
 	margin-right: 0.175rem;
 }
 
-/* antibug.doc.site.ContentsView.style#Return */.O {
+/* antibug.doc.site.ContentsView.style#Return */.R {
 	color: hsl(48,95%,29%);
 }
 
-/* antibug.doc.site.ContentsView.style#Return */.O::before {
+/* antibug.doc.site.ContentsView.style#Return */.R::before {
 	content: ':';
 	padding-left: 0.3em;
 	padding-right: 0.3em;
 }
 
-/* antibug.doc.site.ContentsView.style#Section */.L {
+/* antibug.doc.site.ContentsView.style#Section */.O {
 	margin-top: 1.5rem;
 	margin-bottom: 1.5rem;
 	padding-left: 0.7rem;
@@ -412,11 +450,11 @@
 	background-color: hsl(0,0%,100%);
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureDefinition */.Q {
+/* antibug.doc.site.ContentsView.style#SignatureDefinition */.T {
 	position: relative;
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureDefinition */.Q::before {
+/* antibug.doc.site.ContentsView.style#SignatureDefinition */.T::before {
 	position: absolute;
 	display: inline-block;
 	width: 2.5rem;
@@ -425,11 +463,11 @@
 	color: hsl(0,29%,49%);
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureException */.U {
+/* antibug.doc.site.ContentsView.style#SignatureException */.X {
 	position: relative;
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureException */.U::before {
+/* antibug.doc.site.ContentsView.style#SignatureException */.X::before {
 	position: absolute;
 	display: inline-block;
 	width: 2.5rem;
@@ -438,15 +476,15 @@
 	color: hsl(0,29%,49%);
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureException */.U::before {
+/* antibug.doc.site.ContentsView.style#SignatureException */.X::before {
 	content: 'Throw';
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureParameter */.S {
+/* antibug.doc.site.ContentsView.style#SignatureParameter */.V {
 	position: relative;
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureParameter */.S::before {
+/* antibug.doc.site.ContentsView.style#SignatureParameter */.V::before {
 	position: absolute;
 	display: inline-block;
 	width: 2.5rem;
@@ -455,15 +493,15 @@
 	color: hsl(0,29%,49%);
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureParameter */.S::before {
+/* antibug.doc.site.ContentsView.style#SignatureParameter */.V::before {
 	content: 'Param';
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureReturn */.T {
+/* antibug.doc.site.ContentsView.style#SignatureReturn */.W {
 	position: relative;
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureReturn */.T::before {
+/* antibug.doc.site.ContentsView.style#SignatureReturn */.W::before {
 	position: absolute;
 	display: inline-block;
 	width: 2.5rem;
@@ -472,37 +510,37 @@
 	color: hsl(0,29%,49%);
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureReturn */.T::before {
+/* antibug.doc.site.ContentsView.style#SignatureReturn */.W::before {
 	content: 'Return';
 	color: hsl(48,95%,29%);
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureTable */.P {
+/* antibug.doc.site.ContentsView.style#SignatureTable */.S {
 	padding-left: 2.5rem;
 	margin-top: 0.1rem;
 	margin-bottom: 0.6rem;
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureTable */.P td {
+/* antibug.doc.site.ContentsView.style#SignatureTable */.S td {
 	padding-right: 0.8rem;
 	vertical-align: top;
 	text-overflow: ellipsis;
 	line-height: 1.3;
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureTable */.P td:not(:last-child) {
+/* antibug.doc.site.ContentsView.style#SignatureTable */.S td:not(:last-child) {
 	white-space: nowrap;
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureTable */.P td:empty::after {
+/* antibug.doc.site.ContentsView.style#SignatureTable */.S td:empty::after {
 	content: 'No description.';
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureTypeVariable */.R {
+/* antibug.doc.site.ContentsView.style#SignatureTypeVariable */.U {
 	position: relative;
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureTypeVariable */.R::before {
+/* antibug.doc.site.ContentsView.style#SignatureTypeVariable */.U::before {
 	position: absolute;
 	display: inline-block;
 	width: 2.5rem;
@@ -511,15 +549,30 @@
 	color: hsl(0,29%,49%);
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureTypeVariable */.R::before {
+/* antibug.doc.site.ContentsView.style#SignatureTypeVariable */.U::before {
 	content: 'Type';
 }
 
-/* antibug.doc.site.ContentsView.style#Title */.M {
+/* antibug.doc.site.ContentsView.style#Title */.P {
 	font-family: Roboto;
 	font-size: 1rem;
 	font-weight: normal;
 	display: block;
+}
+
+/* antibug.doc.site.ContentsView.style#traits */.L {
+	list-style-type: none;
+}
+
+/* antibug.doc.site.ContentsView.style#traits */.L::before {
+	display: inline-block;
+	padding-right: 0.3rem;
+	padding-left: 2.5rem;
+	color: hsl(0,29%,49%);
+}
+
+/* antibug.doc.site.ContentsView.style#traits */.L li {
+	display: inline-block;
 }
 
 /* antibug.doc.site.MainPage.Styles#Contents */.F {
@@ -644,47 +697,7 @@
 	font-size: 1rem;
 }
 
-
-
-
-g.doc.site.SubNavigationView.Styles#Return */.K::before {
-	content: ':';
-	padding-left: 0.3em;
-	padding-right: 0.3em;
-}
-
-/* antibug.doc.site.SubNavigationView.Styles#Title */.J {
-	margin-top: 0.9rem;
-	font-weight: bold;
-	font-size: 1rem;
-}
-
-ng;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAE0lEQVR4XmNggILbdx9uwsEAAgDBfQniz1+UngAAAABJRU5ErkJggg==);
-	background-repeat: repeat;
-	font-size: 12px;
-	font-family: Roboto;
-	color: hsl(240,7%,29%);
-	line-height: 1.5;
-	width: 100vw;
-}
-
-/* antibug.doc.site.Styles#SignatureParameterPart */.I {
-	color: hsl(240,7%,39%);
-}
-
-/* antibug.doc.site.SubNavigationView.Styles#Return */.K {
-	color: hsl(48,95%,29%);
-}
-
-/* antibug.doc.site.SubNavigationView.Styles#Return */.K::before {
-	content: ':';
-	padding-left: 0.3em;
-	padding-right: 0.3em;
-}
-
-/* antibug.doc.site.SubNavigationView.Styles#Title */.J {
-	margin-top: 0.9rem;
-	font-weight: bold;
+old;
 	font-size: 1rem;
 }
 
