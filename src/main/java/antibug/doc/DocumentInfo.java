@@ -224,7 +224,7 @@ public class DocumentInfo {
         }
 
         /**
-         * {@inheritDoc}
+         * @inheritDoc
          */
         @Override
         public DocumentInfo visitParam(ParamTree node, DocumentInfo p) {
@@ -410,7 +410,7 @@ public class DocumentInfo {
          */
         @Override
         public DocumentXMLBuilder visitInheritDoc(InheritDocTree node, DocumentXMLBuilder p) {
-            return super.visitInheritDoc(node, p);
+            return p;
         }
 
         /**

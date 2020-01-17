@@ -2,103 +2,11 @@
 @import url("http://fonts.googleapis.com/css?family=Roboto");
 @import url("http://fonts.googleapis.com/css?family=Ubuntu");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1011254112 */.Functional::before {
-	display: inline-block;
-	width: 15px;
-	height: 15px;
-	border-color: hsl(271,30%,50%);
-	border-style: solid;
-	border-width: 1px;
-	margin-right: 6px;
-	content: 'F';
-	text-align: center;
-	line-height: 13px;
-	font-size: 10px;
-	border-radius: 50%;
-	color: hsl(271,30%,50%);
-}
-
-/* 1160785510 */i[array=var]::after {
-	content: '...';
-}
-
-/* 1199113935 */.tree {
-	overflow: hidden;
-	scrollbar-width: thin;
-	height: 60vh;
-	background-color: inherit;
-}
-
-/* 1199113935 */.tree:hover {
-	overflow-y: auto;
-}
-
-/* 1199113935 */.tree dt {
-	font-weight: bold;
-	cursor: pointer;
-	padding-top: 0.2rem;
-	padding-bottom: 0.2rem;
-	padding-left: 0.5rem;
-	padding-right: 0.5rem;
-	border-radius: 2px;
-}
-
-/* 1199113935 */.tree dt:hover {
-	background-color: hsl(0,0%,100%);
-	background-image: inherit;
-	background-repeat: repeat;
-}
-
-/* 1199113935 */.tree dd {
-	padding-top: 0.1rem;
-	padding-bottom: 0.1rem;
-	padding-left: 1rem;
-	cursor: pointer;
-	border-radius: 2px;
-}
-
-/* 1199113935 */.tree dd:hover {
-	background-color: hsl(0,0%,100%);
-	background-image: inherit;
-	background-repeat: repeat;
-}
-
-/* 1204036307 */.package {
-	font-weight: bold;
-}
-
-/* 1206325076 */.super::before {
-	content: ' super ';
-}
-
-/* 1220163548 */h2 {
-	font-size: 1.8rem;
-	font-family: Ubuntu;
-}
-
-/* 1535276950 */.PUBLIC {
+/* 101272276 */.SYNCHRONIZED {
 	position: relative;
 }
 
-/* 1535276950 */.PUBLIC::before {
-	content: '';
-	display: inline-block;
-	width: 0.6rem;
-	height: 0.6rem;
-	border-radius: 50%;
-	background-color: hsl(150,46%,36%);
-	margin-right: 0.6rem;
-}
-
-/* 1535276950 */.PUBLIC.FIELD::before {
-	content: '\e836';
-}
-
-/* 1546315735 */.SYNCHRONIZED {
-	position: relative;
-}
-
-/* 1546315735 */.SYNCHRONIZED::after {
+/* 101272276 */.SYNCHRONIZED::after {
 	color: hsl(200,71%,30%);
 	font-size: 0.7rem;
 	font-family: "Material Icons";
@@ -108,157 +16,15 @@
 	left: 0.5rem;
 }
 
-/* 161573617 */.extends::before {
-	content: ' extends ';
+/* 1040916227 */.super::before {
+	content: ' super ';
 }
 
-/* 1756618311 */.Exception::before {
-	display: inline-block;
-	width: 15px;
-	height: 15px;
-	border-color: hsl(2,68%,58%);
-	border-style: solid;
-	border-width: 1px;
-	margin-right: 6px;
-	content: 'T';
-	text-align: center;
-	line-height: 13px;
-	font-size: 10px;
-	border-radius: 3px;
-	color: hsl(0,0%,100%);
-	background-color: hsl(2,68%,58%);
+/* 1059245610 */.pretty {
+	display: block;
 }
 
-/* 1853665306 */.TRANSIENT {
-	position: relative;
-}
-
-/* 1853665306 */.TRANSIENT::after {
-	color: hsl(200,71%,30%);
-	font-size: 0.7rem;
-	font-family: "Material Icons";
-	content: '\e14c';
-	position: absolute;
-	top: 0.5rem;
-	left: 0.5rem;
-}
-
-/* 187115616 */.PRIVATE {
-	position: relative;
-}
-
-/* 187115616 */.PRIVATE::before {
-	content: '';
-	display: inline-block;
-	width: 0.6rem;
-	height: 0.6rem;
-	border-radius: 50%;
-	background-color: hsl(2,68%,58%);
-	margin-right: 0.6rem;
-}
-
-/* 187115616 */.PRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 1909332462 */html {
-	font-size: 14px;
-	scroll-behavior: smooth;
-	scroll-padding-top: 80px;
-	word-break: break-all;
-}
-
-/* 1909332462 */html *[class|=el] {
-	font-size: 1rem;
-}
-
-/* 2017577360 */.AbstractClass::before {
-	display: inline-block;
-	width: 15px;
-	height: 15px;
-	border-color: hsl(150,46%,36%);
-	border-style: solid;
-	border-width: 1px;
-	margin-right: 6px;
-	content: 'C';
-	text-align: center;
-	line-height: 13px;
-	font-size: 10px;
-	border-radius: 50%;
-	color: hsl(150,46%,36%);
-}
-
-/* 2098233443 */.PACKAGEPRIVATE {
-	position: relative;
-}
-
-/* 2098233443 */.PACKAGEPRIVATE::before {
-	content: '';
-	display: inline-block;
-	width: 0.6rem;
-	height: 0.6rem;
-	border-radius: 50%;
-	background-color: hsl(200,71%,30%);
-	margin-right: 0.6rem;
-}
-
-/* 2098233443 */.PACKAGEPRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 241108472 */.VOLATILE {
-	position: relative;
-}
-
-/* 241108472 */.VOLATILE::before {
-	color: hsl(200,71%,30%);
-	font-size: 0.6rem;
-	font-family: Roboto;
-	content: 'V';
-	position: absolute;
-	top: -0.2rem;
-	left: 0.7rem;
-}
-
-/* 280804333 */.parameters::before {
-	content: '<';
-}
-
-/* 280804333 */.parameters::after {
-	content: '>';
-}
-
-/* 289194317 */a {
-	color: inherit;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-/* 289194317 */a:hover {
-	text-decoration: underline;
-	text-decoration-color: hsla(240,7%,29%,0.5);
-	text-underline-offset: 4px;
-	text-underline-position: under;
-}
-
-/* 379409767 */.Enum::before {
-	display: inline-block;
-	width: 15px;
-	height: 15px;
-	border-color: hsl(0,29%,49%);
-	border-style: solid;
-	border-width: 1px;
-	margin-right: 6px;
-	content: 'E';
-	text-align: center;
-	line-height: 13px;
-	font-size: 10px;
-	border-radius: 3px;
-	color: hsl(0,0%,100%);
-	background-color: hsl(0,29%,49%);
-}
-
-/* 508074327 */.Annotation::before {
+/* 1162358658 */.Annotation::before {
 	display: inline-block;
 	width: 15px;
 	height: 15px;
@@ -275,7 +41,161 @@
 	background-color: hsl(200,71%,30%);
 }
 
-/* 511033073 */.Class::before {
+/* 1218677266 */.PUBLIC {
+	position: relative;
+}
+
+/* 1218677266 */.PUBLIC::before {
+	content: '';
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
+	background-color: hsl(150,46%,36%);
+	margin-right: 0.6rem;
+}
+
+/* 1218677266 */.PUBLIC.FIELD::before {
+	content: '\e836';
+}
+
+/* 1257570886 */.Enum::before {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(0,29%,49%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'E';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 3px;
+	color: hsl(0,0%,100%);
+	background-color: hsl(0,29%,49%);
+}
+
+/* 1331862180 */.FINAL {
+	position: relative;
+}
+
+/* 1331862180 */.FINAL::before {
+	color: hsl(200,71%,30%);
+	font-size: 0.6rem;
+	font-family: Roboto;
+	content: 'F';
+	position: absolute;
+	top: -0.2rem;
+	left: 0.7rem;
+}
+
+/* 1373194140 */i[array=var]::after {
+	content: '...';
+}
+
+/* 1458383791 */.PRIVATE {
+	position: relative;
+}
+
+/* 1458383791 */.PRIVATE::before {
+	content: '';
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
+	background-color: hsl(2,68%,58%);
+	margin-right: 0.6rem;
+}
+
+/* 1458383791 */.PRIVATE.FIELD::before {
+	content: '\e836';
+}
+
+/* 1691272400 */#SearchByName {
+	display: block;
+	width: 100%;
+	background-color: hsl(0,0%,100%);
+	margin-top: 8px;
+	margin-bottom: 8px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 8px;
+	padding-right: 8px;
+	border-color: hsla(0,0%,24%,0.26);
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 4px;
+}
+
+/* 1843118011 */.ABSTRACT {
+	position: relative;
+}
+
+/* 1843118011 */.ABSTRACT::before {
+	color: hsl(200,71%,30%);
+	font-size: 0.6rem;
+	font-family: Roboto;
+	content: 'A';
+	position: absolute;
+	top: -0.2rem;
+	left: 0.7rem;
+}
+
+/* 1845927081 */.tree {
+	overflow: hidden;
+	scrollbar-width: thin;
+	height: 60vh;
+	background-color: inherit;
+}
+
+/* 1845927081 */.tree:hover {
+	overflow-y: auto;
+}
+
+/* 1845927081 */.tree dt {
+	font-weight: bold;
+	cursor: pointer;
+	padding-top: 0.2rem;
+	padding-bottom: 0.2rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	border-radius: 2px;
+}
+
+/* 1845927081 */.tree dt:hover {
+	background-color: hsl(0,0%,100%);
+	background-image: inherit;
+	background-repeat: repeat;
+}
+
+/* 1845927081 */.tree dd {
+	padding-top: 0.1rem;
+	padding-bottom: 0.1rem;
+	padding-left: 1rem;
+	cursor: pointer;
+	border-radius: 2px;
+}
+
+/* 1845927081 */.tree dd:hover {
+	background-color: hsl(0,0%,100%);
+	background-image: inherit;
+	background-repeat: repeat;
+}
+
+/* 1852194933 */.parameters::before {
+	content: '<';
+}
+
+/* 1852194933 */.parameters::after {
+	content: '>';
+}
+
+/* 1965129924 */.package {
+	font-weight: bold;
+}
+
+/* 2049060908 */.Class::before {
 	display: inline-block;
 	width: 15px;
 	height: 15px;
@@ -292,67 +212,15 @@
 	background-color: hsl(150,46%,36%);
 }
 
-/* 593626872 */.ABSTRACT {
-	position: relative;
-}
-
-/* 593626872 */.ABSTRACT::before {
-	color: hsl(200,71%,30%);
-	font-size: 0.6rem;
-	font-family: Roboto;
-	content: 'A';
-	position: absolute;
-	top: -0.2rem;
-	left: 0.7rem;
-}
-
-/* 667428844 */.PROTECTED {
-	position: relative;
-}
-
-/* 667428844 */.PROTECTED::before {
-	content: '';
-	display: inline-block;
-	width: 0.6rem;
-	height: 0.6rem;
-	border-radius: 50%;
-	background-color: hsl(48,95%,59%);
-	margin-right: 0.6rem;
-}
-
-/* 667428844 */.PROTECTED.FIELD::before {
-	content: '\e836';
-}
-
-/* 816224332 */i[array=fix]::after {
+/* 224447405 */i[array=fix]::after {
 	content: '[]';
 }
 
-/* 830449117 */#SearchByName {
-	display: block;
-	width: 100%;
+/* 255102480 */.vs__dropdown-toggle {
 	background-color: hsl(0,0%,100%);
-	margin-top: 8px;
-	margin-bottom: 8px;
-	padding-top: 6px;
-	padding-bottom: 6px;
-	padding-left: 8px;
-	padding-right: 8px;
-	border-color: hsla(0,0%,24%,0.26);
-	border-width: 1px;
-	border-style: solid;
-	border-radius: 4px;
 }
 
-/* 841975037 */i {
-	font-style: normal;
-}
-
-/* 919473090 */.pretty {
-	display: block;
-}
-
-/* 942016720 */.Interface::before {
+/* 322202212 */.Interface::before {
 	display: inline-block;
 	width: 15px;
 	height: 15px;
@@ -368,22 +236,154 @@
 	color: hsl(271,30%,50%);
 }
 
-/* 94931017 */.vs__dropdown-toggle {
-	background-color: hsl(0,0%,100%);
+/* 402847244 */.Functional::before {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(271,30%,50%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'F';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 50%;
+	color: hsl(271,30%,50%);
 }
 
-/* 96489160 */.FINAL {
+/* 475468130 */.extends::before {
+	content: ' extends ';
+}
+
+/* 524136404 */h2 {
+	font-size: 1.8rem;
+	font-family: Ubuntu;
+}
+
+/* 602631443 */.Exception::before {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(2,68%,58%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'T';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 3px;
+	color: hsl(0,0%,100%);
+	background-color: hsl(2,68%,58%);
+}
+
+/* 66135670 */.VOLATILE {
 	position: relative;
 }
 
-/* 96489160 */.FINAL::before {
+/* 66135670 */.VOLATILE::before {
 	color: hsl(200,71%,30%);
 	font-size: 0.6rem;
 	font-family: Roboto;
-	content: 'F';
+	content: 'V';
 	position: absolute;
 	top: -0.2rem;
 	left: 0.7rem;
+}
+
+/* 66893623 */.AbstractClass::before {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(150,46%,36%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'C';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 50%;
+	color: hsl(150,46%,36%);
+}
+
+/* 715544178 */.PROTECTED {
+	position: relative;
+}
+
+/* 715544178 */.PROTECTED::before {
+	content: '';
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
+	background-color: hsl(48,95%,59%);
+	margin-right: 0.6rem;
+}
+
+/* 715544178 */.PROTECTED.FIELD::before {
+	content: '\e836';
+}
+
+/* 754817802 */html {
+	font-size: 14px;
+	scroll-behavior: smooth;
+	scroll-padding-top: 80px;
+	word-break: break-all;
+}
+
+/* 754817802 */html *[class|=el] {
+	font-size: 1rem;
+}
+
+/* 771996532 */a {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* 771996532 */a:hover {
+	text-decoration: underline;
+	text-decoration-color: hsla(240,7%,29%,0.5);
+	text-underline-offset: 4px;
+	text-underline-position: under;
+}
+
+/* 781600923 */.PACKAGEPRIVATE {
+	position: relative;
+}
+
+/* 781600923 */.PACKAGEPRIVATE::before {
+	content: '';
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
+	background-color: hsl(200,71%,30%);
+	margin-right: 0.6rem;
+}
+
+/* 781600923 */.PACKAGEPRIVATE.FIELD::before {
+	content: '\e836';
+}
+
+/* 862069640 */i {
+	font-style: normal;
+}
+
+/* 965130729 */.TRANSIENT {
+	position: relative;
+}
+
+/* 965130729 */.TRANSIENT::after {
+	color: hsl(200,71%,30%);
+	font-size: 0.7rem;
+	font-family: "Material Icons";
+	content: '\e14c';
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
 }
 
 /* antibug.doc.site.ContentsView.style#Name */.N {
@@ -645,7 +645,9 @@
 }
 
 
-ntibug.doc.site.SubNavigationView.Styles#Return */.K::before {
+
+
+g.doc.site.SubNavigationView.Styles#Return */.K::before {
 	content: ':';
 	padding-left: 0.3em;
 	padding-right: 0.3em;

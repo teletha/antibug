@@ -28,6 +28,7 @@ import javax.lang.model.util.SimpleElementVisitor9;
 
 import kiss.I;
 import kiss.Variable;
+import kiss.XML;
 
 public class ClassInfo extends ParameterizableInfo implements Comparable<ClassInfo> {
 
@@ -39,6 +40,12 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
 
     /** The kind of type (interface, abstract class, class etc) */
     public String type;
+
+    /** The super type */
+    private final XML superClass;
+
+    /** The list of implement types. */
+    private final List<XML> interfaceTypes = new ArrayList();
 
     /** Info repository. */
     private final List<FieldInfo> fields = new ArrayList();
@@ -60,6 +67,10 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
         this.packageName = DocTool.ElementUtils.getPackageOf(root).toString();
         this.name = root.asType().toString().replaceAll("<.+>", "").substring(packageName.length() + 1);
         this.type = detectType(root);
+        this.superClass = parseTypeAsXML(root.getSuperclass());
+        for (TypeMirror interfaceType : root.getInterfaces()) {
+            this.interfaceTypes.add(parseTypeAsXML(interfaceType));
+        }
 
         Scanner scanner = new Scanner();
         for (Element element : root.getEnclosedElements()) {
@@ -101,6 +112,28 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
             type = elem.getSuperclass();
         }
         return false;
+    }
+
+    /**
+     * Build super type element.
+     * 
+     * @return
+     */
+    public final XML createSuperType() {
+        return superClass.clone();
+    }
+
+    /**
+     * Build interface type element.
+     * 
+     * @return
+     */
+    public final List<XML> createInterfaceTypes() {
+        List<XML> copy = new ArrayList();
+        for (XML base : interfaceTypes) {
+            copy.add(base.clone());
+        }
+        return copy;
     }
 
     /**
