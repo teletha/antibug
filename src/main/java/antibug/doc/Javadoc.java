@@ -11,13 +11,12 @@ package antibug.doc;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.lang.model.element.ModuleElement;
 import javax.lang.model.element.PackageElement;
@@ -26,7 +25,6 @@ import javax.lang.model.element.TypeElement;
 import antibug.doc.builder.SiteBuilder;
 import antibug.doc.site.MainPage;
 import kiss.I;
-import kiss.XML;
 import stylist.StyleDeclarable;
 import stylist.Stylist;
 
@@ -85,9 +83,13 @@ public class Javadoc extends DocTool<Javadoc> {
             for (String url : urls) {
                 if (url != null && url.startsWith("http") && url.endsWith("/api/")) {
                     try {
-                        for (XML a : I.xml(new URL(url + "overview-tree.html")).find(".horizontal a")) {
-                            externals.put(a.text(), url);
-                        }
+                        I.signal(new URL(url + "overview-tree.html"))
+                                .map(I::xml)
+                                .retryWhen(e -> e.delay(200, TimeUnit.MILLISECONDS).take(20))
+                                .flatIterable(xml -> xml.find(".horizontal a"))
+                                .to(xml -> {
+                                    externals.put(xml.text(), url);
+                                });
                     } catch (MalformedURLException e) {
                         throw I.quiet(e);
                     }
@@ -115,11 +117,7 @@ public class Javadoc extends DocTool<Javadoc> {
      */
     @Override
     protected void process(TypeElement root) {
-        TypeResolver resolver = new TypeResolver(externals, internals, root);
-        ClassInfo info = new ClassInfo(root, resolver);
-        data.add(info);
-
-        site.buildHTML("types/" + info.packageName + "." + info.name + ".html", new MainPage(this, info));
+        data.add(new ClassInfo(root, new TypeResolver(externals, internals, root)));
     }
 
     /**
@@ -146,33 +144,14 @@ public class Javadoc extends DocTool<Javadoc> {
         data.packages.sort(Comparator.naturalOrder());
         data.types.sort(Comparator.naturalOrder());
 
+        // after care
+        data.connectSubType();
+
         // build HTML
         site.buildHTML("javadoc.html", new MainPage(this, null));
-    }
 
-    /**
-     * Scanned data repository.
-     */
-    private final class Data {
-
-        /** Type repository. */
-        public List<String> modules = new ArrayList();
-
-        /** Type repository. */
-        public List<String> packages = new ArrayList();
-
-        /** Type repository. */
-        public List<ClassInfo> types = new ArrayList();
-
-        /**
-         * Avoid duplication.
-         */
-        private void add(ClassInfo info) {
-            types.add(info);
-
-            if (packages.indexOf(info.packageName) == -1) {
-                packages.add(info.packageName);
-            }
+        for (ClassInfo info : data.types) {
+            site.buildHTML("types/" + info.packageName + "." + info.name + ".html", new MainPage(this, info));
         }
     }
 }

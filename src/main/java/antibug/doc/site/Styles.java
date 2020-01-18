@@ -86,7 +86,7 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
     }
 
     public static final Style SignatureParameterPart = () -> {
-        font.color(palette.font.lighten(10));
+        font.color(palette.font.lighten(18));
     };
 
     public static final Style HTMLClassParameters = Style.named(".parameters", () -> {

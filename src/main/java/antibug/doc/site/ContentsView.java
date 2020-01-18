@@ -41,12 +41,22 @@ class ContentsView extends HTML {
      */
     @Override
     protected void declare() {
-        $("section", () -> {
+        $("section", style.TypeSection, () -> {
+            $("div", style.PackcageName, text(info.packageName));
+
             $("h2", style.TypeName, () -> {
                 $(info.createModifier());
                 $("i", style.Name, info.createName());
-                $(info.createTypeVariables());
+                $(info.createTypeVariableNames());
             });
+
+            // type parameters
+            int size = info.numberOfTypeVariables();
+            if (size != 0) {
+                $("ul", style.typeParameter, foŕ(size, i -> {
+                    $("li", info.createTypeVariable(i), info.createTypeVariableComment(i));
+                }));
+            }
 
             // super types
             List<XML> supers = info.createSuperTypes();
@@ -63,6 +73,16 @@ class ContentsView extends HTML {
             if (!interfaces.isEmpty()) {
                 $("ul", style.implement, () -> {
                     for (XML xml : interfaces) {
+                        $("li", xml);
+                    }
+                });
+            }
+
+            // sub types
+            List<XML> subs = info.createSubTypes();
+            if (!subs.isEmpty()) {
+                $("ul", style.sub, () -> {
+                    for (XML xml : subs) {
                         $("li", xml);
                     }
                 });
@@ -86,7 +106,7 @@ class ContentsView extends HTML {
      * @param member
      */
     private void writeMember(ExecutableInfo member) {
-        $("section", style.Section, () -> {
+        $("section", style.MemberSection, () -> {
             $("h2", attr("id", member.id()), style.MemberName, () -> {
                 XML type = member.createReturnType();
 
@@ -145,16 +165,25 @@ class ContentsView extends HTML {
 
         Numeric signatureLabelWidth = Numeric.of(2.5, rem);
 
-        Style Section = () -> {
+        Style TypeSection = () -> {
+            margin.top(2, rem).bottom(2, rem);
+        };
+
+        Style MemberSection = () -> {
             margin.vertical(1.5, rem);
             padding.size(0.7, rem);
             border.radius(4, px);
             background.color(Color.White);
         };
 
+        Style PackcageName = () -> {
+            font.size.small();
+        };
+
         Style TypeName = () -> {
             font.family(Roboto).size(1.2, rem).weight.normal();
             display.block();
+            margin.top(0.5, rem).bottom(0.3, rem);
         };
 
         Style MemberName = () -> {
@@ -254,19 +283,59 @@ class ContentsView extends HTML {
 
             $.select("li", () -> {
                 display.inlineBlock();
-                padding.right(0.9, rem);
             });
         };
 
+        Style typeParameter = traits.with(() -> {
+            $.before(() -> {
+                content.text("Type");
+            });
+
+            $.select("li", () -> {
+                display.width(100, percent);
+
+                $.select("> i", () -> {
+                    $.nthChild("1", () -> {
+                        font.weight.bold();
+                    });
+
+                    $.nthChild("2", () -> {
+                        Styles.SignatureParameterPart.style();
+                        margin.right(1.5, rem);
+                    });
+                });
+            });
+        });
+
         Style extend = traits.with(() -> {
             $.before(() -> {
-                content.text("extends");
+                content.text("Extends");
+            });
+
+            $.select("li").not($.lastChild()).after(() -> {
+                font.color(palette.font.lighten(30)).size.smaller();
+                content.text("\\025b6");
+                margin.horizontal(0.8, rem);
             });
         });
 
         Style implement = traits.with(() -> {
             $.before(() -> {
-                content.text("implements");
+                content.text("Implements");
+            });
+
+            $.select("li", () -> {
+                margin.right(1.4, rem);
+            });
+        });
+
+        Style sub = traits.with(() -> {
+            $.before(() -> {
+                content.text("Subtypes");
+            });
+
+            $.select("li", () -> {
+                margin.right(1.4, rem);
             });
         });
     }

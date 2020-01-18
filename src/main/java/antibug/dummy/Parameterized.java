@@ -15,6 +15,10 @@ import java.util.List;
 import org.apiguardian.api.API;
 import org.apiguardian.api.API.Status;
 
+/**
+ * @param <P> First item
+ * @param <Q> Second bounded item
+ */
 @API(status = Status.EXPERIMENTAL)
 public abstract class Parameterized<P, Q extends Parameterized & AutoCloseable> extends ArrayList<Q>
         implements InterfaceA, InterfaceB, InterfaceC<Q>, AutoCloseable {

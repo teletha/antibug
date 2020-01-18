@@ -10,8 +10,10 @@
 package antibug.doc;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
@@ -57,10 +59,14 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
     /** Info repository. */
     private final List<MethodInfo> methods = new ArrayList();
 
+    /** Subtype repository. */
+    private final Set<XML> subs = new TreeSet(Comparator.<XML, String> comparing(XML::text));
+
     private final TypeResolver resolver;
 
     /**
      * @param root
+     * @param data
      */
     ClassInfo(TypeElement root, TypeResolver resolver) {
         super(root, resolver);
@@ -140,6 +146,19 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
     public final List<XML> createInterfaceTypes() {
         List<XML> copy = new ArrayList();
         for (XML base : interfaces) {
+            copy.add(base.clone());
+        }
+        return copy;
+    }
+
+    /**
+     * Build sub type element.
+     * 
+     * @return
+     */
+    public final List<XML> createSubTypes() {
+        List<XML> copy = new ArrayList();
+        for (XML base : subs) {
             copy.add(base.clone());
         }
         return copy;
@@ -227,6 +246,13 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
     @Override
     public String id() {
         return packageName + "." + name;
+    }
+
+    /**
+     * @param type2
+     */
+    void addSub(ClassInfo sub) {
+        this.subs.add(parseTypeAsXML(sub.e.asType()));
     }
 
     /**

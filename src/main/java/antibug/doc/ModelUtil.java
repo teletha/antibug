@@ -19,7 +19,7 @@ import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.TypeMirror;
 
-public class ModelUtil {
+public final class ModelUtil {
 
     /**
      * Find the top-level {@link TypeElement} (not member class).
@@ -43,7 +43,7 @@ public class ModelUtil {
      * @param type
      * @return
      */
-    public static Set<TypeMirror>[] getAllTypes(TypeElement type) {
+    public static Set<TypeMirror>[] getAllTypes(Element type) {
         Set<TypeMirror> supers = new LinkedHashSet();
         Set<TypeMirror> interfaces = new TreeSet<>(Comparator
                 .<TypeMirror, String> comparing(t -> ((TypeElement) DocTool.TypeUtils.asElement(t)).getSimpleName().toString()));

@@ -103,6 +103,30 @@ public abstract class ParameterizableInfo extends MemberInfo {
      * 
      * @return
      */
+    public final XML createTypeVariableNames() {
+        if (names.isEmpty()) {
+            return null;
+        }
+
+        XML xml = I.xml("span").addClass(Styles.SignatureParameterPart.className());
+        xml.append("<");
+        for (int i = 0, size = names.size(); i < size; i++) {
+            xml.append(createTypeVariableName(i));
+
+            if (i + 1 != size) {
+                xml.append(", ");
+            }
+        }
+        xml.append(">");
+
+        return xml;
+    }
+
+    /**
+     * Build type variable element.
+     * 
+     * @return
+     */
     public final XML createTypeVariableName(int index) {
         return I.xml("<i/>").text(names.get(index));
     }
