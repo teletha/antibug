@@ -9,9 +9,11 @@
  */
 package antibug.dummy;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Parameterized<P, Q extends Parameterized> {
+public class Parameterized<P, Q extends Parameterized & CharSequence> extends ArrayList<Q>
+        implements InterfaceA, InterfaceB, InterfaceC<Q> {
 
     /** The typed param. */
     public P fisrt;

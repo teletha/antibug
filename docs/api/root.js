@@ -167,6 +167,34 @@ const root = {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
+			"name": "InterfaceA",
+			"packageName": "antibug.dummy",
+			"type": "Interface",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "InterfaceB",
+			"packageName": "antibug.dummy",
+			"type": "Interface",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "InterfaceC",
+			"packageName": "antibug.dummy",
+			"type": "Interface",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "InterfaceRoot",
+			"packageName": "antibug.dummy",
+			"type": "Interface",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
 			"name": "Javadoc",
 			"packageName": "antibug.doc",
 			"type": "Class",
