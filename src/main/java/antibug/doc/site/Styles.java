@@ -33,10 +33,6 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
         });
     });
 
-    public static Style HTMLLevel2 = Style.named("h2", () -> {
-        font.size(1.8, rem).family(fonts.title);
-    });
-
     public static Style HTMLItalic = Style.named("i", () -> {
         font.style.normal();
     });

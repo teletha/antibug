@@ -15,6 +15,7 @@ import java.util.List;
 import javax.lang.model.element.Parameterizable;
 import javax.lang.model.type.TypeMirror;
 
+import antibug.doc.site.Styles;
 import kiss.I;
 import kiss.XML;
 
@@ -40,10 +41,6 @@ public abstract class ParameterizableInfo extends MemberInfo {
             List<? extends TypeMirror> bounds = type.getBounds();
             int size = bounds.size();
             if (size != 0) {
-                if (size == 1 && bounds.get(0).toString().equals("java.lang.Object")) {
-                    return;
-                }
-
                 XML extend = I.xml("<i/>").addClass("extends");
                 for (int i = 0; i < size; i++) {
                     if (i != 0) {
@@ -78,11 +75,18 @@ public abstract class ParameterizableInfo extends MemberInfo {
             return null;
         }
 
-        XML root = I.xml("i").addClass("parameters");
+        XML xml = I.xml("span").addClass(Styles.SignatureParameterPart.className());
+        xml.append("<");
         for (int i = 0, size = names.size(); i < size; i++) {
-            root.accept(createTypeVariable(i));
+            xml.append(createTypeVariable(i));
+
+            if (i + 1 != size) {
+                xml.append(", ");
+            }
         }
-        return root;
+        xml.append(">");
+
+        return xml;
     }
 
     /**

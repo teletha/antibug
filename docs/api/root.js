@@ -118,13 +118,6 @@ const root = {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
-			"name": "ElementUtil",
-			"packageName": "antibug.doc",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
 			"name": "Enn",
 			"packageName": "antibug.dummy",
 			"type": "Enum",
@@ -188,6 +181,13 @@ const root = {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
+			"name": "InterfaceD",
+			"packageName": "antibug.dummy",
+			"type": "Interface",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
 			"name": "InterfaceRoot",
 			"packageName": "antibug.dummy",
 			"type": "Interface",
@@ -237,6 +237,13 @@ const root = {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
+			"name": "ModelUtil",
+			"packageName": "antibug.doc",
+			"type": "Class",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
 			"name": "ParameterizableInfo",
 			"packageName": "antibug.doc",
 			"type": "AbstractClass",
@@ -246,7 +253,7 @@ const root = {
 		{
 			"name": "Parameterized",
 			"packageName": "antibug.dummy",
-			"type": "Class",
+			"type": "AbstractClass",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
@@ -316,6 +323,27 @@ const root = {
 		{
 			"name": "Styles",
 			"packageName": "antibug.doc.site",
+			"type": "Class",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "Sub1",
+			"packageName": "antibug.dummy",
+			"type": "Class",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "Sub2",
+			"packageName": "antibug.dummy",
+			"type": "Class",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "Sub21",
+			"packageName": "antibug.dummy",
 			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}

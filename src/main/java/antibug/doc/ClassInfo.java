@@ -11,6 +11,7 @@ package antibug.doc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
@@ -67,9 +68,13 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
         this.packageName = DocTool.ElementUtils.getPackageOf(root).toString();
         this.name = root.asType().toString().replaceAll("<.+>", "").substring(packageName.length() + 1);
         this.type = detectType(root);
-        this.supers.add(parseTypeAsXML(root.getSuperclass()));
-        for (TypeMirror interfaceType : root.getInterfaces()) {
-            this.interfaces.add(parseTypeAsXML(interfaceType));
+
+        Set<TypeMirror>[] types = ModelUtil.getAllTypes(root);
+        for (TypeMirror type : types[0]) {
+            this.supers.add(parseTypeAsXML(type));
+        }
+        for (TypeMirror type : types[1]) {
+            this.interfaces.add(parseTypeAsXML(type));
         }
 
         Scanner scanner = new Scanner();

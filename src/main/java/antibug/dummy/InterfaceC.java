@@ -9,5 +9,5 @@
  */
 package antibug.dummy;
 
-public interface InterfaceC<T extends CharSequence> {
+public interface InterfaceC<T extends AutoCloseable> extends InterfaceD<T> {
 }

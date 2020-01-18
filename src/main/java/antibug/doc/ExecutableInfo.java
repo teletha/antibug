@@ -16,6 +16,7 @@ import java.util.StringJoiner;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.VariableElement;
 
+import antibug.doc.site.Styles;
 import kiss.I;
 import kiss.XML;
 
@@ -88,7 +89,7 @@ public class ExecutableInfo extends ParameterizableInfo {
      * @return
      */
     public final XML createParameter() {
-        XML xml = I.xml("span").addClass(styles.SignatureParameterPart.className()[0]);
+        XML xml = I.xml("span").addClass(Styles.SignatureParameterPart.className());
         xml.append("(");
         for (int i = 0, size = names.size(); i < size; i++) {
             xml.append(createParameter(i));

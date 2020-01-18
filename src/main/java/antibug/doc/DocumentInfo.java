@@ -60,15 +60,12 @@ import com.sun.source.doctree.ValueTree;
 import com.sun.source.doctree.VersionTree;
 import com.sun.source.util.SimpleDocTreeVisitor;
 
-import antibug.doc.site.Styles;
 import kiss.I;
 import kiss.Variable;
 import kiss.XML;
 import kiss.Ⅱ;
 
 public class DocumentInfo {
-
-    protected static final Styles styles = I.make(Styles.class);
 
     /** The associated element. */
     protected final Element e;
@@ -425,7 +422,7 @@ public class DocumentInfo {
             int index = reference.indexOf("#");
             if (index == 0) {
                 memberName = reference;
-                reference = resolver.resolveDocumentLocation(ElementUtil.getTopLevelTypeElement(e));
+                reference = resolver.resolveDocumentLocation(ModelUtil.getTopLevelTypeElement(e));
             } else if (index != -1) {
                 memberName = reference.substring(index);
                 reference = resolver.resolveDocumentLocation(reference.substring(0, index));

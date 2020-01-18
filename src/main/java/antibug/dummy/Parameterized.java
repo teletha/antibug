@@ -12,8 +12,12 @@ package antibug.dummy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Parameterized<P, Q extends Parameterized & CharSequence> extends ArrayList<Q>
-        implements InterfaceA, InterfaceB, InterfaceC<Q> {
+import org.apiguardian.api.API;
+import org.apiguardian.api.API.Status;
+
+@API(status = Status.EXPERIMENTAL)
+public abstract class Parameterized<P, Q extends Parameterized & AutoCloseable> extends ArrayList<Q>
+        implements InterfaceA, InterfaceB, InterfaceC<Q>, AutoCloseable {
 
     /** The typed param. */
     public P fisrt;

@@ -42,16 +42,21 @@ class ContentsView extends HTML {
     @Override
     protected void declare() {
         $("section", () -> {
-            $("h2", () -> {
-                $(info.createModifier(), info.createName());
+            $("h2", style.TypeName, () -> {
+                $(info.createModifier());
+                $("i", style.Name, info.createName());
+                $(info.createTypeVariables());
             });
 
             // super types
-            $("ul", style.extend, () -> {
-                for (XML sup : info.createSuperTypes()) {
-                    $("li", sup);
-                }
-            });
+            List<XML> supers = info.createSuperTypes();
+            if (!supers.isEmpty()) {
+                $("ul", style.extend, () -> {
+                    for (XML sup : supers) {
+                        $("li", sup);
+                    }
+                });
+            }
 
             // implemented types
             List<XML> interfaces = info.createInterfaceTypes();
@@ -82,7 +87,7 @@ class ContentsView extends HTML {
      */
     private void writeMember(ExecutableInfo member) {
         $("section", style.Section, () -> {
-            $("h2", attr("id", member.id()), style.Title, () -> {
+            $("h2", attr("id", member.id()), style.MemberName, () -> {
                 XML type = member.createReturnType();
 
                 $(member.createModifier());
@@ -147,7 +152,12 @@ class ContentsView extends HTML {
             background.color(Color.White);
         };
 
-        Style Title = () -> {
+        Style TypeName = () -> {
+            font.family(Roboto).size(1.2, rem).weight.normal();
+            display.block();
+        };
+
+        Style MemberName = () -> {
             font.family(Roboto).size(1, rem).weight.normal();
             display.block();
         };
@@ -230,16 +240,21 @@ class ContentsView extends HTML {
         };
 
         Style traits = () -> {
+            Numeric pad = Numeric.of(5, rem);
+
             listStyle.none();
+            display.flex().wrap.enable();
+            padding.left(pad);
 
             $.before(() -> {
-                display.inlineBlock();
-                padding.right(0.3, rem).left(2.5, rem);
                 font.color(keyword);
+                display.block().width(pad);
+                margin.left(pad.negate());
             });
 
             $.select("li", () -> {
                 display.inlineBlock();
+                padding.right(0.9, rem);
             });
         };
 

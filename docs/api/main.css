@@ -2,133 +2,7 @@
 @import url("http://fonts.googleapis.com/css?family=Roboto");
 @import url("http://fonts.googleapis.com/css?family=Ubuntu");
 @import url("https://unpkg.com/ress/dist/ress.min.css");
-/* 1034246552 */a {
-	color: inherit;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-/* 1034246552 */a:hover {
-	text-decoration: underline;
-	text-decoration-color: hsla(240,7%,29%,0.5);
-	text-underline-offset: 4px;
-	text-underline-position: under;
-}
-
-/* 1231949725 */html {
-	font-size: 14px;
-	scroll-behavior: smooth;
-	scroll-padding-top: 80px;
-	word-break: break-all;
-}
-
-/* 1231949725 */html *[class|=el] {
-	font-size: 1rem;
-}
-
-/* 1273783938 */.FINAL {
-	position: relative;
-}
-
-/* 1273783938 */.FINAL::before {
-	color: hsl(200,71%,30%);
-	font-size: 0.6rem;
-	font-family: Roboto;
-	content: 'F';
-	position: absolute;
-	top: -0.2rem;
-	left: 0.7rem;
-}
-
-/* 1386265672 */.Class::before {
-	display: inline-block;
-	width: 15px;
-	height: 15px;
-	border-color: hsl(150,46%,36%);
-	border-style: solid;
-	border-width: 1px;
-	margin-right: 6px;
-	content: 'C';
-	text-align: center;
-	line-height: 13px;
-	font-size: 10px;
-	border-radius: 50%;
-	color: hsl(0,0%,100%);
-	background-color: hsl(150,46%,36%);
-}
-
-/* 1430405516 */i[array=var]::after {
-	content: '...';
-}
-
-/* 1476061457 */.AbstractClass::before {
-	display: inline-block;
-	width: 15px;
-	height: 15px;
-	border-color: hsl(150,46%,36%);
-	border-style: solid;
-	border-width: 1px;
-	margin-right: 6px;
-	content: 'C';
-	text-align: center;
-	line-height: 13px;
-	font-size: 10px;
-	border-radius: 50%;
-	color: hsl(150,46%,36%);
-}
-
-/* 148783622 */.Interface::before {
-	display: inline-block;
-	width: 15px;
-	height: 15px;
-	border-color: hsl(271,30%,50%);
-	border-style: solid;
-	border-width: 1px;
-	margin-right: 6px;
-	content: 'I';
-	text-align: center;
-	line-height: 13px;
-	font-size: 10px;
-	border-radius: 50%;
-	color: hsl(271,30%,50%);
-}
-
-/* 1529856704 */.extends::before {
-	content: ' extends ';
-}
-
-/* 1673618401 */i {
-	font-style: normal;
-}
-
-/* 1799784208 */h2 {
-	font-size: 1.8rem;
-	font-family: Ubuntu;
-}
-
-/* 1841150825 */.PRIVATE {
-	position: relative;
-}
-
-/* 1841150825 */.PRIVATE::before {
-	content: '';
-	display: inline-block;
-	width: 0.6rem;
-	height: 0.6rem;
-	border-radius: 50%;
-	background-color: hsl(2,68%,58%);
-	margin-right: 0.6rem;
-}
-
-/* 1841150825 */.PRIVATE.FIELD::before {
-	content: '\e836';
-}
-
-/* 1885253670 */.package {
-	font-weight: bold;
-}
-
-/* 193303381 */#SearchByName {
+/* 1002650329 */#SearchByName {
 	display: block;
 	width: 100%;
 	background-color: hsl(0,0%,100%);
@@ -144,196 +18,55 @@
 	border-radius: 4px;
 }
 
-/* 1936269454 */.PUBLIC {
+/* 1048435582 */.VOLATILE {
 	position: relative;
 }
 
-/* 1936269454 */.PUBLIC::before {
-	content: '';
-	display: inline-block;
-	width: 0.6rem;
-	height: 0.6rem;
-	border-radius: 50%;
-	background-color: hsl(150,46%,36%);
-	margin-right: 0.6rem;
-}
-
-/* 1936269454 */.PUBLIC.FIELD::before {
-	content: '\e836';
-}
-
-/* 2074485713 */.PROTECTED {
-	position: relative;
-}
-
-/* 2074485713 */.PROTECTED::before {
-	content: '';
-	display: inline-block;
-	width: 0.6rem;
-	height: 0.6rem;
-	border-radius: 50%;
-	background-color: hsl(48,95%,59%);
-	margin-right: 0.6rem;
-}
-
-/* 2074485713 */.PROTECTED.FIELD::before {
-	content: '\e836';
-}
-
-/* 2139332293 */.vs__dropdown-toggle {
-	background-color: hsl(0,0%,100%);
-}
-
-/* 284394658 */.Functional::before {
-	display: inline-block;
-	width: 15px;
-	height: 15px;
-	border-color: hsl(271,30%,50%);
-	border-style: solid;
-	border-width: 1px;
-	margin-right: 6px;
-	content: 'F';
-	text-align: center;
-	line-height: 13px;
-	font-size: 10px;
-	border-radius: 50%;
-	color: hsl(271,30%,50%);
-}
-
-/* 292486757 */.SYNCHRONIZED {
-	position: relative;
-}
-
-/* 292486757 */.SYNCHRONIZED::after {
-	color: hsl(200,71%,30%);
-	font-size: 0.7rem;
-	font-family: "Material Icons";
-	content: '\e8ae';
-	position: absolute;
-	top: 0.5rem;
-	left: 0.5rem;
-}
-
-/* 294156754 */.TRANSIENT {
-	position: relative;
-}
-
-/* 294156754 */.TRANSIENT::after {
-	color: hsl(200,71%,30%);
-	font-size: 0.7rem;
-	font-family: "Material Icons";
-	content: '\e14c';
-	position: absolute;
-	top: 0.5rem;
-	left: 0.5rem;
-}
-
-/* 305775208 */.ABSTRACT {
-	position: relative;
-}
-
-/* 305775208 */.ABSTRACT::before {
+/* 1048435582 */.VOLATILE::before {
 	color: hsl(200,71%,30%);
 	font-size: 0.6rem;
 	font-family: Roboto;
-	content: 'A';
+	content: 'V';
 	position: absolute;
 	top: -0.2rem;
 	left: 0.7rem;
 }
 
-/* 522511165 */.tree {
-	overflow: hidden;
-	scrollbar-width: thin;
-	height: 60vh;
-	background-color: inherit;
-}
-
-/* 522511165 */.tree:hover {
-	overflow-y: auto;
-}
-
-/* 522511165 */.tree dt {
-	font-weight: bold;
-	cursor: pointer;
-	padding-top: 0.2rem;
-	padding-bottom: 0.2rem;
-	padding-left: 0.5rem;
-	padding-right: 0.5rem;
-	border-radius: 2px;
-}
-
-/* 522511165 */.tree dt:hover {
-	background-color: hsl(0,0%,100%);
-	background-image: inherit;
-	background-repeat: repeat;
-}
-
-/* 522511165 */.tree dd {
-	padding-top: 0.1rem;
-	padding-bottom: 0.1rem;
-	padding-left: 1rem;
-	cursor: pointer;
-	border-radius: 2px;
-}
-
-/* 522511165 */.tree dd:hover {
-	background-color: hsl(0,0%,100%);
-	background-image: inherit;
-	background-repeat: repeat;
-}
-
-/* 603273695 */.pretty {
-	display: block;
-}
-
-/* 617504076 */.Annotation::before {
+/* 1096030628 */.AbstractClass::before {
 	display: inline-block;
 	width: 15px;
 	height: 15px;
-	border-color: hsl(200,71%,30%);
+	border-color: hsl(150,46%,36%);
 	border-style: solid;
 	border-width: 1px;
 	margin-right: 6px;
-	content: 'A';
+	content: 'C';
 	text-align: center;
 	line-height: 13px;
 	font-size: 10px;
-	border-radius: 3px;
-	color: hsl(0,0%,100%);
-	background-color: hsl(200,71%,30%);
+	border-radius: 50%;
+	color: hsl(150,46%,36%);
 }
 
-/* 619158093 */i[array=fix]::after {
-	content: '[]';
+/* 1240091493 */.PRIVATE {
+	position: relative;
 }
 
-/* 620534437 */.Exception::before {
+/* 1240091493 */.PRIVATE::before {
+	content: '';
 	display: inline-block;
-	width: 15px;
-	height: 15px;
-	border-color: hsl(2,68%,58%);
-	border-style: solid;
-	border-width: 1px;
-	margin-right: 6px;
-	content: 'T';
-	text-align: center;
-	line-height: 13px;
-	font-size: 10px;
-	border-radius: 3px;
-	color: hsl(0,0%,100%);
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
 	background-color: hsl(2,68%,58%);
+	margin-right: 0.6rem;
 }
 
-/* 68074326 */.parameters::before {
-	content: '<';
+/* 1240091493 */.PRIVATE.FIELD::before {
+	content: '\e836';
 }
 
-/* 68074326 */.parameters::after {
-	content: '>';
-}
-
-/* 680794728 */.Enum::before {
+/* 1251935072 */.Enum::before {
 	display: inline-block;
 	width: 15px;
 	height: 15px;
@@ -350,11 +83,251 @@
 	background-color: hsl(0,29%,49%);
 }
 
-/* 760493524 */.PACKAGEPRIVATE {
+/* 1369352990 */.package {
+	font-weight: bold;
+}
+
+/* 1399108737 */i {
+	font-style: normal;
+}
+
+/* 1595687022 */html {
+	font-size: 14px;
+	scroll-behavior: smooth;
+	scroll-padding-top: 80px;
+	word-break: break-all;
+}
+
+/* 1595687022 */html *[class|=el] {
+	font-size: 1rem;
+}
+
+/* 1609272986 */.PUBLIC {
 	position: relative;
 }
 
-/* 760493524 */.PACKAGEPRIVATE::before {
+/* 1609272986 */.PUBLIC::before {
+	content: '';
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
+	background-color: hsl(150,46%,36%);
+	margin-right: 0.6rem;
+}
+
+/* 1609272986 */.PUBLIC.FIELD::before {
+	content: '\e836';
+}
+
+/* 1659650374 */a {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* 1659650374 */a:hover {
+	text-decoration: underline;
+	text-decoration-color: hsla(240,7%,29%,0.5);
+	text-underline-offset: 4px;
+	text-underline-position: under;
+}
+
+/* 1679470965 */.pretty {
+	display: block;
+}
+
+/* 1703412736 */.Functional::before {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(271,30%,50%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'F';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 50%;
+	color: hsl(271,30%,50%);
+}
+
+/* 1706466507 */.Class::before {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(150,46%,36%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'C';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 50%;
+	color: hsl(0,0%,100%);
+	background-color: hsl(150,46%,36%);
+}
+
+/* 1723212594 */.TRANSIENT {
+	position: relative;
+}
+
+/* 1723212594 */.TRANSIENT::after {
+	color: hsl(200,71%,30%);
+	font-size: 0.7rem;
+	font-family: "Material Icons";
+	content: '\e14c';
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+}
+
+/* 1761988656 */.vs__dropdown-toggle {
+	background-color: hsl(0,0%,100%);
+}
+
+/* 1798680820 */.tree {
+	overflow: hidden;
+	scrollbar-width: thin;
+	height: 60vh;
+	background-color: inherit;
+}
+
+/* 1798680820 */.tree:hover {
+	overflow-y: auto;
+}
+
+/* 1798680820 */.tree dt {
+	font-weight: bold;
+	cursor: pointer;
+	padding-top: 0.2rem;
+	padding-bottom: 0.2rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	border-radius: 2px;
+}
+
+/* 1798680820 */.tree dt:hover {
+	background-color: hsl(0,0%,100%);
+	background-image: inherit;
+	background-repeat: repeat;
+}
+
+/* 1798680820 */.tree dd {
+	padding-top: 0.1rem;
+	padding-bottom: 0.1rem;
+	padding-left: 1rem;
+	cursor: pointer;
+	border-radius: 2px;
+}
+
+/* 1798680820 */.tree dd:hover {
+	background-color: hsl(0,0%,100%);
+	background-image: inherit;
+	background-repeat: repeat;
+}
+
+/* 1834816004 */.PROTECTED {
+	position: relative;
+}
+
+/* 1834816004 */.PROTECTED::before {
+	content: '';
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
+	background-color: hsl(48,95%,59%);
+	margin-right: 0.6rem;
+}
+
+/* 1834816004 */.PROTECTED.FIELD::before {
+	content: '\e836';
+}
+
+/* 185354501 */.extends::before {
+	content: ' extends ';
+}
+
+/* 1863497271 */.Annotation::before {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(200,71%,30%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'A';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 3px;
+	color: hsl(0,0%,100%);
+	background-color: hsl(200,71%,30%);
+}
+
+/* 2099052183 */.SYNCHRONIZED {
+	position: relative;
+}
+
+/* 2099052183 */.SYNCHRONIZED::after {
+	color: hsl(200,71%,30%);
+	font-size: 0.7rem;
+	font-family: "Material Icons";
+	content: '\e8ae';
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+}
+
+/* 2099922328 */.Interface::before {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(271,30%,50%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'I';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 50%;
+	color: hsl(271,30%,50%);
+}
+
+/* 2100962393 */.super::before {
+	content: ' super ';
+}
+
+/* 2103229641 */i[array=fix]::after {
+	content: '[]';
+}
+
+/* 250219336 */.Exception::before {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	border-color: hsl(2,68%,58%);
+	border-style: solid;
+	border-width: 1px;
+	margin-right: 6px;
+	content: 'T';
+	text-align: center;
+	line-height: 13px;
+	font-size: 10px;
+	border-radius: 3px;
+	color: hsl(0,0%,100%);
+	background-color: hsl(2,68%,58%);
+}
+
+/* 394568342 */.PACKAGEPRIVATE {
+	position: relative;
+}
+
+/* 394568342 */.PACKAGEPRIVATE::before {
 	content: '';
 	display: inline-block;
 	width: 0.6rem;
@@ -364,44 +337,73 @@
 	margin-right: 0.6rem;
 }
 
-/* 760493524 */.PACKAGEPRIVATE.FIELD::before {
+/* 394568342 */.PACKAGEPRIVATE.FIELD::before {
 	content: '\e836';
 }
 
-/* 764884044 */.VOLATILE {
+/* 404923931 */.ABSTRACT {
 	position: relative;
 }
 
-/* 764884044 */.VOLATILE::before {
+/* 404923931 */.ABSTRACT::before {
 	color: hsl(200,71%,30%);
 	font-size: 0.6rem;
 	font-family: Roboto;
-	content: 'V';
+	content: 'A';
 	position: absolute;
 	top: -0.2rem;
 	left: 0.7rem;
 }
 
-/* 857308207 */.super::before {
-	content: ' super ';
+/* 604991790 */.FINAL {
+	position: relative;
 }
 
-/* antibug.doc.site.ContentsView.style#Name */.Q {
+/* 604991790 */.FINAL::before {
+	color: hsl(200,71%,30%);
+	font-size: 0.6rem;
+	font-family: Roboto;
+	content: 'F';
+	position: absolute;
+	top: -0.2rem;
+	left: 0.7rem;
+}
+
+/* 909013150 */.parameters::before {
+	content: '<';
+}
+
+/* 909013150 */.parameters::after {
+	content: '>';
+}
+
+/* 942901628 */i[array=var]::after {
+	content: '...';
+}
+
+/* antibug.doc.site.ContentsView.style#MemberName */.N {
+	font-family: Roboto;
+	font-size: 1rem;
+	font-weight: normal;
+	display: block;
+}
+
+/* antibug.doc.site.ContentsView.style#Name */.O {
 	font-weight: bold;
 	margin-right: 0.175rem;
 }
 
-/* antibug.doc.site.ContentsView.style#Return */.R {
+/* antibug.doc.site.ContentsView.style#Return */.P {
 	color: hsl(48,95%,29%);
 }
 
-/* antibug.doc.site.ContentsView.style#Return */.R::before {
+/* antibug.doc.site.ContentsView.style#Return */.P::before {
 	content: ':';
 	padding-left: 0.3em;
 	padding-right: 0.3em;
 }
 
-/* antibug.doc.site.ContentsView.style#Section */.O {
+/* antibug.doc.site.ContentsView.style#Section */.L {
 	margin-top: 1.5rem;
 	margin-bottom: 1.5rem;
 	padding-left: 0.7rem;
@@ -412,11 +414,11 @@
 	background-color: hsl(0,0%,100%);
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureDefinition */.T {
+/* antibug.doc.site.ContentsView.style#SignatureDefinition */.R {
 	position: relative;
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureDefinition */.T::before {
+/* antibug.doc.site.ContentsView.style#SignatureDefinition */.R::before {
 	position: absolute;
 	display: inline-block;
 	width: 2.5rem;
@@ -425,11 +427,11 @@
 	color: hsl(0,29%,49%);
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureException */.X {
+/* antibug.doc.site.ContentsView.style#SignatureException */.V {
 	position: relative;
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureException */.X::before {
+/* antibug.doc.site.ContentsView.style#SignatureException */.V::before {
 	position: absolute;
 	display: inline-block;
 	width: 2.5rem;
@@ -438,15 +440,15 @@
 	color: hsl(0,29%,49%);
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureException */.X::before {
+/* antibug.doc.site.ContentsView.style#SignatureException */.V::before {
 	content: 'Throw';
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureParameter */.V {
+/* antibug.doc.site.ContentsView.style#SignatureParameter */.T {
 	position: relative;
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureParameter */.V::before {
+/* antibug.doc.site.ContentsView.style#SignatureParameter */.T::before {
 	position: absolute;
 	display: inline-block;
 	width: 2.5rem;
@@ -455,15 +457,15 @@
 	color: hsl(0,29%,49%);
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureParameter */.V::before {
+/* antibug.doc.site.ContentsView.style#SignatureParameter */.T::before {
 	content: 'Param';
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureReturn */.W {
+/* antibug.doc.site.ContentsView.style#SignatureReturn */.U {
 	position: relative;
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureReturn */.W::before {
+/* antibug.doc.site.ContentsView.style#SignatureReturn */.U::before {
 	position: absolute;
 	display: inline-block;
 	width: 2.5rem;
@@ -472,37 +474,37 @@
 	color: hsl(0,29%,49%);
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureReturn */.W::before {
+/* antibug.doc.site.ContentsView.style#SignatureReturn */.U::before {
 	content: 'Return';
 	color: hsl(48,95%,29%);
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureTable */.S {
+/* antibug.doc.site.ContentsView.style#SignatureTable */.Q {
 	padding-left: 2.5rem;
 	margin-top: 0.1rem;
 	margin-bottom: 0.6rem;
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureTable */.S td {
+/* antibug.doc.site.ContentsView.style#SignatureTable */.Q td {
 	padding-right: 0.8rem;
 	vertical-align: top;
 	text-overflow: ellipsis;
 	line-height: 1.3;
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureTable */.S td:not(:last-child) {
+/* antibug.doc.site.ContentsView.style#SignatureTable */.Q td:not(:last-child) {
 	white-space: nowrap;
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureTable */.S td:empty::after {
+/* antibug.doc.site.ContentsView.style#SignatureTable */.Q td:empty::after {
 	content: 'No description.';
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureTypeVariable */.U {
+/* antibug.doc.site.ContentsView.style#SignatureTypeVariable */.S {
 	position: relative;
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureTypeVariable */.U::before {
+/* antibug.doc.site.ContentsView.style#SignatureTypeVariable */.S::before {
 	position: absolute;
 	display: inline-block;
 	width: 2.5rem;
@@ -511,38 +513,42 @@
 	color: hsl(0,29%,49%);
 }
 
-/* antibug.doc.site.ContentsView.style#SignatureTypeVariable */.U::before {
+/* antibug.doc.site.ContentsView.style#SignatureTypeVariable */.S::before {
 	content: 'Type';
 }
 
-/* antibug.doc.site.ContentsView.style#Title */.P {
+/* antibug.doc.site.ContentsView.style#TypeName */.M {
 	font-family: Roboto;
-	font-size: 1rem;
+	font-size: 1.2rem;
 	font-weight: normal;
 	display: block;
 }
 
-/* antibug.doc.site.ContentsView.style#lambda$22 */.M::before {
+/* antibug.doc.site.ContentsView.style#lambda$23 */.J::before {
 	content: 'extends';
 }
 
-/* antibug.doc.site.ContentsView.style#lambda$24 */.N::before {
+/* antibug.doc.site.ContentsView.style#lambda$25 */.K::before {
 	content: 'implements';
 }
 
-/* antibug.doc.site.ContentsView.style#traits */.L {
+/* antibug.doc.site.ContentsView.style#traits */.I {
 	list-style-type: none;
+	display: flex;
+	flex-wrap: wrap;
+	padding-left: 5rem;
 }
 
-/* antibug.doc.site.ContentsView.style#traits */.L::before {
-	display: inline-block;
-	padding-right: 0.3rem;
-	padding-left: 2.5rem;
+/* antibug.doc.site.ContentsView.style#traits */.I::before {
 	color: hsl(0,29%,49%);
+	display: block;
+	width: 5rem;
+	margin-left: -5rem;
 }
 
-/* antibug.doc.site.ContentsView.style#traits */.L li {
+/* antibug.doc.site.ContentsView.style#traits */.I li {
 	display: inline-block;
+	padding-right: 0.9rem;
 }
 
 /* antibug.doc.site.MainPage.Styles#Contents */.F {
@@ -647,49 +653,53 @@
 	width: 100vw;
 }
 
-/* antibug.doc.site.Styles#SignatureParameterPart */.I {
+/* antibug.doc.site.Styles#SignatureParameterPart */.W {
 	color: hsl(240,7%,39%);
 }
 
-/* antibug.doc.site.SubNavigationView.Styles#Return */.K {
+/* antibug.doc.site.SubNavigationView.Styles#Return */.Y {
 	color: hsl(48,95%,29%);
 }
 
-/* antibug.doc.site.SubNavigationView.Styles#Return */.K::before {
+/* antibug.doc.site.SubNavigationView.Styles#Return */.Y::before {
 	content: ':';
 	padding-left: 0.3em;
 	padding-right: 0.3em;
 }
 
-/* antibug.doc.site.SubNavigationView.Styles#Title */.J {
+/* antibug.doc.site.SubNavigationView.Styles#Title */.X {
 	margin-top: 0.9rem;
 	font-weight: bold;
 	font-size: 1rem;
 }
 
-em;
+lor: hsl(48, 95%, 29%);
 }
 
-arameterPart */.I {
-	color: hsl(240,7%,39%);
-}
-
-/* antibug.doc.site.SubNavigationView.Styles#Return */.K {
-	color: hsl(48,95%,29%);
-}
-
-/* antibug.doc.site.SubNavigationView.Styles#Return */.K::before {
-	content: ':';
+/* antibug.doc.site.SubNavigationView.Styles#Return */
+.K::before {
+	content: ":";
 	padding-left: 0.3em;
 	padding-right: 0.3em;
 }
 
-/* antibug.doc.site.SubNavigationView.Styles#Title */.J {
+/* antibug.doc.site.SubNavigationView.Styles#Title */
+.J {
 	margin-top: 0.9rem;
 	font-weight: bold;
 	font-size: 1rem;
 }
 
--size: 1rem;
+/* antibug.doc.site.SubNavigationView.Styles#Return */
+.K::before {
+	content: ":";
+	padding-left: 0.3em;
+	padding-right: 0.3em;
 }
 
+/* antibug.doc.site.SubNavigationView.Styles#Title */
+.J {
+	margin-top: 0.9rem;
+	font-weight: bold;
+	font-size: 1rem;
+}
