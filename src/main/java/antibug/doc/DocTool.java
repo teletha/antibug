@@ -9,20 +9,14 @@
  */
 package antibug.doc;
 
-import static javax.tools.StandardLocation.*;
-
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.lang.model.element.ModuleElement;
@@ -30,18 +24,10 @@ import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
-import javax.tools.Diagnostic;
-import javax.tools.DiagnosticListener;
-import javax.tools.DocumentationTool;
-import javax.tools.DocumentationTool.Location;
-import javax.tools.JavaFileObject;
-import javax.tools.JavaFileObject.Kind;
-import javax.tools.StandardJavaFileManager;
-import javax.tools.ToolProvider;
 
 import com.sun.source.util.DocTrees;
 
-public abstract class DocTool<Self extends DocTool> implements DiagnosticListener<JavaFileObject> {
+public abstract class DocTool<Self extends DocTool> {
 
     /** Guilty Accessor. */
     public static DocTrees DocUtils;
@@ -53,10 +39,10 @@ public abstract class DocTool<Self extends DocTool> implements DiagnosticListene
     public static Types TypeUtils;
 
     /** The input directories. */
-    private final List<Path> sources = new ArrayList();
+    final List<Path> sources = new ArrayList();
 
     /** The output directory. */
-    private Path output = Path.of("docs");
+    Path output = Path.of("docs");
 
     /**
      * Hide constructor.
@@ -71,43 +57,6 @@ public abstract class DocTool<Self extends DocTool> implements DiagnosticListene
      */
     public final List<Path> sources() {
         return sources;
-    }
-
-    /**
-     * Set source directory.
-     * 
-     * @param sourceDirectories A list of paths to source directory.
-     * @return Chainable API.
-     */
-    public final Self sources(String... sourceDirectories) {
-        return sources(Arrays.stream(sourceDirectories).map(Path::of).collect(Collectors.toList()));
-    }
-
-    /**
-     * Set source directory.
-     * 
-     * @param sourceDirectories A list of paths to source directory.
-     * @return Chainable API.
-     */
-    public final Self sources(Path... sourceDirectories) {
-        return sources(List.of(sourceDirectories));
-    }
-
-    /**
-     * Set source directory.
-     * 
-     * @param sourceDirectories A list of paths to source directory.
-     * @return Chainable API.
-     */
-    public final Self sources(List<Path> sourceDirectories) {
-        if (sourceDirectories != null) {
-            for (Path source : sourceDirectories) {
-                if (source != null) {
-                    this.sources.add(source);
-                }
-            }
-        }
-        return (Self) this;
     }
 
     /**
@@ -126,59 +75,6 @@ public abstract class DocTool<Self extends DocTool> implements DiagnosticListene
             throw new IllegalArgumentException("The output directory is NOT directory. [" + output + "]");
         }
         return output;
-    }
-
-    /**
-     * Set output directory.
-     * 
-     * @param outputDirectory A path to output directory.
-     * @return Chainable API.
-     */
-    public final Self output(String outputDirectory) {
-        return output(Path.of(outputDirectory));
-    }
-
-    /**
-     * Set output directory.
-     * 
-     * @param outputDirectory A path to output directory.
-     * @return Chainable API.
-     */
-    public final Self output(Path outputDirectory) {
-        if (outputDirectory != null) {
-            this.output = outputDirectory;
-        }
-        return (Self) this;
-    }
-
-    /**
-     * Build documents.
-     */
-    public final void build() {
-        synchronized (DocTool.class) {
-            self = this;
-            DocumentationTool tool = ToolProvider.getSystemDocumentationTool();
-
-            try (StandardJavaFileManager manager = tool.getStandardFileManager(this, Locale.getDefault(), Charset.defaultCharset())) {
-                manager.setLocationFromPaths(SOURCE_PATH, sources);
-                manager.setLocationFromPaths(Location.DOCUMENTATION_OUTPUT, List.of(output()));
-
-                Iterable<? extends JavaFileObject> units = manager.list(SOURCE_PATH, "", Set.of(Kind.SOURCE), true);
-
-                if (tool.getTask(null, manager, this, AnotherDoclet.class, List.of(), units).call()) {
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void report(Diagnostic<? extends JavaFileObject> diagnostic) {
-        System.out.println(diagnostic);
     }
 
     /**
@@ -237,7 +133,4 @@ public abstract class DocTool<Self extends DocTool> implements DiagnosticListene
      * Completion phase.
      */
     protected abstract void complete();
-
-    /** Dirty Access */
-    static DocTool self;
 }

@@ -11,9 +11,14 @@ package antibug.doc;
 
 import java.io.IOException;
 
+import antibug.doc.AnotherDoclet.Builder;
+
 public class DocumentUser {
 
     public static void main(String[] args) throws IOException {
-        new Javadoc().sources("src/main/java").output("docs/api").productName("Antibug").build();
+        Builder builder = new AnotherDoclet.Builder();
+        builder.sources.add("src/main/java");
+        builder.output = "docs/api";
+        builder.build();
     }
 }

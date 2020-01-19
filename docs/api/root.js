@@ -34,6 +34,13 @@ const root = {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
+			"name": "AnotherDoclet.Builder",
+			"packageName": "antibug.doc",
+			"type": "Class",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
 			"name": "BaseStyle",
 			"packageName": "antibug.doc.site",
 			"type": "Interface",
