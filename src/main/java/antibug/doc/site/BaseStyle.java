@@ -26,6 +26,8 @@ public interface BaseStyle {
 
     Font Roboto = Font.fromGoogle("Roboto");
 
+    Font RobotoMono = Font.fromGoogle("Roboto Mono");
+
     FontPalette fonts = FontPalette.with.base(Roboto).title(Font.fromGoogle("Ubuntu")).monoBySystem();
 
     Numeric FontSize = Numeric.of(12, px);

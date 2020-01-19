@@ -120,6 +120,10 @@ public class TypeResolver {
                 .to(this::collectMemberTypes);
     }
 
+    public String resolveTestcase(String className) {
+        return null;
+    }
+
     /**
      * Compute FQCN from the specified simple name.
      * 

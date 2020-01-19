@@ -12,6 +12,8 @@ package antibug.doc;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
@@ -60,6 +62,7 @@ import com.sun.source.doctree.ValueTree;
 import com.sun.source.doctree.VersionTree;
 import com.sun.source.util.SimpleDocTreeVisitor;
 
+import antibug.doc.site.Styles;
 import kiss.I;
 import kiss.Variable;
 import kiss.XML;
@@ -106,6 +109,7 @@ public class DocumentInfo {
             DocCommentTree docs = DocTool.DocUtils.getDocCommentTree(e);
             if (docs != null) {
                 comment.set(xml(docs.getFullBody()));
+                comment.to(x -> x.addClass(Styles.JavadocComment.className()));
                 docs.getBlockTags().forEach(tag -> tag.accept(new TagScanner(), this));
             }
         } catch (Throwable error) {
@@ -206,6 +210,8 @@ public class DocumentInfo {
         return null;
     }
 
+    private static final Pattern TestPattern = Pattern.compile("(\\S+Test)#(\\S+)\\(.*\\)");
+
     /**
      * 
      */
@@ -249,7 +255,21 @@ public class DocumentInfo {
          */
         @Override
         public DocumentInfo visitSee(SeeTree node, DocumentInfo p) {
-            seeTags.add(xml(node.getReference()));
+            XML reference = xml(node.getReference());
+
+            Matcher matcher = TestPattern.matcher(reference.text());
+            if (matcher.matches()) {
+                String testClassName = matcher.group(1);
+                String testMethodName = matcher.group(2);
+
+                String testClassPath = DocTool.ElementUtils.getPackageOf(e)
+                        .getQualifiedName()
+                        .toString()
+                        .replace('.', '/') + "/" + testClassName + ".java";
+                System.out.println(testClassPath);
+            } else {
+                seeTags.add(reference);
+            }
             return p;
         }
 
@@ -318,6 +338,7 @@ public class DocumentInfo {
                     // sanitize script and css
                     XML xml = I.xml(text);
                     xml.find("link").remove();
+                    xml.find("pre").addClass("prettyprint");
 
                     return xml;
                 }

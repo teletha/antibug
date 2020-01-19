@@ -2,60 +2,62 @@
 // Define Router
 // =====================================================
 const router = new VueRouter({
-	mode: "history",
-	routes: [
-		{
-			path: "*",
-			component: {
-				template: "<i/>",
-				created: function() {
-					this.href();
-				},
-				watch: {
-					$route: "href"
-				},
-				methods: {
-					// ===========================================================
-					// Extracts the contents and navigation from the HTML file at
-					// the specified path and imports them into the current HTML.
-					// ===========================================================
-					href: function() {
-						fetch(this.$route.params.pathMatch)
-							.then(function(response) {
-								return response.text();
-							})
-							.then(function(html) {
-								var start = html.indexOf(">", html.indexOf("<article")) + 1;
-								var end = html.lastIndexOf("</article>");
-								var article = html.substring(start, end);
-								document.querySelector("article").innerHTML = article;
+  mode: "history",
+  routes: [
+    {
+      path: "*",
+      component: {
+        template: "<i/>",
+        created: function() {
+          this.href();
+        },
+        watch: {
+          $route: "href"
+        },
+        methods: {
+          // ===========================================================
+          // Extracts the contents and navigation from the HTML file at
+          // the specified path and imports them into the current HTML.
+          // ===========================================================
+          href: function() {
+            fetch(this.$route.params.pathMatch)
+              .then(function(response) {
+                return response.text();
+              })
+              .then(function(html) {
+                var start = html.indexOf(">", html.indexOf("<article")) + 1;
+                var end = html.lastIndexOf("</article>");
+                var article = html.substring(start, end);
+                document.querySelector("article").innerHTML = article;
 
-								var start = html.indexOf(">", html.indexOf("<aside")) + 1;
-								var end = html.lastIndexOf("</aside>");
-								var aside = html.substring(start, end);
-								document.querySelector("aside").innerHTML = aside;
-							});
-					}
-				}
-			}
-		}
-	]
+                var start = html.indexOf(">", html.indexOf("<aside")) + 1;
+                var end = html.lastIndexOf("</aside>");
+                var aside = html.substring(start, end);
+                document.querySelector("aside").innerHTML = aside;
+
+                PR.prettyPrint();
+              });
+          }
+        }
+      }
+    }
+  ]
 });
 
 // =====================================================
 // Define Components
 // =====================================================
 new Vue({
-	el: "main",
-	router
+  el: "main",
+  router
 });
 
 Vue.use(PrettyCheckbox);
 Vue.component("v-select", VueSelect.VueSelect);
 
 new Vue({
-	el: "nav > div",
-	template: `
+  el: "nav > div",
+  template: `
 	<div>
 		<v-select v-model="selectedModule" placeholder="Select Module" :options="items.modules"></v-select>
 		<v-select v-model="selectedPackage" placeholder="Select Package" :options="items.packages"></v-select>
@@ -78,89 +80,75 @@ new Vue({
 		</div>
 	</div>
   `,
-	data: function() {
-		return {
-			items: root,
-			sortedItems: this.sortAndGroup(root),
-			selectedName: "",
-			selectedPackage: null,
-			selectedModule: null,
-			selectedType: [],
-			expandAll: false
-		};
-	},
+  data: function() {
+    return {
+      items: root,
+      sortedItems: this.sortAndGroup(root),
+      selectedName: "",
+      selectedPackage: null,
+      selectedModule: null,
+      selectedType: [],
+      expandAll: false
+    };
+  },
 
-	methods: {
-		sortAndGroup: function(items) {
-			let map = new Map();
-			items.packages.forEach(item => {
-				map.set(item, {
-					name: item,
-					children: [],
-					isOpen: false
-				});
-			});
+  methods: {
+    sortAndGroup: function(items) {
+      let map = new Map();
+      items.packages.forEach(item => {
+        map.set(item, {
+          name: item,
+          children: [],
+          isOpen: false
+        });
+      });
 
-			items.types.forEach(item => {
-				map.get(item.packageName).children.push(item);
-			});
+      items.types.forEach(item => {
+        map.get(item.packageName).children.push(item);
+      });
 
-			return Array.from(map.values());
-		},
-		filter: function(items) {
-			this.expandAll =
-				this.selectedType.length !== 0 ||
-				this.selectedPackage !== null ||
-				this.selectedName !== "";
+      return Array.from(map.values());
+    },
+    filter: function(items) {
+      this.expandAll = this.selectedType.length !== 0 || this.selectedPackage !== null || this.selectedName !== "";
 
-			return items.filter(item => {
-				if (
-					this.selectedType.length != 0 &&
-					!this.selectedType.includes(item.type)
-				) {
-					return false;
-				}
+      return items.filter(item => {
+        if (this.selectedType.length != 0 && !this.selectedType.includes(item.type)) {
+          return false;
+        }
 
-				if (
-					this.selectedPackage !== null &&
-					this.selectedPackage !== item.packageName
-				) {
-					return false;
-				}
+        if (this.selectedPackage !== null && this.selectedPackage !== item.packageName) {
+          return false;
+        }
 
-				if (
-					this.selectedName !== "" &&
-					(item.packageName + "." + item.name)
-						.toLowerCase()
-						.indexOf(this.selectedName.toLowerCase()) === -1
-				) {
-					return false;
-				}
-				return true;
-			});
-		},
-		toggle: function(package) {
-			package.isOpen = !package.isOpen;
-		},
-		link: function(type) {
-			router.push("/types/" + type.packageName + "." + type.name + ".html");
-		}
-	}
+        if (this.selectedName !== "" && (item.packageName + "." + item.name).toLowerCase().indexOf(this.selectedName.toLowerCase()) === -1) {
+          return false;
+        }
+        return true;
+      });
+    },
+    toggle: function(package) {
+      package.isOpen = !package.isOpen;
+    },
+    link: function(type) {
+      router.push("/types/" + type.packageName + "." + type.name + ".html");
+    }
+  }
 });
 
 // =====================================================
 // Global Event Listener
 // =====================================================
 document.addEventListener("click", event => {
-	var e = event.target;
+  var e = event.target;
 
-	if (e.tagName === "A") {
-		var path = e.getAttribute("href");
+  if (e.tagName === "A") {
+    var path = e.getAttribute("href");
 
-		if (!path.startsWith("http") && !path.startsWith("#")) {
-			// handle internal link only
-			router.push(path);
-			event.preventDefault();
-		}
-	}
+    if (!path.startsWith("http") && !path.startsWith("#")) {
+      // handle internal link only
+      router.push(path);
+      event.preventDefault();
+    }
+  }
 });

@@ -11,6 +11,7 @@ package antibug;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -82,5 +83,15 @@ public class ChronusTest {
         assert value.get() == 0;
         chronus.await();
         assert value.get() == expectedValue;
+    }
+
+    @Test
+    void elapse() {
+        long start = System.currentTimeMillis();
+        chronus.mark();
+        chronus.elapse(100, TimeUnit.MILLISECONDS);
+        long end = System.currentTimeMillis();
+
+        assert 100 <= end - start;
     }
 }

@@ -44,8 +44,7 @@ class ContentsView extends HTML {
         $("section", style.TypeSection, () -> {
             $("div", style.PackcageName, text(info.packageName));
 
-            $("h2", style.TypeName, () -> {
-                $(info.createModifier());
+            $("h2", attr("class", info.type), style.TypeName, () -> {
                 $("i", style.Name, info.createName());
                 $(info.createTypeVariableNames());
             });
@@ -88,7 +87,9 @@ class ContentsView extends HTML {
                 });
             }
 
-            $(info.createComment());
+            $("div", style.TypeComment, () -> {
+                $(info.createComment());
+            });
 
             for (ExecutableInfo constructor : info.constructors()) {
                 writeMember(constructor);
@@ -166,6 +167,10 @@ class ContentsView extends HTML {
         Numeric signatureLabelWidth = Numeric.of(2.5, rem);
 
         Style TypeSection = () -> {
+            margin.top(2, rem).bottom(2, rem);
+        };
+
+        Style TypeComment = () -> {
             margin.top(2, rem).bottom(2, rem);
         };
 

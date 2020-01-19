@@ -50,6 +50,41 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
         });
     });
 
+    public static Style JavadocComment = () -> {
+        $.select("p", () -> {
+            block();
+        });
+
+        $.select("dl", () -> {
+            block();
+        });
+
+        $.select("ul", () -> {
+            block();
+            listStyle.inside();
+        });
+
+        $.select("ol", () -> {
+            block();
+            listStyle.inside();
+        });
+
+        $.select("pre", () -> {
+            block();
+            font.family(fonts.base);
+            padding.size(0.4, rem);
+            border.radius(4, px);
+        });
+
+        $.select("blockquote", () -> {
+            block();
+        });
+    };
+
+    private static void block() {
+        margin.bottom(0.8, rem);
+    }
+
     /**
      * Define block-like.
      * 
@@ -214,7 +249,7 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
 
         $.before(() -> {
             content.text("");
-            display.inlineBlock().width(0.6, rem).height(0.6, rem);
+            display.inlineBlock().width(0.5, rem).height(0.5, rem);
             border.radius(50, percent);
             background.color(color);
             margin.right(0.6, rem);
@@ -228,6 +263,10 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
             });
         });
     }
+
+    public static final Style HTMLClassModifierStatic = Style.named(".STATIC", () -> {
+        overlayAlphabetLeftTop("S");
+    });
 
     public static final Style HTMLClassModifierDefault = Style.named(".DEFAULT", () -> {
         overlayAlphabetRightTop("D");
@@ -264,9 +303,23 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
     private static void overlayAlphabetRightTop(String mark) {
         position.relative();
         $.before(() -> {
-            font.color(palette.primary).size(0.6, rem).family(Roboto);
+            font.color(palette.primary).size(0.6, rem).family(RobotoMono);
             content.text(mark);
             position.absolute().top(-0.2, rem).left(0.7, rem);
+        });
+    }
+
+    /**
+     * Create alphabetical mark.
+     * 
+     * @param mark
+     */
+    private static void overlayAlphabetLeftTop(String mark) {
+        position.relative();
+        $.after(() -> {
+            font.color(palette.accent).size(0.6, rem).family(RobotoMono);
+            content.text(mark);
+            position.absolute().top(-0.2, rem).left(0.3, rem);
         });
     }
 
@@ -280,7 +333,7 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
         $.after(() -> {
             font.color(palette.primary).size(0.7, rem).family(fonts.icon);
             content.text(mark);
-            position.absolute().top(0.5, rem).left(0.5, rem);
+            position.absolute().top(0.5, rem).left(0.4, rem);
         });
     }
 

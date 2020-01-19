@@ -13,7 +13,6 @@ import static java.util.concurrent.TimeUnit.*;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -49,8 +48,7 @@ public class Chronus implements ScheduledExecutorService {
     private final AtomicReference<ScheduledExecutorService> holder = new AtomicReference();
 
     /**
-     * By {@link Executors#newCachedThreadPool()}. {@link Map#put(Object, Object)} is
-     * {@link #schedule(Callable, long, TimeUnit)}
+     * By {@link Executors#newCachedThreadPool()}.
      */
     public Chronus() {
         this(() -> Executors.newScheduledThreadPool(ForkJoinPool.getCommonPoolParallelism()));
@@ -258,21 +256,33 @@ public class Chronus implements ScheduledExecutorService {
     private long marked;
 
     /**
-     * 
+     * Record the current time. Hereafter, it is used as the start time when using
+     * {@link #elapse(int, TimeUnit)} or {@link #within(int, TimeUnit, Runnable)}.
      */
-    public Chronus mark() {
+    public final Chronus mark() {
         marked = System.nanoTime();
 
         return this;
     }
 
     /**
-     * @param start
-     * @param end
-     * @param unit
+     * <p>
+     * Waits for the specified time from the marked time. It does not wait if it has already passed.
+     * </p>
+     * <pre>
+     * chronus.mark();
+     * asynchronous.process();
+     * 
+     * chronus.elapse(100, TimeUnit.MILLSECONDS);
+     * assert validation.code();
+     * </pre>
+     * 
+     * @param amount Time amount.
+     * @param unit Time unit.
+     * @see ChronusTest#elapse()
      */
-    public Chronus elapse(int start, TimeUnit unit) {
-        long startTime = marked + unit.toNanos(start);
+    public final Chronus elapse(int amount, TimeUnit unit) {
+        long startTime = marked + unit.toNanos(amount);
 
         await(startTime - System.nanoTime(), NANOSECONDS);
 
@@ -280,13 +290,25 @@ public class Chronus implements ScheduledExecutorService {
     }
 
     /**
-     * @param start
-     * @param end
-     * @param unit
-     * @param within
+     * <p>
+     * Performs the specified operation if the specified time has not yet elapsed since the marked
+     * time. If it has already passed, do nothing.
+     * </p>
+     * <pre>
+     * chronus.mark();
+     * synchronous.process();
+     * 
+     * chronus.within(100, TimeUnit.MILLSECONDS, () -> {
+     *      assert validation.code();
+     * });
+     * </pre>
+     * 
+     * @param amount Time amount.
+     * @param unit Time unit.
+     * @param within Your process.
      */
-    public Chronus within(int end, TimeUnit unit, Runnable within) {
-        if (within != null && System.nanoTime() < marked + unit.toNanos(end)) {
+    public final Chronus within(int amount, TimeUnit unit, Runnable within) {
+        if (within != null && System.nanoTime() < marked + unit.toNanos(amount)) {
             within.run();
         }
         return this;
