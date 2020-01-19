@@ -25,8 +25,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.lang.model.SourceVersion;
-import javax.lang.model.element.Element;
 import javax.lang.model.element.ModuleElement;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
@@ -42,10 +40,6 @@ import javax.tools.StandardJavaFileManager;
 import javax.tools.ToolProvider;
 
 import com.sun.source.util.DocTrees;
-
-import jdk.javadoc.doclet.Doclet;
-import jdk.javadoc.doclet.DocletEnvironment;
-import jdk.javadoc.doclet.Reporter;
 
 public abstract class DocTool<Self extends DocTool> implements DiagnosticListener<JavaFileObject> {
 
@@ -171,7 +165,7 @@ public abstract class DocTool<Self extends DocTool> implements DiagnosticListene
 
                 Iterable<? extends JavaFileObject> units = manager.list(SOURCE_PATH, "", Set.of(Kind.SOURCE), true);
 
-                if (tool.getTask(null, manager, this, Internal.class, List.of(), units).call()) {
+                if (tool.getTask(null, manager, this, AnotherDoclet.class, List.of(), units).call()) {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -245,81 +239,5 @@ public abstract class DocTool<Self extends DocTool> implements DiagnosticListene
     protected abstract void complete();
 
     /** Dirty Access */
-    private static DocTool self;
-
-    /**
-     * <h>DONT USE THIS CLASS</h>
-     * <p>
-     * It is a Doclet for internal use, but it is public because it cannot be made private due to
-     * the specifications of the documentation tool.
-     * </p>
-     */
-    public static class Internal implements Doclet {
-
-        DocTrees trees;
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public final void init(Locale locale, Reporter reporter) {
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public final boolean run(DocletEnvironment env) {
-            DocUtils = env.getDocTrees();
-            ElementUtils = env.getElementUtils();
-            TypeUtils = env.getTypeUtils();
-
-            try {
-                self.initialize();
-
-                for (Element element : env.getSpecifiedElements()) {
-                    switch (element.getKind()) {
-                    case MODULE:
-                        self.process((ModuleElement) element);
-                        break;
-
-                    case PACKAGE:
-                        self.process((PackageElement) element);
-                        break;
-
-                    default:
-                        self.process((TypeElement) element);
-                        break;
-                    }
-                }
-            } finally {
-                self.complete();
-            }
-            return true;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public final String getName() {
-            return getClass().getSimpleName();
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public final Set<? extends Option> getSupportedOptions() {
-            return Set.of();
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public final SourceVersion getSupportedSourceVersion() {
-            return SourceVersion.latest();
-        }
-    }
+    static DocTool self;
 }

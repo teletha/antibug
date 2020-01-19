@@ -27,6 +27,13 @@ const root = {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
+			"name": "AnotherDoclet",
+			"packageName": "antibug.doc",
+			"type": "Class",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
 			"name": "BaseStyle",
 			"packageName": "antibug.doc.site",
 			"type": "Interface",
@@ -100,13 +107,6 @@ const root = {
 			"name": "DocTool",
 			"packageName": "antibug.doc",
 			"type": "AbstractClass",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "DocTool.Internal",
-			"packageName": "antibug.doc",
-			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
