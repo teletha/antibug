@@ -85,6 +85,7 @@ public abstract class MemberInfo extends DocumentInfo {
             case VOLATILE:
             case SYNCHRONIZED:
             case TRANSIENT:
+            case DEFAULT:
                 nonvisibility.add(modifier);
                 break;
 

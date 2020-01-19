@@ -15,6 +15,7 @@ import java.util.StringJoiner;
 
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.VariableElement;
+import javax.lang.model.type.TypeMirror;
 
 import antibug.doc.site.Styles;
 import kiss.I;
@@ -60,10 +61,9 @@ public class ExecutableInfo extends ParameterizableInfo {
             comments.add(findParamTagBy(param.toString()));
         }
 
-        for (int i = 0; i < throwsTags.size(); i++) {
-            String name = throwsTags.get(i).ⅰ;
-            exceptionSignatures.add(I.xml("<a/>").attr("href", resolver.resolveDocumentLocation(name)).text(name));
-            exceptionComments.add(throwsTags.get(i).ⅱ);
+        for (TypeMirror type : e.getThrownTypes()) {
+            exceptionSignatures.add(parseTypeAsXML(type));
+            exceptionComments.add(findThrowsTagBy(type.toString()));
         }
 
         this.id = name + "(" + joiner + ")";

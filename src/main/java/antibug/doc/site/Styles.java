@@ -230,6 +230,7 @@ public class Styles extends AbstractStyleDSL implements BaseStyle {
     }
 
     public static final Style HTMLClassModifierDefault = Style.named(".DEFAULT", () -> {
+        overlayAlphabetRightTop("D");
     });
 
     public static final Style HTMLClassModifierOverride = Style.named(".OVERRIDE", () -> {

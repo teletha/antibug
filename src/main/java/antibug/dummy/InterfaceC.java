@@ -10,4 +10,7 @@
 package antibug.dummy;
 
 public interface InterfaceC<T extends AutoCloseable> extends InterfaceD<T> {
+
+    default void clear() {
+    }
 }
