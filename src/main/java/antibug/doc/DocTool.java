@@ -9,31 +9,27 @@
  */
 package antibug.doc;
 
-import static javax.tools.StandardLocation.SOURCE_PATH;
+import static javax.tools.StandardLocation.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.lang.model.element.ModuleElement;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 import javax.tools.DiagnosticListener;
 import javax.tools.DocumentationTool;
@@ -43,13 +39,18 @@ import javax.tools.JavaFileObject.Kind;
 import javax.tools.StandardJavaFileManager;
 import javax.tools.ToolProvider;
 
-import antibug.doc.builder.SiteBuilder;
-import antibug.doc.site.MainPage;
-import kiss.I;
-import stylist.StyleDeclarable;
-import stylist.Stylist;
+import com.sun.source.util.DocTrees;
 
-public class DocTool<Self extends DocTool> implements DiagnosticListener<JavaFileObject> {
+public abstract class DocTool<Self extends DocTool> implements DiagnosticListener<JavaFileObject> {
+
+    /** Guilty Accessor. */
+    public static DocTrees DocUtils;
+
+    /** Guilty Accessor. */
+    public static Elements ElementUtils;
+
+    /** Guilty Accessor. */
+    public static Types TypeUtils;
 
     /** The input directories. */
     private final List<Path> sources = new ArrayList();
@@ -60,7 +61,7 @@ public class DocTool<Self extends DocTool> implements DiagnosticListener<JavaFil
     /**
      * Hide constructor.
      */
-    public DocTool() {
+    protected DocTool() {
     }
 
     /**
@@ -202,89 +203,10 @@ public class DocTool<Self extends DocTool> implements DiagnosticListener<JavaFil
         return packages;
     }
 
-    /** Dirty Access */
-    static DocTool self;
-
-    /** The scanned data. */
-    public final Data data = new Data();
-
-    /** The site builder. */
-    private SiteBuilder site;
-
-    /** Preference */
-    private String productName = "Your Product";
-
-    /** PackageName-URL pair. */
-    private final Map<String, String> externals = new HashMap();
-
-    /** The internal pacakage names. */
-    private final Set<String> internals = new HashSet();
-
-    {
-        // built-in external API
-        externalDoc("https://docs.oracle.com/en/java/javase/13/docs/api/");
-    }
-
-    /**
-     * Get the product name.
-     * 
-     * @return
-     */
-    public String productName() {
-        return productName;
-    }
-
-    /**
-     * Configure the produc name.
-     * 
-     * @param productName
-     * @return Chainable API.
-     */
-    public DocTool productName(String productName) {
-        if (productName != null && productName.length() != 0) {
-            this.productName = productName;
-        }
-        return this;
-    }
-
-    /**
-     * Specifies the URL of the resolvable external document.
-     * 
-     * @param urls A list of document URL．
-     * @return Chainable API.
-     */
-    public DocTool externalDoc(String... urls) {
-        if (urls != null) {
-            for (String url : urls) {
-                if (url != null && url.startsWith("http") && url.endsWith("/api/")) {
-                    try {
-                        I.signal(new URL(url + "overview-tree.html"))
-                                .map(I::xml)
-                                .retryWhen(e -> e.delay(200, TimeUnit.MILLISECONDS).take(20))
-                                .flatIterable(xml -> xml.find(".horizontal a"))
-                                .to(xml -> {
-                                    externals.put(xml.text(), url);
-                                });
-                    } catch (MalformedURLException e) {
-                        throw I.quiet(e);
-                    }
-                }
-            }
-        }
-        return this;
-    }
-
     /**
      * Initialization phase.
      */
-    protected void initialize() {
-        // build CSS
-        I.load(DocTool.class);
-        Stylist.pretty().importNormalizeStyle().styles(I.findAs(StyleDeclarable.class)).formatTo(output().resolve("main.css"));
-
-        site = SiteBuilder.root(output()).guard("index.html", "main.js", "main.css");
-        internals.addAll(findSourcePackages());
-    }
+    protected abstract void initialize();
 
     /**
      * Process a class or interface program element. Provides access to information about the type
@@ -293,9 +215,7 @@ public class DocTool<Self extends DocTool> implements DiagnosticListener<JavaFil
      * 
      * @param root A class or interface program element root.
      */
-    protected void process(TypeElement root) {
-        data.add(new ClassInfo(root, new TypeResolver(externals, internals, root)));
-    }
+    protected abstract void process(TypeElement root);
 
     /**
      * Process a package program element. Provides access to information about the package and its
@@ -303,8 +223,7 @@ public class DocTool<Self extends DocTool> implements DiagnosticListener<JavaFil
      * 
      * @param root A package program element root.
      */
-    protected void process(PackageElement root) {
-    }
+    protected abstract void process(PackageElement root);
 
     /**
      * Process a module program element. Provides access to information about the module, its
@@ -312,26 +231,13 @@ public class DocTool<Self extends DocTool> implements DiagnosticListener<JavaFil
      * 
      * @param root A module program element root.
      */
-    protected void process(ModuleElement root) {
-    }
+    protected abstract void process(ModuleElement root);
 
     /**
      * Completion phase.
      */
-    protected void complete() {
-        // sort data
-        data.modules.sort(Comparator.naturalOrder());
-        data.packages.sort(Comparator.naturalOrder());
-        data.types.sort(Comparator.naturalOrder());
+    protected abstract void complete();
 
-        // after care
-        data.connectSubType();
-
-        // build HTML
-        site.buildHTML("javadoc.html", new MainPage(this, null));
-
-        for (ClassInfo info : data.types) {
-            site.buildHTML("types/" + info.packageName + "." + info.name + ".html", new MainPage(this, info));
-        }
-    }
+    /** Dirty Access */
+    static DocTool self;
 }

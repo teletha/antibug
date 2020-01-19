@@ -106,7 +106,7 @@ const root = {
 		{
 			"name": "DocTool",
 			"packageName": "antibug.doc",
-			"type": "Class",
+			"type": "AbstractClass",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
@@ -191,6 +191,13 @@ const root = {
 			"name": "InterfaceRoot",
 			"packageName": "antibug.dummy",
 			"type": "Interface",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "Javadoc",
+			"packageName": "antibug.doc",
+			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},

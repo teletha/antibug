@@ -46,7 +46,7 @@ public final class ModelUtil {
     public static Set<TypeMirror>[] getAllTypes(Element type) {
         Set<TypeMirror> supers = new LinkedHashSet();
         Set<TypeMirror> interfaces = new TreeSet<>(Comparator
-                .<TypeMirror, String> comparing(t -> ((TypeElement) AnotherDoclet.TypeUtils.asElement(t)).getSimpleName().toString()));
+                .<TypeMirror, String> comparing(t -> ((TypeElement) DocTool.TypeUtils.asElement(t)).getSimpleName().toString()));
         collect(type.asType(), supers, interfaces);
 
         return new Set[] {supers, interfaces};
@@ -60,12 +60,12 @@ public final class ModelUtil {
      * @param interfaceTypes
      */
     private static void collect(TypeMirror type, Set<TypeMirror> superTypes, Set<TypeMirror> interfaceTypes) {
-        for (TypeMirror up : AnotherDoclet.TypeUtils.directSupertypes(type)) {
+        for (TypeMirror up : DocTool.TypeUtils.directSupertypes(type)) {
             if (up.toString().equals("java.lang.Object")) {
                 continue;
             }
 
-            Element e = AnotherDoclet.TypeUtils.asElement(up);
+            Element e = DocTool.TypeUtils.asElement(up);
             if (e.getKind() == ElementKind.INTERFACE) {
                 interfaceTypes.add(up);
             } else {
