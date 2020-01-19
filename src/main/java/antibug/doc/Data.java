@@ -48,7 +48,7 @@ final class Data {
         for (ClassInfo type : types) {
             for (Set<TypeMirror> uppers : ModelUtil.getAllTypes(type.e)) {
                 for (TypeMirror upper : uppers) {
-                    Element e = DocTool.TypeUtils.asElement(upper);
+                    Element e = AnotherDoclet.TypeUtils.asElement(upper);
                     for (ClassInfo info : types) {
                         if (info.e.equals(e)) {
                             info.addSub(type);

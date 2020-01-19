@@ -56,7 +56,7 @@ public abstract class MemberInfo extends DocumentInfo {
      * @return Result.
      */
     public final boolean isDeprecated() {
-        return DocTool.ElementUtils.isDeprecated(e);
+        return AnotherDoclet.ElementUtils.isDeprecated(e);
     }
 
     /**

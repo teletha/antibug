@@ -17,6 +17,8 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ModuleElement;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 
 import com.sun.source.util.DocTrees;
 
@@ -33,6 +35,15 @@ import jdk.javadoc.doclet.Reporter;
  */
 public class AnotherDoclet implements Doclet {
 
+    /** Guilty Accessor. */
+    public static Types TypeUtils;
+
+    /** Guilty Accessor. */
+    public static Elements ElementUtils;
+
+    /** Guilty Accessor. */
+    public static DocTrees DocUtils;
+
     DocTrees trees;
 
     /**
@@ -47,9 +58,9 @@ public class AnotherDoclet implements Doclet {
      */
     @Override
     public final boolean run(DocletEnvironment env) {
-        DocTool.DocUtils = env.getDocTrees();
-        DocTool.ElementUtils = env.getElementUtils();
-        DocTool.TypeUtils = env.getTypeUtils();
+        AnotherDoclet.DocUtils = env.getDocTrees();
+        AnotherDoclet.ElementUtils = env.getElementUtils();
+        AnotherDoclet.TypeUtils = env.getTypeUtils();
 
         try {
             DocTool.self.initialize();

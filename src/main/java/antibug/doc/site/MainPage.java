@@ -10,7 +10,7 @@
 package antibug.doc.site;
 
 import antibug.doc.ClassInfo;
-import antibug.doc.Javadoc;
+import antibug.doc.DocTool;
 import antibug.doc.builder.HTML;
 import stylist.Style;
 import stylist.StyleDSL;
@@ -25,12 +25,12 @@ public class MainPage extends HTML {
 
     protected final ClassInfo info;
 
-    protected final Javadoc javadoc;
+    protected final DocTool javadoc;
 
     /**
      * @param info
      */
-    public MainPage(Javadoc javadoc, ClassInfo info) {
+    public MainPage(DocTool javadoc, ClassInfo info) {
         this.info = info;
         this.javadoc = javadoc;
     }
