@@ -31,7 +31,7 @@ import kiss.Managed;
 import kiss.Singleton;
 
 @Managed(Singleton.class)
-public abstract class ModernJavadocProcessor<Self extends ModernJavadocProcessor> {
+public abstract class ModernJavadocProcessor {
 
     /** Guilty Accessor. */
     public static DocTrees DocUtils;

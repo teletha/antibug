@@ -183,7 +183,7 @@ class JavadocTestSupport {
     /**
      * 
      */
-    private static class TestableJavadoc extends ModernJavadocProcessor<TestableJavadoc> {
+    private static class TestableJavadoc extends ModernJavadocProcessor {
 
         private final List<ClassInfo> infos = new ArrayList();
 

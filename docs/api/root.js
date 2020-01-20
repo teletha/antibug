@@ -27,20 +27,6 @@ const root = {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
-			"name": "AnotherDoclet",
-			"packageName": "antibug.doc",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "AnotherDoclet.Builder",
-			"packageName": "antibug.doc",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
 			"name": "BaseStyle",
 			"packageName": "antibug.doc.site",
 			"type": "Interface",
@@ -107,13 +93,6 @@ const root = {
 			"name": "Constant",
 			"packageName": "antibug.bytecode",
 			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "DocTool",
-			"packageName": "antibug.doc",
-			"type": "AbstractClass",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
@@ -247,6 +226,13 @@ const root = {
 			"name": "ModelUtil",
 			"packageName": "antibug.doc",
 			"type": "Class",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "ModernJavadocProcessor",
+			"packageName": "antibug.doc",
+			"type": "AbstractClass",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
