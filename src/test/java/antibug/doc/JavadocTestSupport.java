@@ -29,10 +29,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import antibug.doc.AnotherDoclet.Builder;
 import kiss.I;
-import kiss.Managed;
-import kiss.Singleton;
 import kiss.Variable;
 import kiss.XML;
 
@@ -41,10 +38,7 @@ class JavadocTestSupport {
     private static final TestableJavadoc doc = I.make(TestableJavadoc.class);
 
     static {
-        Builder builder = new Builder();
-        builder.sources.add("src/test/java");
-        builder.processor = TestableJavadoc.class;
-        builder.build();
+        ModernDoclet.with.sources("src/test/java").output("target").processor(TestableJavadoc.class).build();
     }
 
     protected final MethodInfo currentMethod() {
@@ -189,8 +183,7 @@ class JavadocTestSupport {
     /**
      * 
      */
-    @Managed(Singleton.class)
-    private static class TestableJavadoc extends DocTool<TestableJavadoc> {
+    private static class TestableJavadoc extends ModernJavadocProcessor<TestableJavadoc> {
 
         private final List<ClassInfo> infos = new ArrayList();
 

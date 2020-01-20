@@ -28,7 +28,7 @@ import kiss.I;
 import stylist.StyleDeclarable;
 import stylist.Stylist;
 
-public class Javadoc extends DocTool<Javadoc> {
+public class Javadoc extends ModernJavadocProcessor<Javadoc> {
 
     /** The scanned data. */
     public final Data data = new Data();

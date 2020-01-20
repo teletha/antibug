@@ -27,7 +27,11 @@ import javax.lang.model.util.Types;
 
 import com.sun.source.util.DocTrees;
 
-public abstract class DocTool<Self extends DocTool> {
+import kiss.Managed;
+import kiss.Singleton;
+
+@Managed(Singleton.class)
+public abstract class ModernJavadocProcessor<Self extends ModernJavadocProcessor> {
 
     /** Guilty Accessor. */
     public static DocTrees DocUtils;
@@ -47,7 +51,7 @@ public abstract class DocTool<Self extends DocTool> {
     /**
      * Hide constructor.
      */
-    protected DocTool() {
+    protected ModernJavadocProcessor() {
     }
 
     /**

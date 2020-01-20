@@ -23,6 +23,7 @@ public class Project extends bee.api.Project {
         require("com.github.teletha", "sinobu");
         require("com.github.teletha", "stylist");
         require("com.github.teletha", "psychopath");
+        require("com.github.teletha", "icymanipulator").atAnnotation();
 
         versionControlSystem("https://github.com/teletha/antibug");
     }

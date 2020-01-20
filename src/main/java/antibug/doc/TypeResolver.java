@@ -91,7 +91,7 @@ public class TypeResolver {
      * @param clazz
      */
     private void collectImportedTypes(Element clazz) {
-        I.signal(DocTool.DocUtils.getPath(clazz))
+        I.signal(ModernJavadocProcessor.DocUtils.getPath(clazz))
                 .take(tree -> tree.getKind() == Kind.COMPILATION_UNIT)
                 .as(CompilationUnitTree.class)
                 .flatIterable(CompilationUnitTree::getImports)
@@ -276,7 +276,7 @@ public class TypeResolver {
          * @return
          */
         private Optional<TypeElement> asElement() {
-            return Optional.ofNullable(DocTool.ElementUtils.getTypeElement(packageName + "." + enclosingName + "." + typeName));
+            return Optional.ofNullable(ModernJavadocProcessor.ElementUtils.getTypeElement(packageName + "." + enclosingName + "." + typeName));
         }
 
         /**

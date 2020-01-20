@@ -71,7 +71,7 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
     ClassInfo(TypeElement root, TypeResolver resolver) {
         super(root, resolver);
         this.resolver = resolver;
-        this.packageName = DocTool.ElementUtils.getPackageOf(root).toString();
+        this.packageName = ModernJavadocProcessor.ElementUtils.getPackageOf(root).toString();
         this.name = root.asType().toString().replaceAll("<.+>", "").substring(packageName.length() + 1);
         this.type = detectType(root);
 
