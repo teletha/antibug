@@ -43,7 +43,7 @@ public class MainPage extends HTML {
         $("html", () -> {
             $("head", () -> {
                 $("meta", attr("charset", "UTF-8"));
-                $("title", text(javadoc.productName() + " API"));
+                $("title", text(javadoc.productName + " API"));
                 script("https://unpkg.com/vue/dist/vue.js");
                 script("https://unpkg.com/vue-router/dist/vue-router.js");
                 stylesheet("https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css");
@@ -58,7 +58,7 @@ public class MainPage extends HTML {
                 // Top Navigation
                 // =============================
                 $("header", Styles.HeaderArea, () -> {
-                    $("h1", Styles.HeaderTitle, text(javadoc.productName() + " API"));
+                    $("h1", Styles.HeaderTitle, text(javadoc.productName + " API"));
                 });
 
                 $("main", Styles.MainArea, () -> {

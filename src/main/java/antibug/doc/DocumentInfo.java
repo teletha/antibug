@@ -106,7 +106,7 @@ public class DocumentInfo {
         this.resolver = resolver;
 
         try {
-            DocCommentTree docs = ModernJavadocProcessor.DocUtils.getDocCommentTree(e);
+            DocCommentTree docs = ModelUtil.DocUtils.getDocCommentTree(e);
             if (docs != null) {
                 comment.set(xml(docs.getFullBody()));
                 comment.to(x -> x.addClass(Styles.JavadocComment.className()));
@@ -262,7 +262,7 @@ public class DocumentInfo {
                 String testClassName = matcher.group(1);
                 String testMethodName = matcher.group(2);
 
-                String testClassPath = ModernJavadocProcessor.ElementUtils.getPackageOf(e)
+                String testClassPath = ModelUtil.ElementUtils.getPackageOf(e)
                         .getQualifiedName()
                         .toString()
                         .replace('.', '/') + "/" + testClassName + ".java";

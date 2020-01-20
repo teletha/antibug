@@ -37,7 +37,7 @@ public class Javadoc extends ModernJavadocProcessor {
     private SiteBuilder site;
 
     /** Preference */
-    private String productName = "Your Product";
+    public String productName = "Your Product";
 
     /** PackageName-URL pair. */
     private final Map<String, String> externals = new HashMap();
@@ -48,28 +48,6 @@ public class Javadoc extends ModernJavadocProcessor {
     {
         // built-in external API
         externalDoc("https://docs.oracle.com/en/java/javase/13/docs/api/");
-    }
-
-    /**
-     * Get the product name.
-     * 
-     * @return
-     */
-    public String productName() {
-        return productName;
-    }
-
-    /**
-     * Configure the produc name.
-     * 
-     * @param productName
-     * @return Chainable API.
-     */
-    public Javadoc productName(String productName) {
-        if (productName != null && productName.length() != 0) {
-            this.productName = productName;
-        }
-        return this;
     }
 
     /**
@@ -103,7 +81,7 @@ public class Javadoc extends ModernJavadocProcessor {
      * {@inheritDoc}
      */
     @Override
-    protected void initialize() {
+    protected void initialize(ModernDocletModel model) {
         // build CSS
         I.load(Javadoc.class);
         Stylist.pretty()
@@ -112,7 +90,7 @@ public class Javadoc extends ModernJavadocProcessor {
                 .formatTo(model.output().file("main.css").asJavaPath());
 
         site = SiteBuilder.root(model.output()).guard("index.html", "main.js", "main.css");
-        internals.addAll(findSourcePackages());
+        internals.addAll(model.findSourcePackages());
     }
 
     /**
@@ -141,7 +119,7 @@ public class Javadoc extends ModernJavadocProcessor {
      * {@inheritDoc}
      */
     @Override
-    protected void complete() {
+    protected void complete(ModernDocletModel model) {
         // sort data
         data.modules.sort(Comparator.naturalOrder());
         data.packages.sort(Comparator.naturalOrder());

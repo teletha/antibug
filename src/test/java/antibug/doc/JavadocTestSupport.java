@@ -35,10 +35,10 @@ import kiss.XML;
 
 class JavadocTestSupport {
 
-    private static final TestableJavadoc doc = I.make(TestableJavadoc.class);
+    private static final TestableJavadoc doc = new TestableJavadoc();
 
     static {
-        ModernDoclet.with.sources("src/test/java").output("target").processor(TestableJavadoc.class).build();
+        ModernDoclet.with.sources("src/test/java").output("target").processor(doc).build();
     }
 
     protected final MethodInfo currentMethod() {
@@ -193,8 +193,8 @@ class JavadocTestSupport {
          * {@inheritDoc}
          */
         @Override
-        protected void initialize() {
-            internals = findSourcePackages();
+        protected void initialize(ModernDocletModel model) {
+            internals = model.findSourcePackages();
         }
 
         /**
@@ -223,7 +223,7 @@ class JavadocTestSupport {
          * {@inheritDoc}
          */
         @Override
-        protected void complete() {
+        protected void complete(ModernDocletModel model) {
         }
 
         /**

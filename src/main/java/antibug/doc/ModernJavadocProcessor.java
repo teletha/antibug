@@ -9,37 +9,11 @@
  */
 package antibug.doc;
 
-import java.io.File;
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.lang.model.element.ModuleElement;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
-import javax.lang.model.util.Elements;
-import javax.lang.model.util.Types;
 
-import com.sun.source.util.DocTrees;
-
-import kiss.I;
-import kiss.Managed;
-import kiss.Singleton;
-import psychopath.Directory;
-
-@Managed(Singleton.class)
 public abstract class ModernJavadocProcessor {
-
-    /** Guilty Accessor. */
-    public static DocTrees DocUtils;
-
-    /** Guilty Accessor. */
-    public static Elements ElementUtils;
-
-    /** Guilty Accessor. */
-    public static Types TypeUtils;
-
-    /** The doclet option. */
-    public ModernDocletModel model;
 
     /**
      * Hide constructor.
@@ -48,25 +22,9 @@ public abstract class ModernJavadocProcessor {
     }
 
     /**
-     * Find all package names in the source directory.
-     * 
-     * @return
-     */
-    protected final Set<String> findSourcePackages() {
-        // collect internal package names
-        Set<String> packages = new HashSet();
-
-        I.signal(model.sources()).flatMap(Directory::walkDirectoryWithBase).to(sub -> {
-            packages.add(sub.ⅰ.relativize(sub.ⅱ).toString().replace(File.separatorChar, '.'));
-        });
-
-        return packages;
-    }
-
-    /**
      * Initialization phase.
      */
-    protected abstract void initialize();
+    protected abstract void initialize(ModernDocletModel model);
 
     /**
      * Process a class or interface program element. Provides access to information about the type
@@ -96,5 +54,5 @@ public abstract class ModernJavadocProcessor {
     /**
      * Completion phase.
      */
-    protected abstract void complete();
+    protected abstract void complete(ModernDocletModel model);
 }

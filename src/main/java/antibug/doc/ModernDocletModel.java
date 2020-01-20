@@ -11,8 +11,10 @@ package antibug.doc;
 
 import static javax.tools.StandardLocation.SOURCE_PATH;
 
+import java.io.File;
 import java.nio.charset.Charset;
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -104,15 +106,28 @@ interface ModernDocletModel {
      * @return
      */
     @Icy.Property
-    default Class<? extends ModernJavadocProcessor> processor() {
-        return Javadoc.class;
+    ModernJavadocProcessor processor();
+
+    /**
+     * Find all package names in the source directory.
+     * 
+     * @return
+     */
+    default Set<String> findSourcePackages() {
+        // collect internal package names
+        Set<String> packages = new HashSet();
+
+        I.signal(sources()).flatMap(Directory::walkDirectoryWithBase).to(sub -> {
+            packages.add(sub.ⅰ.relativize(sub.ⅱ).toString().replace(File.separatorChar, '.'));
+        });
+        return packages;
     }
 
     /**
      * Generate documents.
      */
     default void build() {
-        synchronized (Internal.class) {
+        synchronized (ModernDocletModel.class) {
             Internal.model = this;
 
             DocumentationTool tool = ToolProvider.getSystemDocumentationTool();
@@ -125,7 +140,6 @@ interface ModernDocletModel {
                 manager.setLocationFromPaths(Location.DOCUMENTATION_OUTPUT, List.of(output().asJavaPath()));
 
                 Iterable<? extends JavaFileObject> units = manager.list(SOURCE_PATH, "", Set.of(Kind.SOURCE), true);
-
                 if (tool.getTask(null, manager, listener, Internal.class, List.of(), units).call()) {
                 }
             } catch (Exception e) {
@@ -141,6 +155,7 @@ interface ModernDocletModel {
      */
     default Class<? extends Doclet> buildDocletClass() {
         Internal.model = this;
+
         return Internal.class;
     }
 
@@ -153,7 +168,7 @@ interface ModernDocletModel {
      */
     class Internal implements Doclet {
 
-        /** The setting. */
+        /** The setting model. */
         private static ModernDocletModel model;
 
         /**
@@ -168,15 +183,14 @@ interface ModernDocletModel {
          */
         @Override
         public final boolean run(DocletEnvironment env) {
-            ModernJavadocProcessor.DocUtils = env.getDocTrees();
-            ModernJavadocProcessor.ElementUtils = env.getElementUtils();
-            ModernJavadocProcessor.TypeUtils = env.getTypeUtils();
+            ModelUtil.DocUtils = env.getDocTrees();
+            ModelUtil.ElementUtils = env.getElementUtils();
+            ModelUtil.TypeUtils = env.getTypeUtils();
 
-            ModernJavadocProcessor tool = I.make(model.processor());
-            tool.model = model;
+            ModernJavadocProcessor tool = model.processor();
 
             try {
-                tool.initialize();
+                tool.initialize(model);
 
                 for (Element element : env.getSpecifiedElements()) {
                     switch (element.getKind()) {
@@ -194,7 +208,7 @@ interface ModernDocletModel {
                     }
                 }
             } finally {
-                tool.complete();
+                tool.complete(model);
             }
             return true;
         }

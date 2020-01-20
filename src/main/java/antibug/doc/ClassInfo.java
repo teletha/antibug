@@ -71,7 +71,7 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
     ClassInfo(TypeElement root, TypeResolver resolver) {
         super(root, resolver);
         this.resolver = resolver;
-        this.packageName = ModernJavadocProcessor.ElementUtils.getPackageOf(root).toString();
+        this.packageName = ModelUtil.ElementUtils.getPackageOf(root).toString();
         this.name = root.asType().toString().replaceAll("<.+>", "").substring(packageName.length() + 1);
         this.type = detectType(root);
 
@@ -92,7 +92,7 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
     private static String detectType(TypeElement root) {
         switch (root.getKind()) {
         case INTERFACE:
-            if (Javadoc.ElementUtils.isFunctionalInterface(root)) {
+            if (ModelUtil.ElementUtils.isFunctionalInterface(root)) {
                 return "Functional";
             } else {
                 return "Interface";

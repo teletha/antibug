@@ -18,6 +18,10 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.TypeMirror;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
+
+import com.sun.source.util.DocTrees;
 
 public final class ModelUtil {
 
@@ -46,7 +50,7 @@ public final class ModelUtil {
     public static Set<TypeMirror>[] getAllTypes(Element type) {
         Set<TypeMirror> supers = new LinkedHashSet();
         Set<TypeMirror> interfaces = new TreeSet<>(Comparator
-                .<TypeMirror, String> comparing(t -> ((TypeElement) ModernJavadocProcessor.TypeUtils.asElement(t)).getSimpleName().toString()));
+                .<TypeMirror, String> comparing(t -> ((TypeElement) ModelUtil.TypeUtils.asElement(t)).getSimpleName().toString()));
         collect(type.asType(), supers, interfaces);
 
         return new Set[] {supers, interfaces};
@@ -60,12 +64,12 @@ public final class ModelUtil {
      * @param interfaceTypes
      */
     private static void collect(TypeMirror type, Set<TypeMirror> superTypes, Set<TypeMirror> interfaceTypes) {
-        for (TypeMirror up : ModernJavadocProcessor.TypeUtils.directSupertypes(type)) {
+        for (TypeMirror up : ModelUtil.TypeUtils.directSupertypes(type)) {
             if (up.toString().equals("java.lang.Object")) {
                 continue;
             }
 
-            Element e = ModernJavadocProcessor.TypeUtils.asElement(up);
+            Element e = ModelUtil.TypeUtils.asElement(up);
             if (e.getKind() == ElementKind.INTERFACE) {
                 interfaceTypes.add(up);
             } else {
@@ -74,4 +78,11 @@ public final class ModelUtil {
             collect(up, superTypes, interfaceTypes);
         }
     }
+
+    /** Guilty Accessor. */
+    public static DocTrees DocUtils;
+    /** Guilty Accessor. */
+    public static Elements ElementUtils;
+    /** Guilty Accessor. */
+    public static Types TypeUtils;
 }
