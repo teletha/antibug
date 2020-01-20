@@ -10,14 +10,8 @@
 package antibug.doc;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Stream;
 
 import javax.lang.model.element.ModuleElement;
 import javax.lang.model.element.PackageElement;
@@ -27,8 +21,10 @@ import javax.lang.model.util.Types;
 
 import com.sun.source.util.DocTrees;
 
+import kiss.I;
 import kiss.Managed;
 import kiss.Singleton;
+import psychopath.Directory;
 
 @Managed(Singleton.class)
 public abstract class ModernJavadocProcessor {
@@ -42,43 +38,13 @@ public abstract class ModernJavadocProcessor {
     /** Guilty Accessor. */
     public static Types TypeUtils;
 
-    /** The input directories. */
-    final List<Path> sources = new ArrayList();
-
-    /** The output directory. */
-    Path output = Path.of("docs");
+    /** The doclet option. */
+    public ModernDocletModel model;
 
     /**
      * Hide constructor.
      */
     protected ModernJavadocProcessor() {
-    }
-
-    /**
-     * Exact the source directories.
-     * 
-     * @return
-     */
-    public final List<Path> sources() {
-        return sources;
-    }
-
-    /**
-     * Exact the output directory.
-     * 
-     * @return
-     */
-    public final Path output() {
-        if (Files.notExists(output)) {
-            try {
-                Files.createDirectories(output);
-            } catch (IOException e) {
-                throw new IllegalStateException("Can't create output directory. [" + output + "]");
-            }
-        } else if (Files.isDirectory(output) == false) {
-            throw new IllegalArgumentException("The output directory is NOT directory. [" + output + "]");
-        }
-        return output;
     }
 
     /**
@@ -90,15 +56,9 @@ public abstract class ModernJavadocProcessor {
         // collect internal package names
         Set<String> packages = new HashSet();
 
-        for (Path source : sources) {
-            try (Stream<Path> paths = Files.walk(source)) {
-                paths.filter(path -> Files.isDirectory(path)).forEach(path -> {
-                    packages.add(source.relativize(path).toString().replace(File.separatorChar, '.'));
-                });
-            } catch (Exception e) {
-                // though
-            }
-        }
+        I.signal(model.sources()).flatMap(Directory::walkDirectoryWithBase).to(sub -> {
+            packages.add(sub.ⅰ.relativize(sub.ⅱ).toString().replace(File.separatorChar, '.'));
+        });
 
         return packages;
     }

@@ -173,8 +173,7 @@ interface ModernDocletModel {
             ModernJavadocProcessor.TypeUtils = env.getTypeUtils();
 
             ModernJavadocProcessor tool = I.make(model.processor());
-            tool.output = model.output().asJavaPath();
-            tool.sources.addAll(model.sources().stream().map(Directory::asJavaPath).collect(Collectors.toList()));
+            tool.model = model;
 
             try {
                 tool.initialize();

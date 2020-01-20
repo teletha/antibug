@@ -106,9 +106,12 @@ public class Javadoc extends ModernJavadocProcessor {
     protected void initialize() {
         // build CSS
         I.load(Javadoc.class);
-        Stylist.pretty().importNormalizeStyle().styles(I.findAs(StyleDeclarable.class)).formatTo(output().resolve("main.css"));
+        Stylist.pretty()
+                .importNormalizeStyle()
+                .styles(I.findAs(StyleDeclarable.class))
+                .formatTo(model.output().file("main.css").asJavaPath());
 
-        site = SiteBuilder.root(output()).guard("index.html", "main.js", "main.css");
+        site = SiteBuilder.root(model.output()).guard("index.html", "main.js", "main.css");
         internals.addAll(findSourcePackages());
     }
 
