@@ -36,18 +36,81 @@ public class Javadoc extends ModernJavadocProcessor {
     /** The site builder. */
     private SiteBuilder site;
 
-    /** Preference */
-    public String productName = "Your Product";
-
     /** PackageName-URL pair. */
     private final Map<String, String> externals = new HashMap();
 
     /** The internal pacakage names. */
     private final Set<String> internals = new HashSet();
 
-    {
+    /** The product name. */
+    private String product;
+
+    /** The project name. */
+    private String project;
+
+    /** The product version. */
+    private String version;
+
+    /**
+     * 
+     */
+    public Javadoc() {
         // built-in external API
         externalDoc("https://docs.oracle.com/en/java/javase/13/docs/api/");
+    }
+
+    /**
+     * Get the product property of this {@link Javadoc}.
+     * 
+     * @return The product property.
+     */
+    public final String getProduct() {
+        return product;
+    }
+
+    /**
+     * Set the product property of this {@link Javadoc}.
+     * 
+     * @param product The product value to set.
+     */
+    public final void setProduct(String product) {
+        this.product = product;
+    }
+
+    /**
+     * Get the project property of this {@link Javadoc}.
+     * 
+     * @return The project property.
+     */
+    public final String getProject() {
+        return project;
+    }
+
+    /**
+     * Set the project property of this {@link Javadoc}.
+     * 
+     * @param project The project value to set.
+     */
+    public final void setProject(String project) {
+        this.project = project;
+    }
+
+    /**
+     * Get the version property of this {@link Javadoc}.
+     * 
+     * @return The version property.
+     */
+    public final String getVersion() {
+        return version;
+    }
+
+    /**
+     * Set the version property of this {@link Javadoc}.
+     * 
+     * @param version The version value to set.
+     */
+    public final void setVersion(String version) {
+        this.version = version;
     }
 
     /**
@@ -56,7 +119,7 @@ public class Javadoc extends ModernJavadocProcessor {
      * @param urls A list of document URL．
      * @return Chainable API.
      */
-    public Javadoc externalDoc(String... urls) {
+    public final void externalDoc(String... urls) {
         if (urls != null) {
             for (String url : urls) {
                 if (url != null && url.startsWith("http") && url.endsWith("/api/")) {
@@ -74,7 +137,6 @@ public class Javadoc extends ModernJavadocProcessor {
                 }
             }
         }
-        return this;
     }
 
     /**

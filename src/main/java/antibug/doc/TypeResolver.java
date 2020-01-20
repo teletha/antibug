@@ -91,7 +91,7 @@ public class TypeResolver {
      * @param clazz
      */
     private void collectImportedTypes(Element clazz) {
-        I.signal(ModelUtil.DocUtils.getPath(clazz))
+        I.signal(Util.DocUtils.getPath(clazz))
                 .take(tree -> tree.getKind() == Kind.COMPILATION_UNIT)
                 .as(CompilationUnitTree.class)
                 .flatIterable(CompilationUnitTree::getImports)
@@ -238,7 +238,7 @@ public class TypeResolver {
             typeName = resolveFQCN(typeName);
         }
 
-        TypeElement type = ModelUtil.ElementUtils.getTypeElement(typeName);
+        TypeElement type = Util.ElementUtils.getTypeElement(typeName);
 
         if (type == null) {
             int index = typeName.lastIndexOf('.');
@@ -276,7 +276,7 @@ public class TypeResolver {
          * @return
          */
         private Optional<TypeElement> asElement() {
-            return Optional.ofNullable(ModelUtil.ElementUtils.getTypeElement(packageName + "." + enclosingName + "." + typeName));
+            return Optional.ofNullable(Util.ElementUtils.getTypeElement(packageName + "." + enclosingName + "." + typeName));
         }
 
         /**

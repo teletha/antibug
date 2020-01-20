@@ -71,11 +71,11 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
     ClassInfo(TypeElement root, TypeResolver resolver) {
         super(root, resolver);
         this.resolver = resolver;
-        this.packageName = ModelUtil.ElementUtils.getPackageOf(root).toString();
+        this.packageName = Util.ElementUtils.getPackageOf(root).toString();
         this.name = root.asType().toString().replaceAll("<.+>", "").substring(packageName.length() + 1);
         this.type = detectType(root);
 
-        Set<TypeMirror>[] types = ModelUtil.getAllTypes(root);
+        Set<TypeMirror>[] types = Util.getAllTypes(root);
         for (TypeMirror type : types[0]) {
             this.supers.add(parseTypeAsXML(type));
         }
@@ -92,7 +92,7 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
     private static String detectType(TypeElement root) {
         switch (root.getKind()) {
         case INTERFACE:
-            if (ModelUtil.ElementUtils.isFunctionalInterface(root)) {
+            if (Util.ElementUtils.isFunctionalInterface(root)) {
                 return "Functional";
             } else {
                 return "Interface";

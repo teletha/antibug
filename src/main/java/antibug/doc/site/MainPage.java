@@ -25,14 +25,14 @@ public class MainPage extends HTML {
 
     protected final ClassInfo info;
 
-    protected final Javadoc javadoc;
+    protected final Javadoc model;
 
     /**
      * @param info
      */
-    public MainPage(Javadoc javadoc, ClassInfo info) {
+    public MainPage(Javadoc model, ClassInfo info) {
         this.info = info;
-        this.javadoc = javadoc;
+        this.model = model;
     }
 
     /**
@@ -43,7 +43,7 @@ public class MainPage extends HTML {
         $("html", () -> {
             $("head", () -> {
                 $("meta", attr("charset", "UTF-8"));
-                $("title", text(javadoc.productName + " API"));
+                $("title", text(model.getProduct() + " API"));
                 script("https://unpkg.com/vue/dist/vue.js");
                 script("https://unpkg.com/vue-router/dist/vue-router.js");
                 stylesheet("https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css");
@@ -58,7 +58,7 @@ public class MainPage extends HTML {
                 // Top Navigation
                 // =============================
                 $("header", Styles.HeaderArea, () -> {
-                    $("h1", Styles.HeaderTitle, text(javadoc.productName + " API"));
+                    $("h1", Styles.HeaderTitle, text(model.getProduct() + " API"));
                 });
 
                 $("main", Styles.MainArea, () -> {
@@ -91,7 +91,7 @@ public class MainPage extends HTML {
                     });
                 });
 
-                script("root.js", javadoc.data);
+                script("root.js", model.data);
                 script("main.js");
             });
         });

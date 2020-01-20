@@ -46,9 +46,9 @@ final class Data {
      */
     void connectSubType() {
         for (ClassInfo type : types) {
-            for (Set<TypeMirror> uppers : ModelUtil.getAllTypes(type.e)) {
+            for (Set<TypeMirror> uppers : Util.getAllTypes(type.e)) {
                 for (TypeMirror upper : uppers) {
-                    Element e = ModelUtil.TypeUtils.asElement(upper);
+                    Element e = Util.TypeUtils.asElement(upper);
                     for (ClassInfo info : types) {
                         if (info.e.equals(e)) {
                             info.addSub(type);

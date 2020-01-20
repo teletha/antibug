@@ -15,7 +15,7 @@ public class DocumentUser {
 
     public static void main(String[] args) throws IOException {
         Javadoc javadoc = new Javadoc();
-        javadoc.productName = "Antibug";
+        javadoc.setProduct("Antibug");
 
         ModernDoclet.with.sources("src/main/java").output("docs/api").processor(javadoc).build();
     }

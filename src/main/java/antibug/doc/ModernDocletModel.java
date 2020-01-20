@@ -42,7 +42,7 @@ import psychopath.Directory;
 import psychopath.Locator;
 
 @Icy
-interface ModernDocletModel {
+public interface ModernDocletModel {
 
     /**
      * The list of source directories.
@@ -106,7 +106,9 @@ interface ModernDocletModel {
      * @return
      */
     @Icy.Property
-    ModernJavadocProcessor processor();
+    default ModernJavadocProcessor processor() {
+        return new Javadoc();
+    }
 
     /**
      * Find all package names in the source directory.
@@ -183,9 +185,9 @@ interface ModernDocletModel {
          */
         @Override
         public final boolean run(DocletEnvironment env) {
-            ModelUtil.DocUtils = env.getDocTrees();
-            ModelUtil.ElementUtils = env.getElementUtils();
-            ModelUtil.TypeUtils = env.getTypeUtils();
+            Util.DocUtils = env.getDocTrees();
+            Util.ElementUtils = env.getElementUtils();
+            Util.TypeUtils = env.getTypeUtils();
 
             ModernJavadocProcessor tool = model.processor();
 

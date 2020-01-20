@@ -106,7 +106,7 @@ public class DocumentInfo {
         this.resolver = resolver;
 
         try {
-            DocCommentTree docs = ModelUtil.DocUtils.getDocCommentTree(e);
+            DocCommentTree docs = Util.DocUtils.getDocCommentTree(e);
             if (docs != null) {
                 comment.set(xml(docs.getFullBody()));
                 comment.to(x -> x.addClass(Styles.JavadocComment.className()));
@@ -262,7 +262,7 @@ public class DocumentInfo {
                 String testClassName = matcher.group(1);
                 String testMethodName = matcher.group(2);
 
-                String testClassPath = ModelUtil.ElementUtils.getPackageOf(e)
+                String testClassPath = Util.ElementUtils.getPackageOf(e)
                         .getQualifiedName()
                         .toString()
                         .replace('.', '/') + "/" + testClassName + ".java";
@@ -443,7 +443,7 @@ public class DocumentInfo {
             int index = reference.indexOf("#");
             if (index == 0) {
                 memberName = reference;
-                reference = resolver.resolveDocumentLocation(ModelUtil.getTopLevelTypeElement(e));
+                reference = resolver.resolveDocumentLocation(Util.getTopLevelTypeElement(e));
             } else if (index != -1) {
                 memberName = reference.substring(index);
                 reference = resolver.resolveDocumentLocation(reference.substring(0, index));

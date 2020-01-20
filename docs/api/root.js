@@ -230,6 +230,20 @@ const root = {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
+			"name": "ModernDocletModel",
+			"packageName": "antibug.doc",
+			"type": "Interface",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "ModernDocletModel.Internal",
+			"packageName": "antibug.doc",
+			"type": "Class",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
 			"name": "ModernJavadocProcessor",
 			"packageName": "antibug.doc",
 			"type": "AbstractClass",
