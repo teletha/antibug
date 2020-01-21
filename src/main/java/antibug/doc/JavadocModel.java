@@ -302,7 +302,7 @@ public abstract class JavadocModel {
      * 
      * @param className
      */
-    protected Variable<ClassInfo> findByClassName(String className) {
+    final Variable<ClassInfo> findByClassName(String className) {
         for (ClassInfo info : data.types) {
             if ((info.packageName + "." + info.name).equals(className)) {
                 return Variable.of(info);
@@ -316,7 +316,7 @@ public abstract class JavadocModel {
      * 
      * @return
      */
-    protected final Set<String> findSourcePackages() {
+    final Set<String> findSourcePackages() {
         // collect internal package names
         Set<String> packages = new HashSet();
 
@@ -329,7 +329,7 @@ public abstract class JavadocModel {
     /**
      * Initialization phase.
      */
-    protected void initialize() {
+    private void initialize() {
         internals.addAll(findSourcePackages());
     }
 
@@ -340,7 +340,7 @@ public abstract class JavadocModel {
      * 
      * @param root A class or interface program element root.
      */
-    protected void process(TypeElement root) {
+    private void process(TypeElement root) {
         data.add(new ClassInfo(root, new TypeResolver(externals, internals, root)));
     }
 
@@ -350,7 +350,7 @@ public abstract class JavadocModel {
      * 
      * @param root A package program element root.
      */
-    protected void process(PackageElement root) {
+    private void process(PackageElement root) {
     }
 
     /**
@@ -359,13 +359,13 @@ public abstract class JavadocModel {
      * 
      * @param root A module program element root.
      */
-    protected void process(ModuleElement root) {
+    private void process(ModuleElement root) {
     }
 
     /**
      * Completion phase.
      */
-    protected void complete() {
+    private void complete() {
         // sort data
         data.modules.sort(Comparator.naturalOrder());
         data.packages.sort(Comparator.naturalOrder());

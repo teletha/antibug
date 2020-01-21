@@ -11,15 +11,9 @@ package antibug.doc;
 
 import java.lang.StackWalker.Option;
 import java.lang.StackWalker.StackFrame;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Stream;
-
-import javax.lang.model.element.ModuleElement;
-import javax.lang.model.element.PackageElement;
-import javax.lang.model.element.TypeElement;
 
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.provider.Arguments;
@@ -29,7 +23,6 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import antibug.doc.analyze.ClassInfo;
 import antibug.doc.analyze.MethodInfo;
 import kiss.I;
 import kiss.Variable;
@@ -181,53 +174,6 @@ public class JavadocTestSupport {
         @Override
         public Stream<? extends Arguments> provideArguments(ExtensionContext arg0) throws Exception {
             return Stream.of(Arguments.of(new Object[] {null, null, null, null, null, null}));
-        }
-    }
-
-    /**
-     * 
-     */
-    private static class TestableJavadoc extends Javadoc {
-
-        private final List<ClassInfo> infos = new ArrayList();
-
-        private Set<String> internals;
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        protected void initialize() {
-            internals = findSourcePackages();
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        protected void process(TypeElement root) {
-            infos.add(new ClassInfo(root, new TypeResolver(null, internals, root)));
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        protected void process(PackageElement root) {
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        protected void process(ModuleElement root) {
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        protected void complete() {
         }
     }
 }
