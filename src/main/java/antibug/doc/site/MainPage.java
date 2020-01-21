@@ -9,7 +9,7 @@
  */
 package antibug.doc.site;
 
-import antibug.doc.Javadoc;
+import antibug.doc.JavadocModel;
 import antibug.doc.analyze.ClassInfo;
 import antibug.doc.builder.HTML;
 import stylist.Style;
@@ -25,12 +25,12 @@ public class MainPage extends HTML {
 
     protected final ClassInfo info;
 
-    protected final Javadoc model;
+    protected final JavadocModel model;
 
     /**
      * @param info
      */
-    public MainPage(Javadoc model, ClassInfo info) {
+    public MainPage(JavadocModel model, ClassInfo info) {
         this.info = info;
         this.model = model;
     }
@@ -43,7 +43,7 @@ public class MainPage extends HTML {
         $("html", () -> {
             $("head", () -> {
                 $("meta", attr("charset", "UTF-8"));
-                $("title", text(model.getProduct() + " API"));
+                $("title", text(model.product() + " API"));
                 script("https://unpkg.com/vue/dist/vue.js");
                 script("https://unpkg.com/vue-router/dist/vue-router.js");
                 stylesheet("https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css");
@@ -58,7 +58,7 @@ public class MainPage extends HTML {
                 // Top Navigation
                 // =============================
                 $("header", Styles.HeaderArea, () -> {
-                    $("h1", Styles.HeaderTitle, text(model.getProduct() + " API"));
+                    $("h1", Styles.HeaderTitle, text(model.product() + " API"));
                 });
 
                 $("main", Styles.MainArea, () -> {

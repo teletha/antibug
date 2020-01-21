@@ -189,7 +189,14 @@ const root = {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
-			"name": "Javadoc",
+			"name": "JavadocModel",
+			"packageName": "antibug.doc",
+			"type": "AbstractClass",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "JavadocModel.Internal",
 			"packageName": "antibug.doc",
 			"type": "Class",
 			"modifiers": {
@@ -227,27 +234,6 @@ const root = {
 			"name": "MethodInfo",
 			"packageName": "antibug.doc.analyze",
 			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "ModernDocletModel",
-			"packageName": "antibug.doc",
-			"type": "Interface",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "ModernDocletModel.Internal",
-			"packageName": "antibug.doc",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "ModernJavadocProcessor",
-			"packageName": "antibug.doc",
-			"type": "AbstractClass",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},

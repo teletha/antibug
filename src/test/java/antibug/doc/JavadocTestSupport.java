@@ -34,14 +34,16 @@ import antibug.doc.analyze.MethodInfo;
 import kiss.I;
 import kiss.Variable;
 import kiss.XML;
+import psychopath.Directory;
 
 public class JavadocTestSupport {
 
-    private static final TestableJavadoc doc = new TestableJavadoc();
-
-    static {
-        ModernDoclet.with.sources("src/test/java").output("target").processor(doc).build();
-    }
+    private static final JavadocModel doc = Javadoc.with.sources("src/test/java")
+            .output((Directory) null)
+            .product("test")
+            .project("test")
+            .version("1.0")
+            .build();
 
     protected final MethodInfo currentMethod() {
         StackFrame frame = caller();
@@ -185,7 +187,7 @@ public class JavadocTestSupport {
     /**
      * 
      */
-    private static class TestableJavadoc extends ModernJavadocProcessor {
+    private static class TestableJavadoc extends Javadoc {
 
         private final List<ClassInfo> infos = new ArrayList();
 
@@ -195,8 +197,8 @@ public class JavadocTestSupport {
          * {@inheritDoc}
          */
         @Override
-        protected void initialize(ModernDocletModel model) {
-            internals = model.findSourcePackages();
+        protected void initialize() {
+            internals = findSourcePackages();
         }
 
         /**
@@ -225,19 +227,7 @@ public class JavadocTestSupport {
          * {@inheritDoc}
          */
         @Override
-        protected void complete(ModernDocletModel model) {
-        }
-
-        /**
-         * @param className
-         */
-        private Variable<ClassInfo> findByClassName(String className) {
-            for (ClassInfo info : infos) {
-                if ((info.packageName + "." + info.name).equals(className)) {
-                    return Variable.of(info);
-                }
-            }
-            return Variable.empty();
+        protected void complete() {
         }
     }
 }

@@ -14,9 +14,12 @@ import java.io.IOException;
 public class DocumentUser {
 
     public static void main(String[] args) throws IOException {
-        Javadoc javadoc = new Javadoc();
-        javadoc.setProduct("Antibug");
-
-        ModernDoclet.with.sources("src/main/java").output("docs/api").processor(javadoc).build();
+        Javadoc.with.sources("src/main/java")
+                .output("docs/api")
+                .product("Antibug")
+                .project("Antibug")
+                .version("0.7")
+                .useExternalJDKDoc()
+                .build();
     }
 }
