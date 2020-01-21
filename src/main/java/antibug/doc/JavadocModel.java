@@ -37,6 +37,7 @@ import javax.tools.DocumentationTool.Location;
 import javax.tools.JavaFileObject;
 import javax.tools.JavaFileObject.Kind;
 import javax.tools.StandardJavaFileManager;
+import javax.tools.StandardLocation;
 import javax.tools.ToolProvider;
 
 import antibug.doc.analyze.ClassInfo;
@@ -92,6 +93,36 @@ public abstract class JavadocModel {
     @Icy.Overload("sources")
     private List<Directory> sources(Path... paths) {
         return I.signal(paths).map(Locator::directory).toList();
+    }
+
+    /**
+     * The list of source directories.
+     * 
+     * @return
+     */
+    @Icy.Property
+    public List<psychopath.Location> classpath() {
+        return List.of();
+    }
+
+    /**
+     * The list of source directories.
+     * 
+     * @return
+     */
+    @Icy.Overload("sources")
+    private List<psychopath.Location> classpath(String... paths) {
+        return I.signal(paths).map(Locator::locate).toList();
+    }
+
+    /**
+     * The list of source directories.
+     * 
+     * @return
+     */
+    @Icy.Overload("sources")
+    private List<psychopath.Location> classpath(Path... paths) {
+        return I.signal(paths).map(Locator::locate).toList();
     }
 
     /**
@@ -197,7 +228,10 @@ public abstract class JavadocModel {
             try (StandardJavaFileManager manager = tool.getStandardFileManager(listener, Locale.getDefault(), Charset.defaultCharset())) {
                 manager.setLocationFromPaths(SOURCE_PATH, sources().stream().map(Directory::asJavaPath).collect(Collectors.toList()));
                 manager.setLocationFromPaths(Location.DOCUMENTATION_OUTPUT, List
-                        .of(output() == null ? Path.of("") : output().asJavaPath()));
+                        .of(output() == null ? Path.of("") : output().create().asJavaPath()));
+                manager.setLocationFromPaths(StandardLocation.CLASS_PATH, classpath().stream()
+                        .map(psychopath.Location::asJavaPath)
+                        .collect(Collectors.toList()));
 
                 Iterable<? extends JavaFileObject> units = manager.list(SOURCE_PATH, "", Set.of(Kind.SOURCE), true);
                 if (tool.getTask(null, manager, listener, Internal.class, List.of(), units).call()) {
