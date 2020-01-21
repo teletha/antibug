@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.doc;
+package antibug.doc.analyze;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -29,6 +29,8 @@ import javax.lang.model.type.TypeKind;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.SimpleElementVisitor9;
 
+import antibug.doc.TypeResolver;
+import antibug.doc.Util;
 import kiss.I;
 import kiss.Variable;
 import kiss.XML;
@@ -68,7 +70,7 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
      * @param root
      * @param data
      */
-    ClassInfo(TypeElement root, TypeResolver resolver) {
+    public ClassInfo(TypeElement root, TypeResolver resolver) {
         super(root, resolver);
         this.resolver = resolver;
         this.packageName = Util.ElementUtils.getPackageOf(root).toString();
@@ -251,7 +253,7 @@ public class ClassInfo extends ParameterizableInfo implements Comparable<ClassIn
     /**
      * @param type2
      */
-    void addSub(ClassInfo sub) {
+    public void addSub(ClassInfo sub) {
         this.subs.add(parseTypeAsXML(sub.e.asType()));
     }
 

@@ -7,11 +7,12 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.doc;
+package antibug.doc.analyze;
 
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.type.TypeKind;
 
+import antibug.doc.TypeResolver;
 import kiss.XML;
 
 public class MethodInfo extends ExecutableInfo {

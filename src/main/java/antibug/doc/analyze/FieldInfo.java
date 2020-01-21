@@ -7,10 +7,11 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.doc;
+package antibug.doc.analyze;
 
 import javax.lang.model.element.VariableElement;
 
+import antibug.doc.TypeResolver;
 import kiss.XML;
 
 public class FieldInfo extends MemberInfo {

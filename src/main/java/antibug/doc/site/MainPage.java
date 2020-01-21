@@ -9,8 +9,8 @@
  */
 package antibug.doc.site;
 
-import antibug.doc.ClassInfo;
 import antibug.doc.Javadoc;
+import antibug.doc.analyze.ClassInfo;
 import antibug.doc.builder.HTML;
 import stylist.Style;
 import stylist.StyleDSL;

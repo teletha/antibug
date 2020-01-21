@@ -22,6 +22,8 @@ import javax.lang.model.element.ModuleElement;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 
+import antibug.doc.analyze.ClassInfo;
+import antibug.doc.analyze.Data;
 import antibug.doc.builder.SiteBuilder;
 import antibug.doc.site.MainPage;
 import kiss.I;

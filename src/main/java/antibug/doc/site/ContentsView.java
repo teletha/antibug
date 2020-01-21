@@ -12,9 +12,9 @@ package antibug.doc.site;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import antibug.doc.ClassInfo;
-import antibug.doc.ExecutableInfo;
-import antibug.doc.MethodInfo;
+import antibug.doc.analyze.ClassInfo;
+import antibug.doc.analyze.ExecutableInfo;
+import antibug.doc.analyze.MethodInfo;
 import antibug.doc.builder.HTML;
 import kiss.XML;
 import stylist.Style;

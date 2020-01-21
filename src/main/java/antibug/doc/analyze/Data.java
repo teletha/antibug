@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.doc;
+package antibug.doc.analyze;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +16,12 @@ import java.util.Set;
 import javax.lang.model.element.Element;
 import javax.lang.model.type.TypeMirror;
 
+import antibug.doc.Util;
+
 /**
  * Scanned data repository.
  */
-final class Data {
+public final class Data {
 
     /** Type repository. */
     public List<String> modules = new ArrayList();
@@ -33,7 +35,7 @@ final class Data {
     /**
      * Avoid duplication.
      */
-    void add(ClassInfo info) {
+    public void add(ClassInfo info) {
         types.add(info);
 
         if (packages.indexOf(info.packageName) == -1) {
@@ -44,7 +46,7 @@ final class Data {
     /**
      * 
      */
-    void connectSubType() {
+    public void connectSubType() {
         for (ClassInfo type : types) {
             for (Set<TypeMirror> uppers : Util.getAllTypes(type.e)) {
                 for (TypeMirror upper : uppers) {

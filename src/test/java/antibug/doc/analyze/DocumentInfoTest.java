@@ -7,10 +7,12 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.doc;
+package antibug.doc.analyze;
 
 import org.junit.jupiter.api.Test;
 
+import antibug.doc.JavadocTestSupport;
+import antibug.doc.analyze.ExecutableInfo;
 import kiss.XML;
 import kiss.Ⅱ;
 

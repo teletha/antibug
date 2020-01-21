@@ -29,11 +29,13 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import antibug.doc.analyze.ClassInfo;
+import antibug.doc.analyze.MethodInfo;
 import kiss.I;
 import kiss.Variable;
 import kiss.XML;
 
-class JavadocTestSupport {
+public class JavadocTestSupport {
 
     private static final TestableJavadoc doc = new TestableJavadoc();
 

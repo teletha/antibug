@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.doc;
+package antibug.doc.analyze;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +62,8 @@ import com.sun.source.doctree.ValueTree;
 import com.sun.source.doctree.VersionTree;
 import com.sun.source.util.SimpleDocTreeVisitor;
 
+import antibug.doc.TypeResolver;
+import antibug.doc.Util;
 import antibug.doc.site.Styles;
 import kiss.I;
 import kiss.Variable;

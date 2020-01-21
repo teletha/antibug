@@ -11,11 +11,11 @@ package antibug.doc.site;
 
 import java.util.List;
 
-import antibug.doc.ClassInfo;
-import antibug.doc.ExecutableInfo;
-import antibug.doc.FieldInfo;
-import antibug.doc.MemberInfo;
-import antibug.doc.MethodInfo;
+import antibug.doc.analyze.ClassInfo;
+import antibug.doc.analyze.ExecutableInfo;
+import antibug.doc.analyze.FieldInfo;
+import antibug.doc.analyze.MemberInfo;
+import antibug.doc.analyze.MethodInfo;
 import antibug.doc.builder.HTML;
 import stylist.Style;
 import stylist.StyleDSL;

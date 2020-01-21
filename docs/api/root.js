@@ -4,6 +4,7 @@ const root = {
 		"antibug",
 		"antibug.bytecode",
 		"antibug.doc",
+		"antibug.doc.analyze",
 		"antibug.doc.builder",
 		"antibug.doc.site",
 		"antibug.dummy",
@@ -63,7 +64,7 @@ const root = {
 		},
 		{
 			"name": "ClassInfo",
-			"packageName": "antibug.doc",
+			"packageName": "antibug.doc.analyze",
 			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
@@ -97,8 +98,15 @@ const root = {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
+			"name": "Data",
+			"packageName": "antibug.doc.analyze",
+			"type": "Class",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
 			"name": "DocumentInfo",
-			"packageName": "antibug.doc",
+			"packageName": "antibug.doc.analyze",
 			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
@@ -112,14 +120,14 @@ const root = {
 		},
 		{
 			"name": "ExecutableInfo",
-			"packageName": "antibug.doc",
+			"packageName": "antibug.doc.analyze",
 			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
 		},
 		{
 			"name": "FieldInfo",
-			"packageName": "antibug.doc",
+			"packageName": "antibug.doc.analyze",
 			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
@@ -203,7 +211,7 @@ const root = {
 		},
 		{
 			"name": "MemberInfo",
-			"packageName": "antibug.doc",
+			"packageName": "antibug.doc.analyze",
 			"type": "AbstractClass",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
@@ -217,14 +225,7 @@ const root = {
 		},
 		{
 			"name": "MethodInfo",
-			"packageName": "antibug.doc",
-			"type": "Class",
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",}
-		},
-		{
-			"name": "ModelUtil",
-			"packageName": "antibug.doc",
+			"packageName": "antibug.doc.analyze",
 			"type": "Class",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
@@ -252,7 +253,7 @@ const root = {
 		},
 		{
 			"name": "ParameterizableInfo",
-			"packageName": "antibug.doc",
+			"packageName": "antibug.doc.analyze",
 			"type": "AbstractClass",
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",}
@@ -364,6 +365,13 @@ const root = {
 		},
 		{
 			"name": "TypeResolver",
+			"packageName": "antibug.doc",
+			"type": "Class",
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",}
+		},
+		{
+			"name": "Util",
 			"packageName": "antibug.doc",
 			"type": "Class",
 			"modifiers": {

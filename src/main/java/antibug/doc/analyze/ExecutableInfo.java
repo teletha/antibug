@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.doc;
+package antibug.doc.analyze;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +17,7 @@ import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeMirror;
 
+import antibug.doc.TypeResolver;
 import antibug.doc.site.Styles;
 import kiss.I;
 import kiss.XML;

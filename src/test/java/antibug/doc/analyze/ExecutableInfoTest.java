@@ -7,11 +7,13 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.doc;
+package antibug.doc.analyze;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
+
+import antibug.doc.JavadocTestSupport;
 
 public class ExecutableInfoTest extends JavadocTestSupport {
 

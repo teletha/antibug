@@ -7,7 +7,7 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.doc;
+package antibug.doc.analyze;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +15,8 @@ import java.util.Set;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
 
+import antibug.doc.TypeResolver;
+import antibug.doc.Util;
 import kiss.I;
 import kiss.XML;
 

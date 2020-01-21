@@ -16,6 +16,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import antibug.doc.analyze.ExecutableInfo;
+
 public class StructuredTypeTest extends JavadocTestSupport {
 
     @ParameterizedTest

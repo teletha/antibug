@@ -7,12 +7,15 @@
  *
  *          http://opensource.org/licenses/mit-license.php
  */
-package antibug.doc;
+package antibug.doc.analyze;
 
 import java.io.Serializable;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
+import antibug.doc.JavadocTestSupport;
+import antibug.doc.analyze.MethodInfo;
 
 public class MethodInfoTest extends JavadocTestSupport {
 
