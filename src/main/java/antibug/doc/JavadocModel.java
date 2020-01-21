@@ -9,7 +9,7 @@
  */
 package antibug.doc;
 
-import static javax.tools.StandardLocation.*;
+import static javax.tools.StandardLocation.SOURCE_PATH;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -37,7 +37,6 @@ import javax.tools.DocumentationTool.Location;
 import javax.tools.JavaFileObject;
 import javax.tools.JavaFileObject.Kind;
 import javax.tools.StandardJavaFileManager;
-import javax.tools.StandardLocation;
 import javax.tools.ToolProvider;
 
 import antibug.doc.analyze.ClassInfo;
@@ -110,7 +109,7 @@ public abstract class JavadocModel {
      * 
      * @return
      */
-    @Icy.Overload("sources")
+    @Icy.Overload("classpath")
     private List<psychopath.Location> classpath(String... paths) {
         return I.signal(paths).map(Locator::locate).toList();
     }
@@ -120,7 +119,7 @@ public abstract class JavadocModel {
      * 
      * @return
      */
-    @Icy.Overload("sources")
+    @Icy.Overload("classpath")
     private List<psychopath.Location> classpath(Path... paths) {
         return I.signal(paths).map(Locator::locate).toList();
     }
@@ -229,9 +228,9 @@ public abstract class JavadocModel {
                 manager.setLocationFromPaths(SOURCE_PATH, sources().stream().map(Directory::asJavaPath).collect(Collectors.toList()));
                 manager.setLocationFromPaths(Location.DOCUMENTATION_OUTPUT, List
                         .of(output() == null ? Path.of("") : output().create().asJavaPath()));
-                manager.setLocationFromPaths(StandardLocation.CLASS_PATH, classpath().stream()
-                        .map(psychopath.Location::asJavaPath)
-                        .collect(Collectors.toList()));
+                // manager.setLocationFromPaths(StandardLocation.CLASS_PATH, classpath().stream()
+                // .map(psychopath.Location::asJavaPath)
+                // .collect(Collectors.toList()));
 
                 Iterable<? extends JavaFileObject> units = manager.list(SOURCE_PATH, "", Set.of(Kind.SOURCE), true);
                 if (tool.getTask(null, manager, listener, Internal.class, List.of(), units).call()) {
