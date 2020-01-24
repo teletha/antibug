@@ -20,10 +20,6 @@ public class Project extends bee.api.Project {
         require("org.junit.platform", "junit-platform-launcher");
         require("net.bytebuddy", "byte-buddy");
         require("net.bytebuddy", "byte-buddy-agent");
-        require("com.github.teletha", "sinobu");
-        require("com.github.teletha", "stylist");
-        require("com.github.teletha", "psychopath");
-        require("com.github.teletha", "icymanipulator").atAnnotation();
 
         versionControlSystem("https://github.com/teletha/antibug");
     }
