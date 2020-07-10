@@ -31,6 +31,9 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.Executor;
+import java.util.concurrent.Flow.Subscriber;
+import java.util.concurrent.Flow.Subscription;
+import java.util.function.Consumer;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLParameters;
@@ -106,8 +109,12 @@ public class WebSocketServer {
      * 
      * @return
      */
-    public HttpClient client() {
+    public final HttpClient httpClient() {
         return client;
+    }
+
+    public final WebSocketClient websocketClient() {
+        return new WebSocketClient();
     }
 
     /**
@@ -216,7 +223,7 @@ public class WebSocketServer {
          */
         @Override
         public WebSocket.Builder newWebSocketBuilder() {
-            return client;
+            return this;
         }
 
         /**
@@ -365,7 +372,7 @@ public class WebSocketServer {
     /**
      * Utility to test client state.
      */
-    public static class Validator implements WebSocket.Listener {
+    public static class WebSocketClient implements WebSocket.Listener, Subscriber<String>, Consumer<WebSocket> {
 
         /** The associated client implementation. */
         private WebSocket ws;
@@ -397,8 +404,6 @@ public class WebSocketServer {
         @Override
         public CompletionStage<?> onClose(WebSocket webSocket, int statusCode, String reason) {
             this.closed = true;
-            this.statusCode = statusCode;
-            this.reason = reason;
             return null;
         }
 
@@ -483,12 +488,6 @@ public class WebSocketServer {
         /** The client status. */
         private boolean closed;
 
-        /** The status code. */
-        private int statusCode;
-
-        /** The closing reason. */
-        private String reason;
-
         /**
          * Check client status.
          * 
@@ -508,25 +507,63 @@ public class WebSocketServer {
         }
 
         /**
-         * Return the reason of disconnection.
+         * Shorthand method to sent text message to server.
          * 
-         * @return
+         * @param message A message to send.
          */
-        public final String reason() {
-            return reason;
+        public final void send(String message) {
+            ws.sendText(message, true);
         }
 
         /**
-         * Return the status code of disconnection.
+         * Shorthand method to sent text message to server.
          * 
-         * @return
+         * @param message A message to send.
          */
-        public final int statusCode() {
-            return statusCode;
+        public final void send(Object message) {
+            send(message.toString());
         }
 
-        public final void send(String text) {
-            ws.sendText(text, true);
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void onSubscribe(Subscription subscription) {
+            // If this exception will be thrown, it is bug of this program. So we must rethrow the
+            // wrapped error in here.
+            throw new Error();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void onNext(String item) {
+            messages.add(item);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void onError(Throwable throwable) {
+            error = throwable;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void onComplete() {
+            closed = true;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void accept(WebSocket websocket) {
+            ws = websocket;
         }
     }
 }
