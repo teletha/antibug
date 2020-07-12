@@ -511,6 +511,15 @@ public class WebSocketServer {
          * 
          * @param message A message to send.
          */
+        public final void send(Object message) {
+            send(message.toString());
+        }
+
+        /**
+         * Shorthand method to sent text message to server.
+         * 
+         * @param message A message to send.
+         */
         public final void send(String message) {
             ws.sendText(message, true);
         }
@@ -520,8 +529,8 @@ public class WebSocketServer {
          * 
          * @param message A message to send.
          */
-        public final void send(Object message) {
-            send(message.toString());
+        public final void sendJSON(String message) {
+            ws.sendText(message.replace('\'', '"'), true);
         }
 
         /**
