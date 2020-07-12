@@ -92,6 +92,15 @@ public class WebSocketServer {
     }
 
     /**
+     * Shorthand method to sent text message to server.
+     * 
+     * @param messageFromServer A message to send.
+     */
+    public final void sendJSON(String messageFromServer) {
+        send(messageFromServer.replace('\'', '"'));
+    }
+
+    /**
      * Emulate sending message to client.
      * 
      * @param messageFromServer
@@ -522,15 +531,6 @@ public class WebSocketServer {
          */
         public final void send(String message) {
             ws.sendText(message, true);
-        }
-
-        /**
-         * Shorthand method to sent text message to server.
-         * 
-         * @param message A message to send.
-         */
-        public final void sendJSON(String message) {
-            ws.sendText(message.replace('\'', '"'), true);
         }
 
         /**
