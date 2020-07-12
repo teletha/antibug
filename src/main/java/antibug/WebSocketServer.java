@@ -77,6 +77,16 @@ public class WebSocketServer {
     }
 
     /**
+     * Emulate request and response.
+     * 
+     * @param clientRequest
+     * @param serverResponse
+     */
+    public void replyWhenJSON(String clientRequest, Runnable serverResponse) {
+        requestAndResponses.computeIfAbsent(clientRequest.replace('\'', '"'), k -> new ArrayList()).add(serverResponse);
+    }
+
+    /**
      * Emulate sending message to client.
      * 
      * @param messageFromServer
