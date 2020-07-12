@@ -302,7 +302,7 @@ public class WebSocketServer {
         public CompletableFuture<WebSocket> sendText(CharSequence data, boolean last) {
             text.append(data);
             if (last) {
-                String request = text.toString();
+                String request = text.toString().replaceAll("\\s", "");
                 text.setLength(0);
 
                 List<Runnable> responses = requestAndResponses.remove(request);
