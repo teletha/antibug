@@ -82,8 +82,28 @@ public class WebSocketServer {
      * @param clientRequest
      * @param serverResponse
      */
+    public void replyWhen(String clientRequest, Consumer<WebSocketServer> serverResponse) {
+        replyWhen(clientRequest, () -> serverResponse.accept(this));
+    }
+
+    /**
+     * Emulate request and response.
+     * 
+     * @param clientRequest
+     * @param serverResponse
+     */
     public void replyWhenJSON(String clientRequest, Runnable serverResponse) {
         requestAndResponses.computeIfAbsent(clientRequest.replace('\'', '"'), k -> new ArrayList()).add(serverResponse);
+    }
+
+    /**
+     * Emulate request and response.
+     * 
+     * @param clientRequest
+     * @param serverResponse
+     */
+    public void replyWhenJSON(String clientRequest, Consumer<WebSocketServer> serverResponse) {
+        replyWhenJSON(clientRequest, () -> serverResponse.accept(this));
     }
 
     /**
