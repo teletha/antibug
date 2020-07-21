@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.ExecutionException;
@@ -222,8 +223,11 @@ public class Chronus implements ScheduledExecutorService {
      */
     @Override
     public ScheduledFuture<?> schedule(Runnable command, long delay, TimeUnit unit) {
-        Task task = new Task(command);
+        if (delay <= 0) {
+            return immediately(Executors.callable(command));
+        }
 
+        Task task = new Task(command);
         return task.connect(executor().schedule((Callable) task, delay, unit));
     }
 
@@ -232,25 +236,51 @@ public class Chronus implements ScheduledExecutorService {
      */
     @Override
     public <V> ScheduledFuture<V> schedule(Callable<V> callable, long delay, TimeUnit unit) {
-        Task task = new Task(callable);
+        if (delay <= 0) {
+            return immediately(callable);
+        }
 
+        Task task = new Task(callable);
         return task.connect(executor().schedule((Callable) task, delay, unit));
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit) {
-        return executor().scheduleAtFixedRate(command, initialDelay, period, unit);
+    private ScheduledFuture immediately(Callable callable) {
+        try {
+            Task task = new Task(callable);
+            task.connect(CompletableFuture.completedFuture(task.call()));
+            return task;
+        } catch (Exception e) {
+            throw new Error(e);
+        }
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public ScheduledFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit) {
-        return executor().scheduleWithFixedDelay(command, initialDelay, delay, unit);
+    public ScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long interval, TimeUnit unit) {
+        long intervalMills = unit.toMillis(interval);
+        long[] next = {System.currentTimeMillis() + unit.toMillis(initialDelay) + intervalMills};
+        Runnable[] task = new Runnable[1];
+        task[0] = () -> {
+            next[0] = next[0] + intervalMills;
+            command.run();
+            schedule(task[0], next[0] - System.currentTimeMillis(), unit);
+        };
+        return schedule(task[0], initialDelay, unit);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ScheduledFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay, long interval, TimeUnit unit) {
+        Runnable[] task = new Runnable[1];
+        task[0] = () -> {
+            command.run();
+            schedule(task[0], interval, unit);
+        };
+        return schedule(task[0], initialDelay, unit);
     }
 
     private long marked;

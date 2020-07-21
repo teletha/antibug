@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
@@ -34,6 +35,8 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
 import java.util.function.Consumer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLParameters;
@@ -56,6 +59,10 @@ public class WebSocketServer {
 
     /** A reply message that corresponds to a specific message. */
     private Map<String, List<Runnable>> requestAndResponses = new HashMap();
+
+    private Map<Pattern, List<Runnable>> requestRegExAndResponses = new HashMap();
+
+    private Matcher matcherLatest;
 
     /**
      * Specify the errors that occur on the client side when connecting to the server.
@@ -93,7 +100,10 @@ public class WebSocketServer {
      * @param serverResponse
      */
     public void replyWhenJSON(String clientRequest, Runnable serverResponse) {
-        requestAndResponses.computeIfAbsent(clientRequest.replace('\'', '"'), k -> new ArrayList()).add(serverResponse);
+        requestRegExAndResponses
+                .computeIfAbsent(Pattern
+                        .compile(clientRequest.replace('\'', '"').replace("{", "\\{").replace("}", "\\}")), k -> new ArrayList())
+                .add(serverResponse);
     }
 
     /**
@@ -127,6 +137,11 @@ public class WebSocketServer {
      * @param messageFromServer A message to send.
      */
     public final void sendJSON(String messageFromServer) {
+        if (matcherLatest != null) {
+            for (int i = 1; i <= matcherLatest.groupCount(); i++) {
+                messageFromServer = messageFromServer.replace("$" + i, matcherLatest.group(i));
+            }
+        }
         send(messageFromServer.replace('\'', '"'));
     }
 
@@ -329,6 +344,16 @@ public class WebSocketServer {
                 if (responses != null) {
                     for (Runnable response : responses) {
                         response.run();
+                    }
+                }
+
+                for (Entry<Pattern, List<Runnable>> entry : requestRegExAndResponses.entrySet()) {
+                    Matcher matcher = entry.getKey().matcher(request);
+                    if (matcher.matches()) {
+                        matcherLatest = matcher;
+                        for (Runnable response : entry.getValue()) {
+                            response.run();
+                        }
                     }
                 }
             }
