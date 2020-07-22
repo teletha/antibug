@@ -24,13 +24,13 @@ import java.net.http.WebSocket.Listener;
 import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
@@ -58,11 +58,21 @@ public class WebSocketServer {
     private List<Runnable> messageQueue = new ArrayList();
 
     /** A reply message that corresponds to a specific message. */
-    private Map<String, List<Runnable>> requestAndResponses = new HashMap();
+    private Map<String, List<Runnable>> requestAndResponses = new ConcurrentHashMap();
 
-    private Map<Pattern, List<Runnable>> requestRegExAndResponses = new HashMap();
+    /** A reply message that corresponds to a specific message. */
+    private Map<Pattern, List<Runnable>> requestRegExAndResponses = new ConcurrentHashMap();
 
     private Matcher matcherLatest;
+
+    /**
+     * Check whether a registered response message exists.
+     * 
+     * @return
+     */
+    public boolean hasReplyRule() {
+        return !requestAndResponses.isEmpty() || !requestRegExAndResponses.isEmpty();
+    }
 
     /**
      * Specify the errors that occur on the client side when connecting to the server.
@@ -100,10 +110,11 @@ public class WebSocketServer {
      * @param serverResponse
      */
     public void replyWhenJSON(String clientRequest, Runnable serverResponse) {
-        requestRegExAndResponses
-                .computeIfAbsent(Pattern
-                        .compile(clientRequest.replace('\'', '"').replace("{", "\\{").replace("}", "\\}")), k -> new ArrayList())
-                .add(serverResponse);
+        requestRegExAndResponses.computeIfAbsent(Pattern.compile(clientRequest.replace('\'', '"')
+                .replace("{", "\\{")
+                .replace("}", "\\}")
+                .replace("[", "\\[")
+                .replace("]", "\\]")), k -> new ArrayList()).add(serverResponse);
     }
 
     /**
@@ -354,6 +365,7 @@ public class WebSocketServer {
                         for (Runnable response : entry.getValue()) {
                             response.run();
                         }
+                        requestRegExAndResponses.remove(entry.getKey());
                     }
                 }
             }
