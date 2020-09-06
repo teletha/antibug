@@ -1,4 +1,5 @@
 package antibug;
+
 /*
  * Copyright (C) 2019 Nameless Production Committee
  *
@@ -10,15 +11,17 @@ package antibug;
  */
 public class Project extends bee.api.Project {
 
+    String JunitVersion = "5.6.2";
+
     {
         product("com.github.teletha", "antibug", "0.7");
         producer("Nameless Production Committee");
         describe("Bug Detection Tool Set. (including PowerAssert");
 
-        require("org.junit.jupiter", "junit-jupiter-api");
-        require("org.junit.jupiter", "junit-jupiter-engine");
-        require("org.junit.jupiter", "junit-jupiter-params");
-        require("org.junit.platform", "junit-platform-launcher");
+        require("org.junit.jupiter", "junit-jupiter-api", JunitVersion);
+        require("org.junit.jupiter", "junit-jupiter-engine", JunitVersion);
+        require("org.junit.jupiter", "junit-jupiter-params", JunitVersion);
+        require("org.junit.platform", "junit-platform-launcher", "1.6.2");
         require("net.bytebuddy", "byte-buddy");
         require("net.bytebuddy", "byte-buddy-agent");
 
