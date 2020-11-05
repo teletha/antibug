@@ -9,8 +9,8 @@
  */
 package antibug;
 
-import static java.nio.file.FileVisitResult.CONTINUE;
-import static java.nio.file.StandardCopyOption.COPY_ATTRIBUTES;
+import static java.nio.file.FileVisitResult.*;
+import static java.nio.file.StandardCopyOption.*;
 
 import java.io.File;
 import java.io.IOError;
@@ -36,6 +36,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
@@ -51,13 +52,12 @@ import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
 /**
- * <p>
  * The environmental rule for test that depends on file system.
- * </p>
- * 
- * @version 2018/03/30 2:05:16
  */
 public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAllCallback {
+
+    /** The randomizer. */
+    private static final Random RANDOM = new Random();
 
     /** The counter for instances. */
     private static final AtomicInteger counter = new AtomicInteger();
@@ -319,6 +319,15 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
      */
     public Path locateAbsent(String name) {
         return locate(name, false, false);
+    }
+
+    /**
+     * Locate a resource with random name.
+     * 
+     * @return A located file system resource.
+     */
+    public Path locate() {
+        return locate(String.valueOf(RANDOM.nextInt(1000000)));
     }
 
     /**
