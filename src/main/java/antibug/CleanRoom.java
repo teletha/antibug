@@ -326,7 +326,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
      * 
      * @return A located file system resource.
      */
-    public Path locate() {
+    public Path locateRadom() {
         return locate(String.valueOf(RANDOM.nextInt(1000000)));
     }
 
