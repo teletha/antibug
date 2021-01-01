@@ -66,14 +66,14 @@ class LocalVariableSorter extends MethodVisitor {
      * @param mv the method visitor to which this adapter delegates calls.
      */
     public LocalVariableSorter(final int access, final String desc, final MethodVisitor mv) {
-        this(Opcodes.ASM7, access, desc, mv);
+        this(Opcodes.ASM9, access, desc, mv);
     }
 
     /**
      * Creates a new {@link LocalVariableSorter}.
      * 
      * @param api the ASM API version implemented by this visitor. Must be one of
-     *            {@link Opcodes#ASM7}.
+     *            {@link Opcodes#ASM9}.
      * @param access access flags of the adapted method.
      * @param desc the method's descriptor (see {@link Type Type}).
      * @param mv the method visitor to which this adapter delegates calls.
