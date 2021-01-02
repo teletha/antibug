@@ -1,11 +1,11 @@
 /*
- * Copyright 2015-2020 the original author or authors.
+ * Copyright (C) 2021 Nameless Production Committee
  *
- * All rights reserved. This program and the accompanying materials are
- * made available under the terms of the Eclipse Public License v2.0 which
- * accompanies this distribution and is available at
+ * Licensed under the MIT License (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * https://www.eclipse.org/legal/epl-v20.html
+ *          https://opensource.org/licenses/MIT
  */
 
 package org.junit.jupiter.engine.descriptor;
