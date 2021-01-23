@@ -9,18 +9,9 @@
  */
 package antibug;
 
-/*
- * Copyright (C) 2019 Nameless Production Committee
- *
- * Licensed under the MIT License (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *          https://opensource.org/licenses/MIT
- */
 public class Project extends bee.api.Project {
 
-    String JunitVersion = "5.6.2";
+    String JunitVersion = "5.7.0";
 
     {
         product("com.github.teletha", "antibug", "0.7");
@@ -30,7 +21,7 @@ public class Project extends bee.api.Project {
         require("org.junit.jupiter", "junit-jupiter-api", JunitVersion);
         require("org.junit.jupiter", "junit-jupiter-engine", JunitVersion);
         require("org.junit.jupiter", "junit-jupiter-params", JunitVersion);
-        require("org.junit.platform", "junit-platform-launcher", "1.6.2");
+        require("org.junit.platform", "junit-platform-launcher", "1.7.0");
         require("net.bytebuddy", "byte-buddy");
         require("net.bytebuddy", "byte-buddy-agent");
 

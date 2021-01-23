@@ -1,11 +1,11 @@
 /*
- * Copyright (C) 2021 Nameless Production Committee
+ * Copyright 2015-2020 the original author or authors.
  *
- * Licensed under the MIT License (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * All rights reserved. This program and the accompanying materials are
+ * made available under the terms of the Eclipse Public License v2.0 which
+ * accompanies this distribution and is available at
  *
- *          https://opensource.org/licenses/MIT
+ * https://www.eclipse.org/legal/epl-v20.html
  */
 
 package org.junit.jupiter.engine.descriptor;
@@ -15,9 +15,7 @@ import static org.junit.jupiter.engine.descriptor.ExtensionUtils.populateNewExte
 import static org.junit.jupiter.engine.support.JupiterThrowableCollectorFactory.createThrowableCollector;
 
 import java.lang.reflect.Method;
-import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
 
 import org.apiguardian.api.API;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
@@ -41,11 +39,8 @@ import org.junit.jupiter.engine.execution.ExecutableInvoker.ReflectiveIntercepto
 import org.junit.jupiter.engine.execution.JupiterEngineExecutionContext;
 import org.junit.jupiter.engine.extension.ExtensionRegistry;
 import org.junit.jupiter.engine.extension.MutableExtensionRegistry;
-import org.junit.platform.commons.logging.Logger;
-import org.junit.platform.commons.logging.LoggerFactory;
 import org.junit.platform.commons.util.AnnotationUtils;
-import org.junit.platform.commons.util.BlacklistedExceptions;
-import org.junit.platform.commons.util.ReflectionUtils;
+import org.junit.platform.commons.util.UnrecoverableExceptions;
 import org.junit.platform.engine.TestDescriptor;
 import org.junit.platform.engine.TestExecutionResult;
 import org.junit.platform.engine.UniqueId;
@@ -79,8 +74,6 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
 
     private static final ExecutableInvoker executableInvoker = new ExecutableInvoker();
 
-    private static final Logger logger = LoggerFactory.getLogger(TestMethodTestDescriptor.class);
-
     private static final ReflectiveInterceptorCall<Method, Void> defaultInterceptorCall = ReflectiveInterceptorCall
             .ofVoidMethod(InvocationInterceptor::interceptTestMethod);
 
@@ -110,7 +103,7 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
         MethodExtensionContext extensionContext = new MethodExtensionContext(context.getExtensionContext(), context
                 .getExecutionListener(), this, context.getConfiguration(), throwableCollector);
         throwableCollector.execute(() -> {
-            TestInstances testInstances = context.getTestInstancesProvider().getTestInstances(registry);
+            TestInstances testInstances = context.getTestInstancesProvider().getTestInstances(registry, throwableCollector);
             extensionContext.setTestInstances(testInstances);
         });
 
@@ -128,8 +121,7 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
     }
 
     @Override
-    public JupiterEngineExecutionContext execute(JupiterEngineExecutionContext context, DynamicTestExecutor dynamicTestExecutor)
-            throws Exception {
+    public JupiterEngineExecutionContext execute(JupiterEngineExecutionContext context, DynamicTestExecutor dynamicTestExecutor) {
         ThrowableCollector throwableCollector = context.getThrowableCollector();
 
         // @formatter:off
@@ -146,14 +138,18 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
                 invokeAfterEachMethods(context);
             }
         invokeAfterEachCallbacks(context);
-        if (isPerMethodLifecycle(context)) {
-            invokeTestInstancePreDestroyCallbacks(context);
-        }
         // @formatter:on
 
-        throwableCollector.assertEmpty();
-
         return context;
+    }
+
+    @Override
+    public void cleanUp(JupiterEngineExecutionContext context) throws Exception {
+        if (isPerMethodLifecycle(context) && context.getExtensionContext().getTestInstance().isPresent()) {
+            invokeTestInstancePreDestroyCallbacks(context);
+        }
+        super.cleanUp(context);
+        context.getThrowableCollector().assertEmpty();
     }
 
     private boolean isPerMethodLifecycle(JupiterEngineExecutionContext context) {
@@ -224,7 +220,7 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
                     invokeBeforeEachMethods(context);
                     invokeTestMethod(context, dynamicTestExecutor);
                 }, e -> {
-                    BlacklistedExceptions.rethrowIfBlacklisted(throwable);
+                    UnrecoverableExceptions.rethrowIfUnrecoverable(throwable);
                     invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), extensionContext, throwable);
                 });
             }
@@ -280,19 +276,6 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
     }
 
     /**
-     * Invoke {@link TestWatcher#testDisabled(ExtensionContext, Optional)} on each registered
-     * {@link TestWatcher}, in registration order.
-     *
-     * @since 5.4
-     */
-    @Override
-    public void nodeSkipped(JupiterEngineExecutionContext context, TestDescriptor descriptor, SkipResult result) {
-        if (context != null) {
-            invokeTestWatchers(context, false, watcher -> watcher.testDisabled(context.getExtensionContext(), result.getReason()));
-        }
-    }
-
-    /**
      * Invoke {@link TestWatcher#testSuccessful testSuccessful()}, {@link TestWatcher#testAborted
      * testAborted()}, or {@link TestWatcher#testFailed testFailed()} on each registered
      * {@link TestWatcher} according to the status of the supplied {@link TestExecutionResult}, in
@@ -321,31 +304,6 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
                 }
             });
         }
-    }
-
-    /**
-     * @since 5.4
-     */
-    private void invokeTestWatchers(JupiterEngineExecutionContext context, boolean reverseOrder, Consumer<TestWatcher> callback) {
-
-        ExtensionRegistry registry = context.getExtensionRegistry();
-
-        List<TestWatcher> watchers = reverseOrder //
-                ? registry.getReversedExtensions(TestWatcher.class)
-                : registry.getExtensions(TestWatcher.class);
-
-        watchers.forEach(watcher -> {
-            try {
-                callback.accept(watcher);
-            } catch (Throwable throwable) {
-                BlacklistedExceptions.rethrowIfBlacklisted(throwable);
-                ExtensionContext extensionContext = context.getExtensionContext();
-                logger.warn(throwable, () -> String
-                        .format("Failed to invoke TestWatcher [%s] for method [%s] with display name [%s]", watcher.getClass()
-                                .getName(), ReflectionUtils.getFullyQualifiedMethodName(extensionContext
-                                        .getRequiredTestClass(), extensionContext.getRequiredTestMethod()), getDisplayName()));
-            }
-        });
     }
 
     /**
