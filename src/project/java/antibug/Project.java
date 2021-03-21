@@ -14,7 +14,7 @@ public class Project extends bee.api.Project {
     String JunitVersion = "5.7.1";
 
     {
-        product("com.github.teletha", "antibug", "1.0.0");
+        product("com.github.teletha", "antibug", ref("version.txt"));
         producer("Nameless Production Committee");
         describe("Bug Detection Tool Set. (including PowerAssert");
 
