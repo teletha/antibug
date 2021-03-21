@@ -1,2 +1,3 @@
-jdk:
-  - openjdk13
+before_install:
+   - /home/jitpack/.sdkman/sdk install java 16.0.0-open
+   - /home/jitpack/.sdkman/sdk use java 16.0.0-open
