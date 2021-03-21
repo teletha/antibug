@@ -1,3 +1,9 @@
 before_install:
-   - /home/jitpack/.sdkman/sdk install java 16.0.0-open
-   - /home/jitpack/.sdkman/sdk use java 16.0.0-open
+   - sdk list java
+   - /home/jitpack/.sdkman/sdk list java
+   - home/jitpack/.sdkman/sdk list java
+   - jitpack/.sdkman/sdk list java
+   - .sdkman/sdk list java
+   - ../jitpack/.sdkman/sdk list java
+   - ../.sdkman/sdk list java
+   - ../sdk list java
