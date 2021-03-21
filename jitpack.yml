@@ -1,3 +1,4 @@
 before_install:
+   - source "$HOME/.sdkman/bin/sdkman-init.sh"
    - sdk version
    - sdk list java
