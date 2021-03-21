@@ -1,9 +1,9 @@
 before_install:
    - sdk list java
-   - /home/jitpack/.sdkman/sdk list java
-   - home/jitpack/.sdkman/sdk list java
-   - jitpack/.sdkman/sdk list java
-   - .sdkman/sdk list java
-   - ../jitpack/.sdkman/sdk list java
-   - ../.sdkman/sdk list java
-   - ../sdk list java
+   - /home/jitpack/.sdkman/bin/sdk list java
+   - home/jitpack/.sdkman/bin/sdk list java
+   - jitpack/.sdkman/bin/sdk list java
+   - .sdkman/bin/sdk list java
+   - ../jitpack/.sdkman/bin/sdk list java
+   - ../.sdkman/bin/sdk list java
+   - ../bin/sdk list java
