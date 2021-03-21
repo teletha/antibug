@@ -1,12 +1,3 @@
 before_install:
-   - curl -s "https://get.sdkman.io" | bash
-   - source "$HOME/.sdkman/bin/sdkman-init.sh"
    - sdk version
    - sdk list java
-   - /home/jitpack/.sdkman/bin/sdk.sh list java
-   - home/jitpack/.sdkman/bin/sdk.sh list java
-   - jitpack/.sdkman/bin/sdk.sh list java
-   - .sdkman/bin/sdk.sh list java
-   - ../jitpack/.sdkman/bin/sdk.sh list java
-   - ../.sdkman/bin/sdk.sh list java
-   - ../bin/sdk.sh list java
