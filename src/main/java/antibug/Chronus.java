@@ -182,7 +182,7 @@ public class Chronus implements ScheduledExecutorService {
      */
     @Override
     public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks) throws InterruptedException {
-        List<Task<T>> collect = tasks.stream().map(task -> new Task(task)).collect(Collectors.toList());
+        List<Task<T>> collect = tasks.stream().map(task -> new Task<T>(task)).collect(Collectors.toList());
 
         return executor().invokeAll(collect);
     }
@@ -192,7 +192,7 @@ public class Chronus implements ScheduledExecutorService {
      */
     @Override
     public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit) throws InterruptedException {
-        List<Task<T>> collect = tasks.stream().map(task -> new Task(task)).collect(Collectors.toList());
+        List<Task<T>> collect = tasks.stream().map(task -> new Task<T>(task)).collect(Collectors.toList());
 
         return executor().invokeAll(collect, timeout, unit);
     }
@@ -202,7 +202,7 @@ public class Chronus implements ScheduledExecutorService {
      */
     @Override
     public <T> T invokeAny(Collection<? extends Callable<T>> tasks) throws InterruptedException, ExecutionException {
-        List<Task<T>> collect = tasks.stream().map(task -> new Task(task)).collect(Collectors.toList());
+        List<Task<T>> collect = tasks.stream().map(task -> new Task<T>(task)).collect(Collectors.toList());
 
         return executor().invokeAny(collect);
     }
@@ -213,7 +213,7 @@ public class Chronus implements ScheduledExecutorService {
     @Override
     public <T> T invokeAny(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
             throws InterruptedException, ExecutionException, TimeoutException {
-        List<Task<T>> collect = tasks.stream().map(task -> new Task(task)).collect(Collectors.toList());
+        List<Task<T>> collect = tasks.stream().map(task -> new Task<T>(task)).collect(Collectors.toList());
 
         return executor().invokeAny(collect, timeout, unit);
     }
