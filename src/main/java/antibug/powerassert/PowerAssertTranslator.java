@@ -9,7 +9,104 @@
  */
 package antibug.powerassert;
 
-import static net.bytebuddy.jar.asm.Opcodes.*;
+import static net.bytebuddy.jar.asm.Opcodes.AALOAD;
+import static net.bytebuddy.jar.asm.Opcodes.AASTORE;
+import static net.bytebuddy.jar.asm.Opcodes.ACONST_NULL;
+import static net.bytebuddy.jar.asm.Opcodes.ANEWARRAY;
+import static net.bytebuddy.jar.asm.Opcodes.ARRAYLENGTH;
+import static net.bytebuddy.jar.asm.Opcodes.BALOAD;
+import static net.bytebuddy.jar.asm.Opcodes.BASTORE;
+import static net.bytebuddy.jar.asm.Opcodes.CALOAD;
+import static net.bytebuddy.jar.asm.Opcodes.CASTORE;
+import static net.bytebuddy.jar.asm.Opcodes.DADD;
+import static net.bytebuddy.jar.asm.Opcodes.DALOAD;
+import static net.bytebuddy.jar.asm.Opcodes.DASTORE;
+import static net.bytebuddy.jar.asm.Opcodes.DCMPL;
+import static net.bytebuddy.jar.asm.Opcodes.DCONST_0;
+import static net.bytebuddy.jar.asm.Opcodes.DCONST_1;
+import static net.bytebuddy.jar.asm.Opcodes.DDIV;
+import static net.bytebuddy.jar.asm.Opcodes.DMUL;
+import static net.bytebuddy.jar.asm.Opcodes.DNEG;
+import static net.bytebuddy.jar.asm.Opcodes.DREM;
+import static net.bytebuddy.jar.asm.Opcodes.DSUB;
+import static net.bytebuddy.jar.asm.Opcodes.FADD;
+import static net.bytebuddy.jar.asm.Opcodes.FALOAD;
+import static net.bytebuddy.jar.asm.Opcodes.FASTORE;
+import static net.bytebuddy.jar.asm.Opcodes.FCMPL;
+import static net.bytebuddy.jar.asm.Opcodes.FCONST_0;
+import static net.bytebuddy.jar.asm.Opcodes.FCONST_1;
+import static net.bytebuddy.jar.asm.Opcodes.FCONST_2;
+import static net.bytebuddy.jar.asm.Opcodes.FDIV;
+import static net.bytebuddy.jar.asm.Opcodes.FMUL;
+import static net.bytebuddy.jar.asm.Opcodes.FNEG;
+import static net.bytebuddy.jar.asm.Opcodes.FREM;
+import static net.bytebuddy.jar.asm.Opcodes.FSUB;
+import static net.bytebuddy.jar.asm.Opcodes.GETFIELD;
+import static net.bytebuddy.jar.asm.Opcodes.GETSTATIC;
+import static net.bytebuddy.jar.asm.Opcodes.H_INVOKESTATIC;
+import static net.bytebuddy.jar.asm.Opcodes.IADD;
+import static net.bytebuddy.jar.asm.Opcodes.IALOAD;
+import static net.bytebuddy.jar.asm.Opcodes.IAND;
+import static net.bytebuddy.jar.asm.Opcodes.IASTORE;
+import static net.bytebuddy.jar.asm.Opcodes.ICONST_0;
+import static net.bytebuddy.jar.asm.Opcodes.ICONST_1;
+import static net.bytebuddy.jar.asm.Opcodes.ICONST_2;
+import static net.bytebuddy.jar.asm.Opcodes.ICONST_3;
+import static net.bytebuddy.jar.asm.Opcodes.ICONST_4;
+import static net.bytebuddy.jar.asm.Opcodes.ICONST_5;
+import static net.bytebuddy.jar.asm.Opcodes.ICONST_M1;
+import static net.bytebuddy.jar.asm.Opcodes.IDIV;
+import static net.bytebuddy.jar.asm.Opcodes.IFEQ;
+import static net.bytebuddy.jar.asm.Opcodes.IFNE;
+import static net.bytebuddy.jar.asm.Opcodes.IFNONNULL;
+import static net.bytebuddy.jar.asm.Opcodes.IFNULL;
+import static net.bytebuddy.jar.asm.Opcodes.IF_ACMPEQ;
+import static net.bytebuddy.jar.asm.Opcodes.IF_ACMPNE;
+import static net.bytebuddy.jar.asm.Opcodes.IF_ICMPEQ;
+import static net.bytebuddy.jar.asm.Opcodes.IF_ICMPGE;
+import static net.bytebuddy.jar.asm.Opcodes.IF_ICMPGT;
+import static net.bytebuddy.jar.asm.Opcodes.IF_ICMPLE;
+import static net.bytebuddy.jar.asm.Opcodes.IF_ICMPLT;
+import static net.bytebuddy.jar.asm.Opcodes.IF_ICMPNE;
+import static net.bytebuddy.jar.asm.Opcodes.IMUL;
+import static net.bytebuddy.jar.asm.Opcodes.INEG;
+import static net.bytebuddy.jar.asm.Opcodes.INSTANCEOF;
+import static net.bytebuddy.jar.asm.Opcodes.INVOKESPECIAL;
+import static net.bytebuddy.jar.asm.Opcodes.INVOKESTATIC;
+import static net.bytebuddy.jar.asm.Opcodes.IOR;
+import static net.bytebuddy.jar.asm.Opcodes.IREM;
+import static net.bytebuddy.jar.asm.Opcodes.ISHL;
+import static net.bytebuddy.jar.asm.Opcodes.ISHR;
+import static net.bytebuddy.jar.asm.Opcodes.ISUB;
+import static net.bytebuddy.jar.asm.Opcodes.IUSHR;
+import static net.bytebuddy.jar.asm.Opcodes.IXOR;
+import static net.bytebuddy.jar.asm.Opcodes.LADD;
+import static net.bytebuddy.jar.asm.Opcodes.LALOAD;
+import static net.bytebuddy.jar.asm.Opcodes.LAND;
+import static net.bytebuddy.jar.asm.Opcodes.LASTORE;
+import static net.bytebuddy.jar.asm.Opcodes.LCMP;
+import static net.bytebuddy.jar.asm.Opcodes.LCONST_0;
+import static net.bytebuddy.jar.asm.Opcodes.LCONST_1;
+import static net.bytebuddy.jar.asm.Opcodes.LDIV;
+import static net.bytebuddy.jar.asm.Opcodes.LMUL;
+import static net.bytebuddy.jar.asm.Opcodes.LNEG;
+import static net.bytebuddy.jar.asm.Opcodes.LOR;
+import static net.bytebuddy.jar.asm.Opcodes.LREM;
+import static net.bytebuddy.jar.asm.Opcodes.LSHL;
+import static net.bytebuddy.jar.asm.Opcodes.LSHR;
+import static net.bytebuddy.jar.asm.Opcodes.LSUB;
+import static net.bytebuddy.jar.asm.Opcodes.LUSHR;
+import static net.bytebuddy.jar.asm.Opcodes.LXOR;
+import static net.bytebuddy.jar.asm.Opcodes.NEW;
+import static net.bytebuddy.jar.asm.Opcodes.NEWARRAY;
+import static net.bytebuddy.jar.asm.Opcodes.T_BOOLEAN;
+import static net.bytebuddy.jar.asm.Opcodes.T_BYTE;
+import static net.bytebuddy.jar.asm.Opcodes.T_CHAR;
+import static net.bytebuddy.jar.asm.Opcodes.T_DOUBLE;
+import static net.bytebuddy.jar.asm.Opcodes.T_FLOAT;
+import static net.bytebuddy.jar.asm.Opcodes.T_INT;
+import static net.bytebuddy.jar.asm.Opcodes.T_LONG;
+import static net.bytebuddy.jar.asm.Opcodes.T_SHORT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -207,7 +304,6 @@ class PowerAssertTranslator extends Translator {
      */
     @Override
     public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean access) {
-
         // replace invocation of AssertionError constructor.
         if (startAssertion && opcode == INVOKESPECIAL && owner.equals("java/lang/AssertionError")) {
             load(journal); // load context
@@ -517,7 +613,12 @@ class PowerAssertTranslator extends Translator {
     @Override
     public void visitInvokeDynamicInsn(String name, String description, Handle bsm, Object... bsmArgs) {
         super.visitInvokeDynamicInsn(name, description, bsm, bsmArgs);
-        PowerAssertContext.registerLocalVariable(methodIdentifier, name, description, -1);
+
+        // From version 9, java compiler (javac) produces the dynamic code for string concatenation.
+        // We can ignore them.
+        if (name.equals("makeConcatWithConstants")) {
+            return;
+        }
 
         Handle handle = (Handle) bsmArgs[1];
         Type functionalInterfaceType = (Type) bsmArgs[0];
@@ -530,9 +631,16 @@ class PowerAssertTranslator extends Translator {
 
             for (int i = 0; i < parameterDiff; i++) {
                 int index = parameterIndex.get(parameterIndex.size() - parameterDiff + i);
+
+                // The dynamic generation of lambda methods behaves differently depending on the
+                // compiler. In ECJ, local variables are not declared, so names can be resolved by
+                // referring to the local variables of the calling method. In Javac, on the other
+                // hand, local variable declarations do exist and can be used.
+                // However, it is impossible to tell at runtime which compiler the code was
+                // processed by, so it must be able to handle either.
                 PowerAssertContext.registerLocalVariable(calleeMethodId, i + (needAccessToInstance ? 1 : 0), () -> {
                     return PowerAssertContext.getLocalVariable(methodIdentifier).get(index).get();
-                });
+                }, false);
             }
         }
 

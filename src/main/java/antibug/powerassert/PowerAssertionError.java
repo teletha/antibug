@@ -10,11 +10,7 @@
 package antibug.powerassert;
 
 /**
- * <p>
  * This is internal class for enhanced error.
- * </p>
- * 
- * @version 2012/01/24 13:14:52
  */
 @SuppressWarnings("serial")
 public class PowerAssertionError extends AssertionError {
@@ -23,9 +19,7 @@ public class PowerAssertionError extends AssertionError {
     final PowerAssertContext context;
 
     /**
-     * <p>
      * This is internal constructor. Don't use it.
-     * </p>
      */
     public PowerAssertionError(PowerAssertContext context) {
         super("");
@@ -34,9 +28,7 @@ public class PowerAssertionError extends AssertionError {
     }
 
     /**
-     * <p>
      * This is internal constructor. Don't use it.
-     * </p>
      */
     public PowerAssertionError(boolean detailMessage, PowerAssertContext context) {
         super(detailMessage);
@@ -45,9 +37,7 @@ public class PowerAssertionError extends AssertionError {
     }
 
     /**
-     * <p>
      * This is internal constructor. Don't use it.
-     * </p>
      */
     public PowerAssertionError(char detailMessage, PowerAssertContext context) {
         super(detailMessage);
@@ -56,9 +46,7 @@ public class PowerAssertionError extends AssertionError {
     }
 
     /**
-     * <p>
      * This is internal constructor. Don't use it.
-     * </p>
      */
     public PowerAssertionError(double detailMessage, PowerAssertContext context) {
         super(detailMessage);
@@ -67,9 +55,7 @@ public class PowerAssertionError extends AssertionError {
     }
 
     /**
-     * <p>
      * This is internal constructor. Don't use it.
-     * </p>
      */
     public PowerAssertionError(float detailMessage, PowerAssertContext context) {
         super(detailMessage);
@@ -78,9 +64,7 @@ public class PowerAssertionError extends AssertionError {
     }
 
     /**
-     * <p>
      * This is internal constructor. Don't use it.
-     * </p>
      */
     public PowerAssertionError(int detailMessage, PowerAssertContext context) {
         super(detailMessage);
@@ -89,9 +73,7 @@ public class PowerAssertionError extends AssertionError {
     }
 
     /**
-     * <p>
      * This is internal constructor. Don't use it.
-     * </p>
      */
     public PowerAssertionError(long detailMessage, PowerAssertContext context) {
         super(detailMessage);
@@ -100,9 +82,7 @@ public class PowerAssertionError extends AssertionError {
     }
 
     /**
-     * <p>
      * This is internal constructor. Don't use it.
-     * </p>
      */
     public PowerAssertionError(Object detailMessage, PowerAssertContext context) {
         super(detailMessage);

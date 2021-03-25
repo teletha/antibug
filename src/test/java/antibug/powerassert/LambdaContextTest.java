@@ -122,13 +122,13 @@ class LambdaContextTest {
 
     @Test
     void localAccessibleNoParameterOrderShuffle4() {
-        String x = "use";
-        String y = "local";
+        String p = "use";
+        String q = "local";
 
-        test.willCapture("y.equals(x.concat(v))", false);
-        run("ok", v -> {
+        test.willCapture("q.equals(p.concat(r))", false);
+        run("ok", r -> {
             run(() -> {
-                assert y.equals(x.concat(v));
+                assert q.equals(p.concat(r));
             });
         });
     }
@@ -139,7 +139,7 @@ class LambdaContextTest {
         String y = "local";
 
         test.willCapture("y.equals(v.concat(x))", false);
-        run("ok", v -> {
+        run("oka", v -> {
             run(() -> {
                 assert y.equals(v.concat(x));
             });

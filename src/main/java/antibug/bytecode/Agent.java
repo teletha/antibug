@@ -9,7 +9,21 @@
  */
 package antibug.bytecode;
 
-import static net.bytebuddy.jar.asm.Opcodes.*;
+import static net.bytebuddy.jar.asm.Opcodes.ACONST_NULL;
+import static net.bytebuddy.jar.asm.Opcodes.ALOAD;
+import static net.bytebuddy.jar.asm.Opcodes.DUP;
+import static net.bytebuddy.jar.asm.Opcodes.DUP2;
+import static net.bytebuddy.jar.asm.Opcodes.ICONST_0;
+import static net.bytebuddy.jar.asm.Opcodes.ICONST_1;
+import static net.bytebuddy.jar.asm.Opcodes.ICONST_2;
+import static net.bytebuddy.jar.asm.Opcodes.ICONST_3;
+import static net.bytebuddy.jar.asm.Opcodes.ICONST_4;
+import static net.bytebuddy.jar.asm.Opcodes.ICONST_5;
+import static net.bytebuddy.jar.asm.Opcodes.ICONST_M1;
+import static net.bytebuddy.jar.asm.Opcodes.INVOKESPECIAL;
+import static net.bytebuddy.jar.asm.Opcodes.INVOKESTATIC;
+import static net.bytebuddy.jar.asm.Opcodes.INVOKEVIRTUAL;
+import static net.bytebuddy.jar.asm.Opcodes.NEW;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
@@ -40,11 +54,7 @@ import net.bytebuddy.jar.asm.Opcodes;
 import net.bytebuddy.jar.asm.Type;
 
 /**
- * <p>
  * Provide functionality to transform bytecode.
- * </p>
- * 
- * @version 2018/04/04 0:49:41
  */
 public class Agent {
 
@@ -58,9 +68,7 @@ public class Agent {
     private volatile static Instrumentation tool;
 
     /**
-     * <p>
      * Create dynamic Agent.
-     * </p>
      * 
      * @param translator Your bytecode translator.
      */
@@ -69,9 +77,7 @@ public class Agent {
     }
 
     /**
-     * <p>
      * Create dynamic Agent.
-     * </p>
      * 
      * @param agent Your bytecode translator.
      */
@@ -87,9 +93,7 @@ public class Agent {
     }
 
     /**
-     * <p>
      * Force to transform the target class.
-     * </p>
      * 
      * @param target Specify the class to translate.
      */
@@ -103,10 +107,8 @@ public class Agent {
     }
 
     /**
-     * <p>
      * Search the transformed code of the specified class. If the target class is not transformed,
      * returns <code>null</code>.
-     * </p>
      * 
      * @param target Specify the class to translate.
      * @return Transformed byte code to load by {@link ClassLoader}.
@@ -116,9 +118,7 @@ public class Agent {
     }
 
     /**
-     * <p>
      * Create instrumentation tool.
-     * </p>
      */
     private static void createTool() {
         // Build manifest.
@@ -183,19 +183,24 @@ public class Agent {
                 return bytes;
             }
 
-            // collect local variables
-            LocalVariableManager manager = new LocalVariableManager();
-            new ClassReader(bytes).accept(manager, ClassReader.SKIP_FRAMES);
+            try {
+                // collect local variables
+                LocalVariableManager manager = new LocalVariableManager();
+                new ClassReader(bytes).accept(manager, ClassReader.SKIP_FRAMES);
 
-            ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
-            ClassTranslator visitor = new ClassTranslator(writer, name, manager);
-            ClassReader reader = new ClassReader(bytes);
-            reader.accept(visitor, ClassReader.EXPAND_FRAMES);
-            byte[] transformed = writer.toByteArray();
+                ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
+                ClassTranslator visitor = new ClassTranslator(writer, name, manager);
+                ClassReader reader = new ClassReader(bytes);
+                reader.accept(visitor, ClassReader.EXPAND_FRAMES);
+                byte[] transformed = writer.toByteArray();
 
-            codes.put(clazz, transformed);
+                codes.put(clazz, transformed);
 
-            return transformed;
+                return transformed;
+            } catch (Throwable e) {
+                e.printStackTrace();
+                throw new Error(e);
+            }
         }
 
         /**
@@ -226,7 +231,7 @@ public class Agent {
             public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
                 try {
                     MethodVisitor visitor = super.visitMethod(access, name, desc, signature, exceptions);
-                    LocalVariableSorter sorter = new LocalVariableSorter(access, desc, visitor);
+                    LocalVariablesSorter sorter = new LocalVariablesSorter(access, desc, visitor);
                     Translator translator = ReflectionUtils.newInstance(TranslatorTransformer.this.translator);
                     translator.set(sorter, className, name, Type.getMethodType(desc), manager);
 
@@ -333,11 +338,9 @@ public class Agent {
         }
 
         /**
-         * <p>
          * Lazy set up.
-         * </p>
          */
-        final void set(LocalVariableSorter visitor, String className, String methodName, Type methodDescriptor, LocalVariableManager manager) {
+        final void set(LocalVariablesSorter visitor, String className, String methodName, Type methodDescriptor, LocalVariableManager manager) {
             mv = visitor;
             this.className = className;
             this.classType = Type.getObjectType(className);
@@ -360,9 +363,7 @@ public class Agent {
         }
 
         /**
-         * <p>
          * Get local variable name.
-         * </p>
          * 
          * @param position
          * @return
@@ -372,9 +373,7 @@ public class Agent {
         }
 
         /**
-         * <p>
          * Get local variable type.
-         * </p>
          * 
          * @param position
          * @return
@@ -390,13 +389,11 @@ public class Agent {
          * @return the identifier of the newly created local variable.
          */
         protected final LocalVariable newLocal(Type type) {
-            return new LocalVariable(type, (LocalVariableSorter) mv);
+            return new LocalVariable(type, (LocalVariablesSorter) mv);
         }
 
         /**
-         * <p>
          * Create a new insntance and store it into new local variable.
-         * </p>
          * 
          * @param api
          * @param instantiator
@@ -416,9 +413,7 @@ public class Agent {
         }
 
         /**
-         * <p>
          * Load the specified object as possible as we can.
-         * </p>
          * 
          * @param object
          */
@@ -474,10 +469,7 @@ public class Agent {
         }
 
         /**
-         * <p>
-         * Helper method to write below code.
-         * </p>
-         * <pre>
+         * Helper method to write below code. <pre>
          * mv.visitVisitInsn(Opcodes.DUP);
          * 
          * LocalVariable local = newLocal(type);
@@ -511,9 +503,7 @@ public class Agent {
         }
 
         /**
-         * <p>
          * Write instruction code.
-         * </p>
          * 
          * @param opcode
          * @return
@@ -523,9 +513,7 @@ public class Agent {
         }
 
         /**
-         * <p>
          * Write int value code.
-         * </p>
          * 
          * @param opcode
          * @param operand
@@ -536,9 +524,7 @@ public class Agent {
         }
 
         /**
-         * <p>
          * Write constant value code.
-         * </p>
          * 
          * @param value
          * @return
@@ -548,9 +534,7 @@ public class Agent {
         }
 
         /**
-         * <p>
          * Helper method to write bytecode which wrap the primitive value.
-         * </p>
          * 
          * @param type
          */
@@ -563,9 +547,7 @@ public class Agent {
         }
 
         /**
-         * <p>
          * Create API.
-         * </p>
          * 
          * @param invoker
          * @param api

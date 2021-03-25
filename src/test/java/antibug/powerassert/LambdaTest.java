@@ -37,7 +37,7 @@ class LambdaTest {
     void runnableMethodReference() {
         List list = new ArrayList();
 
-        test.willCapture("runnable(list::clear)", false);
+        test.willCapture("runnable(list::clear) or runnable(Objects.requireNonNull(list)::clear)", false);
         assert runnable(list::clear);
     }
 

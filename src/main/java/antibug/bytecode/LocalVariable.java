@@ -9,8 +9,20 @@
  */
 package antibug.bytecode;
 
-import static net.bytebuddy.jar.asm.Opcodes.*;
-import static net.bytebuddy.jar.asm.Type.*;
+import static net.bytebuddy.jar.asm.Opcodes.ALOAD;
+import static net.bytebuddy.jar.asm.Opcodes.ASTORE;
+import static net.bytebuddy.jar.asm.Opcodes.DLOAD;
+import static net.bytebuddy.jar.asm.Opcodes.DSTORE;
+import static net.bytebuddy.jar.asm.Opcodes.FLOAD;
+import static net.bytebuddy.jar.asm.Opcodes.FSTORE;
+import static net.bytebuddy.jar.asm.Opcodes.ILOAD;
+import static net.bytebuddy.jar.asm.Opcodes.ISTORE;
+import static net.bytebuddy.jar.asm.Opcodes.LLOAD;
+import static net.bytebuddy.jar.asm.Opcodes.LSTORE;
+import static net.bytebuddy.jar.asm.Type.DOUBLE_TYPE;
+import static net.bytebuddy.jar.asm.Type.FLOAT_TYPE;
+import static net.bytebuddy.jar.asm.Type.INT_TYPE;
+import static net.bytebuddy.jar.asm.Type.LONG_TYPE;
 
 import net.bytebuddy.jar.asm.MethodVisitor;
 import net.bytebuddy.jar.asm.Type;
@@ -72,7 +84,7 @@ public class LocalVariable extends Bytecode<LocalVariable> {
      * @param opcode
      * @param index
      */
-    LocalVariable(Type type, LocalVariableSorter sorter) {
+    LocalVariable(Type type, LocalVariablesSorter sorter) {
         this.type = type;
         this.index = sorter.newLocal(type);
         this.opcode = type.getOpcode(ILOAD);

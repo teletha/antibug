@@ -9,7 +9,14 @@
  */
 package antibug.powerassert;
 
-import static net.bytebuddy.jar.asm.Type.*;
+import static net.bytebuddy.jar.asm.Type.BOOLEAN;
+import static net.bytebuddy.jar.asm.Type.BYTE;
+import static net.bytebuddy.jar.asm.Type.CHAR;
+import static net.bytebuddy.jar.asm.Type.DOUBLE;
+import static net.bytebuddy.jar.asm.Type.FLOAT;
+import static net.bytebuddy.jar.asm.Type.INT;
+import static net.bytebuddy.jar.asm.Type.LONG;
+import static net.bytebuddy.jar.asm.Type.SHORT;
 
 import java.lang.reflect.Array;
 import java.util.ArrayDeque;
@@ -23,9 +30,6 @@ import java.util.function.Supplier;
 
 import net.bytebuddy.jar.asm.Type;
 
-/**
- * @version 2018/04/03 23:42:29
- */
 public class PowerAssertContext implements Journal {
 
     /** The zero object. */
@@ -48,28 +52,24 @@ public class PowerAssertContext implements Journal {
     }
 
     /**
-     * <p>
      * Register local variable.
-     * </p>
      * 
      * @param methodId
      * @param name
      * @param description
      */
     public static void registerLocalVariable(int methodId, String name, String description, int index) {
-        registerLocalVariable(methodId, index, () -> new String[] {name, description});
+        registerLocalVariable(methodId, index, () -> new String[] {name, description}, true);
     }
 
     /**
-     * <p>
      * Register local variable.
-     * </p>
      * 
      * @param methodId
      * @param name
      * @param description
      */
-    public static void registerLocalVariable(int methodId, int index, Supplier<String[]> resolver) {
+    public static synchronized void registerLocalVariable(int methodId, int index, Supplier<String[]> resolver, boolean override) {
         List<Supplier<String[]>> local = locals.get(methodId);
 
         if (local == null) {
@@ -84,7 +84,9 @@ public class PowerAssertContext implements Journal {
         }
 
         if (0 <= index) {
-            local.set(index, resolver);
+            if (override || local.get(index) == null) {
+                local.set(index, resolver);
+            }
         }
     }
 

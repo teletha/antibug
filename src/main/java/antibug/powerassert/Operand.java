@@ -10,12 +10,10 @@
 package antibug.powerassert;
 
 import java.util.Arrays;
+import java.util.Set;
 
 import net.bytebuddy.jar.asm.Type;
 
-/**
- * @version 2012/01/20 1:03:27
- */
 class Operand {
 
     /** The unknown type. */
@@ -63,9 +61,7 @@ class Operand {
     }
 
     /**
-     * <p>
      * Decide the type of this operand's value.
-     * </p>
      * 
      * @return
      */
@@ -74,7 +70,7 @@ class Operand {
     }
 
     /**
-     * @see java.lang.Object#equals(java.lang.Object)
+     * {@inheritDoc}
      */
     @Override
     public boolean equals(Object obj) {
@@ -102,8 +98,10 @@ class Operand {
             if (otherName != null) {
                 return false;
             }
-        } else if (!name.equals(otherName)) {
-            return false;
+        } else {
+            if (!Set.of(name.split(" or ")).contains(otherName)) {
+                return false;
+            }
         }
 
         // check value
@@ -157,7 +155,7 @@ class Operand {
     }
 
     /**
-     * @see java.lang.Object#toString()
+     * {@inheritDoc}
      */
     @Override
     public String toString() {
