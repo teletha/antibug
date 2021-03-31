@@ -9,26 +9,20 @@
  */
 package antibug.bytecode;
 
-import static net.bytebuddy.jar.asm.Opcodes.INVOKESTATIC;
+import static net.bytebuddy.jar.asm.Opcodes.*;
 
 import net.bytebuddy.jar.asm.MethodVisitor;
 import net.bytebuddy.jar.asm.Type;
 
-/**
- * @version 2012/01/18 8:42:38
- */
 public abstract class Bytecode<T extends Bytecode<T>> {
 
     /** The object type for reuse. */
     public static final Type OBJECT_TYPE = Type.getType(Object.class);
 
     /**
-     * <p>
      * Helper method to write wrap primitive type.
-     * </p>
      * 
      * @param type
-     * @return
      */
     final void wrap(MethodVisitor visitor, Type type) {
         Type wrapper = getWrapperType(type);
@@ -39,9 +33,7 @@ public abstract class Bytecode<T extends Bytecode<T>> {
     }
 
     /**
-     * <p>
      * Write bytecode actually.
-     * </p>
      * 
      * @param visitor
      * @param requireNonPrimitive TODO
@@ -49,9 +41,7 @@ public abstract class Bytecode<T extends Bytecode<T>> {
     public abstract void write(MethodVisitor visitor, boolean requireNonPrimitive);
 
     /**
-     * <p>
      * Search wrapper type of the specified primitive type.
-     * </p>
      * 
      * @param type
      * @return

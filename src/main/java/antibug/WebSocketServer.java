@@ -158,8 +158,6 @@ public class WebSocketServer {
 
     /**
      * Emulate sending message to client.
-     * 
-     * @param messageFromServer
      */
     public void sendClose(int status, String reason) {
         if (clientListener == null) {

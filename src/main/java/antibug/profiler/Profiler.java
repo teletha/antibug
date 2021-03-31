@@ -20,9 +20,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-/**
- * @version 2015/08/02 20:18:27
- */
 public class Profiler<K, E, Y> {
 
     /** Flag for profiling execution. */
@@ -44,9 +41,7 @@ public class Profiler<K, E, Y> {
     }
 
     /**
-     * <p>
      * Create the group name by keys.
-     * </p>
      * 
      * @param key1
      * @param key2
@@ -58,9 +53,7 @@ public class Profiler<K, E, Y> {
     }
 
     /**
-     * <p>
      * Create the grouping key.
-     * </p>
      * 
      * @param key1
      * @param key2
@@ -72,9 +65,7 @@ public class Profiler<K, E, Y> {
     }
 
     /**
-     * <p>
      * Start profiling phase with the specified grouping key.
-     * </p>
      * 
      * @param key1
      */
@@ -83,9 +74,7 @@ public class Profiler<K, E, Y> {
     }
 
     /**
-     * <p>
      * Start profiling phase with the specified grouping key.
-     * </p>
      * 
      * @param key1
      */
@@ -94,9 +83,7 @@ public class Profiler<K, E, Y> {
     }
 
     /**
-     * <p>
      * Start profiling phase with the specified grouping key.
-     * </p>
      * 
      * @param key1
      */
@@ -107,9 +94,7 @@ public class Profiler<K, E, Y> {
     }
 
     /**
-     * <p>
      * Start profiling phase with the specified grouping key.
-     * </p>
      * 
      * @param key1
      */
@@ -118,9 +103,7 @@ public class Profiler<K, E, Y> {
     }
 
     /**
-     * <p>
      * Start profiling phase with the specified grouping key.
-     * </p>
      * 
      * @param key1
      */
@@ -129,9 +112,7 @@ public class Profiler<K, E, Y> {
     }
 
     /**
-     * <p>
      * Start profiling phase with the specified grouping key.
-     * </p>
      * 
      * @param key1
      */
@@ -149,9 +130,7 @@ public class Profiler<K, E, Y> {
     }
 
     /**
-     * <p>
      * Start profiling phase with the specified grouping key.
-     * </p>
      * 
      * @param key1
      */
@@ -160,9 +139,7 @@ public class Profiler<K, E, Y> {
     }
 
     /**
-     * <p>
      * Start profiling phase with the specified grouping key.
-     * </p>
      * 
      * @param key1
      */
@@ -171,9 +148,7 @@ public class Profiler<K, E, Y> {
     }
 
     /**
-     * <p>
      * Start profiling phase with the specified grouping key.
-     * </p>
      * 
      * @param key1
      */
@@ -187,9 +162,7 @@ public class Profiler<K, E, Y> {
     }
 
     /**
-     * <p>
      * Start profiling phase with the specified grouping key.
-     * </p>
      * 
      * @param key1
      */
@@ -198,9 +171,7 @@ public class Profiler<K, E, Y> {
     }
 
     /**
-     * <p>
      * Start profiling phase with the specified grouping key.
-     * </p>
      * 
      * @param key1
      */
@@ -209,9 +180,7 @@ public class Profiler<K, E, Y> {
     }
 
     /**
-     * <p>
      * Start profiling phase with the specified grouping key.
-     * </p>
      * 
      * @param key1
      */
@@ -225,9 +194,7 @@ public class Profiler<K, E, Y> {
     }
 
     /**
-     * <p>
      * Stop profiling phase.
-     * </p>
      */
     public final void stop() {
         if (execute) {
@@ -238,11 +205,7 @@ public class Profiler<K, E, Y> {
     }
 
     /**
-     * <p>
      * Show profiling result.
-     * </p>
-     * 
-     * @param results
      */
     public final void show() {
         if (execute) {
@@ -267,9 +230,7 @@ public class Profiler<K, E, Y> {
     }
 
     /**
-     * <p>
      * Show profiling result.
-     * </p>
      * 
      * @param results
      */
@@ -294,9 +255,7 @@ public class Profiler<K, E, Y> {
     }
 
     /**
-     * <p>
      * Helper method to build formatter.
-     * </p>
      * 
      * @param list
      * @param value

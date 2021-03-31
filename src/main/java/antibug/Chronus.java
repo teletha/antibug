@@ -309,7 +309,6 @@ public class Chronus implements ScheduledExecutorService {
      * 
      * @param amount Time amount.
      * @param unit Time unit.
-     * @see ChronusTest#elapse()
      */
     public final Chronus elapse(int amount, TimeUnit unit) {
         long startTime = marked + unit.toNanos(amount);
@@ -375,11 +374,7 @@ public class Chronus implements ScheduledExecutorService {
     }
 
     /**
-     * <p>
      * Freeze process.
-     * </p>
-     * 
-     * @param millseconds
      */
     public void await(long time, TimeUnit unit) {
         freezeNano(unit.toNanos(time));

@@ -9,14 +9,7 @@
  */
 package antibug.powerassert;
 
-import static net.bytebuddy.jar.asm.Type.BOOLEAN;
-import static net.bytebuddy.jar.asm.Type.BYTE;
-import static net.bytebuddy.jar.asm.Type.CHAR;
-import static net.bytebuddy.jar.asm.Type.DOUBLE;
-import static net.bytebuddy.jar.asm.Type.FLOAT;
-import static net.bytebuddy.jar.asm.Type.INT;
-import static net.bytebuddy.jar.asm.Type.LONG;
-import static net.bytebuddy.jar.asm.Type.SHORT;
+import static net.bytebuddy.jar.asm.Type.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayDeque;
@@ -66,8 +59,9 @@ public class PowerAssertContext implements Journal {
      * Register local variable.
      * 
      * @param methodId
-     * @param name
-     * @param description
+     * @param index
+     * @param resolver
+     * @param override
      */
     public static synchronized void registerLocalVariable(int methodId, int index, Supplier<String[]> resolver, boolean override) {
         List<Supplier<String[]>> local = locals.get(methodId);
@@ -545,7 +539,7 @@ public class PowerAssertContext implements Journal {
         }
 
         /**
-         * @see testament.powerassert.Operand#toString()
+         * {@inheritDoc}
          */
         @Override
         public String toString() {
@@ -570,11 +564,7 @@ public class PowerAssertContext implements Journal {
     }
 
     /**
-     * <p>
      * Represents variable value.
-     * </p>
-     * 
-     * @version 2012/01/22 14:15:51
      */
     private static class Variable extends Operand {
 
@@ -593,7 +583,7 @@ public class PowerAssertContext implements Journal {
         }
 
         /**
-         * @see testament.powerassert.Operand#getType()
+         * {@inheritDoc}
          */
         @Override
         Type getType() {
@@ -602,11 +592,7 @@ public class PowerAssertContext implements Journal {
     }
 
     /**
-     * <p>
      * Represents Condition expression.
-     * </p>
-     * 
-     * @version 2013/07/22 10:06:00
      */
     private class Condition extends Operand {
 
@@ -654,11 +640,7 @@ public class PowerAssertContext implements Journal {
     }
 
     /**
-     * <p>
      * Represents Array initialization expression.
-     * </p>
-     * 
-     * @version 2012/01/19 16:18:02
      */
     private class NewArray extends Operand {
 
@@ -691,9 +673,7 @@ public class PowerAssertContext implements Journal {
         }
 
         /**
-         * <p>
          * Add element value.
-         * </p>
          * 
          * @param operand
          */
@@ -710,7 +690,7 @@ public class PowerAssertContext implements Journal {
         }
 
         /**
-         * @see testament.powerassert.Operand#toString()
+         * {@inheritDoc}
          */
         @Override
         public String toString() {
@@ -733,11 +713,7 @@ public class PowerAssertContext implements Journal {
     }
 
     /**
-     * <p>
      * Represents method or constructor invocation.
-     * </p>
-     * 
-     * @version 2012/01/22 14:41:13
      */
     private class Invocation extends Operand {
 
@@ -757,9 +733,7 @@ public class PowerAssertContext implements Journal {
         private final List<Operand> parameters = new ArrayList();
 
         /**
-         * <p>
          * Normal method invocation.
-         * </p>
          * 
          * @param name A method name.
          * @param description A method description.
@@ -770,9 +744,7 @@ public class PowerAssertContext implements Journal {
         }
 
         /**
-         * <p>
          * Repesents method invocation.
-         * </p>
          * 
          * @param invoker A method invoker.
          * @param name A method name.
@@ -797,7 +769,7 @@ public class PowerAssertContext implements Journal {
         }
 
         /**
-         * @see testament.powerassert.Operand#getType()
+         * {@inheritDoc}
          */
         @Override
         Type getType() {
@@ -805,7 +777,7 @@ public class PowerAssertContext implements Journal {
         }
 
         /**
-         * @see testament.powerassert.Operand#toString()
+         * {@inheritDoc}
          */
         @Override
         public String toString() {

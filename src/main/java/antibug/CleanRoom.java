@@ -72,9 +72,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     private final Set<FileSystem> archives = new HashSet();
 
     /**
-     * <p>
      * Assume platform encoding.
-     * </p>
      * 
      * @param charset Your exepcted charcter encoding.
      */
@@ -83,9 +81,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     }
 
     /**
-     * <p>
      * Assume platform encoding.
-     * </p>
      * 
      * @param charset Your exepcted charcter encoding.
      */
@@ -94,9 +90,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     }
 
     /**
-     * <p>
      * Build file tree by {@link FileSystemDSL}.
-     * </p>
      * 
      * @param context DSL context.
      */
@@ -105,9 +99,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     }
 
     /**
-     * <p>
      * Locate a present resource file which is assured that the spcified file exists.
-     * </p>
      * 
      * @param name A file name.
      * @return A located present file.
@@ -117,9 +109,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     }
 
     /**
-     * <p>
      * Locate a present resource file which is assured that the spcified file exists.
-     * </p>
      * 
      * @param name A file name.
      * @param modified A last modified time.
@@ -130,9 +120,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     }
 
     /**
-     * <p>
      * Locate a present resource file which is assured that the spcified file exists.
-     * </p>
      * 
      * @param name A file name.
      * @param lines A text contents.
@@ -143,9 +131,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     }
 
     /**
-     * <p>
      * Locate a present resource file which is assured that the spcified file exists.
-     * </p>
      * 
      * @param name A file name.
      * @param modified A last modified time.
@@ -157,9 +143,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     }
 
     /**
-     * <p>
      * Locate a present resource file which is assured that the spcified file exists.
-     * </p>
      * 
      * @param name A file name.
      * @param lines A text contents.
@@ -170,9 +154,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     }
 
     /**
-     * <p>
      * Locate a present resource file which is assured that the spcified file exists.
-     * </p>
      * 
      * @param name A file name.
      * @param modified A last modified time.
@@ -193,9 +175,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     }
 
     /**
-     * <p>
      * Locate a present resource file which is assured that the spcified file exists as archive.
-     * </p>
      * 
      * @param name A file name.
      * @return A located present archive file.
@@ -205,9 +185,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     }
 
     /**
-     * <p>
      * Locate a present resource file which is assured that the spcified file exists as archive.
-     * </p>
      * 
      * @param name A file name.
      * @return A located present archive file.
@@ -217,11 +195,9 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     }
 
     /**
-     * <p>
      * Locate a present resource file which is assured that the spcified file exists as archive.
-     * </p>
      * 
-     * @param name A file name.
+     * @param path A file path.
      * @return A located present archive file.
      */
     public Path locateArchive(Path path) {
@@ -229,11 +205,9 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     }
 
     /**
-     * <p>
      * Locate a present resource file which is assured that the spcified file exists as archive.
-     * </p>
      * 
-     * @param name A file name.
+     * @param path A file path.
      * @return A located present archive file.
      */
     public Path locateArchive(Path path, Consumer<FileSystemDSL> structure) {
@@ -252,9 +226,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     }
 
     /**
-     * <p>
      * Locate a present resource directory which is assured that the specified directory exists.
-     * </p>
      * 
      * @param name A directory name.
      * @return A located present directory.
@@ -264,9 +236,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     }
 
     /**
-     * <p>
      * Locate a present resource directory which is assured that the specified directory exists.
-     * </p>
      * 
      * @param name A directory name.
      * @return A located present directory.
@@ -276,9 +246,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     }
 
     /**
-     * <p>
      * Locate a present resource directory which is assured that the specified directory exists.
-     * </p>
      * 
      * @param name A directory name.
      * @param children
@@ -289,9 +257,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     }
 
     /**
-     * <p>
      * Locate a present resource directory which is assured that the specified directory exists.
-     * </p>
      * 
      * @param name A directory name.
      * @param children
@@ -310,9 +276,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     }
 
     /**
-     * <p>
      * Locate an absent resource which is assured that the specified resource doesn't exists.
-     * </p>
      * 
      * @param name A resource name.
      * @return A located absent file system resource.

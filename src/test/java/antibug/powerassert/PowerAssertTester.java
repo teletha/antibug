@@ -49,11 +49,7 @@ public class PowerAssertTester implements BeforeAllCallback, BeforeEachCallback 
     }
 
     /**
-     * <p>
      * Validate error message.
-     * </p>
-     * 
-     * @param context
      */
     void validate(PowerAssertionError e) {
         PowerAssertContext context = e.context;
@@ -100,7 +96,7 @@ public class PowerAssertTester implements BeforeAllCallback, BeforeEachCallback 
     }
 
     /**
-     * @param string
+     * @param message
      */
     void willMessage(String message) {
         this.message = message;

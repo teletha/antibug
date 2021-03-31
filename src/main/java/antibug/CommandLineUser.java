@@ -104,7 +104,7 @@ public class CommandLineUser implements BeforeEachCallback, AfterEachCallback, T
     }
 
     /**
-     * @param value
+     * @param values
      */
     public void willInput(String... values) {
         for (String value : values) {
@@ -137,9 +137,7 @@ public class CommandLineUser implements BeforeEachCallback, AfterEachCallback, T
     }
 
     /**
-     * <p>
      * Test whether this user outputed the specified value or not.
-     * </p>
      * 
      * @param valus An outputed value to test.
      * @return A result.
@@ -149,33 +147,21 @@ public class CommandLineUser implements BeforeEachCallback, AfterEachCallback, T
     }
 
     /**
-     * <p>
      * Clear buffered output message.
-     * </p>
-     * 
-     * @return
      */
     public void clearOutput() {
         output.text = new StringBuilder();
     }
 
     /**
-     * <p>
      * Clear buffered error message.
-     * </p>
-     * 
-     * @return
      */
     public void clearError() {
         error.text = new StringBuilder();
     }
 
     /**
-     * <p>
      * Clear buffered output and error message.
-     * </p>
-     * 
-     * @return
      */
     public void clear() {
         clearOutput();
