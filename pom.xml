@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.teletha</groupId>
 	<artifactId>antibug</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<packaging>jar</packaging>
 	<name>antibug</name>
 	<description>Bug Detection Tool Set. (including PowerAssert</description>
@@ -10,14 +10,14 @@
 		<dependency>
 			<groupId>net.bytebuddy</groupId>
 			<artifactId>byte-buddy</artifactId>
-			<version>[1.10.22,)</version>
+			<version>[1.11.15,)</version>
 			<scope>compile</scope>
 			<exclusions/>
 		</dependency>
 		<dependency>
 			<groupId>net.bytebuddy</groupId>
 			<artifactId>byte-buddy-agent</artifactId>
-			<version>[1.10.22,)</version>
+			<version>[1.11.15,)</version>
 			<scope>compile</scope>
 			<exclusions/>
 		</dependency>
@@ -87,9 +87,7 @@
 				<configuration>
 					<encoding>UTF-8</encoding>
 					<release>16</release>
-					<compilerArgs>
-						<arg>-proc:none</arg>
-					</compilerArgs>
+					<compilerArgs/>
 				</configuration>
 			</plugin>
 			<plugin>
