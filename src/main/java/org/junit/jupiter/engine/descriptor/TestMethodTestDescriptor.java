@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2020 the original author or authors.
+ * Copyright 2015-2021 the original author or authors.
  *
  * All rights reserved. This program and the accompanying materials are
  * made available under the terms of the Eclipse Public License v2.0 which
@@ -10,9 +10,9 @@
 
 package org.junit.jupiter.engine.descriptor;
 
-import static org.apiguardian.api.API.Status.INTERNAL;
-import static org.junit.jupiter.engine.descriptor.ExtensionUtils.populateNewExtensionRegistryFromExtendWithAnnotation;
-import static org.junit.jupiter.engine.support.JupiterThrowableCollectorFactory.createThrowableCollector;
+import static org.apiguardian.api.API.Status.*;
+import static org.junit.jupiter.engine.descriptor.ExtensionUtils.*;
+import static org.junit.jupiter.engine.support.JupiterThrowableCollectorFactory.*;
 
 import java.lang.reflect.Method;
 import java.util.Optional;
@@ -113,7 +113,10 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
     }
 
     protected MutableExtensionRegistry populateNewExtensionRegistry(JupiterEngineExecutionContext context) {
-        return populateNewExtensionRegistryFromExtendWithAnnotation(context.getExtensionRegistry(), getTestMethod());
+        MutableExtensionRegistry registry = populateNewExtensionRegistryFromExtendWithAnnotation(context
+                .getExtensionRegistry(), getTestMethod());
+        registerExtensionsFromExecutableParameters(registry, getTestMethod());
+        return registry;
     }
 
     @Override
@@ -144,7 +147,7 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
         if (isPerMethodLifecycle(context) && context.getExtensionContext().getTestInstance().isPresent()) {
             invokeTestInstancePreDestroyCallbacks(context);
         }
-        super.cleanUp(context);
+        context.getThrowableCollector().execute(() -> super.cleanUp(context));
         context.getThrowableCollector().assertEmpty();
     }
 

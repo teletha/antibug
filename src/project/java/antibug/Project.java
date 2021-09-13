@@ -11,7 +11,7 @@ package antibug;
 
 public class Project extends bee.api.Project {
 
-    String JunitVersion = "5.7.1";
+    String JunitVersion = "5.8.0-RC1";
 
     {
         product("com.github.teletha", "antibug", ref("version.txt"));
@@ -21,7 +21,7 @@ public class Project extends bee.api.Project {
         require("org.junit.jupiter", "junit-jupiter-api", JunitVersion);
         require("org.junit.jupiter", "junit-jupiter-engine", JunitVersion);
         require("org.junit.jupiter", "junit-jupiter-params", JunitVersion);
-        require("org.junit.platform", "junit-platform-launcher", "1.7.1");
+        require("org.junit.platform", "junit-platform-launcher", "1.8.0-RC1");
         require("net.bytebuddy", "byte-buddy");
         require("net.bytebuddy", "byte-buddy-agent");
 
