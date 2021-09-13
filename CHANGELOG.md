@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://www.github.com/Teletha/antibug/compare/v1.0.3...v1.1.0) (2021-09-13)
+
+
+### Features
+
+* Update junit. ([3d999f8](https://www.github.com/Teletha/antibug/commit/3d999f8074cbffb5b66124c195e8af572baa0b72))
+
 ### [1.0.3](https://www.github.com/Teletha/antibug/compare/v1.0.2...v1.0.3) (2021-03-25)
 
 
