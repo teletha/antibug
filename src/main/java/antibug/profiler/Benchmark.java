@@ -74,12 +74,20 @@ public final class Benchmark {
      * @param code A code to be measured.
      */
     public void measure(String name, Callable code) {
-        codes.add(new MeasurableCode(name, code));
+        codes.add(new MeasurableCode(name, null, code));
+    }
+
+    /**
+     * Measure an execution speed of the specified code fragment.
+     * 
+     * @param code A code to be measured.
+     */
+    public void measure(String name, Runnable setup, Callable code) {
+        codes.add(new MeasurableCode(name, setup, code));
     }
 
     /**
      * Perform this benchmark and show its result.
-     * 
      */
     public void perform() {
         for (MeasurableCode code : codes) {
@@ -123,6 +131,9 @@ public final class Benchmark {
         /** The code name. */
         private final String name;
 
+        /** The setup. */
+        private final Runnable setup;
+
         /** The code to measure. */
         private final Callable<Object> code;
 
@@ -143,10 +154,12 @@ public final class Benchmark {
 
         /**
          * @param name
+         * @param setup
          * @param code
          */
-        private MeasurableCode(String name, Callable code) {
+        private MeasurableCode(String name, Runnable setup, Callable code) {
             this.name = Objects.requireNonNull(name);
+            this.setup = setup;
             this.code = Objects.requireNonNull(code);
         }
 
@@ -155,6 +168,8 @@ public final class Benchmark {
          */
         private void perform() {
             write("Warming up ", name);
+
+            if (setup != null) setup.run();
 
             Sample first = measure(ONE);
 
