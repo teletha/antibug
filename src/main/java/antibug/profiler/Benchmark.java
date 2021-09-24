@@ -167,6 +167,8 @@ public final class Benchmark {
          * Perform code profiling.
          */
         private void perform() {
+            Runtime.getRuntime().gc();
+
             write("Warming up ", name);
 
             if (setup != null) setup.run();
