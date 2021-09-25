@@ -11,6 +11,8 @@ package antibug.profiler;
 
 import static java.math.BigInteger.*;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -44,6 +46,9 @@ public final class Benchmark {
     /** The target codes. */
     private final List<MeasurableCode> codes = new ArrayList();
 
+    /** The system output. */
+    private static final PrintStream out = System.out;
+
     /**
      * Create Benchmark instance.
      */
@@ -66,6 +71,17 @@ public final class Benchmark {
         if (60 < trials) {
             throw new AssertionError("There is too many trial number of times. (maximum is 60)");
         }
+    }
+
+    /**
+     * Discard any message on the system output.
+     * 
+     * @return
+     */
+    public Benchmark discardSystemOutput() {
+        System.setOut(new PrintStream(OutputStream.nullOutputStream()));
+        System.setErr(new PrintStream(OutputStream.nullOutputStream()));
+        return this;
     }
 
     /**
@@ -103,7 +119,7 @@ public final class Benchmark {
 
         DecimalFormat format = new DecimalFormat();
         for (MeasurableCode code : codes) {
-            System.out.println(format(maxName, code.name) + "\tMean : " + format.format(code.arithmeticMean) + "ns/call");
+            out.println(format(maxName, code.name) + "\tMean : " + format.format(code.arithmeticMean) + "ns/call");
         }
     }
 
@@ -307,7 +323,7 @@ public final class Benchmark {
                 builder.append(message);
             }
 
-            System.out.print(builder);
+            out.print(builder);
         }
     }
 
