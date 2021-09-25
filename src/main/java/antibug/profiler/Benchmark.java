@@ -215,15 +215,22 @@ public final class Benchmark {
             int hash = 0;
 
             try {
+                long freq = frequency.longValue();
+                long outer = 5000 <= freq ? 50 : 1000 <= freq ? 20 : 100 <= freq ? 10 : 1;
+                long inner = freq / outer;
+                long count = 0;
+
                 // measure actually
                 long start = System.nanoTime();
-                for (long i = frequency.longValue(); 0 < i; i--) {
-                    hash ^= code.call().hashCode(); // prevent dead-code-elimination
+                for (; (count < outer && System.nanoTime() - start <= 1000000000); count++) {
+                    for (long j = 0; j < inner; j++) {
+                        hash ^= code.call().hashCode(); // prevent dead-code-elimination
+                    }
                 }
                 long end = System.nanoTime();
 
                 // calculate execution time
-                return new Sample(frequency, end - start, hash);
+                return new Sample(BigInteger.valueOf(count * inner), end - start, hash);
             } catch (Throwable e) {
                 throw new Error(e);
             }
