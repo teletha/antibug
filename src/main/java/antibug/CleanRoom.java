@@ -20,6 +20,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.FileSystem;
+import java.nio.file.FileSystemException;
 import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
@@ -447,7 +448,11 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
          */
         @Override
         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-            Files.delete(file);
+            try {
+                Files.delete(file);
+            } catch (FileSystemException e) {
+                // ignore
+            }
             return FileVisitResult.CONTINUE;
         }
 
@@ -456,7 +461,11 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
          */
         @Override
         public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-            Files.delete(dir);
+            try {
+                Files.delete(dir);
+            } catch (FileSystemException e) {
+                // ignore
+            }
             return FileVisitResult.CONTINUE;
         }
     }
