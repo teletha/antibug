@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.0](https://www.github.com/Teletha/antibug/compare/v1.1.0...v1.2.0) (2021-09-25)
+
+
+### Features
+
+* Add Benchmark#discardSystemOutput. ([a0c03a2](https://www.github.com/Teletha/antibug/commit/a0c03a25ede8853e6e41dcd76c4d8d13e71bb908))
+* Benchmark#measure accepts setup code. ([e8998c2](https://www.github.com/Teletha/antibug/commit/e8998c2925169e4a1c0c85f99025640065a1e999))
+
+
+### Bug Fixes
+
+* Activate GC on the begining of benchmark test. ([d1f6f2e](https://www.github.com/Teletha/antibug/commit/d1f6f2ee410900bad21fd562c955e766fa592d3a))
+
 ## [1.1.0](https://www.github.com/Teletha/antibug/compare/v1.0.3...v1.1.0) (2021-09-13)
 
 
