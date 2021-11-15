@@ -1,4 +1,11 @@
+jdk:
+  - openjdk16
+
 before_install:
-   - source "$HOME/.sdkman/bin/sdkman-init.sh"
-   - sdk install java 16-open
-   - sdk use java 16-open
+  - source ~/.sdkman/bin/sdkman-init.sh
+  - sdk install java 16-open
+  - source ~/.sdkman/bin/sdkman-init.sh
+
+install:
+  - curl -sL -o bee.jar https://jitpack.io/com/github/teletha/bee/0.13.0/bee-0.13.0.jar
+  - java -javaagent:bee.jar -cp bee.jar bee.Bee install
