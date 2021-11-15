@@ -9,6 +9,8 @@
  */
 package antibug;
 
+import javax.lang.model.SourceVersion;
+
 public class Project extends bee.api.Project {
 
     String JunitVersion = "5.8.1";
@@ -17,6 +19,8 @@ public class Project extends bee.api.Project {
         product("com.github.teletha", "antibug", ref("version.txt"));
         producer("Nameless Production Committee");
         describe("Bug Detection Tool Set. (including PowerAssert");
+
+        require(SourceVersion.RELEASE_16);
 
         require("org.junit.jupiter", "junit-jupiter-api", JunitVersion);
         require("org.junit.jupiter", "junit-jupiter-engine", JunitVersion);
