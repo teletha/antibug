@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.2.1](https://www.github.com/teletha/antibug/compare/v1.2.0...v1.2.1) (2021-11-15)
+
+
+### Bug Fixes
+
+* Agent related methods must be public in Java 17. ([c6de59e](https://www.github.com/teletha/antibug/commit/c6de59ef9179ae30045896d1a16179336b6cbe20))
+* Ignore error while deleting temporary files. ([dd5a0cf](https://www.github.com/teletha/antibug/commit/dd5a0cff202d129716fed6cbf5070ecdfb7f85ad))
+
 ## [1.2.0](https://www.github.com/Teletha/antibug/compare/v1.1.0...v1.2.0) (2021-09-25)
 
 
