@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.teletha</groupId>
 	<artifactId>antibug</artifactId>
-	<version>1.2.0</version>
+	<version>1.2.1</version>
 	<packaging>jar</packaging>
 	<name>antibug</name>
 	<description>Bug Detection Tool Set. (including PowerAssert</description>
@@ -86,7 +86,7 @@
 				<version>3.8.1</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
-					<release>17</release>
+					<release>16</release>
 					<compilerArgs/>
 				</configuration>
 			</plugin>
