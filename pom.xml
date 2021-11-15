@@ -10,14 +10,14 @@
 		<dependency>
 			<groupId>net.bytebuddy</groupId>
 			<artifactId>byte-buddy</artifactId>
-			<version>[1.11.19,)</version>
+			<version>[1.12.1,)</version>
 			<scope>compile</scope>
 			<exclusions/>
 		</dependency>
 		<dependency>
 			<groupId>net.bytebuddy</groupId>
 			<artifactId>byte-buddy-agent</artifactId>
-			<version>[1.11.19,)</version>
+			<version>[1.12.1,)</version>
 			<scope>compile</scope>
 			<exclusions/>
 		</dependency>
@@ -86,7 +86,7 @@
 				<version>3.8.1</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
-					<release>16</release>
+					<release>17</release>
 					<compilerArgs/>
 				</configuration>
 			</plugin>

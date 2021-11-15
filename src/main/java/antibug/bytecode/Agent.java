@@ -9,21 +9,7 @@
  */
 package antibug.bytecode;
 
-import static net.bytebuddy.jar.asm.Opcodes.ACONST_NULL;
-import static net.bytebuddy.jar.asm.Opcodes.ALOAD;
-import static net.bytebuddy.jar.asm.Opcodes.DUP;
-import static net.bytebuddy.jar.asm.Opcodes.DUP2;
-import static net.bytebuddy.jar.asm.Opcodes.ICONST_0;
-import static net.bytebuddy.jar.asm.Opcodes.ICONST_1;
-import static net.bytebuddy.jar.asm.Opcodes.ICONST_2;
-import static net.bytebuddy.jar.asm.Opcodes.ICONST_3;
-import static net.bytebuddy.jar.asm.Opcodes.ICONST_4;
-import static net.bytebuddy.jar.asm.Opcodes.ICONST_5;
-import static net.bytebuddy.jar.asm.Opcodes.ICONST_M1;
-import static net.bytebuddy.jar.asm.Opcodes.INVOKESPECIAL;
-import static net.bytebuddy.jar.asm.Opcodes.INVOKESTATIC;
-import static net.bytebuddy.jar.asm.Opcodes.INVOKEVIRTUAL;
-import static net.bytebuddy.jar.asm.Opcodes.NEW;
+import static net.bytebuddy.jar.asm.Opcodes.*;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
@@ -146,7 +132,7 @@ public class Agent {
      * Agent entry point.
      */
     @SuppressWarnings("unused")
-    private static void premain(String args, Instrumentation instrumentation) throws Exception {
+    public static void premain(String args, Instrumentation instrumentation) throws Exception {
         tool = instrumentation;
     }
 
@@ -154,7 +140,7 @@ public class Agent {
      * Agent entry point.
      */
     @SuppressWarnings("unused")
-    private static void agentmain(String args, Instrumentation instrumentation) throws Exception {
+    public static void agentmain(String args, Instrumentation instrumentation) throws Exception {
         tool = instrumentation;
     }
 
