@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Antibug API</title>
+		<base href="../"/>
+		<link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/zenburn.min.css" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
+		<script async="true" src="highlight.js"></script>
+		<script src="mimic.js" type="module"></script>
+		<link href="main.css" rel="stylesheet"/>
+	</head>
+	<body class="b">
+		<header class="T">
+			<h1 class="O" date="2021-11-15" ver="1.2.1"><code>Antibug</code></h1>
+			<nav class="a"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
+						<use href="main.svg#package"/>
+					</svg><code>API</code></a><a href="https://github.com//teletha/antibug/discussions" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
+						<use href="main.svg#user"/>
+					</svg>Community</a><a href="doc/changelog.html"><svg class="A svg" viewBox="0 0 24 24">
+						<use href="main.svg#activity"/>
+					</svg>Activity</a><a href="https://github.com//teletha/antibug" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
+						<use href="main.svg#github"/>
+					</svg>Repository</a></nav>
+			<div class="R" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
+						<use href="main.svg#sun"/>
+					</svg>
+				</a><a id="dark" title="Change to a darker color scheme"><svg class="A svg" viewBox="0 0 24 24">
+						<use href="main.svg#moon"/>
+					</svg>
+				</a></div>
+		</header>
+		<main class="g">
+			<nav class="L">
+				<div></div>
+			</nav>
+			<article class="P" id="Article">
+				<section class="j"><code class="k">antibug.bytecode</code>
+					<h2 class="AbstractClass H"><code class="Z">Agent.Translator</code></h2>
+					<ul class="C E">
+						<li><code>net.bytebuddy.jar.asm.MethodVisitor</code></li>
+					</ul>
+				</section>
+				<section class="j" id="className">
+					<h2 class="X"><i class="PROTECTED"></i><code class="Z">className</code><i class="h"><code class="return"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></i></h2><span class="B">The internal class name.</span></section>
+				<section class="j" id="classType">
+					<h2 class="X"><i class="PROTECTED"></i><code class="Z">classType</code><i class="h"><code class="return">net.bytebuddy.jar.asm.Type</code></i></h2><span class="B">The internal class type.</span></section>
+				<section class="j" id="methodName">
+					<h2 class="X"><i class="PROTECTED"></i><code class="Z">methodName</code><i class="h"><code class="return"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></i></h2><span class="B">The internal method name.</span></section>
+				<section class="j" id="methodType">
+					<h2 class="X"><i class="PROTECTED"></i><code class="Z">methodType</code><i class="h"><code class="return">net.bytebuddy.jar.asm.Type</code></i></h2><span class="B">The internal method type.</span></section>
+				<section class="j" id="methodIdentifier">
+					<h2 class="X"><i class="PROTECTED"></i><code class="Z">methodIdentifier</code><i class="h"><code class="return">int</code></i></h2><span class="B">The method identifier.</span></section>
+				<section class="j" id="Translator()">
+					<h2 class="X"><i class="PROTECTED"></i><code class="Z">Translator</code><code class="S">()</code></h2>
+				</section>
+				<section class="j" id="methodIdentifier(java.lang.String,java.lang.String,net.bytebuddy.jar.asm.Type)">
+					<h2 class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code class="Z">methodIdentifier</code><code class="S">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">className</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">methodName</code>, <code>net.bytebuddy.jar.asm.Type</code> <code class="parameterName">methodDescriptor</code>)</code><i class="h"><code>int</code></i></h2>
+					<table class="J">
+						<tr class="N">
+							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code>className</code></td>
+							<td></td>
+						</tr>
+						<tr class="N">
+							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code>methodName</code></td>
+							<td></td>
+						</tr>
+						<tr class="N">
+							<td><code>net.bytebuddy.jar.asm.Type</code> <code>methodDescriptor</code></td>
+							<td></td>
+						</tr>
+						<tr class="c">
+							<td><code>int</code></td>
+							<td></td>
+						</tr>
+					</table><span class="B">Calculate method identifier by its signature.</span></section>
+				<section class="j" id="getLocalName(int)">
+					<h2 class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code class="Z">getLocalName</code><code class="S">(<code>int</code> <code class="parameterName">position</code>)</code><i class="h"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
+					<table class="J">
+						<tr class="N">
+							<td><code>int</code> <code>position</code></td>
+							<td></td>
+						</tr>
+						<tr class="c">
+							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></td>
+							<td></td>
+						</tr>
+					</table><span class="B">Get local variable name.</span></section>
+				<section class="j" id="getLocalType(int)">
+					<h2 class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code class="Z">getLocalType</code><code class="S">(<code>int</code> <code class="parameterName">position</code>)</code><i class="h"><code>net.bytebuddy.jar.asm.Type</code></i></h2>
+					<table class="J">
+						<tr class="N">
+							<td><code>int</code> <code>position</code></td>
+							<td></td>
+						</tr>
+						<tr class="c">
+							<td><code>net.bytebuddy.jar.asm.Type</code></td>
+							<td></td>
+						</tr>
+					</table><span class="B">Get local variable type.</span></section>
+				<section class="j" id="newLocal(net.bytebuddy.jar.asm.Type)">
+					<h2 class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code class="Z">newLocal</code><code class="S">(<code>net.bytebuddy.jar.asm.Type</code> <code class="parameterName">type</code>)</code><i class="h"><code><a href="api/antibug.bytecode.LocalVariable.html">LocalVariable</a></code></i></h2>
+					<table class="J">
+						<tr class="N">
+							<td><code>net.bytebuddy.jar.asm.Type</code> <code>type</code></td>
+							<td><span>the type of the local variable to be created.</span></td>
+						</tr>
+						<tr class="c">
+							<td><code><a href="api/antibug.bytecode.LocalVariable.html">LocalVariable</a></code></td>
+							<td><span>the identifier of the newly created local variable.</span></td>
+						</tr>
+					</table><span class="B">Creates a new local variable of the given type.</span></section>
+				<section class="j" id="instantiate(java.lang.Class,java.lang.Class)">
+					<h2 class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code class="Z">instantiate</code><code class="S">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>S</code></code></code> <code class="parameterName">api</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code><code class="extends"><code>S</code></code></code></code> <code class="parameterName">instantiator</code>)</code><i class="h"><code>S</code></i></h2>
+					<table class="J">
+						<tr class="W">
+							<td><code>S</code></td>
+							<td></td>
+						</tr>
+						<tr class="N">
+							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>S</code></code></code> <code>api</code></td>
+							<td></td>
+						</tr>
+						<tr class="N">
+							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code><code class="extends"><code>S</code></code></code></code> <code>instantiator</code></td>
+							<td></td>
+						</tr>
+						<tr class="c">
+							<td><code>S</code></td>
+							<td></td>
+						</tr>
+					</table><span class="B">Create a new insntance and store it into new local variable.</span></section>
+				<section class="j" id="load(java.lang.Object)">
+					<h2 class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code class="Z">load</code><code class="S">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html">Object</a></code> <code class="parameterName">object</code>)</code><i class="h"><code>void</code></i></h2>
+					<table class="J">
+						<tr class="N">
+							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html">Object</a></code> <code>object</code></td>
+							<td></td>
+						</tr>
+					</table><span class="B">Load the specified object as possible as we can.</span></section>
+				<section class="j" id="copy(net.bytebuddy.jar.asm.Type)">
+					<h2 class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code class="Z">copy</code><code class="S">(<code>net.bytebuddy.jar.asm.Type</code> <code class="parameterName">type</code>)</code><i class="h"><code><a href="api/antibug.bytecode.LocalVariable.html">LocalVariable</a></code></i></h2>
+					<table class="J">
+						<tr class="N">
+							<td><code>net.bytebuddy.jar.asm.Type</code> <code>type</code></td>
+							<td></td>
+						</tr>
+						<tr class="c">
+							<td><code><a href="api/antibug.bytecode.LocalVariable.html">LocalVariable</a></code></td>
+							<td></td>
+						</tr>
+					</table><span class="B">Helper method to write below code. <pre>
+ mv.visitVisitInsn(Opcodes.DUP);
+ 
+ LocalVariable local = newLocal(type);
+ 
+ local.store();
+ </pre>
+					</span></section>
+				<section class="j" id="local(int,int)">
+					<h2 class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code class="Z">local</code><code class="S">(<code>int</code> <code class="parameterName">opcode</code>, <code>int</code> <code class="parameterName">index</code>)</code><i class="h"><code><a href="api/antibug.bytecode.Bytecode.html">Bytecode</a></code></i></h2>
+					<table class="J">
+						<tr class="N">
+							<td><code>int</code> <code>opcode</code></td>
+							<td></td>
+						</tr>
+						<tr class="N">
+							<td><code>int</code> <code>index</code></td>
+							<td></td>
+						</tr>
+						<tr class="c">
+							<td><code><a href="api/antibug.bytecode.Bytecode.html">Bytecode</a></code></td>
+							<td></td>
+						</tr>
+					</table><span class="B"><p>
+ Write local variable code.
+ </p>
+					</span></section>
+				<section class="j" id="insn(int)">
+					<h2 class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code class="Z">insn</code><code class="S">(<code>int</code> <code class="parameterName">opcode</code>)</code><i class="h"><code><a href="api/antibug.bytecode.Bytecode.html">Bytecode</a></code></i></h2>
+					<table class="J">
+						<tr class="N">
+							<td><code>int</code> <code>opcode</code></td>
+							<td></td>
+						</tr>
+						<tr class="c">
+							<td><code><a href="api/antibug.bytecode.Bytecode.html">Bytecode</a></code></td>
+							<td></td>
+						</tr>
+					</table><span class="B">Write instruction code.</span></section>
+				<section class="j" id="intInsn(int,int)">
+					<h2 class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code class="Z">intInsn</code><code class="S">(<code>int</code> <code class="parameterName">opcode</code>, <code>int</code> <code class="parameterName">operand</code>)</code><i class="h"><code><a href="api/antibug.bytecode.Bytecode.html">Bytecode</a></code></i></h2>
+					<table class="J">
+						<tr class="N">
+							<td><code>int</code> <code>opcode</code></td>
+							<td></td>
+						</tr>
+						<tr class="N">
+							<td><code>int</code> <code>operand</code></td>
+							<td></td>
+						</tr>
+						<tr class="c">
+							<td><code><a href="api/antibug.bytecode.Bytecode.html">Bytecode</a></code></td>
+							<td></td>
+						</tr>
+					</table><span class="B">Write int value code.</span></section>
+				<section class="j" id="ldc(java.lang.Object)">
+					<h2 class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code class="Z">ldc</code><code class="S">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html">Object</a></code> <code class="parameterName">value</code>)</code><i class="h"><code><a href="api/antibug.bytecode.Bytecode.html">Bytecode</a></code></i></h2>
+					<table class="J">
+						<tr class="N">
+							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html">Object</a></code> <code>value</code></td>
+							<td></td>
+						</tr>
+						<tr class="c">
+							<td><code><a href="api/antibug.bytecode.Bytecode.html">Bytecode</a></code></td>
+							<td></td>
+						</tr>
+					</table><span class="B">Write constant value code.</span></section>
+				<section class="j" id="wrap(net.bytebuddy.jar.asm.Type)">
+					<h2 class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code class="Z">wrap</code><code class="S">(<code>net.bytebuddy.jar.asm.Type</code> <code class="parameterName">type</code>)</code><i class="h"><code>void</code></i></h2>
+					<table class="J">
+						<tr class="N">
+							<td><code>net.bytebuddy.jar.asm.Type</code> <code>type</code></td>
+							<td></td>
+						</tr>
+					</table><span class="B">Helper method to write bytecode which wrap the primitive value.</span></section>
+				<section class="j" id="createAPI(antibug.bytecode.LocalVariable,java.lang.Class)">
+					<h2 class="X"><i class="FINAL"><i class="PROTECTED"></i></i><code class="Z">createAPI</code><code class="S">(<code><a href="api/antibug.bytecode.LocalVariable.html">LocalVariable</a></code> <code class="parameterName">invoker</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>S</code></code></code> <code class="parameterName">api</code>)</code><i class="h"><code>S</code></i></h2>
+					<table class="J">
+						<tr class="W">
+							<td><code>S</code></td>
+							<td></td>
+						</tr>
+						<tr class="N">
+							<td><code><a href="api/antibug.bytecode.LocalVariable.html">LocalVariable</a></code> <code>invoker</code></td>
+							<td></td>
+						</tr>
+						<tr class="N">
+							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>S</code></code></code> <code>api</code></td>
+							<td></td>
+						</tr>
+						<tr class="c">
+							<td><code>S</code></td>
+							<td></td>
+						</tr>
+					</table><span class="B">Create API.</span></section>
+			</article>
+			<aside class="i" id="SubNavi">
+				<div class="Q">
+					<h5 class="d">Constructors</h5>
+					<ul>
+						<li><i class="PROTECTED"></i><code><a href="api/antibug.bytecode.Agent.Translator.html#Translator()">Translator</a></code><code class="S">()</code></li>
+					</ul>
+					<h5 class="d">Fields</h5>
+					<ul>
+						<li><i class="PROTECTED"></i><code><a href="api/antibug.bytecode.Agent.Translator.html#className">className</a></code><i class="K"><code class="return"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+						<li><i class="PROTECTED"></i><code><a href="api/antibug.bytecode.Agent.Translator.html#classType">classType</a></code><i class="K"><code class="return">net.bytebuddy.jar.asm.Type</code></i></li>
+						<li><i class="PROTECTED"></i><code><a href="api/antibug.bytecode.Agent.Translator.html#methodName">methodName</a></code><i class="K"><code class="return"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+						<li><i class="PROTECTED"></i><code><a href="api/antibug.bytecode.Agent.Translator.html#methodType">methodType</a></code><i class="K"><code class="return">net.bytebuddy.jar.asm.Type</code></i></li>
+						<li><i class="PROTECTED"></i><code><a href="api/antibug.bytecode.Agent.Translator.html#methodIdentifier">methodIdentifier</a></code><i class="K"><code class="return">int</code></i></li>
+					</ul>
+					<h5 class="d">Methods</h5>
+					<ul>
+						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/antibug.bytecode.Agent.Translator.html#methodIdentifier(java.lang.String,java.lang.String,net.bytebuddy.jar.asm.Type)">methodIdentifier</a></code><code class="S">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">className</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">methodName</code>, <code>net.bytebuddy.jar.asm.Type</code> <code class="parameterName">methodDescriptor</code>)</code><i class="K"><code>int</code></i></li>
+						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/antibug.bytecode.Agent.Translator.html#getLocalName(int)">getLocalName</a></code><code class="S">(<code>int</code> <code class="parameterName">position</code>)</code><i class="K"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/antibug.bytecode.Agent.Translator.html#getLocalType(int)">getLocalType</a></code><code class="S">(<code>int</code> <code class="parameterName">position</code>)</code><i class="K"><code>net.bytebuddy.jar.asm.Type</code></i></li>
+						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/antibug.bytecode.Agent.Translator.html#newLocal(net.bytebuddy.jar.asm.Type)">newLocal</a></code><code class="S">(<code>net.bytebuddy.jar.asm.Type</code> <code class="parameterName">type</code>)</code><i class="K"><code><a href="api/antibug.bytecode.LocalVariable.html">LocalVariable</a></code></i></li>
+						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/antibug.bytecode.Agent.Translator.html#instantiate(java.lang.Class,java.lang.Class)">instantiate</a></code><code class="S">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>S</code></code></code> <code class="parameterName">api</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code><code class="extends"><code>S</code></code></code></code> <code class="parameterName">instantiator</code>)</code><i class="K"><code>S</code></i></li>
+						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/antibug.bytecode.Agent.Translator.html#load(java.lang.Object)">load</a></code><code class="S">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html">Object</a></code> <code class="parameterName">object</code>)</code><i class="K"><code>void</code></i></li>
+						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/antibug.bytecode.Agent.Translator.html#copy(net.bytebuddy.jar.asm.Type)">copy</a></code><code class="S">(<code>net.bytebuddy.jar.asm.Type</code> <code class="parameterName">type</code>)</code><i class="K"><code><a href="api/antibug.bytecode.LocalVariable.html">LocalVariable</a></code></i></li>
+						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/antibug.bytecode.Agent.Translator.html#local(int,int)">local</a></code><code class="S">(<code>int</code> <code class="parameterName">opcode</code>, <code>int</code> <code class="parameterName">index</code>)</code><i class="K"><code><a href="api/antibug.bytecode.Bytecode.html">Bytecode</a></code></i></li>
+						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/antibug.bytecode.Agent.Translator.html#insn(int)">insn</a></code><code class="S">(<code>int</code> <code class="parameterName">opcode</code>)</code><i class="K"><code><a href="api/antibug.bytecode.Bytecode.html">Bytecode</a></code></i></li>
+						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/antibug.bytecode.Agent.Translator.html#intInsn(int,int)">intInsn</a></code><code class="S">(<code>int</code> <code class="parameterName">opcode</code>, <code>int</code> <code class="parameterName">operand</code>)</code><i class="K"><code><a href="api/antibug.bytecode.Bytecode.html">Bytecode</a></code></i></li>
+						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/antibug.bytecode.Agent.Translator.html#ldc(java.lang.Object)">ldc</a></code><code class="S">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html">Object</a></code> <code class="parameterName">value</code>)</code><i class="K"><code><a href="api/antibug.bytecode.Bytecode.html">Bytecode</a></code></i></li>
+						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/antibug.bytecode.Agent.Translator.html#wrap(net.bytebuddy.jar.asm.Type)">wrap</a></code><code class="S">(<code>net.bytebuddy.jar.asm.Type</code> <code class="parameterName">type</code>)</code><i class="K"><code>void</code></i></li>
+						<li><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/antibug.bytecode.Agent.Translator.html#createAPI(antibug.bytecode.LocalVariable,java.lang.Class)">createAPI</a></code><code class="S">(<code><a href="api/antibug.bytecode.LocalVariable.html">LocalVariable</a></code> <code class="parameterName">invoker</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>S</code></code></code> <code class="parameterName">api</code>)</code><i class="K"><code>S</code></i></li>
+					</ul>
+				</div>
+			</aside>
+		</main>
+		<script src="root.js"></script>
+		<script src="main.js" type="module"></script>
+	</body>
+</html>
