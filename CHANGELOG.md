@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.2.3](https://www.github.com/teletha/antibug/compare/v1.2.2...v1.2.3) (2021-11-18)
+
+
+### Miscellaneous Chores
+
+* Update build process. ([9e9e0d7](https://www.github.com/teletha/antibug/commit/9e9e0d726d8d2c36c92920fa85b4811e735b271d))
+
 ### [1.2.2](https://www.github.com/teletha/antibug/compare/v1.2.1...v1.2.2) (2021-11-15)
 
 
