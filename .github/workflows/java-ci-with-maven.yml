@@ -26,7 +26,8 @@ jobs:
 
     - name: Build site
       run: |
-        curl -sL -o bee.jar https://github.com/Teletha/bee/blob/master/bee-0.10.0.jar?raw=true
+        version=$(curl -SsL https://git.io/stable-bee)
+        curl -SsL -o bee.jar https://jitpack.io/com/github/teletha/bee/${version}/bee-${version}.jar
         java -javaagent:bee.jar -cp bee.jar bee.Bee doc:site
 
     - name: Deploy site
