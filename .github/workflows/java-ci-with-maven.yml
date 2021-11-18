@@ -28,7 +28,7 @@ jobs:
       run: |
         version=$(curl -SsL https://git.io/stable-bee)
         curl -SsL -o bee.jar https://jitpack.io/com/github/teletha/bee/${version}/bee-${version}.jar
-        java -javaagent:bee.jar -cp bee.jar bee.Bee doc:site
+        java -javaagent:bee.jar -cp bee.jar bee.Bee install doc:site
 
     - name: Deploy site
       uses: peaceiris/actions-gh-pages@v3
