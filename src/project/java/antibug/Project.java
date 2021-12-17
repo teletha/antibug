@@ -9,6 +9,8 @@
  */
 package antibug;
 
+import static bee.api.License.MIT;
+
 import javax.lang.model.SourceVersion;
 
 public class Project extends bee.api.Project {
@@ -17,7 +19,7 @@ public class Project extends bee.api.Project {
 
     {
         product("com.github.teletha", "antibug", ref("version.txt"));
-        producer("Nameless Production Committee");
+        license(MIT);
         describe("Bug Detection Tool Set. (including PowerAssert");
 
         require(SourceVersion.RELEASE_16);
