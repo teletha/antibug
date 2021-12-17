@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.2.6](https://www.github.com/teletha/antibug/compare/v1.2.5...v1.2.6) (2021-12-17)
+
+
+### Bug Fixes
+
+* update build process ([dbd3a49](https://www.github.com/teletha/antibug/commit/dbd3a495c4d08d2bc61ec3734b05a12a99760f6c))
+
 ### [1.2.5](https://www.github.com/teletha/antibug/compare/v1.2.4...v1.2.5) (2021-11-18)
 
 
