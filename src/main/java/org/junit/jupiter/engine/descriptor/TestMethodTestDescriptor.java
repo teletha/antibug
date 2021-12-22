@@ -10,9 +10,9 @@
 
 package org.junit.jupiter.engine.descriptor;
 
-import static org.apiguardian.api.API.Status.*;
+import static org.apiguardian.api.API.Status.INTERNAL;
 import static org.junit.jupiter.engine.descriptor.ExtensionUtils.*;
-import static org.junit.jupiter.engine.support.JupiterThrowableCollectorFactory.*;
+import static org.junit.jupiter.engine.support.JupiterThrowableCollectorFactory.createThrowableCollector;
 
 import java.lang.reflect.Method;
 import java.util.Optional;
@@ -206,18 +206,15 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
                 Object instance = extensionContext.getRequiredTestInstance();
                 executableInvoker.invoke(testMethod, instance, extensionContext, context.getExtensionRegistry(), interceptorCall);
             } catch (Throwable throwable) {
-                ExtensionContext c = context.getExtensionContext();
-                Optional<PowerAssertOff> off = AnnotationUtils.findAnnotation(c.getTestMethod(), PowerAssertOff.class);
-                Optional<PowerAssertOff> offAll = AnnotationUtils.findAnnotation(c.getTestClass(), PowerAssertOff.class);
+                Optional<PowerAssertOff> off = AnnotationUtils.findAnnotation(extensionContext.getTestMethod(), PowerAssertOff.class);
+                Optional<PowerAssertOff> offAll = AnnotationUtils.findAnnotation(extensionContext.getTestClass(), PowerAssertOff.class);
 
                 if (off.isPresent() || offAll.isPresent()) {
                     throw throwable;
                 }
 
-                PowerAssert.capture(throwable, () -> {
-                    invokeAfterEachMethods(context);
-                    invokeBeforeEachMethods(context);
-                    invokeTestMethod(context, dynamicTestExecutor);
+                PowerAssert.capture(context, throwable, () -> {
+                    execute(context, dynamicTestExecutor);
                 }, e -> {
                     UnrecoverableExceptions.rethrowIfUnrecoverable(throwable);
                     invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), extensionContext, throwable);

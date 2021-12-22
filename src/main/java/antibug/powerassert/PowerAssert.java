@@ -13,6 +13,8 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.function.Consumer;
 
+import org.junit.jupiter.engine.execution.JupiterEngineExecutionContext;
+
 import antibug.bytecode.Agent;
 
 /**
@@ -34,7 +36,7 @@ public class PowerAssert {
      * @param testExecutor
      * @param errorExecutor
      */
-    public static void capture(Throwable error, Runnable testExecutor, Consumer<Throwable> errorExecutor) {
+    public static void capture(JupiterEngineExecutionContext context, Throwable error, Runnable testExecutor, Consumer<Throwable> errorExecutor) {
         if (error instanceof PowerAssertionError) {
             PowerAssertionError e = (PowerAssertionError) error;
 
@@ -49,19 +51,20 @@ public class PowerAssert {
 
                 while (cause != null) {
                     if (cause instanceof AssertionError) {
-                        // should we print this error message in detal?
+                        // should we print this error message in detail?
                         // if (description.getAnnotation(PowerAssertOff.class) == null &&
                         // !description.getTestClass()
                         // .isAnnotationPresent(PowerAssertOff.class)) {
 
-                        Class clazz = Class.forName(cause.getStackTrace()[0].getClassName());
+                        synchronized (PowerAssert.class) {
+                            Class clazz = Class.forName(cause.getStackTrace()[0].getClassName());
 
-                        // translate assertion code only once
-                        if (translated.add(clazz.getName())) {
-                            agent.transform(clazz);
-
-                            testExecutor.run();
-                            return;
+                            // translate assertion code only once
+                            if (translated.add(clazz.getName())) {
+                                agent.transform(clazz);
+                                testExecutor.run();
+                                return;
+                            }
                         }
                     }
                     cause = cause.getCause();
