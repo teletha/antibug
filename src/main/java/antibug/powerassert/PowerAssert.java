@@ -10,23 +10,20 @@
 package antibug.powerassert;
 
 import java.util.Set;
-import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.function.Consumer;
 
 import org.junit.jupiter.engine.execution.JupiterEngineExecutionContext;
 
 import antibug.bytecode.Agent;
 
-/**
- * @version 2018/03/31 16:08:24
- */
 public class PowerAssert {
 
     /** For test. */
     static Consumer<PowerAssertionError> errorCapture;
 
     /** The recode for the translated classes. */
-    private static final Set<String> translated = new CopyOnWriteArraySet();
+    private static final Set<String> translated = new ConcurrentSkipListSet();
 
     /** The actual translator. */
     private static final Agent agent = new Agent(PowerAssertTranslator.class);
@@ -56,9 +53,9 @@ public class PowerAssert {
                         // !description.getTestClass()
                         // .isAnnotationPresent(PowerAssertOff.class)) {
 
-                        synchronized (PowerAssert.class) {
-                            Class clazz = Class.forName(cause.getStackTrace()[0].getClassName());
+                        Class clazz = Class.forName(cause.getStackTrace()[0].getClassName());
 
+                        synchronized (PowerAssert.class) {
                             // translate assertion code only once
                             if (translated.add(clazz.getName())) {
                                 agent.transform(clazz);

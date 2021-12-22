@@ -9,13 +9,13 @@
  */
 package antibug;
 
-import static bee.api.License.MIT;
+import static bee.api.License.*;
 
 import javax.lang.model.SourceVersion;
 
 public class Project extends bee.api.Project {
 
-    String JunitVersion = "5.8.1";
+    String JunitVersion = "5.8.2";
 
     {
         product("com.github.teletha", "antibug", ref("version.txt"));
