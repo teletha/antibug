@@ -10,9 +10,9 @@
 
 package org.junit.jupiter.engine.descriptor;
 
-import static org.apiguardian.api.API.Status.INTERNAL;
+import static org.apiguardian.api.API.Status.*;
 import static org.junit.jupiter.engine.descriptor.ExtensionUtils.*;
-import static org.junit.jupiter.engine.support.JupiterThrowableCollectorFactory.createThrowableCollector;
+import static org.junit.jupiter.engine.support.JupiterThrowableCollectorFactory.*;
 
 import java.lang.reflect.Method;
 import java.util.Optional;
@@ -214,7 +214,20 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
                 }
 
                 PowerAssert.capture(context, throwable, () -> {
-                    execute(context, dynamicTestExecutor);
+                    invokeAfterTestExecutionCallbacks(context);
+                    invokeAfterEachMethods(context);
+                    invokeAfterEachCallbacks(context);
+
+                    invokeBeforeEachCallbacks(context);
+                    if (throwableCollector.isEmpty()) {
+                        invokeBeforeEachMethods(context);
+                        if (throwableCollector.isEmpty()) {
+                            invokeBeforeTestExecutionCallbacks(context);
+                            if (throwableCollector.isEmpty()) {
+                                invokeTestMethod(context, dynamicTestExecutor);
+                            }
+                        }
+                    }
                 }, e -> {
                     UnrecoverableExceptions.rethrowIfUnrecoverable(throwable);
                     invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), extensionContext, throwable);
