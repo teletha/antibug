@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.2.7](https://www.github.com/teletha/antibug/compare/v1.2.6...v1.2.7) (2021-12-31)
+
+
+### Bug Fixes
+
+* Emulate callback executions when power-assert retry. ([17cc2a7](https://www.github.com/teletha/antibug/commit/17cc2a7a790abc8d3f143f49bafaacf2c0aee992))
+* Some async test error. ([d5a6aa1](https://www.github.com/teletha/antibug/commit/d5a6aa1949ab186404971deaa60edf6589b99bc6))
+
 ### [1.2.6](https://www.github.com/teletha/antibug/compare/v1.2.5...v1.2.6) (2021-12-17)
 
 
