@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Callable;
+import java.util.function.Consumer;
 
 public final class Benchmark {
 
@@ -40,37 +41,52 @@ public final class Benchmark {
     /** The threshold of measurement time. (unit: ns) */
     private static final BigInteger threshold = new BigInteger("1").multiply(G);
 
-    /** The number of trial. */
-    private final int trials;
+    /** The number of trials. */
+    private int trials = 5;
+
+    /** The realtime reporter. */
+    private Consumer<String> reporter = System.out::println;
 
     /** The target codes. */
     private final List<MeasurableCode> codes = new ArrayList();
-
-    /** The system output. */
-    private static final PrintStream out = System.out;
 
     /**
      * Create Benchmark instance.
      */
     public Benchmark() {
-        this(10);
     }
 
     /**
-     * Create Benchmark instance.
+     * Configure the number of trials.
      * 
-     * @param trials A number of trial.
+     * @param trials
+     * @return Chainable configuration.
      */
-    public Benchmark(int trials) {
+    public Benchmark trial(int trials) {
+        if (trials < 3) {
+            throw new AssertionError("There is too few trial number of times. (minimus is 3)");
+        }
+
+        if (30 < trials) {
+            throw new AssertionError("There is too many trial number of times. (maximum is 30)");
+        }
         this.trials = trials;
 
-        if (trials < 10) {
-            throw new AssertionError("There is too few trial number of times. (minimus is 10)");
-        }
+        // API definition
+        return this;
+    }
 
-        if (60 < trials) {
-            throw new AssertionError("There is too many trial number of times. (maximum is 60)");
+    /**
+     * Configure the progress reporter.
+     * 
+     * @param reporter
+     * @return
+     */
+    public Benchmark progress(Consumer<String> reporter) {
+        if (reporter != null) {
+            this.reporter = reporter;
         }
+        return this;
     }
 
     /**
@@ -89,8 +105,10 @@ public final class Benchmark {
      * 
      * @param code A code to be measured.
      */
-    public void measure(String name, Callable code) {
+    public Benchmark measure(String name, Callable code) {
         codes.add(new MeasurableCode(name, null, code));
+
+        return this;
     }
 
     /**
@@ -98,14 +116,16 @@ public final class Benchmark {
      * 
      * @param code A code to be measured.
      */
-    public void measure(String name, Runnable setup, Callable code) {
+    public Benchmark measure(String name, Runnable setup, Callable code) {
         codes.add(new MeasurableCode(name, setup, code));
+
+        return this;
     }
 
     /**
      * Perform this benchmark and show its result.
      */
-    public void perform() {
+    public List<MeasurableCode> perform() {
         for (MeasurableCode code : codes) {
             code.perform();
         }
@@ -119,8 +139,10 @@ public final class Benchmark {
 
         DecimalFormat format = new DecimalFormat();
         for (MeasurableCode code : codes) {
-            out.println(format(maxName, code.name) + "\tMean : " + format.format(code.arithmeticMean) + "ns/call");
+            reporter.accept(format(maxName, code.name) + "\tMean : " + format.format(code.arithmeticMean) + "ns/call");
         }
+
+        return codes;
     }
 
     /**
@@ -142,10 +164,10 @@ public final class Benchmark {
     /**
      * 
      */
-    private class MeasurableCode {
+    public class MeasurableCode {
 
         /** The code name. */
-        private final String name;
+        public final String name;
 
         /** The setup. */
         private final Runnable setup;
@@ -153,7 +175,7 @@ public final class Benchmark {
         /** The code to measure. */
         private final Callable<Object> code;
 
-        /** The result set. */
+        /** The sample set. */
         private final List<Sample> samples = new ArrayList();
 
         /** The summary statistic. */
@@ -207,7 +229,6 @@ public final class Benchmark {
                     break;
                 }
             }
-            write("\n");
 
             // measure actually
             DecimalFormat counterFormat = new DecimalFormat("00");
@@ -217,9 +238,9 @@ public final class Benchmark {
                 samples.add(result);
 
                 // display for user
-                write(counterFormat.format(i + 1), " : ", result, "\n");
+                write(counterFormat.format(i + 1), " : ", result);
             }
-            write("\n");
+            write("");
 
             analyze();
         }
@@ -233,7 +254,7 @@ public final class Benchmark {
             try {
                 long freq = frequency.longValue();
                 long outer = 5000 <= freq ? 50 : 1000 <= freq ? 20 : 100 <= freq ? 10 : 1;
-                long inner = freq / outer;
+                long inner = Math.round(freq / outer);
                 long count = 0;
 
                 // measure actually
@@ -310,9 +331,7 @@ public final class Benchmark {
         }
 
         /**
-         * <p>
          * Helper method to write conosle message.
-         * </p>
          * 
          * @param messages
          */
@@ -323,7 +342,43 @@ public final class Benchmark {
                 builder.append(message);
             }
 
-            out.print(builder);
+            reporter.accept(builder.toString());
+        }
+
+        /**
+         * The summary statistic.
+         * 
+         * @return
+         */
+        public int getMean() {
+            return arithmeticMean.intValueExact();
+        }
+
+        /**
+         * The summary statistic.
+         * 
+         * @return
+         */
+        public int getVariance() {
+            return variance.intValueExact();
+        }
+
+        /**
+         * The summary statistic.
+         * 
+         * @return
+         */
+        public double getStandardDeviation() {
+            return standardDeviation;
+        }
+
+        /**
+         * The summary statistic.
+         * 
+         * @return
+         */
+        public int getMedian() {
+            return median.intValueExact();
         }
     }
 
