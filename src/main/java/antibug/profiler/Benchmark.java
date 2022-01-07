@@ -13,8 +13,6 @@ import static java.math.BigInteger.*;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.lang.management.ManagementFactory;
-import java.lang.management.MemoryMXBean;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -267,10 +265,6 @@ public final class Benchmark {
             // measure actually
             DecimalFormat counterFormat = new DecimalFormat("00");
 
-            MemoryMXBean memory = ManagementFactory.getMemoryMXBean();
-            System.out.println(memory.getHeapMemoryUsage().getUsed() + memory.getNonHeapMemoryUsage().getUsed());
-            System.out.println(ManagementFactory.getGarbageCollectorMXBeans().stream().mapToLong(x -> x.getCollectionCount()).count());
-
             for (int i = 0; i < trials; i++) {
                 Sample result = measure(frequency);
                 samples.add(result);
@@ -278,8 +272,6 @@ public final class Benchmark {
                 // display for user
                 write(counterFormat.format(i + 1), " : ", result);
             }
-            System.out.println(memory.getHeapMemoryUsage().getUsed() + memory.getNonHeapMemoryUsage().getUsed());
-            System.out.println(ManagementFactory.getGarbageCollectorMXBeans().stream().mapToLong(x -> x.getCollectionCount()).count());
             write("");
 
             analyze();
