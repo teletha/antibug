@@ -13,6 +13,8 @@ import static java.math.BigInteger.*;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryMXBean;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -141,6 +143,8 @@ public final class Benchmark {
         for (MeasurableCode code : codes) {
             reporter.accept(format(maxName, code.name) + "\tMean : " + format.format(code.arithmeticMean) + "ns/call");
         }
+        reporter.accept("");
+        reporter.accept(getPlatformInfo());
 
         return codes;
     }
@@ -159,6 +163,36 @@ public final class Benchmark {
         } else {
             return text + " ".repeat(min - text.length());
         }
+    }
+
+    public static final String getPlatformInfo() {
+        Runtime runtime = Runtime.getRuntime();
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("Java \t")
+                .append(System.getProperty("java.vendor"))
+                .append(" ")
+                .append(Runtime.version())
+                .append("@")
+                .append(System.getProperty("java.class.version"))
+                .append("\n");
+
+        builder.append("OS \t")
+                .append(System.getProperty("os.name"))
+                .append(" ")
+                .append(System.getProperty("os.arch"))
+                .append(" ")
+                .append(System.getProperty("os.version"))
+                .append("\n");
+
+        builder.append("PC \tCPU Core Size: ")
+                .append(runtime.availableProcessors())
+                .append(" ")
+                .append("Memory: ")
+                .append(runtime.maxMemory() / 1024 / 1024)
+                .append("MB\n");
+
+        return builder.toString();
     }
 
     /**
@@ -205,8 +239,6 @@ public final class Benchmark {
          * Perform code profiling.
          */
         private void perform() {
-            Runtime.getRuntime().gc();
-
             write("Warming up ", name);
 
             if (setup != null) setup.run();
@@ -230,8 +262,14 @@ public final class Benchmark {
                 }
             }
 
+            Runtime.getRuntime().gc();
+
             // measure actually
             DecimalFormat counterFormat = new DecimalFormat("00");
+
+            MemoryMXBean memory = ManagementFactory.getMemoryMXBean();
+            System.out.println(memory.getHeapMemoryUsage().getUsed() + memory.getNonHeapMemoryUsage().getUsed());
+            System.out.println(ManagementFactory.getGarbageCollectorMXBeans().stream().mapToLong(x -> x.getCollectionCount()).count());
 
             for (int i = 0; i < trials; i++) {
                 Sample result = measure(frequency);
@@ -240,6 +278,8 @@ public final class Benchmark {
                 // display for user
                 write(counterFormat.format(i + 1), " : ", result);
             }
+            System.out.println(memory.getHeapMemoryUsage().getUsed() + memory.getNonHeapMemoryUsage().getUsed());
+            System.out.println(ManagementFactory.getGarbageCollectorMXBeans().stream().mapToLong(x -> x.getCollectionCount()).count());
             write("");
 
             analyze();
