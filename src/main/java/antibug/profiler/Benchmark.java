@@ -13,6 +13,10 @@ import static java.math.BigInteger.*;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.lang.management.GarbageCollectorMXBean;
+import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryPoolMXBean;
+import java.lang.management.MemoryType;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -40,6 +44,9 @@ public final class Benchmark {
 
     /** The threshold of measurement time. (unit: ns) */
     private static final BigInteger threshold = new BigInteger("1").multiply(G);
+
+    /** Reusable */
+    private static final List<GarbageCollectorMXBean> Garbages = ManagementFactory.getGarbageCollectorMXBeans();
 
     /** The number of trials. */
     private int trials = 5;
@@ -298,10 +305,13 @@ public final class Benchmark {
             int hash = 0;
 
             try {
+                measureMemory();
+                long[] startGC = measureGarbageCollection();
                 long freq = frequency.longValue();
                 long outer = 5000 <= freq ? 50 : 1000 <= freq ? 20 : 100 <= freq ? 10 : 1;
                 long inner = Math.round(freq / outer);
                 long count = 0;
+                resetMemory();
 
                 // measure actually
                 long start = System.nanoTime();
@@ -311,9 +321,12 @@ public final class Benchmark {
                     }
                 }
                 long end = System.nanoTime();
+                long[] endGC = measureGarbageCollection();
+                long memory = measureMemory();
 
                 // calculate execution time
-                return new Sample(BigInteger.valueOf(count * inner), end - start, hash);
+                return new Sample(BigInteger
+                        .valueOf(count * inner), end - start, hash, endGC[0] - startGC[0], endGC[1] - startGC[1], memory);
             } catch (Throwable e) {
                 throw new Error(e);
             }
@@ -392,6 +405,40 @@ public final class Benchmark {
         }
 
         /**
+         * Analyze garbage collection.
+         * 
+         * @return
+         */
+        private long[] measureGarbageCollection() {
+            long count = 0;
+            long time = 0;
+
+            for (int i = 0, size = Garbages.size(); i < size; i++) {
+                GarbageCollectorMXBean garbage = Garbages.get(i);
+                count += garbage.getCollectionCount();
+                time += garbage.getCollectionTime();
+            }
+            return new long[] {count, time};
+        }
+
+        private long measureMemory() {
+            long size = 0;
+
+            for (MemoryPoolMXBean memory : ManagementFactory.getMemoryPoolMXBeans()) {
+                if (memory.getType() == MemoryType.HEAP) {
+                    size += memory.getPeakUsage().getUsed();
+                }
+            }
+            return size;
+        }
+
+        private void resetMemory() {
+            for (MemoryPoolMXBean memory : ManagementFactory.getMemoryPoolMXBeans()) {
+                memory.resetPeakUsage();
+            }
+        }
+
+        /**
          * The summary statistic.
          * 
          * @return
@@ -433,6 +480,9 @@ public final class Benchmark {
      */
     private static class Sample implements Comparable<Sample> {
 
+        /** The execution count. */
+        private final BigInteger frequency;
+
         /** The measurement time. */
         private final BigInteger time;
 
@@ -448,14 +498,23 @@ public final class Benchmark {
         /** The state. */
         private boolean isOutlier = false;
 
+        /** The number of garbage collections. */
+        private final long countGC;
+
+        /** The duration of garbage collections. */
+        private final long timeGC;
+
+        /** The peak memory usage. */
+        private final long memory;
+
         /***
          * Create MeasurementResult instance.
          * 
          * @param frequency
          * @param time
          */
-        Sample(BigInteger frequency, long time, int hash) {
-            this(frequency, new BigInteger(String.valueOf(time)), hash);
+        Sample(BigInteger frequency, long time, int hash, long countGC, long timeGC, long memory) {
+            this(frequency, new BigInteger(String.valueOf(time)), hash, countGC, timeGC, memory);
         }
 
         /**
@@ -464,11 +523,15 @@ public final class Benchmark {
          * @param frequency
          * @param time
          */
-        Sample(BigInteger frequency, BigInteger time, int hash) {
+        Sample(BigInteger frequency, BigInteger time, int hash, long countGC, long timeGC, long memory) {
+            this.frequency = frequency;
             this.time = time;
             this.hash = hash;
             this.timesPerExecution = (frequency.equals(ZERO)) ? ZERO : time.divide(frequency);
             this.executionsPerSecond = (time.equals(ZERO)) ? ZERO : frequency.multiply(Benchmark.G).divide(time);
+            this.countGC = countGC;
+            this.timeGC = timeGC;
+            this.memory = memory;
         }
 
         /**
@@ -492,7 +555,8 @@ public final class Benchmark {
             builder.append(format.format(executionsPerSecond));
             builder.append("call/s   ");
             builder.append(format.format(timesPerExecution));
-            builder.append("ns/call");
+            builder.append("ns/call   ");
+            builder.append("PeakMemory ").append(Math.round(memory / 1024 / 1024)).append("MB");
 
             if (isOutlier) {
                 builder.append("   ☠");
