@@ -126,6 +126,11 @@ public final class Benchmark {
      * Perform this benchmark and show its result.
      */
     public List<MeasurableCode> perform() {
+        // Pre execution to avoid callee optimization
+        for (MeasurableCode code : codes) {
+            code.measure(TEN);
+        }
+
         for (MeasurableCode code : codes) {
             code.perform();
         }
@@ -243,8 +248,17 @@ public final class Benchmark {
 
             Sample first = measure(ONE);
 
-            if (first.hash == 0) throw new Error("Benckmark task must return not null but something.");
-            if (first.time.compareTo(threshold) != -1) throw new Error("Benchmark task must be able to execute within 1 second.");
+            if (first.hash == 0) {
+                throw new Error("Benckmark task must return not null but something.");
+            }
+
+            int firstTestCount = 0;
+            while (first.time.compareTo(threshold) != -1) {
+                if (5 <= firstTestCount++) {
+                    throw new Error("Benchmark task must be able to execute within 1 second.");
+                }
+                first = measure(ONE);
+            }
 
             // warmup JVM and decided the number of executions
             BigInteger frequency = ONE;
