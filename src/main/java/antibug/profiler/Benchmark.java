@@ -151,7 +151,8 @@ public final class Benchmark {
 
         DecimalFormat format = new DecimalFormat();
         for (MeasurableCode code : codes) {
-            reporter.accept(format(maxName, code.name) + "\tMean : " + format.format(code.arithmeticMean) + "ns/call");
+            reporter.accept(format(maxName, code.name) + "\tMean : " + format
+                    .format(code.arithmeticMean) + "ns/call \tMemory : " + (code.memory / 1024 / 1024) + "MB \tGC : " + code.countGC);
         }
         reporter.accept("");
         reporter.accept(getPlatformInfo());
@@ -233,6 +234,14 @@ public final class Benchmark {
 
         /** The summary statistic. */
         private BigInteger median;
+
+        private long memory;
+
+        /** The number of garbage collections. */
+        private long countGC;
+
+        /** The duration of garbage collections. */
+        private long timeGC;
 
         /**
          * @param name
@@ -387,6 +396,11 @@ public final class Benchmark {
 
                 median = one.add(other).divide(TWO);
             }
+
+            for (Sample sample : samples) {
+                memory = Math.max(sample.memory, memory);
+                countGC += sample.countGC;
+            }
         }
 
         /**
@@ -426,7 +440,7 @@ public final class Benchmark {
 
             for (MemoryPoolMXBean memory : ManagementFactory.getMemoryPoolMXBeans()) {
                 if (memory.getType() == MemoryType.HEAP) {
-                    size += memory.getPeakUsage().getUsed();
+                    size += memory.getPeakUsage().getCommitted();
                 }
             }
             return size;
@@ -556,7 +570,8 @@ public final class Benchmark {
             builder.append("call/s   ");
             builder.append(format.format(timesPerExecution));
             builder.append("ns/call   ");
-            builder.append("PeakMemory ").append(Math.round(memory / 1024 / 1024)).append("MB");
+            builder.append(Math.round(memory / 1024)).append("KB");
+            builder.append("  ").append(countGC);
 
             if (isOutlier) {
                 builder.append("   ☠");
