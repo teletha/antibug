@@ -36,9 +36,6 @@ public final class Benchmark {
     /** 2 */
     private static final BigInteger TWO = new BigInteger("2");
 
-    /** 1,000 */
-    private static final BigInteger K = new BigInteger("1000");
-
     /** 1,000,000 */
     private static final BigInteger M = new BigInteger("1000000");
 
@@ -198,10 +195,10 @@ public final class Benchmark {
             maxName = Math.max(maxName, code.name.length());
         }
 
-        DecimalFormat format = new DecimalFormat();
+        reporter.accept("\t\tAverage\t\tPeakMemory\tTotalGC");
         for (MeasurableCode code : codes) {
-            reporter.accept(format(maxName, code.name) + "\tMean : " + format
-                    .format(code.arithmeticMean) + "ns/call \tMemory : " + (code.memory / 1024 / 1024) + "MB \tGC : " + code.countGC);
+            reporter.accept(String
+                    .format("%-" + maxName + "s\t%,dns/call \t%.2fMB\t\t%d(%dms)", code.name, code.arithmeticMean, code.peakMemory / 1024f / 1024f, code.countGC, code.timeGC));
         }
         reporter.accept("");
         reporter.accept(getPlatformInfo());
@@ -210,18 +207,67 @@ public final class Benchmark {
     }
 
     /**
-     * Format.
+     * Perform GC absolutely.
+     */
+    private void performGC() {
+        int count = 2;
+        long beforeGC = measureGC()[0];
+
+        for (int i = 0; i < count; i++) {
+            System.runFinalization();
+            System.gc();
+        }
+
+        do {
+            try {
+                Thread.sleep(150);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        } while (measureGC()[0] < beforeGC + count);
+    }
+
+    /**
+     * Analyze garbage collection.
      * 
-     * @param min
-     * @param text
      * @return
      */
-    private static String format(int min, String text) {
-        int length = text.length();
-        if (min < length) {
-            return text;
-        } else {
-            return text + " ".repeat(min - text.length());
+    private long[] measureGC() {
+        long count = 0;
+        long time = 0;
+
+        for (int i = 0, size = Garbages.size(); i < size; i++) {
+            GarbageCollectorMXBean garbage = Garbages.get(i);
+            count += garbage.getCollectionCount();
+            time += garbage.getCollectionTime();
+        }
+        return new long[] {count, time};
+    }
+
+    /**
+     * Analyze memory usage.
+     * 
+     * @return
+     */
+    private long[] measureMemory() {
+        long peak = 0;
+        long used = 0;
+
+        for (MemoryPoolMXBean memory : ManagementFactory.getMemoryPoolMXBeans()) {
+            if (memory.getType() == MemoryType.HEAP) {
+                peak += memory.getPeakUsage().getUsed();
+                used += memory.getUsage().getUsed();
+            }
+        }
+        return new long[] {peak, used};
+    }
+
+    /**
+     * Clean up memory analyzer.
+     */
+    private void resetMemory() {
+        for (MemoryPoolMXBean memory : ManagementFactory.getMemoryPoolMXBeans()) {
+            memory.resetPeakUsage();
         }
     }
 
@@ -272,19 +318,20 @@ public final class Benchmark {
         /** The sample set. */
         private final List<Sample> samples = new ArrayList();
 
-        /** The summary statistic. */
+        /** The summary statistics. */
         private BigInteger arithmeticMean;
 
-        /** The summary statistic. */
+        /** The summary statistics. */
         private BigInteger variance;
 
-        /** The summary statistic. */
+        /** The summary statistics. */
         private double standardDeviation;
 
-        /** The summary statistic. */
+        /** The summary statistics. */
         private BigInteger median;
 
-        private long memory;
+        /** The memory statistics. */
+        private long peakMemory;
 
         /** The number of garbage collections. */
         private long countGC;
@@ -341,12 +388,13 @@ public final class Benchmark {
                 }
             }
 
-            Runtime.getRuntime().gc();
-
             // measure actually
             DecimalFormat counterFormat = new DecimalFormat("00");
+            reporter.accept("     Time\t\tThroughput\t\tAverage\t\tMemory\tGC");
 
             for (int i = 0; i < trials; i++) {
+                performGC();
+
                 Sample result = measure(frequency);
                 samples.add(result);
 
@@ -365,31 +413,31 @@ public final class Benchmark {
             int hash = 0;
 
             try {
-                measureMemory();
-                long[] startGC = measureGarbageCollection();
+                long[] startGC = measureGC();
                 long freq = frequency.longValue();
-                long outer = 5000 <= freq ? 50 : 1000 <= freq ? 20 : 100 <= freq ? 10 : 1;
+                long outer = 5000 <= freq ? 100 : 1000 <= freq ? 50 : 100 <= freq ? 25 : 1;
                 long inner = Math.round(freq / outer);
                 long count = 0;
                 resetMemory();
 
                 // measure actually
-                long start = System.nanoTime();
-                long expectedEnd = start + duration.toNanos();
-                for (; (count < outer && System.nanoTime() <= expectedEnd); count++) {
+                long startTime = System.nanoTime();
+                long expectedEndTime = startTime + duration.toNanos();
+                while (count < outer && System.nanoTime() <= expectedEndTime) {
                     for (long j = 0; j < inner; j++) {
                         hash ^= code.call().hashCode(); // prevent dead-code-elimination
                     }
+                    count++;
                 }
-                long end = System.nanoTime();
-                long[] endGC = measureGarbageCollection();
-                long memory = measureMemory();
+                long endTime = System.nanoTime();
+                long[] endGC = measureGC();
+                long[] memory = measureMemory();
 
                 // calculate execution time
                 return new Sample(BigInteger
-                        .valueOf(count * inner), end - start, hash, endGC[0] - startGC[0], endGC[1] - startGC[1], memory);
+                        .valueOf(count * inner), endTime - startTime, hash, endGC[0] - startGC[0], endGC[1] - startGC[1], memory);
             } catch (Throwable e) {
-                throw new Error(e);
+                throw new AssertionError(e);
             }
         }
 
@@ -450,8 +498,9 @@ public final class Benchmark {
             }
 
             for (Sample sample : samples) {
-                memory = Math.max(sample.memory, memory);
+                peakMemory = Math.max(sample.peakMemory, peakMemory);
                 countGC += sample.countGC;
+                timeGC += sample.timeGC;
             }
         }
 
@@ -468,40 +517,6 @@ public final class Benchmark {
             }
 
             reporter.accept(builder.toString());
-        }
-
-        /**
-         * Analyze garbage collection.
-         * 
-         * @return
-         */
-        private long[] measureGarbageCollection() {
-            long count = 0;
-            long time = 0;
-
-            for (int i = 0, size = Garbages.size(); i < size; i++) {
-                GarbageCollectorMXBean garbage = Garbages.get(i);
-                count += garbage.getCollectionCount();
-                time += garbage.getCollectionTime();
-            }
-            return new long[] {count, time};
-        }
-
-        private long measureMemory() {
-            long size = 0;
-
-            for (MemoryPoolMXBean memory : ManagementFactory.getMemoryPoolMXBeans()) {
-                if (memory.getType() == MemoryType.HEAP) {
-                    size += memory.getPeakUsage().getCommitted();
-                }
-            }
-            return size;
-        }
-
-        private void resetMemory() {
-            for (MemoryPoolMXBean memory : ManagementFactory.getMemoryPoolMXBeans()) {
-                memory.resetPeakUsage();
-            }
         }
 
         /**
@@ -546,9 +561,6 @@ public final class Benchmark {
      */
     private static class Sample implements Comparable<Sample> {
 
-        /** The execution count. */
-        private final BigInteger frequency;
-
         /** The measurement time. */
         private final BigInteger time;
 
@@ -571,7 +583,7 @@ public final class Benchmark {
         private final long timeGC;
 
         /** The peak memory usage. */
-        private final long memory;
+        private final long peakMemory;
 
         /***
          * Create MeasurementResult instance.
@@ -579,7 +591,7 @@ public final class Benchmark {
          * @param frequency
          * @param time
          */
-        Sample(BigInteger frequency, long time, int hash, long countGC, long timeGC, long memory) {
+        Sample(BigInteger frequency, long time, int hash, long countGC, long timeGC, long[] memory) {
             this(frequency, new BigInteger(String.valueOf(time)), hash, countGC, timeGC, memory);
         }
 
@@ -589,15 +601,14 @@ public final class Benchmark {
          * @param frequency
          * @param time
          */
-        Sample(BigInteger frequency, BigInteger time, int hash, long countGC, long timeGC, long memory) {
-            this.frequency = frequency;
+        Sample(BigInteger frequency, BigInteger time, int hash, long countGC, long timeGC, long[] memory) {
             this.time = time;
             this.hash = hash;
             this.timesPerExecution = (frequency.equals(ZERO)) ? ZERO : time.divide(frequency);
             this.executionsPerSecond = (time.equals(ZERO)) ? ZERO : frequency.multiply(Benchmark.G).divide(time);
             this.countGC = countGC;
             this.timeGC = timeGC;
-            this.memory = memory;
+            this.peakMemory = memory[0];
         }
 
         /**
@@ -613,23 +624,8 @@ public final class Benchmark {
          */
         @Override
         public String toString() {
-            DecimalFormat format = new DecimalFormat();
-
-            StringBuilder builder = new StringBuilder();
-            builder.append(format(7, format.format(time.divide(Benchmark.M)) + "ms"));
-            builder.append("   ");
-            builder.append(format.format(executionsPerSecond));
-            builder.append("call/s   ");
-            builder.append(format.format(timesPerExecution));
-            builder.append("ns/call   ");
-            builder.append(Math.round(memory / 1024)).append("KB");
-            builder.append("  ").append(countGC);
-
-            if (isOutlier) {
-                builder.append("   ☠");
-            }
-
-            return builder.toString();
+            return String.format("%,dms  \t%,dcall/s \t%,dns/call \t%.2fMB \t%d(%dms)", time
+                    .divide(M), executionsPerSecond, timesPerExecution, peakMemory / 1024f / 1024f, countGC, timeGC);
         }
     }
 }
