@@ -195,10 +195,10 @@ public final class Benchmark {
             maxName = Math.max(maxName, code.name.length());
         }
 
-        reporter.accept("\t\tAverage\t\tPeakMemory\tTotalGC");
+        reporter.accept(String.format("%" + maxName + "s\tAverage\t\tPeakMemory\tTotalGC", "\t"));
         for (MeasurableCode code : codes) {
             reporter.accept(String
-                    .format("%-" + maxName + "s\t%,dns/call \t%.2fMB\t\t%d(%dms)", code.name, code.arithmeticMean, code.peakMemory / 1024f / 1024f, code.countGC, code.timeGC));
+                    .format("%-" + maxName + "s\t%,-6dns/call \t%.2fMB\t\t%d(%dms)", code.name, code.arithmeticMean, code.peakMemory / 1024f / 1024f, code.countGC, code.timeGC));
         }
         reporter.accept("");
         reporter.accept(getPlatformInfo());
@@ -210,13 +210,9 @@ public final class Benchmark {
      * Perform GC absolutely.
      */
     private void performGC() {
-        int count = 2;
         long beforeGC = measureGC()[0];
 
-        for (int i = 0; i < count; i++) {
-            System.runFinalization();
-            System.gc();
-        }
+        System.gc();
 
         do {
             try {
@@ -224,7 +220,7 @@ public final class Benchmark {
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
-        } while (measureGC()[0] < beforeGC + count);
+        } while (measureGC()[0] < beforeGC + 1);
     }
 
     /**
@@ -255,8 +251,8 @@ public final class Benchmark {
 
         for (MemoryPoolMXBean memory : ManagementFactory.getMemoryPoolMXBeans()) {
             if (memory.getType() == MemoryType.HEAP) {
-                peak += memory.getPeakUsage().getUsed();
-                used += memory.getUsage().getUsed();
+                peak += memory.getPeakUsage().getCommitted();
+                used += memory.getUsage().getCommitted();
             }
         }
         return new long[] {peak, used};
@@ -624,7 +620,7 @@ public final class Benchmark {
          */
         @Override
         public String toString() {
-            return String.format("%,dms  \t%,dcall/s \t%,dns/call \t%.2fMB \t%d(%dms)", time
+            return String.format("%,dms  \t%,-6dcall/s \t%,-6dns/call \t%.2fMB \t%d(%dms)", time
                     .divide(M), executionsPerSecond, timesPerExecution, peakMemory / 1024f / 1024f, countGC, timeGC);
         }
     }
