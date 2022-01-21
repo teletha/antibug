@@ -9,10 +9,10 @@
 		<script src="mimic.js" type="module"></script>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="N">
-		<header class="g">
-			<h1 class="M" date="2022-01-21" ver="1.2.7"><code>Antibug</code></h1>
-			<nav class="b"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
+	<body class="a">
+		<header class="Q">
+			<h1 class="N" date="2022-01-21" ver="1.2.7"><code>Antibug</code></h1>
+			<nav class="J"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#package"/>
 					</svg><code>API</code></a><a href="https://github.com//teletha/antibug/discussions" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#user"/>
@@ -21,7 +21,7 @@
 					</svg>Activity</a><a href="https://github.com//teletha/antibug" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#github"/>
 					</svg>Repository</a></nav>
-			<div class="Q" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
+			<div class="i" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#sun"/>
 					</svg>
 				</a><a id="dark" title="Change to a darker color scheme"><svg class="A svg" viewBox="0 0 24 24">
@@ -29,167 +29,167 @@
 					</svg>
 				</a></div>
 		</header>
-		<main class="e">
-			<nav class="V">
+		<main class="h">
+			<nav class="d">
 				<div></div>
 			</nav>
-			<article class="a" id="Article">
-				<section class="Y"><code class="U">antibug.profiler</code>
-					<h2 class="Class R"><code class="T">Benchmark</code></h2>
+			<article class="X" id="Article">
+				<section class="T"><code class="Y">antibug.profiler</code>
+					<h2 class="Class b"><code class="R">Benchmark</code></h2>
 				</section>
-				<section class="Y" id="Benchmark()">
-					<h2 class="O"><i class="PUBLIC"></i><code class="T">Benchmark</code><code class="h">()</code></h2><span class="B">Create new benchmark process.</span></section>
-				<section class="Y" id="trial(int)">
-					<h2 class="O"><i class="PUBLIC"></i><code class="T">trial</code><code class="h">(<code>int</code> <code class="parameterName">trials</code>)</code><i class="J"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></h2>
-					<table class="f">
-						<tr class="S">
+				<section class="T" id="Benchmark()">
+					<h2 class="Z"><i class="PUBLIC"></i><code class="R">Benchmark</code><code class="V">()</code></h2><span class="B">Create new benchmark process.</span></section>
+				<section class="T" id="trial(int)">
+					<h2 class="Z"><i class="PUBLIC"></i><code class="R">trial</code><code class="V">(<code>int</code> <code class="parameterName">trials</code>)</code><i class="K"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></h2>
+					<table class="M">
+						<tr class="U">
 							<td><code>int</code> <code>trials</code></td>
 							<td><span>A number of trials. (3 = trials = 30)</span></td>
 						</tr>
-						<tr class="I">
+						<tr class="k">
 							<td><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></td>
 							<td><span>Chainable configuration.</span></td>
 						</tr>
 					</table><span class="B">Configure the number of trial.</span></section>
-				<section class="Y" id="duration(int,java.util.concurrent.TimeUnit)">
-					<h2 class="O"><i class="PUBLIC"></i><code class="T">duration</code><code class="h">(<code>int</code> <code class="parameterName">time</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/TimeUnit.html">TimeUnit</a></code> <code class="parameterName">unit</code>)</code><i class="J"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></h2>
-					<table class="f">
-						<tr class="S">
+				<section class="T" id="duration(int,java.util.concurrent.TimeUnit)">
+					<h2 class="Z"><i class="PUBLIC"></i><code class="R">duration</code><code class="V">(<code>int</code> <code class="parameterName">time</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/TimeUnit.html">TimeUnit</a></code> <code class="parameterName">unit</code>)</code><i class="K"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></h2>
+					<table class="M">
+						<tr class="U">
 							<td><code>int</code> <code>time</code></td>
 							<td><span>A duration of trial.</span></td>
 						</tr>
-						<tr class="S">
+						<tr class="U">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/TimeUnit.html">TimeUnit</a></code> <code>unit</code></td>
 							<td><span>A duration unit of trial.</span></td>
 						</tr>
-						<tr class="I">
+						<tr class="k">
 							<td><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></td>
 							<td><span>Chainable configuration.</span></td>
 						</tr>
 					</table><span class="B">Configure the duration of trial.</span></section>
-				<section class="Y" id="duration(int,java.time.temporal.ChronoUnit)">
-					<h2 class="O"><i class="PUBLIC"></i><code class="T">duration</code><code class="h">(<code>int</code> <code class="parameterName">time</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/temporal/ChronoUnit.html">ChronoUnit</a></code> <code class="parameterName">unit</code>)</code><i class="J"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></h2>
-					<table class="f">
-						<tr class="S">
+				<section class="T" id="duration(int,java.time.temporal.ChronoUnit)">
+					<h2 class="Z"><i class="PUBLIC"></i><code class="R">duration</code><code class="V">(<code>int</code> <code class="parameterName">time</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/temporal/ChronoUnit.html">ChronoUnit</a></code> <code class="parameterName">unit</code>)</code><i class="K"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></h2>
+					<table class="M">
+						<tr class="U">
 							<td><code>int</code> <code>time</code></td>
 							<td><span>A duration of trial.</span></td>
 						</tr>
-						<tr class="S">
+						<tr class="U">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/temporal/ChronoUnit.html">ChronoUnit</a></code> <code>unit</code></td>
 							<td><span>A duration unit of trial.</span></td>
 						</tr>
-						<tr class="I">
+						<tr class="k">
 							<td><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></td>
 							<td><span>Chainable configuration.</span></td>
 						</tr>
 					</table><span class="B">Configure the duration of trial.</span></section>
-				<section class="Y" id="duration(java.time.Duration)">
-					<h2 class="O"><i class="PUBLIC"></i><code class="T">duration</code><code class="h">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a></code> <code class="parameterName">duration</code>)</code><i class="J"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></h2>
-					<table class="f">
-						<tr class="S">
+				<section class="T" id="duration(java.time.Duration)">
+					<h2 class="Z"><i class="PUBLIC"></i><code class="R">duration</code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a></code> <code class="parameterName">duration</code>)</code><i class="K"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></h2>
+					<table class="M">
+						<tr class="U">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a></code> <code>duration</code></td>
 							<td><span>A duration of trial.</span></td>
 						</tr>
-						<tr class="I">
+						<tr class="k">
 							<td><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></td>
 							<td><span>Chainable configuration.</span></td>
 						</tr>
 					</table><span class="B">Configure the duration of trial.</span></section>
-				<section class="Y" id="progress(java.util.function.Consumer)">
-					<h2 class="O"><i class="PUBLIC"></i><code class="T">progress</code><code class="h">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></code></code> <code class="parameterName">reporter</code>)</code><i class="J"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></h2>
-					<table class="f">
-						<tr class="S">
+				<section class="T" id="progress(java.util.function.Consumer)">
+					<h2 class="Z"><i class="PUBLIC"></i><code class="R">progress</code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></code></code> <code class="parameterName">reporter</code>)</code><i class="K"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></h2>
+					<table class="M">
+						<tr class="U">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></code></code> <code>reporter</code></td>
 							<td></td>
 						</tr>
-						<tr class="I">
+						<tr class="k">
 							<td><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></td>
 							<td></td>
 						</tr>
 					</table><span class="B">Configure the progress reporter.</span></section>
-				<section class="Y" id="discardSystemOutput()">
-					<h2 class="O"><i class="PUBLIC"></i><code class="T">discardSystemOutput</code><code class="h">()</code><i class="J"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></h2>
-					<table class="f">
-						<tr class="I">
+				<section class="T" id="discardSystemOutput()">
+					<h2 class="Z"><i class="PUBLIC"></i><code class="R">discardSystemOutput</code><code class="V">()</code><i class="K"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></h2>
+					<table class="M">
+						<tr class="k">
 							<td><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></td>
 							<td></td>
 						</tr>
 					</table><span class="B">Discard any message on the system output.</span></section>
-				<section class="Y" id="measure(java.lang.String,java.util.concurrent.Callable)">
-					<h2 class="O"><i class="PUBLIC"></i><code class="T">measure</code><code class="h">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">name</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Callable.html">Callable</a></code> <code class="parameterName">code</code>)</code><i class="J"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></h2>
-					<table class="f">
-						<tr class="S">
+				<section class="T" id="measure(java.lang.String,java.util.concurrent.Callable)">
+					<h2 class="Z"><i class="PUBLIC"></i><code class="R">measure</code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">name</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Callable.html">Callable</a></code> <code class="parameterName">code</code>)</code><i class="K"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></h2>
+					<table class="M">
+						<tr class="U">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code>name</code></td>
 							<td></td>
 						</tr>
-						<tr class="S">
+						<tr class="U">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Callable.html">Callable</a></code> <code>code</code></td>
 							<td><span>A code to be measured.</span></td>
 						</tr>
-						<tr class="I">
+						<tr class="k">
 							<td><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></td>
 							<td></td>
 						</tr>
 					</table><span class="B">Measure an execution speed of the specified code fragment.</span></section>
-				<section class="Y" id="measure(java.lang.String,java.lang.Runnable,java.util.concurrent.Callable)">
-					<h2 class="O"><i class="PUBLIC"></i><code class="T">measure</code><code class="h">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">name</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code> <code class="parameterName">setup</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Callable.html">Callable</a></code> <code class="parameterName">code</code>)</code><i class="J"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></h2>
-					<table class="f">
-						<tr class="S">
+				<section class="T" id="measure(java.lang.String,java.lang.Runnable,java.util.concurrent.Callable)">
+					<h2 class="Z"><i class="PUBLIC"></i><code class="R">measure</code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">name</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code> <code class="parameterName">setup</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Callable.html">Callable</a></code> <code class="parameterName">code</code>)</code><i class="K"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></h2>
+					<table class="M">
+						<tr class="U">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code>name</code></td>
 							<td></td>
 						</tr>
-						<tr class="S">
+						<tr class="U">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code> <code>setup</code></td>
 							<td></td>
 						</tr>
-						<tr class="S">
+						<tr class="U">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Callable.html">Callable</a></code> <code>code</code></td>
 							<td><span>A code to be measured.</span></td>
 						</tr>
-						<tr class="I">
+						<tr class="k">
 							<td><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></td>
 							<td></td>
 						</tr>
 					</table><span class="B">Measure an execution speed of the specified code fragment.</span></section>
-				<section class="Y" id="perform()">
-					<h2 class="O"><i class="PUBLIC"></i><code class="T">perform</code><code class="h">()</code><i class="J"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a href="api/antibug.profiler.Benchmark.MeasurableCode.html">MeasurableCode</a></code></code></code></i></h2>
-					<table class="f">
-						<tr class="I">
+				<section class="T" id="perform()">
+					<h2 class="Z"><i class="PUBLIC"></i><code class="R">perform</code><code class="V">()</code><i class="K"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a href="api/antibug.profiler.Benchmark.MeasurableCode.html">MeasurableCode</a></code></code></code></i></h2>
+					<table class="M">
+						<tr class="k">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a href="api/antibug.profiler.Benchmark.MeasurableCode.html">MeasurableCode</a></code></code></code></td>
 							<td></td>
 						</tr>
 					</table><span class="B">Perform this benchmark and show its result.</span></section>
-				<section class="Y" id="getPlatformInfo()">
-					<h2 class="O"><i class="FINAL"><i class="STATIC PUBLIC"></i></i><code class="T">getPlatformInfo</code><code class="h">()</code><i class="J"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
-					<table class="f">
-						<tr class="I">
+				<section class="T" id="getPlatformInfo()">
+					<h2 class="Z"><i class="FINAL"><i class="STATIC PUBLIC"></i></i><code class="R">getPlatformInfo</code><code class="V">()</code><i class="K"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
+					<table class="M">
+						<tr class="k">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></td>
 							<td></td>
 						</tr>
 					</table>
 				</section>
 			</article>
-			<aside class="i" id="SubNavi">
-				<div class="k">
-					<h5 class="H">Constructors</h5>
+			<aside class="S" id="SubNavi">
+				<div class="W">
+					<h5 class="e">Constructors</h5>
 					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#Benchmark()">Benchmark</a></code><code class="h">()</code></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#Benchmark()">Benchmark</a></code><code class="V">()</code></li>
 					</ul>
-					<h5 class="H">Static Methods</h5>
+					<h5 class="e">Static Methods</h5>
 					<ul>
-						<li><i class="FINAL"><i class="STATIC PUBLIC"></i></i><code><a href="api/antibug.profiler.Benchmark.html#getPlatformInfo()">getPlatformInfo</a></code><code class="h">()</code><i class="j"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+						<li><i class="FINAL"><i class="STATIC PUBLIC"></i></i><code><a href="api/antibug.profiler.Benchmark.html#getPlatformInfo()">getPlatformInfo</a></code><code class="V">()</code><i class="j"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
 					</ul>
-					<h5 class="H">Methods</h5>
+					<h5 class="e">Methods</h5>
 					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#trial(int)">trial</a></code><code class="h">(<code>int</code> <code class="parameterName">trials</code>)</code><i class="j"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#duration(int,java.util.concurrent.TimeUnit)">duration</a></code><code class="h">(<code>int</code> <code class="parameterName">time</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/TimeUnit.html">TimeUnit</a></code> <code class="parameterName">unit</code>)</code><i class="j"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#duration(int,java.time.temporal.ChronoUnit)">duration</a></code><code class="h">(<code>int</code> <code class="parameterName">time</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/temporal/ChronoUnit.html">ChronoUnit</a></code> <code class="parameterName">unit</code>)</code><i class="j"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#duration(java.time.Duration)">duration</a></code><code class="h">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a></code> <code class="parameterName">duration</code>)</code><i class="j"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#progress(java.util.function.Consumer)">progress</a></code><code class="h">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></code></code> <code class="parameterName">reporter</code>)</code><i class="j"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#discardSystemOutput()">discardSystemOutput</a></code><code class="h">()</code><i class="j"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#measure(java.lang.String,java.util.concurrent.Callable)">measure</a></code><code class="h">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">name</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Callable.html">Callable</a></code> <code class="parameterName">code</code>)</code><i class="j"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#measure(java.lang.String,java.lang.Runnable,java.util.concurrent.Callable)">measure</a></code><code class="h">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">name</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code> <code class="parameterName">setup</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Callable.html">Callable</a></code> <code class="parameterName">code</code>)</code><i class="j"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#perform()">perform</a></code><code class="h">()</code><i class="j"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a href="api/antibug.profiler.Benchmark.MeasurableCode.html">MeasurableCode</a></code></code></code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#trial(int)">trial</a></code><code class="V">(<code>int</code> <code class="parameterName">trials</code>)</code><i class="j"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#duration(int,java.util.concurrent.TimeUnit)">duration</a></code><code class="V">(<code>int</code> <code class="parameterName">time</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/TimeUnit.html">TimeUnit</a></code> <code class="parameterName">unit</code>)</code><i class="j"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#duration(int,java.time.temporal.ChronoUnit)">duration</a></code><code class="V">(<code>int</code> <code class="parameterName">time</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/temporal/ChronoUnit.html">ChronoUnit</a></code> <code class="parameterName">unit</code>)</code><i class="j"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#duration(java.time.Duration)">duration</a></code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html">Duration</a></code> <code class="parameterName">duration</code>)</code><i class="j"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#progress(java.util.function.Consumer)">progress</a></code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></code></code> <code class="parameterName">reporter</code>)</code><i class="j"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#discardSystemOutput()">discardSystemOutput</a></code><code class="V">()</code><i class="j"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#measure(java.lang.String,java.util.concurrent.Callable)">measure</a></code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">name</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Callable.html">Callable</a></code> <code class="parameterName">code</code>)</code><i class="j"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#measure(java.lang.String,java.lang.Runnable,java.util.concurrent.Callable)">measure</a></code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">name</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code> <code class="parameterName">setup</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/Callable.html">Callable</a></code> <code class="parameterName">code</code>)</code><i class="j"><code><a href="api/antibug.profiler.Benchmark.html">Benchmark</a></code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Benchmark.html#perform()">perform</a></code><code class="V">()</code><i class="j"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a href="api/antibug.profiler.Benchmark.MeasurableCode.html">MeasurableCode</a></code></code></code></i></li>
 					</ul>
 				</div>
 			</aside>
