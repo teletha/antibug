@@ -19,6 +19,8 @@ import java.lang.management.MemoryPoolMXBean;
 import java.lang.management.MemoryType;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -26,6 +28,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 public final class Benchmark {
@@ -42,14 +45,14 @@ public final class Benchmark {
     /** 1,000,000,000 */
     private static final BigInteger G = new BigInteger("1000000000");
 
-    /** The threshold of measurement time. (unit: ns) */
-    private static final BigInteger threshold = new BigInteger("1").multiply(G);
-
     /** Reusable */
     private static final List<GarbageCollectorMXBean> Garbages = ManagementFactory.getGarbageCollectorMXBeans();
 
-    /** The number of trials. */
+    /** The number of iteration. */
     private int trials = 5;
+
+    /** The duration of single trial. */
+    private Duration duration = Duration.ofSeconds(1);
 
     /** The realtime reporter. */
     private Consumer<String> reporter = System.out::println;
@@ -58,15 +61,15 @@ public final class Benchmark {
     private final List<MeasurableCode> codes = new ArrayList();
 
     /**
-     * Create Benchmark instance.
+     * Create new benchmark process.
      */
     public Benchmark() {
     }
 
     /**
-     * Configure the number of trials.
+     * Configure the number of trial.
      * 
-     * @param trials
+     * @param trials A number of trials. (3 <= trials <= 30)
      * @return Chainable configuration.
      */
     public Benchmark trial(int trials) {
@@ -79,7 +82,53 @@ public final class Benchmark {
         }
         this.trials = trials;
 
-        // API definition
+        return this;
+    }
+
+    /**
+     * Configure the duration of trial.
+     * 
+     * @param time A duration of trial.
+     * @param unit A duration unit of trial.
+     * @return Chainable configuration.
+     */
+    public Benchmark duration(int time, TimeUnit unit) {
+        return duration(Duration.of(time, unit.toChronoUnit()));
+    }
+
+    /**
+     * Configure the duration of trial.
+     * 
+     * @param time A duration of trial.
+     * @param unit A duration unit of trial.
+     * @return Chainable configuration.
+     */
+    public Benchmark duration(int time, ChronoUnit unit) {
+        return duration(Duration.of(time, unit));
+    }
+
+    /**
+     * Configure the duration of trial.
+     * 
+     * @param duration A duration of trial.
+     * @return Chainable configuration.
+     */
+    public Benchmark duration(Duration duration) {
+        if (duration == null) {
+            throw new AssertionError("You must specify duration of trial.");
+        }
+
+        long mills = duration.toMillis();
+
+        if (mills < 100) {
+            throw new AssertionError("There is too short trial duration. (minimus is 100ms)");
+        }
+
+        if (3 * 60 * 1000 < mills) {
+            throw new AssertionError("There is too long  trial duration. (maximum is 3min)");
+        }
+        this.duration = duration;
+
         return this;
     }
 
@@ -269,9 +318,11 @@ public final class Benchmark {
             }
 
             int firstTestCount = 0;
+            BigInteger threshold = new BigInteger(String.valueOf(duration.toNanos()));
+
             while (first.time.compareTo(threshold) != -1) {
                 if (5 <= firstTestCount++) {
-                    throw new Error("Benchmark task must be able to execute within 1 second.");
+                    throw new Error("Benchmark task must be able to execute within " + duration + ".");
                 }
                 first = measure(ONE);
             }
@@ -285,7 +336,7 @@ public final class Benchmark {
                 if (result.time.compareTo(threshold) == -1) {
                     frequency = frequency.multiply(TWO);
                 } else {
-                    frequency = frequency.multiply(G).divide(result.time);
+                    frequency = frequency.multiply(threshold).divide(result.time);
                     break;
                 }
             }
@@ -324,7 +375,8 @@ public final class Benchmark {
 
                 // measure actually
                 long start = System.nanoTime();
-                for (; (count < outer && System.nanoTime() - start <= 1000000000); count++) {
+                long expectedEnd = start + duration.toNanos();
+                for (; (count < outer && System.nanoTime() <= expectedEnd); count++) {
                     for (long j = 0; j < inner; j++) {
                         hash ^= code.call().hashCode(); // prevent dead-code-elimination
                     }
