@@ -9,10 +9,10 @@
 		<script src="mimic.js" type="module"></script>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="a">
-		<header class="Q">
+	<body class="Z">
+		<header class="H">
 			<h1 class="N" date="2022-01-21" ver="1.2.7"><code>Antibug</code></h1>
-			<nav class="J"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
+			<nav class="h"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#package"/>
 					</svg><code>API</code></a><a href="https://github.com//teletha/antibug/discussions" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#user"/>
@@ -21,7 +21,7 @@
 					</svg>Activity</a><a href="https://github.com//teletha/antibug" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#github"/>
 					</svg>Repository</a></nav>
-			<div class="i" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
+			<div class="e" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#sun"/>
 					</svg>
 				</a><a id="dark" title="Change to a darker color scheme"><svg class="A svg" viewBox="0 0 24 24">
@@ -29,99 +29,99 @@
 					</svg>
 				</a></div>
 		</header>
-		<main class="h">
-			<nav class="d">
+		<main class="J">
+			<nav class="L">
 				<div></div>
 			</nav>
 			<article class="X" id="Article">
-				<section class="T"><code class="Y">antibug.bytecode</code>
-					<h2 class="Class b"><code class="R">Agent</code></h2><span class="B">Provide functionality to transform bytecode.</span></section>
-				<section class="T" id="Agent(java.lang.Class)">
-					<h2 class="Z"><i class="PUBLIC"></i><code class="R">Agent</code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code><code class="extends"><code><a href="api/antibug.bytecode.Agent.Translator.html">Translator</a></code></code></code></code> <code class="parameterName">translator</code>)</code></h2>
-					<table class="M">
-						<tr class="U">
+				<section class="U"><code class="b">antibug.bytecode</code>
+					<h2 class="Class Q"><code class="S">Agent</code></h2><span class="B">Provide functionality to transform bytecode.</span></section>
+				<section class="U" id="Agent(java.lang.Class)">
+					<h2 class="g"><i class="PUBLIC"></i><code class="S">Agent</code><code class="T">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code><code class="extends"><code><a href="api/antibug.bytecode.Agent.Translator.html">Translator</a></code></code></code></code> <code class="parameterName">translator</code>)</code></h2>
+					<table class="W">
+						<tr class="P">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code><code class="extends"><code><a href="api/antibug.bytecode.Agent.Translator.html">Translator</a></code></code></code></code> <code>translator</code></td>
 							<td><span>Your bytecode translator.</span></td>
 						</tr>
 					</table><span class="B">Create dynamic Agent.</span></section>
-				<section class="T" id="Agent(java.lang.instrument.ClassFileTransformer)">
-					<h2 class="Z"><i class="PUBLIC"></i><code class="R">Agent</code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.instrument/java/lang/instrument/ClassFileTransformer.html">ClassFileTransformer</a></code> <code class="parameterName">agent</code>)</code></h2>
-					<table class="M">
-						<tr class="U">
+				<section class="U" id="Agent(java.lang.instrument.ClassFileTransformer)">
+					<h2 class="g"><i class="PUBLIC"></i><code class="S">Agent</code><code class="T">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.instrument/java/lang/instrument/ClassFileTransformer.html">ClassFileTransformer</a></code> <code class="parameterName">agent</code>)</code></h2>
+					<table class="W">
+						<tr class="P">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.instrument/java/lang/instrument/ClassFileTransformer.html">ClassFileTransformer</a></code> <code>agent</code></td>
 							<td><span>Your bytecode translator.</span></td>
 						</tr>
 					</table><span class="B">Create dynamic Agent.</span></section>
-				<section class="T" id="transform(java.lang.Class)">
-					<h2 class="Z"><i class="PUBLIC"></i><code class="R">transform</code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a></code> <code class="parameterName">target</code>)</code><i class="K"><code>void</code></i></h2>
-					<table class="M">
-						<tr class="U">
+				<section class="U" id="transform(java.lang.Class)">
+					<h2 class="g"><i class="PUBLIC"></i><code class="S">transform</code><code class="T">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a></code> <code class="parameterName">target</code>)</code><i class="i"><code>void</code></i></h2>
+					<table class="W">
+						<tr class="P">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a></code> <code>target</code></td>
 							<td><span>Specify the class to translate.</span></td>
 						</tr>
 					</table><span class="B">Force to transform the target class.</span></section>
-				<section class="T" id="getTransformedCode(java.lang.Class)">
-					<h2 class="Z"><i class="STATIC PUBLIC"></i><code class="R">getTransformedCode</code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a></code> <code class="parameterName">target</code>)</code><i class="K"><code array="fix">byte</code></i></h2>
-					<table class="M">
-						<tr class="U">
+				<section class="U" id="getTransformedCode(java.lang.Class)">
+					<h2 class="g"><i class="STATIC PUBLIC"></i><code class="S">getTransformedCode</code><code class="T">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a></code> <code class="parameterName">target</code>)</code><i class="i"><code array="fix">byte</code></i></h2>
+					<table class="W">
+						<tr class="P">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a></code> <code>target</code></td>
 							<td><span>Specify the class to translate.</span></td>
 						</tr>
-						<tr class="k">
+						<tr class="f">
 							<td><code array="fix">byte</code></td>
 							<td><span>Transformed byte code to load by <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/ClassLoader.html">ClassLoader</a></code>.</span></td>
 						</tr>
 					</table><span class="B">Search the transformed code of the specified class. If the target class is not transformed,
  returns <code>null</code>.</span></section>
-				<section class="T" id="premain(java.lang.String,java.lang.instrument.Instrumentation)">
-					<h2 class="Z"><i class="STATIC PUBLIC"></i><code class="R">premain</code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">args</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.instrument/java/lang/instrument/Instrumentation.html">Instrumentation</a></code> <code class="parameterName">instrumentation</code>)</code><i class="K"><code>void</code></i></h2>
-					<table class="M">
-						<tr class="U">
+				<section class="U" id="premain(java.lang.String,java.lang.instrument.Instrumentation)">
+					<h2 class="g"><i class="STATIC PUBLIC"></i><code class="S">premain</code><code class="T">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">args</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.instrument/java/lang/instrument/Instrumentation.html">Instrumentation</a></code> <code class="parameterName">instrumentation</code>)</code><i class="i"><code>void</code></i></h2>
+					<table class="W">
+						<tr class="P">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code>args</code></td>
 							<td></td>
 						</tr>
-						<tr class="U">
+						<tr class="P">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.instrument/java/lang/instrument/Instrumentation.html">Instrumentation</a></code> <code>instrumentation</code></td>
 							<td></td>
 						</tr>
-						<tr class="H">
+						<tr class="V">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html">Exception</a></code></td>
 							<td></td>
 						</tr>
 					</table><span class="B">Agent entry point.</span></section>
-				<section class="T" id="agentmain(java.lang.String,java.lang.instrument.Instrumentation)">
-					<h2 class="Z"><i class="STATIC PUBLIC"></i><code class="R">agentmain</code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">args</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.instrument/java/lang/instrument/Instrumentation.html">Instrumentation</a></code> <code class="parameterName">instrumentation</code>)</code><i class="K"><code>void</code></i></h2>
-					<table class="M">
-						<tr class="U">
+				<section class="U" id="agentmain(java.lang.String,java.lang.instrument.Instrumentation)">
+					<h2 class="g"><i class="STATIC PUBLIC"></i><code class="S">agentmain</code><code class="T">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">args</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.instrument/java/lang/instrument/Instrumentation.html">Instrumentation</a></code> <code class="parameterName">instrumentation</code>)</code><i class="i"><code>void</code></i></h2>
+					<table class="W">
+						<tr class="P">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code>args</code></td>
 							<td></td>
 						</tr>
-						<tr class="U">
+						<tr class="P">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.instrument/java/lang/instrument/Instrumentation.html">Instrumentation</a></code> <code>instrumentation</code></td>
 							<td></td>
 						</tr>
-						<tr class="H">
+						<tr class="V">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html">Exception</a></code></td>
 							<td></td>
 						</tr>
 					</table><span class="B">Agent entry point.</span></section>
 			</article>
-			<aside class="S" id="SubNavi">
-				<div class="W">
-					<h5 class="e">Constructors</h5>
+			<aside class="I" id="SubNavi">
+				<div class="K">
+					<h5 class="c">Constructors</h5>
 					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.Agent.html#Agent(java.lang.Class)">Agent</a></code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code><code class="extends"><code><a href="api/antibug.bytecode.Agent.Translator.html">Translator</a></code></code></code></code> <code class="parameterName">translator</code>)</code></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.Agent.html#Agent(java.lang.instrument.ClassFileTransformer)">Agent</a></code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.instrument/java/lang/instrument/ClassFileTransformer.html">ClassFileTransformer</a></code> <code class="parameterName">agent</code>)</code></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.Agent.html#Agent(java.lang.Class)">Agent</a></code><code class="T">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code><code class="extends"><code><a href="api/antibug.bytecode.Agent.Translator.html">Translator</a></code></code></code></code> <code class="parameterName">translator</code>)</code></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.Agent.html#Agent(java.lang.instrument.ClassFileTransformer)">Agent</a></code><code class="T">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.instrument/java/lang/instrument/ClassFileTransformer.html">ClassFileTransformer</a></code> <code class="parameterName">agent</code>)</code></li>
 					</ul>
-					<h5 class="e">Static Methods</h5>
+					<h5 class="c">Static Methods</h5>
 					<ul>
-						<li><i class="STATIC PUBLIC"></i><code><a href="api/antibug.bytecode.Agent.html#getTransformedCode(java.lang.Class)">getTransformedCode</a></code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a></code> <code class="parameterName">target</code>)</code><i class="j"><code array="fix">byte</code></i></li>
-						<li><i class="STATIC PUBLIC"></i><code><a href="api/antibug.bytecode.Agent.html#premain(java.lang.String,java.lang.instrument.Instrumentation)">premain</a></code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">args</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.instrument/java/lang/instrument/Instrumentation.html">Instrumentation</a></code> <code class="parameterName">instrumentation</code>)</code><i class="j"><code>void</code></i></li>
-						<li><i class="STATIC PUBLIC"></i><code><a href="api/antibug.bytecode.Agent.html#agentmain(java.lang.String,java.lang.instrument.Instrumentation)">agentmain</a></code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">args</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.instrument/java/lang/instrument/Instrumentation.html">Instrumentation</a></code> <code class="parameterName">instrumentation</code>)</code><i class="j"><code>void</code></i></li>
+						<li><i class="STATIC PUBLIC"></i><code><a href="api/antibug.bytecode.Agent.html#getTransformedCode(java.lang.Class)">getTransformedCode</a></code><code class="T">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a></code> <code class="parameterName">target</code>)</code><i class="j"><code array="fix">byte</code></i></li>
+						<li><i class="STATIC PUBLIC"></i><code><a href="api/antibug.bytecode.Agent.html#premain(java.lang.String,java.lang.instrument.Instrumentation)">premain</a></code><code class="T">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">args</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.instrument/java/lang/instrument/Instrumentation.html">Instrumentation</a></code> <code class="parameterName">instrumentation</code>)</code><i class="j"><code>void</code></i></li>
+						<li><i class="STATIC PUBLIC"></i><code><a href="api/antibug.bytecode.Agent.html#agentmain(java.lang.String,java.lang.instrument.Instrumentation)">agentmain</a></code><code class="T">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">args</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.instrument/java/lang/instrument/Instrumentation.html">Instrumentation</a></code> <code class="parameterName">instrumentation</code>)</code><i class="j"><code>void</code></i></li>
 					</ul>
-					<h5 class="e">Methods</h5>
+					<h5 class="c">Methods</h5>
 					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.Agent.html#transform(java.lang.Class)">transform</a></code><code class="V">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a></code> <code class="parameterName">target</code>)</code><i class="j"><code>void</code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.Agent.html#transform(java.lang.Class)">transform</a></code><code class="T">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a></code> <code class="parameterName">target</code>)</code><i class="j"><code>void</code></i></li>
 					</ul>
 				</div>
 			</aside>
