@@ -4,15 +4,14 @@
 		<meta charset="UTF-8"/>
 		<title>Antibug API</title>
 		<base href="../"/>
-		<link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/zenburn.min.css" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
-		<script async="true" src="highlight.js"></script>
+		<script async="true" src="highlight.js" type="module"></script>
 		<script src="mimic.js" type="module"></script>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="Z">
-		<header class="H">
-			<h1 class="N" date="2022-01-21" ver="1.2.7"><code>Antibug</code></h1>
-			<nav class="h"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
+	<body class="L">
+		<header class="g">
+			<h1 class="Q" date="2022-02-06" ver="1.2.7"><code>Antibug</code></h1>
+			<nav class="W"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#package"/>
 					</svg><code>API</code></a><a href="https://github.com//teletha/antibug/discussions" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#user"/>
@@ -21,7 +20,7 @@
 					</svg>Activity</a><a href="https://github.com//teletha/antibug" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#github"/>
 					</svg>Repository</a></nav>
-			<div class="e" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
+			<div class="Z" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#sun"/>
 					</svg>
 				</a><a id="dark" title="Change to a darker color scheme"><svg class="A svg" viewBox="0 0 24 24">
@@ -29,45 +28,49 @@
 					</svg>
 				</a></div>
 		</header>
-		<main class="J">
-			<nav class="L">
+		<main class="P">
+			<nav class="K">
 				<div></div>
 			</nav>
-			<article class="X" id="Article">
-				<section class="U"><code class="b">antibug.profiler</code>
-					<h2 class="Class Q"><code class="S">Profiler.Result</code></h2>
-					<ul class="C F">
-						<li><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/AutoCloseable.html">AutoCloseable</a></code></li>
-					</ul>
+			<article class="R" id="Article">
+				<section class="O"><code class="f">antibug.profiler</code>
+					<h2 class="Class T"><code class="h">Profiler.Result</code></h2>
+					<div class="H">
+						<ul class="C F">
+							<li><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/AutoCloseable.html">AutoCloseable</a></code></li>
+						</ul>
+					</div>
 				</section>
-				<section class="U" id="name">
-					<h2 class="g"><i class="PROTECTED"></i><code class="S">name</code><i class="i"><code class="return"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
+				<section class="O" id="name">
+					<h2 class="c"><i class="PROTECTED"></i><code class="h">name</code><i class="Y"><code class="return"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
 				</section>
-				<section class="U" id="elapsed">
-					<h2 class="g"><i class="PROTECTED"></i><code class="S">elapsed</code><i class="i"><code class="return">long</code></i></h2><span class="B">The elapsed time of the specified phase.</span></section>
-				<section class="U" id="count">
-					<h2 class="g"><i class="PROTECTED"></i><code class="S">count</code><i class="i"><code class="return">long</code></i></h2><span class="B">The call count.</span></section>
-				<section class="U" id="close()">
-					<h2 class="g"><i class="OVERRIDE PUBLIC"></i><code class="S">close</code><code class="T">()</code><i class="i"><code>void</code></i></h2>
-					<table class="W">
-						<tr class="V">
+				<section class="O" id="elapsed">
+					<h2 class="c"><i class="PROTECTED"></i><code class="h">elapsed</code><i class="Y"><code class="return">long</code></i></h2><span class="B"><p>The elapsed time of the specified phase.</p>
+					</span></section>
+				<section class="O" id="count">
+					<h2 class="c"><i class="PROTECTED"></i><code class="h">count</code><i class="Y"><code class="return">long</code></i></h2><span class="B"><p>The call count.</p>
+					</span></section>
+				<section class="O" id="close()">
+					<h2 class="c"><i class="OVERRIDE PUBLIC"></i><code class="h">close</code><code class="e">()</code><i class="Y"><code>void</code></i></h2>
+					<table class="d">
+						<tr class="a">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html">Exception</a></code></td>
 							<td></td>
 						</tr>
 					</table>
 				</section>
 			</article>
-			<aside class="I" id="SubNavi">
-				<div class="K">
-					<h5 class="c">Fields</h5>
+			<aside class="l" id="SubNavi">
+				<div class="b">
+					<h5 class="I">Fields</h5>
 					<ul>
-						<li><i class="PROTECTED"></i><code><a href="api/antibug.profiler.Profiler.Result.html#name">name</a></code><i class="j"><code class="return"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
-						<li><i class="PROTECTED"></i><code><a href="api/antibug.profiler.Profiler.Result.html#elapsed">elapsed</a></code><i class="j"><code class="return">long</code></i></li>
-						<li><i class="PROTECTED"></i><code><a href="api/antibug.profiler.Profiler.Result.html#count">count</a></code><i class="j"><code class="return">long</code></i></li>
+						<li><i class="PROTECTED"></i><code><a href="api/antibug.profiler.Profiler.Result.html#name">name</a></code><i class="N"><code class="return"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+						<li><i class="PROTECTED"></i><code><a href="api/antibug.profiler.Profiler.Result.html#elapsed">elapsed</a></code><i class="N"><code class="return">long</code></i></li>
+						<li><i class="PROTECTED"></i><code><a href="api/antibug.profiler.Profiler.Result.html#count">count</a></code><i class="N"><code class="return">long</code></i></li>
 					</ul>
-					<h5 class="c">Methods</h5>
+					<h5 class="I">Methods</h5>
 					<ul>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.profiler.Profiler.Result.html#close()">close</a></code><code class="T">()</code><i class="j"><code>void</code></i></li>
+						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.profiler.Profiler.Result.html#close()">close</a></code><code class="e">()</code><i class="N"><code>void</code></i></li>
 					</ul>
 				</div>
 			</aside>

@@ -4,15 +4,14 @@
 		<meta charset="UTF-8"/>
 		<title>Antibug API</title>
 		<base href="../"/>
-		<link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/zenburn.min.css" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
-		<script async="true" src="highlight.js"></script>
+		<script async="true" src="highlight.js" type="module"></script>
 		<script src="mimic.js" type="module"></script>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="Z">
-		<header class="H">
-			<h1 class="N" date="2022-01-21" ver="1.2.7"><code>Antibug</code></h1>
-			<nav class="h"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
+	<body class="L">
+		<header class="g">
+			<h1 class="Q" date="2022-02-06" ver="1.2.7"><code>Antibug</code></h1>
+			<nav class="W"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#package"/>
 					</svg><code>API</code></a><a href="https://github.com//teletha/antibug/discussions" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#user"/>
@@ -21,7 +20,7 @@
 					</svg>Activity</a><a href="https://github.com//teletha/antibug" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#github"/>
 					</svg>Repository</a></nav>
-			<div class="e" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
+			<div class="Z" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#sun"/>
 					</svg>
 				</a><a id="dark" title="Change to a darker color scheme"><svg class="A svg" viewBox="0 0 24 24">
@@ -29,154 +28,166 @@
 					</svg>
 				</a></div>
 		</header>
-		<main class="J">
-			<nav class="L">
+		<main class="P">
+			<nav class="K">
 				<div></div>
 			</nav>
-			<article class="X" id="Article">
-				<section class="U"><code class="b">antibug</code>
-					<h2 class="Class Q"><code class="S">CommandLineUser</code></h2>
-					<ul class="C F">
-						<li><code>org.junit.jupiter.api.extension.AfterEachCallback</code></li>
-						<li><code>org.junit.jupiter.api.extension.BeforeEachCallback</code></li>
-						<li><code>org.junit.jupiter.api.extension.Extension</code></li>
-						<li><code>org.junit.jupiter.api.extension.TestExecutionExceptionHandler</code></li>
-					</ul><span class="B"><p>
+			<article class="R" id="Article">
+				<section class="O"><code class="f">antibug</code>
+					<h2 class="Class T"><code class="h">CommandLineUser</code></h2>
+					<div class="H">
+						<ul class="C F">
+							<li><code>org.junit.jupiter.api.extension.AfterEachCallback</code></li>
+							<li><code>org.junit.jupiter.api.extension.BeforeEachCallback</code></li>
+							<li><code>org.junit.jupiter.api.extension.Extension</code></li>
+							<li><code>org.junit.jupiter.api.extension.TestExecutionExceptionHandler</code></li>
+						</ul>
+					</div><span class="B"><p>
  This is pseudo character-based user.
  </p>
 					</span></section>
-				<section class="U" id="CommandLineUser()">
-					<h2 class="g"><i class="PUBLIC"></i><code class="S">CommandLineUser</code><code class="T">()</code></h2>
+				<section class="O" id="CommandLineUser()">
+					<h2 class="c"><i class="PUBLIC"></i><code class="h">CommandLineUser</code><code class="e">()</code></h2>
 				</section>
-				<section class="U" id="CommandLineUser(boolean)">
-					<h2 class="g"><i class="PUBLIC"></i><code class="S">CommandLineUser</code><code class="T">(<code>boolean</code> <code class="parameterName">ignoreOutput</code>)</code></h2>
-					<table class="W">
-						<tr class="P">
+				<section class="O" id="CommandLineUser(boolean)">
+					<h2 class="c"><i class="PUBLIC"></i><code class="h">CommandLineUser</code><code class="e">(<code>boolean</code> <code class="parameterName">ignoreOutput</code>)</code></h2>
+					<table class="d">
+						<tr class="M">
 							<td><code>boolean</code> <code>ignoreOutput</code></td>
 							<td></td>
 						</tr>
 					</table>
 				</section>
-				<section class="U" id="beforeEach(org.junit.jupiter.api.extension.ExtensionContext)">
-					<h2 class="g"><i class="OVERRIDE PUBLIC"></i><code class="S">beforeEach</code><code class="T">(<code>org.junit.jupiter.api.extension.ExtensionContext</code> <code class="parameterName">context</code>)</code><i class="i"><code>void</code></i></h2>
-					<table class="W">
-						<tr class="P">
+				<section class="O" id="beforeEach(org.junit.jupiter.api.extension.ExtensionContext)">
+					<h2 class="c"><i class="OVERRIDE PUBLIC"></i><code class="h">beforeEach</code><code class="e">(<code>org.junit.jupiter.api.extension.ExtensionContext</code> <code class="parameterName">context</code>)</code><i class="Y"><code>void</code></i></h2>
+					<table class="d">
+						<tr class="M">
 							<td><code>org.junit.jupiter.api.extension.ExtensionContext</code> <code>context</code></td>
 							<td></td>
 						</tr>
-						<tr class="V">
+						<tr class="a">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html">Exception</a></code></td>
 							<td></td>
 						</tr>
 					</table>
 				</section>
-				<section class="U" id="afterEach(org.junit.jupiter.api.extension.ExtensionContext)">
-					<h2 class="g"><i class="OVERRIDE PUBLIC"></i><code class="S">afterEach</code><code class="T">(<code>org.junit.jupiter.api.extension.ExtensionContext</code> <code class="parameterName">context</code>)</code><i class="i"><code>void</code></i></h2>
-					<table class="W">
-						<tr class="P">
+				<section class="O" id="afterEach(org.junit.jupiter.api.extension.ExtensionContext)">
+					<h2 class="c"><i class="OVERRIDE PUBLIC"></i><code class="h">afterEach</code><code class="e">(<code>org.junit.jupiter.api.extension.ExtensionContext</code> <code class="parameterName">context</code>)</code><i class="Y"><code>void</code></i></h2>
+					<table class="d">
+						<tr class="M">
 							<td><code>org.junit.jupiter.api.extension.ExtensionContext</code> <code>context</code></td>
 							<td></td>
 						</tr>
-						<tr class="V">
+						<tr class="a">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html">Exception</a></code></td>
 							<td></td>
 						</tr>
 					</table>
 				</section>
-				<section class="U" id="handleTestExecutionException(org.junit.jupiter.api.extension.ExtensionContext,java.lang.Throwable)">
-					<h2 class="g"><i class="OVERRIDE PUBLIC"></i><code class="S">handleTestExecutionException</code><code class="T">(<code>org.junit.jupiter.api.extension.ExtensionContext</code> <code class="parameterName">context</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code> <code class="parameterName">throwable</code>)</code><i class="i"><code>void</code></i></h2>
-					<table class="W">
-						<tr class="P">
+				<section class="O" id="handleTestExecutionException(org.junit.jupiter.api.extension.ExtensionContext,java.lang.Throwable)">
+					<h2 class="c"><i class="OVERRIDE PUBLIC"></i><code class="h">handleTestExecutionException</code><code class="e">(<code>org.junit.jupiter.api.extension.ExtensionContext</code> <code class="parameterName">context</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code> <code class="parameterName">throwable</code>)</code><i class="Y"><code>void</code></i></h2>
+					<table class="d">
+						<tr class="M">
 							<td><code>org.junit.jupiter.api.extension.ExtensionContext</code> <code>context</code></td>
 							<td></td>
 						</tr>
-						<tr class="P">
+						<tr class="M">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code> <code>throwable</code></td>
 							<td></td>
 						</tr>
-						<tr class="V">
+						<tr class="a">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code></td>
 							<td></td>
 						</tr>
 					</table>
 				</section>
-				<section class="U" id="willInput(java.lang.String...)">
-					<h2 class="g"><i class="PUBLIC"></i><code class="S">willInput</code><code class="T">(<code array="var"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">values</code>)</code><i class="i"><code>void</code></i></h2>
-					<table class="W">
-						<tr class="P">
+				<section class="O" id="willInput(java.lang.String...)">
+					<h2 class="c"><i class="PUBLIC"></i><code class="h">willInput</code><code class="e">(<code array="var"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">values</code>)</code><i class="Y"><code>void</code></i></h2>
+					<table class="d">
+						<tr class="M">
 							<td><code array="var"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code>values</code></td>
 							<td></td>
 						</tr>
 					</table>
 				</section>
-				<section class="U" id="receiveOutput(java.lang.String)">
-					<h2 class="g"><i class="PUBLIC"></i><code class="S">receiveOutput</code><code class="T">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">valus</code>)</code><i class="i"><code>boolean</code></i></h2>
-					<table class="W">
-						<tr class="P">
+				<section class="O" id="receiveOutput(java.lang.String)">
+					<h2 class="c"><i class="PUBLIC"></i><code class="h">receiveOutput</code><code class="e">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">valus</code>)</code><i class="Y"><code>boolean</code></i></h2>
+					<table class="d">
+						<tr class="M">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code>valus</code></td>
-							<td><span>An outputed value to test.</span></td>
+							<td><span><p>An outputed value to test.</p>
+								</span></td>
 						</tr>
-						<tr class="f">
+						<tr class="S">
 							<td><code>boolean</code></td>
-							<td><span>A result.</span></td>
+							<td><span><p>A result.</p>
+								</span></td>
 						</tr>
 					</table><span class="B"><p>
  Test whether this user outputed the specified value or not.
  </p>
 					</span></section>
-				<section class="U" id="receiveError(java.lang.String)">
-					<h2 class="g"><i class="PUBLIC"></i><code class="S">receiveError</code><code class="T">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">valus</code>)</code><i class="i"><code>boolean</code></i></h2>
-					<table class="W">
-						<tr class="P">
+				<section class="O" id="receiveError(java.lang.String)">
+					<h2 class="c"><i class="PUBLIC"></i><code class="h">receiveError</code><code class="e">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">valus</code>)</code><i class="Y"><code>boolean</code></i></h2>
+					<table class="d">
+						<tr class="M">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code>valus</code></td>
-							<td><span>An outputed value to test.</span></td>
+							<td><span><p>An outputed value to test.</p>
+								</span></td>
 						</tr>
-						<tr class="f">
+						<tr class="S">
 							<td><code>boolean</code></td>
-							<td><span>A result.</span></td>
+							<td><span><p>A result.</p>
+								</span></td>
 						</tr>
 					</table><span class="B"><p>
  Test whether this user outputed the specified value or not.
  </p>
 					</span></section>
-				<section class="U" id="receive(java.lang.String)">
-					<h2 class="g"><i class="PUBLIC"></i><code class="S">receive</code><code class="T">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">valus</code>)</code><i class="i"><code>boolean</code></i></h2>
-					<table class="W">
-						<tr class="P">
+				<section class="O" id="receive(java.lang.String)">
+					<h2 class="c"><i class="PUBLIC"></i><code class="h">receive</code><code class="e">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">valus</code>)</code><i class="Y"><code>boolean</code></i></h2>
+					<table class="d">
+						<tr class="M">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code>valus</code></td>
-							<td><span>An outputed value to test.</span></td>
+							<td><span><p>An outputed value to test.</p>
+								</span></td>
 						</tr>
-						<tr class="f">
+						<tr class="S">
 							<td><code>boolean</code></td>
-							<td><span>A result.</span></td>
+							<td><span><p>A result.</p>
+								</span></td>
 						</tr>
-					</table><span class="B">Test whether this user outputed the specified value or not.</span></section>
-				<section class="U" id="clearOutput()">
-					<h2 class="g"><i class="PUBLIC"></i><code class="S">clearOutput</code><code class="T">()</code><i class="i"><code>void</code></i></h2><span class="B">Clear buffered output message.</span></section>
-				<section class="U" id="clearError()">
-					<h2 class="g"><i class="PUBLIC"></i><code class="S">clearError</code><code class="T">()</code><i class="i"><code>void</code></i></h2><span class="B">Clear buffered error message.</span></section>
-				<section class="U" id="clear()">
-					<h2 class="g"><i class="PUBLIC"></i><code class="S">clear</code><code class="T">()</code><i class="i"><code>void</code></i></h2><span class="B">Clear buffered output and error message.</span></section>
+					</table><span class="B"><p>Test whether this user outputed the specified value or not.</p>
+					</span></section>
+				<section class="O" id="clearOutput()">
+					<h2 class="c"><i class="PUBLIC"></i><code class="h">clearOutput</code><code class="e">()</code><i class="Y"><code>void</code></i></h2><span class="B"><p>Clear buffered output message.</p>
+					</span></section>
+				<section class="O" id="clearError()">
+					<h2 class="c"><i class="PUBLIC"></i><code class="h">clearError</code><code class="e">()</code><i class="Y"><code>void</code></i></h2><span class="B"><p>Clear buffered error message.</p>
+					</span></section>
+				<section class="O" id="clear()">
+					<h2 class="c"><i class="PUBLIC"></i><code class="h">clear</code><code class="e">()</code><i class="Y"><code>void</code></i></h2><span class="B"><p>Clear buffered output and error message.</p>
+					</span></section>
 			</article>
-			<aside class="I" id="SubNavi">
-				<div class="K">
-					<h5 class="c">Constructors</h5>
+			<aside class="l" id="SubNavi">
+				<div class="b">
+					<h5 class="I">Constructors</h5>
 					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#CommandLineUser()">CommandLineUser</a></code><code class="T">()</code></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#CommandLineUser(boolean)">CommandLineUser</a></code><code class="T">(<code>boolean</code> <code class="parameterName">ignoreOutput</code>)</code></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#CommandLineUser()">CommandLineUser</a></code><code class="e">()</code></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#CommandLineUser(boolean)">CommandLineUser</a></code><code class="e">(<code>boolean</code> <code class="parameterName">ignoreOutput</code>)</code></li>
 					</ul>
-					<h5 class="c">Methods</h5>
+					<h5 class="I">Methods</h5>
 					<ul>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#beforeEach(org.junit.jupiter.api.extension.ExtensionContext)">beforeEach</a></code><code class="T">(<code>org.junit.jupiter.api.extension.ExtensionContext</code> <code class="parameterName">context</code>)</code><i class="j"><code>void</code></i></li>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#afterEach(org.junit.jupiter.api.extension.ExtensionContext)">afterEach</a></code><code class="T">(<code>org.junit.jupiter.api.extension.ExtensionContext</code> <code class="parameterName">context</code>)</code><i class="j"><code>void</code></i></li>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#handleTestExecutionException(org.junit.jupiter.api.extension.ExtensionContext,java.lang.Throwable)">handleTestExecutionException</a></code><code class="T">(<code>org.junit.jupiter.api.extension.ExtensionContext</code> <code class="parameterName">context</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code> <code class="parameterName">throwable</code>)</code><i class="j"><code>void</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#willInput(java.lang.String...)">willInput</a></code><code class="T">(<code array="var"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">values</code>)</code><i class="j"><code>void</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#receiveOutput(java.lang.String)">receiveOutput</a></code><code class="T">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">valus</code>)</code><i class="j"><code>boolean</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#receiveError(java.lang.String)">receiveError</a></code><code class="T">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">valus</code>)</code><i class="j"><code>boolean</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#receive(java.lang.String)">receive</a></code><code class="T">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">valus</code>)</code><i class="j"><code>boolean</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#clearOutput()">clearOutput</a></code><code class="T">()</code><i class="j"><code>void</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#clearError()">clearError</a></code><code class="T">()</code><i class="j"><code>void</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#clear()">clear</a></code><code class="T">()</code><i class="j"><code>void</code></i></li>
+						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#beforeEach(org.junit.jupiter.api.extension.ExtensionContext)">beforeEach</a></code><code class="e">(<code>org.junit.jupiter.api.extension.ExtensionContext</code> <code class="parameterName">context</code>)</code><i class="N"><code>void</code></i></li>
+						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#afterEach(org.junit.jupiter.api.extension.ExtensionContext)">afterEach</a></code><code class="e">(<code>org.junit.jupiter.api.extension.ExtensionContext</code> <code class="parameterName">context</code>)</code><i class="N"><code>void</code></i></li>
+						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#handleTestExecutionException(org.junit.jupiter.api.extension.ExtensionContext,java.lang.Throwable)">handleTestExecutionException</a></code><code class="e">(<code>org.junit.jupiter.api.extension.ExtensionContext</code> <code class="parameterName">context</code>, <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code> <code class="parameterName">throwable</code>)</code><i class="N"><code>void</code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#willInput(java.lang.String...)">willInput</a></code><code class="e">(<code array="var"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">values</code>)</code><i class="N"><code>void</code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#receiveOutput(java.lang.String)">receiveOutput</a></code><code class="e">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">valus</code>)</code><i class="N"><code>boolean</code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#receiveError(java.lang.String)">receiveError</a></code><code class="e">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">valus</code>)</code><i class="N"><code>boolean</code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#receive(java.lang.String)">receive</a></code><code class="e">(<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">valus</code>)</code><i class="N"><code>boolean</code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#clearOutput()">clearOutput</a></code><code class="e">()</code><i class="N"><code>void</code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#clearError()">clearError</a></code><code class="e">()</code><i class="N"><code>void</code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.CommandLineUser.html#clear()">clear</a></code><code class="e">()</code><i class="N"><code>void</code></i></li>
 					</ul>
 				</div>
 			</aside>
