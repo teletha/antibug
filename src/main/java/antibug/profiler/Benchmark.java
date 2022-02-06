@@ -76,7 +76,7 @@ public final class Benchmark {
     private Duration duration = Duration.ofSeconds(1);
 
     /** The max memory size. */
-    private String memory = "48m";
+    private String memory = "128m";
 
     /** The realtime reporter. */
     private Consumer<String> reporter = System.out::println;
@@ -157,6 +157,12 @@ public final class Benchmark {
         return this;
     }
 
+    /**
+     * Configure the memory size of forked JVM.
+     * 
+     * @param max
+     * @return
+     */
     public Benchmark memory(String max) {
         this.memory = max;
 
@@ -227,7 +233,11 @@ public final class Benchmark {
                     command.addAll(List.of("-cp", System.getProperty("java.class.path")));
                     command.add(caller.getName());
 
-                    new ProcessBuilder(command).inheritIO().start().waitFor();
+                    int result = new ProcessBuilder(command).inheritIO().start().waitFor();
+                    if (result != 0) {
+                        reporter.accept("Stop benchmark by fatal error in forked JVM.\n");
+                        continue;
+                    }
 
                     try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file.toFile()))) {
                         results.add((MeasurableCode) in.readObject());
@@ -398,7 +408,7 @@ public final class Benchmark {
             write("");
 
             analyze();
-            serialize();
+            serialize(this);
         }
 
         /**
@@ -431,6 +441,8 @@ public final class Benchmark {
                 // calculate execution time
                 return new Sample(BigInteger
                         .valueOf(count * inner), endTime - startTime, hash, endGC[0] - startGC[0], endGC[1] - startGC[1], memory);
+            } catch (OutOfMemoryError e) {
+                throw e;
             } catch (Throwable e) {
                 throw new AssertionError(e);
             }
@@ -502,9 +514,9 @@ public final class Benchmark {
         /**
          * Serialize this object.
          */
-        private void serialize() {
+        private void serialize(Serializable obj) {
             try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(new File(FILE)))) {
-                out.writeObject(this);
+                out.writeObject(obj);
                 out.flush();
             } catch (Exception e) {
                 throw new Error(e);
