@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.3.0](https://www.github.com/teletha/antibug/compare/v1.2.7...v1.3.0) (2022-02-06)
+
+
+### Features
+
+* Benchmark can config the duration of trial. ([fbb0333](https://www.github.com/teletha/antibug/commit/fbb0333335a0d6c2f82a3aecf8980a9d333c8f24))
+* Benchmark records the peak meory usage. ([11919a1](https://www.github.com/teletha/antibug/commit/11919a1b90f5e91d46eaf86d3ac49322a50da019))
+* Enhance benchmark. ([ed4e7bd](https://www.github.com/teletha/antibug/commit/ed4e7bde19fe893f6ddff32c86042e991f35d60c))
+* Run benchmark code on the forked JVM. ([7f2fcec](https://www.github.com/teletha/antibug/commit/7f2fcec4356152f6c5824faa9a499d7e3eb02472))
+
+
+### Bug Fixes
+
+* Enhance benchmark. ([c0fb8f0](https://www.github.com/teletha/antibug/commit/c0fb8f009c9a1511e7cb07a28abefd47a29cf40c))
+* Format benchmark result. ([4548fd7](https://www.github.com/teletha/antibug/commit/4548fd7c3f841fb09e3d20cf71a9e6b1f3a7b887))
+* Handle fatal error in the forked JVM. ([af86e8c](https://www.github.com/teletha/antibug/commit/af86e8c514609e9fc8c13fcb523fd3aac303631e))
+
 ### [1.2.7](https://www.github.com/teletha/antibug/compare/v1.2.6...v1.2.7) (2021-12-31)
 
 
