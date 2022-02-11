@@ -330,9 +330,6 @@ public final class Benchmark {
         /** The summary statistics. */
         private double standardDeviation;
 
-        /** The summary statistics. */
-        private BigInteger median;
-
         /** The memory statistics. */
         private long peakMemory;
 
@@ -492,18 +489,6 @@ public final class Benchmark {
             }
             arithmeticMean = sum.divide(size);
 
-            // Median
-            int newSize = samples.size();
-
-            if (newSize % 2 == 1) {
-                median = samples.get((newSize + 1) / 2).timesPerExecution;
-            } else {
-                BigInteger one = samples.get(newSize / 2).timesPerExecution;
-                BigInteger other = samples.get(newSize / 2 + 1).timesPerExecution;
-
-                median = one.add(other).divide(TWO);
-            }
-
             for (Sample sample : samples) {
                 peakMemory = Math.max(sample.peakMemory, peakMemory);
                 countGC += sample.countGC;
@@ -624,15 +609,6 @@ public final class Benchmark {
          */
         public double getStandardDeviation() {
             return standardDeviation;
-        }
-
-        /**
-         * The summary statistic.
-         * 
-         * @return
-         */
-        public int getMedian() {
-            return median.intValueExact();
         }
     }
 
