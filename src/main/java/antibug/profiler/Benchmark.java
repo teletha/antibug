@@ -78,6 +78,9 @@ public final class Benchmark {
     /** The max memory size. */
     private String memory = "128m";
 
+    /** The report option. */
+    private boolean visualize;
+
     /** The realtime reporter. */
     private Consumer<String> reporter = System.out::println;
 
@@ -194,6 +197,16 @@ public final class Benchmark {
     }
 
     /**
+     * Configure the report visualization.
+     * 
+     * @return
+     */
+    public Benchmark visualize() {
+        this.visualize = true;
+        return this;
+    }
+
+    /**
      * Measure an execution speed of the specified code fragment.
      * 
      * @param code A code to be measured.
@@ -263,11 +276,22 @@ public final class Benchmark {
             }
             reporter.accept("");
             reporter.accept(getPlatformInfo());
+
+            if (visualize) {
+                buildSVG(results);
+            }
         } else {
             MeasurableCode code = codes.stream().filter(c -> c.name.equals(TARGET)).findFirst().get();
             code.perform();
         }
         return codes;
+    }
+
+    /**
+     * @param results
+     */
+    private void buildSVG(List<MeasurableCode> results) {
+
     }
 
     public static final String getPlatformInfo() {

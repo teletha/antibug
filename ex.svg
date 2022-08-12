@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <rect width="450" height="25" fill="#FFAB7B" rx="4" ry="4" stroke-linejoin="round"/>
+    <text x="5" y="18" font-family="Arial" font-size="14" fill="#5B5D53">Hello</text>
+  </g>
+</svg>
