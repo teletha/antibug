@@ -14,6 +14,7 @@ import static java.math.BigInteger.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
@@ -25,6 +26,7 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryPoolMXBean;
 import java.lang.management.MemoryType;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DecimalFormat;
@@ -35,6 +37,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.LongSummaryStatistics;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
@@ -72,6 +75,9 @@ public final class Benchmark {
     /** The number of iteration. */
     private int trials = 5;
 
+    /** The limit of calls. */
+    private long limit;
+
     /** The duration of single trial. */
     private Duration duration = Duration.ofSeconds(1);
 
@@ -79,7 +85,7 @@ public final class Benchmark {
     private String memory = "128m";
 
     /** The report option. */
-    private boolean visualize;
+    private boolean visualize = true;
 
     /** The realtime reporter. */
     private Consumer<String> reporter = System.out::println;
@@ -110,6 +116,19 @@ public final class Benchmark {
         }
         this.trials = trials;
 
+        return this;
+    }
+
+    /**
+     * Configure the duration of trial.
+     * 
+     * @param limit A caount of trial.
+     * @return Chainable configuration.
+     */
+    public Benchmark limit(long limit) {
+        if (0 < limit) {
+            this.limit = limit;
+        }
         return this;
     }
 
@@ -201,8 +220,8 @@ public final class Benchmark {
      * 
      * @return
      */
-    public Benchmark visualize() {
-        this.visualize = true;
+    public Benchmark novisualize() {
+        this.visualize = false;
         return this;
     }
 
@@ -221,7 +240,7 @@ public final class Benchmark {
      * @param code A code to be measured.
      */
     public Benchmark measure(String name, Runnable setup, Callable code) {
-        codes.add(new MeasurableCode(name, setup, code, this));
+        codes.add(new MeasurableCode(name, setup, code, this, limit));
 
         return this;
     }
@@ -291,7 +310,56 @@ public final class Benchmark {
      * @param results
      */
     private void buildSVG(List<MeasurableCode> results) {
+        String EOL = "\r\n";
+        int barHeight = 25;
+        int barHeightGap = 20;
+        int height = (barHeight + barHeightGap) * results.size() + barHeightGap;
 
+        LongSummaryStatistics statistics = results.stream().mapToLong(r -> r.throughputMean.longValue()).summaryStatistics();
+
+        StringBuilder svg = new StringBuilder();
+        svg.append("""
+                 <svg xmlns="http://www.w3.org/2000/svg">
+                     <g>
+                       <rect x="175" y="0" width="1" height="%d" stroke="none" stroke-width="0" fill="#cccccc" />
+                       <rect x="275" y="0" width="1" height="%d" stroke="none" stroke-width="0" fill="#cccccc" />
+                       <rect x="375" y="0" width="1" height="%d" stroke="none" stroke-width="0" fill="#cccccc" />
+                       <rect x="475" y="0" width="1" height="%d" stroke="none" stroke-width="0" fill="#cccccc" />
+                       <rect x="575" y="0" width="1" height="%d" stroke="none" stroke-width="0" fill="#cccccc" />
+                       <rect x="225" y="0" width="1" height="%d" stroke="none" stroke-width="0" fill="#ebebeb" />
+                       <rect x="325" y="0" width="1" height="%d" stroke="none" stroke-width="0" fill="#ebebeb" />
+                       <rect x="425" y="0" width="1" height="%d" stroke="none" stroke-width="0" fill="#ebebeb" />
+                       <rect x="525" y="0" width="1" height="%d" stroke="none" stroke-width="0" fill="#ebebeb" />
+                       <rect x="175" y="%d" width="450" height="1" stroke="none" stroke-width="0" fill="#ebebeb" />
+                       <text x="400" y="%d" font-family="Arial" font-size="13" fill="#666" text-anchor="middle">call / 1sec</text>
+                    </g>
+                """.formatted(height, height, height, height, height, height, height, height, height, height, height + barHeightGap));
+
+        for (int i = 0; i < results.size(); i++) {
+            MeasurableCode result = results.get(i);
+
+            int y = (barHeight + barHeightGap) * i + barHeightGap;
+            int textY = y + 15;
+            double width = 350d / statistics.getMax() * result.throughputMean.intValue();
+            String text = result.throughputMean.intValue() + "call  (GC " + Math.round(result.countGC / trials) + ")";
+
+            svg.append("""
+                    <g>
+                        <rect x="175" y="%d" width="%f" height="%d" fill="#FFAB7B" rx="2" ry="2" stroke-linejoin="round"/>
+                        <text x="160" y="%d" font-family="Arial" font-size="13" fill="#666" text-anchor="end">%s</text>
+                        <text x="375" y="%d" font-family="Arial" font-size="11" fill="#666" text-anchor="middle">%s</text>
+                    </g>
+                    """.formatted(y, width, barHeight, textY, result.name, textY + 2, text));
+        }
+        svg.append("</svg>").append(EOL);
+
+        try {
+            Path file = Path.of("benchmark/" + caller.getSimpleName() + ".svg");
+            Files.createDirectories(file.getParent());
+            Files.writeString(file, svg, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            throw new Error(e);
+        }
     }
 
     public static final String getPlatformInfo() {
@@ -345,6 +413,12 @@ public final class Benchmark {
         /** The sample set. */
         private transient final List<Sample> samples = new ArrayList();
 
+        /** The limit to call. */
+        private transient final long limit;
+
+        /** The summary statistics. */
+        private BigInteger throughputMean;
+
         /** The summary statistics. */
         private BigInteger arithmeticMean;
 
@@ -368,11 +442,12 @@ public final class Benchmark {
          * @param setup
          * @param code
          */
-        private MeasurableCode(String name, Runnable setup, Callable code, Benchmark bench) {
+        private MeasurableCode(String name, Runnable setup, Callable code, Benchmark bench, long limit) {
             this.name = Objects.requireNonNull(name);
             this.setup = setup;
             this.code = Objects.requireNonNull(code);
             this.bench = bench;
+            this.limit = limit;
         }
 
         /**
@@ -402,14 +477,21 @@ public final class Benchmark {
             // warmup JVM and decided the number of executions
             BigInteger frequency = ONE;
 
-            while (true) {
-                Sample result = measure(frequency);
+            if (limit != 0) {
+                frequency = BigInteger.valueOf(limit);
+                for (int i = 0; i < 5; i++) {
+                    measure(frequency);
+                }
+            } else {
+                while (true) {
+                    Sample result = measure(frequency);
 
-                if (result.time.compareTo(threshold) == -1) {
-                    frequency = frequency.multiply(TWO);
-                } else {
-                    frequency = frequency.multiply(threshold).divide(result.time);
-                    break;
+                    if (result.time.compareTo(threshold) == -1) {
+                        frequency = frequency.multiply(TWO);
+                    } else {
+                        frequency = frequency.multiply(threshold).divide(result.time);
+                        break;
+                    }
                 }
             }
 
@@ -507,11 +589,17 @@ public final class Benchmark {
 
             // Arithmetic Mean (re-calculate)
             sum = ZERO;
-
             for (Sample sample : samples) {
                 sum = sum.add(sample.timesPerExecution);
             }
             arithmeticMean = sum.divide(size);
+
+            // Arithmetic Mean (re-calculate)
+            sum = ZERO;
+            for (Sample sample : samples) {
+                sum = sum.add(sample.executionsPerSecond);
+            }
+            throughputMean = sum.divide(size);
 
             for (Sample sample : samples) {
                 peakMemory = Math.max(sample.peakMemory, peakMemory);
