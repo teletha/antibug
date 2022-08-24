@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.4.0](https://www.github.com/teletha/antibug/compare/v1.3.0...v1.4.0) (2022-08-24)
+
+
+### Features
+
+* Benchmark can output SVG report. ([02eefa4](https://www.github.com/teletha/antibug/commit/02eefa4ede4b178621061ff41302cd8a32464461))
+* Drop MeasurableCode#getMedian. ([e7ca18f](https://www.github.com/teletha/antibug/commit/e7ca18ff4f62d12d6e2cc0ba41847d0b71eefbac))
+
+
+### Bug Fixes
+
+* Update junit. ([dd299b9](https://www.github.com/teletha/antibug/commit/dd299b951796013493a01c01f0c1b3809b18d220))
+
 ## [1.3.0](https://www.github.com/teletha/antibug/compare/v1.2.7...v1.3.0) (2022-02-06)
 
 
