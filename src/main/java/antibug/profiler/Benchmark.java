@@ -311,45 +311,90 @@ public final class Benchmark {
      */
     private void buildSVG(List<MeasurableCode> results) {
         String EOL = "\r\n";
-        int barHeight = 25;
+        int barHeight = 28;
         int barHeightGap = 20;
         int height = (barHeight + barHeightGap) * results.size() + barHeightGap;
 
-        LongSummaryStatistics statistics = results.stream().mapToLong(r -> r.throughputMean.longValue()).summaryStatistics();
+        LongSummaryStatistics statistics = results.stream().mapToLong(r -> r.arithmeticMean.longValue()).summaryStatistics();
+        LongSummaryStatistics statistics2 = results.stream().mapToLong(r -> r.countGC).summaryStatistics();
 
         StringBuilder svg = new StringBuilder();
         svg.append("""
-                 <svg xmlns="http://www.w3.org/2000/svg">
-                     <g>
-                       <rect x="175" y="0" width="1" height="%d" stroke="none" stroke-width="0" fill="#cccccc" />
-                       <rect x="275" y="0" width="1" height="%d" stroke="none" stroke-width="0" fill="#cccccc" />
-                       <rect x="375" y="0" width="1" height="%d" stroke="none" stroke-width="0" fill="#cccccc" />
-                       <rect x="475" y="0" width="1" height="%d" stroke="none" stroke-width="0" fill="#cccccc" />
-                       <rect x="575" y="0" width="1" height="%d" stroke="none" stroke-width="0" fill="#cccccc" />
-                       <rect x="225" y="0" width="1" height="%d" stroke="none" stroke-width="0" fill="#ebebeb" />
-                       <rect x="325" y="0" width="1" height="%d" stroke="none" stroke-width="0" fill="#ebebeb" />
-                       <rect x="425" y="0" width="1" height="%d" stroke="none" stroke-width="0" fill="#ebebeb" />
-                       <rect x="525" y="0" width="1" height="%d" stroke="none" stroke-width="0" fill="#ebebeb" />
-                       <rect x="175" y="%d" width="450" height="1" stroke="none" stroke-width="0" fill="#ebebeb" />
-                       <text x="400" y="%d" font-family="Arial" font-size="13" fill="#666" text-anchor="middle">call / 1sec</text>
-                    </g>
-                """.formatted(height, height, height, height, height, height, height, height, height, height, height + barHeightGap));
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 625 %d">
+                  <style>
+                      text {
+                          font-family: Arial;
+                          font-size: 13px;
+                          fill: #787878;
+                      }
+
+                      .desc {
+                          font-size: 9px;
+                      }
+
+                      .vline {
+                          fill: #acacac;
+                          stroke: none;
+                          stroke-width: 0;
+                      }
+
+                      .subline {
+                          fill: #bbb;
+                          stroke: none;
+                          stroke-width: 0;
+                      }
+
+                      .call {
+                          fill: #4886CD;
+                          stroke-linejoin: round;
+                          height: 14px;
+                      }
+
+                      .gc {
+                          fill: #4FB84B;
+                          stroke-linejoin: round;
+                          height: 14px;
+                      }
+                  </style>
+                  <g>
+                    <rect x="175" y="0" width="1" height="%d" class="vline"/>
+                    <rect x="275" y="0" width="1" height="%d" class="vline"/>
+                    <rect x="375" y="0" width="1" height="%d" class="vline"/>
+                    <rect x="475" y="0" width="1" height="%d" class="vline"/>
+                    <rect x="575" y="0" width="1" height="%d" class="vline"/>
+                    <rect x="225" y="0" width="1" height="%d" class="subline"/>
+                    <rect x="325" y="0" width="1" height="%d" class="subline"/>
+                    <rect x="425" y="0" width="1" height="%d" class="subline"/>
+                    <rect x="525" y="0" width="1" height="%d" class="subline"/>
+                    <rect x="175" y="%d" width="450" height="1" class="subline"/>
+
+                    <rect x="265" y="%d" width="30" class="call"/>
+                    <text x="305" y="%d">ns / call</text>
+                    <rect x="395" y="%d" width="30" class="gc"/>
+                    <text x="435" y="%d">GC</text>
+                   </g>
+                 """
+                .formatted(height + 30, height, height, height, height, height, height, height, height, height, height, height + 8, height + barHeightGap, height + 8, height + barHeightGap));
 
         for (int i = 0; i < results.size(); i++) {
             MeasurableCode result = results.get(i);
 
             int y = (barHeight + barHeightGap) * i + barHeightGap;
-            int textY = y + 15;
-            double width = 350d / statistics.getMax() * result.throughputMean.intValue();
-            String text = result.throughputMean.intValue() + "call  (GC " + Math.round(result.countGC / trials) + ")";
+            double widthCall = 350d / statistics.getMax() * result.arithmeticMean.intValue();
+            double widthGC = 150d / statistics2.getMax() * result.countGC;
+            int textCall = result.arithmeticMean.intValue();
+            int textGC = Math.round(result.countGC / trials);
 
             svg.append("""
-                    <g>
-                        <rect x="175" y="%d" width="%f" height="%d" fill="#FFAB7B" rx="2" ry="2" stroke-linejoin="round"/>
-                        <text x="160" y="%d" font-family="Arial" font-size="13" fill="#666" text-anchor="end">%s</text>
-                        <text x="375" y="%d" font-family="Arial" font-size="11" fill="#666" text-anchor="middle">%s</text>
-                    </g>
-                    """.formatted(y, width, barHeight, textY, result.name, textY + 2, text));
+                      <g>
+                        <rect x="175" y="%d" width="%f" rx="2" ry="2" class="call"/>
+                        <rect x="175" y="%d" width="%f" rx="2" ry="2" class="gc"/>
+                        <text x="160" y="%d" text-anchor="end">%s</text>
+                        <text x="%f" y="%d" class="desc">%s</text>
+                        <text x="%f" y="%d" class="desc">%s</text>
+                      </g>
+                    """
+                    .formatted(y, widthCall, y + 14, widthGC, y + 17, result.name, 175 + widthCall + 7, y + 10, textCall, 175 + widthGC + 7, y + 14 + 10, textGC));
         }
         svg.append("</svg>").append(EOL);
 
@@ -660,7 +705,6 @@ public final class Benchmark {
         private long[] measureGC() {
             long count = 0;
             long time = 0;
-
             for (int i = 0, size = Garbages.size(); i < size; i++) {
                 GarbageCollectorMXBean garbage = Garbages.get(i);
                 count += garbage.getCollectionCount();
