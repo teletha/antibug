@@ -85,7 +85,7 @@ public final class Benchmark {
     private String memory = "128m";
 
     /** The report option. */
-    private boolean visualize = true;
+    private boolean visualize = false;
 
     /** The realtime reporter. */
     private Consumer<String> reporter = System.out::println;
@@ -220,8 +220,8 @@ public final class Benchmark {
      * 
      * @return
      */
-    public Benchmark novisualize() {
-        this.visualize = false;
+    public Benchmark visualize() {
+        this.visualize = true;
         return this;
     }
 
