@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/teletha/antibug/compare/v1.4.0...v1.4.1) (2022-10-01)
+
+
+### Bug Fixes
+
+* change method for visual report. ([15551b6](https://github.com/teletha/antibug/commit/15551b64af39a9765cb9fd3bef4bfef825aae488))
+
 ## [1.4.0](https://www.github.com/teletha/antibug/compare/v1.3.0...v1.4.0) (2022-08-24)
 
 
