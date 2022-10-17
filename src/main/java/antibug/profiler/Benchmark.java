@@ -339,10 +339,6 @@ public final class Benchmark {
                           font-size: 9px;
                       }
 
-                      .ver {
-                          font-size: 7px;
-                      }
-
                       .vline {
                           fill: #acacac;
                           stroke: none;
@@ -401,12 +397,12 @@ public final class Benchmark {
                       <rect x="175" y="%d" width="%f" rx="2" ry="2" class="call"/>
                       <rect x="175" y="%d" width="%f" rx="2" ry="2" class="gc"/>
                       <text x="160" y="%d" text-anchor="end">%s</text>
-                      <text x="160" y="%d" text-anchor="end" class="ver">%s</text>
+                      <text x="160" y="%d" text-anchor="end" class="desc">%s</text>
                       <text x="%f" y="%d" class="desc">%s</text>
                       <text x="%f" y="%d" class="desc">%s</text>
 
                     """
-                    .formatted(y, widthCall, y + 14, widthGC, y + 17, result.name, y + 25, result.version, 175 + widthCall + 7, y + 10, textCall, 175 + widthGC + 7, y + 14 + 10, textGC));
+                    .formatted(y, widthCall, y + 14, widthGC, y + 17, result.name, y + 27, result.version, 175 + widthCall + 7, y + 10, textCall, 175 + widthGC + 7, y + 14 + 10, textGC));
         }
 
         Runtime runtime = Runtime.getRuntime();
