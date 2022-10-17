@@ -42,6 +42,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.LongSummaryStatistics;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
@@ -287,9 +288,11 @@ public final class Benchmark {
 
             Collections.sort(results, Comparator.comparing(o -> o.arithmeticMean));
 
+            NameInfo names = new NameInfo();
             int maxName = 0;
             for (MeasurableCode code : results) {
                 maxName = Math.max(maxName, code.name.length());
+                code.version = names.detect(code.name);
             }
 
             reporter.accept(String.format("%" + maxName + "s\tAverage\t\tPeakMemory\tTotalGC", "\t"));
@@ -336,6 +339,10 @@ public final class Benchmark {
                           font-size: 9px;
                       }
 
+                      .ver {
+                          font-size: 7px;
+                      }
+
                       .vline {
                           fill: #acacac;
                           stroke: none;
@@ -379,7 +386,7 @@ public final class Benchmark {
                   </g>
 
                  """
-                .formatted(height + 30, height, height, height, height, height, height, height, height, height, height, height + 8, height + barHeightGap, height + 8, height + barHeightGap));
+                .formatted(height + 50, height, height, height, height, height, height, height, height, height, height, height + 8, height + barHeightGap, height + 8, height + barHeightGap));
 
         for (int i = 0; i < results.size(); i++) {
             MeasurableCode result = results.get(i);
@@ -394,11 +401,12 @@ public final class Benchmark {
                       <rect x="175" y="%d" width="%f" rx="2" ry="2" class="call"/>
                       <rect x="175" y="%d" width="%f" rx="2" ry="2" class="gc"/>
                       <text x="160" y="%d" text-anchor="end">%s</text>
+                      <text x="160" y="%d" text-anchor="end" class="ver">%s</text>
                       <text x="%f" y="%d" class="desc">%s</text>
                       <text x="%f" y="%d" class="desc">%s</text>
 
                     """
-                    .formatted(y, widthCall, y + 14, widthGC, y + 17, result.name, 175 + widthCall + 7, y + 10, textCall, 175 + widthGC + 7, y + 14 + 10, textGC));
+                    .formatted(y, widthCall, y + 14, widthGC, y + 17, result.name, y + 25, result.version, 175 + widthCall + 7, y + 10, textCall, 175 + widthGC + 7, y + 14 + 10, textGC));
         }
 
         Runtime runtime = Runtime.getRuntime();
@@ -478,6 +486,9 @@ public final class Benchmark {
 
         /** The code name. */
         public final String name;
+
+        /** The detected code version. */
+        private transient String version;
 
         /** The setup. */
         private transient final Runnable setup;
@@ -872,5 +883,120 @@ public final class Benchmark {
             return String.format("%,dms  \t%,-6dcall/s \t%,-6dns/call \t%.2fMB \t%d(%dms)", time
                     .divide(M), executionsPerSecond, timesPerExecution, peakMemory / 1024f / 1024f, countGC, timeGC);
         }
+    }
+
+    /**
+     * 
+     */
+    static class NameInfo {
+        private final Map<String, WeightedVersion> info = new HashMap();
+
+        NameInfo() {
+            // scan classpath
+            String[] paths = System.getProperty("java.class.path").split(File.pathSeparator);
+            for (String path : paths) {
+                scan(path);
+            }
+
+            // scan current project
+            try {
+                Files.newDirectoryStream(Path.of("target")).forEach(path -> {
+                    scan(path.toString());
+                });
+            } catch (IOException e) {
+                throw new Error(e);
+            }
+        }
+
+        private void scan(String path) {
+            if (path.endsWith(".jar") && !path.contains("-javadoc") && !path.contains("-sources")) {
+                path = path.substring(path.lastIndexOf(File.separator) + 1, path.length() - 4);
+
+                int index = path.lastIndexOf("-");
+                while (Character.isDigit(path.charAt(index - 1))) {
+                    int newIndex = path.lastIndexOf("-", index - 1);
+                    if (newIndex == -1) {
+                        break;
+                    } else {
+                        index = newIndex;
+                    }
+                }
+
+                String name = path.substring(0, index).toLowerCase();
+                String version = path.substring(index + 1);
+
+                // compare version
+                long weight = 0;
+                long multiplier = 10000000000000L;
+                for (String num : version.split("\\D+")) {
+                    weight += Long.parseLong(num) * multiplier;
+                    multiplier /= 100;
+                }
+
+                WeightedVersion previous = info.get(name);
+                if (previous != null && previous.weight >= weight) {
+                    return;
+                }
+                info.put(name, new WeightedVersion(version, weight));
+            }
+        }
+
+        String detect(String input) {
+            // normalize
+            input = input.toLowerCase();
+
+            int candidateDistance = 1000;
+            String candidate = "";
+            for (Entry<String, WeightedVersion> entry : info.entrySet()) {
+                String names = entry.getKey();
+                String version = entry.getValue().id;
+
+                for (String name : names.split("-")) {
+                    int distance = calculateDistance(name, input);
+                    if (distance == 0) {
+                        return version;
+                    } else {
+                        if (distance <= candidateDistance) {
+                            candidateDistance = distance;
+                            candidate = version;
+                        }
+                    }
+                }
+            }
+
+            return candidate;
+        }
+
+        /**
+         * Calculate Levenshtein distance simply.
+         * 
+         * @param one
+         * @param other
+         * @return
+         */
+        private int calculateDistance(CharSequence one, CharSequence other) {
+            int len1 = one.length();
+            int len2 = other.length();
+            int[][] distance = new int[len2 + 1][len1 + 1];
+            for (int i = 1; i <= len1; ++i) {
+                distance[0][i] = i;
+            }
+            for (int i = 1; i <= len2; ++i) {
+                distance[i][0] = i;
+            }
+            for (int i = 1; i <= len2; ++i) {
+                for (int j = 1; j <= len1; ++j) {
+                    if (one.charAt(j - 1) == other.charAt(i - 1)) {
+                        distance[i][j] = distance[i - 1][j - 1];
+                    } else {
+                        distance[i][j] = Math.min(distance[i - 1][j - 1] + 1, Math.min(distance[i - 1][j] + 1, distance[i][j - 1] + 1));
+                    }
+                }
+            }
+            return distance[len2][len1];
+        }
+    }
+
+    record WeightedVersion(String id, long weight) {
     }
 }
