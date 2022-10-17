@@ -408,9 +408,9 @@ public final class Benchmark {
         Runtime runtime = Runtime.getRuntime();
         int infoY = height + barHeightGap * 2;
         svg.append("""
-                  <text x="205" y="%d" class="desc">Java: %s</text>
-                  <text x="275" y="%d" class="desc">Memory: %sMB</text>
-                  <text x="375" y="%d" class="desc">CPU: %s</text>
+                  <text x="175" y="%d" class="desc">Java: %s</text>
+                  <text x="245" y="%d" class="desc">Memory: %sMB</text>
+                  <text x="345" y="%d" class="desc">CPU: %s</text>
                 """.formatted(infoY, Runtime.version().feature(), infoY, runtime.maxMemory() / 1024 / 1024, infoY, getCPUInfo()));
         svg.append("</svg>").append(EOL);
 
