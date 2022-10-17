@@ -11,10 +11,12 @@ package antibug.profiler;
 
 import static java.math.BigInteger.*;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
@@ -35,9 +37,11 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.LongSummaryStatistics;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
@@ -372,7 +376,8 @@ public final class Benchmark {
                     <text x="305" y="%d">ns / call</text>
                     <rect x="395" y="%d" width="30" class="gc"/>
                     <text x="435" y="%d">GC</text>
-                   </g>
+                  </g>
+
                  """
                 .formatted(height + 30, height, height, height, height, height, height, height, height, height, height, height + 8, height + barHeightGap, height + 8, height + barHeightGap));
 
@@ -386,16 +391,23 @@ public final class Benchmark {
             int textGC = Math.round(result.countGC / trials);
 
             svg.append("""
-                      <g>
-                        <rect x="175" y="%d" width="%f" rx="2" ry="2" class="call"/>
-                        <rect x="175" y="%d" width="%f" rx="2" ry="2" class="gc"/>
-                        <text x="160" y="%d" text-anchor="end">%s</text>
-                        <text x="%f" y="%d" class="desc">%s</text>
-                        <text x="%f" y="%d" class="desc">%s</text>
-                      </g>
+                      <rect x="175" y="%d" width="%f" rx="2" ry="2" class="call"/>
+                      <rect x="175" y="%d" width="%f" rx="2" ry="2" class="gc"/>
+                      <text x="160" y="%d" text-anchor="end">%s</text>
+                      <text x="%f" y="%d" class="desc">%s</text>
+                      <text x="%f" y="%d" class="desc">%s</text>
+
                     """
                     .formatted(y, widthCall, y + 14, widthGC, y + 17, result.name, 175 + widthCall + 7, y + 10, textCall, 175 + widthGC + 7, y + 14 + 10, textGC));
         }
+
+        Runtime runtime = Runtime.getRuntime();
+        int infoY = height + barHeightGap * 2;
+        svg.append("""
+                  <text x="205" y="%d" class="desc">Java: %s</text>
+                  <text x="275" y="%d" class="desc">Memory: %sMB</text>
+                  <text x="375" y="%d" class="desc">CPU: %s</text>
+                """.formatted(infoY, Runtime.version().feature(), infoY, runtime.maxMemory() / 1024 / 1024, infoY, getCPUInfo()));
         svg.append("</svg>").append(EOL);
 
         try {
@@ -427,14 +439,35 @@ public final class Benchmark {
                 .append(System.getProperty("os.version"))
                 .append("\n");
 
-        builder.append("PC \tCPU Core Size: ")
-                .append(runtime.availableProcessors())
-                .append(" ")
-                .append("Memory: ")
+        builder.append("CPU \t")
+                .append(getCPUInfo())
+                .append("\n")
+                .append("Mem \t")
                 .append(runtime.maxMemory() / 1024 / 1024)
                 .append("MB\n");
 
         return builder.toString();
+    }
+
+    private static final String getCPUInfo() {
+        try {
+            Process process = new ProcessBuilder("wmic", "cpu", "list", "full").redirectErrorStream(true).start();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+            Map<String, String> info = new HashMap();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                if (!line.isBlank()) {
+                    int index = line.indexOf("=");
+                    if (index != -1) {
+                        info.put(line.substring(0, index), line.substring(index + 1));
+                    }
+                }
+            }
+            return info.get("Name") + " " + (Double.parseDouble(info.get("MaxClockSpeed")) / 1000) + "GHz";
+        } catch (IOException e) {
+            return "";
+        }
     }
 
     /**
