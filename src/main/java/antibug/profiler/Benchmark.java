@@ -938,58 +938,17 @@ public final class Benchmark {
         }
 
         String detect(String input) {
-            // normalize
-            input = input.toLowerCase();
-
-            int candidateDistance = 1000;
-            String candidate = "";
             for (Entry<String, WeightedVersion> entry : info.entrySet()) {
                 String names = entry.getKey();
                 String version = entry.getValue().id;
 
-                for (String name : names.split("-")) {
-                    int distance = calculateDistance(name, input);
-                    if (distance == 0) {
+                for (String in : input.toLowerCase().split("[ -]")) {
+                    if (names.contains(in)) {
                         return version;
-                    } else {
-                        if (distance <= candidateDistance) {
-                            candidateDistance = distance;
-                            candidate = version;
-                        }
                     }
                 }
             }
-
-            return candidate;
-        }
-
-        /**
-         * Calculate Levenshtein distance simply.
-         * 
-         * @param one
-         * @param other
-         * @return
-         */
-        private int calculateDistance(CharSequence one, CharSequence other) {
-            int len1 = one.length();
-            int len2 = other.length();
-            int[][] distance = new int[len2 + 1][len1 + 1];
-            for (int i = 1; i <= len1; ++i) {
-                distance[0][i] = i;
-            }
-            for (int i = 1; i <= len2; ++i) {
-                distance[i][0] = i;
-            }
-            for (int i = 1; i <= len2; ++i) {
-                for (int j = 1; j <= len1; ++j) {
-                    if (one.charAt(j - 1) == other.charAt(i - 1)) {
-                        distance[i][j] = distance[i - 1][j - 1];
-                    } else {
-                        distance[i][j] = Math.min(distance[i - 1][j - 1] + 1, Math.min(distance[i - 1][j] + 1, distance[i][j - 1] + 1));
-                    }
-                }
-            }
-            return distance[len2][len1];
+            return "";
         }
     }
 
