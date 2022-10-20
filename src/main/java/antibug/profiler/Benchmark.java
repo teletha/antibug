@@ -539,7 +539,7 @@ public final class Benchmark {
          * Perform code profiling.
          */
         private void perform() {
-            write("Warming up ", name);
+            write("Warming up ", name, " [", bench.caller.getSimpleName(), "]");
 
             if (setup != null) setup.run();
 
