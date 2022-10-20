@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.5.0](https://github.com/teletha/antibug/compare/v1.4.1...v1.5.0) (2022-10-20)
+
+
+### Features
+
+* Benchmark shows the runtime info. ([cef39a7](https://github.com/teletha/antibug/commit/cef39a70dbab5772f65155066df084149317cd2b))
+* Benchmark shows the version of libraries. ([4bdff9c](https://github.com/teletha/antibug/commit/4bdff9c141e72392323183c6a28908b7cc559c3c))
+
+
+### Bug Fixes
+
+* change svg style ([7099fa3](https://github.com/teletha/antibug/commit/7099fa3397af46887c2de6301fe9f7ae799cfc5d))
+* change the way of version detection ([60a63e5](https://github.com/teletha/antibug/commit/60a63e58c884682af774c40442cbd072e9c6ae0e))
+* show benchmark name on CUI runner ([f428d95](https://github.com/teletha/antibug/commit/f428d95161e46be1b23418abe20ff912e3b25473))
+* svg style ([959b088](https://github.com/teletha/antibug/commit/959b088f8a009c22429d5421030152a50c69d100))
+
 ## [1.4.1](https://github.com/teletha/antibug/compare/v1.4.0...v1.4.1) (2022-10-01)
 
 
