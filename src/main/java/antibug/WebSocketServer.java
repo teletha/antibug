@@ -49,8 +49,6 @@ public class WebSocketServer {
     /** The websocket listern in client. */
     private Listener clientListener;
 
-    private Duration timeout = Duration.ofMillis(Long.MAX_VALUE);
-
     /** errorWhenConnectingToServer */
     private Throwable errorWhenConnectingToServer;
 
@@ -302,7 +300,6 @@ public class WebSocketServer {
          */
         @Override
         public java.net.http.WebSocket.Builder connectTimeout(Duration timeout) {
-            WebSocketServer.this.timeout = timeout;
             return this;
         }
 

@@ -344,10 +344,9 @@ public class Chronus implements ScheduledExecutorService {
     }
 
     /**
-     * <p>
      * Wait all task executions.
-     * </p>
      */
+    @SuppressWarnings("resource")
     public void await() {
         awaiting.set(true);
 

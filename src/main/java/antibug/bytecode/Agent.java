@@ -131,7 +131,6 @@ public class Agent {
     /**
      * Agent entry point.
      */
-    @SuppressWarnings("unused")
     public static void premain(String args, Instrumentation instrumentation) throws Exception {
         tool = instrumentation;
     }
@@ -139,7 +138,6 @@ public class Agent {
     /**
      * Agent entry point.
      */
-    @SuppressWarnings("unused")
     public static void agentmain(String args, Instrumentation instrumentation) throws Exception {
         tool = instrumentation;
     }
