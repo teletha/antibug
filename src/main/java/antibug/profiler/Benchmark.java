@@ -295,10 +295,10 @@ public final class Benchmark {
                 code.version = names.detect(code.name);
             }
 
-            reporter.accept(String.format("%" + maxName + "s\tAverage\t\tPeakMemory\tTotalGC", "\t"));
+            reporter.accept(String.format("%" + maxName + "s\tThroughput\t\tAverage\t\tPeakMemory\tTotalGC", "\t"));
             for (MeasurableCode code : results) {
                 reporter.accept(String
-                        .format("%-" + maxName + "s\t%,-6dns/call \t%.2fMB\t\t%d(%dms)", code.name, code.arithmeticMean, code.peakMemory / 1024f / 1024f, code.countGC, code.timeGC));
+                        .format("%-" + maxName + "s\t%,dcall/s \t%,-6dns/call \t%.2fMB\t\t%d(%dms)", code.name, code.throughputMean, code.arithmeticMean, code.peakMemory / 1024f / 1024f, code.countGC, code.timeGC));
             }
             reporter.accept("");
             reporter.accept(getPlatformInfo());
