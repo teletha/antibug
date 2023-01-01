@@ -22,7 +22,7 @@ public class Project extends bee.api.Project {
         license(MIT);
         describe("Bug Detection Tool Set. (including PowerAssert");
 
-        require(SourceVersion.RELEASE_16);
+        require(SourceVersion.RELEASE_19, SourceVersion.RELEASE_17);
 
         require("org.junit.jupiter", "junit-jupiter-api", JunitVersion);
         require("org.junit.jupiter", "junit-jupiter-engine", JunitVersion);
