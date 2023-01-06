@@ -15,8 +15,6 @@ import javax.lang.model.SourceVersion;
 
 public class Project extends bee.api.Project {
 
-    String JunitVersion = "5.9.0-M1";
-
     {
         product("com.github.teletha", "antibug", ref("version.txt"));
         license(MIT);
@@ -24,9 +22,9 @@ public class Project extends bee.api.Project {
 
         require(SourceVersion.RELEASE_19, SourceVersion.RELEASE_17);
 
-        require("org.junit.jupiter", "junit-jupiter-api", JunitVersion);
-        require("org.junit.jupiter", "junit-jupiter-engine", JunitVersion);
-        require("org.junit.jupiter", "junit-jupiter-params", JunitVersion);
+        require("org.junit.jupiter", "junit-jupiter-api");
+        require("org.junit.jupiter", "junit-jupiter-engine");
+        require("org.junit.jupiter", "junit-jupiter-params");
         require("org.junit.platform", "junit-platform-launcher");
         require("net.bytebuddy", "byte-buddy");
         require("net.bytebuddy", "byte-buddy-agent");
