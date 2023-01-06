@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.1](https://github.com/teletha/antibug/compare/v1.5.0...v1.5.1) (2023-01-06)
+
+
+### Bug Fixes
+
+* show the mean of throughput on CUI ([3d19171](https://github.com/teletha/antibug/commit/3d191714c6e187885d116b53b56c00061dd34104))
+* update junit ([c12b473](https://github.com/teletha/antibug/commit/c12b4735ddae438c0cde41a6153dc5d87927eeaf))
+
 ## [1.5.0](https://github.com/teletha/antibug/compare/v1.4.1...v1.5.0) (2022-10-20)
 
 
