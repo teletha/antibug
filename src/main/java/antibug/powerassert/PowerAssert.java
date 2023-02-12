@@ -9,10 +9,12 @@
  */
 package antibug.powerassert;
 
+import java.lang.reflect.Method;
 import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.function.Consumer;
 
+import org.junit.jupiter.api.extension.ExtensionContext.Namespace;
 import org.junit.jupiter.engine.execution.JupiterEngineExecutionContext;
 
 import antibug.bytecode.Agent;
@@ -52,6 +54,10 @@ public class PowerAssert {
                         // if (description.getAnnotation(PowerAssertOff.class) == null &&
                         // !description.getTestClass()
                         // .isAnnotationPresent(PowerAssertOff.class)) {
+
+                        // store power assert process in extension context
+                        Method m = context.getExtensionContext().getRequiredTestMethod();
+                        context.getExtensionContext().getStore(Namespace.GLOBAL).put(m, m);
 
                         Class clazz = Class.forName(cause.getStackTrace()[0].getClassName());
 
