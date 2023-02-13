@@ -15,6 +15,7 @@ import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.function.Consumer;
 
 import org.junit.jupiter.api.extension.ExtensionContext.Namespace;
+import org.junit.jupiter.api.extension.ExtensionContext.Store;
 import org.junit.jupiter.engine.execution.JupiterEngineExecutionContext;
 
 import antibug.bytecode.Agent;
@@ -36,6 +37,9 @@ public class PowerAssert {
      * @param errorExecutor
      */
     public static void capture(JupiterEngineExecutionContext context, Throwable error, Runnable testExecutor, Consumer<Throwable> errorExecutor) {
+        Method m = context.getExtensionContext().getRequiredTestMethod();
+        Store store = context.getExtensionContext().getStore(Namespace.GLOBAL);
+
         if (error instanceof PowerAssertionError) {
             PowerAssertionError e = (PowerAssertionError) error;
 
@@ -44,6 +48,8 @@ public class PowerAssert {
             } else {
                 errorExecutor.accept(error); // rethrow for unit test
             }
+        } else if (store.get(m) != null) {
+            errorExecutor.accept(error); // rethrow for unit test
         } else {
             try {
                 Throwable cause = error;
@@ -56,19 +62,16 @@ public class PowerAssert {
                         // .isAnnotationPresent(PowerAssertOff.class)) {
 
                         // store power assert process in extension context
-                        Method m = context.getExtensionContext().getRequiredTestMethod();
-                        context.getExtensionContext().getStore(Namespace.GLOBAL).put(m, m);
+                        store.put(m, m);
 
-                        Class clazz = Class.forName(cause.getStackTrace()[0].getClassName());
-
+                        // translate assertion code only once
                         synchronized (PowerAssert.class) {
-                            // translate assertion code only once
-                            if (translated.add(clazz.getName())) {
-                                agent.transform(clazz);
-                                testExecutor.run();
-                                return;
-                            }
+                            Class clazz = Class.forName(cause.getStackTrace()[0].getClassName());
+                            if (translated.add(clazz.getName())) agent.transform(clazz);
                         }
+
+                        testExecutor.run();
+                        return;
                     }
                     cause = cause.getCause();
                 }
