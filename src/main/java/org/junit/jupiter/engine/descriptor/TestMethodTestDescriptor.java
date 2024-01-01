@@ -1,18 +1,20 @@
 /*
- * Copyright (C) 2024 The ANTIBUG Development Team
+ * Copyright 2015-2023 the original author or authors.
  *
- * Licensed under the MIT License (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * All rights reserved. This program and the accompanying materials are
+ * made available under the terms of the Eclipse Public License v2.0 which
+ * accompanies this distribution and is available at
  *
- *          https://opensource.org/licenses/MIT
+ * https://www.eclipse.org/legal/epl-v20.html
  */
 
 package org.junit.jupiter.engine.descriptor;
 
 import static org.apiguardian.api.API.Status.INTERNAL;
-import static org.junit.jupiter.engine.descriptor.ExtensionUtils.*;
+import static org.junit.jupiter.engine.descriptor.ExtensionUtils.populateNewExtensionRegistryFromExtendWithAnnotation;
+import static org.junit.jupiter.engine.descriptor.ExtensionUtils.registerExtensionsFromExecutableParameters;
 import static org.junit.jupiter.engine.support.JupiterThrowableCollectorFactory.createThrowableCollector;
+import static org.junit.platform.commons.util.CollectionUtils.forEachInReverseOrder;
 
 import java.lang.reflect.Method;
 import java.util.Optional;
@@ -53,7 +55,7 @@ import antibug.powerassert.PowerAssertOff;
 
 /**
  * {@link TestDescriptor} for {@link org.junit.jupiter.api.Test @Test} methods.
- * <h3>Default Display Names</h3>
+ * <h2>Default Display Names</h2>
  * <p>
  * The default display name for a test method is the name of the method concatenated with a
  * comma-separated list of parameter types in parentheses. The names of parameter types are
@@ -282,7 +284,7 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
         ExtensionContext extensionContext = context.getExtensionContext();
         ThrowableCollector throwableCollector = context.getThrowableCollector();
 
-        registry.getReversedExtensions(type).forEach(callback -> {
+        forEachInReverseOrder(registry.getExtensions(type), callback -> {
             throwableCollector.execute(() -> callbackInvoker.invoke(callback, extensionContext));
         });
     }
