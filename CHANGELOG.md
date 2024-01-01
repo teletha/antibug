@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.6.0](https://github.com/teletha/antibug/compare/v1.5.1...v1.6.0) (2024-01-01)
+
+
+### Features
+
+* Put power asserted method info in extension context. ([034c490](https://github.com/teletha/antibug/commit/034c4900f661b4702148317d56bff468129b8394))
+* update junit ([983e080](https://github.com/teletha/antibug/commit/983e0806c651f7496ab35b06c3d84ffbae3eeb44))
+
+
+### Bug Fixes
+
+* update license ([9bf1dfd](https://github.com/teletha/antibug/commit/9bf1dfd04d59091f02439233b1b1664f2463546e))
+
 ## [1.5.1](https://github.com/teletha/antibug/compare/v1.5.0...v1.5.1) (2023-01-06)
 
 
