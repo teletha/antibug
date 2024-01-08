@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/teletha/antibug/compare/v1.6.0...v1.6.1) (2024-01-08)
+
+
+### Bug Fixes
+
+* update ci process ([b6c8409](https://github.com/teletha/antibug/commit/b6c8409e85050f3e133d5b5caccad8155d460c68))
+
 ## [1.6.0](https://github.com/teletha/antibug/compare/v1.5.1...v1.6.0) (2024-01-01)
 
 
