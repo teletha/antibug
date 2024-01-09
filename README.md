@@ -43,7 +43,7 @@ Add it into in the dependencies element like so:
 <dependency>
     <groupId>com.github.teletha</groupId>
     <artifactId>antibug</artifactId>
-    <version>1.5.0</version>
+    <version>1.6.0</version>
 </dependency>
 ```
 #### [Gradle](https://gradle.org/)
@@ -56,7 +56,7 @@ repositories {
 Add it into the dependencies section like so:
 ```gradle
 dependencies {
-    implementation 'com.github.teletha:antibug:1.5.0'
+    implementation 'com.github.teletha:antibug:1.6.0'
 }
 ```
 #### [SBT](https://www.scala-sbt.org/)
@@ -66,7 +66,7 @@ resolvers += "jitpack" at "https://jitpack.io"
 ```
 Add it into the libraryDependencies section like so:
 ```scala
-libraryDependencies += "com.github.teletha" % "antibug" % "1.5.0"
+libraryDependencies += "com.github.teletha" % "antibug" % "1.6.0"
 ```
 #### [Leiningen](https://leiningen.org/)
 Add JitPack repository at the end of repositories in your project.clj:
@@ -75,12 +75,12 @@ Add JitPack repository at the end of repositories in your project.clj:
 ```
 Add it into the dependencies section like so:
 ```clj
-:dependencies [[com.github.teletha/antibug "1.5.0"]]
+:dependencies [[com.github.teletha/antibug "1.6.0"]]
 ```
 #### [Bee](https://teletha.github.io/bee)
 Add it into your project definition class like so:
 ```java
-require("com.github.teletha", "antibug", "1.5.0");
+require("com.github.teletha", "antibug", "1.6.0");
 ```
 <p align="right"><a href="#top">back to top</a></p>
 
@@ -109,20 +109,20 @@ If you think something might be a bug, but you're not sure, ask on StackOverflow
 ## Dependency
 Antibug depends on the following products on runtime.
 * [apiguardian-api-1.1.2](https://mvnrepository.com/artifact/org.apiguardian/apiguardian-api/1.1.2)
-* [byte-buddy-1.12.20](https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy/1.12.20)
-* [byte-buddy-agent-1.12.20](https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy-agent/1.12.20)
-* [junit-jupiter-api-5.9.0-M1](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.9.0-M1)
-* [junit-jupiter-engine-5.9.0-M1](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine/5.9.0-M1)
-* [junit-jupiter-params-5.9.0-M1](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params/5.9.0-M1)
-* [junit-platform-commons-1.9.0-M1](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-commons/1.9.0-M1)
-* [junit-platform-engine-1.9.1](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-engine/1.9.1)
-* [junit-platform-launcher-1.9.1](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher/1.9.1)
-* [opentest4j-1.2.0](https://mvnrepository.com/artifact/org.opentest4j/opentest4j/1.2.0)
+* [byte-buddy-1.14.11](https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy/1.14.11)
+* [byte-buddy-agent-1.14.11](https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy-agent/1.14.11)
+* [junit-jupiter-api-5.10.1](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.10.1)
+* [junit-jupiter-engine-5.10.1](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine/5.10.1)
+* [junit-jupiter-params-5.10.1](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params/5.10.1)
+* [junit-platform-commons-1.10.1](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-commons/1.10.1)
+* [junit-platform-engine-1.10.1](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-engine/1.10.1)
+* [junit-platform-launcher-1.10.1](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher/1.10.1)
+* [opentest4j-1.3.0](https://mvnrepository.com/artifact/org.opentest4j/opentest4j/1.3.0)
 <p align="right"><a href="#top">back to top</a></p>
 
 
 ## License
-Copyright (C) 2023 The ANTIBUG Development Team
+Copyright (C) 2024 The ANTIBUG Development Team
 
 MIT License
 
