@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.7.0](https://github.com/teletha/antibug/compare/v1.6.0...v1.7.0) (2024-01-29)
+
+
+### Features
+
+* MANIFEST.MF for javaagent ([09f3bab](https://github.com/teletha/antibug/commit/09f3bab5b9d5717ce62cc665a3163153d60f237c))
+
+
+### Bug Fixes
+
+* update ci process ([b6c8409](https://github.com/teletha/antibug/commit/b6c8409e85050f3e133d5b5caccad8155d460c68))
+
 ## [1.6.0](https://github.com/teletha/antibug/compare/v1.5.1...v1.6.0) (2024-01-01)
 
 
