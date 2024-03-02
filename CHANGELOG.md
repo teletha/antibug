@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.1](https://github.com/teletha/antibug/compare/v1.7.0...v1.7.1) (2024-03-01)
+
+
+### Bug Fixes
+
+* update byte-buddy ([30c626d](https://github.com/teletha/antibug/commit/30c626de91d2950224684838cb31d80a414484ad))
+
 ## [1.7.0](https://github.com/teletha/antibug/compare/v1.6.0...v1.7.0) (2024-01-29)
 
 
