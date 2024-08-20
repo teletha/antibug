@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2023 the original author or authors.
+ * Copyright 2015-2024 the original author or authors.
  *
  * All rights reserved. This program and the accompanying materials are
  * made available under the terms of the Eclipse Public License v2.0 which
@@ -10,11 +10,10 @@
 
 package org.junit.jupiter.engine.descriptor;
 
-import static org.apiguardian.api.API.Status.INTERNAL;
-import static org.junit.jupiter.engine.descriptor.ExtensionUtils.populateNewExtensionRegistryFromExtendWithAnnotation;
-import static org.junit.jupiter.engine.descriptor.ExtensionUtils.registerExtensionsFromExecutableParameters;
-import static org.junit.jupiter.engine.support.JupiterThrowableCollectorFactory.createThrowableCollector;
-import static org.junit.platform.commons.util.CollectionUtils.forEachInReverseOrder;
+import static org.apiguardian.api.API.Status.*;
+import static org.junit.jupiter.engine.descriptor.ExtensionUtils.*;
+import static org.junit.jupiter.engine.support.JupiterThrowableCollectorFactory.*;
+import static org.junit.platform.commons.util.CollectionUtils.*;
 
 import java.lang.reflect.Method;
 import java.util.Optional;
@@ -25,7 +24,6 @@ import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
-import org.junit.jupiter.api.extension.ExecutableInvoker;
 import org.junit.jupiter.api.extension.Extension;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.InvocationInterceptor;
@@ -55,14 +53,18 @@ import antibug.powerassert.PowerAssertOff;
 
 /**
  * {@link TestDescriptor} for {@link org.junit.jupiter.api.Test @Test} methods.
+ *
  * <h2>Default Display Names</h2>
- * <p>
- * The default display name for a test method is the name of the method concatenated with a
- * comma-separated list of parameter types in parentheses. The names of parameter types are
- * retrieved using {@link Class#getSimpleName()}. For example, the default display name for the
- * following test method is {@code testUser(TestInfo, User)}. <pre class="code">
- *   {@literal @}Test
- *   void testUser(TestInfo testInfo, {@literal @}Mock User user) { ... }
+ *
+ * <p>The default display name for a test method is the name of the method
+ * concatenated with a comma-separated list of parameter types in parentheses.
+ * The names of parameter types are retrieved using {@link Class#getSimpleName()}.
+ * For example, the default display name for the following test method is
+ * {@code testUser(TestInfo, User)}.
+ *
+ * <pre class="code">
+ * {@literal @}Test
+ * void testUser(TestInfo testInfo, {@literal @}Mock User user) { ... }
  * </pre>
  *
  * @since 5.0
@@ -100,9 +102,9 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
     public JupiterEngineExecutionContext prepare(JupiterEngineExecutionContext context) {
         MutableExtensionRegistry registry = populateNewExtensionRegistry(context);
         ThrowableCollector throwableCollector = createThrowableCollector();
-        ExecutableInvoker executableInvoker = new DefaultExecutableInvoker(context);
         MethodExtensionContext extensionContext = new MethodExtensionContext(context.getExtensionContext(), context
-                .getExecutionListener(), this, context.getConfiguration(), throwableCollector, executableInvoker);
+                .getExecutionListener(), this, context
+                        .getConfiguration(), throwableCollector, it -> new DefaultExecutableInvoker(it, registry));
         throwableCollector.execute(() -> {
             TestInstances testInstances = context.getTestInstancesProvider().getTestInstances(registry, throwableCollector);
             extensionContext.setTestInstances(testInstances);
@@ -290,10 +292,11 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
     }
 
     /**
-     * Invoke {@link TestWatcher#testSuccessful testSuccessful()}, {@link TestWatcher#testAborted
-     * testAborted()}, or {@link TestWatcher#testFailed testFailed()} on each registered
-     * {@link TestWatcher} according to the status of the supplied {@link TestExecutionResult}, in
-     * reverse registration order.
+     * Invoke {@link TestWatcher#testSuccessful testSuccessful()},
+     * {@link TestWatcher#testAborted testAborted()}, or
+     * {@link TestWatcher#testFailed testFailed()} on each
+     * registered {@link TestWatcher} according to the status of the supplied
+     * {@link TestExecutionResult}, in reverse registration order.
      *
      * @since 5.4
      */
