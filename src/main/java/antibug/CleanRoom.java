@@ -52,6 +52,8 @@ import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
+import com.google.common.jimfs.Jimfs;
+
 /**
  * The environmental rule for test that depends on file system.
  */
@@ -67,10 +69,32 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     private static final Path clean = Paths.get("target/clean-room");
 
     /** The temporary bioclean room for this instance which are related with file system. */
-    public final Path root = clean.resolve(String.valueOf(counter.incrementAndGet()));
+    public final Path root;
 
     /** The all used archives. */
     private final Set<FileSystem> archives = new HashSet();
+
+    /**
+     * Create physical clean room.
+     */
+    public CleanRoom() {
+        this(false);
+    }
+
+    /**
+     * Create virtual or physical clean room.
+     * 
+     * @param virtual
+     */
+    public CleanRoom(boolean virtual) {
+        String name = String.valueOf(counter.incrementAndGet());
+
+        if (virtual) {
+            root = Jimfs.newFileSystem().getPath(name);
+        } else {
+            root = clean.resolve(name);
+        }
+    }
 
     /**
      * Assume platform encoding.

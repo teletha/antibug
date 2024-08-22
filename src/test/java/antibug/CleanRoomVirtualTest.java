@@ -16,10 +16,10 @@ import java.time.Instant;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
-public class CleanRoomTest {
+public class CleanRoomVirtualTest {
 
     @RegisterExtension
-    CleanRoom room = new CleanRoom();
+    CleanRoom room = new CleanRoom(true);
 
     @Test
     public void locateFile() {
