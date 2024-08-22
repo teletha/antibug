@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.8.0](https://github.com/teletha/antibug/compare/v1.7.1...v1.8.0) (2024-08-22)
+
+
+### Features
+
+* add virtual clean room ([90e3162](https://github.com/teletha/antibug/commit/90e3162b52cdd2404833af4a6f1159118b5723e3))
+
+
+### Bug Fixes
+
+* update junit ([54111c6](https://github.com/teletha/antibug/commit/54111c6d7abae9705e4a9608ddda724a27f35500))
+
 ## [1.7.1](https://github.com/teletha/antibug/compare/v1.7.0...v1.7.1) (2024-03-01)
 
 
