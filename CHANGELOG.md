@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://github.com/teletha/antibug/compare/v1.8.0...v1.9.0) (2024-08-23)
+
+
+### Features
+
+* add assertion utility ([d5129a2](https://github.com/teletha/antibug/commit/d5129a29110c11d59625ca9fa600b03e5d378297))
+
 ## [1.8.0](https://github.com/teletha/antibug/compare/v1.7.1...v1.8.0) (2024-08-22)
 
 
