@@ -180,6 +180,13 @@ const root = {
 		{
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",},
+			"name": "Tester",
+			"packageName": "antibug",
+			"type": "Class"
+		},
+		{
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",},
 			"name": "WebSocketServer",
 			"packageName": "antibug",
 			"type": "Class"
