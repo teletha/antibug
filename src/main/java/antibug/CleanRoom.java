@@ -456,6 +456,8 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
         if (Files.exists(path)) {
             try {
                 Files.walkFileTree(path, new Sweeper());
+            } catch (NoSuchFileException e) {
+                // ignore
             } catch (IOException e) {
                 throw new IOError(e);
             }
