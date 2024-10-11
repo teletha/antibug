@@ -71,6 +71,9 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
     /** The temporary bioclean room for this instance which are related with file system. */
     public final Path root;
 
+    /** The room type. */
+    private final boolean virtual;
+
     /** The all used archives. */
     private final Set<FileSystem> archives = new HashSet();
 
@@ -87,6 +90,7 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
      * @param virtual
      */
     public CleanRoom(boolean virtual) {
+        this.virtual = virtual;
         String name = String.valueOf(counter.incrementAndGet());
 
         if (virtual) {
@@ -391,9 +395,11 @@ public class CleanRoom implements BeforeEachCallback, AfterEachCallback, AfterAl
      */
     @Override
     public void beforeEach(ExtensionContext context) throws Exception {
-        // renew clean room for this test if needed
-        // clean up all resources
-        sweep(root);
+        if (!virtual) {
+            // renew clean room for this test if needed
+            // clean up all resources
+            sweep(root);
+        }
 
         Files.createDirectories(root);
     }
