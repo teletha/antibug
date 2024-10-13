@@ -17,28 +17,37 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-import org.junit.jupiter.api.extension.AfterEachCallback;
-import org.junit.jupiter.api.extension.BeforeEachCallback;
-import org.junit.jupiter.api.extension.ExtensionContext;
-import org.junit.jupiter.api.extension.TestExecutionExceptionHandler;
-
 /**
- * <p>
  * This is pseudo character-based user.
- * </p>
- * 
- * @version 2018/03/31 3:08:40
  */
-public class CommandLineUser implements BeforeEachCallback, AfterEachCallback, TestExecutionExceptionHandler {
+public class CommandLineUser {
 
     /** The mock system input. */
-    private MockInputStream input;
+    public final InputStream input;
+
+    /** Internal API */
+    private final MockInputStream mockInput;
+
+    /** The original. */
+    private InputStream originalInput = System.in;
 
     /** The original system output. */
-    private MockOutputStream output;
+    public final PrintStream output;
+
+    /** Internal API */
+    private final MockOutputStream mockOutput;
+
+    /** The original. */
+    private PrintStream originalOutput = System.out;
 
     /** The original system error. */
-    private MockOutputStream error;
+    public final PrintStream error;
+
+    /** Internal API */
+    private final MockOutputStream mockError;
+
+    /** The original. */
+    private PrintStream originalError = System.err;
 
     /** The ignore system output. */
     private boolean ignore;
@@ -58,49 +67,41 @@ public class CommandLineUser implements BeforeEachCallback, AfterEachCallback, T
      */
     public CommandLineUser(boolean ignoreOutput) {
         this.ignore = ignoreOutput;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void beforeEach(ExtensionContext context) throws Exception {
-        // clear message
-        messages.clear();
 
         // swap
-        System.setIn(input = new MockInputStream());
-
-        if (!ignore) {
-            System.setOut(output = new MockOutputStream(false));
-            System.setErr(error = new MockOutputStream(true));
-        }
+        input = mockInput = new MockInputStream();
+        output = mockOutput = new MockOutputStream(false, ignore);
+        error = mockError = new MockOutputStream(true, ignore);
     }
 
     /**
-     * {@inheritDoc}
+     * Mock standard interface.
+     * 
+     * @return
      */
-    @Override
-    public void afterEach(ExtensionContext context) throws Exception {
-        // restore original
-        System.setIn(input.original);
+    public CommandLineUser mockSystem() {
+        originalInput = System.in;
+        originalOutput = System.out;
+        originalError = System.err;
 
-        if (!ignore) {
-            System.setOut(output.original);
-            System.setErr(error.original);
-        }
+        System.setIn(mockInput);
+        System.setOut(mockOutput);
+        System.setErr(mockError);
+
+        return this;
     }
 
     /**
-     * {@inheritDoc}
+     * Revert to standard interface.
+     * 
+     * @return
      */
-    @Override
-    public void handleTestExecutionException(ExtensionContext context, Throwable throwable) throws Throwable {
-        // display buffered message
-        for (Runnable message : messages) {
-            message.run();
-        }
-        throw throwable;
+    public CommandLineUser unmockSystem() {
+        System.setIn(originalInput);
+        System.setOut(originalOutput);
+        System.setErr(originalError);
+
+        return this;
     }
 
     /**
@@ -108,7 +109,7 @@ public class CommandLineUser implements BeforeEachCallback, AfterEachCallback, T
      */
     public void willInput(String... values) {
         for (String value : values) {
-            input.deque.add(new UserInput(value.concat("\r\n")));
+            mockInput.deque.add(new UserInput(value.concat("\r\n")));
         }
     }
 
@@ -121,7 +122,7 @@ public class CommandLineUser implements BeforeEachCallback, AfterEachCallback, T
      * @return A result.
      */
     public boolean receiveOutput(String valus) {
-        return output.text.indexOf(valus) != -1;
+        return mockOutput.text.indexOf(valus) != -1;
     }
 
     /**
@@ -133,7 +134,7 @@ public class CommandLineUser implements BeforeEachCallback, AfterEachCallback, T
      * @return A result.
      */
     public boolean receiveError(String valus) {
-        return error.text.indexOf(valus) != -1;
+        return mockError.text.indexOf(valus) != -1;
     }
 
     /**
@@ -150,14 +151,14 @@ public class CommandLineUser implements BeforeEachCallback, AfterEachCallback, T
      * Clear buffered output message.
      */
     public void clearOutput() {
-        output.text = new StringBuilder();
+        mockOutput.text = new StringBuilder();
     }
 
     /**
      * Clear buffered error message.
      */
     public void clearError() {
-        error.text = new StringBuilder();
+        mockError.text = new StringBuilder();
     }
 
     /**
@@ -176,16 +177,19 @@ public class CommandLineUser implements BeforeEachCallback, AfterEachCallback, T
         /** The original. */
         private final PrintStream original;
 
+        private final boolean discard;
+
         /** The output result. */
         private StringBuilder text = new StringBuilder();
 
         /**
          * @param original
          */
-        private MockOutputStream(boolean error) {
+        private MockOutputStream(boolean error, boolean discard) {
             super(error ? System.err : System.out);
 
             this.original = (PrintStream) out;
+            this.discard = discard;
         }
 
         /**
@@ -194,11 +198,11 @@ public class CommandLineUser implements BeforeEachCallback, AfterEachCallback, T
         @Override
         public void write(byte[] buf, int off, int len) {
             String message = new String(buf, off, len);
-
             text.append(message);
-
             messages.add(() -> {
-                original.append(message);
+                if (!discard) {
+                    original.append(message);
+                }
             });
         }
     }
@@ -207,9 +211,6 @@ public class CommandLineUser implements BeforeEachCallback, AfterEachCallback, T
      * @version 2014/07/14 22:20:51
      */
     private class MockInputStream extends InputStream {
-
-        /** The original system input. */
-        private final InputStream original = System.in;
 
         /** The user input. */
         private final Deque<UserInput> deque = new ArrayDeque();

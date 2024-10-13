@@ -15,15 +15,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
 
-/**
- * @version 2018/03/31 3:09:30
- */
 public class CommandLineUserTest {
 
-    @RegisterExtension
-    public static final CommandLineUser user = new CommandLineUser();
+    public final CommandLineUser user = new CommandLineUser();
 
     @Test
     public void input() throws Exception {
@@ -51,7 +46,7 @@ public class CommandLineUserTest {
     @Test
     public void output() throws Exception {
         assert user.receive("test") == false;
-        System.out.println("test");
+        user.output.println("test");
         assert user.receive("test") == true;
 
     }
@@ -63,7 +58,7 @@ public class CommandLineUserTest {
      */
     private String read() {
         try {
-            return new BufferedReader(new InputStreamReader(System.in)).readLine();
+            return new BufferedReader(new InputStreamReader(user.input)).readLine();
         } catch (IOException e) {
             throw new IOError(e);
         }
