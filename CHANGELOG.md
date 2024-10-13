@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.9.1](https://github.com/teletha/antibug/compare/v1.9.0...v1.9.1) (2024-10-11)
+
+
+### Bug Fixes
+
+* ignore not-existence file ([01bb09d](https://github.com/teletha/antibug/commit/01bb09d4d060d5e1ff2f2890a5164fa6d4e3fb10))
+* virtual room don't need to sweep temporal files ([b02666d](https://github.com/teletha/antibug/commit/b02666dfb9f878d3bf9b40c713ee66bb5a2a8294))
+
 ## [1.9.0](https://github.com/teletha/antibug/compare/v1.8.0...v1.9.0) (2024-08-23)
 
 
