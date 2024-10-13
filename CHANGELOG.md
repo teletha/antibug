@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.0](https://github.com/teletha/antibug/compare/v1.9.1...v1.10.0) (2024-10-13)
+
+
+### Features
+
+* CommandLineUser exposes all user interfaces ([88ae0a7](https://github.com/teletha/antibug/commit/88ae0a72283b9d14200a7c3a54d1531bd451ec75))
+
 ## [1.9.1](https://github.com/teletha/antibug/compare/v1.9.0...v1.9.1) (2024-10-11)
 
 
