@@ -40,6 +40,13 @@ const root = {
 		{
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",},
+			"name": "BenchmarkEnvironment",
+			"packageName": "antibug.profiler",
+			"type": "Class"
+		},
+		{
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",},
 			"name": "Bytecode",
 			"packageName": "antibug.bytecode",
 			"type": "AbstractClass"
