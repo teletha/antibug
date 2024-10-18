@@ -32,8 +32,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DecimalFormat;
-import java.time.Duration;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -45,10 +43,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.concurrent.Callable;
-import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
+import java.util.function.UnaryOperator;
 
-public final class Benchmark {
+public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
 
     /** The benchmark file specifier. */
     private static final String FILE_KEY = "antibug.benchmark.file";
@@ -77,20 +75,8 @@ public final class Benchmark {
     /** The main class. */
     private final Class caller;
 
-    /** The number of iteration. */
-    private int trials = 5;
-
-    /** The limit of calls. */
-    private long limit;
-
-    /** The duration of single trial. */
-    private Duration duration = Duration.ofSeconds(1);
-
-    /** The max memory size. */
-    private String memory = "128m";
-
     /** The report option. */
-    private boolean visualize = false;
+    private boolean visualize;
 
     /** The realtime reporter. */
     private Consumer<String> reporter = System.out::println;
@@ -103,97 +89,6 @@ public final class Benchmark {
      */
     public Benchmark() {
         caller = StackWalker.getInstance(Option.RETAIN_CLASS_REFERENCE).getCallerClass();
-    }
-
-    /**
-     * Configure the number of trial.
-     * 
-     * @param trials A number of trials. (3 <= trials <= 30)
-     * @return Chainable configuration.
-     */
-    public Benchmark trial(int trials) {
-        if (trials < 3) {
-            throw new AssertionError("There is too few trial number of times. (minimus is 3)");
-        }
-
-        if (30 < trials) {
-            throw new AssertionError("There is too many trial number of times. (maximum is 30)");
-        }
-        this.trials = trials;
-
-        return this;
-    }
-
-    /**
-     * Configure the duration of trial.
-     * 
-     * @param limit A caount of trial.
-     * @return Chainable configuration.
-     */
-    public Benchmark limit(long limit) {
-        if (0 < limit) {
-            this.limit = limit;
-        }
-        return this;
-    }
-
-    /**
-     * Configure the duration of trial.
-     * 
-     * @param time A duration of trial.
-     * @param unit A duration unit of trial.
-     * @return Chainable configuration.
-     */
-    public Benchmark duration(int time, TimeUnit unit) {
-        return duration(Duration.of(time, unit.toChronoUnit()));
-    }
-
-    /**
-     * Configure the duration of trial.
-     * 
-     * @param time A duration of trial.
-     * @param unit A duration unit of trial.
-     * @return Chainable configuration.
-     */
-    public Benchmark duration(int time, ChronoUnit unit) {
-        return duration(Duration.of(time, unit));
-    }
-
-    /**
-     * Configure the duration of trial.
-     * 
-     * @param duration A duration of trial.
-     * @return Chainable configuration.
-     */
-    public Benchmark duration(Duration duration) {
-        if (duration == null) {
-            throw new AssertionError("You must specify duration of trial.");
-        }
-
-        long mills = duration.toMillis();
-
-        if (mills < 100) {
-            throw new AssertionError("There is too short trial duration. (minimus is 100ms)");
-        }
-
-        if (3 * 60 * 1000 < mills) {
-            throw new AssertionError("There is too long  trial duration. (maximum is 3min)");
-        }
-        this.duration = duration;
-
-        return this;
-    }
-
-    /**
-     * Configure the memory size of forked JVM.
-     * 
-     * @param max
-     * @return
-     */
-    public Benchmark memory(String max) {
-        this.memory = max;
-
-        return this;
     }
 
     /**
@@ -236,7 +131,16 @@ public final class Benchmark {
      * @param code A code to be measured.
      */
     public Benchmark measure(String name, Callable code) {
-        return measure(name, null, code);
+        return measure(name, (Runnable) null, code);
+    }
+
+    /**
+     * Measure an execution speed of the specified code fragment.
+     * 
+     * @param code A code to be measured.
+     */
+    public Benchmark measure(String name, UnaryOperator<BenchmarkEnvironment> environment, Callable code) {
+        return measure(name, environment, null, code);
     }
 
     /**
@@ -245,8 +149,16 @@ public final class Benchmark {
      * @param code A code to be measured.
      */
     public Benchmark measure(String name, Runnable setup, Callable code) {
-        codes.add(new MeasurableCode(name, setup, code, this, limit));
+        return measure(name, UnaryOperator.identity(), setup, code);
+    }
 
+    /**
+     * Measure an execution speed of the specified code fragment.
+     * 
+     * @param code A code to be measured.
+     */
+    public Benchmark measure(String name, UnaryOperator<BenchmarkEnvironment> environment, Runnable setup, Callable code) {
+        codes.add(new MeasurableCode(name, setup, code, this, environment.apply(snapshot())));
         return this;
     }
 
@@ -262,8 +174,8 @@ public final class Benchmark {
 
                     List<String> command = new ArrayList();
                     command.add("java");
-                    command.add("-Xmx" + memory);
-                    command.add("-Xms" + memory);
+                    command.add("-Xmx" + code.env.memory);
+                    command.add("-Xms" + code.env.memory);
                     command.add("-D" + FILE_KEY + "=" + file.toString());
                     command.add("-D" + TARGET_KEY + "=" + code.name);
                     command.add("-Dfile.encoding=UTF-8");
@@ -324,6 +236,7 @@ public final class Benchmark {
 
         LongSummaryStatistics statistics = results.stream().mapToLong(r -> r.arithmeticMean.longValue()).summaryStatistics();
         LongSummaryStatistics statistics2 = results.stream().mapToLong(r -> r.countGC).summaryStatistics();
+        LongSummaryStatistics statistics3 = results.stream().mapToLong(r -> r.peakMemory).summaryStatistics();
 
         StringBuilder svg = new StringBuilder();
         svg.append("""
@@ -354,13 +267,19 @@ public final class Benchmark {
                       .call {
                           fill: #4886CD;
                           stroke-linejoin: round;
-                          height: 14px;
+                          height: 12px;
                       }
 
                       .gc {
                           fill: #4FB84B;
                           stroke-linejoin: round;
-                          height: 14px;
+                          height: 12px;
+                      }
+
+                      .memory {
+                          fill: #BF4F4B;
+                          stroke-linejoin: round;
+                          height: 12px;
                       }
                   </style>
                   <g>
@@ -375,14 +294,16 @@ public final class Benchmark {
                     <rect x="525" y="0" width="1" height="%d" class="subline"/>
                     <rect x="175" y="%d" width="450" height="1" class="subline"/>
 
-                    <rect x="265" y="%d" width="30" class="call"/>
-                    <text x="305" y="%d">ns / call</text>
-                    <rect x="395" y="%d" width="30" class="gc"/>
-                    <text x="435" y="%d">GC</text>
+                    <rect x="225" y="%d" width="30" class="call"/>
+                    <text x="265" y="%d">ns / call</text>
+                    <rect x="355" y="%d" width="30" class="memory"/>
+                    <text x="395" y="%d">Memory</text>
+                    <rect x="475" y="%d" width="30" class="gc"/>
+                    <text x="515" y="%d">GC</text>
                   </g>
 
                  """
-                .formatted(height + 50, height, height, height, height, height, height, height, height, height, height, height + 8, height + barHeightGap, height + 8, height + barHeightGap));
+                .formatted(height + 50, height, height, height, height, height, height, height, height, height, height, height + 8, height + barHeightGap, height + 8, height + barHeightGap, height + 8, height + barHeightGap));
 
         for (int i = 0; i < results.size(); i++) {
             MeasurableCode result = results.get(i);
@@ -390,19 +311,23 @@ public final class Benchmark {
             int y = (barHeight + barHeightGap) * i + barHeightGap;
             double widthCall = 350d / statistics.getMax() * result.arithmeticMean.intValue();
             double widthGC = 150d / statistics2.getMax() * result.countGC;
+            double widthMemory = 250d / statistics3.getMax() * result.peakMemory;
             int textCall = result.arithmeticMean.intValue();
-            int textGC = Math.round(result.countGC / trials);
+            int textGC = Math.round(result.countGC / result.env.trials);
+            String textMemory = Math.round(result.peakMemory / 1024f / 1024f) + "M";
 
             svg.append("""
                       <rect x="175" y="%d" width="%f" rx="2" ry="2" class="call"/>
+                      <rect x="175" y="%d" width="%f" rx="2" ry="2" class="memory"/>
                       <rect x="175" y="%d" width="%f" rx="2" ry="2" class="gc"/>
                       <text x="160" y="%d" text-anchor="end">%s</text>
                       <text x="160" y="%d" text-anchor="end" class="desc">%s</text>
                       <text x="%f" y="%d" class="desc">%s</text>
                       <text x="%f" y="%d" class="desc">%s</text>
+                      <text x="%f" y="%d" class="desc">%s</text>
 
                     """
-                    .formatted(y, widthCall, y + 14, widthGC, y + 17, result.name, y + 27, result.version, 175 + widthCall + 7, y + 10, textCall, 175 + widthGC + 7, y + 14 + 10, textGC));
+                    .formatted(y, widthCall, y + 12, widthMemory, y + 24, widthGC, y + 17, result.name, y + 27, result.version, 175 + widthCall + 7, y + 10, textCall, 175 + widthMemory + 7, y + 12 + 10, textMemory, 175 + widthGC + 7, y + 24 + 10, textGC));
         }
 
         Runtime runtime = Runtime.getRuntime();
@@ -498,8 +423,8 @@ public final class Benchmark {
         /** The sample set. */
         private transient final List<Sample> samples = new ArrayList();
 
-        /** The limit to call. */
-        private transient final long limit;
+        /** The environment. */
+        private final BenchmarkEnvironment env;
 
         /** The summary statistics. */
         private BigInteger throughputMean;
@@ -527,12 +452,12 @@ public final class Benchmark {
          * @param setup
          * @param code
          */
-        private MeasurableCode(String name, Runnable setup, Callable code, Benchmark bench, long limit) {
+        private MeasurableCode(String name, Runnable setup, Callable code, Benchmark bench, BenchmarkEnvironment env) {
             this.name = Objects.requireNonNull(name);
             this.setup = setup;
             this.code = Objects.requireNonNull(code);
             this.bench = bench;
-            this.limit = limit;
+            this.env = Objects.requireNonNull(env);
         }
 
         /**
@@ -550,11 +475,11 @@ public final class Benchmark {
             }
 
             int firstTestCount = 0;
-            BigInteger threshold = new BigInteger(String.valueOf(bench.duration.toNanos()));
+            BigInteger threshold = new BigInteger(String.valueOf(env.duration.toNanos()));
 
             while (first.time.compareTo(threshold) != -1) {
                 if (5 <= firstTestCount++) {
-                    throw new Error("Benchmark task must be able to execute within " + bench.duration + ".");
+                    throw new Error("Benchmark task must be able to execute within " + env.duration + ".");
                 }
                 first = measure(ONE);
             }
@@ -562,8 +487,8 @@ public final class Benchmark {
             // warmup JVM and decided the number of executions
             BigInteger frequency = ONE;
 
-            if (limit != 0) {
-                frequency = BigInteger.valueOf(limit);
+            if (env.limit != 0) {
+                frequency = BigInteger.valueOf(env.limit);
                 for (int i = 0; i < 5; i++) {
                     measure(frequency);
                 }
@@ -584,7 +509,7 @@ public final class Benchmark {
             DecimalFormat counterFormat = new DecimalFormat("00");
             bench.reporter.accept("     Time\t\tThroughput\t\tAverage\t\tMemory\tGC");
 
-            for (int i = 0; i < bench.trials; i++) {
+            for (int i = 0; i < env.trials; i++) {
                 performGC();
 
                 Sample result = measure(frequency);
@@ -615,7 +540,7 @@ public final class Benchmark {
 
                 // measure actually
                 long startTime = System.nanoTime();
-                long expectedEndTime = startTime + bench.duration.toNanos();
+                long expectedEndTime = startTime + env.duration.toNanos();
                 while (count < outer && System.nanoTime() <= expectedEndTime) {
                     for (long j = 0; j < inner; j++) {
                         hash ^= code.call().hashCode(); // prevent dead-code-elimination
