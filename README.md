@@ -101,8 +101,8 @@ If you think something might be a bug, but you're not sure, ask on StackOverflow
 ## Dependency
 Antibug depends on the following products on runtime.
 * [apiguardian-api-1.1.2](https://mvnrepository.com/artifact/org.apiguardian/apiguardian-api/1.1.2)
-* [byte-buddy-1.15.4](https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy/1.15.4)
-* [byte-buddy-agent-1.15.4](https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy-agent/1.15.4)
+* [byte-buddy-1.15.5](https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy/1.15.5)
+* [byte-buddy-agent-1.15.5](https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy-agent/1.15.5)
 * [checker-qual-3.33.0](https://mvnrepository.com/artifact/org.checkerframework/checker-qual/3.33.0)
 * [error_prone_annotations-2.18.0](https://mvnrepository.com/artifact/com.google.errorprone/error_prone_annotations/2.18.0)
 * [failureaccess-1.0.1](https://mvnrepository.com/artifact/com.google.guava/failureaccess/1.0.1)
