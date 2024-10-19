@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.0](https://github.com/teletha/antibug/compare/v1.10.0...v1.11.0) (2024-10-18)
+
+
+### Features
+
+* provide BenchmarkEnvironment ([c393344](https://github.com/teletha/antibug/commit/c393344ec528ff3893a30d9f615cf4669c9a3b81))
+
 ## [1.10.0](https://github.com/teletha/antibug/compare/v1.9.1...v1.10.0) (2024-10-13)
 
 
