@@ -35,6 +35,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -210,7 +211,7 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
             reporter.accept(String.format("%" + maxName + "s\tThroughput\t\tAverage\t\tPeakMemory\tTotalGC", "\t"));
             for (MeasurableCode code : results) {
                 reporter.accept(String
-                        .format("%-" + maxName + "s\t%,dcall/s \t%,-6dns/call \t%.2fMB\t\t%d(%dms)", code.name, code.throughputMean, code.arithmeticMean, code.peakMemory / 1024f / 1024f, code.countGC, code.timeGC));
+                        .format("%-" + maxName + "s\t%,dcall/s \t%,-6dns/call \t%.2f\t\t%d(%dms)", code.name, code.throughputMean, code.arithmeticMean, code.peakMemory / code.env.trials, code.countGC, code.timeGC));
             }
             reporter.accept("");
             reporter.accept(getPlatformInfo());
@@ -236,7 +237,7 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
 
         LongSummaryStatistics statistics = results.stream().mapToLong(r -> r.arithmeticMean.longValue()).summaryStatistics();
         LongSummaryStatistics statistics2 = results.stream().mapToLong(r -> r.countGC).summaryStatistics();
-        LongSummaryStatistics statistics3 = results.stream().mapToLong(r -> r.peakMemory).summaryStatistics();
+        DoubleSummaryStatistics statistics3 = results.stream().mapToDouble(r -> r.peakMemory).summaryStatistics();
 
         StringBuilder svg = new StringBuilder();
         svg.append("""
@@ -311,10 +312,10 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
             int y = (barHeight + barHeightGap) * i + barHeightGap;
             double widthCall = 350d / statistics.getMax() * result.arithmeticMean.intValue();
             double widthGC = 150d / statistics2.getMax() * result.countGC;
-            double widthMemory = 250d / statistics3.getMax() * result.peakMemory;
+            double widthMemory = 150d / statistics3.getMax() * result.peakMemory;
             int textCall = result.arithmeticMean.intValue();
             int textGC = Math.round(result.countGC / result.env.trials);
-            String textMemory = Math.round(result.peakMemory / 1024f / 1024f) + "M";
+            String textMemory = String.format("%.3f", result.peakMemory);
 
             svg.append("""
                       <rect x="175" y="%d" width="%f" rx="2" ry="2" class="call"/>
@@ -439,7 +440,7 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
         private double standardDeviation;
 
         /** The memory statistics. */
-        private long peakMemory;
+        private double peakMemory;
 
         /** The number of garbage collections. */
         private long countGC;
@@ -612,7 +613,7 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
             throughputMean = sum.divide(size);
 
             for (Sample sample : samples) {
-                peakMemory = Math.max(sample.peakMemory, peakMemory);
+                peakMemory += sample.peakMemory;
                 countGC += sample.countGC;
                 timeGC += sample.timeGC;
             }
@@ -760,7 +761,7 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
         private final long timeGC;
 
         /** The peak memory usage. */
-        private final long peakMemory;
+        private final double peakMemory;
 
         /***
          * Create MeasurementResult instance.
@@ -785,7 +786,7 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
             this.executionsPerSecond = (time.equals(ZERO)) ? ZERO : frequency.multiply(Benchmark.G).divide(time);
             this.countGC = countGC;
             this.timeGC = timeGC;
-            this.peakMemory = memory[0];
+            this.peakMemory = memory[0] / 1024d / 1024d;
         }
 
         /**
@@ -802,7 +803,7 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
         @Override
         public String toString() {
             return String.format("%,dms  \t%,-6dcall/s \t%,-6dns/call \t%.2fMB \t%d(%dms)", time
-                    .divide(M), executionsPerSecond, timesPerExecution, peakMemory / 1024f / 1024f, countGC, timeGC);
+                    .divide(M), executionsPerSecond, timesPerExecution, peakMemory, countGC, timeGC);
         }
     }
 

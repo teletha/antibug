@@ -27,7 +27,7 @@ public class BenchmarkEnvironment<Self extends BenchmarkEnvironment> implements 
     Duration duration = Duration.ofSeconds(1);
 
     /** The max memory size. */
-    String memory = "128m";
+    String memory = "512m";
 
     private boolean configurable = true;
 
@@ -38,6 +38,27 @@ public class BenchmarkEnvironment<Self extends BenchmarkEnvironment> implements 
      */
     BenchmarkEnvironment snapshot() {
         return new BenchmarkEnvironment().trial(trials).memory(memory).limit(limit).duration(duration).when(configurable);
+    }
+
+    long memory() {
+        long multiplier;
+        String unit = memory.substring(memory.length() - 1).toUpperCase();
+        long value = Long.parseLong(memory.substring(0, memory.length() - 1));
+
+        switch (unit) {
+        case "G":
+            multiplier = 1024L * 1024 * 1024; // GB to bytes
+            break;
+        case "M":
+            multiplier = 1024L * 1024; // MB to bytes
+            break;
+        case "K":
+            multiplier = 1024L; // KB to bytes
+            break;
+        default:
+            throw new IllegalArgumentException("Unsupported unit: " + unit);
+        }
+        return value * multiplier;
     }
 
     /**
