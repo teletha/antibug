@@ -89,13 +89,13 @@ public class MeasurableCode implements Serializable {
     private double standardDeviation;
 
     /** The memory statistics. */
-    final DoubleStatistics peakMemory;
+    final Statistics peakMemory = new Statistics();
 
     /** The number of garbage collections. */
-    final LongStatistics countGC;
+    final Statistics countGC = new Statistics();
 
     /** The duration of garbage collections. */
-    final LongStatistics timeGC;
+    final Statistics timeGC = new Statistics();
 
     /**
      * @param name
@@ -108,9 +108,6 @@ public class MeasurableCode implements Serializable {
         this.code = Objects.requireNonNull(code);
         this.bench = bench;
         this.env = Objects.requireNonNull(env);
-        this.peakMemory = new DoubleStatistics();
-        this.countGC = new LongStatistics();
-        this.timeGC = new LongStatistics();
     }
 
     /**
