@@ -33,6 +33,13 @@ const root = {
 		{
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",},
+			"name": "Benchmark.Item",
+			"packageName": "antibug.profiler",
+			"type": "Enum"
+		},
+		{
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",},
 			"name": "Benchmark.MeasurableCode",
 			"packageName": "antibug.profiler",
 			"type": "Class"
