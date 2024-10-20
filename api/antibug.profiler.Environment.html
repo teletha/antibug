@@ -11,10 +11,10 @@
 		<script src="mimic.js" type="module"></script>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="b">
-		<header class="S">
-			<h1 class="a" date="2024-10-18" ver="1.11.0"><code>Antibug</code></h1>
-			<nav class="e"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
+	<body class="L">
+		<header class="W">
+			<h1 class="b" date="2024-10-18" ver="1.11.0"><code>Antibug</code></h1>
+			<nav class="c"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#package"/>
 					</svg><code>API</code></a><a href="https://github.com/teletha/antibug/discussions" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#user"/>
@@ -31,14 +31,14 @@
 					</svg>
 				</a></div>
 		</header>
-		<main class="J">
-			<nav class="m">
+		<main class="Y">
+			<nav class="I">
 				<div></div>
 			</nav>
-			<article class="f" id="Article">
-				<section class="X"><code class="c">antibug.profiler</code>
-					<h2 class="Class h"><code class="V">Environment</code><code class="U">&#60;<code>Self</code>&#62;</code></h2>
-					<div class="Q">
+			<article class="e" id="Article">
+				<section class="H"><code class="N">antibug.profiler</code>
+					<h2 class="Class U"><code class="V">Environment</code><code class="J">&#60;<code>Self</code>&#62;</code></h2>
+					<div class="K">
 						<ul class="C D">
 							<li><code>Self</code><code class="extends"><code><a href="api/antibug.profiler.Environment.html">Environment</a></code></code></li>
 						</ul>
@@ -50,136 +50,136 @@
 						</ul>
 					</div>
 				</section>
-				<section class="X" id="Environment()">
-					<h2 class="R"><i class="PUBLIC"></i><code class="V">Environment</code><code class="U">()</code></h2>
+				<section class="H" id="Environment()">
+					<h2 class="S"><i class="PUBLIC"></i><code class="V">Environment</code><code class="J">()</code></h2>
 				</section>
-				<section class="X" id="trial(int)">
-					<h2 class="R"><i class="PUBLIC"></i><code class="V">trial</code><code class="U">(<code>int</code> <code class="parameterName">trials</code>)</code><i class="g"><code>Self</code></i></h2>
-					<table class="Z">
-						<tr class="Y">
+				<section class="H" id="trial(int)">
+					<h2 class="S"><i class="PUBLIC"></i><code class="V">trial</code><code class="J">(<code>int</code> <code class="parameterName">trials</code>)</code><i class="i"><code>Self</code></i></h2>
+					<table class="Q">
+						<tr class="m">
 							<td><code>int</code> <code>trials</code></td>
 							<td><span><p>A number of trials. (3 = trials = 30)</p>
 </span></td>
 						</tr>
-						<tr class="P">
+						<tr class="M">
 							<td><code>Self</code></td>
 							<td><span><p>Chainable configuration.</p>
 </span></td>
 						</tr>
 					</table><span class="B"><p>Configure the number of trial.</p>
 </span></section>
-				<section class="X" id="memory(java.lang.String)">
-					<h2 class="R"><i class="PUBLIC"></i><code class="V">memory</code><code class="U">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">max</code>)</code><i class="g"><code>Self</code></i></h2>
-					<table class="Z">
-						<tr class="Y">
+				<section class="H" id="memory(java.lang.String)">
+					<h2 class="S"><i class="PUBLIC"></i><code class="V">memory</code><code class="J">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">max</code>)</code><i class="i"><code>Self</code></i></h2>
+					<table class="Q">
+						<tr class="m">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code> <code>max</code></td>
 							<td></td>
 						</tr>
-						<tr class="P">
+						<tr class="M">
 							<td><code>Self</code></td>
 							<td></td>
 						</tr>
 					</table><span class="B"><p>Configure the memory size of forked JVM.</p>
 </span></section>
-				<section class="X" id="limit(long)">
-					<h2 class="R"><i class="PUBLIC"></i><code class="V">limit</code><code class="U">(<code>long</code> <code class="parameterName">limit</code>)</code><i class="g"><code>Self</code></i></h2>
-					<table class="Z">
-						<tr class="Y">
+				<section class="H" id="limit(long)">
+					<h2 class="S"><i class="PUBLIC"></i><code class="V">limit</code><code class="J">(<code>long</code> <code class="parameterName">limit</code>)</code><i class="i"><code>Self</code></i></h2>
+					<table class="Q">
+						<tr class="m">
 							<td><code>long</code> <code>limit</code></td>
 							<td><span><p>A caount of trial.</p>
 </span></td>
 						</tr>
-						<tr class="P">
+						<tr class="M">
 							<td><code>Self</code></td>
 							<td><span><p>Chainable configuration.</p>
 </span></td>
 						</tr>
 					</table><span class="B"><p>Configure the duration of trial.</p>
 </span></section>
-				<section class="X" id="duration(int,java.util.concurrent.TimeUnit)">
-					<h2 class="R"><i class="PUBLIC"></i><code class="V">duration</code><code class="U">(<code>int</code> <code class="parameterName">time</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/TimeUnit.html">TimeUnit</a></code> <code class="parameterName">unit</code>)</code><i class="g"><code>Self</code></i></h2>
-					<table class="Z">
-						<tr class="Y">
+				<section class="H" id="duration(int,java.util.concurrent.TimeUnit)">
+					<h2 class="S"><i class="PUBLIC"></i><code class="V">duration</code><code class="J">(<code>int</code> <code class="parameterName">time</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/TimeUnit.html">TimeUnit</a></code> <code class="parameterName">unit</code>)</code><i class="i"><code>Self</code></i></h2>
+					<table class="Q">
+						<tr class="m">
 							<td><code>int</code> <code>time</code></td>
 							<td><span><p>A duration of trial.</p>
 </span></td>
 						</tr>
-						<tr class="Y">
+						<tr class="m">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/TimeUnit.html">TimeUnit</a></code> <code>unit</code></td>
 							<td><span><p>A duration unit of trial.</p>
 </span></td>
 						</tr>
-						<tr class="P">
+						<tr class="M">
 							<td><code>Self</code></td>
 							<td><span><p>Chainable configuration.</p>
 </span></td>
 						</tr>
 					</table><span class="B"><p>Configure the duration of trial.</p>
 </span></section>
-				<section class="X" id="duration(int,java.time.temporal.ChronoUnit)">
-					<h2 class="R"><i class="PUBLIC"></i><code class="V">duration</code><code class="U">(<code>int</code> <code class="parameterName">time</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/temporal/ChronoUnit.html">ChronoUnit</a></code> <code class="parameterName">unit</code>)</code><i class="g"><code>Self</code></i></h2>
-					<table class="Z">
-						<tr class="Y">
+				<section class="H" id="duration(int,java.time.temporal.ChronoUnit)">
+					<h2 class="S"><i class="PUBLIC"></i><code class="V">duration</code><code class="J">(<code>int</code> <code class="parameterName">time</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/temporal/ChronoUnit.html">ChronoUnit</a></code> <code class="parameterName">unit</code>)</code><i class="i"><code>Self</code></i></h2>
+					<table class="Q">
+						<tr class="m">
 							<td><code>int</code> <code>time</code></td>
 							<td><span><p>A duration of trial.</p>
 </span></td>
 						</tr>
-						<tr class="Y">
+						<tr class="m">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/temporal/ChronoUnit.html">ChronoUnit</a></code> <code>unit</code></td>
 							<td><span><p>A duration unit of trial.</p>
 </span></td>
 						</tr>
-						<tr class="P">
+						<tr class="M">
 							<td><code>Self</code></td>
 							<td><span><p>Chainable configuration.</p>
 </span></td>
 						</tr>
 					</table><span class="B"><p>Configure the duration of trial.</p>
 </span></section>
-				<section class="X" id="duration(java.time.Duration)">
-					<h2 class="R"><i class="PUBLIC"></i><code class="V">duration</code><code class="U">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Duration.html">Duration</a></code> <code class="parameterName">duration</code>)</code><i class="g"><code>Self</code></i></h2>
-					<table class="Z">
-						<tr class="Y">
+				<section class="H" id="duration(java.time.Duration)">
+					<h2 class="S"><i class="PUBLIC"></i><code class="V">duration</code><code class="J">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Duration.html">Duration</a></code> <code class="parameterName">duration</code>)</code><i class="i"><code>Self</code></i></h2>
+					<table class="Q">
+						<tr class="m">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Duration.html">Duration</a></code> <code>duration</code></td>
 							<td><span><p>A duration of trial.</p>
 </span></td>
 						</tr>
-						<tr class="P">
+						<tr class="M">
 							<td><code>Self</code></td>
 							<td><span><p>Chainable configuration.</p>
 </span></td>
 						</tr>
 					</table><span class="B"><p>Configure the duration of trial.</p>
 </span></section>
-				<section class="X" id="when(boolean)">
-					<h2 class="R"><i class="PUBLIC"></i><code class="V">when</code><code class="U">(<code>boolean</code> <code class="parameterName">condition</code>)</code><i class="g"><code>Self</code></i></h2>
-					<table class="Z">
-						<tr class="Y">
+				<section class="H" id="when(boolean)">
+					<h2 class="S"><i class="PUBLIC"></i><code class="V">when</code><code class="J">(<code>boolean</code> <code class="parameterName">condition</code>)</code><i class="i"><code>Self</code></i></h2>
+					<table class="Q">
+						<tr class="m">
 							<td><code>boolean</code> <code>condition</code></td>
 							<td></td>
 						</tr>
-						<tr class="P">
+						<tr class="M">
 							<td><code>Self</code></td>
 							<td></td>
 						</tr>
 					</table><span class="B"><p>Subsequent configurations are applied only if the given condition is true.</p>
 </span></section>
 			</article>
-			<aside class="d" id="SubNavi">
-				<div class="M">
-					<h5 class="N">Constructors</h5>
+			<aside class="R" id="SubNavi">
+				<div class="Z">
+					<h5 class="f">Constructors</h5>
 					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Environment.html#Environment()">Environment</a></code><code class="U">()</code></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Environment.html#Environment()">Environment</a></code><code class="J">()</code></li>
 					</ul>
-					<h5 class="N">Methods</h5>
+					<h5 class="f">Methods</h5>
 					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Environment.html#trial(int)">trial</a></code><code class="U">(<code>int</code> <code class="parameterName">trials</code>)</code><i class="k"><code>Self</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Environment.html#memory(java.lang.String)">memory</a></code><code class="U">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">max</code>)</code><i class="k"><code>Self</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Environment.html#limit(long)">limit</a></code><code class="U">(<code>long</code> <code class="parameterName">limit</code>)</code><i class="k"><code>Self</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Environment.html#duration(int,java.util.concurrent.TimeUnit)">duration</a></code><code class="U">(<code>int</code> <code class="parameterName">time</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/TimeUnit.html">TimeUnit</a></code> <code class="parameterName">unit</code>)</code><i class="k"><code>Self</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Environment.html#duration(int,java.time.temporal.ChronoUnit)">duration</a></code><code class="U">(<code>int</code> <code class="parameterName">time</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/temporal/ChronoUnit.html">ChronoUnit</a></code> <code class="parameterName">unit</code>)</code><i class="k"><code>Self</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Environment.html#duration(java.time.Duration)">duration</a></code><code class="U">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Duration.html">Duration</a></code> <code class="parameterName">duration</code>)</code><i class="k"><code>Self</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Environment.html#when(boolean)">when</a></code><code class="U">(<code>boolean</code> <code class="parameterName">condition</code>)</code><i class="k"><code>Self</code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Environment.html#trial(int)">trial</a></code><code class="J">(<code>int</code> <code class="parameterName">trials</code>)</code><i class="g"><code>Self</code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Environment.html#memory(java.lang.String)">memory</a></code><code class="J">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">max</code>)</code><i class="g"><code>Self</code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Environment.html#limit(long)">limit</a></code><code class="J">(<code>long</code> <code class="parameterName">limit</code>)</code><i class="g"><code>Self</code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Environment.html#duration(int,java.util.concurrent.TimeUnit)">duration</a></code><code class="J">(<code>int</code> <code class="parameterName">time</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/TimeUnit.html">TimeUnit</a></code> <code class="parameterName">unit</code>)</code><i class="g"><code>Self</code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Environment.html#duration(int,java.time.temporal.ChronoUnit)">duration</a></code><code class="J">(<code>int</code> <code class="parameterName">time</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/temporal/ChronoUnit.html">ChronoUnit</a></code> <code class="parameterName">unit</code>)</code><i class="g"><code>Self</code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Environment.html#duration(java.time.Duration)">duration</a></code><code class="J">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Duration.html">Duration</a></code> <code class="parameterName">duration</code>)</code><i class="g"><code>Self</code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Environment.html#when(boolean)">when</a></code><code class="J">(<code>boolean</code> <code class="parameterName">condition</code>)</code><i class="g"><code>Self</code></i></li>
 					</ul>
 				</div>
 			</aside>
