@@ -15,7 +15,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings("serial")
-public class BenchmarkEnvironment<Self extends BenchmarkEnvironment> implements Serializable {
+public class Environment<Self extends Environment> implements Serializable {
 
     /** The number of iteration. */
     int trials = 5;
@@ -36,8 +36,8 @@ public class BenchmarkEnvironment<Self extends BenchmarkEnvironment> implements 
      * 
      * @return
      */
-    BenchmarkEnvironment snapshot() {
-        return new BenchmarkEnvironment().trial(trials).memory(memory).limit(limit).duration(duration).when(configurable);
+    Environment snapshot() {
+        return new Environment().trial(trials).memory(memory).limit(limit).duration(duration).when(configurable);
     }
 
     long memory() {
