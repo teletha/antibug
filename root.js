@@ -33,27 +33,6 @@ const root = {
 		{
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",},
-			"name": "Benchmark.Item",
-			"packageName": "antibug.profiler",
-			"type": "Enum"
-		},
-		{
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",},
-			"name": "Benchmark.MeasurableCode",
-			"packageName": "antibug.profiler",
-			"type": "Class"
-		},
-		{
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",},
-			"name": "BenchmarkEnvironment",
-			"packageName": "antibug.profiler",
-			"type": "Class"
-		},
-		{
-			"modifiers": {
-				"#": "java.util.Collections$UnmodifiableSet",},
 			"name": "Bytecode",
 			"packageName": "antibug.bytecode",
 			"type": "AbstractClass"
@@ -103,6 +82,20 @@ const root = {
 		{
 			"modifiers": {
 				"#": "java.util.Collections$UnmodifiableSet",},
+			"name": "Environment",
+			"packageName": "antibug.profiler",
+			"type": "Class"
+		},
+		{
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",},
+			"name": "Inspection",
+			"packageName": "antibug.profiler",
+			"type": "Enum"
+		},
+		{
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",},
 			"name": "Instruction",
 			"packageName": "antibug.bytecode",
 			"type": "Class"
@@ -126,6 +119,13 @@ const root = {
 				"#": "java.util.Collections$UnmodifiableSet",},
 			"name": "LocalVariablesSorter",
 			"packageName": "antibug.bytecode",
+			"type": "Class"
+		},
+		{
+			"modifiers": {
+				"#": "java.util.Collections$UnmodifiableSet",},
+			"name": "MeasurableCode",
+			"packageName": "antibug.profiler",
 			"type": "Class"
 		},
 		{
