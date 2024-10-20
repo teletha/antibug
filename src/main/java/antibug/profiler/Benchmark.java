@@ -45,9 +45,13 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.function.Consumer;
+import java.util.function.ToDoubleFunction;
 import java.util.function.UnaryOperator;
 
 public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
+
+    /** The original stream. */
+    private static final PrintStream origina = System.out;
 
     /** The benchmark file specifier. */
     private static final String FILE_KEY = "antibug.benchmark.file";
@@ -77,7 +81,7 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
     private final Class caller;
 
     /** The report option. */
-    private boolean visualize;
+    private Item[] visualize = new Item[0];
 
     /** The realtime reporter. */
     private Consumer<String> reporter = System.out::println;
@@ -122,7 +126,16 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
      * @return
      */
     public Benchmark visualize() {
-        this.visualize = true;
+        return visualize(Item.TimePerCall, Item.GC);
+    }
+
+    /**
+     * Configure the report visualization.
+     * 
+     * @return
+     */
+    public Benchmark visualize(Item... items) {
+        this.visualize = items;
         return this;
     }
 
@@ -208,16 +221,22 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
                 code.version = names.detect(code.name);
             }
 
-            reporter.accept(String.format("%" + maxName + "s\tThroughput\t\tAverage\t\tPeakMemory\tTotalGC", "\t"));
-            for (MeasurableCode code : results) {
-                reporter.accept(String
-                        .format("%-" + maxName + "s\t%,dcall/s \t%,-6dns/call \t%.2f\t\t%d(%dms)", code.name, code.throughputMean, code.arithmeticMean, code.peakMemory / code.env.trials, code.countGC, code.timeGC));
-            }
-            reporter.accept("");
-            reporter.accept(getPlatformInfo());
+            try {
+                reporter.accept(String.format("%" + maxName + "s\tThroughput\t\tAverage\t\tPeakMemory\tTotalGC", "\t"));
+                for (MeasurableCode code : results) {
+                    origina.println(code.countGC);
+                    reporter.accept(String
+                            .format("%-" + maxName + "s\t%,dcall/s \t%,-6dns/call \t%.2f\t\t%.0f(%.0fms)", code.name, code.throughputMean, code.arithmeticMean, code.peakMemory
+                                    .getAverage(), code.countGC.getAverage(), code.timeGC.getAverage()));
+                }
+                reporter.accept("");
+                reporter.accept(getPlatformInfo());
 
-            if (visualize) {
-                buildSVG(results);
+                if (visualize.length != 0) {
+                    buildSVG(results);
+                }
+            } catch (Throwable e) {
+                e.printStackTrace(origina);
             }
         } else {
             MeasurableCode code = codes.stream().filter(c -> c.name.equals(TARGET)).findFirst().get();
@@ -231,114 +250,101 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
      */
     private void buildSVG(List<MeasurableCode> results) {
         String EOL = "\r\n";
-        int barHeight = 28;
+        int barHeight = 12 * visualize.length;
         int barHeightGap = 20;
+        int width = 625;
         int height = (barHeight + barHeightGap) * results.size() + barHeightGap;
 
-        LongSummaryStatistics statistics = results.stream().mapToLong(r -> r.arithmeticMean.longValue()).summaryStatistics();
-        LongSummaryStatistics statistics2 = results.stream().mapToLong(r -> r.countGC).summaryStatistics();
-        DoubleSummaryStatistics statistics3 = results.stream().mapToDouble(r -> r.peakMemory).summaryStatistics();
-
         StringBuilder svg = new StringBuilder();
-        svg.append("""
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 625 %d">
-                  <style>
-                      text {
-                          font-family: Arial;
-                          font-size: 13px;
-                          fill: #787878;
-                      }
-
-                      .desc {
-                          font-size: 9px;
-                      }
-
-                      .vline {
-                          fill: #acacac;
-                          stroke: none;
-                          stroke-width: 0;
-                      }
-
-                      .subline {
-                          fill: #bbb;
-                          stroke: none;
-                          stroke-width: 0;
-                      }
-
-                      .call {
-                          fill: #4886CD;
-                          stroke-linejoin: round;
-                          height: 12px;
-                      }
-
-                      .gc {
-                          fill: #4FB84B;
-                          stroke-linejoin: round;
-                          height: 12px;
-                      }
-
-                      .memory {
-                          fill: #BF4F4B;
-                          stroke-linejoin: round;
-                          height: 12px;
-                      }
-                  </style>
-                  <g>
-                    <rect x="175" y="0" width="1" height="%d" class="vline"/>
-                    <rect x="275" y="0" width="1" height="%d" class="vline"/>
-                    <rect x="375" y="0" width="1" height="%d" class="vline"/>
-                    <rect x="475" y="0" width="1" height="%d" class="vline"/>
-                    <rect x="575" y="0" width="1" height="%d" class="vline"/>
-                    <rect x="225" y="0" width="1" height="%d" class="subline"/>
-                    <rect x="325" y="0" width="1" height="%d" class="subline"/>
-                    <rect x="425" y="0" width="1" height="%d" class="subline"/>
-                    <rect x="525" y="0" width="1" height="%d" class="subline"/>
-                    <rect x="175" y="%d" width="450" height="1" class="subline"/>
-
-                    <rect x="225" y="%d" width="30" class="call"/>
-                    <text x="265" y="%d">ns / call</text>
-                    <rect x="355" y="%d" width="30" class="memory"/>
-                    <text x="395" y="%d">Memory</text>
-                    <rect x="475" y="%d" width="30" class="gc"/>
-                    <text x="515" y="%d">GC</text>
-                  </g>
-
-                 """
-                .formatted(height + 50, height, height, height, height, height, height, height, height, height, height, height + 8, height + barHeightGap, height + 8, height + barHeightGap, height + 8, height + barHeightGap));
-
-        for (int i = 0; i < results.size(); i++) {
-            MeasurableCode result = results.get(i);
-
-            int y = (barHeight + barHeightGap) * i + barHeightGap;
-            double widthCall = 350d / statistics.getMax() * result.arithmeticMean.intValue();
-            double widthGC = 150d / statistics2.getMax() * result.countGC;
-            double widthMemory = 150d / statistics3.getMax() * result.peakMemory;
-            int textCall = result.arithmeticMean.intValue();
-            int textGC = Math.round(result.countGC / result.env.trials);
-            String textMemory = String.format("%.3f", result.peakMemory);
-
+        try {
             svg.append("""
-                      <rect x="175" y="%d" width="%f" rx="2" ry="2" class="call"/>
-                      <rect x="175" y="%d" width="%f" rx="2" ry="2" class="memory"/>
-                      <rect x="175" y="%d" width="%f" rx="2" ry="2" class="gc"/>
-                      <text x="160" y="%d" text-anchor="end">%s</text>
-                      <text x="160" y="%d" text-anchor="end" class="desc">%s</text>
-                      <text x="%f" y="%d" class="desc">%s</text>
-                      <text x="%f" y="%d" class="desc">%s</text>
-                      <text x="%f" y="%d" class="desc">%s</text>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 625 %d">
+                      <style>
+                          text {
+                              font-family: Arial;
+                              font-size: 13px;
+                              fill: #787878;
+                          }
 
-                    """
-                    .formatted(y, widthCall, y + 12, widthMemory, y + 24, widthGC, y + 17, result.name, y + 27, result.version, 175 + widthCall + 7, y + 10, textCall, 175 + widthMemory + 7, y + 12 + 10, textMemory, 175 + widthGC + 7, y + 24 + 10, textGC));
+                          .desc {
+                              font-size: 9px;
+                          }
+
+                          .vline {
+                              fill: #acacac;
+                              stroke: none;
+                              stroke-width: 0;
+                          }
+
+                          .subline {
+                              fill: #bbb;
+                              stroke: none;
+                              stroke-width: 0;
+                          }
+
+                          .bar {
+                              stroke-linejoin: round;
+                              height: 12px;
+                          }
+                      </style>
+                      <rect x="175" y="0" width="1" height="%d" class="vline"/>
+                      <rect x="275" y="0" width="1" height="%d" class="vline"/>
+                      <rect x="375" y="0" width="1" height="%d" class="vline"/>
+                      <rect x="475" y="0" width="1" height="%d" class="vline"/>
+                      <rect x="575" y="0" width="1" height="%d" class="vline"/>
+                      <rect x="225" y="0" width="1" height="%d" class="subline"/>
+                      <rect x="325" y="0" width="1" height="%d" class="subline"/>
+                      <rect x="425" y="0" width="1" height="%d" class="subline"/>
+                      <rect x="525" y="0" width="1" height="%d" class="subline"/>
+                      <rect x="175" y="%d" width="450" height="1" class="subline"/>
+
+                     """.formatted(height + 50, height, height, height, height, height, height, height, height, height, height));
+
+            int name = 175;
+            int margin = 30;
+            int itemWidth = (width - name - margin * 2) / visualize.length;
+            for (int i = 0; i < visualize.length; i++) {
+                Item item = visualize[i];
+                int x = name + margin + i * itemWidth;
+                svg.append("""
+                          <rect x="%d" y="%d" width="30" fill="%s" class="bar"/>
+                          <text x="%d" y="%d">%s</text>
+                        """.formatted(x, height + 8, item.color, x + 40, height + barHeightGap, item.label));
+            }
+
+            for (int i = 0; i < results.size(); i++) {
+                MeasurableCode code = results.get(i);
+                int y = (barHeight + barHeightGap) * i + barHeightGap;
+
+                svg.append("""
+                          <text x="160" y="%d" text-anchor="end">%s</text>
+                          <text x="160" y="%d" text-anchor="end" class="desc">%s</text>
+                        """.formatted(y + 17, code.name, y + 27, code.version));
+
+                for (int j = 0; j < visualize.length; j++) {
+                    Item item = visualize[j];
+                    int value = (int) Math.round(item.extractor.applyAsDouble(code));
+                    double max = results.stream().mapToDouble(item.extractor::applyAsDouble).max().getAsDouble();
+                    double barWidth = 350 * item.barRatio / max * value;
+
+                    svg.append("""
+                              <rect x="%d" y="%d" width="%.2f" rx="2" ry="2" fill="%s" class="bar"/>
+                              <text x="%.2f" y="%d" class="desc">%d</text>
+                            """.formatted(name, y + j * 12, barWidth, item.color, name + barWidth + 7, y + 10 + j * 12, value));
+                }
+            }
+
+            Runtime runtime = Runtime.getRuntime();
+            int infoY = height + barHeightGap * 2;
+            svg.append("""
+                      <text x="175" y="%d" class="desc">Java: %s</text>
+                      <text x="245" y="%d" class="desc">Memory: %sMB</text>
+                      <text x="345" y="%d" class="desc">CPU: %s</text>
+                    """.formatted(infoY, Runtime.version().feature(), infoY, runtime.maxMemory() / 1024 / 1024, infoY, getCPUInfo()));
+            svg.append("</svg>").append(EOL);
+        } catch (Throwable e) {
+            e.printStackTrace(origina);
         }
-
-        Runtime runtime = Runtime.getRuntime();
-        int infoY = height + barHeightGap * 2;
-        svg.append("""
-                  <text x="175" y="%d" class="desc">Java: %s</text>
-                  <text x="245" y="%d" class="desc">Memory: %sMB</text>
-                  <text x="345" y="%d" class="desc">CPU: %s</text>
-                """.formatted(infoY, Runtime.version().feature(), infoY, runtime.maxMemory() / 1024 / 1024, infoY, getCPUInfo()));
-        svg.append("</svg>").append(EOL);
 
         try {
             Path file = Path.of("benchmark/" + caller.getSimpleName() + ".svg");
@@ -440,13 +446,13 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
         private double standardDeviation;
 
         /** The memory statistics. */
-        private double peakMemory;
+        private final DoubleSummary peakMemory;
 
         /** The number of garbage collections. */
-        private long countGC;
+        private final LongSummary countGC;
 
         /** The duration of garbage collections. */
-        private long timeGC;
+        private final LongSummary timeGC;
 
         /**
          * @param name
@@ -459,6 +465,9 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
             this.code = Objects.requireNonNull(code);
             this.bench = bench;
             this.env = Objects.requireNonNull(env);
+            this.peakMemory = new DoubleSummary();
+            this.countGC = new LongSummary();
+            this.timeGC = new LongSummary();
         }
 
         /**
@@ -549,8 +558,8 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
                     count++;
                 }
                 long endTime = System.nanoTime();
-                long[] endGC = measureGC();
                 long[] memory = measureMemory();
+                long[] endGC = measureGC();
 
                 // calculate execution time
                 return new Sample(BigInteger
@@ -613,9 +622,9 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
             throughputMean = sum.divide(size);
 
             for (Sample sample : samples) {
-                peakMemory += sample.peakMemory;
-                countGC += sample.countGC;
-                timeGC += sample.timeGC;
+                peakMemory.accept(sample.peakMemory);
+                countGC.accept(sample.countGC);
+                timeGC.accept(sample.timeGC);
             }
         }
 
@@ -763,27 +772,17 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
         /** The peak memory usage. */
         private final double peakMemory;
 
-        /***
-         * Create MeasurementResult instance.
-         * 
-         * @param frequency
-         * @param time
-         */
-        Sample(BigInteger frequency, long time, int hash, long countGC, long timeGC, long[] memory) {
-            this(frequency, new BigInteger(String.valueOf(time)), hash, countGC, timeGC, memory);
-        }
-
         /**
          * Create MeasurementResult instance.
          * 
          * @param frequency
          * @param time
          */
-        Sample(BigInteger frequency, BigInteger time, int hash, long countGC, long timeGC, long[] memory) {
-            this.time = time;
+        Sample(BigInteger frequency, long time, int hash, long countGC, long timeGC, long[] memory) {
+            this.time = new BigInteger(String.valueOf(time));
             this.hash = hash;
-            this.timesPerExecution = (frequency.equals(ZERO)) ? ZERO : time.divide(frequency);
-            this.executionsPerSecond = (time.equals(ZERO)) ? ZERO : frequency.multiply(Benchmark.G).divide(time);
+            this.timesPerExecution = (frequency.equals(ZERO)) ? ZERO : this.time.divide(frequency);
+            this.executionsPerSecond = (this.time.equals(ZERO)) ? ZERO : frequency.multiply(Benchmark.G).divide(this.time);
             this.countGC = countGC;
             this.timeGC = timeGC;
             this.peakMemory = memory[0] / 1024d / 1024d;
@@ -805,6 +804,20 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
             return String.format("%,dms  \t%,-6dcall/s \t%,-6dns/call \t%.2fMB \t%d(%dms)", time
                     .divide(M), executionsPerSecond, timesPerExecution, peakMemory, countGC, timeGC);
         }
+    }
+
+    /**
+     * Serializable statistics.
+     */
+    @SuppressWarnings("serial")
+    private static class DoubleSummary extends DoubleSummaryStatistics implements Serializable {
+    }
+
+    /**
+     * Serializable statistics.
+     */
+    @SuppressWarnings("serial")
+    private static class LongSummary extends LongSummaryStatistics implements Serializable {
     }
 
     /**
@@ -879,5 +892,41 @@ public final class Benchmark extends BenchmarkEnvironment<Benchmark> {
     }
 
     record WeightedVersion(String id, long weight) {
+    }
+
+    public enum Item {
+
+        /** Speed Index */
+        TimePerCall("ns / call", "#4886CD", 1, code -> code.arithmeticMean.doubleValue()),
+
+        /** Speed Index */
+        CallPerTime("call / time", "#4886CD", 1, code -> code.throughputMean.doubleValue()),
+
+        /** Weight Index */
+        GC("GC", "#4FB84B", 0.4, code -> code.countGC.getAverage()),
+
+        /** Weight Index */
+        PeakMemory("Memory", "#BF4F4B", 0.6, code -> code.peakMemory.getAverage()),
+
+        /** Weight Index */
+        PeakMemoryRatio("Memory", "#BF4F4B", 0.6, code -> (code.peakMemory.getAverage() / code.env.memory()) * 100d);
+
+        private final String label;
+
+        private final String color;
+
+        private final double barRatio;
+
+        private final ToDoubleFunction<MeasurableCode> extractor;
+
+        /**
+         * @param label
+         */
+        private Item(String label, String color, double barRatio, ToDoubleFunction<MeasurableCode> extractor) {
+            this.label = label;
+            this.color = color;
+            this.barRatio = barRatio;
+            this.extractor = extractor;
+        }
     }
 }

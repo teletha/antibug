@@ -47,13 +47,10 @@ public class BenchmarkEnvironment<Self extends BenchmarkEnvironment> implements 
 
         switch (unit) {
         case "G":
-            multiplier = 1024L * 1024 * 1024; // GB to bytes
+            multiplier = 1024L; // GB to bytes
             break;
         case "M":
-            multiplier = 1024L * 1024; // MB to bytes
-            break;
-        case "K":
-            multiplier = 1024L; // KB to bytes
+            multiplier = 1; // MB to bytes
             break;
         default:
             throw new IllegalArgumentException("Unsupported unit: " + unit);
