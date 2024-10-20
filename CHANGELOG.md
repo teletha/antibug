@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.0](https://github.com/teletha/antibug/compare/v1.11.0...v1.12.0) (2024-10-20)
+
+
+### Features
+
+* make visualization items configurable ([6e4ff4c](https://github.com/teletha/antibug/commit/6e4ff4c2372c65b67c2f06c4804e26db1d899bee))
+
 ## [1.11.0](https://github.com/teletha/antibug/compare/v1.10.0...v1.11.0) (2024-10-18)
 
 
