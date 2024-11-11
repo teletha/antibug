@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://docs.oracle.com/en/java/javase/23/"><img src="https://img.shields.io/badge/Java-Release%2023-green"/></a>
+    <a href="https://docs.oracle.com/en/java/javase/21/"><img src="https://img.shields.io/badge/Java-Release%2021-green"/></a>
     <span>&nbsp;</span>
     <a href="https://jitpack.io/#teletha/antibug"><img src="https://img.shields.io/jitpack/v/github/teletha/antibug?label=Repository&color=green"></a>
     <span>&nbsp;</span>
@@ -16,7 +16,7 @@ Bug Detection Tool Set. (including PowerAssert
 
 
 ## Prerequisites
-Antibug runs on all major operating systems and requires only [Java version 23](https://docs.oracle.com/en/java/javase/23/) or later to run.
+Antibug runs on all major operating systems and requires only [Java version 21](https://docs.oracle.com/en/java/javase/21/) or later to run.
 To check, please run `java -version` on your terminal.
 <p align="right"><a href="#top">back to top</a></p>
 
@@ -101,8 +101,8 @@ If you think something might be a bug, but you're not sure, ask on StackOverflow
 ## Dependency
 Antibug depends on the following products on runtime.
 * [apiguardian-api-1.1.2](https://mvnrepository.com/artifact/org.apiguardian/apiguardian-api/1.1.2)
-* [byte-buddy-1.15.7](https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy/1.15.7)
-* [byte-buddy-agent-1.15.7](https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy-agent/1.15.7)
+* [byte-buddy-1.15.10](https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy/1.15.10)
+* [byte-buddy-agent-1.15.10](https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy-agent/1.15.10)
 * [checker-qual-3.33.0](https://mvnrepository.com/artifact/org.checkerframework/checker-qual/3.33.0)
 * [error_prone_annotations-2.18.0](https://mvnrepository.com/artifact/com.google.errorprone/error_prone_annotations/2.18.0)
 * [failureaccess-1.0.1](https://mvnrepository.com/artifact/com.google.guava/failureaccess/1.0.1)

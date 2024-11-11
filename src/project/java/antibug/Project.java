@@ -11,12 +11,16 @@ package antibug;
 
 import static bee.api.License.*;
 
+import javax.lang.model.SourceVersion;
+
 public class Project extends bee.api.Project {
 
     {
         product("com.github.teletha", "antibug", ref("version.txt"));
         license(MIT);
         describe("Bug Detection Tool Set. (including PowerAssert");
+
+        require(SourceVersion.latest(), SourceVersion.RELEASE_21);
 
         require("org.junit.jupiter", "junit-jupiter-api");
         require("org.junit.jupiter", "junit-jupiter-engine");
