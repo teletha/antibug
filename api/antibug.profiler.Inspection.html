@@ -11,10 +11,10 @@
 		<script src="mimic.js" type="module"></script>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="T">
-		<header class="l">
-			<h1 class="i" date="2024-10-20" ver="1.12.0"><code>Antibug</code></h1>
-			<nav class="d"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
+	<body class="i">
+		<header class="g">
+			<h1 class="Q" date="2024-10-20" ver="1.12.0"><code>Antibug</code></h1>
+			<nav class="c"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#package"/>
 					</svg><code>API</code></a><a href="https://github.com/teletha/antibug/discussions" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#user"/>
@@ -23,7 +23,7 @@
 					</svg>Activity</a><a href="https://github.com/teletha/antibug" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#github"/>
 					</svg>Repository</a></nav>
-			<div class="M" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
+			<div class="m" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#sun"/>
 					</svg>
 				</a><a id="dark" title="Change to a darker color scheme"><svg class="A svg" viewBox="0 0 24 24">
@@ -31,14 +31,14 @@
 					</svg>
 				</a></div>
 		</header>
-		<main class="a">
-			<nav class="h">
+		<main class="L">
+			<nav class="a">
 				<div></div>
 			</nav>
-			<article class="P" id="Article">
-				<section class="L"><code class="f">antibug.profiler</code>
-					<h2 class="Enum m"><code class="N">Inspection</code></h2>
-					<div class="H">
+			<article class="J" id="Article">
+				<section class="I"><code class="V">antibug.profiler</code>
+					<h2 class="Enum Z"><code class="k">Inspection</code></h2>
+					<div class="O">
 						<ul class="C E">
 							<li><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Enum.html">Enum</a><code class="parameters"><code><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></code></code></li>
 						</ul>
@@ -51,58 +51,58 @@
 Each item defines a measurement index (such as speed, memory usage, GC count, etc.)
 and a function to extract the relevant metric from a <code>MeasurableCode</code> object.</p>
 </span></section>
-				<section class="L" id="TimePerCall">
-					<h2 class="I"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="N">TimePerCall</code><i class="b"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></h2><span class="B"><p>Time per call, measured in nanoseconds per call.
+				<section class="I" id="TimePerCall">
+					<h2 class="j"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="k">TimePerCall</code><i class="P"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></h2><span class="B"><p>Time per call, measured in nanoseconds per call.
 Represents the speed index of the benchmark.</p>
 </span></section>
-				<section class="L" id="CallPerTime">
-					<h2 class="I"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="N">CallPerTime</code><i class="b"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></h2><span class="B"><p>Calls per time unit, representing how many calls are made in a given time.
+				<section class="I" id="CallPerTime">
+					<h2 class="j"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="k">CallPerTime</code><i class="P"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></h2><span class="B"><p>Calls per time unit, representing how many calls are made in a given time.
 Another measure of the speed index.</p>
 </span></section>
-				<section class="L" id="GC">
-					<h2 class="I"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="N">GC</code><i class="b"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></h2><span class="B"><p>Garbage collection count.
+				<section class="I" id="GC">
+					<h2 class="j"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="k">GC</code><i class="P"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></h2><span class="B"><p>Garbage collection count.
 Represents a weight index related to the garbage collector activity.</p>
 </span></section>
-				<section class="L" id="PeakMemory">
-					<h2 class="I"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="N">PeakMemory</code><i class="b"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></h2><span class="B"><p>Peak memory usage in bytes.
+				<section class="I" id="PeakMemory">
+					<h2 class="j"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="k">PeakMemory</code><i class="P"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></h2><span class="B"><p>Peak memory usage in bytes.
 Represents a weight index measuring the memory usage during peak execution.</p>
 </span></section>
-				<section class="L" id="PeakMemoryRatio">
-					<h2 class="I"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="N">PeakMemoryRatio</code><i class="b"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></h2><span class="B"><p>Peak memory usage as a percentage of the total available memory.
+				<section class="I" id="PeakMemoryRatio">
+					<h2 class="j"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="k">PeakMemoryRatio</code><i class="P"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></h2><span class="B"><p>Peak memory usage as a percentage of the total available memory.
 Represents a weight index measuring how much of the environment&#39;s memory was used during peak
 execution.</p>
 </span></section>
-				<section class="L" id="values()">
-					<h2 class="I"><i class="PUBLIC STATIC"></i><code class="N">values</code><code class="K">()</code><i class="b"><code array="fix"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></h2>
-					<table class="J">
-						<tr class="k">
+				<section class="I" id="values()">
+					<h2 class="j"><i class="PUBLIC STATIC"></i><code class="k">values</code><code class="H">()</code><i class="P"><code array="fix"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></h2>
+					<table class="S">
+						<tr class="N">
 							<td><code array="fix"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></td>
 							<td></td>
 						</tr>
 					</table>
 				</section>
-				<section class="L" id="valueOf(java.lang.String)">
-					<h2 class="I"><i class="PUBLIC STATIC"></i><code class="N">valueOf</code><code class="K">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">name</code>)</code><i class="b"><code><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></h2>
-					<table class="J">
-						<tr class="V">
+				<section class="I" id="valueOf(java.lang.String)">
+					<h2 class="j"><i class="PUBLIC STATIC"></i><code class="k">valueOf</code><code class="H">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">name</code>)</code><i class="P"><code><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></h2>
+					<table class="S">
+						<tr class="b">
 							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code> <code>name</code></td>
 							<td></td>
 						</tr>
-						<tr class="k">
+						<tr class="N">
 							<td><code><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></td>
 							<td></td>
 						</tr>
 					</table>
 				</section>
-				<section class="L" id="calculate(antibug.profiler.MeasurableCode)">
-					<h2 class="I"><i class="PUBLIC"></i><code class="N">calculate</code><code class="K">(<code><a href="api/antibug.profiler.MeasurableCode.html">MeasurableCode</a></code> <code class="parameterName">code</code>)</code><i class="b"><code>double</code></i></h2>
-					<table class="J">
-						<tr class="V">
+				<section class="I" id="calculate(antibug.profiler.MeasurableCode)">
+					<h2 class="j"><i class="PUBLIC"></i><code class="k">calculate</code><code class="H">(<code><a href="api/antibug.profiler.MeasurableCode.html">MeasurableCode</a></code> <code class="parameterName">code</code>)</code><i class="P"><code>double</code></i></h2>
+					<table class="S">
+						<tr class="b">
 							<td><code><a href="api/antibug.profiler.MeasurableCode.html">MeasurableCode</a></code> <code>code</code></td>
 							<td><span><p>the measurable code instance</p>
 </span></td>
 						</tr>
-						<tr class="k">
+						<tr class="N">
 							<td><code>double</code></td>
 							<td><span><p>the extracted measurement value</p>
 </span></td>
@@ -111,24 +111,24 @@ execution.</p>
 <code>MeasurableCode</code>.</p>
 </span></section>
 			</article>
-			<aside class="Q" id="SubNavi">
-				<div class="S">
-					<h5 class="Y">Static Fields</h5>
+			<aside class="W" id="SubNavi">
+				<div class="R">
+					<h5 class="T">Static Fields</h5>
 					<ul>
-						<li><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/antibug.profiler.Inspection.html#TimePerCall">TimePerCall</a></code><i class="c"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></li>
-						<li><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/antibug.profiler.Inspection.html#CallPerTime">CallPerTime</a></code><i class="c"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></li>
-						<li><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/antibug.profiler.Inspection.html#GC">GC</a></code><i class="c"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></li>
-						<li><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/antibug.profiler.Inspection.html#PeakMemory">PeakMemory</a></code><i class="c"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></li>
-						<li><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/antibug.profiler.Inspection.html#PeakMemoryRatio">PeakMemoryRatio</a></code><i class="c"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></li>
+						<li><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/antibug.profiler.Inspection.html#TimePerCall">TimePerCall</a></code><i class="K"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></li>
+						<li><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/antibug.profiler.Inspection.html#CallPerTime">CallPerTime</a></code><i class="K"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></li>
+						<li><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/antibug.profiler.Inspection.html#GC">GC</a></code><i class="K"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></li>
+						<li><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/antibug.profiler.Inspection.html#PeakMemory">PeakMemory</a></code><i class="K"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></li>
+						<li><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/antibug.profiler.Inspection.html#PeakMemoryRatio">PeakMemoryRatio</a></code><i class="K"><code class="return"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></li>
 					</ul>
-					<h5 class="Y">Static Methods</h5>
+					<h5 class="T">Static Methods</h5>
 					<ul>
-						<li><i class="PUBLIC STATIC"></i><code><a href="api/antibug.profiler.Inspection.html#values()">values</a></code><code class="K">()</code><i class="c"><code array="fix"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></li>
-						<li><i class="PUBLIC STATIC"></i><code><a href="api/antibug.profiler.Inspection.html#valueOf(java.lang.String)">valueOf</a></code><code class="K">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">name</code>)</code><i class="c"><code><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></li>
+						<li><i class="PUBLIC STATIC"></i><code><a href="api/antibug.profiler.Inspection.html#values()">values</a></code><code class="H">()</code><i class="K"><code array="fix"><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></li>
+						<li><i class="PUBLIC STATIC"></i><code><a href="api/antibug.profiler.Inspection.html#valueOf(java.lang.String)">valueOf</a></code><code class="H">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code> <code class="parameterName">name</code>)</code><i class="K"><code><a href="api/antibug.profiler.Inspection.html">Inspection</a></code></i></li>
 					</ul>
-					<h5 class="Y">Methods</h5>
+					<h5 class="T">Methods</h5>
 					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Inspection.html#calculate(antibug.profiler.MeasurableCode)">calculate</a></code><code class="K">(<code><a href="api/antibug.profiler.MeasurableCode.html">MeasurableCode</a></code> <code class="parameterName">code</code>)</code><i class="c"><code>double</code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.profiler.Inspection.html#calculate(antibug.profiler.MeasurableCode)">calculate</a></code><code class="H">(<code><a href="api/antibug.profiler.MeasurableCode.html">MeasurableCode</a></code> <code class="parameterName">code</code>)</code><i class="K"><code>double</code></i></li>
 					</ul>
 				</div>
 			</aside>
