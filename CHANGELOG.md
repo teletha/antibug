@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.1](https://github.com/teletha/antibug/compare/v1.12.0...v1.12.1) (2024-11-11)
+
+
+### Bug Fixes
+
+* require Java 21 ([059e39d](https://github.com/teletha/antibug/commit/059e39d220c88aced799b8f94590cc25ab5d0d75))
+
 ## [1.12.0](https://github.com/teletha/antibug/compare/v1.11.0...v1.12.0) (2024-10-20)
 
 
