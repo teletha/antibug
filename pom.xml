@@ -10,14 +10,14 @@
 		<dependency>
 			<groupId>net.bytebuddy</groupId>
 			<artifactId>byte-buddy</artifactId>
-			<version>1.15.7</version>
+			<version>1.15.10</version>
 			<scope>compile</scope>
 			<exclusions/>
 		</dependency>
 		<dependency>
 			<groupId>net.bytebuddy</groupId>
 			<artifactId>byte-buddy-agent</artifactId>
-			<version>1.15.7</version>
+			<version>1.15.10</version>
 			<scope>compile</scope>
 			<exclusions/>
 		</dependency>
@@ -96,11 +96,16 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
 					<release>23</release>
 					<compilerArgs/>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.5.1</version>
 			</plugin>
 		</plugins>
 	</build>
