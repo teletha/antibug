@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.2](https://github.com/teletha/antibug/compare/v1.12.1...v1.12.2) (2024-11-12)
+
+
+### Bug Fixes
+
+* Premain Agent is broken ([aa72e15](https://github.com/teletha/antibug/commit/aa72e15b1681b888e84da275b4c8ed864616006b))
+
 ## [1.12.1](https://github.com/teletha/antibug/compare/v1.12.0...v1.12.1) (2024-11-11)
 
 
