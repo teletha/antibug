@@ -4,17 +4,26 @@
 		<meta charset="UTF-8"/>
 		<meta content="width=device-width, initial-scale=1" name="viewport"/>
 		<meta content="Explains how to use Antibug and its API. " name="description"/>
-		<link href="https://fonts.googleapis.com" rel="preconnect"/>
 		<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
+		<link href="https://fonts.googleapis.com" rel="preconnect"/>
+		<link crossorigin="null" href="https://fonts.gstatic.com" rel="preconnect"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Inter" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Inter" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Material+Icons" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Material+Icons" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" rel="preload"/>
+		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
+		<link as="style" fetchpriority="high" href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="preload"/>
+		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<title>Antibug API</title>
 		<base href="../"/>
 		<script src="mimic.js" type="module"></script>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="P">
-		<header class="Q">
-			<h1 class="Z" date="2024-11-12" ver="1.12.2"><code>Antibug</code></h1>
-			<nav class="I"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
+	<body class="I">
+		<header class="a">
+			<h1 class="S" date="2024-11-12" ver="1.12.2"><code>Antibug</code></h1>
+			<nav class="K"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#package"/>
 					</svg><code>API</code></a><a href="https://github.com/teletha/antibug/discussions" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#user"/>
@@ -23,7 +32,7 @@
 					</svg>Activity</a><a href="https://github.com/teletha/antibug" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#github"/>
 					</svg>Repository</a></nav>
-			<div class="W" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
+			<div class="L" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
 						<use href="main.svg#sun"/>
 					</svg>
 				</a><a id="dark" title="Change to a darker color scheme"><svg class="A svg" viewBox="0 0 24 24">
@@ -32,63 +41,63 @@
 				</a></div>
 		</header>
 		<main class="J">
-			<nav class="m">
+			<nav class="V">
 				<div></div>
 			</nav>
 			<article class="f" id="Article">
-				<section class="i"><code class="N">antibug.bytecode</code>
-					<h2 class="Class V"><code class="k">IntValue</code></h2>
-					<div class="L">
+				<section class="Q"><code class="O">antibug.bytecode</code>
+					<h2 class="Class h"><code class="R">IntValue</code></h2>
+					<div class="b">
 						<ul class="C E">
 							<li><code><a href="api/antibug.bytecode.Bytecode.html">Bytecode</a><code class="parameters"><code><a href="api/antibug.bytecode.IntValue.html">IntValue</a></code></code></code></li>
 						</ul>
 					</div>
 				</section>
-				<section class="i" id="opcode">
-					<h2 class="d"><i class="PUBLIC"></i><code class="k">opcode</code><i class="K"><code class="return">int</code></i></h2><span class="B"><p>The opration code.</p></span></section>
-				<section class="i" id="operand">
-					<h2 class="d"><i class="PUBLIC"></i><code class="k">operand</code><i class="K"><code class="return">int</code></i></h2><span class="B"><p>The value.</p></span></section>
-				<section class="i" id="IntValue(int,int)">
-					<h2 class="d"><i class="PUBLIC"></i><code class="k">IntValue</code><code class="g">(<code>int</code><code class="parameterName">opcode</code>, <code>int</code><code class="parameterName">operand</code>)</code></h2>
-					<table class="S">
-						<tr class="O">
+				<section class="Q" id="opcode">
+					<h2 class="M"><i class="PUBLIC"></i><code class="R">opcode</code><i class="j"><code class="return">int</code></i></h2><span class="B"><p>The opration code.</p></span></section>
+				<section class="Q" id="operand">
+					<h2 class="M"><i class="PUBLIC"></i><code class="R">operand</code><i class="j"><code class="return">int</code></i></h2><span class="B"><p>The value.</p></span></section>
+				<section class="Q" id="IntValue(int,int)">
+					<h2 class="M"><i class="PUBLIC"></i><code class="R">IntValue</code><code class="m">(<code>int</code><code class="parameterName">opcode</code>, <code>int</code><code class="parameterName">operand</code>)</code></h2>
+					<table class="d">
+						<tr class="X">
 							<td><code>int</code><code>opcode</code></td>
 							<td></td>
 						</tr>
-						<tr class="O">
+						<tr class="X">
 							<td><code>int</code><code>operand</code></td>
 							<td></td>
 						</tr>
 					</table>
 				</section>
-				<section class="i" id="write(net.bytebuddy.jar.asm.MethodVisitor,boolean)">
-					<h2 class="d"><i class="OVERRIDE PUBLIC"></i><code class="k">write</code><code class="g">(<code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">visitor</code>, <code>boolean</code><code class="parameterName">isNonPrimitive</code>)</code><i class="K"><code>void</code></i></h2>
-					<table class="S">
-						<tr class="O">
+				<section class="Q" id="write(net.bytebuddy.jar.asm.MethodVisitor,boolean)">
+					<h2 class="M"><i class="OVERRIDE PUBLIC"></i><code class="R">write</code><code class="m">(<code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">visitor</code>, <code>boolean</code><code class="parameterName">isNonPrimitive</code>)</code><i class="j"><code>void</code></i></h2>
+					<table class="d">
+						<tr class="X">
 							<td><code>net.bytebuddy.jar.asm.MethodVisitor</code><code>visitor</code></td>
 							<td></td>
 						</tr>
-						<tr class="O">
+						<tr class="X">
 							<td><code>boolean</code><code>isNonPrimitive</code></td>
 							<td></td>
 						</tr>
 					</table>
 				</section>
 			</article>
-			<aside class="Y" id="SubNavi">
-				<div class="h">
-					<h5 class="c">Constructors</h5>
+			<aside class="l" id="SubNavi">
+				<div class="U">
+					<h5 class="i">Constructors</h5>
 					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.IntValue.html#IntValue(int,int)">IntValue</a></code><code class="g">(<code>int</code><code class="parameterName">opcode</code>, <code>int</code><code class="parameterName">operand</code>)</code></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.IntValue.html#IntValue(int,int)">IntValue</a></code><code class="m">(<code>int</code><code class="parameterName">opcode</code>, <code>int</code><code class="parameterName">operand</code>)</code></li>
 					</ul>
-					<h5 class="c">Fields</h5>
+					<h5 class="i">Fields</h5>
 					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.IntValue.html#opcode">opcode</a></code><i class="U"><code class="return">int</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.IntValue.html#operand">operand</a></code><i class="U"><code class="return">int</code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.IntValue.html#opcode">opcode</a></code><i class="k"><code class="return">int</code></i></li>
+						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.IntValue.html#operand">operand</a></code><i class="k"><code class="return">int</code></i></li>
 					</ul>
-					<h5 class="c">Methods</h5>
+					<h5 class="i">Methods</h5>
 					<ul>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.bytecode.IntValue.html#write(net.bytebuddy.jar.asm.MethodVisitor,boolean)">write</a></code><code class="g">(<code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">visitor</code>, <code>boolean</code><code class="parameterName">isNonPrimitive</code>)</code><i class="U"><code>void</code></i></li>
+						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.bytecode.IntValue.html#write(net.bytebuddy.jar.asm.MethodVisitor,boolean)">write</a></code><code class="m">(<code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">visitor</code>, <code>boolean</code><code class="parameterName">isNonPrimitive</code>)</code><i class="k"><code>void</code></i></li>
 					</ul>
 				</div>
 			</aside>
