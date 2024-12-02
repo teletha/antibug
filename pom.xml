@@ -105,7 +105,6 @@
 					<compilerId>javac</compilerId>
 					<compilerArgs>
 						<arg>-parameters</arg>
-						<arg>-warn:none</arg>
 					</compilerArgs>
 				</configuration>
 			</plugin>
@@ -125,7 +124,7 @@
 					<dependency>
 						<groupId>me.fabriciorby</groupId>
 						<artifactId>maven-surefire-junit5-tree-reporter</artifactId>
-						<version>1.3.0</version>
+						<version>1.4.0</version>
 					</dependency>
 				</dependencies>
 			</plugin>
