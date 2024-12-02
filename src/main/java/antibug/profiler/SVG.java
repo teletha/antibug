@@ -91,7 +91,7 @@ class SVG {
 
                 for (int j = 0; j < visualize.length; j++) {
                     Inspection item = visualize[j];
-                    int value = (int) Math.round(item.calculate(code));
+                    long value = Math.round(item.calculate(code));
                     double max = results.stream().mapToDouble(item::calculate).max().getAsDouble();
                     double barWidth = 350 * item.barRatio / max * value;
 
