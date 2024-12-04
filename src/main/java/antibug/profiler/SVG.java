@@ -13,11 +13,16 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 class SVG {
 
     static void write(String fileName, Inspection[] visualize, List<MeasurableCode> results) {
+        // resort by the first inspection item
+        Collections.sort(results, Comparator.comparingDouble(o -> -visualize[0].calculate(o)));
+
         int barHeight = 12 * visualize.length;
         int barHeightGap = 20;
         int width = 625;
