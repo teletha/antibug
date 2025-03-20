@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.13.0](https://github.com/teletha/antibug/compare/v1.12.2...1.13.0) (2025-03-20)
+
+
+### Features
+
+* update junit ([d29bc2a](https://github.com/teletha/antibug/commit/d29bc2ae84ff48f9742ed25cda7779be6efa294a))
+
+
+### Bug Fixes
+
+* SVG re-sorts by the visualization item ([eadbef3](https://github.com/teletha/antibug/commit/eadbef35f58ef33f81debac26cf72c3b5f936e20))
+* throughput value overflows during SVG output of benchmark ([a6c25c0](https://github.com/teletha/antibug/commit/a6c25c050aa75c01ef483e3c4c03636667fb0786))
+
 ## [1.12.2](https://github.com/teletha/antibug/compare/v1.12.1...v1.12.2) (2024-11-12)
 
 
