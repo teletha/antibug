@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2024 the original author or authors.
+ * Copyright 2015-2025 the original author or authors.
  *
  * All rights reserved. This program and the accompanying materials are
  * made available under the terms of the Eclipse Public License v2.0 which
@@ -16,7 +16,9 @@ import static org.junit.jupiter.engine.support.JupiterThrowableCollectorFactory.
 import static org.junit.platform.commons.util.CollectionUtils.*;
 
 import java.lang.reflect.Method;
+import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 import org.apiguardian.api.API;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
@@ -35,7 +37,6 @@ import org.junit.jupiter.api.extension.TestWatcher;
 import org.junit.jupiter.engine.config.JupiterConfiguration;
 import org.junit.jupiter.engine.execution.AfterEachMethodAdapter;
 import org.junit.jupiter.engine.execution.BeforeEachMethodAdapter;
-import org.junit.jupiter.engine.execution.DefaultExecutableInvoker;
 import org.junit.jupiter.engine.execution.InterceptingExecutableInvoker;
 import org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.ReflectiveInterceptorCall;
 import org.junit.jupiter.engine.execution.JupiterEngineExecutionContext;
@@ -56,15 +57,16 @@ import antibug.powerassert.PowerAssertOff;
  *
  * <h2>Default Display Names</h2>
  *
- * <p>The default display name for a test method is the name of the method
+ * <p>
+ * The default display name for a test method is the name of the method
  * concatenated with a comma-separated list of parameter types in parentheses.
  * The names of parameter types are retrieved using {@link Class#getSimpleName()}.
  * For example, the default display name for the following test method is
  * {@code testUser(TestInfo, User)}.
  *
  * <pre class="code">
- * {@literal @}Test
- * void testUser(TestInfo testInfo, {@literal @}Mock User user) { ... }
+ *   {@literal @}Test
+ *   void testUser(TestInfo testInfo, {@literal @}Mock User user) { ... }
  * </pre>
  *
  * @since 5.0
@@ -81,8 +83,8 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
 
     private final ReflectiveInterceptorCall<Method, Void> interceptorCall;
 
-    public TestMethodTestDescriptor(UniqueId uniqueId, Class<?> testClass, Method testMethod, JupiterConfiguration configuration) {
-        super(uniqueId, testClass, testMethod, configuration);
+    public TestMethodTestDescriptor(UniqueId uniqueId, Class<?> testClass, Method testMethod, Supplier<List<Class<?>>> enclosingInstanceTypes, JupiterConfiguration configuration) {
+        super(uniqueId, testClass, testMethod, enclosingInstanceTypes, configuration);
         this.interceptorCall = defaultInterceptorCall;
     }
 
@@ -103,20 +105,19 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
         MutableExtensionRegistry registry = populateNewExtensionRegistry(context);
         ThrowableCollector throwableCollector = createThrowableCollector();
         MethodExtensionContext extensionContext = new MethodExtensionContext(context.getExtensionContext(), context
-                .getExecutionListener(), this, context
-                        .getConfiguration(), throwableCollector, it -> new DefaultExecutableInvoker(it, registry));
-        throwableCollector.execute(() -> {
-            TestInstances testInstances = context.getTestInstancesProvider().getTestInstances(registry, throwableCollector);
-            extensionContext.setTestInstances(testInstances);
-        });
-
+                .getExecutionListener(), this, context.getConfiguration(), registry, throwableCollector);
         // @formatter:off
-        return context.extend()
+        JupiterEngineExecutionContext newContext = context.extend()
                 .withExtensionRegistry(registry)
                 .withExtensionContext(extensionContext)
                 .withThrowableCollector(throwableCollector)
                 .build();
         // @formatter:on
+        throwableCollector.execute(() -> {
+            TestInstances testInstances = newContext.getTestInstancesProvider().getTestInstances(newContext);
+            extensionContext.setTestInstances(testInstances);
+        });
+        return newContext;
     }
 
     protected MutableExtensionRegistry populateNewExtensionRegistry(JupiterEngineExecutionContext context) {
