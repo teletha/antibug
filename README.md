@@ -101,8 +101,8 @@ If you think something might be a bug, but you're not sure, ask on StackOverflow
 ## Dependency
 Antibug depends on the following products on runtime.
 * [apiguardian-api-1.1.2](https://mvnrepository.com/artifact/org.apiguardian/apiguardian-api/1.1.2)
-* [byte-buddy-1.15.10](https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy/1.15.10)
-* [byte-buddy-agent-1.15.10](https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy-agent/1.15.10)
+* [byte-buddy-1.17.2](https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy/1.17.2)
+* [byte-buddy-agent-1.17.2](https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy-agent/1.17.2)
 * [checker-qual-3.33.0](https://mvnrepository.com/artifact/org.checkerframework/checker-qual/3.33.0)
 * [error_prone_annotations-2.18.0](https://mvnrepository.com/artifact/com.google.errorprone/error_prone_annotations/2.18.0)
 * [failureaccess-1.0.1](https://mvnrepository.com/artifact/com.google.guava/failureaccess/1.0.1)
@@ -110,19 +110,19 @@ Antibug depends on the following products on runtime.
 * [j2objc-annotations-2.8](https://mvnrepository.com/artifact/com.google.j2objc/j2objc-annotations/2.8)
 * [jimfs-1.3.0](https://mvnrepository.com/artifact/com.google.jimfs/jimfs/1.3.0)
 * [jsr305-3.0.2](https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305/3.0.2)
-* [junit-jupiter-api-5.11.3](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.11.3)
-* [junit-jupiter-engine-5.11.3](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine/5.11.3)
-* [junit-jupiter-params-5.11.3](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params/5.11.3)
-* [junit-platform-commons-1.11.3](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-commons/1.11.3)
-* [junit-platform-engine-1.11.3](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-engine/1.11.3)
-* [junit-platform-launcher-1.11.3](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher/1.11.3)
+* [junit-jupiter-api-5.12.1](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.12.1)
+* [junit-jupiter-engine-5.12.1](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine/5.12.1)
+* [junit-jupiter-params-5.12.1](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params/5.12.1)
+* [junit-platform-commons-1.12.1](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-commons/1.12.1)
+* [junit-platform-engine-1.12.1](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-engine/1.12.1)
+* [junit-platform-launcher-1.12.1](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher/1.12.1)
 * [listenablefuture-9999.0-empty-to-avoid-conflict-with-guava](https://mvnrepository.com/artifact/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava)
 * [opentest4j-1.3.0](https://mvnrepository.com/artifact/org.opentest4j/opentest4j/1.3.0)
 <p align="right"><a href="#top">back to top</a></p>
 
 
 ## License
-Copyright (C) 2024 The ANTIBUG Development Team
+Copyright (C) 2025 The ANTIBUG Development Team
 
 MIT License
 
