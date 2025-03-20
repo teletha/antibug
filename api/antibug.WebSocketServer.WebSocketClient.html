@@ -13,283 +13,282 @@
 		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Material+Icons" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
 		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" rel="preload"/>
 		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
-		<link as="style" fetchpriority="high" href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="preload"/>
-		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<title>Antibug API</title>
 		<base href="../"/>
 		<script src="mimic.js" type="module"></script>
+		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="X">
-		<header class="Y">
-			<h1 class="T" date="2024-11-12" ver="1.12.2"><code>Antibug</code></h1>
-			<nav class="V"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
+	<body class="i">
+		<header class="j" date="2024-11-12" ver="1.12.2">
+			<h1 class="N"><code>Antibug</code></h1>
+			<nav class="W"><a href="api/" id="API"><svg class="package A svg" viewBox="0 0 24 24">
 						<use href="main.svg#package"/>
-					</svg><code>API</code></a><a href="https://github.com/teletha/antibug/discussions" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#user"/>
-					</svg>Community</a><a href="doc/changelog.html"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#activity"/>
-					</svg>Activity</a><a href="https://github.com/teletha/antibug" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#github"/>
-					</svg>Repository</a></nav>
-			<div class="N" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#sun"/>
 					</svg>
-				</a><a id="dark" title="Change to a darker color scheme"><svg class="A svg" viewBox="0 0 24 24">
+				</a><a href="https://github.com/teletha/antibug/discussions" id="Community" target="_blank"><svg class="user A svg" viewBox="0 0 24 24">
+						<use href="main.svg#user"/>
+					</svg>
+				</a><a href="doc/changelog.html" id="Activity"><svg class="activity A svg" viewBox="0 0 24 24">
+						<use href="main.svg#activity"/>
+					</svg>
+				</a><a href="https://github.com/teletha/antibug" id="Repository" target="_blank"><svg class="github A svg" viewBox="0 0 24 24">
+						<use href="main.svg#github"/>
+					</svg>
+				</a></nav>
+			<div class="f"><a aria-label="Change color scheme" id="theme"><svg class="sun A svg" viewBox="0 0 24 24">
+						<use href="main.svg#sun"/>
+					</svg><svg class="moon A svg" viewBox="0 0 24 24">
 						<use href="main.svg#moon"/>
 					</svg>
 				</a></div>
 		</header>
-		<main class="J">
-			<nav class="m">
-				<div></div>
-			</nav>
-			<article class="L" id="Article">
-				<section class="i"><code class="I">antibug</code>
-					<h2 class="Class M"><code class="g">WebSocketServer.WebSocketClient</code></h2>
-					<div class="b">
-						<ul class="C F">
-							<li><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code></code></code></li>
-							<li><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.Listener.html">Listener</a></code></li>
-							<li><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/Flow.Subscriber.html">Subscriber</a><code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></code></code></li>
-						</ul>
-					</div><span class="B"><p>Utility to test client state.</p></span></section>
-				<section class="i" id="WebSocketClient()">
-					<h2 class="k"><i class="PUBLIC"></i><code class="g">WebSocketClient</code><code class="d">()</code></h2>
-				</section>
-				<section class="i" id="onOpen(java.net.http.WebSocket)">
-					<h2 class="k"><i class="OVERRIDE PUBLIC"></i><code class="g">onOpen</code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code>)</code><i class="f"><code>void</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code>webSocket</code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="i" id="onText(java.net.http.WebSocket,java.lang.CharSequence,boolean)">
-					<h2 class="k"><i class="OVERRIDE PUBLIC"></i><code class="g">onText</code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/CharSequence.html">CharSequence</a></code><code class="parameterName">data</code>, <code>boolean</code><code class="parameterName">last</code>)</code><i class="f"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/CompletionStage.html">CompletionStage</a><code class="parameters"><code>?</code></code></code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code>webSocket</code></td>
-							<td></td>
-						</tr>
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/CharSequence.html">CharSequence</a></code><code>data</code></td>
-							<td></td>
-						</tr>
-						<tr class="K">
-							<td><code>boolean</code><code>last</code></td>
-							<td></td>
-						</tr>
-						<tr class="e">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/CompletionStage.html">CompletionStage</a><code class="parameters"><code>?</code></code></code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="i" id="onClose(java.net.http.WebSocket,int,java.lang.String)">
-					<h2 class="k"><i class="OVERRIDE PUBLIC"></i><code class="g">onClose</code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code>, <code>int</code><code class="parameterName">statusCode</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">reason</code>)</code><i class="f"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/CompletionStage.html">CompletionStage</a><code class="parameters"><code>?</code></code></code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code>webSocket</code></td>
-							<td></td>
-						</tr>
-						<tr class="K">
-							<td><code>int</code><code>statusCode</code></td>
-							<td></td>
-						</tr>
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code>reason</code></td>
-							<td></td>
-						</tr>
-						<tr class="e">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/CompletionStage.html">CompletionStage</a><code class="parameters"><code>?</code></code></code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="i" id="onError(java.net.http.WebSocket,java.lang.Throwable)">
-					<h2 class="k"><i class="OVERRIDE PUBLIC"></i><code class="g">onError</code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code><code class="parameterName">error</code>)</code><i class="f"><code>void</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code>webSocket</code></td>
-							<td></td>
-						</tr>
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code><code>error</code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="i" id="hasMessage(java.lang.String)">
-					<h2 class="k"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">hasMessage</code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">message</code>)</code><i class="f"><code>boolean</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code>message</code></td>
-							<td></td>
-						</tr>
-						<tr class="e">
-							<td><code>boolean</code></td>
-							<td><span><p>A result.</p></span></td>
-						</tr>
-					</table><span class="B"><p>Check client status.</p></span></section>
-				<section class="i" id="hasNoMessage()">
-					<h2 class="k"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">hasNoMessage</code><code class="d">()</code><i class="f"><code>boolean</code></i></h2>
-					<table class="c">
-						<tr class="e">
-							<td><code>boolean</code></td>
-							<td><span><p>A result.</p></span></td>
-						</tr>
-					</table><span class="B"><p>Check client status.</p></span></section>
-				<section class="i" id="isOpened()">
-					<h2 class="k"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">isOpened</code><code class="d">()</code><i class="f"><code>boolean</code></i></h2>
-					<table class="c">
-						<tr class="e">
-							<td><code>boolean</code></td>
-							<td><span><p>A result.</p></span></td>
-						</tr>
-					</table><span class="B"><p>Check client status.</p></span></section>
-				<section class="i" id="isNotOpened()">
-					<h2 class="k"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">isNotOpened</code><code class="d">()</code><i class="f"><code>boolean</code></i></h2>
-					<table class="c">
-						<tr class="e">
-							<td><code>boolean</code></td>
-							<td><span><p>A result.</p></span></td>
-						</tr>
-					</table><span class="B"><p>Check client status.</p></span></section>
-				<section class="i" id="isError()">
-					<h2 class="k"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">isError</code><code class="d">()</code><i class="f"><code>boolean</code></i></h2>
-					<table class="c">
-						<tr class="e">
-							<td><code>boolean</code></td>
-							<td><span><p>A result.</p></span></td>
-						</tr>
-					</table><span class="B"><p>Check client status.</p></span></section>
-				<section class="i" id="isError(java.lang.Class)">
-					<h2 class="k"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">isError</code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code><code class="extends"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code></code></code></code><code class="parameterName">errorType</code>)</code><i class="f"><code>boolean</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code><code class="extends"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code></code></code></code><code>errorType</code></td>
-							<td></td>
-						</tr>
-						<tr class="e">
-							<td><code>boolean</code></td>
-							<td><span><p>A result.</p></span></td>
-						</tr>
-					</table><span class="B"><p>Check client status.</p></span></section>
-				<section class="i" id="isNotError()">
-					<h2 class="k"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">isNotError</code><code class="d">()</code><i class="f"><code>boolean</code></i></h2>
-					<table class="c">
-						<tr class="e">
-							<td><code>boolean</code></td>
-							<td><span><p>A result.</p></span></td>
-						</tr>
-					</table><span class="B"><p>Check client status.</p></span></section>
-				<section class="i" id="isClosed()">
-					<h2 class="k"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">isClosed</code><code class="d">()</code><i class="f"><code>boolean</code></i></h2>
-					<table class="c">
-						<tr class="e">
-							<td><code>boolean</code></td>
-							<td><span><p>A result.</p></span></td>
-						</tr>
-					</table><span class="B"><p>Check client status.</p></span></section>
-				<section class="i" id="isNotClosed()">
-					<h2 class="k"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">isNotClosed</code><code class="d">()</code><i class="f"><code>boolean</code></i></h2>
-					<table class="c">
-						<tr class="e">
-							<td><code>boolean</code></td>
-							<td><span><p>A result.</p></span></td>
-						</tr>
-					</table><span class="B"><p>Check client status.</p></span></section>
-				<section class="i" id="send(java.lang.Object)">
-					<h2 class="k"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">send</code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">message</code>)</code><i class="f"><code>void</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Object.html">Object</a></code><code>message</code></td>
-							<td><span><p>A message to send.</p></span></td>
-						</tr>
-					</table><span class="B"><p>Shorthand method to sent text message to server.</p></span></section>
-				<section class="i" id="send(java.lang.String)">
-					<h2 class="k"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">send</code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">message</code>)</code><i class="f"><code>void</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code>message</code></td>
-							<td><span><p>A message to send.</p></span></td>
-						</tr>
-					</table><span class="B"><p>Shorthand method to sent text message to server.</p></span></section>
-				<section class="i" id="onSubscribe(java.util.concurrent.Flow.Subscription)">
-					<h2 class="k"><i class="OVERRIDE PUBLIC"></i><code class="g">onSubscribe</code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/Flow.Subscription.html">Subscription</a></code><code class="parameterName">subscription</code>)</code><i class="f"><code>void</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/Flow.Subscription.html">Subscription</a></code><code>subscription</code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="i" id="onNext(java.lang.String)">
-					<h2 class="k"><i class="OVERRIDE PUBLIC"></i><code class="g">onNext</code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">item</code>)</code><i class="f"><code>void</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code>item</code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="i" id="onError(java.lang.Throwable)">
-					<h2 class="k"><i class="OVERRIDE PUBLIC"></i><code class="g">onError</code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code><code class="parameterName">throwable</code>)</code><i class="f"><code>void</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code><code>throwable</code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="i" id="onComplete()">
-					<h2 class="k"><i class="OVERRIDE PUBLIC"></i><code class="g">onComplete</code><code class="d">()</code><i class="f"><code>void</code></i></h2>
-				</section>
-				<section class="i" id="accept(java.net.http.WebSocket)">
-					<h2 class="k"><i class="OVERRIDE PUBLIC"></i><code class="g">accept</code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">websocket</code>)</code><i class="f"><code>void</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code>websocket</code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-			</article>
-			<aside class="W" id="SubNavi">
-				<div class="Z">
-					<h5 class="P">Constructors</h5>
-					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#WebSocketClient()">WebSocketClient</a></code><code class="d">()</code></li>
+		<nav class="l"></nav>
+		<article class="k" id="Article">
+			<section class="n"><code class="X">antibug</code>
+				<h2 class="Class m"><code class="g">WebSocketServer.WebSocketClient</code></h2>
+				<div class="K">
+					<ul class="C F">
+						<li><code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="java.net.http.WebSocket 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code></code></code></li>
+						<li><code><a aria-label="java.net.http.WebSocket.Listener 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.Listener.html">Listener</a></code></li>
+						<li><code><a aria-label="java.util.concurrent.Flow.Subscriber 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/Flow.Subscriber.html">Subscriber</a><code class="parameters"><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></code></code></li>
 					</ul>
-					<h5 class="P">Methods</h5>
-					<ul>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#onOpen(java.net.http.WebSocket)">onOpen</a></code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code>)</code><i class="Q"><code>void</code></i></li>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#onText(java.net.http.WebSocket,java.lang.CharSequence,boolean)">onText</a></code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/CharSequence.html">CharSequence</a></code><code class="parameterName">data</code>, <code>boolean</code><code class="parameterName">last</code>)</code><i class="Q"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/CompletionStage.html">CompletionStage</a><code class="parameters"><code>?</code></code></code></i></li>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#onClose(java.net.http.WebSocket,int,java.lang.String)">onClose</a></code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code>, <code>int</code><code class="parameterName">statusCode</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">reason</code>)</code><i class="Q"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/CompletionStage.html">CompletionStage</a><code class="parameters"><code>?</code></code></code></i></li>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#onError(java.net.http.WebSocket,java.lang.Throwable)">onError</a></code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code><code class="parameterName">error</code>)</code><i class="Q"><code>void</code></i></li>
-						<li><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#hasMessage(java.lang.String)">hasMessage</a></code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">message</code>)</code><i class="Q"><code>boolean</code></i></li>
-						<li><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#hasNoMessage()">hasNoMessage</a></code><code class="d">()</code><i class="Q"><code>boolean</code></i></li>
-						<li><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#isOpened()">isOpened</a></code><code class="d">()</code><i class="Q"><code>boolean</code></i></li>
-						<li><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#isNotOpened()">isNotOpened</a></code><code class="d">()</code><i class="Q"><code>boolean</code></i></li>
-						<li><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#isError()">isError</a></code><code class="d">()</code><i class="Q"><code>boolean</code></i></li>
-						<li><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#isError(java.lang.Class)">isError</a></code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code><code class="extends"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code></code></code></code><code class="parameterName">errorType</code>)</code><i class="Q"><code>boolean</code></i></li>
-						<li><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#isNotError()">isNotError</a></code><code class="d">()</code><i class="Q"><code>boolean</code></i></li>
-						<li><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#isClosed()">isClosed</a></code><code class="d">()</code><i class="Q"><code>boolean</code></i></li>
-						<li><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#isNotClosed()">isNotClosed</a></code><code class="d">()</code><i class="Q"><code>boolean</code></i></li>
-						<li><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#send(java.lang.Object)">send</a></code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">message</code>)</code><i class="Q"><code>void</code></i></li>
-						<li><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#send(java.lang.String)">send</a></code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">message</code>)</code><i class="Q"><code>void</code></i></li>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#onSubscribe(java.util.concurrent.Flow.Subscription)">onSubscribe</a></code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/Flow.Subscription.html">Subscription</a></code><code class="parameterName">subscription</code>)</code><i class="Q"><code>void</code></i></li>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#onNext(java.lang.String)">onNext</a></code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">item</code>)</code><i class="Q"><code>void</code></i></li>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#onError(java.lang.Throwable)">onError</a></code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code><code class="parameterName">throwable</code>)</code><i class="Q"><code>void</code></i></li>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#onComplete()">onComplete</a></code><code class="d">()</code><i class="Q"><code>void</code></i></li>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#accept(java.net.http.WebSocket)">accept</a></code><code class="d">(<code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">websocket</code>)</code><i class="Q"><code>void</code></i></li>
-					</ul>
-				</div>
-			</aside>
-		</main>
-		<script src="root.js"></script>
-		<script src="main.js" type="module"></script>
+				</div><span class="B"><p>Utility to test client state.</p></span></section>
+			<section class="n" id="WebSocketClient()">
+				<h2 class="O"><i class="PUBLIC"></i><code class="g">WebSocketClient</code><code class="d">()</code></h2>
+			</section>
+			<section class="n" id="onOpen(java.net.http.WebSocket)">
+				<h2 class="O"><i class="OVERRIDE PUBLIC"></i><code class="g">onOpen</code><code class="d">(<code><a aria-label="java.net.http.WebSocket 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code>)</code><i class="L"><code>void</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code><a aria-label="java.net.http.WebSocket 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="n" id="onText(java.net.http.WebSocket,java.lang.CharSequence,boolean)">
+				<h2 class="O"><i class="OVERRIDE PUBLIC"></i><code class="g">onText</code><code class="d">(<code><a aria-label="java.net.http.WebSocket 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code>, <code><a aria-label="java.lang.CharSequence 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/CharSequence.html">CharSequence</a></code><code class="parameterName">data</code>, <code>boolean</code><code class="parameterName">last</code>)</code><i class="L"><code><a aria-label="java.util.concurrent.CompletionStage 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/CompletionStage.html">CompletionStage</a><code class="parameters"><code>?</code></code></code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code><a aria-label="java.net.http.WebSocket 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="java.lang.CharSequence 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/CharSequence.html">CharSequence</a></code><code class="parameterName">data</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>boolean</code><code class="parameterName">last</code></td>
+						<td></td>
+					</tr>
+					<tr class="p">
+						<td><code><a aria-label="java.util.concurrent.CompletionStage 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/CompletionStage.html">CompletionStage</a><code class="parameters"><code>?</code></code></code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="n" id="onClose(java.net.http.WebSocket,int,java.lang.String)">
+				<h2 class="O"><i class="OVERRIDE PUBLIC"></i><code class="g">onClose</code><code class="d">(<code><a aria-label="java.net.http.WebSocket 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code>, <code>int</code><code class="parameterName">statusCode</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">reason</code>)</code><i class="L"><code><a aria-label="java.util.concurrent.CompletionStage 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/CompletionStage.html">CompletionStage</a><code class="parameters"><code>?</code></code></code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code><a aria-label="java.net.http.WebSocket 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>int</code><code class="parameterName">statusCode</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">reason</code></td>
+						<td></td>
+					</tr>
+					<tr class="p">
+						<td><code><a aria-label="java.util.concurrent.CompletionStage 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/CompletionStage.html">CompletionStage</a><code class="parameters"><code>?</code></code></code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="n" id="onError(java.net.http.WebSocket,java.lang.Throwable)">
+				<h2 class="O"><i class="OVERRIDE PUBLIC"></i><code class="g">onError</code><code class="d">(<code><a aria-label="java.net.http.WebSocket 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code>, <code><a aria-label="java.lang.Throwable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code><code class="parameterName">error</code>)</code><i class="L"><code>void</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code><a aria-label="java.net.http.WebSocket 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="java.lang.Throwable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code><code class="parameterName">error</code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="n" id="hasMessage(java.lang.String)">
+				<h2 class="O"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">hasMessage</code><code class="d">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">message</code>)</code><i class="L"><code>boolean</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">message</code></td>
+						<td></td>
+					</tr>
+					<tr class="p">
+						<td><code>boolean</code></td>
+						<td><span><p>A result.</p></span></td>
+					</tr>
+				</table><span class="B"><p>Check client status.</p></span></section>
+			<section class="n" id="hasNoMessage()">
+				<h2 class="O"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">hasNoMessage</code><code class="d">()</code><i class="L"><code>boolean</code></i></h2>
+				<table class="Y">
+					<tr class="p">
+						<td><code>boolean</code></td>
+						<td><span><p>A result.</p></span></td>
+					</tr>
+				</table><span class="B"><p>Check client status.</p></span></section>
+			<section class="n" id="isOpened()">
+				<h2 class="O"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">isOpened</code><code class="d">()</code><i class="L"><code>boolean</code></i></h2>
+				<table class="Y">
+					<tr class="p">
+						<td><code>boolean</code></td>
+						<td><span><p>A result.</p></span></td>
+					</tr>
+				</table><span class="B"><p>Check client status.</p></span></section>
+			<section class="n" id="isNotOpened()">
+				<h2 class="O"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">isNotOpened</code><code class="d">()</code><i class="L"><code>boolean</code></i></h2>
+				<table class="Y">
+					<tr class="p">
+						<td><code>boolean</code></td>
+						<td><span><p>A result.</p></span></td>
+					</tr>
+				</table><span class="B"><p>Check client status.</p></span></section>
+			<section class="n" id="isError()">
+				<h2 class="O"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">isError</code><code class="d">()</code><i class="L"><code>boolean</code></i></h2>
+				<table class="Y">
+					<tr class="p">
+						<td><code>boolean</code></td>
+						<td><span><p>A result.</p></span></td>
+					</tr>
+				</table><span class="B"><p>Check client status.</p></span></section>
+			<section class="n" id="isError(java.lang.Class)">
+				<h2 class="O"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">isError</code><code class="d">(<code><a aria-label="java.lang.Class 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code><code class="extends"><code><a aria-label="java.lang.Throwable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code></code></code></code><code class="parameterName">errorType</code>)</code><i class="L"><code>boolean</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code><a aria-label="java.lang.Class 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code><code class="extends"><code><a aria-label="java.lang.Throwable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code></code></code></code><code class="parameterName">errorType</code></td>
+						<td></td>
+					</tr>
+					<tr class="p">
+						<td><code>boolean</code></td>
+						<td><span><p>A result.</p></span></td>
+					</tr>
+				</table><span class="B"><p>Check client status.</p></span></section>
+			<section class="n" id="isNotError()">
+				<h2 class="O"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">isNotError</code><code class="d">()</code><i class="L"><code>boolean</code></i></h2>
+				<table class="Y">
+					<tr class="p">
+						<td><code>boolean</code></td>
+						<td><span><p>A result.</p></span></td>
+					</tr>
+				</table><span class="B"><p>Check client status.</p></span></section>
+			<section class="n" id="isClosed()">
+				<h2 class="O"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">isClosed</code><code class="d">()</code><i class="L"><code>boolean</code></i></h2>
+				<table class="Y">
+					<tr class="p">
+						<td><code>boolean</code></td>
+						<td><span><p>A result.</p></span></td>
+					</tr>
+				</table><span class="B"><p>Check client status.</p></span></section>
+			<section class="n" id="isNotClosed()">
+				<h2 class="O"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">isNotClosed</code><code class="d">()</code><i class="L"><code>boolean</code></i></h2>
+				<table class="Y">
+					<tr class="p">
+						<td><code>boolean</code></td>
+						<td><span><p>A result.</p></span></td>
+					</tr>
+				</table><span class="B"><p>Check client status.</p></span></section>
+			<section class="n" id="send(java.lang.Object)">
+				<h2 class="O"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">send</code><code class="d">(<code><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">message</code>)</code><i class="L"><code>void</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">message</code></td>
+						<td><span><p>A message to send.</p></span></td>
+					</tr>
+				</table><span class="B"><p>Shorthand method to sent text message to server.</p></span></section>
+			<section class="n" id="send(java.lang.String)">
+				<h2 class="O"><i class="FINAL"><i class="PUBLIC"></i></i><code class="g">send</code><code class="d">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">message</code>)</code><i class="L"><code>void</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">message</code></td>
+						<td><span><p>A message to send.</p></span></td>
+					</tr>
+				</table><span class="B"><p>Shorthand method to sent text message to server.</p></span></section>
+			<section class="n" id="onSubscribe(java.util.concurrent.Flow.Subscription)">
+				<h2 class="O"><i class="OVERRIDE PUBLIC"></i><code class="g">onSubscribe</code><code class="d">(<code><a aria-label="java.util.concurrent.Flow.Subscription 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/Flow.Subscription.html">Subscription</a></code><code class="parameterName">subscription</code>)</code><i class="L"><code>void</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code><a aria-label="java.util.concurrent.Flow.Subscription 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/Flow.Subscription.html">Subscription</a></code><code class="parameterName">subscription</code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="n" id="onNext(java.lang.String)">
+				<h2 class="O"><i class="OVERRIDE PUBLIC"></i><code class="g">onNext</code><code class="d">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">item</code>)</code><i class="L"><code>void</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">item</code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="n" id="onError(java.lang.Throwable)">
+				<h2 class="O"><i class="OVERRIDE PUBLIC"></i><code class="g">onError</code><code class="d">(<code><a aria-label="java.lang.Throwable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code><code class="parameterName">throwable</code>)</code><i class="L"><code>void</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code><a aria-label="java.lang.Throwable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code><code class="parameterName">throwable</code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="n" id="onComplete()">
+				<h2 class="O"><i class="OVERRIDE PUBLIC"></i><code class="g">onComplete</code><code class="d">()</code><i class="L"><code>void</code></i></h2>
+			</section>
+			<section class="n" id="accept(java.net.http.WebSocket)">
+				<h2 class="O"><i class="OVERRIDE PUBLIC"></i><code class="g">accept</code><code class="d">(<code><a aria-label="java.net.http.WebSocket 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">websocket</code>)</code><i class="L"><code>void</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code><a aria-label="java.net.http.WebSocket 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">websocket</code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+		</article>
+		<aside class="b">
+			<div class="q">
+				<h5 class="M">Constructors</h5>
+				<ul>
+					<li class="s"><i class="PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#WebSocketClient()">WebSocketClient</a></code><code class="d">()</code></li>
+				</ul>
+				<h5 class="M">Methods</h5>
+				<ul>
+					<li class="s"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#onOpen(java.net.http.WebSocket)">onOpen</a></code><code class="d">(<code><a aria-label="java.net.http.WebSocket 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code>)</code><i class="Z"><code>void</code></i></li>
+					<li class="s"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#onText(java.net.http.WebSocket,java.lang.CharSequence,boolean)">onText</a></code><code class="d">(<code><a aria-label="java.net.http.WebSocket 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code>, <code><a aria-label="java.lang.CharSequence 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/CharSequence.html">CharSequence</a></code><code class="parameterName">data</code>, <code>boolean</code><code class="parameterName">last</code>)</code><i class="Z"><code><a aria-label="java.util.concurrent.CompletionStage 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/CompletionStage.html">CompletionStage</a><code class="parameters"><code>?</code></code></code></i></li>
+					<li class="s"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#onClose(java.net.http.WebSocket,int,java.lang.String)">onClose</a></code><code class="d">(<code><a aria-label="java.net.http.WebSocket 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code>, <code>int</code><code class="parameterName">statusCode</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">reason</code>)</code><i class="Z"><code><a aria-label="java.util.concurrent.CompletionStage 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/CompletionStage.html">CompletionStage</a><code class="parameters"><code>?</code></code></code></i></li>
+					<li class="s"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#onError(java.net.http.WebSocket,java.lang.Throwable)">onError</a></code><code class="d">(<code><a aria-label="java.net.http.WebSocket 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">webSocket</code>, <code><a aria-label="java.lang.Throwable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code><code class="parameterName">error</code>)</code><i class="Z"><code>void</code></i></li>
+					<li class="s"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#hasMessage(java.lang.String)">hasMessage</a></code><code class="d">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">message</code>)</code><i class="Z"><code>boolean</code></i></li>
+					<li class="s"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#hasNoMessage()">hasNoMessage</a></code><code class="d">()</code><i class="Z"><code>boolean</code></i></li>
+					<li class="s"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#isOpened()">isOpened</a></code><code class="d">()</code><i class="Z"><code>boolean</code></i></li>
+					<li class="s"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#isNotOpened()">isNotOpened</a></code><code class="d">()</code><i class="Z"><code>boolean</code></i></li>
+					<li class="s"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#isError()">isError</a></code><code class="d">()</code><i class="Z"><code>boolean</code></i></li>
+					<li class="s"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#isError(java.lang.Class)">isError</a></code><code class="d">(<code><a aria-label="java.lang.Class 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code><code class="extends"><code><a aria-label="java.lang.Throwable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code></code></code></code><code class="parameterName">errorType</code>)</code><i class="Z"><code>boolean</code></i></li>
+					<li class="s"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#isNotError()">isNotError</a></code><code class="d">()</code><i class="Z"><code>boolean</code></i></li>
+					<li class="s"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#isClosed()">isClosed</a></code><code class="d">()</code><i class="Z"><code>boolean</code></i></li>
+					<li class="s"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#isNotClosed()">isNotClosed</a></code><code class="d">()</code><i class="Z"><code>boolean</code></i></li>
+					<li class="s"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#send(java.lang.Object)">send</a></code><code class="d">(<code><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">message</code>)</code><i class="Z"><code>void</code></i></li>
+					<li class="s"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#send(java.lang.String)">send</a></code><code class="d">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">message</code>)</code><i class="Z"><code>void</code></i></li>
+					<li class="s"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#onSubscribe(java.util.concurrent.Flow.Subscription)">onSubscribe</a></code><code class="d">(<code><a aria-label="java.util.concurrent.Flow.Subscription 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/Flow.Subscription.html">Subscription</a></code><code class="parameterName">subscription</code>)</code><i class="Z"><code>void</code></i></li>
+					<li class="s"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#onNext(java.lang.String)">onNext</a></code><code class="d">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">item</code>)</code><i class="Z"><code>void</code></i></li>
+					<li class="s"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#onError(java.lang.Throwable)">onError</a></code><code class="d">(<code><a aria-label="java.lang.Throwable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code><code class="parameterName">throwable</code>)</code><i class="Z"><code>void</code></i></li>
+					<li class="s"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#onComplete()">onComplete</a></code><code class="d">()</code><i class="Z"><code>void</code></i></li>
+					<li class="s"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.WebSocketServer.WebSocketClient.html#accept(java.net.http.WebSocket)">accept</a></code><code class="d">(<code><a aria-label="java.net.http.WebSocket 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.net.http/java/net/http/WebSocket.html">WebSocket</a></code><code class="parameterName">websocket</code>)</code><i class="Z"><code>void</code></i></li>
+				</ul>
+			</div>
+		</aside>
+		<footer class="J"/>
 	</body>
+	<script src="root.js"></script>
+	<script src="main.js" type="module"></script>
 </html>

@@ -13,81 +13,80 @@
 		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Material+Icons" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
 		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" rel="preload"/>
 		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
-		<link as="style" fetchpriority="high" href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="preload"/>
-		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<title>Antibug API</title>
 		<base href="../"/>
 		<script src="mimic.js" type="module"></script>
+		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="X">
-		<header class="Y">
-			<h1 class="T" date="2024-11-12" ver="1.12.2"><code>Antibug</code></h1>
-			<nav class="V"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
+	<body class="i">
+		<header class="j" date="2024-11-12" ver="1.12.2">
+			<h1 class="N"><code>Antibug</code></h1>
+			<nav class="W"><a href="api/" id="API"><svg class="package A svg" viewBox="0 0 24 24">
 						<use href="main.svg#package"/>
-					</svg><code>API</code></a><a href="https://github.com/teletha/antibug/discussions" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#user"/>
-					</svg>Community</a><a href="doc/changelog.html"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#activity"/>
-					</svg>Activity</a><a href="https://github.com/teletha/antibug" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#github"/>
-					</svg>Repository</a></nav>
-			<div class="N" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#sun"/>
 					</svg>
-				</a><a id="dark" title="Change to a darker color scheme"><svg class="A svg" viewBox="0 0 24 24">
+				</a><a href="https://github.com/teletha/antibug/discussions" id="Community" target="_blank"><svg class="user A svg" viewBox="0 0 24 24">
+						<use href="main.svg#user"/>
+					</svg>
+				</a><a href="doc/changelog.html" id="Activity"><svg class="activity A svg" viewBox="0 0 24 24">
+						<use href="main.svg#activity"/>
+					</svg>
+				</a><a href="https://github.com/teletha/antibug" id="Repository" target="_blank"><svg class="github A svg" viewBox="0 0 24 24">
+						<use href="main.svg#github"/>
+					</svg>
+				</a></nav>
+			<div class="f"><a aria-label="Change color scheme" id="theme"><svg class="sun A svg" viewBox="0 0 24 24">
+						<use href="main.svg#sun"/>
+					</svg><svg class="moon A svg" viewBox="0 0 24 24">
 						<use href="main.svg#moon"/>
 					</svg>
 				</a></div>
 		</header>
-		<main class="J">
-			<nav class="m">
-				<div></div>
-			</nav>
-			<article class="L" id="Article">
-				<section class="i"><code class="I">antibug.powerassert</code>
-					<h2 class="Class M"><code class="g">PowerAssert</code></h2>
-					<div class="b"></div>
-				</section>
-				<section class="i" id="PowerAssert()">
-					<h2 class="k"><i class="PUBLIC"></i><code class="g">PowerAssert</code><code class="d">()</code></h2>
-				</section>
-				<section class="i" id="capture(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext,java.lang.Throwable,java.lang.Runnable,java.util.function.Consumer)">
-					<h2 class="k"><i class="PUBLIC STATIC"></i><code class="g">capture</code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code><code class="parameterName">error</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">testExecutor</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code></code></code><code class="parameterName">errorExecutor</code>)</code><i class="f"><code>void</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code>context</code></td>
-							<td></td>
-						</tr>
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code><code>error</code></td>
-							<td></td>
-						</tr>
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code>testExecutor</code></td>
-							<td></td>
-						</tr>
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code></code></code><code>errorExecutor</code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-			</article>
-			<aside class="W" id="SubNavi">
-				<div class="Z">
-					<h5 class="P">Constructors</h5>
-					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.powerassert.PowerAssert.html#PowerAssert()">PowerAssert</a></code><code class="d">()</code></li>
-					</ul>
-					<h5 class="P">Static Methods</h5>
-					<ul>
-						<li><i class="PUBLIC STATIC"></i><code><a href="api/antibug.powerassert.PowerAssert.html#capture(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext,java.lang.Throwable,java.lang.Runnable,java.util.function.Consumer)">capture</a></code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code><code class="parameterName">error</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">testExecutor</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code></code></code><code class="parameterName">errorExecutor</code>)</code><i class="Q"><code>void</code></i></li>
-					</ul>
-				</div>
-			</aside>
-		</main>
-		<script src="root.js"></script>
-		<script src="main.js" type="module"></script>
+		<nav class="l"></nav>
+		<article class="k" id="Article">
+			<section class="n"><code class="X">antibug.powerassert</code>
+				<h2 class="Class m"><code class="g">PowerAssert</code></h2>
+				<div class="K"></div>
+			</section>
+			<section class="n" id="PowerAssert()">
+				<h2 class="O"><i class="PUBLIC"></i><code class="g">PowerAssert</code><code class="d">()</code></h2>
+			</section>
+			<section class="n" id="capture(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext,java.lang.Throwable,java.lang.Runnable,java.util.function.Consumer)">
+				<h2 class="O"><i class="PUBLIC STATIC"></i><code class="g">capture</code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>, <code><a aria-label="java.lang.Throwable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code><code class="parameterName">error</code>, <code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">testExecutor</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="java.lang.Throwable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code></code></code><code class="parameterName">errorExecutor</code>)</code><i class="L"><code>void</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="java.lang.Throwable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code><code class="parameterName">error</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">testExecutor</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="java.lang.Throwable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code></code></code><code class="parameterName">errorExecutor</code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+		</article>
+		<aside class="b">
+			<div class="q">
+				<h5 class="M">Constructors</h5>
+				<ul>
+					<li class="s"><i class="PUBLIC"></i><code><a href="api/antibug.powerassert.PowerAssert.html#PowerAssert()">PowerAssert</a></code><code class="d">()</code></li>
+				</ul>
+				<h5 class="M">Static Methods</h5>
+				<ul>
+					<li class="s"><i class="PUBLIC STATIC"></i><code><a href="api/antibug.powerassert.PowerAssert.html#capture(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext,java.lang.Throwable,java.lang.Runnable,java.util.function.Consumer)">capture</a></code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>, <code><a aria-label="java.lang.Throwable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code><code class="parameterName">error</code>, <code><a aria-label="java.lang.Runnable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Runnable.html">Runnable</a></code><code class="parameterName">testExecutor</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="java.lang.Throwable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Throwable.html">Throwable</a></code></code></code><code class="parameterName">errorExecutor</code>)</code><i class="Z"><code>void</code></i></li>
+				</ul>
+			</div>
+		</aside>
+		<footer class="J"/>
 	</body>
+	<script src="root.js"></script>
+	<script src="main.js" type="module"></script>
 </html>

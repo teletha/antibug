@@ -13,107 +13,106 @@
 		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Material+Icons" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
 		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" rel="preload"/>
 		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
-		<link as="style" fetchpriority="high" href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="preload"/>
-		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<title>Antibug API</title>
 		<base href="../"/>
 		<script src="mimic.js" type="module"></script>
+		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="X">
-		<header class="Y">
-			<h1 class="T" date="2024-11-12" ver="1.12.2"><code>Antibug</code></h1>
-			<nav class="V"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
+	<body class="i">
+		<header class="j" date="2024-11-12" ver="1.12.2">
+			<h1 class="N"><code>Antibug</code></h1>
+			<nav class="W"><a href="api/" id="API"><svg class="package A svg" viewBox="0 0 24 24">
 						<use href="main.svg#package"/>
-					</svg><code>API</code></a><a href="https://github.com/teletha/antibug/discussions" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#user"/>
-					</svg>Community</a><a href="doc/changelog.html"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#activity"/>
-					</svg>Activity</a><a href="https://github.com/teletha/antibug" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#github"/>
-					</svg>Repository</a></nav>
-			<div class="N" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#sun"/>
 					</svg>
-				</a><a id="dark" title="Change to a darker color scheme"><svg class="A svg" viewBox="0 0 24 24">
+				</a><a href="https://github.com/teletha/antibug/discussions" id="Community" target="_blank"><svg class="user A svg" viewBox="0 0 24 24">
+						<use href="main.svg#user"/>
+					</svg>
+				</a><a href="doc/changelog.html" id="Activity"><svg class="activity A svg" viewBox="0 0 24 24">
+						<use href="main.svg#activity"/>
+					</svg>
+				</a><a href="https://github.com/teletha/antibug" id="Repository" target="_blank"><svg class="github A svg" viewBox="0 0 24 24">
+						<use href="main.svg#github"/>
+					</svg>
+				</a></nav>
+			<div class="f"><a aria-label="Change color scheme" id="theme"><svg class="sun A svg" viewBox="0 0 24 24">
+						<use href="main.svg#sun"/>
+					</svg><svg class="moon A svg" viewBox="0 0 24 24">
 						<use href="main.svg#moon"/>
 					</svg>
 				</a></div>
 		</header>
-		<main class="J">
-			<nav class="m">
-				<div></div>
-			</nav>
-			<article class="L" id="Article">
-				<section class="i"><code class="I">antibug.bytecode</code>
-					<h2 class="Class M"><code class="g">LocalVariable</code></h2>
-					<div class="b">
-						<ul class="C E">
-							<li><code><a href="api/antibug.bytecode.Bytecode.html">Bytecode</a><code class="parameters"><code><a href="api/antibug.bytecode.LocalVariable.html">LocalVariable</a></code></code></code></li>
-						</ul>
-					</div>
-				</section>
-				<section class="i" id="opcode">
-					<h2 class="k"><i class="PUBLIC"></i><code class="g">opcode</code><i class="f"><code class="return">int</code></i></h2><span class="B"><p>The operation code.</p></span></section>
-				<section class="i" id="index">
-					<h2 class="k"><i class="PUBLIC"></i><code class="g">index</code><i class="f"><code class="return">int</code></i></h2><span class="B"><p>The local variable index.</p></span></section>
-				<section class="i" id="type">
-					<h2 class="k"><i class="PUBLIC"></i><code class="g">type</code><i class="f"><code class="return">net.bytebuddy.jar.asm.Type</code></i></h2><span class="B"><p>The variable type.</p></span></section>
-				<section class="i" id="LocalVariable(int,int)">
-					<h2 class="k"><i class="PUBLIC"></i><code class="g">LocalVariable</code><code class="d">(<code>int</code><code class="parameterName">opcode</code>, <code>int</code><code class="parameterName">index</code>)</code></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code>int</code><code>opcode</code></td>
-							<td></td>
-						</tr>
-						<tr class="K">
-							<td><code>int</code><code>index</code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="i" id="store()">
-					<h2 class="k"><i class="PUBLIC"></i><code class="g">store</code><code class="d">()</code><i class="f"><code>void</code></i></h2>
-				</section>
-				<section class="i" id="load()">
-					<h2 class="k"><i class="PUBLIC"></i><code class="g">load</code><code class="d">()</code><i class="f"><code>void</code></i></h2>
-				</section>
-				<section class="i" id="write(net.bytebuddy.jar.asm.MethodVisitor,boolean)">
-					<h2 class="k"><i class="OVERRIDE PUBLIC"></i><code class="g">write</code><code class="d">(<code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">visitor</code>, <code>boolean</code><code class="parameterName">isNonPrimitive</code>)</code><i class="f"><code>void</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code>net.bytebuddy.jar.asm.MethodVisitor</code><code>visitor</code></td>
-							<td></td>
-						</tr>
-						<tr class="K">
-							<td><code>boolean</code><code>isNonPrimitive</code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-			</article>
-			<aside class="W" id="SubNavi">
-				<div class="Z">
-					<h5 class="P">Constructors</h5>
-					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariable.html#LocalVariable(int,int)">LocalVariable</a></code><code class="d">(<code>int</code><code class="parameterName">opcode</code>, <code>int</code><code class="parameterName">index</code>)</code></li>
-					</ul>
-					<h5 class="P">Fields</h5>
-					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariable.html#opcode">opcode</a></code><i class="Q"><code class="return">int</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariable.html#index">index</a></code><i class="Q"><code class="return">int</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariable.html#type">type</a></code><i class="Q"><code class="return">net.bytebuddy.jar.asm.Type</code></i></li>
-					</ul>
-					<h5 class="P">Methods</h5>
-					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariable.html#store()">store</a></code><code class="d">()</code><i class="Q"><code>void</code></i></li>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariable.html#load()">load</a></code><code class="d">()</code><i class="Q"><code>void</code></i></li>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariable.html#write(net.bytebuddy.jar.asm.MethodVisitor,boolean)">write</a></code><code class="d">(<code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">visitor</code>, <code>boolean</code><code class="parameterName">isNonPrimitive</code>)</code><i class="Q"><code>void</code></i></li>
+		<nav class="l"></nav>
+		<article class="k" id="Article">
+			<section class="n"><code class="X">antibug.bytecode</code>
+				<h2 class="Class m"><code class="g">LocalVariable</code></h2>
+				<div class="K">
+					<ul class="C E">
+						<li><code><a aria-label="antibug.bytecode.Bytecode" href="api/antibug.bytecode.Bytecode.html">Bytecode</a><code class="parameters"><code><a aria-label="antibug.bytecode.LocalVariable" href="api/antibug.bytecode.LocalVariable.html">LocalVariable</a></code></code></code></li>
 					</ul>
 				</div>
-			</aside>
-		</main>
-		<script src="root.js"></script>
-		<script src="main.js" type="module"></script>
+			</section>
+			<section class="n" id="opcode">
+				<h2 class="O"><i class="PUBLIC"></i><code class="g">opcode</code><i class="L"><code class="return">int</code></i></h2><span class="B"><p>The operation code.</p></span></section>
+			<section class="n" id="index">
+				<h2 class="O"><i class="PUBLIC"></i><code class="g">index</code><i class="L"><code class="return">int</code></i></h2><span class="B"><p>The local variable index.</p></span></section>
+			<section class="n" id="type">
+				<h2 class="O"><i class="PUBLIC"></i><code class="g">type</code><i class="L"><code class="return">net.bytebuddy.jar.asm.Type</code></i></h2><span class="B"><p>The variable type.</p></span></section>
+			<section class="n" id="LocalVariable(int,int)">
+				<h2 class="O"><i class="PUBLIC"></i><code class="g">LocalVariable</code><code class="d">(<code>int</code><code class="parameterName">opcode</code>, <code>int</code><code class="parameterName">index</code>)</code></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code>int</code><code class="parameterName">opcode</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>int</code><code class="parameterName">index</code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="n" id="store()">
+				<h2 class="O"><i class="PUBLIC"></i><code class="g">store</code><code class="d">()</code><i class="L"><code>void</code></i></h2>
+			</section>
+			<section class="n" id="load()">
+				<h2 class="O"><i class="PUBLIC"></i><code class="g">load</code><code class="d">()</code><i class="L"><code>void</code></i></h2>
+			</section>
+			<section class="n" id="write(net.bytebuddy.jar.asm.MethodVisitor,boolean)">
+				<h2 class="O"><i class="OVERRIDE PUBLIC"></i><code class="g">write</code><code class="d">(<code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">visitor</code>, <code>boolean</code><code class="parameterName">isNonPrimitive</code>)</code><i class="L"><code>void</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">visitor</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>boolean</code><code class="parameterName">isNonPrimitive</code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+		</article>
+		<aside class="b">
+			<div class="q">
+				<h5 class="M">Constructors</h5>
+				<ul>
+					<li class="s"><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariable.html#LocalVariable(int,int)">LocalVariable</a></code><code class="d">(<code>int</code><code class="parameterName">opcode</code>, <code>int</code><code class="parameterName">index</code>)</code></li>
+				</ul>
+				<h5 class="M">Fields</h5>
+				<ul>
+					<li class="s"><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariable.html#opcode">opcode</a></code><i class="Z"><code class="return">int</code></i></li>
+					<li class="s"><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariable.html#index">index</a></code><i class="Z"><code class="return">int</code></i></li>
+					<li class="s"><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariable.html#type">type</a></code><i class="Z"><code class="return">net.bytebuddy.jar.asm.Type</code></i></li>
+				</ul>
+				<h5 class="M">Methods</h5>
+				<ul>
+					<li class="s"><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariable.html#store()">store</a></code><code class="d">()</code><i class="Z"><code>void</code></i></li>
+					<li class="s"><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariable.html#load()">load</a></code><code class="d">()</code><i class="Z"><code>void</code></i></li>
+					<li class="s"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariable.html#write(net.bytebuddy.jar.asm.MethodVisitor,boolean)">write</a></code><code class="d">(<code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">visitor</code>, <code>boolean</code><code class="parameterName">isNonPrimitive</code>)</code><i class="Z"><code>void</code></i></li>
+				</ul>
+			</div>
+		</aside>
+		<footer class="J"/>
 	</body>
+	<script src="root.js"></script>
+	<script src="main.js" type="module"></script>
 </html>

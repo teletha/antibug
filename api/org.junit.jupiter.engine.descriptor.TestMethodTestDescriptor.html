@@ -13,213 +13,218 @@
 		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Material+Icons" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
 		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" rel="preload"/>
 		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
-		<link as="style" fetchpriority="high" href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="preload"/>
-		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<title>Antibug API</title>
 		<base href="../"/>
 		<script src="mimic.js" type="module"></script>
+		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="X">
-		<header class="Y">
-			<h1 class="T" date="2024-11-12" ver="1.12.2"><code>Antibug</code></h1>
-			<nav class="V"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
+	<body class="i">
+		<header class="j" date="2024-11-12" ver="1.12.2">
+			<h1 class="N"><code>Antibug</code></h1>
+			<nav class="W"><a href="api/" id="API"><svg class="package A svg" viewBox="0 0 24 24">
 						<use href="main.svg#package"/>
-					</svg><code>API</code></a><a href="https://github.com/teletha/antibug/discussions" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#user"/>
-					</svg>Community</a><a href="doc/changelog.html"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#activity"/>
-					</svg>Activity</a><a href="https://github.com/teletha/antibug" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#github"/>
-					</svg>Repository</a></nav>
-			<div class="N" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#sun"/>
 					</svg>
-				</a><a id="dark" title="Change to a darker color scheme"><svg class="A svg" viewBox="0 0 24 24">
+				</a><a href="https://github.com/teletha/antibug/discussions" id="Community" target="_blank"><svg class="user A svg" viewBox="0 0 24 24">
+						<use href="main.svg#user"/>
+					</svg>
+				</a><a href="doc/changelog.html" id="Activity"><svg class="activity A svg" viewBox="0 0 24 24">
+						<use href="main.svg#activity"/>
+					</svg>
+				</a><a href="https://github.com/teletha/antibug" id="Repository" target="_blank"><svg class="github A svg" viewBox="0 0 24 24">
+						<use href="main.svg#github"/>
+					</svg>
+				</a></nav>
+			<div class="f"><a aria-label="Change color scheme" id="theme"><svg class="sun A svg" viewBox="0 0 24 24">
+						<use href="main.svg#sun"/>
+					</svg><svg class="moon A svg" viewBox="0 0 24 24">
 						<use href="main.svg#moon"/>
 					</svg>
 				</a></div>
 		</header>
-		<main class="J">
-			<nav class="m">
-				<div></div>
-			</nav>
-			<article class="L" id="Article">
-				<section class="i"><code class="I">org.junit.jupiter.engine.descriptor</code>
-					<h2 class="Class M"><code class="g">TestMethodTestDescriptor</code></h2>
-					<div class="b">
-						<ul class="C E">
-							<li><code><a href="api/org.junit.jupiter.engine.descriptor.MethodBasedTestDescriptor.html">MethodBasedTestDescriptor</a></code></li>
-							<li><code><a href="api/org.junit.jupiter.engine.descriptor.JupiterTestDescriptor.html">JupiterTestDescriptor</a></code></li>
-							<li><code>org.junit.platform.engine.support.descriptor.AbstractTestDescriptor</code></li>
-						</ul>
-						<ul class="C F">
-							<li><code>org.junit.platform.engine.support.hierarchical.Node<code class="parameters"><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code></code></code></li>
-							<li><code>org.junit.platform.engine.TestDescriptor</code></li>
-						</ul>
-					</div><span class="B"><p>TestDescriptor for 
-							<pre class="lang-java"><code/></pre> methods.</p><h2>Default Display Names</h2><p>The default display name for a test method is the name of the method
+		<nav class="l"></nav>
+		<article class="k" id="Article">
+			<section class="n"><code class="X">org.junit.jupiter.engine.descriptor</code>
+				<h2 class="Class m"><code class="g">TestMethodTestDescriptor</code></h2>
+				<div class="K">
+					<ul class="C E">
+						<li><code><a aria-label="org.junit.jupiter.engine.descriptor.MethodBasedTestDescriptor" href="api/org.junit.jupiter.engine.descriptor.MethodBasedTestDescriptor.html">MethodBasedTestDescriptor</a></code></li>
+						<li><code><a aria-label="org.junit.jupiter.engine.descriptor.JupiterTestDescriptor" href="api/org.junit.jupiter.engine.descriptor.JupiterTestDescriptor.html">JupiterTestDescriptor</a></code></li>
+						<li><code>org.junit.platform.engine.support.descriptor.AbstractTestDescriptor</code></li>
+					</ul>
+					<ul class="C F">
+						<li><code>org.junit.platform.engine.support.hierarchical.Node<code class="parameters"><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code></code></code></li>
+						<li><code><a aria-label="org.junit.jupiter.engine.descriptor.ResourceLockAware" href="api/org.junit.jupiter.engine.descriptor.ResourceLockAware.html">ResourceLockAware</a></code></li>
+						<li><code>org.junit.platform.engine.TestDescriptor</code></li>
+					</ul>
+				</div><span class="B"><p>TestDescriptor for 
+						<pre class="lang-java"><code/></pre> methods.</p><h2>Default Display Names</h2><p>
+ The default display name for a test method is the name of the method
  concatenated with a comma-separated list of parameter types in parentheses.
- The names of parameter types are retrieved using <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Class.html#getSimpleName()">Class#getSimpleName()</a></code>.
+ The names of parameter types are retrieved using <code><a aria-label="java.lang.Class 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Class.html#getSimpleName()">Class#getSimpleName()</a></code>.
  For example, the default display name for the following test method is
  <code>testUser(TestInfo, User)</code>.
  
-							<pre class="code">
-								<pre class="lang-"><code/></pre>Test
+						<pre class="code">
+							<pre class="lang-"><code/></pre>Test
 
-								<p>void testUser(TestInfo testInfo, 
-									<pre class="lang-"><code/></pre>Mock User user) { ... }
+							<p>void testUser(TestInfo testInfo, 
+								<pre class="lang-"><code/></pre>Mock User user) { ... }
 </p>
-							</pre>
-						</p>
-					</span></section>
-				<section class="i" id="SEGMENT_TYPE">
-					<h2 class="k"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="g">SEGMENT_TYPE</code><i class="f"><code class="return"><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
-				</section>
-				<section class="i" id="TestMethodTestDescriptor(org.junit.platform.engine.UniqueId,java.lang.Class,java.lang.reflect.Method,org.junit.jupiter.engine.config.JupiterConfiguration)">
-					<h2 class="k"><i class="PUBLIC"></i><code class="g">TestMethodTestDescriptor</code><code class="d">(<code>org.junit.platform.engine.UniqueId</code><code class="parameterName">uniqueId</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code></code></code><code class="parameterName">testClass</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/reflect/Method.html">Method</a></code><code class="parameterName">testMethod</code>, <code>org.junit.jupiter.engine.config.JupiterConfiguration</code><code class="parameterName">configuration</code>)</code></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code>org.junit.platform.engine.UniqueId</code><code>uniqueId</code></td>
-							<td></td>
-						</tr>
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code></code></code><code>testClass</code></td>
-							<td></td>
-						</tr>
-						<tr class="K">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/reflect/Method.html">Method</a></code><code>testMethod</code></td>
-							<td></td>
-						</tr>
-						<tr class="K">
-							<td><code>org.junit.jupiter.engine.config.JupiterConfiguration</code><code>configuration</code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="i" id="getType()">
-					<h2 class="k"><i class="OVERRIDE PUBLIC"></i><code class="g">getType</code><code class="d">()</code><i class="f"><code>org.junit.platform.engine.TestDescriptor.Type</code></i></h2>
-					<table class="c">
-						<tr class="e">
-							<td><code>org.junit.platform.engine.TestDescriptor.Type</code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="i" id="prepare(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext)">
-					<h2 class="k"><i class="OVERRIDE PUBLIC"></i><code class="g">prepare</code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>)</code><i class="f"><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code>context</code></td>
-							<td></td>
-						</tr>
-						<tr class="e">
-							<td><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="i" id="populateNewExtensionRegistry(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext)">
-					<h2 class="k"><i class="PROTECTED"></i><code class="g">populateNewExtensionRegistry</code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>)</code><i class="f"><code>org.junit.jupiter.engine.extension.MutableExtensionRegistry</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code>context</code></td>
-							<td></td>
-						</tr>
-						<tr class="e">
-							<td><code>org.junit.jupiter.engine.extension.MutableExtensionRegistry</code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="i" id="execute(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext,org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor)">
-					<h2 class="k"><i class="OVERRIDE PUBLIC"></i><code class="g">execute</code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>, <code>org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor</code><code class="parameterName">dynamicTestExecutor</code>)</code><i class="f"><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code>context</code></td>
-							<td></td>
-						</tr>
-						<tr class="K">
-							<td><code>org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor</code><code>dynamicTestExecutor</code></td>
-							<td></td>
-						</tr>
-						<tr class="e">
-							<td><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="i" id="cleanUp(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext)">
-					<h2 class="k"><i class="OVERRIDE PUBLIC"></i><code class="g">cleanUp</code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>)</code><i class="f"><code>void</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code>context</code></td>
-							<td></td>
-						</tr>
-						<tr class="a">
-							<td><code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Exception.html">Exception</a></code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="i" id="invokeTestMethod(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext,org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor)">
-					<h2 class="k"><i class="PROTECTED"></i><code class="g">invokeTestMethod</code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>, <code>org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor</code><code class="parameterName">dynamicTestExecutor</code>)</code><i class="f"><code>void</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code>context</code></td>
-							<td></td>
-						</tr>
-						<tr class="K">
-							<td><code>org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor</code><code>dynamicTestExecutor</code></td>
-							<td></td>
-						</tr>
-					</table>
-				</section>
-				<section class="i" id="nodeFinished(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext,org.junit.platform.engine.TestDescriptor,org.junit.platform.engine.TestExecutionResult)">
-					<h2 class="k"><i class="OVERRIDE PUBLIC"></i><code class="g">nodeFinished</code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>, <code>org.junit.platform.engine.TestDescriptor</code><code class="parameterName">descriptor</code>, <code>org.junit.platform.engine.TestExecutionResult</code><code class="parameterName">result</code>)</code><i class="f"><code>void</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code>context</code></td>
-							<td></td>
-						</tr>
-						<tr class="K">
-							<td><code>org.junit.platform.engine.TestDescriptor</code><code>descriptor</code></td>
-							<td></td>
-						</tr>
-						<tr class="K">
-							<td><code>org.junit.platform.engine.TestExecutionResult</code><code>result</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>Invoke TestWatcher#testSuccessful,
+						</pre>
+					</p>
+				</span></section>
+			<section class="n" id="SEGMENT_TYPE">
+				<h2 class="O"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="g">SEGMENT_TYPE</code><i class="L"><code class="return"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></h2>
+			</section>
+			<section class="n" id="TestMethodTestDescriptor(org.junit.platform.engine.UniqueId,java.lang.Class,java.lang.reflect.Method,java.util.function.Supplier,org.junit.jupiter.engine.config.JupiterConfiguration)">
+				<h2 class="O"><i class="PUBLIC"></i><code class="g">TestMethodTestDescriptor</code><code class="d">(<code>org.junit.platform.engine.UniqueId</code><code class="parameterName">uniqueId</code>, <code><a aria-label="java.lang.Class 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code></code></code><code class="parameterName">testClass</code>, <code><a aria-label="java.lang.reflect.Method 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/reflect/Method.html">Method</a></code><code class="parameterName">testMethod</code>, <code><a aria-label="java.util.function.Supplier 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Supplier.html">Supplier</a><code class="parameters"><code><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="java.lang.Class 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code></code></code></code></code></code></code><code class="parameterName">enclosingInstanceTypes</code>, <code>org.junit.jupiter.engine.config.JupiterConfiguration</code><code class="parameterName">configuration</code>)</code></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code>org.junit.platform.engine.UniqueId</code><code class="parameterName">uniqueId</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="java.lang.Class 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code></code></code><code class="parameterName">testClass</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="java.lang.reflect.Method 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/reflect/Method.html">Method</a></code><code class="parameterName">testMethod</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code><a aria-label="java.util.function.Supplier 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Supplier.html">Supplier</a><code class="parameters"><code><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="java.lang.Class 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code></code></code></code></code></code></code><code class="parameterName">enclosingInstanceTypes</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>org.junit.jupiter.engine.config.JupiterConfiguration</code><code class="parameterName">configuration</code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="n" id="getType()">
+				<h2 class="O"><i class="OVERRIDE PUBLIC"></i><code class="g">getType</code><code class="d">()</code><i class="L"><code>org.junit.platform.engine.TestDescriptor.Type</code></i></h2>
+				<table class="Y">
+					<tr class="p">
+						<td><code>org.junit.platform.engine.TestDescriptor.Type</code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="n" id="prepare(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext)">
+				<h2 class="O"><i class="OVERRIDE PUBLIC"></i><code class="g">prepare</code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>)</code><i class="L"><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code></td>
+						<td></td>
+					</tr>
+					<tr class="p">
+						<td><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="n" id="populateNewExtensionRegistry(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext)">
+				<h2 class="O"><i class="PROTECTED"></i><code class="g">populateNewExtensionRegistry</code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>)</code><i class="L"><code>org.junit.jupiter.engine.extension.MutableExtensionRegistry</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code></td>
+						<td></td>
+					</tr>
+					<tr class="p">
+						<td><code>org.junit.jupiter.engine.extension.MutableExtensionRegistry</code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="n" id="execute(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext,org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor)">
+				<h2 class="O"><i class="OVERRIDE PUBLIC"></i><code class="g">execute</code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>, <code>org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor</code><code class="parameterName">dynamicTestExecutor</code>)</code><i class="L"><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor</code><code class="parameterName">dynamicTestExecutor</code></td>
+						<td></td>
+					</tr>
+					<tr class="p">
+						<td><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="n" id="cleanUp(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext)">
+				<h2 class="O"><i class="OVERRIDE PUBLIC"></i><code class="g">cleanUp</code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>)</code><i class="L"><code>void</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code></td>
+						<td></td>
+					</tr>
+					<tr class="U">
+						<td><code><a aria-label="java.lang.Exception 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Exception.html">Exception</a></code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="n" id="invokeTestMethod(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext,org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor)">
+				<h2 class="O"><i class="PROTECTED"></i><code class="g">invokeTestMethod</code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>, <code>org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor</code><code class="parameterName">dynamicTestExecutor</code>)</code><i class="L"><code>void</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor</code><code class="parameterName">dynamicTestExecutor</code></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section class="n" id="nodeFinished(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext,org.junit.platform.engine.TestDescriptor,org.junit.platform.engine.TestExecutionResult)">
+				<h2 class="O"><i class="OVERRIDE PUBLIC"></i><code class="g">nodeFinished</code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>, <code>org.junit.platform.engine.TestDescriptor</code><code class="parameterName">descriptor</code>, <code>org.junit.platform.engine.TestExecutionResult</code><code class="parameterName">result</code>)</code><i class="L"><code>void</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>org.junit.platform.engine.TestDescriptor</code><code class="parameterName">descriptor</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>org.junit.platform.engine.TestExecutionResult</code><code class="parameterName">result</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>Invoke TestWatcher#testSuccessful,
 TestWatcher#testAborted, or
 TestWatcher#testFailed on each
 registered TestWatcher according to the status of the supplied
 TestExecutionResult, in reverse registration order.</p></span></section>
-			</article>
-			<aside class="W" id="SubNavi">
-				<div class="Z">
-					<h5 class="P">Constructors</h5>
-					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.html#TestMethodTestDescriptor(org.junit.platform.engine.UniqueId,java.lang.Class,java.lang.reflect.Method,org.junit.jupiter.engine.config.JupiterConfiguration)">TestMethodTestDescriptor</a></code><code class="d">(<code>org.junit.platform.engine.UniqueId</code><code class="parameterName">uniqueId</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code></code></code><code class="parameterName">testClass</code>, <code><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/reflect/Method.html">Method</a></code><code class="parameterName">testMethod</code>, <code>org.junit.jupiter.engine.config.JupiterConfiguration</code><code class="parameterName">configuration</code>)</code></li>
-					</ul>
-					<h5 class="P">Static Fields</h5>
-					<ul>
-						<li><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.html#SEGMENT_TYPE">SEGMENT_TYPE</a></code><i class="Q"><code class="return"><a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
-					</ul>
-					<h5 class="P">Methods</h5>
-					<ul>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.html#getType()">getType</a></code><code class="d">()</code><i class="Q"><code>org.junit.platform.engine.TestDescriptor.Type</code></i></li>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.html#prepare(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext)">prepare</a></code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>)</code><i class="Q"><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code></i></li>
-						<li><i class="PROTECTED"></i><code><a href="api/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.html#populateNewExtensionRegistry(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext)">populateNewExtensionRegistry</a></code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>)</code><i class="Q"><code>org.junit.jupiter.engine.extension.MutableExtensionRegistry</code></i></li>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.html#execute(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext,org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor)">execute</a></code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>, <code>org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor</code><code class="parameterName">dynamicTestExecutor</code>)</code><i class="Q"><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code></i></li>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.html#cleanUp(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext)">cleanUp</a></code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>)</code><i class="Q"><code>void</code></i></li>
-						<li><i class="PROTECTED"></i><code><a href="api/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.html#invokeTestMethod(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext,org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor)">invokeTestMethod</a></code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>, <code>org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor</code><code class="parameterName">dynamicTestExecutor</code>)</code><i class="Q"><code>void</code></i></li>
-						<li><i class="OVERRIDE PUBLIC"></i><code><a href="api/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.html#nodeFinished(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext,org.junit.platform.engine.TestDescriptor,org.junit.platform.engine.TestExecutionResult)">nodeFinished</a></code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>, <code>org.junit.platform.engine.TestDescriptor</code><code class="parameterName">descriptor</code>, <code>org.junit.platform.engine.TestExecutionResult</code><code class="parameterName">result</code>)</code><i class="Q"><code>void</code></i></li>
-					</ul>
-				</div>
-			</aside>
-		</main>
-		<script src="root.js"></script>
-		<script src="main.js" type="module"></script>
+		</article>
+		<aside class="b">
+			<div class="q">
+				<h5 class="M">Constructors</h5>
+				<ul>
+					<li class="s"><i class="PUBLIC"></i><code><a href="api/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.html#TestMethodTestDescriptor(org.junit.platform.engine.UniqueId,java.lang.Class,java.lang.reflect.Method,java.util.function.Supplier,org.junit.jupiter.engine.config.JupiterConfiguration)">TestMethodTestDescriptor</a></code><code class="d">(<code>org.junit.platform.engine.UniqueId</code><code class="parameterName">uniqueId</code>, <code><a aria-label="java.lang.Class 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code></code></code><code class="parameterName">testClass</code>, <code><a aria-label="java.lang.reflect.Method 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/reflect/Method.html">Method</a></code><code class="parameterName">testMethod</code>, <code><a aria-label="java.util.function.Supplier 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Supplier.html">Supplier</a><code class="parameters"><code><a aria-label="java.util.List 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/List.html">List</a><code class="parameters"><code><a aria-label="java.lang.Class 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Class.html">Class</a><code class="parameters"><code>?</code></code></code></code></code></code></code><code class="parameterName">enclosingInstanceTypes</code>, <code>org.junit.jupiter.engine.config.JupiterConfiguration</code><code class="parameterName">configuration</code>)</code></li>
+				</ul>
+				<h5 class="M">Static Fields</h5>
+				<ul>
+					<li class="s"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.html#SEGMENT_TYPE">SEGMENT_TYPE</a></code><i class="Z"><code class="return"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code></i></li>
+				</ul>
+				<h5 class="M">Methods</h5>
+				<ul>
+					<li class="s"><i class="OVERRIDE PUBLIC"></i><code><a href="api/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.html#getType()">getType</a></code><code class="d">()</code><i class="Z"><code>org.junit.platform.engine.TestDescriptor.Type</code></i></li>
+					<li class="s"><i class="OVERRIDE PUBLIC"></i><code><a href="api/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.html#prepare(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext)">prepare</a></code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>)</code><i class="Z"><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code></i></li>
+					<li class="s"><i class="PROTECTED"></i><code><a href="api/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.html#populateNewExtensionRegistry(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext)">populateNewExtensionRegistry</a></code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>)</code><i class="Z"><code>org.junit.jupiter.engine.extension.MutableExtensionRegistry</code></i></li>
+					<li class="s"><i class="OVERRIDE PUBLIC"></i><code><a href="api/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.html#execute(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext,org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor)">execute</a></code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>, <code>org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor</code><code class="parameterName">dynamicTestExecutor</code>)</code><i class="Z"><code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code></i></li>
+					<li class="s"><i class="OVERRIDE PUBLIC"></i><code><a href="api/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.html#cleanUp(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext)">cleanUp</a></code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>)</code><i class="Z"><code>void</code></i></li>
+					<li class="s"><i class="PROTECTED"></i><code><a href="api/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.html#invokeTestMethod(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext,org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor)">invokeTestMethod</a></code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>, <code>org.junit.platform.engine.support.hierarchical.Node.DynamicTestExecutor</code><code class="parameterName">dynamicTestExecutor</code>)</code><i class="Z"><code>void</code></i></li>
+					<li class="s"><i class="OVERRIDE PUBLIC"></i><code><a href="api/org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.html#nodeFinished(org.junit.jupiter.engine.execution.JupiterEngineExecutionContext,org.junit.platform.engine.TestDescriptor,org.junit.platform.engine.TestExecutionResult)">nodeFinished</a></code><code class="d">(<code>org.junit.jupiter.engine.execution.JupiterEngineExecutionContext</code><code class="parameterName">context</code>, <code>org.junit.platform.engine.TestDescriptor</code><code class="parameterName">descriptor</code>, <code>org.junit.platform.engine.TestExecutionResult</code><code class="parameterName">result</code>)</code><i class="Z"><code>void</code></i></li>
+				</ul>
+			</div>
+		</aside>
+		<footer class="J"/>
 	</body>
+	<script src="root.js"></script>
+	<script src="main.js" type="module"></script>
 </html>

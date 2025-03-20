@@ -13,105 +13,104 @@
 		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Material+Icons" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
 		<link as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" rel="preload"/>
 		<link href="https://fonts.googleapis.com/css2?display=swap&#38;family=Vollkorn" media="print" onload="this.media=&#39;all&#39;" rel="stylesheet"/>
-		<link as="style" fetchpriority="high" href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="preload"/>
-		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<title>Antibug API</title>
 		<base href="../"/>
 		<script src="mimic.js" type="module"></script>
+		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="X">
-		<header class="Y">
-			<h1 class="T" date="2024-11-12" ver="1.12.2"><code>Antibug</code></h1>
-			<nav class="V"><a href="api/"><svg class="A svg" viewBox="0 0 24 24">
+	<body class="i">
+		<header class="j" date="2024-11-12" ver="1.12.2">
+			<h1 class="N"><code>Antibug</code></h1>
+			<nav class="W"><a href="api/" id="API"><svg class="package A svg" viewBox="0 0 24 24">
 						<use href="main.svg#package"/>
-					</svg><code>API</code></a><a href="https://github.com/teletha/antibug/discussions" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#user"/>
-					</svg>Community</a><a href="doc/changelog.html"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#activity"/>
-					</svg>Activity</a><a href="https://github.com/teletha/antibug" target="_blank"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#github"/>
-					</svg>Repository</a></nav>
-			<div class="N" id="ViewMode"><a id="light" title="Change to a brighter color scheme"><svg class="A svg" viewBox="0 0 24 24">
-						<use href="main.svg#sun"/>
 					</svg>
-				</a><a id="dark" title="Change to a darker color scheme"><svg class="A svg" viewBox="0 0 24 24">
+				</a><a href="https://github.com/teletha/antibug/discussions" id="Community" target="_blank"><svg class="user A svg" viewBox="0 0 24 24">
+						<use href="main.svg#user"/>
+					</svg>
+				</a><a href="doc/changelog.html" id="Activity"><svg class="activity A svg" viewBox="0 0 24 24">
+						<use href="main.svg#activity"/>
+					</svg>
+				</a><a href="https://github.com/teletha/antibug" id="Repository" target="_blank"><svg class="github A svg" viewBox="0 0 24 24">
+						<use href="main.svg#github"/>
+					</svg>
+				</a></nav>
+			<div class="f"><a aria-label="Change color scheme" id="theme"><svg class="sun A svg" viewBox="0 0 24 24">
+						<use href="main.svg#sun"/>
+					</svg><svg class="moon A svg" viewBox="0 0 24 24">
 						<use href="main.svg#moon"/>
 					</svg>
 				</a></div>
 		</header>
-		<main class="J">
-			<nav class="m">
-				<div></div>
-			</nav>
-			<article class="L" id="Article">
-				<section class="i"><code class="I">antibug.bytecode</code>
-					<h2 class="AbstractClass M"><code class="g">Bytecode</code><code class="d">&#60;<code>T</code>&#62;</code></h2>
-					<div class="b">
-						<ul class="C D">
-							<li><code>T</code><code class="extends"><code><a href="api/antibug.bytecode.Bytecode.html">Bytecode</a><code class="parameters"><code>T</code></code></code></code></li>
-						</ul>
-						<ul class="C G">
-							<li><code><a href="api/antibug.bytecode.Constant.html">Constant</a></code></li>
-							<li><code><a href="api/antibug.bytecode.Instruction.html">Instruction</a></code></li>
-							<li><code><a href="api/antibug.bytecode.IntValue.html">IntValue</a></code></li>
-							<li><code><a href="api/antibug.bytecode.LocalVariable.html">LocalVariable</a></code></li>
-							<li><code><a href="api/antibug.bytecode.MethodCall.html">MethodCall</a></code></li>
-						</ul>
-					</div>
-				</section>
-				<section class="i" id="OBJECT_TYPE">
-					<h2 class="k"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="g">OBJECT_TYPE</code><i class="f"><code class="return">net.bytebuddy.jar.asm.Type</code></i></h2><span class="B"><p>The object type for reuse.</p></span></section>
-				<section class="i" id="Bytecode()">
-					<h2 class="k"><i class="PUBLIC"></i><code class="g">Bytecode</code><code class="d">()</code></h2>
-				</section>
-				<section class="i" id="write(net.bytebuddy.jar.asm.MethodVisitor,boolean)">
-					<h2 class="k"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="g">write</code><code class="d">(<code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">visitor</code>, <code>boolean</code><code class="parameterName">requireNonPrimitive</code>)</code><i class="f"><code>void</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code>net.bytebuddy.jar.asm.MethodVisitor</code><code>visitor</code></td>
-							<td></td>
-						</tr>
-						<tr class="K">
-							<td><code>boolean</code><code>requireNonPrimitive</code></td>
-							<td><span><p>TODO</p></span></td>
-						</tr>
-					</table><span class="B"><p>Write bytecode actually.</p></span></section>
-				<section class="i" id="getWrapperType(net.bytebuddy.jar.asm.Type)">
-					<h2 class="k"><i class="PUBLIC STATIC"></i><code class="g">getWrapperType</code><code class="d">(<code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code>)</code><i class="f"><code>net.bytebuddy.jar.asm.Type</code></i></h2>
-					<table class="c">
-						<tr class="K">
-							<td><code>net.bytebuddy.jar.asm.Type</code><code>type</code></td>
-							<td></td>
-						</tr>
-						<tr class="e">
-							<td><code>net.bytebuddy.jar.asm.Type</code></td>
-							<td></td>
-						</tr>
-					</table><span class="B"><p>Search wrapper type of the specified primitive type.</p></span></section>
-			</article>
-			<aside class="W" id="SubNavi">
-				<div class="Z">
-					<h5 class="P">Constructors</h5>
-					<ul>
-						<li><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.Bytecode.html#Bytecode()">Bytecode</a></code><code class="d">()</code></li>
+		<nav class="l"></nav>
+		<article class="k" id="Article">
+			<section class="n"><code class="X">antibug.bytecode</code>
+				<h2 class="AbstractClass m"><code class="g">Bytecode</code><code class="d">&#60;<code>T</code>&#62;</code></h2>
+				<div class="K">
+					<ul class="C D">
+						<li><code>T</code><code class="extends"><code><a aria-label="antibug.bytecode.Bytecode" href="api/antibug.bytecode.Bytecode.html">Bytecode</a><code class="parameters"><code>T</code></code></code></code></li>
 					</ul>
-					<h5 class="P">Static Fields</h5>
-					<ul>
-						<li><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/antibug.bytecode.Bytecode.html#OBJECT_TYPE">OBJECT_TYPE</a></code><i class="Q"><code class="return">net.bytebuddy.jar.asm.Type</code></i></li>
-					</ul>
-					<h5 class="P">Static Methods</h5>
-					<ul>
-						<li><i class="PUBLIC STATIC"></i><code><a href="api/antibug.bytecode.Bytecode.html#getWrapperType(net.bytebuddy.jar.asm.Type)">getWrapperType</a></code><code class="d">(<code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code>)</code><i class="Q"><code>net.bytebuddy.jar.asm.Type</code></i></li>
-					</ul>
-					<h5 class="P">Methods</h5>
-					<ul>
-						<li><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/antibug.bytecode.Bytecode.html#write(net.bytebuddy.jar.asm.MethodVisitor,boolean)">write</a></code><code class="d">(<code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">visitor</code>, <code>boolean</code><code class="parameterName">requireNonPrimitive</code>)</code><i class="Q"><code>void</code></i></li>
+					<ul class="C G">
+						<li><code><a aria-label="antibug.bytecode.Constant" href="api/antibug.bytecode.Constant.html">Constant</a></code></li>
+						<li><code><a aria-label="antibug.bytecode.Instruction" href="api/antibug.bytecode.Instruction.html">Instruction</a></code></li>
+						<li><code><a aria-label="antibug.bytecode.IntValue" href="api/antibug.bytecode.IntValue.html">IntValue</a></code></li>
+						<li><code><a aria-label="antibug.bytecode.LocalVariable" href="api/antibug.bytecode.LocalVariable.html">LocalVariable</a></code></li>
+						<li><code><a aria-label="antibug.bytecode.MethodCall" href="api/antibug.bytecode.MethodCall.html">MethodCall</a></code></li>
 					</ul>
 				</div>
-			</aside>
-		</main>
-		<script src="root.js"></script>
-		<script src="main.js" type="module"></script>
+			</section>
+			<section class="n" id="OBJECT_TYPE">
+				<h2 class="O"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code class="g">OBJECT_TYPE</code><i class="L"><code class="return">net.bytebuddy.jar.asm.Type</code></i></h2><span class="B"><p>The object type for reuse.</p></span></section>
+			<section class="n" id="Bytecode()">
+				<h2 class="O"><i class="PUBLIC"></i><code class="g">Bytecode</code><code class="d">()</code></h2>
+			</section>
+			<section class="n" id="write(net.bytebuddy.jar.asm.MethodVisitor,boolean)">
+				<h2 class="O"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code class="g">write</code><code class="d">(<code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">visitor</code>, <code>boolean</code><code class="parameterName">requireNonPrimitive</code>)</code><i class="L"><code>void</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">visitor</code></td>
+						<td></td>
+					</tr>
+					<tr class="a">
+						<td><code>boolean</code><code class="parameterName">requireNonPrimitive</code></td>
+						<td><span><p>TODO</p></span></td>
+					</tr>
+				</table><span class="B"><p>Write bytecode actually.</p></span></section>
+			<section class="n" id="getWrapperType(net.bytebuddy.jar.asm.Type)">
+				<h2 class="O"><i class="PUBLIC STATIC"></i><code class="g">getWrapperType</code><code class="d">(<code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code>)</code><i class="L"><code>net.bytebuddy.jar.asm.Type</code></i></h2>
+				<table class="Y">
+					<tr class="a">
+						<td><code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code></td>
+						<td></td>
+					</tr>
+					<tr class="p">
+						<td><code>net.bytebuddy.jar.asm.Type</code></td>
+						<td></td>
+					</tr>
+				</table><span class="B"><p>Search wrapper type of the specified primitive type.</p></span></section>
+		</article>
+		<aside class="b">
+			<div class="q">
+				<h5 class="M">Constructors</h5>
+				<ul>
+					<li class="s"><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.Bytecode.html#Bytecode()">Bytecode</a></code><code class="d">()</code></li>
+				</ul>
+				<h5 class="M">Static Fields</h5>
+				<ul>
+					<li class="s"><i class="FINAL"><i class="PUBLIC STATIC"></i></i><code><a href="api/antibug.bytecode.Bytecode.html#OBJECT_TYPE">OBJECT_TYPE</a></code><i class="Z"><code class="return">net.bytebuddy.jar.asm.Type</code></i></li>
+				</ul>
+				<h5 class="M">Static Methods</h5>
+				<ul>
+					<li class="s"><i class="PUBLIC STATIC"></i><code><a href="api/antibug.bytecode.Bytecode.html#getWrapperType(net.bytebuddy.jar.asm.Type)">getWrapperType</a></code><code class="d">(<code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code>)</code><i class="Z"><code>net.bytebuddy.jar.asm.Type</code></i></li>
+				</ul>
+				<h5 class="M">Methods</h5>
+				<ul>
+					<li class="s"><i class="ABSTRACT"><i class="PUBLIC"></i></i><code><a href="api/antibug.bytecode.Bytecode.html#write(net.bytebuddy.jar.asm.MethodVisitor,boolean)">write</a></code><code class="d">(<code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">visitor</code>, <code>boolean</code><code class="parameterName">requireNonPrimitive</code>)</code><i class="Z"><code>void</code></i></li>
+				</ul>
+			</div>
+		</aside>
+		<footer class="J"/>
 	</body>
+	<script src="root.js"></script>
+	<script src="main.js" type="module"></script>
 </html>
