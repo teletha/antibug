@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.13.1](https://github.com/teletha/antibug/compare/1.13.0...1.13.1) (2025-03-28)
+
+
+### Bug Fixes
+
+* update junit ([8cb575a](https://github.com/teletha/antibug/commit/8cb575abfd0873a7a22ae3ac029b1ed4d1bc3e89))
+
 ## [1.13.0](https://github.com/teletha/antibug/compare/v1.12.2...1.13.0) (2025-03-20)
 
 
