@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.13.2](https://github.com/teletha/antibug/compare/1.13.1...1.13.2) (2025-03-29)
+
+
+### Bug Fixes
+
+* update byte-buddy-agent ([100f325](https://github.com/teletha/antibug/commit/100f3259dd9bc4a7200919bc0760711b7323e5a8))
+
 ## [1.13.1](https://github.com/teletha/antibug/compare/1.13.0...1.13.1) (2025-03-28)
 
 
