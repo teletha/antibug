@@ -16,21 +16,15 @@ import java.lang.instrument.Instrumentation;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.security.ProtectionDomain;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.jar.Attributes;
-import java.util.jar.JarOutputStream;
-import java.util.jar.Manifest;
 
 import org.junit.platform.commons.util.ReflectionUtils;
 
 import net.bytebuddy.agent.ByteBuddyAgent;
-import net.bytebuddy.agent.ByteBuddyAgent.ProcessProvider;
 import net.bytebuddy.jar.asm.ClassReader;
 import net.bytebuddy.jar.asm.ClassVisitor;
 import net.bytebuddy.jar.asm.ClassWriter;
@@ -51,7 +45,7 @@ public class Agent {
     private static final Map<Class, byte[]> codes = new HashMap();
 
     /** The Instrumentation tool. */
-    private volatile static Instrumentation tool;
+    private static final Instrumentation tool = ByteBuddyAgent.install();
 
     /**
      * Create dynamic Agent.
@@ -68,13 +62,6 @@ public class Agent {
      * @param agent Your bytecode translator.
      */
     public Agent(ClassFileTransformer agent) {
-        synchronized (Agent.class) {
-            if (tool == null) {
-                createTool();
-            }
-        }
-
-        // register agent
         tool.addTransformer(agent, true);
     }
 
@@ -101,45 +88,6 @@ public class Agent {
      */
     public static byte[] getTransformedCode(Class target) {
         return codes.get(target);
-    }
-
-    /**
-     * Create instrumentation tool.
-     */
-    private static void createTool() {
-        // Build manifest.
-        Manifest manifest = new Manifest();
-        Attributes attributes = manifest.getMainAttributes();
-        attributes.putValue("Manifest-Version", "1.0");
-        attributes.putValue("Agent-Class", Agent.class.getName());
-        attributes.putValue("Can-Redefine-Classes", "true");
-        attributes.putValue("Can-Retransform-Classes", "true");
-        attributes.putValue("Can-Set-Native-Method-Prefix", "true");
-
-        try {
-            // Build temporary agent jar.
-            Path jar = Files.createTempFile("antibug", "agent.jar");
-            new JarOutputStream(Files.newOutputStream(jar), manifest).close();
-
-            // Load agent dynamically.
-            ByteBuddyAgent.attach(jar.toFile(), ProcessProvider.ForCurrentVm.INSTANCE);
-        } catch (Exception e) {
-            throw new Error(e);
-        }
-    }
-
-    /**
-     * Agent entry point.
-     */
-    public static void premain(String args, Instrumentation instrumentation) throws Exception {
-        tool = instrumentation;
-    }
-
-    /**
-     * Agent entry point.
-     */
-    public static void agentmain(String args, Instrumentation instrumentation) throws Exception {
-        tool = instrumentation;
     }
 
     /**
