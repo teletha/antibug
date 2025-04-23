@@ -21,7 +21,7 @@ class SVG {
 
     static void write(String fileName, Inspection[] visualize, List<MeasurableCode> results) {
         // resort by the first inspection item
-        Collections.sort(results, Comparator.comparingDouble(o -> -visualize[0].calculate(o)));
+        Collections.sort(results, Comparator.comparingDouble(o -> visualize[0].calculate(o) * (visualize[0].ascending ? 1 : -1)));
 
         int barHeight = 12 * visualize.length;
         int barHeightGap = 20;
