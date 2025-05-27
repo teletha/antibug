@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.14.0](https://github.com/teletha/antibug/compare/1.13.1...1.14.0) (2025-05-27)
+
+
+### Features
+
+* support Inspection order ([b3f096b](https://github.com/teletha/antibug/commit/b3f096bafbfbab13455184b1554b2cccc7ad0156))
+
+
+### Bug Fixes
+
+* update byte-buddy-agent ([100f325](https://github.com/teletha/antibug/commit/100f3259dd9bc4a7200919bc0760711b7323e5a8))
+* update junit ([0c325e8](https://github.com/teletha/antibug/commit/0c325e8cbc220c1f2d520ca38aa265f3054939f5))
+
 ## [1.13.1](https://github.com/teletha/antibug/compare/1.13.0...1.13.1) (2025-03-28)
 
 
