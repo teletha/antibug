@@ -202,7 +202,7 @@ public final class Benchmark extends Environment<Benchmark> {
                 }
             }
 
-            Collections.sort(results, Comparator.comparing(o -> o.arithmeticMean));
+            Collections.sort(results, Comparator.comparing(o -> o.throughputMean));
 
             Libraries names = new Libraries();
             int maxName = 0;
