@@ -35,7 +35,7 @@ Add it into in the dependencies element like so:
 <dependency>
     <groupId>com.github.teletha</groupId>
     <artifactId>antibug</artifactId>
-    <version>1.13.1</version>
+    <version>1.14.0</version>
 </dependency>
 ```
 #### [Gradle](https://gradle.org/)
@@ -48,7 +48,7 @@ repositories {
 Add it into the dependencies section like so:
 ```gradle
 dependencies {
-    implementation 'com.github.teletha:antibug:1.13.1'
+    implementation 'com.github.teletha:antibug:1.14.0'
 }
 ```
 #### [SBT](https://www.scala-sbt.org/)
@@ -58,7 +58,7 @@ resolvers += "jitpack" at "https://jitpack.io"
 ```
 Add it into the libraryDependencies section like so:
 ```scala
-libraryDependencies += "com.github.teletha" % "antibug" % "1.13.1"
+libraryDependencies += "com.github.teletha" % "antibug" % "1.14.0"
 ```
 #### [Leiningen](https://leiningen.org/)
 Add JitPack repository at the end of repositories in your project().clj:
@@ -67,12 +67,12 @@ Add JitPack repository at the end of repositories in your project().clj:
 ```
 Add it into the dependencies section like so:
 ```clj
-:dependencies [[com.github.teletha/antibug "1.13.1"]]
+:dependencies [[com.github.teletha/antibug "1.14.0"]]
 ```
 #### [Bee](https://teletha.github.io/bee)
 Add it into your project definition class like so:
 ```java
-require("com.github.teletha", "antibug", "1.13.1");
+require("com.github.teletha", "antibug", "1.14.0");
 ```
 <p align="right"><a href="#top">back to top</a></p>
 
@@ -110,12 +110,12 @@ Antibug depends on the following products on runtime.
 * [j2objc-annotations-2.8](https://mvnrepository.com/artifact/com.google.j2objc/j2objc-annotations/2.8)
 * [jimfs-1.3.0](https://mvnrepository.com/artifact/com.google.jimfs/jimfs/1.3.0)
 * [jsr305-3.0.2](https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305/3.0.2)
-* [junit-jupiter-api-5.13.0-RC1](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.13.0-RC1)
-* [junit-jupiter-engine-5.13.0-RC1](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine/5.13.0-RC1)
-* [junit-jupiter-params-5.13.0-RC1](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params/5.13.0-RC1)
-* [junit-platform-commons-1.13.0-RC1](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-commons/1.13.0-RC1)
-* [junit-platform-engine-1.13.0-RC1](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-engine/1.13.0-RC1)
-* [junit-platform-launcher-1.13.0-RC1](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher/1.13.0-RC1)
+* [junit-jupiter-api-5.13.0](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.13.0)
+* [junit-jupiter-engine-5.13.0](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine/5.13.0)
+* [junit-jupiter-params-5.13.0](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params/5.13.0)
+* [junit-platform-commons-1.13.0](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-commons/1.13.0)
+* [junit-platform-engine-1.13.0](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-engine/1.13.0)
+* [junit-platform-launcher-1.13.0](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher/1.13.0)
 * [listenablefuture-9999.0-empty-to-avoid-conflict-with-guava](https://mvnrepository.com/artifact/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava)
 * [opentest4j-1.3.0](https://mvnrepository.com/artifact/org.opentest4j/opentest4j/1.3.0)
 <p align="right"><a href="#top">back to top</a></p>
