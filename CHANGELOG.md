@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.0](https://github.com/teletha/antibug/compare/1.14.0...1.15.0) (2026-09-30)
+
+
+### Features
+
+* update to junit 6.1.3 ([8272549](https://github.com/teletha/antibug/commit/8272549a6230e2f5569e3e13a6e2616472cce116))
+
 ## [1.14.0](https://github.com/teletha/antibug/compare/1.13.1...1.14.0) (2025-05-27)
 
 
