@@ -38,7 +38,7 @@ import org.junit.jupiter.engine.config.JupiterConfiguration;
 import org.junit.jupiter.engine.execution.AfterEachMethodAdapter;
 import org.junit.jupiter.engine.execution.BeforeEachMethodAdapter;
 import org.junit.jupiter.engine.execution.InterceptingExecutableInvoker;
-import org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.ReflectiveInterceptorCall;
+import org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.ReflectiveInterceptorCall.VoidMethodInterceptorCall;
 import org.junit.jupiter.engine.execution.JupiterEngineExecutionContext;
 import org.junit.jupiter.engine.extension.ExtensionRegistry;
 import org.junit.jupiter.engine.extension.MutableExtensionRegistry;
@@ -57,7 +57,8 @@ import antibug.powerassert.PowerAssertOff;
  *
  * <h2>Default Display Names</h2>
  *
- * <p>The default display name for a test method is the name of the method
+ * <p>
+ * The default display name for a test method is the name of the method
  * concatenated with a comma-separated list of parameter types in parentheses.
  * The names of parameter types are retrieved using {@link Class#getSimpleName()}.
  * For example, the default display name for the following test method is
@@ -77,10 +78,9 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
 
     private static final InterceptingExecutableInvoker executableInvoker = new InterceptingExecutableInvoker();
 
-    private static final ReflectiveInterceptorCall<Method, Void> defaultInterceptorCall = ReflectiveInterceptorCall
-            .ofVoidMethod(InvocationInterceptor::interceptTestMethod);
+    private static final VoidMethodInterceptorCall defaultInterceptorCall = InvocationInterceptor::interceptTestMethod;
 
-    private final ReflectiveInterceptorCall<Method, Void> interceptorCall;
+    private final VoidMethodInterceptorCall interceptorCall;
 
     public TestMethodTestDescriptor(UniqueId uniqueId, Class<?> testClass, Method testMethod, Supplier<List<Class<?>>> enclosingInstanceTypes, JupiterConfiguration configuration) {
         super(uniqueId, testClass, testMethod, enclosingInstanceTypes, configuration);
@@ -91,7 +91,7 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
         this(uniqueId, displayName, testClass, testMethod, configuration, defaultInterceptorCall);
     }
 
-    TestMethodTestDescriptor(UniqueId uniqueId, String displayName, Class<?> testClass, Method testMethod, JupiterConfiguration configuration, ReflectiveInterceptorCall<Method, Void> interceptorCall) {
+    TestMethodTestDescriptor(UniqueId uniqueId, String displayName, Class<?> testClass, Method testMethod, JupiterConfiguration configuration, VoidMethodInterceptorCall interceptorCall) {
         super(uniqueId, displayName, testClass, testMethod, configuration);
         this.interceptorCall = interceptorCall;
     }
@@ -214,7 +214,7 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
             try {
                 Method testMethod = getTestMethod();
                 Object instance = extensionContext.getRequiredTestInstance();
-                executableInvoker.invoke(testMethod, instance, extensionContext, context.getExtensionRegistry(), interceptorCall);
+                executableInvoker.invokeVoid(testMethod, instance, extensionContext, context.getExtensionRegistry(), interceptorCall);
             } catch (Throwable throwable) {
                 Optional<PowerAssertOff> off = AnnotationUtils.findAnnotation(extensionContext.getTestMethod(), PowerAssertOff.class);
                 Optional<PowerAssertOff> offAll = AnnotationUtils.findAnnotation(extensionContext.getTestClass(), PowerAssertOff.class);
@@ -293,24 +293,15 @@ public class TestMethodTestDescriptor extends MethodBasedTestDescriptor {
     @Override
     public void nodeFinished(JupiterEngineExecutionContext context, TestDescriptor descriptor, TestExecutionResult result) {
 
-        if (context != null) {
-            ExtensionContext extensionContext = context.getExtensionContext();
-            TestExecutionResult.Status status = result.getStatus();
+        ExtensionContext extensionContext = context.getExtensionContext();
+        TestExecutionResult.Status status = result.getStatus();
 
-            invokeTestWatchers(context, true, watcher -> {
-                switch (status) {
-                case SUCCESSFUL:
-                    watcher.testSuccessful(extensionContext);
-                    break;
-                case ABORTED:
-                    watcher.testAborted(extensionContext, result.getThrowable().orElse(null));
-                    break;
-                case FAILED:
-                    watcher.testFailed(extensionContext, result.getThrowable().orElse(null));
-                    break;
-                }
-            });
-        }
+        invokeTestWatchers(context, true, watcher -> {
+            switch (status) {
+            case SUCCESSFUL -> watcher.testSuccessful(extensionContext);
+            case ABORTED -> watcher.testAborted(extensionContext, result.getThrowable().orElse(null));
+            case FAILED -> watcher.testFailed(extensionContext, result.getThrowable().orElse(null));
+            }
+        });
     }
-
 }
