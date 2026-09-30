@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<meta content="width=device-width, initial-scale=1" name="viewport"/>
-		<meta content="Explains how to use Antibug and its API. " name="description"/>
+		<meta content="Explains how to use Antibug and its API. JUnit Extension Tools." name="description"/>
 		<link href="https://cdn.jsdelivr.net" rel="preconnect"/>
 		<link href="https://fonts.googleapis.com" rel="preconnect"/>
 		<link crossorigin="null" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -20,429 +20,431 @@
 		<link href="main.css" rel="stylesheet"/>
 	</head>
 	<body class="S">
-		<header class="T" date="2025-03-28" ver="1.14.0">
-			<h1 class="h"><code>Antibug</code></h1>
-			<nav class="d"><a href="api/" id="API"><svg class="package A svg" viewBox="0 0 24 24">
+		<header class="T" date="2025-05-27">
+			<h1 class="m"><a href="index.html"><code>Antibug</code></a></h1>
+			<nav class="n"><a href="api/main.html" id="API"><svg class="package">
 						<use href="main.svg#package"/>
 					</svg>
-				</a><a href="https://github.com/teletha/antibug/discussions" id="Community" target="_blank"><svg class="user A svg" viewBox="0 0 24 24">
-						<use href="main.svg#user"/>
-					</svg>
-				</a><a href="doc/changelog.html" id="Activity"><svg class="activity A svg" viewBox="0 0 24 24">
+				</a><a href="doc/changelog.html" id="Activity"><svg class="activity">
 						<use href="main.svg#activity"/>
 					</svg>
-				</a><a href="https://github.com/teletha/antibug" id="Repository" target="_blank"><svg class="github A svg" viewBox="0 0 24 24">
+				</a><a href="https://github.com/teletha/antibug/discussions" id="Community" target="_blank"><svg class="user">
+						<use href="main.svg#user"/>
+					</svg>
+				</a><a href="https://github.com/teletha/antibug" id="Repository" target="_blank"><svg class="github">
 						<use href="main.svg#github"/>
 					</svg>
 				</a></nav>
-			<div class="i"><a aria-label="Change color scheme" id="theme"><svg class="sun A svg" viewBox="0 0 24 24">
+			<div class="a"><a aria-label="Change color scheme" id="theme"><svg class="sun">
 						<use href="main.svg#sun"/>
-					</svg><svg class="moon A svg" viewBox="0 0 24 24">
+					</svg><svg class="moon">
 						<use href="main.svg#moon"/>
 					</svg>
 				</a></div>
 		</header>
-		<nav class="V"></nav>
+		<nav class="W"></nav>
 		<article class="U" id="Article">
-			<section class="p"><code class="r">antibug</code>
-				<h2 class="Class Q"><code class="s">CleanRoom</code></h2>
-				<div class="j">
-					<ul class="C F">
+			<section class="M"><code class="DB">antibug</code>
+				<h2 class="Class h"><code class="K">CleanRoom</code></h2>
+				<div class="d">
+					<ul class="E H">
 						<li><code>org.junit.jupiter.api.extension.AfterAllCallback</code></li>
 						<li><code>org.junit.jupiter.api.extension.AfterEachCallback</code></li>
 						<li><code>org.junit.jupiter.api.extension.BeforeEachCallback</code></li>
 						<li><code>org.junit.jupiter.api.extension.Extension</code></li>
 					</ul>
-				</div><span class="B"><p>The environmental rule for test that depends on file system.</p></span></section>
-			<section class="p" id="root">
-				<h2 class="R"><i class="FINAL"><i class="PUBLIC"></i></i><code class="s">root</code><i class="a"><code class="return"><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2><span class="B"><p>The temporary bioclean room for this instance which are related with file system.</p></span></section>
-			<section class="p" id="CleanRoom()">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">CleanRoom</code><code class="q">()</code></h2><span class="B"><p>Create physical clean room.</p></span></section>
-			<section class="p" id="CleanRoom(boolean)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">CleanRoom</code><code class="q">(<code>boolean</code><code class="parameterName">virtual</code>)</code></h2>
-				<table class="k">
-					<tr class="c">
+				</div><span class="A"><p>The environmental rule for test that depends on file system.</p></span></section>
+			<section class="M" id="root">
+				<h2 class="g"><i class="FINAL"><i class="PUBLIC"></i></i><code class="K">root</code><i class="EB"><code class="return"><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2><span class="A"><p>The temporary bioclean room for this instance which are related with file system.</p></span></section>
+			<section class="M" id="CleanRoom()">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">CleanRoom</code><code class="j">()</code></h2><span class="A"><p>Create physical clean room.</p></span></section>
+			<section class="M" id="CleanRoom(boolean)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">CleanRoom</code><code class="j">(<code>boolean</code><code class="parameterName">virtual</code>)</code></h2>
+				<table class="l">
+					<tr class="JB">
 						<td><code>boolean</code><code class="parameterName">virtual</code></td>
 						<td></td>
 					</tr>
-				</table><span class="B"><p>Create virtual or physical clean room.</p></span></section>
-			<section class="p" id="assume(java.lang.String)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">assume</code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">charset</code>)</code><i class="a"><code>void</code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">charset</code></td>
+				</table><span class="A"><p>Create virtual or physical clean room.</p></span></section>
+			<section class="M" id="assume(java.lang.String)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">assume</code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">charset</code>)</code><i class="EB"><code>void</code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">charset</code></td>
 						<td><span><p>Your exepcted charcter encoding.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Assume platform encoding.</p></span></section>
-			<section class="p" id="assume(java.nio.charset.Charset)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">assume</code><code class="q">(<code><a aria-label="java.nio.charset.Charset 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/charset/Charset.html">Charset</a></code><code class="parameterName">charset</code>)</code><i class="a"><code>void</code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.nio.charset.Charset 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/charset/Charset.html">Charset</a></code><code class="parameterName">charset</code></td>
+				</table><span class="A"><p>Assume platform encoding.</p></span></section>
+			<section class="M" id="assume(java.nio.charset.Charset)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">assume</code><code class="j">(<code><a aria-label="java.nio.charset.Charset 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/charset/Charset.html">Charset</a></code><code class="parameterName">charset</code>)</code><i class="EB"><code>void</code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.nio.charset.Charset 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/charset/Charset.html">Charset</a></code><code class="parameterName">charset</code></td>
 						<td><span><p>Your exepcted charcter encoding.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Assume platform encoding.</p></span></section>
-			<section class="p" id="with(java.util.function.Consumer)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">with</code><code class="q">(<code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">context</code>)</code><i class="a"><code>void</code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">context</code></td>
+				</table><span class="A"><p>Assume platform encoding.</p></span></section>
+			<section class="M" id="with(java.util.function.Consumer)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">with</code><code class="j">(<code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">context</code>)</code><i class="EB"><code>void</code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">context</code></td>
 						<td><span><p>DSL context.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Build file tree by <code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code>.</p></span></section>
-			<section class="p" id="locateFile(java.lang.String)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">locateFile</code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="a"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
+				</table><span class="A"><p>Build file tree by <code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code>.</p></span></section>
+			<section class="M" id="locateFile(java.lang.String)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">locateFile</code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="EB"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
 						<td><span><p>A file name.</p></span></td>
 					</tr>
-					<tr class="O">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
 						<td><span><p>A located present file.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Locate a present resource file which is assured that the spcified file exists.</p></span></section>
-			<section class="p" id="locateFile(java.lang.String,java.time.Instant)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">locateFile</code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>)</code><i class="a"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
+				</table><span class="A"><p>Locate a present resource file which is assured that the spcified file exists.</p></span></section>
+			<section class="M" id="locateFile(java.lang.String,java.time.Instant)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">locateFile</code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>)</code><i class="EB"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
 						<td><span><p>A file name.</p></span></td>
 					</tr>
-					<tr class="c">
-						<td><code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code></td>
+					<tr class="JB">
+						<td><code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code></td>
 						<td><span><p>A last modified time.</p></span></td>
 					</tr>
-					<tr class="O">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
 						<td><span><p>A located present file.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Locate a present resource file which is assured that the spcified file exists.</p></span></section>
-			<section class="p" id="locateFile(java.lang.String,java.lang.String...)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">locateFile</code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code array="var"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">lines</code>)</code><i class="a"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
+				</table><span class="A"><p>Locate a present resource file which is assured that the spcified file exists.</p></span></section>
+			<section class="M" id="locateFile(java.lang.String,java.lang.String...)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">locateFile</code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code array="var"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">lines</code>)</code><i class="EB"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
 						<td><span><p>A file name.</p></span></td>
 					</tr>
-					<tr class="c">
-						<td><code array="var"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">lines</code></td>
+					<tr class="JB">
+						<td><code array="var"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">lines</code></td>
 						<td><span><p>A text contents.</p></span></td>
 					</tr>
-					<tr class="O">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
 						<td><span><p>A located present file.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Locate a present resource file which is assured that the spcified file exists.</p></span></section>
-			<section class="p" id="locateFile(java.lang.String,java.time.Instant,java.lang.String...)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">locateFile</code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>, <code array="var"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">lines</code>)</code><i class="a"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
+				</table><span class="A"><p>Locate a present resource file which is assured that the spcified file exists.</p></span></section>
+			<section class="M" id="locateFile(java.lang.String,java.time.Instant,java.lang.String...)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">locateFile</code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>, <code array="var"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">lines</code>)</code><i class="EB"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
 						<td><span><p>A file name.</p></span></td>
 					</tr>
-					<tr class="c">
-						<td><code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code></td>
+					<tr class="JB">
+						<td><code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code></td>
 						<td><span><p>A last modified time.</p></span></td>
 					</tr>
-					<tr class="c">
-						<td><code array="var"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">lines</code></td>
+					<tr class="JB">
+						<td><code array="var"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">lines</code></td>
 						<td><span><p>A text contents.</p></span></td>
 					</tr>
-					<tr class="O">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
 						<td><span><p>A located present file.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Locate a present resource file which is assured that the spcified file exists.</p></span></section>
-			<section class="p" id="locateFile(java.lang.String,java.lang.Iterable)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">locateFile</code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.lang.Iterable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Iterable.html">Iterable</a><code class="parameters"><code>?</code><code class="extends"><code><a aria-label="java.lang.CharSequence 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/CharSequence.html">CharSequence</a></code></code></code></code><code class="parameterName">lines</code>)</code><i class="a"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
+				</table><span class="A"><p>Locate a present resource file which is assured that the spcified file exists.</p></span></section>
+			<section class="M" id="locateFile(java.lang.String,java.lang.Iterable)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">locateFile</code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.lang.Iterable 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Iterable.html">Iterable</a><code class="parameters"><code>?</code><code class="extends"><code><a aria-label="java.lang.CharSequence 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/CharSequence.html">CharSequence</a></code></code></code></code><code class="parameterName">lines</code>)</code><i class="EB"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
 						<td><span><p>A file name.</p></span></td>
 					</tr>
-					<tr class="c">
-						<td><code><a aria-label="java.lang.Iterable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Iterable.html">Iterable</a><code class="parameters"><code>?</code><code class="extends"><code><a aria-label="java.lang.CharSequence 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/CharSequence.html">CharSequence</a></code></code></code></code><code class="parameterName">lines</code></td>
+					<tr class="JB">
+						<td><code><a aria-label="java.lang.Iterable 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Iterable.html">Iterable</a><code class="parameters"><code>?</code><code class="extends"><code><a aria-label="java.lang.CharSequence 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/CharSequence.html">CharSequence</a></code></code></code></code><code class="parameterName">lines</code></td>
 						<td><span><p>A text contents.</p></span></td>
 					</tr>
-					<tr class="O">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
 						<td><span><p>A located present file.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Locate a present resource file which is assured that the spcified file exists.</p></span></section>
-			<section class="p" id="locateFile(java.lang.String,java.time.Instant,java.lang.Iterable)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">locateFile</code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>, <code><a aria-label="java.lang.Iterable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Iterable.html">Iterable</a><code class="parameters"><code>?</code><code class="extends"><code><a aria-label="java.lang.CharSequence 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/CharSequence.html">CharSequence</a></code></code></code></code><code class="parameterName">lines</code>)</code><i class="a"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
+				</table><span class="A"><p>Locate a present resource file which is assured that the spcified file exists.</p></span></section>
+			<section class="M" id="locateFile(java.lang.String,java.time.Instant,java.lang.Iterable)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">locateFile</code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>, <code><a aria-label="java.lang.Iterable 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Iterable.html">Iterable</a><code class="parameters"><code>?</code><code class="extends"><code><a aria-label="java.lang.CharSequence 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/CharSequence.html">CharSequence</a></code></code></code></code><code class="parameterName">lines</code>)</code><i class="EB"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
 						<td><span><p>A file name.</p></span></td>
 					</tr>
-					<tr class="c">
-						<td><code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code></td>
+					<tr class="JB">
+						<td><code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code></td>
 						<td><span><p>A last modified time.</p></span></td>
 					</tr>
-					<tr class="c">
-						<td><code><a aria-label="java.lang.Iterable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Iterable.html">Iterable</a><code class="parameters"><code>?</code><code class="extends"><code><a aria-label="java.lang.CharSequence 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/CharSequence.html">CharSequence</a></code></code></code></code><code class="parameterName">lines</code></td>
+					<tr class="JB">
+						<td><code><a aria-label="java.lang.Iterable 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Iterable.html">Iterable</a><code class="parameters"><code>?</code><code class="extends"><code><a aria-label="java.lang.CharSequence 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/CharSequence.html">CharSequence</a></code></code></code></code><code class="parameterName">lines</code></td>
 						<td><span><p>A text contents.</p></span></td>
 					</tr>
-					<tr class="O">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
 						<td><span><p>A located present file.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Locate a present resource file which is assured that the spcified file exists.</p></span></section>
-			<section class="p" id="locateArchive(java.lang.String)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">locateArchive</code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="a"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
+				</table><span class="A"><p>Locate a present resource file which is assured that the spcified file exists.</p></span></section>
+			<section class="M" id="locateArchive(java.lang.String)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">locateArchive</code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="EB"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
 						<td><span><p>A file name.</p></span></td>
 					</tr>
-					<tr class="O">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
 						<td><span><p>A located present archive file.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Locate a present resource file which is assured that the spcified file exists as archive.</p></span></section>
-			<section class="p" id="locateArchive(java.lang.String,java.util.function.Consumer)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">locateArchive</code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">structure</code>)</code><i class="a"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
+				</table><span class="A"><p>Locate a present resource file which is assured that the spcified file exists as archive.</p></span></section>
+			<section class="M" id="locateArchive(java.lang.String,java.util.function.Consumer)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">locateArchive</code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">structure</code>)</code><i class="EB"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
 						<td><span><p>A file name.</p></span></td>
 					</tr>
-					<tr class="c">
-						<td><code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">structure</code></td>
+					<tr class="JB">
+						<td><code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">structure</code></td>
 						<td></td>
 					</tr>
-					<tr class="O">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
 						<td><span><p>A located present archive file.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Locate a present resource file which is assured that the spcified file exists as archive.</p></span></section>
-			<section class="p" id="locateArchive(java.nio.file.Path)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">locateArchive</code><code class="q">(<code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">path</code>)</code><i class="a"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">path</code></td>
+				</table><span class="A"><p>Locate a present resource file which is assured that the spcified file exists as archive.</p></span></section>
+			<section class="M" id="locateArchive(java.nio.file.Path)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">locateArchive</code><code class="j">(<code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">path</code>)</code><i class="EB"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">path</code></td>
 						<td><span><p>A file path.</p></span></td>
 					</tr>
-					<tr class="O">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
 						<td><span><p>A located present archive file.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Locate a present resource file which is assured that the spcified file exists as archive.</p></span></section>
-			<section class="p" id="locateArchive(java.nio.file.Path,java.util.function.Consumer)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">locateArchive</code><code class="q">(<code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">path</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">structure</code>)</code><i class="a"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">path</code></td>
+				</table><span class="A"><p>Locate a present resource file which is assured that the spcified file exists as archive.</p></span></section>
+			<section class="M" id="locateArchive(java.nio.file.Path,java.util.function.Consumer)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">locateArchive</code><code class="j">(<code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">path</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">structure</code>)</code><i class="EB"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">path</code></td>
 						<td><span><p>A file path.</p></span></td>
 					</tr>
-					<tr class="c">
-						<td><code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">structure</code></td>
+					<tr class="JB">
+						<td><code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">structure</code></td>
 						<td></td>
 					</tr>
-					<tr class="O">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
 						<td><span><p>A located present archive file.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Locate a present resource file which is assured that the spcified file exists as archive.</p></span></section>
-			<section class="p" id="locateDirectory(java.lang.String)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">locateDirectory</code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="a"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
+				</table><span class="A"><p>Locate a present resource file which is assured that the spcified file exists as archive.</p></span></section>
+			<section class="M" id="locateDirectory(java.lang.String)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">locateDirectory</code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="EB"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
 						<td><span><p>A directory name.</p></span></td>
 					</tr>
-					<tr class="O">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
 						<td><span><p>A located present directory.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Locate a present resource directory which is assured that the specified directory exists.</p></span></section>
-			<section class="p" id="locateDirectory(java.lang.String,java.time.Instant)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">locateDirectory</code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>)</code><i class="a"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
+				</table><span class="A"><p>Locate a present resource directory which is assured that the specified directory exists.</p></span></section>
+			<section class="M" id="locateDirectory(java.lang.String,java.time.Instant)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">locateDirectory</code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>)</code><i class="EB"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
 						<td><span><p>A directory name.</p></span></td>
 					</tr>
-					<tr class="c">
-						<td><code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code></td>
+					<tr class="JB">
+						<td><code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code></td>
 						<td></td>
 					</tr>
-					<tr class="O">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
 						<td><span><p>A located present directory.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Locate a present resource directory which is assured that the specified directory exists.</p></span></section>
-			<section class="p" id="locateDirectory(java.lang.String,java.util.function.Consumer)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">locateDirectory</code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">children</code>)</code><i class="a"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
+				</table><span class="A"><p>Locate a present resource directory which is assured that the specified directory exists.</p></span></section>
+			<section class="M" id="locateDirectory(java.lang.String,java.util.function.Consumer)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">locateDirectory</code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">children</code>)</code><i class="EB"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
 						<td><span><p>A directory name.</p></span></td>
 					</tr>
-					<tr class="c">
-						<td><code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">children</code></td>
+					<tr class="JB">
+						<td><code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">children</code></td>
 						<td></td>
 					</tr>
-					<tr class="O">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
 						<td><span><p>A located present directory.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Locate a present resource directory which is assured that the specified directory exists.</p></span></section>
-			<section class="p" id="locateDirectory(java.lang.String,java.time.Instant,java.util.function.Consumer)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">locateDirectory</code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">children</code>)</code><i class="a"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
+				</table><span class="A"><p>Locate a present resource directory which is assured that the specified directory exists.</p></span></section>
+			<section class="M" id="locateDirectory(java.lang.String,java.time.Instant,java.util.function.Consumer)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">locateDirectory</code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">children</code>)</code><i class="EB"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
 						<td><span><p>A directory name.</p></span></td>
 					</tr>
-					<tr class="c">
-						<td><code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code></td>
+					<tr class="JB">
+						<td><code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code></td>
 						<td></td>
 					</tr>
-					<tr class="c">
-						<td><code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">children</code></td>
+					<tr class="JB">
+						<td><code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">children</code></td>
 						<td></td>
 					</tr>
-					<tr class="O">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
 						<td><span><p>A located present directory.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Locate a present resource directory which is assured that the specified directory exists.</p></span></section>
-			<section class="p" id="locateAbsent(java.lang.String)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">locateAbsent</code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="a"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
+				</table><span class="A"><p>Locate a present resource directory which is assured that the specified directory exists.</p></span></section>
+			<section class="M" id="locateAbsent(java.lang.String)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">locateAbsent</code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="EB"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
 						<td><span><p>A resource name.</p></span></td>
 					</tr>
-					<tr class="O">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
 						<td><span><p>A located absent file system resource.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Locate an absent resource which is assured that the specified resource doesn&apos;t exists.</p></span></section>
-			<section class="p" id="locateRadom()">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">locateRadom</code><code class="q">()</code><i class="a"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
-				<table class="k">
-					<tr class="O">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
+				</table><span class="A"><p>Locate an absent resource which is assured that the specified resource doesn&apos;t exists.</p></span></section>
+			<section class="M" id="locateRadom()">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">locateRadom</code><code class="j">()</code><i class="EB"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
+				<table class="l">
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
 						<td><span><p>A located file system resource.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Locate a resource with random name.</p></span></section>
-			<section class="p" id="locate(java.lang.String)">
-				<h2 class="R"><i class="PUBLIC"></i><code class="s">locate</code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="a"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
+				</table><span class="A"><p>Locate a resource with random name.</p></span></section>
+			<section class="M" id="locate(java.lang.String)">
+				<h2 class="g"><i class="PUBLIC"></i><code class="K">locate</code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="EB"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
 						<td><span><p>A resource name.</p></span></td>
 					</tr>
-					<tr class="O">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
+					<tr class="HB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></td>
 						<td><span><p>A located file system resource.</p></span></td>
 					</tr>
-				</table><span class="B"><p>Locate a resource.</p></span></section>
-			<section class="p" id="beforeEach(org.junit.jupiter.api.extension.ExtensionContext)">
-				<h2 class="R"><i class="OVERRIDE PUBLIC"></i><code class="s">beforeEach</code><code class="q">(<code>org.junit.jupiter.api.extension.ExtensionContext</code><code class="parameterName">context</code>)</code><i class="a"><code>void</code></i></h2>
-				<table class="k">
-					<tr class="c">
+				</table><span class="A"><p>Locate a resource.</p></span></section>
+			<section class="M" id="beforeEach(org.junit.jupiter.api.extension.ExtensionContext)">
+				<h2 class="g"><i class="OVERRIDE PUBLIC"></i><code class="K">beforeEach</code><code class="j">(<code>org.junit.jupiter.api.extension.ExtensionContext</code><code class="parameterName">context</code>)</code><i class="EB"><code>void</code></i></h2>
+				<table class="l">
+					<tr class="JB">
 						<td><code>org.junit.jupiter.api.extension.ExtensionContext</code><code class="parameterName">context</code></td>
 						<td></td>
 					</tr>
-					<tr class="e">
-						<td><code><a aria-label="java.lang.Exception 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Exception.html">Exception</a></code></td>
+					<tr class="X">
+						<td><code><a aria-label="java.lang.Exception 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Exception.html">Exception</a></code></td>
 						<td></td>
 					</tr>
 				</table>
 			</section>
-			<section class="p" id="afterEach(org.junit.jupiter.api.extension.ExtensionContext)">
-				<h2 class="R"><i class="OVERRIDE PUBLIC"></i><code class="s">afterEach</code><code class="q">(<code>org.junit.jupiter.api.extension.ExtensionContext</code><code class="parameterName">context</code>)</code><i class="a"><code>void</code></i></h2>
-				<table class="k">
-					<tr class="c">
+			<section class="M" id="afterEach(org.junit.jupiter.api.extension.ExtensionContext)">
+				<h2 class="g"><i class="OVERRIDE PUBLIC"></i><code class="K">afterEach</code><code class="j">(<code>org.junit.jupiter.api.extension.ExtensionContext</code><code class="parameterName">context</code>)</code><i class="EB"><code>void</code></i></h2>
+				<table class="l">
+					<tr class="JB">
 						<td><code>org.junit.jupiter.api.extension.ExtensionContext</code><code class="parameterName">context</code></td>
 						<td></td>
 					</tr>
-					<tr class="e">
-						<td><code><a aria-label="java.lang.Exception 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Exception.html">Exception</a></code></td>
+					<tr class="X">
+						<td><code><a aria-label="java.lang.Exception 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Exception.html">Exception</a></code></td>
 						<td></td>
 					</tr>
 				</table>
 			</section>
-			<section class="p" id="afterAll(org.junit.jupiter.api.extension.ExtensionContext)">
-				<h2 class="R"><i class="OVERRIDE PUBLIC"></i><code class="s">afterAll</code><code class="q">(<code>org.junit.jupiter.api.extension.ExtensionContext</code><code class="parameterName">context</code>)</code><i class="a"><code>void</code></i></h2>
-				<table class="k">
-					<tr class="c">
+			<section class="M" id="afterAll(org.junit.jupiter.api.extension.ExtensionContext)">
+				<h2 class="g"><i class="OVERRIDE PUBLIC"></i><code class="K">afterAll</code><code class="j">(<code>org.junit.jupiter.api.extension.ExtensionContext</code><code class="parameterName">context</code>)</code><i class="EB"><code>void</code></i></h2>
+				<table class="l">
+					<tr class="JB">
 						<td><code>org.junit.jupiter.api.extension.ExtensionContext</code><code class="parameterName">context</code></td>
 						<td></td>
 					</tr>
-					<tr class="e">
-						<td><code><a aria-label="java.lang.Exception 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Exception.html">Exception</a></code></td>
+					<tr class="X">
+						<td><code><a aria-label="java.lang.Exception 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Exception.html">Exception</a></code></td>
 						<td></td>
 					</tr>
 				</table>
 			</section>
-			<section class="p" id="copyFile(java.nio.file.Path,java.nio.file.Path)">
-				<h2 class="R"><i class="PROTECTED"></i><code class="s">copyFile</code><code class="q">(<code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">input</code>, <code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">output</code>)</code><i class="a"><code>void</code></i></h2>
-				<table class="k">
-					<tr class="c">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">input</code></td>
+			<section class="M" id="copyFile(java.nio.file.Path,java.nio.file.Path)">
+				<h2 class="g"><i class="PROTECTED"></i><code class="K">copyFile</code><code class="j">(<code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">input</code>, <code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">output</code>)</code><i class="EB"><code>void</code></i></h2>
+				<table class="l">
+					<tr class="JB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">input</code></td>
 						<td><span><p>A input file. (not directory)</p></span></td>
 					</tr>
-					<tr class="c">
-						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">output</code></td>
+					<tr class="JB">
+						<td><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">output</code></td>
 						<td><span><p>An output file. (not directory)</p></span></td>
 					</tr>
-					<tr class="e">
-						<td><code><a aria-label="java.io.IOException 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/io/IOException.html">IOException</a></code></td>
+					<tr class="X">
+						<td><code><a aria-label="java.io.IOException 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/io/IOException.html">IOException</a></code></td>
 						<td></td>
 					</tr>
-				</table><span class="B"><p>
+				</table><span class="A"><p>
  Copy a input file to an output file. You can override this method to change file copy
  behavior.
  </p>
 				</span></section>
 		</article>
-		<aside class="P">
-			<div class="I">
-				<h5 class="f">Constructors</h5>
+		<aside class="Q">
+			<div class="o">
+				<h5 class="O">Constructors</h5>
 				<ul>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#CleanRoom()">CleanRoom</a></code><code class="q">()</code></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#CleanRoom(boolean)">CleanRoom</a></code><code class="q">(<code>boolean</code><code class="parameterName">virtual</code>)</code></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#CleanRoom()">CleanRoom</a></code><code class="j">()</code></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#CleanRoom(boolean)">CleanRoom</a></code><code class="j">(<code>boolean</code><code class="parameterName">virtual</code>)</code></li>
 				</ul>
-				<h5 class="f">Fields</h5>
+				<h5 class="O">Fields</h5>
 				<ul>
-					<li class="b"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.CleanRoom.html#root">root</a></code><i class="X"><code class="return"><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="IB"><i class="FINAL"><i class="PUBLIC"></i></i><code><a href="api/antibug.CleanRoom.html#root">root</a></code><i class="t"><code class="return"><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
 				</ul>
-				<h5 class="f">Methods</h5>
+				<h5 class="O">Methods</h5>
 				<ul>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#assume(java.lang.String)">assume</a></code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">charset</code>)</code><i class="X"><code>void</code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#assume(java.nio.charset.Charset)">assume</a></code><code class="q">(<code><a aria-label="java.nio.charset.Charset 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/charset/Charset.html">Charset</a></code><code class="parameterName">charset</code>)</code><i class="X"><code>void</code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#with(java.util.function.Consumer)">with</a></code><code class="q">(<code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">context</code>)</code><i class="X"><code>void</code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateFile(java.lang.String)">locateFile</a></code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="X"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateFile(java.lang.String,java.time.Instant)">locateFile</a></code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>)</code><i class="X"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateFile(java.lang.String,java.lang.String...)">locateFile</a></code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code array="var"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">lines</code>)</code><i class="X"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateFile(java.lang.String,java.time.Instant,java.lang.String...)">locateFile</a></code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>, <code array="var"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">lines</code>)</code><i class="X"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateFile(java.lang.String,java.lang.Iterable)">locateFile</a></code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.lang.Iterable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Iterable.html">Iterable</a><code class="parameters"><code>?</code><code class="extends"><code><a aria-label="java.lang.CharSequence 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/CharSequence.html">CharSequence</a></code></code></code></code><code class="parameterName">lines</code>)</code><i class="X"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateFile(java.lang.String,java.time.Instant,java.lang.Iterable)">locateFile</a></code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>, <code><a aria-label="java.lang.Iterable 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Iterable.html">Iterable</a><code class="parameters"><code>?</code><code class="extends"><code><a aria-label="java.lang.CharSequence 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/CharSequence.html">CharSequence</a></code></code></code></code><code class="parameterName">lines</code>)</code><i class="X"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateArchive(java.lang.String)">locateArchive</a></code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="X"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateArchive(java.lang.String,java.util.function.Consumer)">locateArchive</a></code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">structure</code>)</code><i class="X"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateArchive(java.nio.file.Path)">locateArchive</a></code><code class="q">(<code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">path</code>)</code><i class="X"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateArchive(java.nio.file.Path,java.util.function.Consumer)">locateArchive</a></code><code class="q">(<code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">path</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">structure</code>)</code><i class="X"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateDirectory(java.lang.String)">locateDirectory</a></code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="X"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateDirectory(java.lang.String,java.time.Instant)">locateDirectory</a></code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>)</code><i class="X"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateDirectory(java.lang.String,java.util.function.Consumer)">locateDirectory</a></code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">children</code>)</code><i class="X"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateDirectory(java.lang.String,java.time.Instant,java.util.function.Consumer)">locateDirectory</a></code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">children</code>)</code><i class="X"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateAbsent(java.lang.String)">locateAbsent</a></code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="X"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateRadom()">locateRadom</a></code><code class="q">()</code><i class="X"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
-					<li class="b"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locate(java.lang.String)">locate</a></code><code class="q">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="X"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
-					<li class="b"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#beforeEach(org.junit.jupiter.api.extension.ExtensionContext)">beforeEach</a></code><code class="q">(<code>org.junit.jupiter.api.extension.ExtensionContext</code><code class="parameterName">context</code>)</code><i class="X"><code>void</code></i></li>
-					<li class="b"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#afterEach(org.junit.jupiter.api.extension.ExtensionContext)">afterEach</a></code><code class="q">(<code>org.junit.jupiter.api.extension.ExtensionContext</code><code class="parameterName">context</code>)</code><i class="X"><code>void</code></i></li>
-					<li class="b"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#afterAll(org.junit.jupiter.api.extension.ExtensionContext)">afterAll</a></code><code class="q">(<code>org.junit.jupiter.api.extension.ExtensionContext</code><code class="parameterName">context</code>)</code><i class="X"><code>void</code></i></li>
-					<li class="b"><i class="PROTECTED"></i><code><a href="api/antibug.CleanRoom.html#copyFile(java.nio.file.Path,java.nio.file.Path)">copyFile</a></code><code class="q">(<code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">input</code>, <code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">output</code>)</code><i class="X"><code>void</code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#assume(java.lang.String)">assume</a></code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">charset</code>)</code><i class="t"><code>void</code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#assume(java.nio.charset.Charset)">assume</a></code><code class="j">(<code><a aria-label="java.nio.charset.Charset 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/charset/Charset.html">Charset</a></code><code class="parameterName">charset</code>)</code><i class="t"><code>void</code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#with(java.util.function.Consumer)">with</a></code><code class="j">(<code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">context</code>)</code><i class="t"><code>void</code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateFile(java.lang.String)">locateFile</a></code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="t"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateFile(java.lang.String,java.time.Instant)">locateFile</a></code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>)</code><i class="t"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateFile(java.lang.String,java.lang.String...)">locateFile</a></code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code array="var"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">lines</code>)</code><i class="t"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateFile(java.lang.String,java.time.Instant,java.lang.String...)">locateFile</a></code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>, <code array="var"><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">lines</code>)</code><i class="t"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateFile(java.lang.String,java.lang.Iterable)">locateFile</a></code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.lang.Iterable 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Iterable.html">Iterable</a><code class="parameters"><code>?</code><code class="extends"><code><a aria-label="java.lang.CharSequence 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/CharSequence.html">CharSequence</a></code></code></code></code><code class="parameterName">lines</code>)</code><i class="t"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateFile(java.lang.String,java.time.Instant,java.lang.Iterable)">locateFile</a></code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>, <code><a aria-label="java.lang.Iterable 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Iterable.html">Iterable</a><code class="parameters"><code>?</code><code class="extends"><code><a aria-label="java.lang.CharSequence 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/CharSequence.html">CharSequence</a></code></code></code></code><code class="parameterName">lines</code>)</code><i class="t"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateArchive(java.lang.String)">locateArchive</a></code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="t"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateArchive(java.lang.String,java.util.function.Consumer)">locateArchive</a></code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">structure</code>)</code><i class="t"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateArchive(java.nio.file.Path)">locateArchive</a></code><code class="j">(<code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">path</code>)</code><i class="t"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateArchive(java.nio.file.Path,java.util.function.Consumer)">locateArchive</a></code><code class="j">(<code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">path</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">structure</code>)</code><i class="t"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateDirectory(java.lang.String)">locateDirectory</a></code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="t"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateDirectory(java.lang.String,java.time.Instant)">locateDirectory</a></code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>)</code><i class="t"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateDirectory(java.lang.String,java.util.function.Consumer)">locateDirectory</a></code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">children</code>)</code><i class="t"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateDirectory(java.lang.String,java.time.Instant,java.util.function.Consumer)">locateDirectory</a></code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.time.Instant 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/time/Instant.html">Instant</a></code><code class="parameterName">modified</code>, <code><a aria-label="java.util.function.Consumer 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/util/function/Consumer.html">Consumer</a><code class="parameters"><code><a aria-label="antibug.CleanRoom.FileSystemDSL" href="api/antibug.CleanRoom.FileSystemDSL.html">FileSystemDSL</a></code></code></code><code class="parameterName">children</code>)</code><i class="t"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateAbsent(java.lang.String)">locateAbsent</a></code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="t"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locateRadom()">locateRadom</a></code><code class="j">()</code><i class="t"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="IB"><i class="PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#locate(java.lang.String)">locate</a></code><code class="j">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>)</code><i class="t"><code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code></i></li>
+					<li class="IB"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#beforeEach(org.junit.jupiter.api.extension.ExtensionContext)">beforeEach</a></code><code class="j">(<code>org.junit.jupiter.api.extension.ExtensionContext</code><code class="parameterName">context</code>)</code><i class="t"><code>void</code></i></li>
+					<li class="IB"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#afterEach(org.junit.jupiter.api.extension.ExtensionContext)">afterEach</a></code><code class="j">(<code>org.junit.jupiter.api.extension.ExtensionContext</code><code class="parameterName">context</code>)</code><i class="t"><code>void</code></i></li>
+					<li class="IB"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.CleanRoom.html#afterAll(org.junit.jupiter.api.extension.ExtensionContext)">afterAll</a></code><code class="j">(<code>org.junit.jupiter.api.extension.ExtensionContext</code><code class="parameterName">context</code>)</code><i class="t"><code>void</code></i></li>
+					<li class="IB"><i class="PROTECTED"></i><code><a href="api/antibug.CleanRoom.html#copyFile(java.nio.file.Path,java.nio.file.Path)">copyFile</a></code><code class="j">(<code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">input</code>, <code><a aria-label="java.nio.file.Path 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/nio/file/Path.html">Path</a></code><code class="parameterName">output</code>)</code><i class="t"><code>void</code></i></li>
 				</ul>
 			</div>
 		</aside>
-		<footer class="W"/>
+		<footer class="V">
+			<p>Powered by <a href="https://github.com/teletha/evergarden" target="_">Evergarden</a></p>
+		</footer>
 	</body>
 	<script src="root.js"></script>
 	<script src="main.js" type="module"></script>
