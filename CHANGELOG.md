@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.1](https://github.com/teletha/antibug/compare/1.15.0...1.15.1) (2026-09-30)
+
+
+### Bug Fixes
+
+* ci environment ([ea4ded6](https://github.com/teletha/antibug/commit/ea4ded635e7c3c4f61b41c380467154ece440de4))
+
 ## [1.15.0](https://github.com/teletha/antibug/compare/1.14.0...1.15.0) (2026-09-30)
 
 
