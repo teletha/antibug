@@ -23,4 +23,4 @@ install: |
   # Jar files, etc. in the right place. However, since 2025, Jitpack no longer recognizes them.
   # But, I found that I could build without any problem if I sent the following Maven log-like
   # string to standard output. NO WAY!
-  echo "[INFO] Installing /home/jitpack/build/pom.xml to /home/jitpack/.m2/repository/${GROUP//./\/}/${ARTIFACT}/${ProductVersion}/${ARTIFACT}-${ProductVersion}.pom"
+  echo "[INFO] Installing /home/jitpack/build/pom.xml to /home/jitpack/.m2/repository/io/github/teletha/${ARTIFACT}/${ProductVersion}/${ARTIFACT}-${ProductVersion}.pom"
