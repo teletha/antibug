@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.0](https://github.com/teletha/antibug/compare/1.15.1...1.16.0) (2026-09-30)
+
+
+### Features
+
+* change group name ([230145f](https://github.com/teletha/antibug/commit/230145febac76502466324055df104d927fd92d7))
+
 ## [1.15.1](https://github.com/teletha/antibug/compare/1.15.0...1.15.1) (2026-09-30)
 
 
