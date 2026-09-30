@@ -19,10 +19,10 @@
 		<link href="https://cdn.jsdelivr.net/npm/ress@4.0.0/dist/ress.min.css" rel="stylesheet"/>
 		<link href="main.css" rel="stylesheet"/>
 	</head>
-	<body class="z">
-		<header class="Q" date="2026-09-30">
-			<h1 class="P"><a href="index.html"><code>Antibug</code></a></h1>
-			<nav class="R"><a href="api/main.html" id="API"><svg class="package">
+	<body class="BB">
+		<header class="M" date="2026-09-30">
+			<h1 class="N"><a href="index.html"><code>Antibug</code></a></h1>
+			<nav class="O"><a href="api/main.html" id="API"><svg class="package">
 						<use href="main.svg#package"/>
 					</svg>
 				</a><a href="doc/changelog.html" id="Activity"><svg class="activity">
@@ -35,18 +35,18 @@
 						<use href="main.svg#github"/>
 					</svg>
 				</a></nav>
-			<div class="S"><a aria-label="Change color scheme" id="theme"><svg class="sun">
+			<div class="P"><a aria-label="Change color scheme" id="theme"><svg class="sun">
 						<use href="main.svg#sun"/>
 					</svg><svg class="moon">
 						<use href="main.svg#moon"/>
 					</svg>
 				</a></div>
 		</header>
-		<nav class="y"></nav>
-		<article class="AB" id="Article">
-			<section class="t"><code class="DB">antibug.bytecode</code>
-				<h2 class="Class N"><code class="l">LocalVariablesSorter</code></h2>
-				<div class="IB">
+		<nav class="CB"></nav>
+		<article class="h" id="Article">
+			<section class="s"><code class="r">antibug.bytecode</code>
+				<h2 class="Class FB"><code class="GB">LocalVariablesSorter</code></h2>
+				<div class="R">
 					<ul class="E G">
 						<li><code>net.bytebuddy.jar.asm.MethodVisitor</code></li>
 					</ul>
@@ -55,196 +55,196 @@ allows one to easily add new local variables to a method. It may be used by inhe
 class, but the preferred way of using it is via delegation: the next visitor in the chain can
 indeed add new locals when needed by calling <code><a aria-label="antibug.bytecode.LocalVariablesSorter" href="api/antibug.bytecode.LocalVariablesSorter.html#newLocal">#newLocal</a></code> on this adapter (this requires a
 reference back to this <code><a aria-label="antibug.bytecode.LocalVariablesSorter" href="api/antibug.bytecode.LocalVariablesSorter.html">LocalVariablesSorter</a></code>).</p></span></section>
-			<section class="t" id="firstLocal">
-				<h2 class="b"><i class="FINAL"><i class="PROTECTED"></i></i><code class="l">firstLocal</code><i class="O"><code class="return">int</code></i></h2><span class="A"><p>The index of the first local variable, after formal parameters.</p></span></section>
-			<section class="t" id="nextLocal">
-				<h2 class="b"><i class="PROTECTED"></i><code class="l">nextLocal</code><i class="O"><code class="return">int</code></i></h2><span class="A"><p>The index of the next local variable to be created by <code><a aria-label="antibug.bytecode.LocalVariablesSorter" href="api/antibug.bytecode.LocalVariablesSorter.html#newLocal">#newLocal</a></code>.</p></span></section>
-			<section class="t" id="LocalVariablesSorter(int,java.lang.String,net.bytebuddy.jar.asm.MethodVisitor)">
-				<h2 class="b"><i class="PUBLIC"></i><code class="l">LocalVariablesSorter</code><code class="x">(<code>int</code><code class="parameterName">access</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code>, <code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">methodVisitor</code>)</code></h2>
-				<table class="g">
-					<tr class="HB">
+			<section class="s" id="firstLocal">
+				<h2 class="p"><i class="FINAL"><i class="PROTECTED"></i></i><code class="GB">firstLocal</code><i class="Q"><code class="return">int</code></i></h2><span class="A"><p>The index of the first local variable, after formal parameters.</p></span></section>
+			<section class="s" id="nextLocal">
+				<h2 class="p"><i class="PROTECTED"></i><code class="GB">nextLocal</code><i class="Q"><code class="return">int</code></i></h2><span class="A"><p>The index of the next local variable to be created by <code><a aria-label="antibug.bytecode.LocalVariablesSorter" href="api/antibug.bytecode.LocalVariablesSorter.html#newLocal">#newLocal</a></code>.</p></span></section>
+			<section class="s" id="LocalVariablesSorter(int,java.lang.String,net.bytebuddy.jar.asm.MethodVisitor)">
+				<h2 class="p"><i class="PUBLIC"></i><code class="GB">LocalVariablesSorter</code><code class="JB">(<code>int</code><code class="parameterName">access</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code>, <code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">methodVisitor</code>)</code></h2>
+				<table class="v">
+					<tr class="g">
 						<td><code>int</code><code class="parameterName">access</code></td>
 						<td><span><p>access flags of the adapted method.</p></span></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code></td>
 						<td><span><p>the method&apos;s descriptor (see Type).</p></span></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">methodVisitor</code></td>
 						<td><span><p>the method visitor to which this adapter delegates calls.</p></span></td>
 					</tr>
 				</table><span class="A"><p>Constructs a new <code><a aria-label="antibug.bytecode.LocalVariablesSorter" href="api/antibug.bytecode.LocalVariablesSorter.html">LocalVariablesSorter</a></code>. <i>Subclasses must not use this
 constructor</i>. Instead, they must use the
 <code><a aria-label="antibug.bytecode.LocalVariablesSorter" href="api/antibug.bytecode.LocalVariablesSorter.html#LocalVariablesSorter(int,int,java.lang.String,net.bytebuddy.jar.asm.MethodVisitor)">#LocalVariablesSorter(int, int, String, MethodVisitor)</a></code> version.</p></span></section>
-			<section class="t" id="LocalVariablesSorter(int,int,java.lang.String,net.bytebuddy.jar.asm.MethodVisitor)">
-				<h2 class="b"><i class="PROTECTED"></i><code class="l">LocalVariablesSorter</code><code class="x">(<code>int</code><code class="parameterName">api</code>, <code>int</code><code class="parameterName">access</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code>, <code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">methodVisitor</code>)</code></h2>
-				<table class="g">
-					<tr class="HB">
+			<section class="s" id="LocalVariablesSorter(int,int,java.lang.String,net.bytebuddy.jar.asm.MethodVisitor)">
+				<h2 class="p"><i class="PROTECTED"></i><code class="GB">LocalVariablesSorter</code><code class="JB">(<code>int</code><code class="parameterName">api</code>, <code>int</code><code class="parameterName">access</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code>, <code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">methodVisitor</code>)</code></h2>
+				<table class="v">
+					<tr class="g">
 						<td><code>int</code><code class="parameterName">api</code></td>
 						<td><span><p>the ASM API version implemented by this visitor. Must be one of
 Opcodes#ASM4, Opcodes#ASM5, Opcodes#ASM6,
 Opcodes#ASM7, Opcodes#ASM8 or Opcodes#ASM9.</p></span></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code>int</code><code class="parameterName">access</code></td>
 						<td><span><p>access flags of the adapted method.</p></span></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code></td>
 						<td><span><p>the method&apos;s descriptor (see Type).</p></span></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">methodVisitor</code></td>
 						<td><span><p>the method visitor to which this adapter delegates calls.</p></span></td>
 					</tr>
 				</table><span class="A"><p>Constructs a new <code><a aria-label="antibug.bytecode.LocalVariablesSorter" href="api/antibug.bytecode.LocalVariablesSorter.html">LocalVariablesSorter</a></code>.</p></span></section>
-			<section class="t" id="visitVarInsn(int,int)">
-				<h2 class="b"><i class="OVERRIDE PUBLIC"></i><code class="l">visitVarInsn</code><code class="x">(<code>int</code><code class="parameterName">opcode</code>, <code>int</code><code class="parameterName">var</code>)</code><i class="O"><code>void</code></i></h2>
-				<table class="g">
-					<tr class="HB">
+			<section class="s" id="visitVarInsn(int,int)">
+				<h2 class="p"><i class="OVERRIDE PUBLIC"></i><code class="GB">visitVarInsn</code><code class="JB">(<code>int</code><code class="parameterName">opcode</code>, <code>int</code><code class="parameterName">var</code>)</code><i class="Q"><code>void</code></i></h2>
+				<table class="v">
+					<tr class="g">
 						<td><code>int</code><code class="parameterName">opcode</code></td>
 						<td></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code>int</code><code class="parameterName">var</code></td>
 						<td></td>
 					</tr>
 				</table>
 			</section>
-			<section class="t" id="visitIincInsn(int,int)">
-				<h2 class="b"><i class="OVERRIDE PUBLIC"></i><code class="l">visitIincInsn</code><code class="x">(<code>int</code><code class="parameterName">var</code>, <code>int</code><code class="parameterName">increment</code>)</code><i class="O"><code>void</code></i></h2>
-				<table class="g">
-					<tr class="HB">
+			<section class="s" id="visitIincInsn(int,int)">
+				<h2 class="p"><i class="OVERRIDE PUBLIC"></i><code class="GB">visitIincInsn</code><code class="JB">(<code>int</code><code class="parameterName">var</code>, <code>int</code><code class="parameterName">increment</code>)</code><i class="Q"><code>void</code></i></h2>
+				<table class="v">
+					<tr class="g">
 						<td><code>int</code><code class="parameterName">var</code></td>
 						<td></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code>int</code><code class="parameterName">increment</code></td>
 						<td></td>
 					</tr>
 				</table>
 			</section>
-			<section class="t" id="visitMaxs(int,int)">
-				<h2 class="b"><i class="OVERRIDE PUBLIC"></i><code class="l">visitMaxs</code><code class="x">(<code>int</code><code class="parameterName">maxStack</code>, <code>int</code><code class="parameterName">maxLocals</code>)</code><i class="O"><code>void</code></i></h2>
-				<table class="g">
-					<tr class="HB">
+			<section class="s" id="visitMaxs(int,int)">
+				<h2 class="p"><i class="OVERRIDE PUBLIC"></i><code class="GB">visitMaxs</code><code class="JB">(<code>int</code><code class="parameterName">maxStack</code>, <code>int</code><code class="parameterName">maxLocals</code>)</code><i class="Q"><code>void</code></i></h2>
+				<table class="v">
+					<tr class="g">
 						<td><code>int</code><code class="parameterName">maxStack</code></td>
 						<td></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code>int</code><code class="parameterName">maxLocals</code></td>
 						<td></td>
 					</tr>
 				</table>
 			</section>
-			<section class="t" id="visitLocalVariable(java.lang.String,java.lang.String,java.lang.String,net.bytebuddy.jar.asm.Label,net.bytebuddy.jar.asm.Label,int)">
-				<h2 class="b"><i class="OVERRIDE PUBLIC"></i><code class="l">visitLocalVariable</code><code class="x">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">signature</code>, <code>net.bytebuddy.jar.asm.Label</code><code class="parameterName">start</code>, <code>net.bytebuddy.jar.asm.Label</code><code class="parameterName">end</code>, <code>int</code><code class="parameterName">index</code>)</code><i class="O"><code>void</code></i></h2>
-				<table class="g">
-					<tr class="HB">
+			<section class="s" id="visitLocalVariable(java.lang.String,java.lang.String,java.lang.String,net.bytebuddy.jar.asm.Label,net.bytebuddy.jar.asm.Label,int)">
+				<h2 class="p"><i class="OVERRIDE PUBLIC"></i><code class="GB">visitLocalVariable</code><code class="JB">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">signature</code>, <code>net.bytebuddy.jar.asm.Label</code><code class="parameterName">start</code>, <code>net.bytebuddy.jar.asm.Label</code><code class="parameterName">end</code>, <code>int</code><code class="parameterName">index</code>)</code><i class="Q"><code>void</code></i></h2>
+				<table class="v">
+					<tr class="g">
 						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code></td>
 						<td></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code></td>
 						<td></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">signature</code></td>
 						<td></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code>net.bytebuddy.jar.asm.Label</code><code class="parameterName">start</code></td>
 						<td></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code>net.bytebuddy.jar.asm.Label</code><code class="parameterName">end</code></td>
 						<td></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code>int</code><code class="parameterName">index</code></td>
 						<td></td>
 					</tr>
 				</table>
 			</section>
-			<section class="t" id="visitLocalVariableAnnotation(int,net.bytebuddy.jar.asm.TypePath,net.bytebuddy.jar.asm.Label[],net.bytebuddy.jar.asm.Label[],int[],java.lang.String,boolean)">
-				<h2 class="b"><i class="OVERRIDE PUBLIC"></i><code class="l">visitLocalVariableAnnotation</code><code class="x">(<code>int</code><code class="parameterName">typeRef</code>, <code>net.bytebuddy.jar.asm.TypePath</code><code class="parameterName">typePath</code>, <code array="fix">net.bytebuddy.jar.asm.Label</code><code class="parameterName">start</code>, <code array="fix">net.bytebuddy.jar.asm.Label</code><code class="parameterName">end</code>, <code array="fix">int</code><code class="parameterName">index</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code>, <code>boolean</code><code class="parameterName">visible</code>)</code><i class="O"><code>net.bytebuddy.jar.asm.AnnotationVisitor</code></i></h2>
-				<table class="g">
-					<tr class="HB">
+			<section class="s" id="visitLocalVariableAnnotation(int,net.bytebuddy.jar.asm.TypePath,net.bytebuddy.jar.asm.Label[],net.bytebuddy.jar.asm.Label[],int[],java.lang.String,boolean)">
+				<h2 class="p"><i class="OVERRIDE PUBLIC"></i><code class="GB">visitLocalVariableAnnotation</code><code class="JB">(<code>int</code><code class="parameterName">typeRef</code>, <code>net.bytebuddy.jar.asm.TypePath</code><code class="parameterName">typePath</code>, <code array="fix">net.bytebuddy.jar.asm.Label</code><code class="parameterName">start</code>, <code array="fix">net.bytebuddy.jar.asm.Label</code><code class="parameterName">end</code>, <code array="fix">int</code><code class="parameterName">index</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code>, <code>boolean</code><code class="parameterName">visible</code>)</code><i class="Q"><code>net.bytebuddy.jar.asm.AnnotationVisitor</code></i></h2>
+				<table class="v">
+					<tr class="g">
 						<td><code>int</code><code class="parameterName">typeRef</code></td>
 						<td></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code>net.bytebuddy.jar.asm.TypePath</code><code class="parameterName">typePath</code></td>
 						<td></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code array="fix">net.bytebuddy.jar.asm.Label</code><code class="parameterName">start</code></td>
 						<td></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code array="fix">net.bytebuddy.jar.asm.Label</code><code class="parameterName">end</code></td>
 						<td></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code array="fix">int</code><code class="parameterName">index</code></td>
 						<td></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code></td>
 						<td></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code>boolean</code><code class="parameterName">visible</code></td>
 						<td></td>
 					</tr>
-					<tr class="o">
+					<tr class="j">
 						<td><code>net.bytebuddy.jar.asm.AnnotationVisitor</code></td>
 						<td></td>
 					</tr>
 				</table>
 			</section>
-			<section class="t" id="visitFrame(int,int,java.lang.Object[],int,java.lang.Object[])">
-				<h2 class="b"><i class="OVERRIDE PUBLIC"></i><code class="l">visitFrame</code><code class="x">(<code>int</code><code class="parameterName">type</code>, <code>int</code><code class="parameterName">numLocal</code>, <code array="fix"><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">local</code>, <code>int</code><code class="parameterName">numStack</code>, <code array="fix"><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">stack</code>)</code><i class="O"><code>void</code></i></h2>
-				<table class="g">
-					<tr class="HB">
+			<section class="s" id="visitFrame(int,int,java.lang.Object[],int,java.lang.Object[])">
+				<h2 class="p"><i class="OVERRIDE PUBLIC"></i><code class="GB">visitFrame</code><code class="JB">(<code>int</code><code class="parameterName">type</code>, <code>int</code><code class="parameterName">numLocal</code>, <code array="fix"><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">local</code>, <code>int</code><code class="parameterName">numStack</code>, <code array="fix"><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">stack</code>)</code><i class="Q"><code>void</code></i></h2>
+				<table class="v">
+					<tr class="g">
 						<td><code>int</code><code class="parameterName">type</code></td>
 						<td></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code>int</code><code class="parameterName">numLocal</code></td>
 						<td></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code array="fix"><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">local</code></td>
 						<td></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code>int</code><code class="parameterName">numStack</code></td>
 						<td></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code array="fix"><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">stack</code></td>
 						<td></td>
 					</tr>
 				</table>
 			</section>
-			<section class="t" id="newLocal(net.bytebuddy.jar.asm.Type)">
-				<h2 class="b"><i class="PUBLIC"></i><code class="l">newLocal</code><code class="x">(<code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code>)</code><i class="O"><code>int</code></i></h2>
-				<table class="g">
-					<tr class="HB">
+			<section class="s" id="newLocal(net.bytebuddy.jar.asm.Type)">
+				<h2 class="p"><i class="PUBLIC"></i><code class="GB">newLocal</code><code class="JB">(<code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code>)</code><i class="Q"><code>int</code></i></h2>
+				<table class="v">
+					<tr class="g">
 						<td><code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code></td>
 						<td><span><p>the type of the local variable to be created.</p></span></td>
 					</tr>
-					<tr class="o">
+					<tr class="j">
 						<td><code>int</code></td>
 						<td><span><p>the identifier of the newly created local variable.</p></span></td>
 					</tr>
 				</table><span class="A"><p>Constructs a new local variable of the given type.</p></span></section>
-			<section class="t" id="updateNewLocals(java.lang.Object[])">
-				<h2 class="b"><i class="PROTECTED"></i><code class="l">updateNewLocals</code><code class="x">(<code array="fix"><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">newLocals</code>)</code><i class="O"><code>void</code></i></h2>
-				<table class="g">
-					<tr class="HB">
+			<section class="s" id="updateNewLocals(java.lang.Object[])">
+				<h2 class="p"><i class="PROTECTED"></i><code class="GB">updateNewLocals</code><code class="JB">(<code array="fix"><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">newLocals</code>)</code><i class="Q"><code>void</code></i></h2>
+				<table class="v">
+					<tr class="g">
 						<td><code array="fix"><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">newLocals</code></td>
 						<td><span><p>the stack map frame types corresponding to the local variables added with
 <code><a aria-label="antibug.bytecode.LocalVariablesSorter" href="api/antibug.bytecode.LocalVariablesSorter.html#newLocal">#newLocal</a></code> (and null for the others). The format of this array is the same
@@ -260,61 +260,61 @@ default implementation of this method does nothing, i.e. a local variable added 
 always the desired one, for instance if a local variable is added in the middle of a
 try/catch block: the frame for the exception handler should have a TOP type for this new
 local.</p></span></section>
-			<section class="t" id="setLocalType(int,net.bytebuddy.jar.asm.Type)">
-				<h2 class="b"><i class="PROTECTED"></i><code class="l">setLocalType</code><code class="x">(<code>int</code><code class="parameterName">local</code>, <code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code>)</code><i class="O"><code>void</code></i></h2>
-				<table class="g">
-					<tr class="HB">
+			<section class="s" id="setLocalType(int,net.bytebuddy.jar.asm.Type)">
+				<h2 class="p"><i class="PROTECTED"></i><code class="GB">setLocalType</code><code class="JB">(<code>int</code><code class="parameterName">local</code>, <code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code>)</code><i class="Q"><code>void</code></i></h2>
+				<table class="v">
+					<tr class="g">
 						<td><code>int</code><code class="parameterName">local</code></td>
 						<td><span><p>a local variable identifier, as returned by <code><a aria-label="antibug.bytecode.LocalVariablesSorter" href="api/antibug.bytecode.LocalVariablesSorter.html#newLocal">#newLocal</a></code>.</p></span></td>
 					</tr>
-					<tr class="HB">
+					<tr class="g">
 						<td><code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code></td>
 						<td><span><p>the type of the value being stored in the local variable.</p></span></td>
 					</tr>
 				</table><span class="A"><p>Notifies subclasses that a local variable has been added or remapped. The default
 implementation of this method does nothing.</p></span></section>
-			<section class="t" id="newLocalMapping(net.bytebuddy.jar.asm.Type)">
-				<h2 class="b"><i class="PROTECTED"></i><code class="l">newLocalMapping</code><code class="x">(<code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code>)</code><i class="O"><code>int</code></i></h2>
-				<table class="g">
-					<tr class="HB">
+			<section class="s" id="newLocalMapping(net.bytebuddy.jar.asm.Type)">
+				<h2 class="p"><i class="PROTECTED"></i><code class="GB">newLocalMapping</code><code class="JB">(<code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code>)</code><i class="Q"><code>int</code></i></h2>
+				<table class="v">
+					<tr class="g">
 						<td><code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code></td>
 						<td></td>
 					</tr>
-					<tr class="o">
+					<tr class="j">
 						<td><code>int</code></td>
 						<td></td>
 					</tr>
 				</table>
 			</section>
 		</article>
-		<aside class="BB">
-			<div class="V">
-				<h5 class="a">Constructors</h5>
+		<aside class="DB">
+			<div class="n">
+				<h5 class="AB">Constructors</h5>
 				<ul>
-					<li class="q"><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#LocalVariablesSorter(int,java.lang.String,net.bytebuddy.jar.asm.MethodVisitor)">LocalVariablesSorter</a></code><code class="x">(<code>int</code><code class="parameterName">access</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code>, <code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">methodVisitor</code>)</code></li>
-					<li class="q"><i class="PROTECTED"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#LocalVariablesSorter(int,int,java.lang.String,net.bytebuddy.jar.asm.MethodVisitor)">LocalVariablesSorter</a></code><code class="x">(<code>int</code><code class="parameterName">api</code>, <code>int</code><code class="parameterName">access</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code>, <code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">methodVisitor</code>)</code></li>
+					<li class="U"><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#LocalVariablesSorter(int,java.lang.String,net.bytebuddy.jar.asm.MethodVisitor)">LocalVariablesSorter</a></code><code class="JB">(<code>int</code><code class="parameterName">access</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code>, <code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">methodVisitor</code>)</code></li>
+					<li class="U"><i class="PROTECTED"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#LocalVariablesSorter(int,int,java.lang.String,net.bytebuddy.jar.asm.MethodVisitor)">LocalVariablesSorter</a></code><code class="JB">(<code>int</code><code class="parameterName">api</code>, <code>int</code><code class="parameterName">access</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code>, <code>net.bytebuddy.jar.asm.MethodVisitor</code><code class="parameterName">methodVisitor</code>)</code></li>
 				</ul>
-				<h5 class="a">Fields</h5>
+				<h5 class="AB">Fields</h5>
 				<ul>
-					<li class="q"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#firstLocal">firstLocal</a></code><i class="n"><code class="return">int</code></i></li>
-					<li class="q"><i class="PROTECTED"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#nextLocal">nextLocal</a></code><i class="n"><code class="return">int</code></i></li>
+					<li class="U"><i class="FINAL"><i class="PROTECTED"></i></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#firstLocal">firstLocal</a></code><i class="k"><code class="return">int</code></i></li>
+					<li class="U"><i class="PROTECTED"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#nextLocal">nextLocal</a></code><i class="k"><code class="return">int</code></i></li>
 				</ul>
-				<h5 class="a">Methods</h5>
+				<h5 class="AB">Methods</h5>
 				<ul>
-					<li class="q"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#visitVarInsn(int,int)">visitVarInsn</a></code><code class="x">(<code>int</code><code class="parameterName">opcode</code>, <code>int</code><code class="parameterName">var</code>)</code><i class="n"><code>void</code></i></li>
-					<li class="q"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#visitIincInsn(int,int)">visitIincInsn</a></code><code class="x">(<code>int</code><code class="parameterName">var</code>, <code>int</code><code class="parameterName">increment</code>)</code><i class="n"><code>void</code></i></li>
-					<li class="q"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#visitMaxs(int,int)">visitMaxs</a></code><code class="x">(<code>int</code><code class="parameterName">maxStack</code>, <code>int</code><code class="parameterName">maxLocals</code>)</code><i class="n"><code>void</code></i></li>
-					<li class="q"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#visitLocalVariable(java.lang.String,java.lang.String,java.lang.String,net.bytebuddy.jar.asm.Label,net.bytebuddy.jar.asm.Label,int)">visitLocalVariable</a></code><code class="x">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">signature</code>, <code>net.bytebuddy.jar.asm.Label</code><code class="parameterName">start</code>, <code>net.bytebuddy.jar.asm.Label</code><code class="parameterName">end</code>, <code>int</code><code class="parameterName">index</code>)</code><i class="n"><code>void</code></i></li>
-					<li class="q"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#visitLocalVariableAnnotation(int,net.bytebuddy.jar.asm.TypePath,net.bytebuddy.jar.asm.Label[],net.bytebuddy.jar.asm.Label[],int[],java.lang.String,boolean)">visitLocalVariableAnnotation</a></code><code class="x">(<code>int</code><code class="parameterName">typeRef</code>, <code>net.bytebuddy.jar.asm.TypePath</code><code class="parameterName">typePath</code>, <code array="fix">net.bytebuddy.jar.asm.Label</code><code class="parameterName">start</code>, <code array="fix">net.bytebuddy.jar.asm.Label</code><code class="parameterName">end</code>, <code array="fix">int</code><code class="parameterName">index</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code>, <code>boolean</code><code class="parameterName">visible</code>)</code><i class="n"><code>net.bytebuddy.jar.asm.AnnotationVisitor</code></i></li>
-					<li class="q"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#visitFrame(int,int,java.lang.Object[],int,java.lang.Object[])">visitFrame</a></code><code class="x">(<code>int</code><code class="parameterName">type</code>, <code>int</code><code class="parameterName">numLocal</code>, <code array="fix"><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">local</code>, <code>int</code><code class="parameterName">numStack</code>, <code array="fix"><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">stack</code>)</code><i class="n"><code>void</code></i></li>
-					<li class="q"><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#newLocal(net.bytebuddy.jar.asm.Type)">newLocal</a></code><code class="x">(<code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code>)</code><i class="n"><code>int</code></i></li>
-					<li class="q"><i class="PROTECTED"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#updateNewLocals(java.lang.Object[])">updateNewLocals</a></code><code class="x">(<code array="fix"><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">newLocals</code>)</code><i class="n"><code>void</code></i></li>
-					<li class="q"><i class="PROTECTED"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#setLocalType(int,net.bytebuddy.jar.asm.Type)">setLocalType</a></code><code class="x">(<code>int</code><code class="parameterName">local</code>, <code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code>)</code><i class="n"><code>void</code></i></li>
-					<li class="q"><i class="PROTECTED"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#newLocalMapping(net.bytebuddy.jar.asm.Type)">newLocalMapping</a></code><code class="x">(<code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code>)</code><i class="n"><code>int</code></i></li>
+					<li class="U"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#visitVarInsn(int,int)">visitVarInsn</a></code><code class="JB">(<code>int</code><code class="parameterName">opcode</code>, <code>int</code><code class="parameterName">var</code>)</code><i class="k"><code>void</code></i></li>
+					<li class="U"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#visitIincInsn(int,int)">visitIincInsn</a></code><code class="JB">(<code>int</code><code class="parameterName">var</code>, <code>int</code><code class="parameterName">increment</code>)</code><i class="k"><code>void</code></i></li>
+					<li class="U"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#visitMaxs(int,int)">visitMaxs</a></code><code class="JB">(<code>int</code><code class="parameterName">maxStack</code>, <code>int</code><code class="parameterName">maxLocals</code>)</code><i class="k"><code>void</code></i></li>
+					<li class="U"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#visitLocalVariable(java.lang.String,java.lang.String,java.lang.String,net.bytebuddy.jar.asm.Label,net.bytebuddy.jar.asm.Label,int)">visitLocalVariable</a></code><code class="JB">(<code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">name</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">signature</code>, <code>net.bytebuddy.jar.asm.Label</code><code class="parameterName">start</code>, <code>net.bytebuddy.jar.asm.Label</code><code class="parameterName">end</code>, <code>int</code><code class="parameterName">index</code>)</code><i class="k"><code>void</code></i></li>
+					<li class="U"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#visitLocalVariableAnnotation(int,net.bytebuddy.jar.asm.TypePath,net.bytebuddy.jar.asm.Label[],net.bytebuddy.jar.asm.Label[],int[],java.lang.String,boolean)">visitLocalVariableAnnotation</a></code><code class="JB">(<code>int</code><code class="parameterName">typeRef</code>, <code>net.bytebuddy.jar.asm.TypePath</code><code class="parameterName">typePath</code>, <code array="fix">net.bytebuddy.jar.asm.Label</code><code class="parameterName">start</code>, <code array="fix">net.bytebuddy.jar.asm.Label</code><code class="parameterName">end</code>, <code array="fix">int</code><code class="parameterName">index</code>, <code><a aria-label="java.lang.String 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/String.html">String</a></code><code class="parameterName">descriptor</code>, <code>boolean</code><code class="parameterName">visible</code>)</code><i class="k"><code>net.bytebuddy.jar.asm.AnnotationVisitor</code></i></li>
+					<li class="U"><i class="OVERRIDE PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#visitFrame(int,int,java.lang.Object[],int,java.lang.Object[])">visitFrame</a></code><code class="JB">(<code>int</code><code class="parameterName">type</code>, <code>int</code><code class="parameterName">numLocal</code>, <code array="fix"><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">local</code>, <code>int</code><code class="parameterName">numStack</code>, <code array="fix"><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">stack</code>)</code><i class="k"><code>void</code></i></li>
+					<li class="U"><i class="PUBLIC"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#newLocal(net.bytebuddy.jar.asm.Type)">newLocal</a></code><code class="JB">(<code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code>)</code><i class="k"><code>int</code></i></li>
+					<li class="U"><i class="PROTECTED"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#updateNewLocals(java.lang.Object[])">updateNewLocals</a></code><code class="JB">(<code array="fix"><a aria-label="java.lang.Object 🚀" href="https://docs.oracle.com/en/java/javase/24/docs/api/java.base/java/lang/Object.html">Object</a></code><code class="parameterName">newLocals</code>)</code><i class="k"><code>void</code></i></li>
+					<li class="U"><i class="PROTECTED"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#setLocalType(int,net.bytebuddy.jar.asm.Type)">setLocalType</a></code><code class="JB">(<code>int</code><code class="parameterName">local</code>, <code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code>)</code><i class="k"><code>void</code></i></li>
+					<li class="U"><i class="PROTECTED"></i><code><a href="api/antibug.bytecode.LocalVariablesSorter.html#newLocalMapping(net.bytebuddy.jar.asm.Type)">newLocalMapping</a></code><code class="JB">(<code>net.bytebuddy.jar.asm.Type</code><code class="parameterName">type</code>)</code><i class="k"><code>int</code></i></li>
 				</ul>
 			</div>
 		</aside>
-		<footer class="r">
+		<footer class="f">
 			<p>Powered by <a href="https://github.com/teletha/evergarden" target="_">Evergarden</a></p>
 		</footer>
 	</body>
