@@ -16,7 +16,7 @@ import javax.lang.model.SourceVersion;
 public class Project extends bee.api.Project {
 
     {
-        product("com.github.teletha", "antibug", ref("version.txt"));
+        product("io.github.teletha", "antibug", ref("version.txt"));
         license(MIT);
         describe("Bug Detection Tool Set. (including PowerAssert");
 
