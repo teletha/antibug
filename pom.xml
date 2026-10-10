@@ -88,7 +88,6 @@
 	<developers>
 		<developer>
 			<name>teletha</name>
-			<email/>
 			<url>https://github.com/teletha</url>
 		</developer>
 	</developers>
@@ -99,7 +98,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.14.0</version>
 				<configuration>
-					<release>24</release>
+					<release>25</release>
 					<encoding>UTF-8</encoding>
 					<compilerId>javac</compilerId>
 					<compilerArgs>
@@ -112,7 +111,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.5.2</version>
 				<configuration>
-					<argLine>-ea   -Dfile.encoding=UTF-8</argLine>
+					<argLine>-ea --enable-native-access=ALL-UNNAMED -Dfile.encoding=UTF-8</argLine>
 					<reportFormat>plain</reportFormat>
 					<consoleOutputReporter>
 						<disable>true</disable>
